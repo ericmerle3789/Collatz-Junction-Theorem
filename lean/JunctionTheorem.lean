@@ -208,9 +208,17 @@ theorem steiner_equation (k : ℕ) (cyc : IsPositiveCollatzCycle k)
 /-- **Theorem 1**: Crystal nonsurjectivity.
 For k ≥ 18 with S = ⌈k · log₂ 3⌉ and d > 0: C(S−1, k−1) < d.
 
-Requires: (1) Stirling upper bound on C(n,m) ≤ 2^{n·h(m/n)}
-          (2) Certified numerical check for k ∈ [18, 500]
-          (3) Asymptotic argument for k > 500 via Baker bounds -/
+**Status**: sorry — requires the *entropy bound on binomial coefficients*:
+  C(n,m) ≤ 2^{n·h(m/n)}  where h is the binary entropy function.
+
+**Proof strategy** (not yet formalized):
+  (1) From the binomial theorem: ∑_k C(n,k)·p^k·(1-p)^{n-k} = 1
+      Each term is non-negative, so C(n,m)·p^m·(1-p)^{n-m} ≤ 1.
+      Setting p = m/n: C(n,m) ≤ (n/m)^m · (n/(n-m))^{n-m} = 2^{n·h(m/n)}.
+      (Mathlib has `add_pow` and `Finset.single_le_sum` but not this combined bound.)
+  (2) Apply with n = S-1, m = k-1: log₂(C) ≤ (S-1)·h((k-1)/(S-1)) ≈ S·(1-γ).
+  (3) Show 2^{S·(1-γ)} < 2^S - 3^k using gap bounds on |S/k - log₂3|.
+  (4) For small k: certified numerics; for large k: Baker-type bounds. -/
 theorem crystal_nonsurjectivity (k : ℕ) (hk : k ≥ 18)
     (S : ℕ) (hS : S = Nat.ceil (k * (Real.log 3 / Real.log 2)))
     (hd : crystalModule S k > 0) :
@@ -406,19 +414,20 @@ theorem gamma_pos : gamma > 0 := by
   linarith
 
 /-- The deficit log₂(C/d) ≈ −γ·S grows linearly.
-This follows directly from crystal_nonsurjectivity: since C < d for k ≥ 18,
-we have log₂(C) < log₂(d) ≤ S, so log₂(C) < S, giving the bound. -/
+
+**Status**: sorry — depends on the same entropy bound as `crystal_nonsurjectivity`.
+
+**Proof strategy** (not yet formalized):
+  From the entropy bound: log₂(C(n,m)) ≤ n·h(m/n).
+  With n = S-1, m = k-1: log₂(C) ≤ (S-1)·h((k-1)/(S-1)).
+  Since h((k-1)/(S-1)) → h(1/log₂3) = 1 - γ by continuity of h:
+    log₂(C) ≤ S·(1-γ) + O(1)
+  The O(1) correction is absorbed by the log₂(S) slack term. -/
 theorem deficit_linear_growth (k : ℕ) (hk : k ≥ 18) (S : ℕ)
     (hS : S = Nat.ceil (k * (Real.log 3 / Real.log 2)))
     (hd : crystalModule S k > 0) :
     Real.log (Nat.choose (S - 1) (k - 1)) / Real.log 2 ≤
     (S : ℝ) * (1 - gamma) + Real.log S / Real.log 2 := by
-  -- This is a consequence of the Stirling upper bound:
-  -- log₂ C(n, m) ≤ n · h(m/n) + (1/2) log₂ n
-  -- With n = S-1, m = k-1: log₂ C ≤ (S-1)·h((k-1)/(S-1)) + (1/2)·log₂(S-1)
-  -- Since h((k-1)/(S-1)) → h(1/log₂3) = 1 - γ:
-  -- log₂ C ≤ S·(1-γ) + O(log S)
-  -- The O(log S) term is absorbed by log₂(S)
   sorry
 
 -- ============================================================================

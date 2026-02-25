@@ -356,19 +356,20 @@ def convergentDenominators_12 : List ℕ :=
 
 /-- **Gap lower bound for non-convergent k**.
 
-By the contrapositive of Legendre's criterion for convergents:
-if k is not a convergent denominator, then |S/k − log₂3| ≥ 1/(2k²).
+**Status**: sorry — requires Legendre's criterion for continued fractions,
+which is not yet in Mathlib.
 
-This requires Diophantine approximation theory not yet in Mathlib. -/
+**Proof strategy** (not yet formalized):
+  By the contrapositive of Legendre's criterion for convergents:
+  if k is not a convergent denominator of α, then |α - p/q| ≥ 1/(2q²).
+  Applied to α = log₂3, p = S, q = k:
+    |log₂3 - S/k| ≥ 1/(2k²)
+  Multiplying by k·ln 2: |Δ(k,S)| = k·|S·ln2/k - ln3| ≥ ln2/(2k).
+  (Requires: Mathlib.NumberTheory.ContinuedFractions.Legendre, not yet available.) -/
 theorem gap_non_convergent (k S : ℕ) (hk : k ≥ 2)
     (hS : 2 ^ S > 3 ^ k)
     (hnc : True /- placeholder: k is not a convergent denominator -/) :
     |diophantineGap k S| ≥ Real.log 2 / (2 * k) := by
-  -- Requires: Legendre's criterion for best rational approximations
-  -- If p/q is not a convergent of α, then |α - p/q| ≥ 1/(2q²)
-  -- Applied to α = log₂3, p = S, q = k:
-  --   |log₂3 - S/k| ≥ 1/(2k²)
-  -- Multiplying by k·ln 2: |Δ(k,S)| = k·|S·ln2/k - ln3| ≥ ln2/(2k)
   sorry
 
 -- ============================================================================
