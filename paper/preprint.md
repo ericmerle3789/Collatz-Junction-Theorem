@@ -55,6 +55,8 @@ L'étude des cycles de Collatz repose principalement sur deux méthodes :
 
 **(iii) Approches probabilistes.** Tao (2022) a démontré que « presque toutes » les orbites atteignent des valeurs arbitrairement petites, en utilisant des estimées de sommes exponentielles. Ce résultat remarquable ne traite cependant pas directement du problème des cycles.
 
+**(iv) Bornes combinatoires.** Eliahou (1993) a obtenu des bornes inférieures sur la longueur des cycles non triviaux en comparant le nombre de compositions admissibles au module d. Notre approche se distingue de celle d'Eliahou par trois aspects : (a) l'identification de la constante universelle γ = 1 − h(1/log₂ 3) qui gouverne asymptotiquement le ratio C/d indépendamment du convergent considéré ; (b) l'obtention du seuil explicite K₀ = 18, strictement inférieur aux bornes antérieures ; (c) le cadre information-théorique reliant le problème à la capacité de canal de Shannon, qui motive naturellement l'Hypothèse d'Équirépartition Exponentielle (§ 6). Pour une perspective d'ensemble, voir la monographie de Wirsching (1998) et le recueil de Lagarias (2010).
+
 ### 1.4. Notre contribution
 
 Nous proposons un changement de paradigme. Plutôt que de borner directement l'entier n₀ ou la forme linéaire |S log 2 − k log 3|, nous étudions la **cardinalité de l'image** de l'application d'évaluation modulaire
