@@ -1,0 +1,181 @@
+% Barrières Entropiques et Non-Surjectivité dans le Problème 3x+1
+% LaTeX stub — to be compiled with pdflatex or lualatex
+% Author: Eric Merle, February 2026
+
+\documentclass[11pt,a4paper]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+% Theorem environments
+\newtheorem{theorem}{Théorème}[section]
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollaire}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{hypothesis}[theorem]{Hypothèse}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remarque}
+
+% Custom commands
+\newcommand{\corrSum}{\operatorname{corrSum}}
+\newcommand{\Comp}{\operatorname{Comp}}
+\newcommand{\Ev}{\operatorname{Ev}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+
+\title[Barrières Entropiques --- Collatz]{%
+  Barrières Entropiques et Non-Surjectivité\\
+  dans le Problème $3x+1$ :\\
+  Le Théorème de Jonction}
+
+\author{Eric Merle}
+\date{Février 2026}
+
+\subjclass[2020]{11B83 (primary), 37P35, 94A17 (secondary)}
+
+\keywords{Conjecture de Collatz, problème $3x+1$, cycles,
+  équation de Steiner, entropie de Shannon,
+  non-surjectivité modulaire, formes linéaires en logarithmes}
+
+\begin{document}
+
+\begin{abstract}
+Nous étudions le sous-problème de l'inexistence des cycles positifs
+non triviaux dans la dynamique de Collatz $T(n) = n/2$ ($n$ pair),
+$T(n) = (3n+1)/2$ ($n$ impair). En revisitant l'équation de
+Steiner~(1977) sous l'angle de la théorie de l'information, nous
+identifions un déficit entropique universel
+\[
+  \gamma = 1 - h\!\left(\frac{1}{\log_2 3}\right) \approx 0{,}0500
+\]
+où $h$ désigne l'entropie binaire de Shannon. Il en résulte un
+\textbf{Théorème de Non-Surjectivité} (inconditionnel): pour tout
+cycle candidat de longueur $k \geq 18$ avec $d > 0$, l'application
+d'évaluation modulaire $\Ev_d$ ne peut pas être surjective. Conjugué
+au résultat computationnel de Simons et de Weger~(2005), nous obtenons
+un \textbf{Théorème de Jonction} couvrant tout $k \geq 2$. La question
+résiduelle est formulée comme une \textbf{Hypothèse d'Équirépartition
+Exponentielle}~(H).
+\end{abstract}
+
+\maketitle
+
+% ============================================================
+% NOTE: This is a structural stub.
+% The full content is in preprint.md — convert sections below.
+% ============================================================
+
+\section{Introduction}
+\subsection{Le problème des cycles}
+% TODO: Convert from preprint.md §1.1
+
+\subsection{L'équation de Steiner}
+% TODO: Convert from preprint.md §1.2
+
+\subsection{Approches antérieures}
+% TODO: Convert from preprint.md §1.3
+
+\subsection{Notre contribution}
+% TODO: Convert from preprint.md §1.4
+
+\section{Préliminaires et notations}
+% TODO: Convert from preprint.md §2
+
+\section{Le Gap Entropie-Module}
+% TODO: Convert from preprint.md §3
+
+\section{Le Théorème de Non-Surjectivité}
+
+\begin{theorem}[Non-surjectivité cristalline]\label{thm:nonsurj}
+Soit $k \geq 18$ un entier et $S = \lceil k \cdot \log_2 3 \rceil$.
+Si $d = 2^S - 3^k > 0$, alors
+\[
+  \binom{S-1}{k-1} < d.
+\]
+En conséquence, l'application d'évaluation
+$\Ev_d : \Comp(S,k) \to \Z/d\Z$ n'est pas surjective.
+\end{theorem}
+
+% TODO: Convert proof from preprint.md §4.2
+
+\section{Le Théorème de Jonction}
+
+\begin{theorem}[Jonction]\label{thm:junction}
+Pour tout entier $k \geq 2$, au moins l'une des deux obstructions
+suivantes s'applique à un cycle positif hypothétique de longueur~$k$:
+\begin{enumerate}[label=(\Alph*)]
+  \item \textbf{Obstruction computationnelle}: si $k < 68$, aucun
+    cycle positif non trivial n'existe (Simons--de~Weger, 2005).
+  \item \textbf{Obstruction entropique}: si $k \geq 18$ et
+    $d = 2^{\lceil k \log_2 3 \rceil} - 3^k > 0$, alors $\Ev_d$
+    n'est pas surjective.
+\end{enumerate}
+\end{theorem}
+
+% TODO: Convert from preprint.md §5
+
+\section{L'Hypothèse d'Équirépartition Exponentielle}
+
+\begin{hypothesis}[Équirépartition exponentielle]\label{hyp:H}
+Pour tout premier $p \mid d$ avec $\operatorname{ord}_p(2)$
+suffisamment grand, les sommes de caractères satisfont une annulation
+de type Weil: pour tout caractère non trivial $\chi$ de
+$\F_p^{\times}$,
+\[
+  \left| \sum_{A \in \Comp(S,k)} \chi(\corrSum(A)) \right|
+  \leq \binom{S-1}{k-1} \cdot p^{-1/2+\varepsilon}
+\]
+pour tout $\varepsilon > 0$ et $k$ suffisamment grand.
+\end{hypothesis}
+
+% TODO: Convert from preprint.md §6
+
+\section{Conclusion}
+% TODO: Convert from preprint.md §7
+
+\begin{thebibliography}{12}
+\bibitem{Crandall1978} R.~E.~Crandall, On the $3x+1$ problem,
+  \emph{Math.\ Comp.}\ \textbf{32} (1978), 1281--1292.
+\bibitem{Eliahou1993} S.~Eliahou, The $3x+1$ problem: new lower
+  bounds on nontrivial cycle lengths, \emph{Discrete Math.}\
+  \textbf{118} (1993), 45--56.
+\bibitem{Lagarias1985} J.~C.~Lagarias, The $3x+1$ problem and its
+  generalizations, \emph{Amer.\ Math.\ Monthly}\ \textbf{92} (1985),
+  3--23.
+\bibitem{LMN1995} M.~Laurent, M.~Mignotte, Y.~Nesterenko, Formes
+  linéaires en deux logarithmes et déterminants d'interpolation,
+  \emph{J.\ Number Theory}\ \textbf{55} (1995), 285--321.
+\bibitem{SdW2005} D.~Simons, B.~de~Weger, Theoretical and
+  computational bounds for $m$-cycles of the $3n+1$ problem,
+  \emph{Acta Arith.}\ \textbf{117} (2005), 51--70.
+\bibitem{Steiner1977} R.~P.~Steiner, A theorem on the Syracuse
+  problem, \emph{Proc.\ 7th Manitoba Conf.\ Numer.\ Math.}\ (1977),
+  553--559.
+\bibitem{Tao2022} T.~Tao, Almost all orbits of the Collatz map attain
+  almost bounded values, \emph{Forum Math.\ Pi}\ \textbf{10} (2022),
+  e12.
+\bibitem{Barina2021} T.~Barina, Convergence verification of the
+  Collatz problem, \emph{J.\ Supercomput.}\ \textbf{77} (2021),
+  2681--2688.
+\bibitem{Wirsching1998} G.~J.~Wirsching, \emph{The Dynamical System
+  Generated by the $3n+1$ Function}, Lecture Notes in Math.\
+  \textbf{1681}, Springer, 1998.
+\bibitem{BS1978} C.~Böhm, G.~Sontacchi, On the existence of cycles
+  of given length in integer sequences, \emph{Atti Accad.\ Naz.\
+  Lincei}\ \textbf{64} (1978), 260--264.
+\bibitem{Lagarias2010} J.~C.~Lagarias (ed.), \emph{The Ultimate
+  Challenge: The $3x+1$ Problem}, Amer.\ Math.\ Soc., 2010.
+\bibitem{KM2005} A.~V.~Kontorovich, S.~J.~Miller, Benford's law,
+  values of $L$-functions and the $3x+1$ problem, \emph{Acta Arith.}\
+  \textbf{120} (2005), 269--297.
+\end{thebibliography}
+
+\end{document}

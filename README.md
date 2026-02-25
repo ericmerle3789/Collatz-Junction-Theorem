@@ -15,7 +15,7 @@ $$\gamma = 1 - h\!\left(\frac{1}{\log_2 3}\right) \approx 0.0500$$
 
 where $h$ denotes binary Shannon entropy. This deficit implies that the modular evaluation map $\mathrm{Ev}_d$ cannot be surjective for any cycle candidate of length $k \geq 18$ (**unconditional**). Combined with the computational bound of Simons and de Weger (2005) for $k < 68$, we obtain a **Junction Theorem**: for every $k \geq 2$, at least one obstruction — computational or entropic — applies.
 
-The residual question — excluding the specific residue $0$ from the image — is formulated as a **Quasi-Uniformity Hypothesis** (H), supported by extensive numerical evidence.
+The residual question — excluding the specific residue $0$ from the image — is formulated as an **Exponential Equidistribution Hypothesis** (H), supported by extensive numerical evidence and motivated by Weil-type character sum cancellation.
 
 ## Key Results
 
@@ -41,6 +41,7 @@ Collatz-Junction-Theorem/
 ├── LICENSE                      # MIT License
 ├── paper/
 │   ├── preprint.md              # Full manuscript (French, Markdown)
+│   ├── preprint.tex             # LaTeX stub (amsart, ready for full conversion)
 │   └── Merle_2026_*.pdf         # PDF preprint
 ├── lean/
 │   ├── SyracuseHeight.lean      # Lean 4 skeleton: Syracuse height formalization
