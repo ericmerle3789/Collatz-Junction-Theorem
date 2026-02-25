@@ -109,19 +109,83 @@ theorem master_equation_positive
       orbit ⟨(i.val + 1) % k, Nat.mod_lt _ (by omega)⟩ * 2 ^ (exponents i) =
       3 * orbit i + 1) :
     diophantineGap k S = fractionalEnergy orbit hpos := by
-  -- Take log of each cycle equation:
-  --   log(n_{next}) + a_i * log 2 = log(3 * n_i + 1)
-  --                                = log(3 * n_i * (1 + 1/(3n_i)))
-  --                                = log 3 + log n_i + log(1 + 1/(3n_i))
-  -- Sum over all i: Σ log(n_{next(i)}) + S * log 2 = k * log 3 + Σ log(n_i) + Σ log(1+1/(3n_i))
-  -- By cyclicity, Σ log(n_{next(i)}) = Σ log(n_i), so they cancel:
-  --   S * log 2 = k * log 3 + Σ log(1 + 1/(3n_i))
-  --   S * log 2 - k * log 3 = Σ log(1 + 1/(3n_i))
-  -- This is exactly diophantineGap k S = fractionalEnergy orbit hpos
-  --
-  -- The proof strategy: take log of each cycle step, sum, use cyclic cancellation.
-  -- The key difficulty is the Finset.sum bijection for the cyclic permutation i ↦ (i+1) % k.
-  sorry
+  unfold diophantineGap fractionalEnergy
+  have hk_pos : 0 < k := by omega
+  -- Define the cyclic shift permutation σ(i) = (i+1) % k
+  let σ : Equiv.Perm (Fin k) := {
+    toFun := fun i => ⟨(i.val + 1) % k, Nat.mod_lt _ hk_pos⟩
+    invFun := fun i => ⟨(i.val + (k - 1)) % k, Nat.mod_lt _ hk_pos⟩
+    left_inv := fun ⟨i, hi⟩ => by
+      simp only [Fin.mk.injEq]
+      by_cases h : i + 1 < k
+      · rw [Nat.mod_eq_of_lt h]
+        have : i + 1 + (k - 1) = i + k := by omega
+        rw [this, Nat.add_mod_right, Nat.mod_eq_of_lt hi]
+      · have hik : i + 1 = k := by omega
+        rw [show (i + 1) % k = 0 from by rw [hik, Nat.mod_self]]
+        rw [Nat.zero_add, Nat.mod_eq_of_lt (by omega : k - 1 < k)]
+        omega
+    right_inv := fun ⟨i, hi⟩ => by
+      simp only [Fin.mk.injEq]
+      by_cases h : i = 0
+      · rw [h, Nat.zero_add, Nat.mod_eq_of_lt (by omega : k - 1 < k)]
+        have : k - 1 + 1 = k := by omega
+        rw [this, Nat.mod_self]
+      · have hi_pos : 0 < i := by omega
+        have : i + (k - 1) = (i - 1) + k := by omega
+        rw [this, Nat.add_mod_right, Nat.mod_eq_of_lt (by omega : i - 1 < k)]
+        have : i - 1 + 1 = i := by omega
+        rw [this, Nat.mod_eq_of_lt hi]
+  }
+  -- Step 1: The log of each cycle step
+  have hstep : ∀ i : Fin k,
+      Real.log ↑(orbit (σ i)) + ↑(exponents i) * Real.log 2 =
+      Real.log 3 + Real.log ↑(orbit i) +
+      Real.log (1 + 1 / (3 * (orbit i : ℝ))) := by
+    intro i
+    have hni := hpos i
+    have hn_pos : (0 : ℝ) < orbit i := Nat.cast_pos.mpr hni
+    have h3n_pos : (0 : ℝ) < 3 * ↑(orbit i) := by positivity
+    have hσi_pos : (0 : ℝ) < orbit (σ i) := Nat.cast_pos.mpr (hpos (σ i))
+    have hc := hcycle i
+    -- log(orbit(σ i) * 2^aᵢ) = log(3·nᵢ + 1)
+    have hlog_eq : Real.log (↑(orbit (σ i)) * (2 : ℝ) ^ exponents i) =
+        Real.log (3 * ↑(orbit i) + 1) := by
+      congr 1; exact_mod_cast hc
+    -- LHS: log(a * b) = log a + log b, then log(2^n) = n * log 2
+    rw [Real.log_mul (ne_of_gt hσi_pos)
+        (ne_of_gt (by positivity : (0 : ℝ) < (2 : ℝ) ^ exponents i)),
+        Real.log_pow] at hlog_eq
+    -- RHS: 3n+1 = 3n·(1 + 1/(3n)), then log of product
+    have hrhs : Real.log (3 * ↑(orbit i) + 1) =
+        Real.log 3 + Real.log ↑(orbit i) +
+        Real.log (1 + 1 / (3 * (orbit i : ℝ))) := by
+      rw [show (3 : ℝ) * ↑(orbit i) + 1 =
+          3 * ↑(orbit i) * (1 + 1 / (3 * ↑(orbit i))) from by field_simp]
+      rw [Real.log_mul (ne_of_gt h3n_pos)
+          (ne_of_gt (by positivity : (0 : ℝ) < 1 + 1 / (3 * ↑(orbit i)))),
+          Real.log_mul (by norm_num : (3 : ℝ) ≠ 0) (ne_of_gt hn_pos)]
+    linarith [hlog_eq, hrhs]
+  -- Step 2: Sum both sides of hstep, split sums, extract constants
+  have hsum : (∑ i, Real.log ↑(orbit (σ i))) +
+      (∑ i, ↑(exponents i) * Real.log 2) =
+      ↑k * Real.log 3 + (∑ i, Real.log ↑(orbit i)) +
+      ∑ i, Real.log (1 + 1 / (3 * (orbit i : ℝ))) := by
+    have h := Finset.sum_congr rfl fun i (_ : i ∈ Finset.univ) => hstep i
+    simp only [Finset.sum_add_distrib, Finset.sum_const, nsmul_eq_mul,
+      Finset.card_fin] at h
+    linarith
+  -- Step 3: Cyclic cancellation — Σ f(σ(i)) = Σ f(i)
+  have hcyc : (∑ i, Real.log ↑(orbit (σ i))) =
+      ∑ i, Real.log ↑(orbit i) :=
+    Equiv.sum_comp σ fun i => Real.log ↑(orbit i)
+  -- Step 4: S = Σ exponents
+  have hS_eq : (∑ i : Fin k, ↑(exponents i) * Real.log 2) =
+      ↑S * Real.log 2 := by
+    rw [← Finset.sum_mul]; congr 1
+    rw [hS]; push_cast; rfl
+  -- Combine: substitute hcyc and hS_eq into hsum, cancel Σ log(orbit i)
+  linarith
 
 /-- **Master Equation** (negative cycles). Same telescoping with sign flip. -/
 theorem master_equation_negative
@@ -135,9 +199,94 @@ theorem master_equation_negative
     diophantineGap k S =
       Finset.univ.sum fun i =>
         Real.log (1 - 1 / (3 * (orbit_abs i : ℝ))) := by
-  -- Same telescoping as positive case, but |3n+1| = 3|n| - 1 for negative n
-  -- so log term becomes log(1 - 1/(3|n|)) instead of log(1 + 1/(3n))
-  sorry
+  unfold diophantineGap
+  have hk_pos : 0 < k := by omega
+  -- Define the cyclic shift permutation σ(i) = (i+1) % k
+  let σ : Equiv.Perm (Fin k) := {
+    toFun := fun i => ⟨(i.val + 1) % k, Nat.mod_lt _ hk_pos⟩
+    invFun := fun i => ⟨(i.val + (k - 1)) % k, Nat.mod_lt _ hk_pos⟩
+    left_inv := fun ⟨i, hi⟩ => by
+      simp only [Fin.mk.injEq]
+      by_cases h : i + 1 < k
+      · rw [Nat.mod_eq_of_lt h]
+        have : i + 1 + (k - 1) = i + k := by omega
+        rw [this, Nat.add_mod_right, Nat.mod_eq_of_lt hi]
+      · have hik : i + 1 = k := by omega
+        rw [show (i + 1) % k = 0 from by rw [hik, Nat.mod_self]]
+        rw [Nat.zero_add, Nat.mod_eq_of_lt (by omega : k - 1 < k)]
+        omega
+    right_inv := fun ⟨i, hi⟩ => by
+      simp only [Fin.mk.injEq]
+      by_cases h : i = 0
+      · rw [h, Nat.zero_add, Nat.mod_eq_of_lt (by omega : k - 1 < k)]
+        have : k - 1 + 1 = k := by omega
+        rw [this, Nat.mod_self]
+      · have hi_pos : 0 < i := by omega
+        have : i + (k - 1) = (i - 1) + k := by omega
+        rw [this, Nat.add_mod_right, Nat.mod_eq_of_lt (by omega : i - 1 < k)]
+        have : i - 1 + 1 = i := by omega
+        rw [this, Nat.mod_eq_of_lt hi]
+  }
+  -- Step 1: The log of each cycle step
+  have hstep : ∀ i : Fin k,
+      Real.log ↑(orbit_abs (σ i)) + ↑(exponents i) * Real.log 2 =
+      Real.log 3 + Real.log ↑(orbit_abs i) +
+      Real.log (1 - 1 / (3 * (orbit_abs i : ℝ))) := by
+    intro i
+    have hni := hpos i  -- orbit_abs i ≥ 2
+    have hn_pos : (0 : ℝ) < orbit_abs i := by positivity
+    have h3n_pos : (0 : ℝ) < 3 * ↑(orbit_abs i) := by positivity
+    have hσi_pos : (0 : ℝ) < orbit_abs (σ i) :=
+      Nat.cast_pos.mpr (by have := hpos (σ i); omega)
+    have hc := hcycle_neg i
+    have h3n_ge1 : 1 ≤ 3 * orbit_abs i := by omega
+    -- 1 - 1/(3n) > 0 since n ≥ 2
+    have h1sub_pos : (0 : ℝ) < 1 - 1 / (3 * ↑(orbit_abs i)) := by
+      rw [show (1 : ℝ) - 1 / (3 * ↑(orbit_abs i)) =
+          (3 * ↑(orbit_abs i) - 1) / (3 * ↑(orbit_abs i)) from by field_simp]
+      apply div_pos _ h3n_pos
+      have : (2 : ℝ) ≤ ↑(orbit_abs i) := Nat.cast_le.mpr hni
+      linarith
+    -- log(orbit_abs(σ i) * 2^aᵢ) = log(3·nᵢ - 1)
+    have hlog_eq : Real.log (↑(orbit_abs (σ i)) * (2 : ℝ) ^ exponents i) =
+        Real.log (3 * ↑(orbit_abs i) - 1) := by
+      congr 1
+      have hsub_cast : (↑(3 * orbit_abs i - 1) : ℝ) = 3 * ↑(orbit_abs i) - 1 := by
+        rw [Nat.cast_sub h3n_ge1]; push_cast; ring
+      rw [← hsub_cast]; exact_mod_cast hc
+    -- LHS: log(a * b) = log a + log b, then log(2^n) = n * log 2
+    rw [Real.log_mul (ne_of_gt hσi_pos)
+        (ne_of_gt (by positivity : (0 : ℝ) < (2 : ℝ) ^ exponents i)),
+        Real.log_pow] at hlog_eq
+    -- RHS: 3n-1 = 3n·(1 - 1/(3n)), then log of product
+    have hrhs : Real.log (3 * ↑(orbit_abs i) - 1) =
+        Real.log 3 + Real.log ↑(orbit_abs i) +
+        Real.log (1 - 1 / (3 * (orbit_abs i : ℝ))) := by
+      rw [show (3 : ℝ) * ↑(orbit_abs i) - 1 =
+          3 * ↑(orbit_abs i) * (1 - 1 / (3 * ↑(orbit_abs i))) from by field_simp]
+      rw [Real.log_mul (ne_of_gt h3n_pos) (ne_of_gt h1sub_pos),
+          Real.log_mul (by norm_num : (3 : ℝ) ≠ 0) (ne_of_gt hn_pos)]
+    linarith [hlog_eq, hrhs]
+  -- Step 2: Sum both sides of hstep, split sums, extract constants
+  have hsum : (∑ i, Real.log ↑(orbit_abs (σ i))) +
+      (∑ i, ↑(exponents i) * Real.log 2) =
+      ↑k * Real.log 3 + (∑ i, Real.log ↑(orbit_abs i)) +
+      ∑ i, Real.log (1 - 1 / (3 * (orbit_abs i : ℝ))) := by
+    have h := Finset.sum_congr rfl fun i (_ : i ∈ Finset.univ) => hstep i
+    simp only [Finset.sum_add_distrib, Finset.sum_const, nsmul_eq_mul,
+      Finset.card_fin] at h
+    linarith
+  -- Step 3: Cyclic cancellation — Σ f(σ(i)) = Σ f(i)
+  have hcyc : (∑ i, Real.log ↑(orbit_abs (σ i))) =
+      ∑ i, Real.log ↑(orbit_abs i) :=
+    Equiv.sum_comp σ fun i => Real.log ↑(orbit_abs i)
+  -- Step 4: S = Σ exponents
+  have hS_eq : (∑ i : Fin k, ↑(exponents i) * Real.log 2) =
+      ↑S * Real.log 2 := by
+    rw [← Finset.sum_mul]; congr 1
+    rw [hS]; push_cast; rfl
+  -- Combine: substitute hcyc and hS_eq into hsum, cancel Σ log(orbit_abs i)
+  linarith
 
 -- ============================================================================
 -- PART D: Energy Bounds (fully proved)
