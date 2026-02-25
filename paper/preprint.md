@@ -213,7 +213,7 @@ Les seules exceptions sont k ∈ {3, 5, 17}, pour lesquelles :
 |---|---|-------------|---|-----|
 | 3 | 5 | 6 | 5 | 1.20 |
 | 5 | 8 | 35 | 13 | 2.69 |
-| 17 | 27 | 7726160 | 7340033 | 1.05 |
+| 17 | 27 | 5311735 | 5077565 | 1.05 |
 
 Ces trois valeurs satisfont toutes k < 68.
 
