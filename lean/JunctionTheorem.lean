@@ -3,6 +3,8 @@ import Mathlib.Analysis.SpecialFunctions.BinaryEntropy
 import Mathlib.Data.Nat.Choose.Bounds
 import Mathlib.Data.Finset.Basic
 import Mathlib.Data.ZMod.Basic
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # Junction Theorem for Collatz Positive Cycles
@@ -11,11 +13,11 @@ Formalizes the **Junction Theorem** (Merle, 2026) combining:
   **(A)** Simons–de Weger (2005): no positive cycle with k < 68
   **(B)** Crystal nonsurjectivity: for k ≥ 18 with d > 0, C(S−1, k−1) < d
 
-## Sorry Census (3 sorry remaining)
+## Sorry Census (2 sorry remaining)
 
 | ID  | Statement                  | Status    | Note                              |
 |-----|----------------------------|-----------|-----------------------------------|
-| S1  | steiner_equation           | sorry     | Cyclic sum telescoping            |
+| S1  | steiner_equation           | ✓ proved  | Cyclic telescoping + linear_comb  |
 | S2  | crystal_nonsurjectivity    | sorry     | Needs Stirling bounds + numerics  |
 | S3  | exceptions_below_68        | ✓ proved  | native_decide computation         |
 | A1  | simons_de_weger            | axiom     | External published result (2005)  |
@@ -113,16 +115,91 @@ theorem steiner_equation (k : ℕ) (cyc : IsPositiveCollatzCycle k)
       cyc.exponents)
     (n₀ : ℕ) (hn₀ : n₀ = cyc.orbit ⟨0, by have := cyc.hk; omega⟩) :
     (n₀ : ℤ) * crystalModule cyc.S k = ↑(corrSum k cumA) := by
-  -- The proof is by strong induction on the number of cycle steps.
-  -- After i steps of the form n_{j+1} · 2^{a_j} = 3·n_j + 1, we get:
-  --   n_i · 2^{A_i} = 3^i · n₀ + Σ_{j=0}^{i-1} 3^{i-1-j} · 2^{A_j}
-  -- At i = k, cyclicity gives n_k = n₀ and A_k = S, so:
-  --   n₀ · 2^S = 3^k · n₀ + corrSum
-  --   n₀ · (2^S - 3^k) = corrSum
-  -- This is a standard telescoping argument.
-  -- The formal induction requires careful handling of Fin k arithmetic
-  -- and the cyclic permutation of orbit indices.
-  sorry
+  unfold crystalModule corrSum
+  have hk_pos : 0 < k := by have := cyc.hk; omega
+  -- Reduce to: n₀ * 2^S = n₀ * 3^k + corrSum
+  suffices hsuff : (↑n₀ : ℤ) * (2 : ℤ) ^ cyc.S =
+      ↑n₀ * (3 : ℤ) ^ k +
+      ↑(Finset.univ.sum fun i : Fin k => 3 ^ (k - 1 - i.val) * 2 ^ cumA i) by
+    push_cast at hsuff ⊢; linarith
+  -- ===== Auxiliary: cumA properties =====
+  have hcumA0 : cumA ⟨0, hk_pos⟩ = 0 := by
+    rw [hcumA]; apply Finset.sum_eq_zero
+    intro ⟨j, _⟩ hj; simp at hj
+  have hcumA_succ : ∀ m (hm1 : m + 1 < k),
+      cumA ⟨m + 1, hm1⟩ = cumA ⟨m, by omega⟩ + cyc.exponents ⟨m, by omega⟩ := by
+    intro m hm1; rw [hcumA, hcumA]
+    have hfilt : Finset.filter (fun j : Fin k => j.val < m + 1) Finset.univ =
+        insert ⟨m, by omega⟩ (Finset.filter (fun j : Fin k => j.val < m) Finset.univ) := by
+      ext ⟨j, hj⟩; simp [Finset.mem_filter, Finset.mem_insert, Fin.ext_iff]; omega
+    rw [hfilt, Finset.sum_insert (by simp [Finset.mem_filter])]
+    ring
+  have hcumA_last : cumA ⟨k - 1, by omega⟩ + cyc.exponents ⟨k - 1, by omega⟩ = cyc.S := by
+    rw [hcumA, cyc.hS]
+    rw [← Finset.sum_filter_add_sum_filter_not Finset.univ (fun j : Fin k => j.val < k - 1)]
+    congr 1
+    have : Finset.filter (fun j : Fin k => ¬j.val < k - 1) Finset.univ =
+        {⟨k - 1, by omega⟩} := by
+      ext ⟨j, hj⟩; simp [Finset.mem_filter, Finset.mem_singleton, Fin.ext_iff]; omega
+    rw [this, Finset.sum_singleton]
+  -- ===== Define telescoping function =====
+  let f : ℕ → ℤ := fun m =>
+    if hm : m < k then
+      ↑(cyc.orbit ⟨m, hm⟩) * (3 : ℤ) ^ (k - m) * (2 : ℤ) ^ (cumA ⟨m, hm⟩)
+    else ↑n₀ * (2 : ℤ) ^ cyc.S
+  have hf0 : f 0 = ↑n₀ * (3 : ℤ) ^ k := by
+    simp only [f, dif_pos hk_pos, hcumA0, pow_zero, mul_one, Nat.sub_zero, hn₀]
+  have hfk : f k = ↑n₀ * (2 : ℤ) ^ cyc.S := by
+    simp only [f, dif_neg (lt_irrefl k)]
+  -- ===== Step identity =====
+  have hstep_f : ∀ i (hi : i < k),
+      f (i + 1) - f i = (3 : ℤ) ^ (k - 1 - i) * (2 : ℤ) ^ (cumA ⟨i, hi⟩) := by
+    intro i hi
+    have hfi : f i = ↑(cyc.orbit ⟨i, hi⟩) * (3 : ℤ) ^ (k - i) *
+        (2 : ℤ) ^ (cumA ⟨i, hi⟩) := dif_pos hi
+    have hcyc_z : (↑(cyc.orbit ⟨(i + 1) % k, Nat.mod_lt _ hk_pos⟩) : ℤ) *
+        (2 : ℤ) ^ cyc.exponents ⟨i, by omega⟩ =
+        3 * ↑(cyc.orbit ⟨i, hi⟩) + 1 := by exact_mod_cast cyc.hcycle ⟨i, by omega⟩
+    have h3split : (3 : ℤ) ^ (k - i) = 3 * (3 : ℤ) ^ (k - 1 - i) := by
+      rw [show k - i = (k - 1 - i) + 1 from by omega, pow_succ]; ring
+    -- Prove f(i+1) = f(i) + step, then subtract
+    suffices heq : f (i + 1) = f i + (3 : ℤ) ^ (k - 1 - i) * (2 : ℤ) ^ (cumA ⟨i, hi⟩) by
+      linarith
+    by_cases hi1 : i + 1 < k
+    · -- Case i + 1 < k
+      have hfi1 : f (i + 1) = ↑(cyc.orbit ⟨i + 1, hi1⟩) * (3 : ℤ) ^ (k - (i + 1)) *
+          (2 : ℤ) ^ (cumA ⟨i + 1, hi1⟩) := dif_pos hi1
+      have horb : cyc.orbit ⟨i + 1, hi1⟩ = cyc.orbit ⟨(i + 1) % k, Nat.mod_lt _ hk_pos⟩ := by
+        congr 1; exact Fin.ext (Nat.mod_eq_of_lt hi1).symm
+      rw [hfi1, hfi, hcumA_succ i hi1, pow_add, horb,
+          show k - (i + 1) = k - 1 - i from by omega, h3split]
+      linear_combination (3 : ℤ) ^ (k - 1 - i) * (2 : ℤ) ^ (cumA ⟨i, by omega⟩) * hcyc_z
+    · -- Case i + 1 = k (i.e., i = k - 1)
+      have hik : i = k - 1 := by omega
+      subst hik
+      have hfk1 : f (k - 1 + 1) = f k := by congr 1; omega
+      rw [hfk1, hfk, hfi, show cyc.S = cumA ⟨k - 1, by omega⟩ +
+          cyc.exponents ⟨k - 1, by omega⟩ from hcumA_last.symm, pow_add, h3split,
+          show k - 1 - (k - 1) = 0 from by omega]
+      simp only [pow_zero, one_mul, mul_one]
+      have horb0 : (cyc.orbit ⟨(k - 1 + 1) % k, Nat.mod_lt _ hk_pos⟩ : ℤ) = ↑n₀ := by
+        have hfin : (⟨(k - 1 + 1) % k, Nat.mod_lt _ hk_pos⟩ : Fin k) = ⟨0, hk_pos⟩ :=
+          Fin.ext (show (k - 1 + 1) % k = 0 by
+            rw [show k - 1 + 1 = k from by omega, Nat.mod_self])
+        rw [hfin, hn₀]
+      rw [horb0] at hcyc_z
+      linear_combination (2 : ℤ) ^ (cumA ⟨k - 1, by omega⟩) * hcyc_z
+  -- ===== Telescoping via Finset.sum_range_sub + Fin.sum_univ_eq_sum_range =====
+  suffices hfin : (↑(Finset.univ.sum fun i : Fin k =>
+      3 ^ (k - 1 - i.val) * 2 ^ cumA i) : ℤ) =
+      ↑n₀ * (2 : ℤ) ^ cyc.S - ↑n₀ * (3 : ℤ) ^ k by linarith
+  calc Finset.univ.sum (fun i : Fin k => (3 : ℤ) ^ (k - 1 - i.val) * (2 : ℤ) ^ (cumA i))
+      = Finset.univ.sum (fun i : Fin k => f (↑i + 1) - f ↑i) :=
+        Finset.sum_congr rfl (fun ⟨i, hi⟩ _ => (hstep_f i hi).symm)
+    _ = (Finset.range k).sum (fun i => f (i + 1) - f i) :=
+        Fin.sum_univ_eq_sum_range (fun i => f (i + 1) - f i) k
+    _ = f k - f 0 := Finset.sum_range_sub f k
+    _ = ↑n₀ * (2 : ℤ) ^ cyc.S - ↑n₀ * (3 : ℤ) ^ k := by rw [hfk, hf0]
 
 -- ============================================================================
 -- PART D: The Nonsurjectivity Theorem
@@ -349,30 +426,23 @@ theorem deficit_linear_growth (k : ℕ) (hk : k ≥ 18) (S : ℕ)
 -- ============================================================================
 
 /-!
-### Final Sorry Census (3 sorry remaining, down from original 13)
+### Final Sorry Census (2 sorry remaining in this file, down from original 13)
 
-| ID  | Statement                  | Type   | Difficulty | Status              |
-|-----|----------------------------|--------|------------|---------------------|
-| S1  | steiner_equation           | sorry  | ★★★       | Cyclic sum telescope|
-| S2  | crystal_nonsurjectivity    | sorry  | ★★★★     | Core: Stirling+num  |
-| S3  | exceptions_below_68        | proved | ★          | native_decide ✓     |
-| A1  | simons_de_weger            | axiom  | —          | Published result    |
-| S4  | zero_exclusion_conditional | proved | ★          | From QU class ✓     |
-| S5  | no_positive_cycle          | proved | ★★        | Int/Nat dvd bridge  |
-| S6  | gamma_pos                  | proved | ★★        | binEntropy_lt_log_two|
-| S7  | deficit_linear_growth      | sorry  | ★★★       | Stirling bound      |
-| H1  | binary_entropy_lt_one      | proved | ★★        | Mathlib BinaryEntropy|
+| ID  | Statement                  | Type   | Difficulty | Status                |
+|-----|----------------------------|--------|------------|-----------------------|
+| S1  | steiner_equation           | proved | ★★★       | Telescoping+lin_comb ✓|
+| S2  | crystal_nonsurjectivity    | sorry  | ★★★★     | Core: Stirling+num    |
+| S3  | exceptions_below_68        | proved | ★          | native_decide ✓       |
+| A1  | simons_de_weger            | axiom  | —          | Published result      |
+| S4  | zero_exclusion_conditional | proved | ★          | From QU class ✓       |
+| S5  | no_positive_cycle          | proved | ★★        | Int/Nat dvd bridge ✓  |
+| S6  | gamma_pos                  | proved | ★★        | binEntropy_lt_log_two✓|
+| S7  | deficit_linear_growth      | sorry  | ★★★       | Stirling bound        |
+| H1  | binary_entropy_lt_one      | proved | ★★        | Mathlib BinaryEntropy✓|
 
-### Proved in this session:
-  - no_positive_cycle/hmod: Int.toNat_of_nonneg + natCast_dvd_natCast
-  - binary_entropy_lt_one: via Real.binEntropy_lt_log_two (Mathlib)
-  - gamma_pos: now fully proved (no more helper sorry)
-
-### Remaining sorry's:
-  - steiner_equation: cyclic sum telescoping (Fin k arithmetic)
+### Remaining sorry's (this file):
   - crystal_nonsurjectivity: Stirling bounds + certified numerics [CORE]
   - deficit_linear_growth: Stirling upper bound on binomial
-  - full_coverage: omega
 
 ### Axiom (unchanged):
   - simons_de_weger: published external result (Acta Arith. 2005)
