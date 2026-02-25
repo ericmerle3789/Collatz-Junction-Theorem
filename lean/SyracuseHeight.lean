@@ -10,20 +10,20 @@ relating the Diophantine gap to the fractional energy along a Collatz cycle.
 
 ## Status
 
-Proofs completed for energy bounds and cycle minimum bound.
-Master equations proved from cycle hypotheses by telescoping.
-Gap bound for non-convergents uses Legendre's criterion (helper lemma).
+Energy bounds and cycle minimum bound fully proved and verified by `lake build`.
+Master equations need cyclic sum cancellation argument.
+Gap bound for non-convergents needs Legendre's criterion (not in Mathlib).
 
-## Sorry Census (reduced from 6 to 1)
+## Sorry Census (3 sorry remaining)
 
 | ID | Statement              | Status    | Note                          |
 |----|------------------------|-----------|-------------------------------|
-| S1 | master_equation_pos    | ✓ proved  | Telescoping via cycle_step    |
-| S2 | master_equation_neg    | ✓ proved  | Same structure, sign flipped  |
+| S1 | master_equation_pos    | sorry     | Cyclic sum cancellation       |
+| S2 | master_equation_neg    | sorry     | Same structure, sign flipped  |
 | S3 | energy_upper_bound     | ✓ proved  | log(1+x) ≤ x + monotonicity  |
 | S4 | energy_lower_bound     | ✓ proved  | Monotonicity of log(1+1/3x)  |
 | S5 | gap_non_convergent     | sorry     | Needs Legendre (not in Mathlib)|
-| S6 | cycle_minimum_bound    | ✓ proved  | Algebraic from hypotheses     |
+| S6 | cycle_minimum_bound    | ✓ proved  | Cross-multiply + nlinarith    |
 -/
 
 namespace Collatz.SyracuseHeight
@@ -55,7 +55,7 @@ noncomputable def syracuseHeight (k S : ℕ) (energy : ℝ) : ℝ :=
 /-- log(1 + x) ≤ x for all x > -1. Follows from exp(x) ≥ 1 + x. -/
 private lemma log_one_add_le {x : ℝ} (hx : -1 < x) : Real.log (1 + x) ≤ x := by
   have h1 : (0 : ℝ) < 1 + x := by linarith
-  have h2 : 1 + x ≤ Real.exp x := Real.add_one_le_exp x
+  have h2 : 1 + x ≤ Real.exp x := by linarith [Real.add_one_le_exp x]
   calc Real.log (1 + x)
       ≤ Real.log (Real.exp x) := Real.log_le_log h1 h2
     _ = x := Real.log_exp x
@@ -79,7 +79,7 @@ private lemma log_one_add_inv_antitone {a b : ℕ} (ha : a > 0) (hab : b ≤ a)
     have : (b : ℝ) ≤ (a : ℝ) := Nat.cast_le.mpr hab
     have : 3 * (b : ℝ) ≤ 3 * (a : ℝ) := by linarith
     have : 1 / (3 * (a : ℝ)) ≤ 1 / (3 * (b : ℝ)) := by
-      apply div_le_div_of_nonneg_left one_pos hb3 (by linarith)
+      apply div_le_div_of_nonneg_left zero_le_one hb3 (by linarith)
     linarith
 
 /-- 1/(3n) > -1 for n > 0 (needed for log_one_add_le). -/
@@ -118,53 +118,9 @@ theorem master_equation_positive
   --   S * log 2 = k * log 3 + Σ log(1 + 1/(3n_i))
   --   S * log 2 - k * log 3 = Σ log(1 + 1/(3n_i))
   -- This is exactly diophantineGap k S = fractionalEnergy orbit hpos
-  unfold diophantineGap fractionalEnergy
-  -- The formal proof requires: (1) log properties, (2) Finset.sum bijection for cyclicity
-  -- We proceed by showing each step's log equation, then summing
-  have hk_pos : 0 < k := by omega
-  -- Each orbit element is positive (as a real)
-  have horbit_pos : ∀ i, (0 : ℝ) < orbit i := fun i => Nat.cast_pos.mpr (hpos i)
-  -- Key step: the log of each cycle equation
-  have hstep : ∀ i : Fin k,
-      Real.log (orbit ⟨(i.val + 1) % k, Nat.mod_lt _ (by omega)⟩) +
-      (exponents i : ℝ) * Real.log 2 =
-      Real.log 3 + Real.log (orbit i) +
-      Real.log (1 + 1 / (3 * (orbit i : ℝ))) := by
-    intro i
-    have hni := hpos i
-    have hn_pos : (0 : ℝ) < orbit i := Nat.cast_pos.mpr hni
-    have h3n_pos : (0 : ℝ) < 3 * orbit i := by positivity
-    -- From hcycle: n_next * 2^a = 3*n + 1
-    have hc := hcycle i
-    -- Take log of both sides (both positive)
-    have hlhs_pos : 0 < orbit ⟨(i.val + 1) % k, _⟩ * 2 ^ exponents i := by
-      rw [hc]; omega
-    have hrhs_pos : (0 : ℝ) < 3 * orbit i + 1 := by positivity
-    -- log(n_next * 2^a) = log(3n + 1)
-    have hlog_eq : Real.log (orbit ⟨(i.val + 1) % k, _⟩ * 2 ^ exponents i : ℝ) =
-        Real.log ((3 * orbit i + 1 : ℕ) : ℝ) := by
-      congr 1; push_cast; exact_mod_cast hc
-    -- LHS: log(n_next * 2^a) = log(n_next) + a * log 2
-    rw [Nat.cast_mul, Real.log_mul (ne_of_gt (Nat.cast_pos.mpr (by omega)))
-        (ne_of_gt (by positivity : (0:ℝ) < (2:ℝ)^(exponents i))),
-        Real.log_pow] at hlog_eq
-    -- RHS: log(3n+1) = log(3n(1 + 1/(3n))) = log 3 + log n + log(1 + 1/(3n))
-    have hrhs : Real.log ((3 * orbit i + 1 : ℕ) : ℝ) =
-        Real.log 3 + Real.log (orbit i) + Real.log (1 + 1 / (3 * (orbit i : ℝ))) := by
-      have : (3 * orbit i + 1 : ℕ) = (3 * orbit i : ℕ) + 1 := by ring
-      push_cast
-      have h3n_ne : (3 : ℝ) * (orbit i : ℝ) ≠ 0 := ne_of_gt h3n_pos
-      rw [show (3 : ℝ) * ↑(orbit i) + 1 = 3 * ↑(orbit i) * (1 + 1 / (3 * ↑(orbit i))) from by
-        field_simp]
-      rw [Real.log_mul (ne_of_gt h3n_pos) (ne_of_gt (by positivity : (0:ℝ) < 1 + 1 / (3 * ↑(orbit i)))),
-          Real.log_mul (by norm_num : (3:ℝ) ≠ 0) (ne_of_gt hn_pos)]
-    linarith [hlog_eq, hrhs]
-  -- Sum over all i
-  have hsum := Finset.sum_congr rfl (fun i _ => hstep i)
-  -- The sum of log(n_{next(i)}) equals sum of log(n_i) by bijection (cyclic permutation)
-  -- Therefore the log terms cancel, leaving: S * log 2 = k * log 3 + energy
-  -- This is a standard telescoping argument via Finset.sum with cyclic permutation
-  -- For now, the algebraic manipulation from hsum gives the result
+  --
+  -- The proof strategy: take log of each cycle step, sum, use cyclic cancellation.
+  -- The key difficulty is the Finset.sum bijection for the cyclic permutation i ↦ (i+1) % k.
   sorry
 
 /-- **Master Equation** (negative cycles). Same telescoping with sign flip. -/
@@ -208,14 +164,15 @@ theorem energy_upper_bound {k : ℕ}
       log_one_add_le (inv_3n_gt_neg_one hni)
     -- Step 2: 1/(3nᵢ) ≤ 1/(3n₀) since nᵢ ≥ n₀
     have hle2 : 1 / (3 * (orbit i : ℝ)) ≤ 1 / (3 * (n₀ : ℝ)) := by
-      apply div_le_div_of_nonneg_left one_pos h3n₀_pos
+      apply div_le_div_of_nonneg_left zero_le_one h3n₀_pos
       have : (n₀ : ℝ) ≤ (orbit i : ℝ) := Nat.cast_le.mpr hni_ge
       linarith
     linarith
   -- Sum the bound: Σ (1/(3n₀)) = k/(3n₀)
   calc Finset.univ.sum (fun i => Real.log (1 + 1 / (3 * (orbit i : ℝ))))
       ≤ Finset.univ.sum (fun _ => 1 / (3 * (n₀ : ℝ))) := Finset.sum_le_sum hterm
-    _ = ↑(Finset.univ.card) * (1 / (3 * (n₀ : ℝ))) := Finset.sum_const _
+    _ = ↑(Finset.univ.card) * (1 / (3 * (n₀ : ℝ))) := by
+        rw [Finset.sum_const, nsmul_eq_mul]
     _ = k * (1 / (3 * (n₀ : ℝ))) := by rw [Finset.card_fin]
     _ = k / (3 * (n₀ : ℝ)) := by ring
 
@@ -231,12 +188,14 @@ theorem energy_lower_bound {k : ℕ}
       Real.log (1 + 1 / (3 * (orbit i : ℝ))) := by
     intro i _
     exact log_one_add_inv_antitone hn_max (hmax i) (hpos i)
-  calc ↑(Finset.univ.card) * Real.log (1 + 1 / (3 * (n_max : ℝ)))
-      = Finset.univ.sum (fun _ => Real.log (1 + 1 / (3 * (n_max : ℝ)))) :=
-        (Finset.sum_const _).symm
+  rw [ge_iff_le]
+  calc ↑k * Real.log (1 + 1 / (3 * (n_max : ℝ)))
+      = ↑(Finset.univ.card) * Real.log (1 + 1 / (3 * (n_max : ℝ))) := by
+        rw [Finset.card_fin]
+    _ = Finset.univ.sum (fun _ => Real.log (1 + 1 / (3 * (n_max : ℝ)))) := by
+        rw [Finset.sum_const, nsmul_eq_mul]
     _ ≤ Finset.univ.sum (fun i => Real.log (1 + 1 / (3 * (orbit i : ℝ)))) :=
         Finset.sum_le_sum hterm
-    _ = fractionalEnergy orbit hpos := rfl
 
 -- ============================================================================
 -- PART E: Diophantine Gap and Continued Fractions
@@ -302,11 +261,14 @@ theorem cycle_minimum_bound
       _ = fractionalEnergy orbit hpos := h_energy_eq.symm
       _ ≤ k / (3 * (n₀ : ℝ)) := h_energy_le
   -- Cross-multiply: 1·(3·n₀) ≤ k⁶·k = k⁷
-  rw [div_le_div_iff (by positivity : (0:ℝ) < (k:ℝ)^6) h3n₀_pos] at hineq
-  -- hineq : 1 * (3 * ↑n₀) ≤ ↑k ^ 6 * ↑k
-  have h2 : 3 * (n₀ : ℝ) ≤ (k : ℝ) ^ 7 := by
-    have : (k : ℝ) ^ 6 * ↑k = (k : ℝ) ^ 7 := by ring
-    nlinarith
+  have hk6_pos : (0:ℝ) < (k:ℝ)^6 := by positivity
+  -- From 1/k^6 ≤ k/(3n₀), multiply both sides by k^6 * (3n₀) > 0
+  have hmul := mul_le_mul_of_nonneg_left hineq (le_of_lt (mul_pos hk6_pos h3n₀_pos))
+  have lhs_eq : (k:ℝ)^6 * (3 * ↑n₀) * (1 / (k:ℝ)^6) = 3 * ↑n₀ := by
+    field_simp
+  have rhs_eq : (k:ℝ)^6 * (3 * ↑n₀) * (↑k / (3 * ↑n₀)) = (k:ℝ)^7 := by
+    field_simp
+  have h2 : 3 * (n₀ : ℝ) ≤ (k : ℝ) ^ 7 := by nlinarith
   linarith
 
 -- ============================================================================
@@ -314,7 +276,7 @@ theorem cycle_minimum_bound
 -- ============================================================================
 
 /-!
-### Remaining Sorry Census (3 sorry, down from 6)
+### Sorry Census (3 sorry remaining, verified by lake build)
 
 | ID | Statement              | Status     | Resolution path                    |
 |----|------------------------|------------|------------------------------------|
@@ -324,9 +286,8 @@ theorem cycle_minimum_bound
 | S4 | energy_lower_bound     | ✓ proved   | Monotonicity + Finset.sum_le_sum   |
 | S5 | gap_non_convergent     | sorry      | Legendre's criterion (not Mathlib) |
 | S6 | cycle_minimum_bound    | ✓ proved   | Cross-multiply + nlinarith         |
-| S6 | cycle_minimum_bound    | ★         | Algebraic rearrangement            |
 
-All energy bounds (S3, S4) are fully proved.
+All energy bounds (S3, S4) and cycle minimum bound (S6) fully proved and verified.
 -/
 
 end Collatz.SyracuseHeight

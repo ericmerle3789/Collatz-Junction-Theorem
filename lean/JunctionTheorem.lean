@@ -1,8 +1,8 @@
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.Combinatorics.Choose.Bounds
+import Mathlib.Analysis.SpecialFunctions.BinaryEntropy
+import Mathlib.Data.Nat.Choose.Bounds
 import Mathlib.Data.Finset.Basic
 import Mathlib.Data.ZMod.Basic
-import Mathlib.NumberTheory.Padics.PadicVal
 
 /-!
 # Junction Theorem for Collatz Positive Cycles
@@ -11,18 +11,19 @@ Formalizes the **Junction Theorem** (Merle, 2026) combining:
   **(A)** Simons–de Weger (2005): no positive cycle with k < 68
   **(B)** Crystal nonsurjectivity: for k ≥ 18 with d > 0, C(S−1, k−1) < d
 
-## Sorry Census (reduced from 7 to 2)
+## Sorry Census (3 sorry remaining)
 
-| ID  | Statement                  | Status   | Note                              |
-|-----|----------------------------|----------|-----------------------------------|
-| S1  | steiner_equation           | ✓ proved | From proper cycle definition      |
-| S2  | crystal_nonsurjectivity    | sorry    | Needs Stirling bounds + numerics  |
-| S3  | exceptions_below_68        | ✓ proved | Direct norm_num computation       |
-| A1  | simons_de_weger            | axiom    | External published result (2005)  |
-| S4  | zero_exclusion_conditional | sorry    | Needs character sum formalization  |
-| S5  | no_positive_cycle          | ✓ proved | Case split from A1 + S4           |
-| S6  | gamma_pos                  | ✓ proved | From log₂3 ≠ 2 + Jensen          |
-| S7  | deficit_linear_growth      | ✓ proved | From Stirling via crystal_nonsurj |
+| ID  | Statement                  | Status    | Note                              |
+|-----|----------------------------|-----------|-----------------------------------|
+| S1  | steiner_equation           | sorry     | Cyclic sum telescoping            |
+| S2  | crystal_nonsurjectivity    | sorry     | Needs Stirling bounds + numerics  |
+| S3  | exceptions_below_68        | ✓ proved  | native_decide computation         |
+| A1  | simons_de_weger            | axiom     | External published result (2005)  |
+| S4  | zero_exclusion_conditional | ✓ proved  | From QuasiUniformity class        |
+| S5  | no_positive_cycle          | ✓ proved  | Int/Nat dvd bridge via Mathlib    |
+| S6  | gamma_pos                  | ✓ proved  | From binEntropy_lt_log_two        |
+| S7  | deficit_linear_growth      | sorry     | Stirling upper bound on binomial  |
+| H1  | binary_entropy_lt_one      | ✓ proved  | Via Mathlib binEntropy_lt_log_two |
 -/
 
 namespace Collatz.JunctionTheorem
@@ -36,7 +37,7 @@ open Real Finset Nat
 /-- A composition of S − k into k nonneg parts with A₀ = 0. -/
 structure Composition (S k : ℕ) where
   A : Fin k → ℕ
-  hA0 : k > 0 → A ⟨0, by omega⟩ = 0
+  hA0 : (hk : k > 0) → A ⟨0, hk⟩ = 0
   hSum : Finset.univ.sum A = S - k
   hSgtk : S > k
 
@@ -58,12 +59,20 @@ noncomputable def binaryEntropy (p : ℝ) (hp0 : 0 < p) (hp1 : p < 1) : ℝ :=
     (1 - p) * Real.log (1 - p) / Real.log 2)
 
 /-- The entropy-module gap γ = 1 − h(1/log₂ 3) ≈ 0.0500. -/
+private lemma log2_pos : (0 : ℝ) < Real.log 2 := Real.log_pos (by norm_num : (1:ℝ) < 2)
+private lemma log3_pos : (0 : ℝ) < Real.log 3 := Real.log_pos (by norm_num : (1:ℝ) < 3)
+
+private lemma log2_div_log3_pos : (0 : ℝ) < Real.log 2 / Real.log 3 :=
+  div_pos log2_pos log3_pos
+
+private lemma log2_div_log3_lt_one : Real.log 2 / Real.log 3 < 1 := by
+  rw [div_lt_one log3_pos]
+  exact Real.log_lt_log (by norm_num : (0:ℝ) < 2) (by norm_num : (2:ℝ) < 3)
+
 noncomputable def gamma : ℝ :=
   1 - binaryEntropy (1 / (Real.log 3 / Real.log 2))
-    (by positivity)
-    (by
-      rw [div_lt_one (by positivity)]
-      · exact Real.log_lt_log (by positivity) (by norm_num))
+    (by rw [one_div, inv_div]; exact log2_div_log3_pos)
+    (by rw [one_div, inv_div]; exact log2_div_log3_lt_one)
 
 -- ============================================================================
 -- PART B: Positive Collatz Cycle Definition
@@ -99,10 +108,10 @@ After k steps, multiplying through:
 where Aᵢ = Σ_{j<i} aⱼ is the cumulative exponent. -/
 theorem steiner_equation (k : ℕ) (cyc : IsPositiveCollatzCycle k)
     (cumA : Fin k → ℕ)
-    (hcumA : ∀ i : Fin k, cumA i = Finset.univ.sum
-      (Finset.filter (fun j : Fin k => j.val < i.val) Finset.univ)
+    (hcumA : ∀ i : Fin k, cumA i =
+      (Finset.filter (fun j : Fin k => j.val < i.val) Finset.univ).sum
       cyc.exponents)
-    (n₀ : ℕ) (hn₀ : n₀ = cyc.orbit ⟨0, by omega⟩) :
+    (n₀ : ℕ) (hn₀ : n₀ = cyc.orbit ⟨0, by have := cyc.hk; omega⟩) :
     (n₀ : ℤ) * crystalModule cyc.S k = ↑(corrSum k cumA) := by
   -- The proof is by strong induction on the number of cycle steps.
   -- After i steps of the form n_{j+1} · 2^{a_j} = 3·n_j + 1, we get:
@@ -243,13 +252,15 @@ theorem no_positive_cycle
     -- But Steiner says n₀ * d = corrSum(A), so d | corrSum(A), contradiction
     have hmod : (corrSum k A) % (crystalModule S k).toNat = 0 := by
       -- From n₀ * d = corrSum(A): d divides corrSum(A)
-      -- d > 0 as integer, so d.toNat > 0
-      -- corrSum = n₀ * d, so corrSum mod d.toNat = 0
-      have hd_toNat_pos : 0 < (crystalModule S k).toNat :=
-        Int.toNat_pos.mpr hd
-      -- n₀ * d = corrSum as integers, d > 0, n₀ > 0
-      -- So corrSum = n₀ * d and d.toNat divides corrSum
-      sorry -- Int/Nat divisibility bridge: n₀ * d = corrSum → d.toNat | corrSum
+      rw [← Nat.dvd_iff_mod_eq_zero]
+      -- Goal: d.toNat ∣ corrSum k A
+      -- Lift to ℤ using natCast_dvd_natCast
+      rw [← Int.natCast_dvd_natCast]
+      -- Goal: ↑(d.toNat) ∣ ↑(corrSum k A) in ℤ
+      have hd_nn : 0 ≤ crystalModule S k := le_of_lt hd
+      rw [Int.toNat_of_nonneg hd_nn]
+      -- Goal: d ∣ ↑(corrSum k A)
+      exact ⟨↑n₀, by linarith⟩
     exact absurd ⟨A, hsum, hmod⟩ (zero_exclusion_conditional k hge S hS hd)
 
 -- ============================================================================
@@ -289,16 +300,20 @@ Dividing by log 2: h(p) < 1. -/
 private lemma binary_entropy_lt_one (p : ℝ) (hp0 : 0 < p) (hp1 : p < 1) (hne : p ≠ 1/2) :
     binaryEntropy p hp0 hp1 < 1 := by
   unfold binaryEntropy
-  -- Need: -(p * log p / log 2 + (1-p) * log(1-p) / log 2) < 1
-  -- i.e.: -(p * log p + (1-p) * log(1-p)) < log 2
-  -- i.e.: p * log(1/p) + (1-p) * log(1/(1-p)) < log 2
-  -- This is strict Jensen for concave log
+  -- Our binaryEntropy = -(p·log p/log 2 + (1-p)·log(1-p)/log 2)
+  --                    = (p·log(1/p) + (1-p)·log(1/(1-p))) / log 2
+  --                    = Real.binEntropy p / log 2
+  -- By Mathlib's binEntropy_lt_log_two: binEntropy p < log 2 ↔ p ≠ 2⁻¹
   have hlog2 : (0 : ℝ) < Real.log 2 := Real.log_pos (by norm_num)
-  -- We use: for strictly concave f, t·f(x) + (1-t)·f(y) < f(t·x + (1-t)·y) when x ≠ y
-  -- With f = log, t = p, x = 1/p, y = 1/(1-p):
-  -- p·log(1/p) + (1-p)·log(1/(1-p)) < log(p·(1/p) + (1-p)·(1/(1-p))) = log(2)
-  -- The condition x ≠ y (i.e., 1/p ≠ 1/(1-p)) holds iff p ≠ 1/2
-  sorry
+  -- Show our expression = binEntropy / log 2
+  have hconv : -(p * Real.log p / Real.log 2 +
+      (1 - p) * Real.log (1 - p) / Real.log 2) =
+      Real.binEntropy p / Real.log 2 := by
+    unfold Real.binEntropy
+    rw [Real.log_inv, Real.log_inv]
+    ring
+  rw [hconv, div_lt_one hlog2]
+  exact Real.binEntropy_lt_log_two.mpr (by rwa [ne_eq, ← one_div])
 
 /-- γ > 0: the entropy-module gap is strictly positive. -/
 theorem gamma_pos : gamma > 0 := by
@@ -308,9 +323,9 @@ theorem gamma_pos : gamma > 0 := by
   have p_ne : (1 : ℝ) / (Real.log 3 / Real.log 2) ≠ 1 / 2 := by
     rw [one_div, inv_div]
     exact log_two_div_log_three_ne_half
-  have hlt := binary_entropy_lt_one _ (by positivity) (by
-    rw [div_lt_one (by positivity)]
-    exact Real.log_lt_log (by positivity) (by norm_num)) p_ne
+  have hlt := binary_entropy_lt_one _
+    (by rw [one_div, inv_div]; exact log2_div_log3_pos)
+    (by rw [one_div, inv_div]; exact log2_div_log3_lt_one) p_ne
   linarith
 
 /-- The deficit log₂(C/d) ≈ −γ·S grows linearly.
@@ -334,34 +349,29 @@ theorem deficit_linear_growth (k : ℕ) (hk : k ≥ 18) (S : ℕ)
 -- ============================================================================
 
 /-!
-### Final Sorry Census
+### Final Sorry Census (3 sorry remaining, down from original 13)
 
 | ID  | Statement                  | Type   | Difficulty | Status              |
 |-----|----------------------------|--------|------------|---------------------|
-| S1  | steiner_equation           | sorry  | ★★★       | Needs Fin k cycling |
+| S1  | steiner_equation           | sorry  | ★★★       | Cyclic sum telescope|
 | S2  | crystal_nonsurjectivity    | sorry  | ★★★★     | Core: Stirling+num  |
 | S3  | exceptions_below_68        | proved | ★          | native_decide ✓     |
 | A1  | simons_de_weger            | axiom  | —          | Published result    |
 | S4  | zero_exclusion_conditional | proved | ★          | From QU class ✓     |
-| S5  | no_positive_cycle          | sorry  | ★★        | Modular arithmetic  |
-| S6  | gamma_pos                  | proved*| ★★        | Via Jensen helper   |
+| S5  | no_positive_cycle          | proved | ★★        | Int/Nat dvd bridge  |
+| S6  | gamma_pos                  | proved | ★★        | binEntropy_lt_log_two|
 | S7  | deficit_linear_growth      | sorry  | ★★★       | Stirling bound      |
-| H1  | binary_entropy_lt_one      | sorry  | ★★        | Strict Jensen       |
+| H1  | binary_entropy_lt_one      | proved | ★★        | Mathlib BinaryEntropy|
 
-*gamma_pos is proved modulo binary_entropy_lt_one (strict Jensen).
+### Proved in this session:
+  - no_positive_cycle/hmod: Int.toNat_of_nonneg + natCast_dvd_natCast
+  - binary_entropy_lt_one: via Real.binEntropy_lt_log_two (Mathlib)
+  - gamma_pos: now fully proved (no more helper sorry)
 
-### Reduction: 7 sorry → 5 focused sorry (+ 1 helper)
+### Remaining sorry's:
   - steiner_equation: cyclic sum telescoping (Fin k arithmetic)
   - crystal_nonsurjectivity: Stirling bounds + certified numerics [CORE]
-  - no_positive_cycle/hmod: Int→Nat divisibility bridge (routine)
   - deficit_linear_growth: Stirling upper bound on binomial
-  - binary_entropy_lt_one: strict Jensen for concave log (Mathlib gap)
-
-### Proved from scratch:
-  - exceptions_below_68: native_decide on concrete values
-  - zero_exclusion_conditional: direct from QuasiUniformity class
-  - gamma_pos: from log₂3 ≠ 2 (3 ≠ 4) + Jensen helper
-  - junction_unconditional: from axiom + crystal_nonsurjectivity
   - full_coverage: omega
 
 ### Axiom (unchanged):
