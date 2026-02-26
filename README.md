@@ -44,8 +44,12 @@ Collatz-Junction-Theorem/
 │   ├── preprint.tex             # LaTeX stub (amsart, ready for full conversion)
 │   └── Merle_2026_*.pdf         # PDF preprint
 ├── lean/
-│   ├── SyracuseHeight.lean      # Lean 4 skeleton: Syracuse height formalization
-│   └── JunctionTheorem.lean     # Lean 4 skeleton: Junction Theorem (7 sorry + 1 axiom)
+│   ├── JunctionTheorem.lean     # Junction Theorem formalization (1 sorry + 1 axiom)
+│   ├── SyracuseHeight.lean      # Syracuse height formalization (0 sorry — fully proved)
+│   ├── BinomialEntropy.lean     # Entropy bounds on binomial coefficients
+│   ├── EntropyBound.lean        # Entropy bound via tangent line
+│   ├── ConcaveTangent.lean      # Tangent line inequality for concave functions
+│   └── LegendreApprox.lean      # Legendre approximation contrapositive
 ├── scripts/
 │   └── verify_nonsurjectivity.py  # Reproducible verification of all key computations
 └── research_log/
@@ -80,11 +84,11 @@ The full manuscript is available in two formats:
 
 ### Lean 4 formalization
 
-The `lean/` directory contains Lean 4 skeletons with:
-- Full type signatures for all theorems
-- `sorry` placeholders with difficulty ratings (★ to ★★★★★)
-- Dependency chain for filling the proofs
-- One `axiom` for Simons-de Weger (external published result)
+The `lean/` directory contains Lean 4 formalizations with:
+- 20+ theorems fully proved (Steiner equation, gamma positivity, deficit linear growth, master equations, energy bounds, etc.)
+- 1 remaining `sorry` in `crystal_nonsurjectivity` (Stirling correction needed for k ∈ [18, ~190))
+- 1 `axiom` for Simons-de Weger (external published result, Acta Arith. 2005)
+- 6 files with clean import dependencies and no circular reasoning
 
 ## Mathematical Framework
 

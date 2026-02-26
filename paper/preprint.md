@@ -51,7 +51,7 @@ L'étude des cycles de Collatz repose principalement sur deux méthodes :
 
 **(i) Bornes computationnelles.** Steiner (1977), puis Simons et de Weger (2005), ont utilisé la théorie de Baker des formes linéaires en logarithmes, combinée à la réduction LLL, pour démontrer qu'il n'existe aucun cycle positif non trivial de longueur k < 68. Cette borne reste l'état de l'art.
 
-**(ii) Vérifications de convergence.** Barina (2020) a montré que tout entier n < 2^68 converge vers 1 sous l'itération de Collatz. Ce résultat élimine les cycles dont tous les éléments sont inférieurs à 2^68, mais ne fournit pas de borne directe sur la longueur k.
+**(ii) Vérifications de convergence.** Barina (2021) a montré que tout entier n < 2^68 converge vers 1 sous l'itération de Collatz. Ce résultat élimine les cycles dont tous les éléments sont inférieurs à 2^68, mais ne fournit pas de borne directe sur la longueur k.
 
 **(iii) Approches probabilistes.** Tao (2022) a démontré que « presque toutes » les orbites atteignent des valeurs arbitrairement petites, en utilisant des estimées de sommes exponentielles. Ce résultat remarquable ne traite cependant pas directement du problème des cycles.
 
@@ -267,7 +267,7 @@ Les trois exceptions k ∈ {3, 5, 17} ne sont pas des anomalies de la théorie, 
 
 Pour k = 5 : le dénominateur q₃ = 5 correspond au convergent p₃/q₃ = 8/5 avec quotient partiel a₃ = 2. Le module d₃ = 2^8 − 3^5 = 13 est petit, d'où un bonus d'approximation log₂(a₄) = log₂ 2 = 1 qui compense largement le poids entropique −γ · 8 ≈ −0.40.
 
-Pour k = 17 : cette valeur n'est pas un dénominateur de convergent, mais elle est voisine de q₄ = 12 et bénéficie encore d'une approximation relativement bonne de log₂ 3. Plus précisément, S/k = 27/17 = 1.5882... donne d = 7 340 033 = 2^27 − 3^17, un module modeste. Le rapport C/d = 1.05 est à peine supérieur à 1 — c'est le cas marginal.
+Pour k = 17 : cette valeur n'est pas un dénominateur de convergent, mais elle est voisine de q₄ = 12 et bénéficie encore d'une approximation relativement bonne de log₂ 3. Plus précisément, S/k = 27/17 = 1.5882... donne d = 5 077 565 = 2^27 − 3^17, un module modeste. Le rapport C/d = 1.05 est à peine supérieur à 1 — c'est le cas marginal.
 
 Ce phénomène est gouverné par le **théorème de Dirichlet** sur les approximations rationnelles : pour tout irrationnel ξ et tout Q, il existe p/q avec q ≤ Q tel que |ξ − p/q| < 1/(qQ). Les valeurs de k proches de dénominateurs de convergents héritent d'une bonne approximation, réduisant temporairement le module d. Cependant, le **théorème de Khinchin** (1935) sur la croissance des dénominateurs des convergents garantit que log q_n / n → π²/(12 ln 2) pour presque tout irrationnel. Par conséquent, les quotients partiels a_n restent bornés en moyenne (au sens de la moyenne géométrique de Khinchin : K₀ ≈ 2.685), et le poids entropique −γS croît linéairement sans que le bonus d'approximation ne puisse le compenser indéfiniment. Le théorème de Lévy (1936) renforce cette conclusion : pour presque tout irrationnel, log q_n ∼ n · π²/(12 ln 2), excluant toute croissance anormalement lente de d_n.
 
