@@ -7,6 +7,10 @@ All arithmetic is done with exact Python integers (arbitrary precision).
 import math
 import sys
 from fractions import Fraction
+from pathlib import Path
+
+# Repository root, derived from this script's location (scripts/ directory)
+_REPO_ROOT = Path(__file__).resolve().parent.parent
 
 # ============================================================================
 # UTILITY FUNCTIONS
@@ -56,7 +60,7 @@ def log2_comb_stirling(n, r):
 def extract_lean_pairs():
     """Extract all (k, S) pairs from FiniteCases.lean."""
     pairs = []
-    with open('/home/user/Collatz-Junction-Theorem/lean/FiniteCases.lean', 'r') as f:
+    with open(_REPO_ROOT / 'lean' / 'FiniteCases.lean', 'r') as f:
         for line in f:
             line = line.strip()
             if 'exact close_case' in line:

@@ -50,19 +50,22 @@ Collatz-Junction-Theorem/
 │   ├── BinomialEntropy.lean     # Entropy bounds on binomial coefficients
 │   ├── EntropyBound.lean        # Entropy bound via tangent line
 │   ├── ConcaveTangent.lean      # Tangent line inequality for concave functions
-│   └── LegendreApprox.lean      # Legendre approximation contrapositive
+│   ├── LegendreApprox.lean      # Legendre approximation contrapositive
+│   ├── lakefile.lean            # Lake build configuration
+│   └── lean-toolchain           # Lean 4 toolchain version
 ├── scripts/
 │   ├── verify_nonsurjectivity.py  # Reproducible verification of Theorem 1
 │   ├── numerical_audit.py         # Ultra-severe numerical audit (152 checks)
 │   └── stress_test.py             # Comprehensive mathematical stress tests (402 checks)
 └── research_log/
     ├── phase10c_red_team.md       # Adversarial audit of early attempts
-    ├── phase10d–10m_*.md          # Exploration phases (10 documents)
+    ├── phase10d_*.md … phase10m_*.md  # Exploration phases (10 documents)
     ├── phase11a_obstruction_algebrique.md   # Newton polygon analysis
     ├── phase11b_verification_computationnelle.md  # Computational verification
     ├── phase11c_reduction_lll.md   # LLL lattice reduction
     ├── phase12_junction_theorem.md # Junction Theorem formulation
-    └── phase13_audit_kolmogorov_baker.md  # Self-audit of rejected approach
+    ├── phase13_audit_kolmogorov_baker.md  # Self-audit of rejected approach
+    └── ERRATA.md                  # Corrections to research log values
 ```
 
 ## Quick Start
@@ -88,7 +91,7 @@ The full manuscript is available in two formats:
 ### Lean 4 formalization
 
 The `lean/` directory contains Lean 4 formalizations with:
-- 20+ theorems fully proved (Steiner equation, gamma positivity, deficit linear growth, master equations, energy bounds, etc.)
+- 35+ theorems and lemmas fully proved (Steiner equation, gamma positivity, deficit linear growth, master equations, energy bounds, etc.)
 - Crystal nonsurjectivity **proved** for k ∈ [18, 200] via 183 `native_decide` cases (`FiniteCases.lean`)
 - 1 residual `sorry` in `crystal_nonsurjectivity` for k ≥ 201 only (asymptotic regime, margin > 3 bits, numerically verified to k = 10⁶)
 - 1 `axiom` for Simons-de Weger (external published result, Acta Arith. 2005)

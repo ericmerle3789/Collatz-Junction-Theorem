@@ -11,10 +11,10 @@ Covers all 13 audit axes from the specification.
 import math
 import sys
 from fractions import Fraction
-from decimal import Decimal, getcontext
+import decimal
 
 # Set high precision for decimal arithmetic
-getcontext().prec = 60
+decimal.getcontext().prec = 60
 
 # ============================================================
 # Utilities
