@@ -5,6 +5,7 @@ import Mathlib.Data.Finset.Basic
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Algebra.BigOperators.Fin
+import BinomialEntropy
 
 /-!
 # Junction Theorem for Collatz Positive Cycles
@@ -18,13 +19,13 @@ Formalizes the **Junction Theorem** (Merle, 2026) combining:
 | ID  | Statement                  | Status    | Note                              |
 |-----|----------------------------|-----------|-----------------------------------|
 | S1  | steiner_equation           | ✓ proved  | Cyclic telescoping + linear_comb  |
-| S2  | crystal_nonsurjectivity    | sorry     | Needs Stirling bounds + numerics  |
+| S2  | crystal_nonsurjectivity    | sorry     | Entropy tools ready, needs gap    |
 | S3  | exceptions_below_68        | ✓ proved  | native_decide computation         |
 | A1  | simons_de_weger            | axiom     | External published result (2005)  |
 | S4  | zero_exclusion_conditional | ✓ proved  | From QuasiUniformity class        |
 | S5  | no_positive_cycle          | ✓ proved  | Int/Nat dvd bridge via Mathlib    |
 | S6  | gamma_pos                  | ✓ proved  | From binEntropy_lt_log_two        |
-| S7  | deficit_linear_growth      | sorry     | Stirling upper bound on binomial  |
+| S7  | deficit_linear_growth      | sorry     | Concavity of h₂ + deriv bound    |
 | H1  | binary_entropy_lt_one      | ✓ proved  | Via Mathlib binEntropy_lt_log_two |
 -/
 
@@ -208,17 +209,20 @@ theorem steiner_equation (k : ℕ) (cyc : IsPositiveCollatzCycle k)
 /-- **Theorem 1**: Crystal nonsurjectivity.
 For k ≥ 18 with S = ⌈k · log₂ 3⌉ and d > 0: C(S−1, k−1) < d.
 
-**Status**: sorry — requires the *entropy bound on binomial coefficients*:
-  C(n,m) ≤ 2^{n·h(m/n)}  where h is the binary entropy function.
+**Status**: sorry — the entropy bound tools are now available (BinomialEntropy.lean),
+but the final comparison requires quantitative analysis not yet formalized.
 
-**Proof strategy** (not yet formalized):
-  (1) From the binomial theorem: ∑_k C(n,k)·p^k·(1-p)^{n-k} = 1
-      Each term is non-negative, so C(n,m)·p^m·(1-p)^{n-m} ≤ 1.
-      Setting p = m/n: C(n,m) ≤ (n/m)^m · (n/(n-m))^{n-m} = 2^{n·h(m/n)}.
-      (Mathlib has `add_pow` and `Finset.single_le_sum` but not this combined bound.)
-  (2) Apply with n = S-1, m = k-1: log₂(C) ≤ (S-1)·h((k-1)/(S-1)) ≈ S·(1-γ).
-  (3) Show 2^{S·(1-γ)} < 2^S - 3^k using gap bounds on |S/k - log₂3|.
-  (4) For small k: certified numerics; for large k: Baker-type bounds. -/
+**Available tools** (from BinomialEntropy.lean):
+  - `choose_le_div_pow`: C(n,m) ≤ (n/m)^m · (n/(n-m))^{n-m}
+  - `choose_log2_bound`: log₂(C(n,m)) ≤ m·log₂(n/m) + (n-m)·log₂(n/(n-m))
+
+**Available tools** (from Mathlib):
+  - `strictConcave_binEntropy`: h₂ is strictly concave on [0,1]
+  - `deriv_binEntropy`: h₂'(p) = log(1-p) - log(p)
+
+**Remaining gap**: Comparing the entropy bound at p=(k-1)/(S-1) with 2^S−3^k
+requires either (a) concavity + derivative evaluation at p₀ = log₂/log₃,
+or (b) certified numerics for a finite range of k. -/
 theorem crystal_nonsurjectivity (k : ℕ) (hk : k ≥ 18)
     (S : ℕ) (hS : S = Nat.ceil (k * (Real.log 3 / Real.log 2)))
     (hd : crystalModule S k > 0) :
@@ -415,14 +419,18 @@ theorem gamma_pos : gamma > 0 := by
 
 /-- The deficit log₂(C/d) ≈ −γ·S grows linearly.
 
-**Status**: sorry — depends on the same entropy bound as `crystal_nonsurjectivity`.
+**Status**: sorry — the entropy bound is available (BinomialEntropy.lean), but
+the concavity analysis to bound h₂ at (k-1)/(S-1) requires evaluation of
+log(log(3/2)/log(2)) and comparison with binEntropy(log₂/log₃).
 
-**Proof strategy** (not yet formalized):
-  From the entropy bound: log₂(C(n,m)) ≤ n·h(m/n).
-  With n = S-1, m = k-1: log₂(C) ≤ (S-1)·h((k-1)/(S-1)).
-  Since h((k-1)/(S-1)) → h(1/log₂3) = 1 - γ by continuity of h:
-    log₂(C) ≤ S·(1-γ) + O(1)
-  The O(1) correction is absorbed by the log₂(S) slack term. -/
+**Proof sketch** (tools available, final step needs quantitative comparison):
+  (1) From `choose_log2_bound`: log₂(C) ≤ (S-1)·h₂((k-1)/(S-1))
+  (2) By `strictConcave_binEntropy`: h₂(p) ≤ h₂(p₀) + h₂'(p₀)·(p−p₀)
+      where p₀ = log₂/log₃ and h₂'(p₀) = log(1−p₀) − log(p₀) < 0
+  (3) Therefore: (S-1)·h₂(p) ≤ S·h₂(p₀) + (h₂'(p₀)·A − h₂(p₀))
+      where A = (k-1) − (S-1)·p₀ ∈ [−1, p₀−1]
+  (4) The correction h₂'(p₀)·A − h₂(p₀) < 0 (verified numerically),
+      so the bound holds without even needing the log₂(S) slack. -/
 theorem deficit_linear_growth (k : ℕ) (hk : k ≥ 18) (S : ℕ)
     (hS : S = Nat.ceil (k * (Real.log 3 / Real.log 2)))
     (hd : crystalModule S k > 0) :
@@ -440,18 +448,25 @@ theorem deficit_linear_growth (k : ℕ) (hk : k ≥ 18) (S : ℕ)
 | ID  | Statement                  | Type   | Difficulty | Status                |
 |-----|----------------------------|--------|------------|-----------------------|
 | S1  | steiner_equation           | proved | ★★★       | Telescoping+lin_comb ✓|
-| S2  | crystal_nonsurjectivity    | sorry  | ★★★★     | Core: Stirling+num    |
+| S2  | crystal_nonsurjectivity    | sorry  | ★★★★     | Entropy+gap analysis  |
 | S3  | exceptions_below_68        | proved | ★          | native_decide ✓       |
 | A1  | simons_de_weger            | axiom  | —          | Published result      |
 | S4  | zero_exclusion_conditional | proved | ★          | From QU class ✓       |
 | S5  | no_positive_cycle          | proved | ★★        | Int/Nat dvd bridge ✓  |
 | S6  | gamma_pos                  | proved | ★★        | binEntropy_lt_log_two✓|
-| S7  | deficit_linear_growth      | sorry  | ★★★       | Stirling bound        |
+| S7  | deficit_linear_growth      | sorry  | ★★★       | Concavity+deriv bound |
 | H1  | binary_entropy_lt_one      | proved | ★★        | Mathlib BinaryEntropy✓|
 
 ### Remaining sorry's (this file):
-  - crystal_nonsurjectivity: Stirling bounds + certified numerics [CORE]
-  - deficit_linear_growth: Stirling upper bound on binomial
+  - crystal_nonsurjectivity: BinomialEntropy tools available; needs concavity
+    analysis at p=(k-1)/(S-1) + comparison with 2^S - 3^k
+  - deficit_linear_growth: BinomialEntropy + strictConcave_binEntropy available;
+    needs evaluation of h₂'(log₂/log₃) and bound on correction term
+
+### Mathematical tools now available:
+  - BinomialEntropy.lean: choose_le_div_pow, choose_log_bound, choose_log2_bound
+  - LegendreApprox.lean: abs_sub_ge_of_not_convergent, abs_sub_ge_nat_div
+  - Mathlib: strictConcave_binEntropy, deriv_binEntropy, deriv2_binEntropy
 
 ### Axiom (unchanged):
   - simons_de_weger: published external result (Acta Arith. 2005)
