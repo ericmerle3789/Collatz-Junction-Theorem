@@ -53,7 +53,8 @@ Collatz-Junction-Theorem/
 │   └── LegendreApprox.lean      # Legendre approximation contrapositive
 ├── scripts/
 │   ├── verify_nonsurjectivity.py  # Reproducible verification of Theorem 1
-│   └── numerical_audit.py         # Ultra-severe numerical audit (152 checks)
+│   ├── numerical_audit.py         # Ultra-severe numerical audit (152 checks)
+│   └── stress_test.py             # Comprehensive mathematical stress tests (402 checks)
 └── research_log/
     ├── phase10c_red_team.md       # Adversarial audit of early attempts
     ├── phase10d–10m_*.md          # Exploration phases (10 documents)
