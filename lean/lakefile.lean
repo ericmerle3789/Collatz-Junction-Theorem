@@ -9,7 +9,7 @@ package collatz_junction where
 @[default_target]
 lean_lib Collatz where
   srcDir := "."
-  roots := #[`JunctionTheorem, `SyracuseHeight, `BinomialEntropy, `LegendreApprox, `ConcaveTangent, `EntropyBound]
+  roots := #[`JunctionTheorem, `SyracuseHeight, `BinomialEntropy, `LegendreApprox, `ConcaveTangent, `EntropyBound, `FiniteCases]
 
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4" @ "master"
