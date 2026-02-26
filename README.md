@@ -44,14 +44,16 @@ Collatz-Junction-Theorem/
 │   ├── preprint.tex             # LaTeX stub (amsart, ready for full conversion)
 │   └── Merle_2026_*.pdf         # PDF preprint
 ├── lean/
-│   ├── JunctionTheorem.lean     # Junction Theorem formalization (1 sorry + 1 axiom)
+│   ├── JunctionTheorem.lean     # Junction Theorem formalization (1 residual sorry + 1 axiom)
+│   ├── FiniteCases.lean         # Crystal nonsurjectivity for k ∈ [18, 200] (183 native_decide)
 │   ├── SyracuseHeight.lean      # Syracuse height formalization (0 sorry — fully proved)
 │   ├── BinomialEntropy.lean     # Entropy bounds on binomial coefficients
 │   ├── EntropyBound.lean        # Entropy bound via tangent line
 │   ├── ConcaveTangent.lean      # Tangent line inequality for concave functions
 │   └── LegendreApprox.lean      # Legendre approximation contrapositive
 ├── scripts/
-│   └── verify_nonsurjectivity.py  # Reproducible verification of all key computations
+│   ├── verify_nonsurjectivity.py  # Reproducible verification of Theorem 1
+│   └── numerical_audit.py         # Ultra-severe numerical audit (152 checks)
 └── research_log/
     ├── phase10c_red_team.md       # Adversarial audit of early attempts
     ├── phase10d–10m_*.md          # Exploration phases (10 documents)
@@ -86,9 +88,10 @@ The full manuscript is available in two formats:
 
 The `lean/` directory contains Lean 4 formalizations with:
 - 20+ theorems fully proved (Steiner equation, gamma positivity, deficit linear growth, master equations, energy bounds, etc.)
-- 1 remaining `sorry` in `crystal_nonsurjectivity` (Stirling correction needed for k ∈ [18, ~190))
+- Crystal nonsurjectivity **proved** for k ∈ [18, 200] via 183 `native_decide` cases (`FiniteCases.lean`)
+- 1 residual `sorry` in `crystal_nonsurjectivity` for k ≥ 201 only (asymptotic regime, margin > 3 bits, numerically verified to k = 10⁶)
 - 1 `axiom` for Simons-de Weger (external published result, Acta Arith. 2005)
-- 6 files with clean import dependencies and no circular reasoning
+- 7 files with clean import dependencies and no circular reasoning
 
 ## Mathematical Framework
 

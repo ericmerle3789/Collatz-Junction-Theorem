@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""verify_nonsurjectivity.py — Vérification du Théorème 1 (Merle 2026).
+"""verify_nonsurjectivity.py — Verification of Theorem 1 (Merle 2026).
 
-Vérifie que C(S-1, k-1) < d = 2^S - 3^k pour tout k in [18, k_max]
-avec S = ceil(k * log2(3)), et identifie les exceptions k < 18.
+Verifies that C(S-1, k-1) < d = 2^S - 3^k for all k in [18, k_max]
+with S = ceil(k * log2(3)), and identifies exceptions for k < 18.
 
-Sortie attendue (déterministe) :
+Expected (deterministic) output:
   Exceptions C >= d : {3, 5, 17}
-  Théorème 1 vérifié pour k in [18, 500] : True
+  Theorem 1 verified for k in [18, 500] : True
   SHA256(exceptions)[:16] : 262a7f2efa4c8255
 
-Usage :
+Usage:
   python3 verify_nonsurjectivity.py [k_max]
 
-Requires : Python >= 3.8 (math.comb). No external dependencies.
+Requires: Python >= 3.8 (math.comb). No external dependencies.
 """
 import math
 import hashlib
@@ -76,23 +76,23 @@ if __name__ == "__main__":
     gamma = 1.0 - h_alpha
 
     print("=" * 60)
-    print("  Vérification du Théorème 1 — Merle 2026")
+    print("  Verification of Theorem 1 — Merle 2026")
     print("=" * 60)
-    print(f"\n  γ = 1 − h(ln2/ln3) = {gamma:.12f}")
-    print(f"  h(α)               = {h_alpha:.12f}")
-    print(f"  α = ln2/ln3        = {alpha:.12f}")
+    print(f"\n  gamma = 1 - h(ln2/ln3) = {gamma:.12f}")
+    print(f"  h(alpha)               = {h_alpha:.12f}")
+    print(f"  alpha = ln2/ln3        = {alpha:.12f}")
 
     # 2. Verify non-surjectivity
-    print(f"\n  Vérification pour k ∈ [2, {k_max}]...")
+    print(f"\n  Verifying for k in [2, {k_max}]...")
     result = verify_nonsurjectivity(k_max)
 
-    print(f"\n  Exceptions C ≥ d : {set(result['exceptions'])}")
+    print(f"\n  Exceptions C >= d: {set(result['exceptions'])}")
     for det in result["details"]:
         r = det["C/d"]
         fmt_r = f"{r:.4f}" if isinstance(r, float) else r
         print(f"    k={det['k']:3d}  S={det.get('S','?')}  C/d={fmt_r}")
 
-    print(f"\n  Théorème 1 vérifié pour k ∈ [18, {k_max}] : "
+    print(f"\n  Theorem 1 verified for k in [18, {k_max}]: "
           f"{result['all_verified_18_plus']} "
           f"({result['verified_count']}/{result['expected_count']})")
 
@@ -114,6 +114,6 @@ if __name__ == "__main__":
             print(f"  ✗ FAIL: hash mismatch {sha}")
             ok = False
         if ok:
-            print("\n  ✓ Tous les tests passent.")
+            print("\n  All tests passed.")
 
     print("=" * 60)

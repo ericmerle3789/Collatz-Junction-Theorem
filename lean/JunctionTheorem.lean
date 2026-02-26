@@ -248,12 +248,6 @@ theorem crystal_nonsurjectivity (k : ℕ) (hk : k ≥ 18)
 -- PART E: Exceptions — Direct Computation
 -- ============================================================================
 
-/-- Helper: 2^4 < 3^3 (i.e., 16 < 27). -/
-private lemma pow2_4_lt_pow3_3 : (2 : ℤ) ^ 4 < (3 : ℤ) ^ 3 := by norm_num
-
-/-- Helper: 3^3 < 2^5 (i.e., 27 < 32). -/
-private lemma pow3_3_lt_pow2_5 : (3 : ℤ) ^ 3 < (2 : ℤ) ^ 5 := by norm_num
-
 /-- The three exceptions where C/d ≥ 1, all below k = 68.
 Computed with exact integer arithmetic. -/
 theorem exceptions_below_68 :
