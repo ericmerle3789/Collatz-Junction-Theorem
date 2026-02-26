@@ -25,8 +25,8 @@ Formalizes the **Junction Theorem** (Merle, 2026) combining:
 |     |                            |           | finite case analysis (see below)  |
 | S3  | exceptions_below_68        | ✓ proved  | native_decide computation         |
 | A1  | simons_de_weger            | axiom     | External published result (2005)  |
-| S4  | zero_exclusion_conditional | ✓ proved  | From QuasiUniformity class        |
-| S5  | no_positive_cycle          | ✓ proved  | Int/Nat dvd bridge via Mathlib    |
+| S4  | zero_exclusion_conditional | ✓ proved  | From QuasiUniformity (positions)  |
+| S5  | no_positive_cycle          | ✓ proved  | Positions + Int/Nat dvd bridge    |
 | S6  | gamma_pos                  | ✓ proved  | From binEntropy_lt_log_two        |
 | S7  | deficit_linear_growth      | ✓ proved  | Tangent line + entropy bound      |
 | H1  | binary_entropy_lt_one      | ✓ proved  | Via Mathlib binEntropy_lt_log_two |
@@ -40,11 +40,14 @@ open Real Finset Nat
 -- PART A: Core Definitions
 -- ============================================================================
 
-/-- A composition of S − k into k nonneg parts with A₀ = 0. -/
+/-- A cumulative position sequence for Comp(S, k).
+Represents strictly increasing positions 0 = A₀ < A₁ < ⋯ < A_{k−1} < S,
+corresponding to the cumulative exponent sums in Steiner's equation. -/
 structure Composition (S k : ℕ) where
   A : Fin k → ℕ
   hA0 : (hk : k > 0) → A ⟨0, hk⟩ = 0
-  hSum : Finset.univ.sum A = S - k
+  hMono : ∀ i j : Fin k, i.val < j.val → A i < A j
+  hBound : ∀ i : Fin k, A i < S
   hSgtk : S > k
 
 /-- The crystal module d = 2^S − 3^k. -/
@@ -302,32 +305,46 @@ theorem full_coverage (k : ℕ) (hk : k ≥ 1) : k < 68 ∨ k ≥ 18 := by
 -- ============================================================================
 
 /-- The quasi-uniformity hypothesis (H).
-Strengthened to give a concrete count bound: for k ≥ 18 with d > 0,
-the number of compositions A with corrSum(A) ≡ 0 (mod d) is < 1,
-hence exactly 0.
+For k ≥ 18 with d > 0, no valid cumulative position sequence A has
+corrSum(A) ≡ 0 (mod d).
 
-This encodes the consequence of character sum bounds: under (H),
-#{A : corrSum(A) ≡ 0 mod d} ≈ C/d < 1, hence = 0. -/
+A valid position sequence is a strictly increasing function
+A : Fin k → ℕ with A(0) = 0 and A(i) < S, corresponding to the
+cumulative exponent sums in Steiner's equation.
+
+The count bound: |{A ∈ Comp(S,k) : corrSum(A) ≡ 0 mod d}| ≈ C/d < 1,
+hence = 0. The domain Comp(S,k) has C(S−1,k−1) elements. -/
 class QuasiUniformity (k S : ℕ) where
-  /-- No composition achieves corrSum ≡ 0 (mod d) -/
+  /-- No cumulative position sequence achieves corrSum ≡ 0 (mod d) -/
   zero_not_attained :
+    (hk : k > 0) →
     crystalModule S k > 0 →
-    ∀ (A : Fin k → ℕ), Finset.univ.sum A = S - k →
+    ∀ (A : Fin k → ℕ),
+    A ⟨0, hk⟩ = 0 →
+    (∀ i j : Fin k, i.val < j.val → A i < A j) →
+    (∀ i : Fin k, A i < S) →
     (corrSum k A) % (crystalModule S k).toNat ≠ 0
 
-/-- **Theorem 3**: Under (H), 0 ∉ Im(Ev_d). -/
+/-- **Theorem 3**: Under (H), 0 ∉ Im(Ev_d) for cumulative position sequences. -/
 theorem zero_exclusion_conditional (k : ℕ) (hk : k ≥ 18)
     (S : ℕ) (hS : S = Nat.ceil (k * (Real.log 3 / Real.log 2)))
     (hd : crystalModule S k > 0)
     [hu : QuasiUniformity k S] :
     ¬ ∃ (A : Fin k → ℕ),
-      (Finset.univ.sum A = S - k) ∧
+      A ⟨0, by omega⟩ = 0 ∧
+      (∀ i j : Fin k, i.val < j.val → A i < A j) ∧
+      (∀ i : Fin k, A i < S) ∧
       (corrSum k A) % (crystalModule S k).toNat = 0 := by
-  intro ⟨A, hsum, hmod⟩
-  exact hu.zero_not_attained hd A hsum hmod
+  intro ⟨A, hA0, hAmono, hAbnd, hmod⟩
+  exact hu.zero_not_attained (by omega) hd A hA0 hAmono hAbnd hmod
 
 /-- **Main Theorem** (conditional on H + Simons–de Weger).
-No nontrivial positive Collatz cycle exists. -/
+No nontrivial positive Collatz cycle exists.
+
+The existential quantifies over cumulative position sequences A,
+which are strictly increasing with A(0) = 0 and A(i) < S.
+These correspond exactly to the cumA produced by `steiner_equation`
+from a real Collatz cycle (where cumA(i) = Σ_{j<i} exponents(j)). -/
 theorem no_positive_cycle
     (k : ℕ) (hk : k ≥ 1)
     (S : ℕ) (hS : S = Nat.ceil (k * (Real.log 3 / Real.log 2)))
@@ -335,13 +352,15 @@ theorem no_positive_cycle
     [hu : QuasiUniformity k S] :
     ¬ ∃ (n₀ : ℕ) (A : Fin k → ℕ),
       n₀ > 0 ∧
-      (Finset.univ.sum A = S - k) ∧
+      A ⟨0, by omega⟩ = 0 ∧
+      (∀ i j : Fin k, i.val < j.val → A i < A j) ∧
+      (∀ i : Fin k, A i < S) ∧
       (n₀ : ℤ) * crystalModule S k = ↑(corrSum k A) := by
-  intro ⟨n₀, A, hn₀, hsum, hsteiner⟩
+  intro ⟨n₀, A, hn₀, hA0, hAmono, hAbnd, hsteiner⟩
   rcases full_coverage k hk with hlt | hge
-  · -- k < 68: Simons–de Weger eliminates
+  · -- k < 68: Simons–de Weger eliminates (no constraint on A needed)
     exact simons_de_weger k hk hlt ⟨n₀, S, A, hn₀, hd, hsteiner⟩
-  · -- k ≥ 18: zero_exclusion says corrSum(A) ≢ 0 (mod d)
+  · -- k ≥ 18: zero_exclusion says corrSum(A) ≢ 0 (mod d) for positions
     -- But Steiner says n₀ * d = corrSum(A), so d | corrSum(A), contradiction
     have hmod : (corrSum k A) % (crystalModule S k).toNat = 0 := by
       -- From n₀ * d = corrSum(A): d divides corrSum(A)
@@ -354,7 +373,7 @@ theorem no_positive_cycle
       rw [Int.toNat_of_nonneg hd_nn]
       -- Goal: d ∣ ↑(corrSum k A)
       exact ⟨↑n₀, by linarith⟩
-    exact absurd ⟨A, hsum, hmod⟩ (zero_exclusion_conditional k hge S hS hd)
+    exact absurd ⟨A, hA0, hAmono, hAbnd, hmod⟩ (zero_exclusion_conditional k hge S hS hd)
 
 -- ============================================================================
 -- PART I: The Entropy-Module Gap
