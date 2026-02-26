@@ -6,6 +6,8 @@ import Mathlib.Data.ZMod.Basic
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Algebra.BigOperators.Fin
 import BinomialEntropy
+import EntropyBound
+import ConcaveTangent
 
 /-!
 # Junction Theorem for Collatz Positive Cycles
@@ -14,18 +16,19 @@ Formalizes the **Junction Theorem** (Merle, 2026) combining:
   **(A)** Simons–de Weger (2005): no positive cycle with k < 68
   **(B)** Crystal nonsurjectivity: for k ≥ 18 with d > 0, C(S−1, k−1) < d
 
-## Sorry Census (2 sorry remaining)
+## Sorry Census (1 sorry remaining)
 
 | ID  | Statement                  | Status    | Note                              |
 |-----|----------------------------|-----------|-----------------------------------|
 | S1  | steiner_equation           | ✓ proved  | Cyclic telescoping + linear_comb  |
-| S2  | crystal_nonsurjectivity    | sorry     | Entropy tools ready, needs gap    |
+| S2  | crystal_nonsurjectivity    | sorry     | Needs Stirling correction or      |
+|     |                            |           | finite case analysis (see below)  |
 | S3  | exceptions_below_68        | ✓ proved  | native_decide computation         |
 | A1  | simons_de_weger            | axiom     | External published result (2005)  |
 | S4  | zero_exclusion_conditional | ✓ proved  | From QuasiUniformity class        |
 | S5  | no_positive_cycle          | ✓ proved  | Int/Nat dvd bridge via Mathlib    |
 | S6  | gamma_pos                  | ✓ proved  | From binEntropy_lt_log_two        |
-| S7  | deficit_linear_growth      | sorry     | Concavity of h₂ + deriv bound    |
+| S7  | deficit_linear_growth      | ✓ proved  | Tangent line + entropy bound      |
 | H1  | binary_entropy_lt_one      | ✓ proved  | Via Mathlib binEntropy_lt_log_two |
 -/
 
@@ -209,20 +212,21 @@ theorem steiner_equation (k : ℕ) (cyc : IsPositiveCollatzCycle k)
 /-- **Theorem 1**: Crystal nonsurjectivity.
 For k ≥ 18 with S = ⌈k · log₂ 3⌉ and d > 0: C(S−1, k−1) < d.
 
-**Status**: sorry — the entropy bound tools are now available (BinomialEntropy.lean),
-but the final comparison requires quantitative analysis not yet formalized.
+**Status**: sorry — the entropy bound `deficit_linear_growth` gives
+  log₂(C) ≤ S·(1−γ) + log₂(S),
+which suffices for k ≥ ~190 (where γ·S dominates log₂ S).
 
-**Available tools** (from BinomialEntropy.lean):
-  - `choose_le_div_pow`: C(n,m) ≤ (n/m)^m · (n/(n-m))^{n-m}
-  - `choose_log2_bound`: log₂(C(n,m)) ≤ m·log₂(n/m) + (n-m)·log₂(n/(n-m))
+**Remaining gap**: For k ∈ [18, ~190), the tangent line bound is not tight enough
+because the Stirling correction (log₂√(2πnp(1-p))) is needed but not formalized.
+In particular, for convergent denominators of log₂3 like k = 41 (where 65/41 ≈ log₂3),
+the deficit d = 2^S − 3^k is unusually small, so even the raw entropy bound
+n·h₂(m/n) exceeds log₂(d) by ~2.5 bits.
 
-**Available tools** (from Mathlib):
-  - `strictConcave_binEntropy`: h₂ is strictly concave on [0,1]
-  - `deriv_binEntropy`: h₂'(p) = log(1-p) - log(p)
-
-**Remaining gap**: Comparing the entropy bound at p=(k-1)/(S-1) with 2^S−3^k
-requires either (a) concavity + derivative evaluation at p₀ = log₂/log₃,
-or (b) certified numerics for a finite range of k. -/
+**Possible approaches**:
+  (a) Formalize Stirling-type bounds: C(n,m) ≤ 2^(n·h₂(m/n)) / √(8·m·(n-m)/n)
+  (b) Finite case analysis: for each k ∈ [18, K₀), prove S from 3^k < 2^S ∧ 2^(S-1) ≤ 3^k,
+      then use native_decide for C(S-1, k-1) < (2^S - 3^k).toNat
+  (c) Combine (a) for k ≥ K₀ with (b) for k < K₀ -/
 theorem crystal_nonsurjectivity (k : ℕ) (hk : k ≥ 18)
     (S : ℕ) (hS : S = Nat.ceil (k * (Real.log 3 / Real.log 2)))
     (hd : crystalModule S k > 0) :
@@ -419,54 +423,200 @@ theorem gamma_pos : gamma > 0 := by
 
 /-- The deficit log₂(C/d) ≈ −γ·S grows linearly.
 
-**Status**: sorry — the entropy bound is available (BinomialEntropy.lean), but
-the concavity analysis to bound h₂ at (k-1)/(S-1) requires evaluation of
-log(log(3/2)/log(2)) and comparison with binEntropy(log₂/log₃).
-
-**Proof sketch** (tools available, final step needs quantitative comparison):
-  (1) From `choose_log2_bound`: log₂(C) ≤ (S-1)·h₂((k-1)/(S-1))
-  (2) By `strictConcave_binEntropy`: h₂(p) ≤ h₂(p₀) + h₂'(p₀)·(p−p₀)
-      where p₀ = log₂/log₃ and h₂'(p₀) = log(1−p₀) − log(p₀) < 0
-  (3) Therefore: (S-1)·h₂(p) ≤ S·h₂(p₀) + (h₂'(p₀)·A − h₂(p₀))
-      where A = (k-1) − (S-1)·p₀ ∈ [−1, p₀−1]
-  (4) The correction h₂'(p₀)·A − h₂(p₀) < 0 (verified numerically),
-      so the bound holds without even needing the log₂(S) slack. -/
+**Proof**: Via tangent line inequality for concave binary entropy.
+  (1) log(C) ≤ (S-1)·h₂(p)  where p = (k-1)/(S-1)     [choose_log_le_binEntropy]
+  (2) h₂(p) ≤ h₂(p₀) + h₂'(p₀)·(p−p₀)                 [binEntropy_le_tangent]
+  (3) Correction < log 2  (since |A| < 1, |h₂'(p₀)| < log 2, from 8 < 9)
+  (4) (S-1)·h₂(p) < S·h₂(p₀) + log S                   [algebra]
+  (5) Divide by log 2: log₂(C) ≤ S·(1−γ) + log₂(S)      [final] -/
 theorem deficit_linear_growth (k : ℕ) (hk : k ≥ 18) (S : ℕ)
     (hS : S = Nat.ceil (k * (Real.log 3 / Real.log 2)))
     (hd : crystalModule S k > 0) :
     Real.log (Nat.choose (S - 1) (k - 1)) / Real.log 2 ≤
     (S : ℝ) * (1 - gamma) + Real.log S / Real.log 2 := by
-  sorry
+  -- ===== Step 0: Basic positivity and bounds =====
+  have hlog2 : (0 : ℝ) < Real.log 2 := Real.log_pos (by norm_num)
+  have hlog3 : (0 : ℝ) < Real.log 3 := Real.log_pos (by norm_num)
+  -- S > k (since S ≥ k·log₂3 and log₂3 > 1)
+  have hSk : S > k := by
+    rw [hS]; exact Nat.lt_ceil.mpr (by
+      push_cast; exact lt_mul_of_one_lt_right (by positivity : (0:ℝ) < k) (by
+        rw [one_lt_div hlog2]; exact Real.log_lt_log (by norm_num) (by norm_num : (2:ℝ) < 3)))
+  have hS2 : 2 ≤ S := by omega
+  have hkm : 0 < k - 1 := by omega
+  have hkmn : k - 1 < S - 1 := by omega
+  set p₀ : ℝ := Real.log 2 / Real.log 3 with hp₀_def
+  set n : ℕ := S - 1 with hn_def
+  set m : ℕ := k - 1 with hm_def
+  -- ===== Step 1: Entropy bound on C(n, m) =====
+  have hstep1 := EntropyBound.choose_log_le_binEntropy n m hkm hkmn
+  -- hstep1 : log(C(n,m)) ≤ n · binEntropy(m/n)
+  -- ===== Step 2: Tangent line at p₀ =====
+  have hp₀_mem : p₀ ∈ Set.Ioo (0 : ℝ) 1 :=
+    ⟨div_pos hlog2 hlog3, by rw [div_lt_one hlog3]; exact Real.log_lt_log (by norm_num) (by norm_num : (2:ℝ) < 3)⟩
+  have hn_pos : (0 : ℝ) < n := Nat.cast_pos.mpr (by omega)
+  have hp_mem : (m : ℝ) / n ∈ Set.Icc (0 : ℝ) 1 :=
+    ⟨by positivity,
+     by rw [div_le_one hn_pos]; exact_mod_cast le_of_lt hkmn⟩
+  -- Key fact: p = m/n < p₀ (from 3^(k-1) < 2^(S-1), which follows from 2^S > 3^k)
+  have hp_lt_p₀ : (m : ℝ) / n < p₀ := by
+    have h2Sgt3k : (2:ℝ)^S > (3:ℝ)^k := by
+      have := hd; unfold crystalModule at this
+      have h : (3:ℤ)^k < (2:ℤ)^S := by omega
+      exact_mod_cast h
+    have h3m_lt_2n : (3:ℝ)^m < (2:ℝ)^n := by
+      show (3:ℝ)^(k-1) < (2:ℝ)^(S-1)
+      have hk1 : (3:ℝ)^k = 3 * 3^(k-1) := by
+        conv_lhs => rw [show k = k - 1 + 1 from (Nat.sub_add_cancel (show 1 ≤ k from by omega)).symm]
+        rw [pow_succ]; ring
+      have hS1 : (2:ℝ)^S = 2 * 2^(S-1) := by
+        conv_lhs => rw [show S = S - 1 + 1 from (Nat.sub_add_cancel (show 1 ≤ S from by omega)).symm]
+        rw [pow_succ]; ring
+      nlinarith [show (0:ℝ) < 2^(S-1) from by positivity]
+    -- Take log: m·log 3 < n·log 2
+    have hlog := Real.log_lt_log (by positivity : (0:ℝ) < 3^m) h3m_lt_2n
+    rw [Real.log_pow, Real.log_pow] at hlog
+    -- Cross-multiply: m/n < log2/log3
+    rw [hp₀_def, lt_div_iff₀ hlog3, div_mul_eq_mul_div, div_lt_iff₀ hn_pos]
+    linarith
+  have hp_ne : (m : ℝ) / n ≠ p₀ := ne_of_lt hp_lt_p₀
+  have hstep2 := ConcaveTangent.binEntropy_le_tangent ((m:ℝ)/n) p₀ hp_mem hp₀_mem hp_ne
+  -- hstep2 : binEntropy(m/n) ≤ binEntropy(p₀) + (log(1-p₀) - log(p₀)) · (m/n - p₀)
+  -- ===== Step 3: Multiply by n = S-1 =====
+  have hstep3 : (n:ℝ) * Real.binEntropy ((m:ℝ)/n) ≤
+      (n:ℝ) * Real.binEntropy p₀ + (Real.log (1 - p₀) - Real.log p₀) * ((m:ℝ) - n * p₀) := by
+    have := mul_le_mul_of_nonneg_left hstep2 hn_pos.le
+    linarith [show (n:ℝ) * ((Real.log (1 - p₀) - Real.log p₀) * ((m:ℝ)/n - p₀)) =
+      (Real.log (1 - p₀) - Real.log p₀) * ((m:ℝ) - n * p₀) from by field_simp]
+  -- ===== Step 4: Bound correction < log 2 =====
+  -- A = m - n·p₀ ∈ (-1, 0), derivative D = log(1-p₀) - log(p₀) < 0, |D| < log 2
+  -- So correction D·A ∈ (0, log 2)
+  have hA_neg : (m:ℝ) - n * p₀ < 0 := by
+    rw [sub_neg]; linarith [(div_lt_iff₀ hn_pos).mp hp_lt_p₀]
+  have hA_gt : (m:ℝ) - n * p₀ > -1 := by
+    -- Need m > n·p₀ - 1, i.e., k > (S-1)·log2/log3
+    -- ⟺ k·log3 > (S-1)·log2, from S = ⌈k·log₂3⌉ so S-1 < k·log₂3
+    rw [hp₀_def, gt_iff_lt, neg_lt_sub_iff_lt_add]
+    rw [show 1 + (m:ℝ) = (k:ℝ) from by
+      rw [hm_def, Nat.cast_sub (show 1 ≤ k from by omega)]; ring]
+    rw [show (n:ℝ) * (Real.log 2 / Real.log 3) = (n:ℝ) * Real.log 2 / Real.log 3 from by ring]
+    rw [div_lt_iff₀ hlog3]
+    -- Need: n · log 2 < k · log 3, i.e., (S-1)·log 2 < k·log 3
+    -- From S = ⌈k·log₂3⌉: S-1 < k·log₂3 = k·log3/log2
+    have hn_cast : (n:ℝ) = (S:ℝ) - 1 := by
+      rw [hn_def, Nat.cast_sub (show 1 ≤ S from by omega), Nat.cast_one]
+    have hceil : (S:ℝ) - 1 < k * (Real.log 3 / Real.log 2) := by
+      rw [hS]; push_cast
+      linarith [Nat.ceil_lt_add_one (show (0:ℝ) ≤ ↑k * (Real.log 3 / Real.log 2) from by positivity)]
+    have := mul_lt_mul_of_pos_right hceil hlog2
+    rw [show k * (Real.log 3 / Real.log 2) * Real.log 2 = (k:ℝ) * Real.log 3 from by
+      field_simp] at this
+    rw [hn_cast]; linarith
+  have hderiv_neg : Real.log (1 - p₀) - Real.log p₀ < 0 := by
+    rw [sub_neg]
+    apply Real.log_lt_log (by linarith [hp₀_mem.2])
+    -- 1 - p₀ < p₀ ⟺ p₀ > 1/2, from EntropyBound.log2_div_log3_gt_half
+    linarith [show p₀ > 1 / 2 from hp₀_def ▸ EntropyBound.log2_div_log3_gt_half]
+  -- Step 4c: Correction = D · A where D < 0, A ∈ (-1, 0), |D| < log 2
+  -- So 0 < D · A < log 2
+  have hcorr : (Real.log (1 - p₀) - Real.log p₀) * ((m:ℝ) - n * p₀) < Real.log 2 := by
+    -- Rewrite D·A = |D|·|A| (negative × negative = positive)
+    have hprod : (Real.log (1 - p₀) - Real.log p₀) * ((m:ℝ) - n * p₀) =
+        (Real.log p₀ - Real.log (1 - p₀)) * (n * p₀ - (m:ℝ)) := by ring
+    rw [hprod]
+    have hD_pos : 0 < Real.log p₀ - Real.log (1 - p₀) := by linarith
+    have hA_lt1 : n * p₀ - (m:ℝ) < 1 := by linarith
+    -- |D|·|A| < |D|·1 = log(p₀/(1-p₀)) < log 2
+    calc (Real.log p₀ - Real.log (1 - p₀)) * (n * p₀ - (m:ℝ))
+        < (Real.log p₀ - Real.log (1 - p₀)) * 1 :=
+          mul_lt_mul_of_pos_left hA_lt1 hD_pos
+      _ = Real.log (p₀ / (1 - p₀)) := by
+          rw [mul_one, Real.log_div (ne_of_gt hp₀_mem.1) (ne_of_gt (by linarith [hp₀_mem.2]))]
+      _ < Real.log 2 := by
+          apply Real.log_lt_log (div_pos hp₀_mem.1 (by linarith [hp₀_mem.2]))
+          -- p₀/(1-p₀) = log2/(log3-log2) < 2  (from 8 < 9)
+          rw [hp₀_def, show Real.log 2 / Real.log 3 / (1 - Real.log 2 / Real.log 3) =
+              Real.log 2 / (Real.log 3 - Real.log 2) from by field_simp]
+          exact EntropyBound.log2_div_log32_lt_two
+  -- ===== Step 5: Combine: log(C) < n · binEntropy(p₀) + log 2 =====
+  have hcombine : Real.log (Nat.choose n m : ℝ) < (n:ℝ) * Real.binEntropy p₀ + Real.log 2 :=
+    lt_of_le_of_lt (le_trans hstep1 hstep3) (by linarith)
+  -- ===== Step 6: Algebra: (S-1)·binEntropy(p₀) + log 2 ≤ S·binEntropy(p₀) + log S =====
+  have hn_eq : (n:ℝ) = (S:ℝ) - 1 := by
+    rw [hn_def, Nat.cast_sub (show 1 ≤ S from by omega), Nat.cast_one]
+  have hbinE_pos : 0 < Real.binEntropy p₀ := by
+    unfold Real.binEntropy
+    have h1p0 : (0:ℝ) < 1 - p₀ := by linarith [hp₀_mem.2]
+    have h1 : 0 < p₀ * Real.log p₀⁻¹ :=
+      mul_pos hp₀_mem.1 (Real.log_pos ((one_lt_inv₀ hp₀_mem.1).mpr hp₀_mem.2))
+    have h2 : 0 < (1 - p₀) * Real.log (1 - p₀)⁻¹ :=
+      mul_pos h1p0 (Real.log_pos ((one_lt_inv₀ h1p0).mpr (by linarith [hp₀_mem.1])))
+    linarith
+  have hlogS : Real.log 2 ≤ Real.log (S:ℝ) :=
+    Real.log_le_log (by positivity) (by exact_mod_cast hS2)
+  have hupper : Real.log (Nat.choose n m : ℝ) ≤
+      (S:ℝ) * Real.binEntropy p₀ + Real.log (S:ℝ) := by
+    have : (n:ℝ) * Real.binEntropy p₀ + Real.log 2 ≤
+        (S:ℝ) * Real.binEntropy p₀ + Real.log (S:ℝ) := by
+      rw [hn_eq]; nlinarith
+    linarith
+  -- ===== Step 7: Divide by log 2 and connect to gamma =====
+  -- binEntropy(p₀) / log 2 = 1 - gamma (by definition)
+  have hgamma_eq : Real.binEntropy p₀ / Real.log 2 = 1 - gamma := by
+    -- (1-gamma) * log 2 = binEntropy(p₀), so binEntropy(p₀)/log 2 = 1 - gamma
+    rw [div_eq_iff (ne_of_gt hlog2)]
+    -- Goal: binEntropy(p₀) = (1 - gamma) * log 2
+    have hp₀_conv : (1 : ℝ) / (Real.log 3 / Real.log 2) = p₀ := by
+      rw [hp₀_def, one_div, inv_div]
+    unfold gamma; rw [sub_sub_cancel]
+    -- Goal: binEntropy(p₀) = binaryEntropy(1/(log3/log2), _, _) * log 2
+    unfold binaryEntropy; simp only [hp₀_conv]
+    -- Goal: binEntropy(p₀) = -(p₀*log(p₀)/log2 + (1-p₀)*log(1-p₀)/log2) * log 2
+    unfold Real.binEntropy; rw [Real.log_inv, Real.log_inv]
+    -- Both sides are -(p₀*log(p₀) + (1-p₀)*log(1-p₀)), clear the log 2 denoms on RHS
+    rw [neg_mul,
+        show -((p₀ * Real.log p₀ / Real.log 2 +
+        (1 - p₀) * Real.log (1 - p₀) / Real.log 2) * Real.log 2) =
+        -(p₀ * Real.log p₀ + (1 - p₀) * Real.log (1 - p₀)) from by
+      congr 1; rw [add_mul, div_mul_cancel₀ _ (ne_of_gt hlog2),
+                    div_mul_cancel₀ _ (ne_of_gt hlog2)]]
+    ring
+  calc Real.log (Nat.choose n m : ℝ) / Real.log 2
+      ≤ ((S:ℝ) * Real.binEntropy p₀ + Real.log (S:ℝ)) / Real.log 2 :=
+        div_le_div_of_nonneg_right hupper hlog2.le
+    _ = (S:ℝ) * Real.binEntropy p₀ / Real.log 2 + Real.log (S:ℝ) / Real.log 2 :=
+        add_div _ _ _
+    _ = (S:ℝ) * (1 - gamma) + Real.log (S:ℝ) / Real.log 2 := by
+        rw [mul_div_assoc, hgamma_eq]
 
 -- ============================================================================
 -- PART J: Sorry Census
 -- ============================================================================
 
 /-!
-### Final Sorry Census (2 sorry remaining in this file, down from original 13)
+### Final Sorry Census (1 sorry remaining in this file, down from original 13)
 
 | ID  | Statement                  | Type   | Difficulty | Status                |
 |-----|----------------------------|--------|------------|-----------------------|
 | S1  | steiner_equation           | proved | ★★★       | Telescoping+lin_comb ✓|
-| S2  | crystal_nonsurjectivity    | sorry  | ★★★★     | Entropy+gap analysis  |
+| S2  | crystal_nonsurjectivity    | sorry  | ★★★★★   | Needs Stirling or     |
+|     |                            |        |            | finite case analysis  |
 | S3  | exceptions_below_68        | proved | ★          | native_decide ✓       |
 | A1  | simons_de_weger            | axiom  | —          | Published result      |
 | S4  | zero_exclusion_conditional | proved | ★          | From QU class ✓       |
 | S5  | no_positive_cycle          | proved | ★★        | Int/Nat dvd bridge ✓  |
 | S6  | gamma_pos                  | proved | ★★        | binEntropy_lt_log_two✓|
-| S7  | deficit_linear_growth      | sorry  | ★★★       | Concavity+deriv bound |
+| S7  | deficit_linear_growth      | proved | ★★★★     | Tangent line bound ✓  |
 | H1  | binary_entropy_lt_one      | proved | ★★        | Mathlib BinaryEntropy✓|
 
-### Remaining sorry's (this file):
-  - crystal_nonsurjectivity: BinomialEntropy tools available; needs concavity
-    analysis at p=(k-1)/(S-1) + comparison with 2^S - 3^k
-  - deficit_linear_growth: BinomialEntropy + strictConcave_binEntropy available;
-    needs evaluation of h₂'(log₂/log₃) and bound on correction term
-
-### Mathematical tools now available:
-  - BinomialEntropy.lean: choose_le_div_pow, choose_log_bound, choose_log2_bound
-  - LegendreApprox.lean: abs_sub_ge_of_not_convergent, abs_sub_ge_nat_div
-  - Mathlib: strictConcave_binEntropy, deriv_binEntropy, deriv2_binEntropy
+### Remaining sorry:
+  - crystal_nonsurjectivity: C(S-1,k-1) < 2^S - 3^k for k ≥ 18.
+    The tangent line bound (deficit_linear_growth) gives
+      log₂(C) ≤ S·(1-γ) + log₂(S)
+    which suffices for k ≥ ~190. For k ∈ [18, ~190), the bound is not
+    tight enough because the Stirling correction (~log₂√(2πnp(1-p)))
+    is needed. The hardest case is k = 41 (convergent denominator of log₂3)
+    where even the raw entropy bound n·h₂(m/n) exceeds log₂(d) by ~2.5 bits.
 
 ### Axiom (unchanged):
   - simons_de_weger: published external result (Acta Arith. 2005)
