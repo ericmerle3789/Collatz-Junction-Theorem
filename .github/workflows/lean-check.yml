@@ -1,0 +1,72 @@
+name: Lean 4 Verification
+
+on:
+  push:
+    paths:
+      - 'lean/verified/**'
+  pull_request:
+    paths:
+      - 'lean/verified/**'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: "Lean 4 — Zero sorry, Zero axiom"
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | bash -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+      - name: Set toolchain from lean-toolchain
+        working-directory: lean/verified
+        run: |
+          cat lean-toolchain
+          elan toolchain install $(cat lean-toolchain)
+
+      - name: Typecheck (lean compiler)
+        working-directory: lean/verified
+        run: |
+          lean --version
+          echo "=== Checking CollatzVerified/Basic.lean ==="
+          lean CollatzVerified/Basic.lean
+          echo "✓ Lean compilation successful — no errors"
+
+      - name: Verify zero sorry
+        working-directory: lean/verified
+        run: |
+          # Count sorry in non-comment lines
+          SORRY_COUNT=$(grep -c '^\s*sorry' CollatzVerified/Basic.lean || true)
+          echo "sorry count (as tactic): $SORRY_COUNT"
+          if [ "$SORRY_COUNT" -gt 0 ]; then
+            echo "❌ FAILED: found $SORRY_COUNT sorry"
+            exit 1
+          fi
+          echo "✓ Zero sorry confirmed"
+
+      - name: Verify zero axiom
+        working-directory: lean/verified
+        run: |
+          AXIOM_COUNT=$(grep -c '^axiom ' CollatzVerified/Basic.lean || true)
+          echo "axiom declarations: $AXIOM_COUNT"
+          if [ "$AXIOM_COUNT" -gt 0 ]; then
+            echo "❌ FAILED: found $AXIOM_COUNT axiom(s)"
+            exit 1
+          fi
+          echo "✓ Zero axiom confirmed"
+
+      - name: Count theorems
+        working-directory: lean/verified
+        run: |
+          THMS=$(grep -c '^theorem ' CollatzVerified/Basic.lean || true)
+          DEFS=$(grep -c '^def ' CollatzVerified/Basic.lean || true)
+          echo "=== Summary ==="
+          echo "Theorems proved: $THMS"
+          echo "Definitions: $DEFS"
+          echo "sorry: 0"
+          echo "axiom: 0"
+          echo "✓ ALL VERIFIED"

@@ -1,0 +1,10 @@
+name = "CollatzVerified"
+version = "0.1.0"
+defaultTargets = ["collatzverified"]
+
+[[lean_lib]]
+name = "CollatzVerified"
+
+[[lean_exe]]
+name = "collatzverified"
+root = "Main"
