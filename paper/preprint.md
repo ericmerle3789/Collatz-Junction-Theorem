@@ -14,7 +14,7 @@ où h désigne l'entropie binaire de Shannon. Ce déficit exprime le fait que le
 
 **Mots-clés** : Conjecture de Collatz, problème 3x+1, cycles, équation de Steiner, entropie de Shannon, non-surjectivité modulaire, formes linéaires en logarithmes.
 
-**Classification MSC 2020** : 11B83 (primaire), 37P35, 94A17 (secondaires).
+**Classification MSC 2020** : 11B83 (primaire), 37A45, 94A17 (secondaires).
 
 ---
 
@@ -51,7 +51,7 @@ L'étude des cycles de Collatz repose principalement sur deux méthodes :
 
 **(i) Bornes computationnelles.** Steiner (1977), puis Simons et de Weger (2005), ont utilisé la théorie de Baker des formes linéaires en logarithmes, combinée à la réduction LLL, pour démontrer qu'il n'existe aucun cycle positif non trivial de longueur k < 68. Cette borne reste l'état de l'art.
 
-**(ii) Vérifications de convergence.** Barina (2020) a montré que tout entier n < 2^68 converge vers 1 sous l'itération de Collatz. Ce résultat élimine les cycles dont tous les éléments sont inférieurs à 2^68, mais ne fournit pas de borne directe sur la longueur k.
+**(ii) Vérifications de convergence.** Barina (2021) a montré que tout entier n < 2^68 converge vers 1 sous l'itération de Collatz. Ce résultat élimine les cycles dont tous les éléments sont inférieurs à 2^68, mais ne fournit pas de borne directe sur la longueur k.
 
 **(iii) Approches probabilistes.** Tao (2022) a démontré que « presque toutes » les orbites atteignent des valeurs arbitrairement petites, en utilisant des estimées de sommes exponentielles. Ce résultat remarquable ne traite cependant pas directement du problème des cycles.
 
@@ -213,7 +213,7 @@ Les seules exceptions sont k ∈ {3, 5, 17}, pour lesquelles :
 |---|---|-------------|---|-----|
 | 3 | 5 | 6 | 5 | 1.20 |
 | 5 | 8 | 35 | 13 | 2.69 |
-| 17 | 27 | 7726160 | 7340033 | 1.05 |
+| 17 | 27 | 5311735 | 5077565 | 1.05 |
 
 Ces trois valeurs satisfont toutes k < 68.
 
@@ -225,7 +225,7 @@ Ces trois valeurs satisfont toutes k < 68.
 
 (la correction +2 absorbe les termes en O(1) provenant du passage de S−1 à S et de la variation de h autour de ln 2/ln 3).
 
-*Minoration de d (borne de Baker).* Pour k ∈ [500, 15 600], une vérification numérique exhaustive (cf. Annexe E) montre que la partie fractionnaire {k · log₂ 3} satisfait 1 − {k · log₂ 3} ≥ 6.3 × 10^{−5} (minimum atteint en k = 665), d'où log₂ d ≥ S − 15. Il vient :
+*Minoration de d (borne de Baker).* Pour k ∈ [500, 15 600], une vérification numérique exhaustive (cf. Annexe E) montre que la distance à l'entier le plus proche ‖k · log₂ 3‖ ≥ 6.3 × 10^{−5} (minimum atteint en k = 665), d'où log₂ d ≥ S − 15. Il vient :
 
 > log₂(C/d) ≤ −γS + 17 ≤ −0.05004 × 1055 + 17 < −35.8 < 0
 
@@ -303,7 +303,7 @@ L'intersection est immédiate : tout entier k ≥ 2 vérifie k < 68 ou k ≥ 18 
 
 L'analyse par convergents révèle une architecture naturelle en trois régimes :
 
-**Régime résiduel** (convergents q₃ = 5, q₄ = 12). — Le rapport C/d vaut respectivement 2.69 et 4.44. L'application Ev_d est potentiellement surjective. Ces valeurs sont éliminées par la borne computationnelle de Simons-de Weger.
+**Régime résiduel** (convergents q₁ = 1, q₃ = 5). — Le rapport C/d vaut respectivement 1.00 et 2.69. L'application Ev_d est potentiellement surjective. Ces valeurs sont éliminées par la borne computationnelle de Simons-de Weger.
 
 **Régime frontière** (convergent q₅ = 41). — Le rapport C/d ≈ 0.596 tombe pour la première fois sous 1. Ce convergent marque la transition : il est éliminé à la fois par Simons-de Weger (k = 41 < 68) et par la non-surjectivité (C < d).
 
@@ -354,8 +354,6 @@ Le nombre de compositions atteignant 0 modulo chaque premier p | d est ainsi con
 > Pour k = 306 (q₇) : C/d ≈ 10^{−6}. Pour k = 15601 (q₉) : C/d ≈ 2^{−1230}.
 
 Sa densité asymptotique étant nulle dans l'espace des paramètres diophantiens, l'intersection avec le point singulier {0} est de mesure nulle. Conjuguée au Théorème de Jonction, l'Hypothèse (H) implique l'inexistence complète des cycles positifs non triviaux.
-
-**(v) Vérification en Lean 4.** Les résultats computationnels clés (non-surjectivité, exclusion du zéro pour q₃, classification des cosets, Gersonides borné) ont été formalisés en Lean 4 avec 0 sorry et 0 axiom, fournissant une certification indépendante par machine (voir §7.3).
 
 ### 6.4. Éléments en faveur de (H)
 
@@ -438,7 +436,7 @@ Le cœur de l'obstruction réside dans une **incompatibilité structurelle entre
 
 Afin de garantir la fiabilité des résultats computationnels, nous avons formalisé les vérifications clés en **Lean 4** (v4.15.0), un assistant de preuve dont le noyau de vérification certifie la correction de chaque théorème.
 
-Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **38 théorèmes prouvés**, **0 sorry** (preuve incomplète) et **0 axiom** (hypothèse non démontrée). Les résultats vérifiés par le noyau Lean incluent :
+Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **54 théorèmes prouvés**, **0 sorry** (preuve incomplète) et **0 axiom** (hypothèse non démontrée). Les résultats vérifiés par le noyau Lean incluent :
 
 | Résultat | Tactique | Phase |
 |----------|----------|-------|
@@ -455,6 +453,26 @@ Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **38 théorèmes 
 
 Un workflow GitHub Actions (`lean-check.yml`) compile automatiquement le fichier et vérifie l'absence de sorry et d'axiomes à chaque push.
 
+### 7.4. Obstruction analytique par sommes de caractères (Phase 16)
+
+La Phase 16 traduit l'Hypothèse (H) dans le langage des sommes de caractères additifs. Pour un premier p | d, la condition corrSum(A) ≡ 0 (mod p) est reformulée via l'orthogonalité des caractères additifs de ℤ/pℤ :
+
+> N₀(p) = C/p + (1/p) Σ_{t=1}^{p-1} T(t)
+
+où T(t) = Σ_{A ∈ Comp(S,k)} e(t · corrSum(A) / p) est la somme exponentielle associée.
+
+**Théorème 16.1** (Coût de Parseval). — *Si N₀(p) ≥ 1 (existence d'un cycle), alors :*
+
+> Σ_{t≠0} |T(t)|² ≥ (p − C)²/(p − 1)
+
+*Dans le régime cristallin (C ≪ p), cette borne est asymptotiquement ≥ p, imposant un coût énergétique massif sur les composantes de Fourier.*
+
+**Théorème 16.2** (Exclusion conditionnelle). — *Sous des bornes uniformes |T(t)| ≤ C · ω^{−δ} (ω = ord_p(2), δ > 0), l'exclusion du zéro N₀(p) = 0 est prouvée pour les premiers p tels que C · (1/p + ω^{−δ}) < 1.*
+
+**Proposition 16.4** (Stratégie CRT). — *Il suffit de trouver un unique premier cristallin p | d pour lequel N₀(p) = 0 afin de conclure à l'inexistence de tout cycle de longueur k.*
+
+L'analyse spectrale du propagateur de Horner (§8 du research log) montre que la chaîne c_{j+1} ≡ 3c_j + 2^{A_j} (mod p) mélange rapidement vers l'uniformité lorsque k ≫ √ω · log p, condition vérifiée pour tous les convergents ≥ q₅. La vérification numérique pour q₃ confirme l'exclusion du zéro (N₀(13) = 0) et la validité de l'identité de Parseval.
+
 ---
 
 ## 8. Conclusion
@@ -463,11 +481,13 @@ Nous avons démontré que le problème des cycles positifs de Collatz est gouver
 
 L'analyse structurelle des Phases 14 et 15 approfondit cette obstruction en identifiant une **loi d'incompatibilité universelle** entre les bases 2 et 3, se manifestant simultanément aux niveaux archimédien, entropique et p-adique. La classification des premiers cristallins en Types I et II, et la découverte du premier Type II (p = 929 divisant d₇), révèle une rigidité géométrique de coset qui renforce qualitativement l'obstruction au-delà du simple comptage.
 
+La Phase 16 complète le cadre en traduisant l'Hypothèse (H) dans le langage de la **théorie analytique des nombres**. Le Théorème de Parseval (16.1) établit inconditionnellement le coût énergétique de l'existence d'un cycle, et la stratégie CRT (Proposition 16.4) réduit le problème à l'exclusion du zéro pour un unique premier cristallin. Les techniques de sommes exponentielles (van der Corput, Weil-Deligne, sommes lacunaires) constituent les voies les plus prometteuses vers une résolution.
+
 L'ensemble des résultats computationnels clés a été formalisé en **Lean 4 avec 0 sorry et 0 axiom**, offrant une certification machine des vérifications numériques.
 
-Le passage de la non-surjectivité à l'exclusion du résidu 0 constitue le dernier obstacle. Nous le formulons comme l'Hypothèse d'Équirépartition Exponentielle (H), solidement étayée numériquement mais non encore démontrée. Sa résolution constituerait une avancée significative dans l'étude de la conjecture de Collatz.
+Le passage de la non-surjectivité à l'exclusion du résidu 0 constitue le dernier obstacle. Le cadre analytique de la Phase 16, combiné aux contraintes p-adiques de la Phase 15, encercle cette question de manière croissante. Sa résolution — qui pourrait passer par une borne de type Weil sur les sommes exponentielles de Horner — constituerait une avancée significative dans l'étude de la conjecture de Collatz.
 
-*Limitation.* Le présent travail ne traite que des cycles positifs (d = 2^S − 3^k > 0, correspondant aux convergents d'index impair). L'analyse des cycles négatifs (d < 0, convergents d'index pair) fait intervenir des modules de signe opposé et une dynamique inverse ; elle fera l'objet d'un travail ultérieur. Mentionnons que Böhm et Sontacchi (1978) et Steiner (1977) ont indépendamment traité les deux signes dans le cadre de l'équation de cycle.
+*Limitation.* Le présent travail ne traite que des cycles positifs (d = 2^S − 3^k > 0, correspondant aux convergents d'index impair). L'analyse des cycles négatifs (d < 0, convergents d'index pair) fait intervenir des modules de signe opposé et une dynamique inverse ; elle fera l'objet d'un travail ultérieur. Mentionnons que Böhm et Sontacchi (1978) [10] et Steiner (1977) [6] ont indépendamment traité les deux signes dans le cadre de l'équation de cycle. Mentionnons aussi les travaux de Crandall (1978) [1] sur les bornes initiales et de Kontorovich et Miller (2005) [12] sur les connexions entre les fonctions L et le problème 3x + 1.
 
 ---
 
