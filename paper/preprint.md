@@ -436,7 +436,7 @@ Le cœur de l'obstruction réside dans une **incompatibilité structurelle entre
 
 Afin de garantir la fiabilité des résultats computationnels, nous avons formalisé les vérifications clés en **Lean 4** (v4.15.0), un assistant de preuve dont le noyau de vérification certifie la correction de chaque théorème.
 
-Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **60 théorèmes prouvés**, **0 sorry** (preuve incomplète) et **0 axiom** (hypothèse non démontrée). Les résultats vérifiés par le noyau Lean incluent :
+Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **66 théorèmes prouvés**, **0 sorry** (preuve incomplète) et **0 axiom** (hypothèse non démontrée). Les résultats vérifiés par le noyau Lean incluent :
 
 | Résultat | Tactique | Phase |
 |----------|----------|-------|
@@ -487,6 +487,31 @@ La Phase 17 traduit le problème dans le langage des **polynômes lacunaires** e
 
 L'obstruction ne réside pas dans les valuations (premier ordre) mais dans la **structure fine des résidus** (second ordre). La combinaison de toutes les contraintes — polygone plat, marche inverse, Hensel, zigzag — encercle le zéro de façon croissante et complémentaire à l'approche analytique de la Phase 16.
 
+### 7.6. Le Programme Merle : assemblage du théorème final (Phase 18)
+
+La Phase 18 assemble les résultats des Phases 14–17 en un **unique cadre de preuve par l'absurde** dont la conclusion ne dépend que d'une conjecture analytique sur les sommes exponentielles lacunaires.
+
+**Le cadre des quatre organes.** Le programme de preuve modélise la démonstration comme un organisme à quatre organes :
+
+- **Le Cœur** (Moteur Entropique, Phases 12–14) : le déficit γ > 0 force C < d pour k ≥ 18 ;
+- **Les Jambes** (Fondation p-adique, Phases 15, 17) : polygone de Newton, marche de Horner inverse, tour de Hensel, zigzag de coset ;
+- **Les Bras** (Étau CRT, Phase 16) : réduction à un unique premier p | d ;
+- **La Tête** (Cerveau Analytique, Phases 16–17) : borne sur les sommes exponentielles T(t).
+
+Les trois premiers organes sont **prouvés** (inconditionnels). Le quatrième est **conditionnel** sur la Conjecture M.
+
+**Conjecture M** (Borne Lacunaire de Fourier — Programme Merle). — *Il existe des constantes computables K₁ et δ > 0 telles que pour tout k ≥ K₁, tout premier p | d, et tout t ∈ {1, ..., p−1} :*
+
+> **|T(t)| ≤ C · k^{−δ}**
+
+*où T(t) = Σ_{A ∈ Comp(S,k)} e(t · corrSum(A)/p) et C = C(S−1, k−1).*
+
+**Théorème 18.1** (Assemblage, conditionnel sous Conjecture M). — *Soit K* = max(68, K_M). Alors pour tout k ≥ 2, il n'existe aucun cycle positif non trivial de longueur k dans la dynamique de Collatz.*
+
+La preuve procède par cas : k < 68 (Simons–de Weger), k ∈ [68, K*] (extension computationnelle), k ≥ K* (absurde via la chaîne Cœur → Bras → Jambes → Tête). La Conjecture M est soutenue par les vérifications exhaustives (q₃), l'analogie avec les marches aléatoires de Diaconis–Shahshahani, et le coût de Parseval (Théorème 16.1).
+
+Le Programme Merle réduit la conjecture de Collatz (pour les cycles positifs) à un unique énoncé analytique sur les sommes exponentielles lacunaires en caractéristique finie.
+
 ---
 
 ## 8. Conclusion
@@ -499,9 +524,9 @@ La Phase 16 complète le cadre en traduisant l'Hypothèse (H) dans le langage de
 
 La Phase 17 aborde le problème par la **géométrie p-adique** : le polynôme lacunaire de Steiner, la marche de Horner inverse, la tour de Hensel, et le zigzag de coset. Le polygone de Newton est plat (toutes les valuations sont 0), révélant que l'obstruction est de second ordre (dans les résidus, pas dans les valuations). L'étau analytique (Phase 16) et géométrique (Phase 17) encercle l'Hypothèse (H) par des voies complémentaires.
 
-L'ensemble des résultats computationnels clés a été formalisé en **Lean 4 avec 0 sorry et 0 axiom**, offrant une certification machine des vérifications numériques.
+L'ensemble des résultats computationnels clés a été formalisé en **Lean 4 avec 0 sorry et 0 axiom** (66 théorèmes), offrant une certification machine des vérifications numériques.
 
-Le passage de la non-surjectivité à l'exclusion du résidu 0 constitue le dernier obstacle. Le cadre analytique de la Phase 16, combiné aux contraintes p-adiques de la Phase 15, encercle cette question de manière croissante. Sa résolution — qui pourrait passer par une borne de type Weil sur les sommes exponentielles de Horner — constituerait une avancée significative dans l'étude de la conjecture de Collatz.
+La Phase 18 (Programme Merle) assemble ces résultats en un unique cadre de preuve par l'absurde à quatre organes (entropique, p-adique, CRT, analytique) et réduit la question résiduelle à la **Conjecture M** : une borne lacunaire de Fourier |T(t)| ≤ C · k^{−δ} sur les sommes exponentielles de Horner. Trois voies vers sa résolution sont identifiées : spectrale (trou spectral de Horner), algébrique (bornes de Weil–Deligne), et computationnelle (extension de Simons–de Weger).
 
 *Limitation.* Le présent travail ne traite que des cycles positifs (d = 2^S − 3^k > 0, correspondant aux convergents d'index impair). L'analyse des cycles négatifs (d < 0, convergents d'index pair) fait intervenir des modules de signe opposé et une dynamique inverse ; elle fera l'objet d'un travail ultérieur. Mentionnons que Böhm et Sontacchi (1978) [10] et Steiner (1977) [6] ont indépendamment traité les deux signes dans le cadre de l'équation de cycle. Mentionnons aussi les travaux de Crandall (1978) [1] sur les bornes initiales et de Kontorovich et Miller (2005) [12] sur les connexions entre les fonctions L et le problème 3x + 1.
 

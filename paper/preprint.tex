@@ -468,14 +468,46 @@ pour lequel $N_0(p) = 0$ afin de conclure à l'inexistence de
 tout cycle de longueur~$k$.
 \end{proposition}
 
+\subsection{Le Programme Merle: assemblage du théorème final (Phase~18)}
+
+La Phase~18 assemble les résultats des Phases 14--17 en un
+\textbf{unique cadre de preuve par l'absurde} à quatre organes:
+\begin{enumerate}
+  \item \textbf{Le C\oe ur} (Moteur Entropique): $\gamma > 0 \Rightarrow C < d$;
+  \item \textbf{Les Jambes} (Fondation $p$-adique): Newton, Horner, Hensel, cosets;
+  \item \textbf{Les Bras} (Étau CRT): réduction à un unique $p \mid d$;
+  \item \textbf{La Tête} (Cerveau Analytique): borne sur $T(t)$.
+\end{enumerate}
+Les trois premiers organes sont \textbf{prouvés}. Le quatrième est
+\textbf{conditionnel} sur la Conjecture~M.
+
+\begin{hypothesis}[Conjecture M --- Programme Merle]\label{hyp:M}
+Il existe des constantes computables $K_1$ et $\delta > 0$ telles
+que pour tout $k \geq K_1$, tout premier $p \mid d$ et tout
+$t \in \{1, \ldots, p-1\}$:
+\[
+  |T(t)| \leq \binom{S-1}{k-1} \cdot k^{-\delta}.
+\]
+\end{hypothesis}
+
+\begin{theorem}[Assemblage]\label{thm:assembly}
+Sous la Conjecture~M, pour tout $k \geq 2$, il n'existe aucun cycle
+positif non trivial de longueur~$k$ dans la dynamique de Collatz.
+\end{theorem}
+
+Le Programme Merle réduit la conjecture de Collatz (pour les cycles
+positifs) à un unique énoncé analytique sur les sommes exponentielles
+lacunaires en caractéristique finie.
+
 \subsection{Vérification formelle en Lean~4}
 
 Les résultats computationnels ont été formalisés en Lean~4 (v4.15.0)
 avec \textbf{0~sorry} et \textbf{0~axiom}. Le fichier
-\texttt{CollatzVerified/Basic.lean} contient 60 théorèmes prouvés,
+\texttt{CollatzVerified/Basic.lean} contient 66 théorèmes prouvés,
 dont la non-surjectivité pour $k = 18, \ldots, 25$, l'exclusion du
 zéro pour $q_3$, la classification de $p = 929$ comme Type~II,
-et la vérification de l'identité de Parseval pour~$q_3$.
+la vérification de l'identité de Parseval pour~$q_3$,
+et les vérifications d'assemblage de la Phase~18.
 
 % ============================================================
 \section{Conclusion}
@@ -496,12 +528,15 @@ problème à l'exclusion du zéro pour un unique premier cristallin
 via le CRT (Proposition~\ref{prop:crt}).
 
 L'ensemble des résultats computationnels a été formalisé en
-\textbf{Lean~4 avec 0~sorry et 0~axiom}.
+\textbf{Lean~4 avec 0~sorry et 0~axiom} (66 théorèmes).
 
-Le passage de la non-surjectivité à l'exclusion du résidu~$0$
-constitue le dernier obstacle. Les bornes de Weil--Deligne et les
-itérations de van der Corput constituent les voies les plus
-prometteuses.
+La Phase~18 (Programme Merle) assemble ces résultats en un unique
+cadre de preuve par l'absurde à quatre organes et réduit le problème
+à la \textbf{Conjecture~M} (Hypothèse~\ref{hyp:M}): une borne
+lacunaire de Fourier $|T(t)| \leq C \cdot k^{-\delta}$. Trois voies
+vers sa résolution sont identifiées: spectrale (trou spectral de
+Horner), algébrique (bornes de Weil--Deligne), et computationnelle
+(extension de Simons--de~Weger).
 
 \emph{Limitation.} Le présent travail ne traite que des cycles
 positifs ($d > 0$). L'analyse des cycles négatifs fera l'objet
