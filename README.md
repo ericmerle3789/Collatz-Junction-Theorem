@@ -15,7 +15,7 @@ $$\gamma = 1 - h\!\left(\frac{1}{\log_2 3}\right) \approx 0.0500$$
 
 where $h$ denotes binary Shannon entropy. This deficit implies that the modular evaluation map $\mathrm{Ev}_d$ cannot be surjective for any cycle candidate of length $k \geq 18$ (**unconditional**). Combined with the computational bound of Simons and de Weger (2005) for $k < 68$, we obtain a **Junction Theorem**: for every $k \geq 2$, at least one obstruction — computational or entropic — applies.
 
-The residual question — excluding the specific residue $0$ from the image — is formulated as an **Exponential Equidistribution Hypothesis** (H), approached via character sum analysis and Weil-type bounds (Phase 16). Phase 18 (Programme Merle) assembles all results into a single proof-by-contradiction framework, reducing the problem to **Conjecture M**: a lacunary Fourier bound on exponential sums.
+The residual question — excluding the specific residue $0$ from the image — is formulated as an **Exponential Equidistribution Hypothesis** (H), approached via character sum analysis and Weil-type bounds (Phase 16). Phase 18 (Programme Merle) assembles all results into a single proof-by-contradiction framework, reducing the problem to **Conjecture M**: a lacunary Fourier bound on exponential sums. Phase 19 (Mellin Radar) reformulates this via multiplicative character sums $M(\chi)$, providing an exact bridge between additive and multiplicative visions and proposing **Conjecture M_Mellin** as a more natural formulation.
 
 ## Key Results
 
@@ -25,7 +25,10 @@ The residual question — excluding the specific residue $0$ from the image — 
 | **Theorem 2** (Junction) | For every $k \geq 2$: computational OR entropic obstruction applies | Unconditional |
 | **Theorem 16.1** (Parseval cost) | If a cycle exists: $\sum\lvert T(t)\rvert^2 \geq (p-C)^2/(p-1)$ | Unconditional |
 | **Theorem 18.1** (Assembly) | Under Conjecture M: no positive cycle for any $k \geq 2$ | Conditional on M |
+| **Theorem 19.1** (Mellin-Fourier bridge) | $T(t) = N_0 + \frac{1}{p-1}\sum_\chi \tau(\bar\chi)\chi(t)M(\chi)$ | Unconditional |
+| **Theorem 19.2** (Multiplicative Parseval) | $\sum\lvert M(\chi)\rvert^2 = (p-1)\sum_{n\neq 0} S(n)^2$ | Unconditional |
 | **Conjecture M** | $\lvert T(t)\rvert \leq C \cdot k^{-\delta}$ for all $t, p \mid d$ | Open |
+| **Conjecture M_Mellin** | $\lvert M(\chi)\rvert \leq C^{1-\varepsilon}$ for all non-trivial $\chi$ | Open |
 
 ### The Three Regimes
 
@@ -66,7 +69,8 @@ Collatz-Junction-Theorem/
 │   ├── interdimensional_tension.py # Phase 15: coset rigidity + zero-exclusion
 │   ├── analytical_obstruction.py   # Phase 16: character sums + Parseval
 │   ├── keyhole_geometry.py         # Phase 17: p-adic geometry + Newton polygon
-│   └── programme_merle.py         # Phase 18: assembly theorem + Programme Merle
+│   ├── programme_merle.py         # Phase 18: assembly theorem + Programme Merle
+│   └── radar_mellin.py            # Phase 19: Mellin radar + multiplicative obstruction
 └── research_log/
     ├── phase10c_red_team.md                # Phase 10c: red team analysis
     ├── phase10d_reflexion_profonde.md      # Phase 10d: deep reflection
@@ -88,7 +92,8 @@ Collatz-Junction-Theorem/
     ├── phase15_tension_interdimensionnelle.md # Phase 15: inter-dimensional tension
     ├── phase16_obstruction_analytique.md   # Phase 16: analytical obstruction
     ├── phase17_geometrie_serrure.md       # Phase 17: keyhole geometry
-    └── phase18_programme_merle.md        # Phase 18: Programme Merle (assembly)
+    ├── phase18_programme_merle.md        # Phase 18: Programme Merle (assembly)
+    └── phase19_radar_mellin.md           # Phase 19: Mellin radar (multiplicative)
 ```
 
 ## Quick Start
@@ -113,6 +118,9 @@ python3 scripts/keyhole_geometry.py
 
 # Phase 18: assembly theorem + Programme Merle
 python3 scripts/programme_merle.py
+
+# Phase 19: Mellin radar + multiplicative obstruction
+python3 scripts/radar_mellin.py
 ```
 
 ### Read the paper
@@ -124,12 +132,13 @@ The full manuscript is available in two formats:
 ### Lean 4 formalization
 
 The `lean/verified/` directory contains a **fully verified** Lean 4 file:
-- **66 theorems proved, 0 sorry, 0 axiom**
+- **73 theorems proved, 0 sorry, 0 axiom**
 - Non-surjectivity verified for k = 18 through 25
 - Exhaustive zero-exclusion for q₃ (35 compositions)
 - Coset classification: p = 929 is Type II
 - Gersonides verification: |2^S − 3^k| ≥ 2 for S + k ≥ 6
 - Phase 18 assembly: entropic transition, CRT principle, Parseval energy
+- Phase 19 Mellin radar: bridge decomposition, multiplicative Parseval, QR counts
 - CI via GitHub Actions (`lean-check.yml`)
 
 The `lean/` root also contains skeleton files with `sorry` placeholders for deeper results.
@@ -170,7 +179,7 @@ In the crystalline regime ($C \ll p$), this cost approaches $p$, quantifying the
 
 This work establishes an **unconditional** structural obstruction (nonsurjectivity) but does **not** prove the full nonexistence of cycles. The gap between "the evaluation map misses residues" and "the evaluation map misses $0$ specifically" requires **Conjecture M**, which remains open.
 
-Phase 16 encircles this gap via character sum analysis, establishing the Parseval cost unconditionally and reducing the problem to a single-prime zero-exclusion via CRT. Phase 17 contributes p-adic geometric constraints (Newton polygon, Horner walk, Hensel tower, coset zigzag). Phase 18 (Programme Merle) assembles all results and formulates **Conjecture M** ($|T(t)| \leq C \cdot k^{-\delta}$) as the single remaining obstacle. Three paths toward its resolution are identified: spectral (Horner mixing), algebraic (Weil-Deligne bounds), and computational (extending Simons-de Weger).
+Phase 16 encircles this gap via character sum analysis, establishing the Parseval cost unconditionally and reducing the problem to a single-prime zero-exclusion via CRT. Phase 17 contributes p-adic geometric constraints (Newton polygon, Horner walk, Hensel tower, coset zigzag). Phase 18 (Programme Merle) assembles all results and formulates **Conjecture M** ($|T(t)| \leq C \cdot k^{-\delta}$) as the single remaining obstacle. Phase 19 (Radar de Mellin) reformulates this via multiplicative character sums $M(\chi)$, establishing the exact Mellin-Fourier bridge (Theorem 19.1) and multiplicative Parseval (Theorem 19.2), and proposing **Conjecture M_Mellin** ($|M(\chi)| \leq C^{1-\varepsilon}$) as a more natural formulation operating in $\mathbb{F}_p^*$.
 
 We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt.
 

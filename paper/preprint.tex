@@ -499,15 +499,47 @@ Le Programme Merle réduit la conjecture de Collatz (pour les cycles
 positifs) à un unique énoncé analytique sur les sommes exponentielles
 lacunaires en caractéristique finie.
 
+\subsection{Le Radar de Mellin: obstruction multiplicative (Phase~19)}
+
+La Phase~19 introduit le \textbf{Radar de Mellin}: une reformulation
+multiplicative des sommes exponentielles via les caractères de~$\F_p^*$.
+
+\begin{theorem}[Pont Mellin-Fourier]\label{thm:mellin-bridge}
+Pour tout $t \in \{1, \ldots, p-1\}$:
+\[
+  T(t) = N_0 + \frac{1}{p-1}\sum_{\chi} \tau(\bar\chi)\,\chi(t)\,M(\chi)
+\]
+où $M(\chi) = \sum_{\substack{A \in \Comp(S,k)\\ \corrSum(A) \not\equiv 0}} \chi(\corrSum(A))$
+est la \emph{somme de Mellin} et $\tau(\chi)$ la somme de Gauss.
+\end{theorem}
+
+\begin{theorem}[Parseval multiplicatif]\label{thm:mellin-parseval}
+$\sum_\chi |M(\chi)|^2 = (p-1)\sum_{n \neq 0} S(n)^2$.
+\end{theorem}
+
+\begin{hypothesis}[Conjecture $M_{\text{Mellin}}$]\label{hyp:M-mellin}
+Il existe $\varepsilon > 0$ tel que pour tout~$k$ assez grand, tout
+$p \mid d$ et tout $\chi$ non trivial:
+$|M(\chi)| \leq C^{1-\varepsilon}$.
+\end{hypothesis}
+
+Cette reformulation est plus naturelle que la Conjecture~M
+(Hypothèse~\ref{hyp:M}): elle opère dans le groupe multiplicatif
+$\F_p^*$ et exploite les symétries de la structure lacunaire.
+Le pont (Théorème~\ref{thm:mellin-bridge}) est une \textbf{identité
+exacte}; il n'affaiblit aucun résultat existant mais enrichit
+l'arsenal analytique d'une vision multiplicative.
+
 \subsection{Vérification formelle en Lean~4}
 
 Les résultats computationnels ont été formalisés en Lean~4 (v4.15.0)
 avec \textbf{0~sorry} et \textbf{0~axiom}. Le fichier
-\texttt{CollatzVerified/Basic.lean} contient 66 théorèmes prouvés,
+\texttt{CollatzVerified/Basic.lean} contient 73 théorèmes prouvés,
 dont la non-surjectivité pour $k = 18, \ldots, 25$, l'exclusion du
 zéro pour $q_3$, la classification de $p = 929$ comme Type~II,
 la vérification de l'identité de Parseval pour~$q_3$,
-et les vérifications d'assemblage de la Phase~18.
+les vérifications d'assemblage de la Phase~18,
+et le pont Mellin-Fourier avec le Parseval multiplicatif (Phase~19).
 
 % ============================================================
 \section{Conclusion}
@@ -528,15 +560,17 @@ problème à l'exclusion du zéro pour un unique premier cristallin
 via le CRT (Proposition~\ref{prop:crt}).
 
 L'ensemble des résultats computationnels a été formalisé en
-\textbf{Lean~4 avec 0~sorry et 0~axiom} (66 théorèmes).
+\textbf{Lean~4 avec 0~sorry et 0~axiom} (73 théorèmes).
 
 La Phase~18 (Programme Merle) assemble ces résultats en un unique
 cadre de preuve par l'absurde à quatre organes et réduit le problème
 à la \textbf{Conjecture~M} (Hypothèse~\ref{hyp:M}): une borne
-lacunaire de Fourier $|T(t)| \leq C \cdot k^{-\delta}$. Trois voies
-vers sa résolution sont identifiées: spectrale (trou spectral de
-Horner), algébrique (bornes de Weil--Deligne), et computationnelle
-(extension de Simons--de~Weger).
+lacunaire de Fourier $|T(t)| \leq C \cdot k^{-\delta}$.
+La Phase~19 (Radar de Mellin) reformule cette conjecture dans le
+langage multiplicatif: la \textbf{Conjecture~$M_{\text{Mellin}}$}
+(Hypothèse~\ref{hyp:M-mellin}) est plus naturelle et opère dans
+$\F_p^*$. Le pont Mellin-Fourier (Théorème~\ref{thm:mellin-bridge})
+relie les visions additive et multiplicative par une identité exacte.
 
 \emph{Limitation.} Le présent travail ne traite que des cycles
 positifs ($d > 0$). L'analyse des cycles négatifs fera l'objet
@@ -584,6 +618,13 @@ et Steiner~\cite{Steiner1977} ont traité les deux signes.
   \textbf{120} (2005), 269--297.
 \bibitem{Rozier2015} O.~Rozier, The $3x+1$ problem: a lower bound
   hypothesis, \emph{preprint}, 2015.
+\bibitem{NAM2022} W.~Ngom, D.~Alpay, M.~Mboup, Discrete-time
+  signals and systems on the Poincaré disk: scale shift and the
+  Mellin transform, \emph{Signal Processing}\ \textbf{199} (2022),
+  108613.
+\bibitem{Kuznetsov2007} A.~Kuznetsov, Expansion of the Riemann
+  $\Xi$ function in Meixner-Pollaczek polynomials, \emph{Canad.\
+  Math.\ Bull.}\ \textbf{51} (2008), 185--193.
 \end{thebibliography}
 
 \end{document}

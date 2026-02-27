@@ -512,6 +512,26 @@ La preuve procède par cas : k < 68 (Simons–de Weger), k ∈ [68, K*] (extensi
 
 Le Programme Merle réduit la conjecture de Collatz (pour les cycles positifs) à un unique énoncé analytique sur les sommes exponentielles lacunaires en caractéristique finie.
 
+### 7.7. Le Radar de Mellin : obstruction multiplicative par analyse d'échelle (Phase 19)
+
+La Phase 19 abandonne l'approche purement additive de Fourier (bornes de Weil–Deligne) et introduit le **Radar de Mellin** : une reformulation multiplicative des sommes exponentielles T(t) via les sommes de caractères multiplicatifs M(χ).
+
+**Le pont Mellin-Fourier** (Théorème 19.1). — Pour tout t ∈ {1, …, p−1} :
+
+> **T(t) = N₀ + (1/(p−1)) Σ_{χ} τ(χ̄) · χ(t) · M(χ)**
+
+où M(χ) = Σ_{A : corrSum(A)≢0(p)} χ(corrSum(A)) est la **somme de Mellin**, τ(χ) est la somme de Gauss, et la somme porte sur les p−1 caractères multiplicatifs de F_p*. Ce pont est une **identité exacte**, pas une approximation.
+
+**Parseval multiplicatif** (Théorème 19.2). — Σ |M(χ)|² = (p−1) · Σ_{n≠0} S(n)².
+
+Pour q₃ (p = 13), la vérification exhaustive donne : énergie multiplicative totale = 1404, énergie non triviale (Σ_{χ≠χ₀} |M(χ)|²) = 179. Le caractère quadratique η = χ₆ a M(η) = 5 (20 résidus quadratiques contre 15 non-résidus parmi les 35 corrSum).
+
+**Conjecture M_Mellin.** — *Il existe ε > 0 tel que pour tout k assez grand, tout premier p | d et tout caractère non trivial χ : |M(χ)| ≤ C^{1−ε}.*
+
+Cette reformulation est **plus naturelle** que la Conjecture M additive : elle opère dans le groupe multiplicatif F_p* et fait intervenir directement les symétries de la structure lacunaire de corrSum.
+
+Le cadre s'appuie sur les travaux de Ngom, Alpay et Mboup (2022) sur l'opérateur de changement d'échelle pour les signaux discrets, et les résultats de Kuznetsov (2007, 2008) sur les développements de fonctions L en polynômes de Meixner-Pollaczek. La décomposition spectrale dans cette base orthogonale quantifie les oscillations de Gibbs de la distribution lacunaire, fournissant un diagnostic multiplicatif complémentaire à l'approche additive.
+
 ---
 
 ## 8. Conclusion
@@ -524,9 +544,9 @@ La Phase 16 complète le cadre en traduisant l'Hypothèse (H) dans le langage de
 
 La Phase 17 aborde le problème par la **géométrie p-adique** : le polynôme lacunaire de Steiner, la marche de Horner inverse, la tour de Hensel, et le zigzag de coset. Le polygone de Newton est plat (toutes les valuations sont 0), révélant que l'obstruction est de second ordre (dans les résidus, pas dans les valuations). L'étau analytique (Phase 16) et géométrique (Phase 17) encercle l'Hypothèse (H) par des voies complémentaires.
 
-L'ensemble des résultats computationnels clés a été formalisé en **Lean 4 avec 0 sorry et 0 axiom** (66 théorèmes), offrant une certification machine des vérifications numériques.
+L'ensemble des résultats computationnels clés a été formalisé en **Lean 4 avec 0 sorry et 0 axiom** (73 théorèmes), offrant une certification machine des vérifications numériques.
 
-La Phase 18 (Programme Merle) assemble ces résultats en un unique cadre de preuve par l'absurde à quatre organes (entropique, p-adique, CRT, analytique) et réduit la question résiduelle à la **Conjecture M** : une borne lacunaire de Fourier |T(t)| ≤ C · k^{−δ} sur les sommes exponentielles de Horner. Trois voies vers sa résolution sont identifiées : spectrale (trou spectral de Horner), algébrique (bornes de Weil–Deligne), et computationnelle (extension de Simons–de Weger).
+La Phase 18 (Programme Merle) assemble ces résultats en un unique cadre de preuve par l'absurde à quatre organes (entropique, p-adique, CRT, analytique) et réduit la question résiduelle à la **Conjecture M** : une borne lacunaire de Fourier |T(t)| ≤ C · k^{−δ} sur les sommes exponentielles de Horner. La Phase 19 (Radar de Mellin) reformule cette conjecture dans le langage multiplicatif : la **Conjecture M_Mellin** (|M(χ)| ≤ C^{1−ε}) est plus naturelle et opère directement dans F_p*. Le pont Mellin-Fourier (Théorème 19.1) est une identité exacte reliant les visions additive et multiplicative, offrant un diagnostic « binoculaire » sur l'obstruction.
 
 *Limitation.* Le présent travail ne traite que des cycles positifs (d = 2^S − 3^k > 0, correspondant aux convergents d'index impair). L'analyse des cycles négatifs (d < 0, convergents d'index pair) fait intervenir des modules de signe opposé et une dynamique inverse ; elle fera l'objet d'un travail ultérieur. Mentionnons que Böhm et Sontacchi (1978) [10] et Steiner (1977) [6] ont indépendamment traité les deux signes dans le cadre de l'équation de cycle. Mentionnons aussi les travaux de Crandall (1978) [1] sur les bornes initiales et de Kontorovich et Miller (2005) [12] sur les connexions entre les fonctions L et le problème 3x + 1.
 
