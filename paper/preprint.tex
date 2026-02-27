@@ -138,8 +138,51 @@ pour tout $\varepsilon > 0$ et $k$ suffisamment grand.
 
 % TODO: Convert from preprint.md §6
 
+\section{Obstruction structurelle et vérification formelle}
+
+\subsection{Le moule multidimensionnel}
+
+\begin{lemma}[Valuation 2-adique]\label{lem:v2}
+Pour toute composition $A \in \Comp(S,k)$ avec $A_0 = 0$,
+$\corrSum(A)$ est impair: $v_2(\corrSum(A)) = 0$.
+\end{lemma}
+
+\begin{lemma}[Empreinte 2-adique]\label{lem:fingerprint}
+Pour toute composition $A = (0, A_1, \ldots, A_{k-1}) \in \Comp(S,k)$:
+\[
+  \corrSum(A) \equiv 3^{k-1} \pmod{2^{A_1}}.
+\]
+\end{lemma}
+
+\subsection{La tension inter-dimensionnelle}
+
+\begin{definition}[Classification des premiers cristallins]
+Soit $p$ un premier divisant $d = 2^S - 3^k$ et $\omega = \operatorname{ord}_p(2)$.
+\begin{itemize}
+  \item \textbf{Type~I}: $3 \in \langle 2 \rangle \bmod p$.
+  \item \textbf{Type~II}: $3 \notin \langle 2 \rangle \bmod p$.
+\end{itemize}
+\end{definition}
+
+Le premier $p = 929$ ($929 \mid d_7$) est le premier Type~II accessible:
+$\operatorname{ord}_{929}(2) = 464 = \frac{929-1}{2}$ et
+$\left(\frac{3}{929}\right) = -1$.
+
+\begin{theorem}[Exclusion du zéro pour $q_3$]\label{thm:zero-q3}
+Pour $k=5$, $S=8$, $d=13$: $0 \notin \operatorname{Im}(\Ev_{13})$.
+Vérifié exhaustivement sur les 35 compositions de $\Comp(8,5)$.
+\end{theorem}
+
+\subsection{Vérification formelle en Lean~4}
+
+Les résultats computationnels ont été formalisés en Lean~4 (v4.15.0)
+avec \textbf{0~sorry} et \textbf{0~axiom}. Le fichier
+\texttt{CollatzVerified/Basic.lean} contient 38 théorèmes prouvés,
+dont la non-surjectivité pour $k = 18, \ldots, 25$, l'exclusion du
+zéro pour $q_3$, et la classification de $p = 929$ comme Type~II.
+
 \section{Conclusion}
-% TODO: Convert from preprint.md §7
+% TODO: Convert from preprint.md §8
 
 \begin{thebibliography}{12}
 \bibitem{Crandall1978} R.~E.~Crandall, On the $3x+1$ problem,

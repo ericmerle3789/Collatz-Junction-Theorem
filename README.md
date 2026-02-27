@@ -39,23 +39,26 @@ The residual question — excluding the specific residue $0$ from the image — 
 Collatz-Junction-Theorem/
 ├── README.md                    # This file
 ├── LICENSE                      # MIT License
+├── .github/workflows/
+│   └── lean-check.yml           # CI: automatic Lean 4 verification
 ├── paper/
 │   ├── preprint.md              # Full manuscript (French, Markdown)
-│   ├── preprint.tex             # LaTeX stub (amsart, ready for full conversion)
+│   ├── preprint.tex             # LaTeX (amsart)
 │   └── Merle_2026_*.pdf         # PDF preprint
 ├── lean/
-│   ├── SyracuseHeight.lean      # Lean 4 skeleton: Syracuse height formalization
-│   └── JunctionTheorem.lean     # Lean 4 skeleton: Junction Theorem (7 sorry + 1 axiom)
+│   ├── SyracuseHeight.lean      # Lean 4 skeleton: Syracuse height
+│   ├── JunctionTheorem.lean     # Lean 4 skeleton: Junction Theorem
+│   └── verified/                # ★ VERIFIED (0 sorry, 0 axiom) ★
+│       └── CollatzVerified/
+│           └── Basic.lean       # 38 theorems, all proved by Lean 4 kernel
 ├── scripts/
-│   └── verify_nonsurjectivity.py  # Reproducible verification of all key computations
+│   ├── verify_nonsurjectivity.py  # Theorem 1 verification (k ∈ [18, 500])
+│   ├── multidimensional_mold.py   # Phase 14: multidimensional obstruction
+│   └── interdimensional_tension.py # Phase 15: coset rigidity + zero-exclusion
 └── research_log/
-    ├── phase10c_red_team.md       # Adversarial audit of early attempts
-    ├── phase10d–10m_*.md          # Exploration phases (10 documents)
-    ├── phase11a_obstruction_algebrique.md   # Newton polygon analysis
-    ├── phase11b_verification_computationnelle.md  # Computational verification
-    ├── phase11c_reduction_lll.md   # LLL lattice reduction
-    ├── phase12_junction_theorem.md # Junction Theorem formulation
-    └── phase13_audit_kolmogorov_baker.md  # Self-audit of rejected approach
+    ├── phase11a–13_*.md           # Phases 11–13: algebraic obstruction, LLL, audit
+    ├── phase14_moule_multidimensionnel.md  # Phase 14: multidimensional mold
+    └── phase15_tension_interdimensionnelle.md # Phase 15: inter-dimensional tension
 ```
 
 ## Quick Start
@@ -80,11 +83,14 @@ The full manuscript is available in two formats:
 
 ### Lean 4 formalization
 
-The `lean/` directory contains Lean 4 skeletons with:
-- Full type signatures for all theorems
-- `sorry` placeholders with difficulty ratings (★ to ★★★★★)
-- Dependency chain for filling the proofs
-- One `axiom` for Simons-de Weger (external published result)
+The `lean/verified/` directory contains a **fully verified** Lean 4 file:
+- **38 theorems proved, 0 sorry, 0 axiom**
+- Non-surjectivity verified for k = 18 through 25
+- Exhaustive zero-exclusion for q₃ (35 compositions)
+- Coset classification: p = 929 is Type II
+- CI via GitHub Actions (`lean-check.yml`)
+
+The `lean/` root also contains skeleton files with `sorry` placeholders for deeper results.
 
 ## Mathematical Framework
 
