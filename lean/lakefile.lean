@@ -8,7 +8,7 @@ package collatz_junction where
 
 @[default_target]
 lean_lib Collatz where
-  srcDir := "."
+  srcDir := "skeleton"
   roots := #[`JunctionTheorem, `SyracuseHeight, `BinomialEntropy, `LegendreApprox, `ConcaveTangent, `EntropyBound, `FiniteCases]
 
 require mathlib from git
