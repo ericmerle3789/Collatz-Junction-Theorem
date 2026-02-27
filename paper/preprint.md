@@ -436,7 +436,7 @@ Le cœur de l'obstruction réside dans une **incompatibilité structurelle entre
 
 Afin de garantir la fiabilité des résultats computationnels, nous avons formalisé les vérifications clés en **Lean 4** (v4.15.0), un assistant de preuve dont le noyau de vérification certifie la correction de chaque théorème.
 
-Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **54 théorèmes prouvés**, **0 sorry** (preuve incomplète) et **0 axiom** (hypothèse non démontrée). Les résultats vérifiés par le noyau Lean incluent :
+Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **60 théorèmes prouvés**, **0 sorry** (preuve incomplète) et **0 axiom** (hypothèse non démontrée). Les résultats vérifiés par le noyau Lean incluent :
 
 | Résultat | Tactique | Phase |
 |----------|----------|-------|
@@ -473,6 +473,20 @@ où T(t) = Σ_{A ∈ Comp(S,k)} e(t · corrSum(A) / p) est la somme exponentiell
 
 L'analyse spectrale du propagateur de Horner (§8 du research log) montre que la chaîne c_{j+1} ≡ 3c_j + 2^{A_j} (mod p) mélange rapidement vers l'uniformité lorsque k ≫ √ω · log p, condition vérifiée pour tous les convergents ≥ q₅. La vérification numérique pour q₃ confirme l'exclusion du zéro (N₀(13) = 0) et la validité de l'identité de Parseval.
 
+### 7.5. Géométrie p-adique de la serrure (Phase 17)
+
+La Phase 17 traduit le problème dans le langage des **polynômes lacunaires** et de la **géométrie p-adique**. Le polynôme de Steiner P_A(X) = Σ 3^{k-1-i} X^{A_i} est un k-nomial de degré S−1 dont on évalue si X = 2 est racine dans 𝔽_p.
+
+**Proposition 17.1** (Polygone plat). — *Pour tout p | d avec p ≥ 5, le polygone de Newton de P_A en p est horizontal à hauteur 0 (car v_p(3^j) = 0 pour tout j). L'argument ultrametrique brut d'unicité du terme dominant échoue.*
+
+**Proposition 17.2** (Marche inverse). — *L'équation corrSum ≡ 0 (mod p) est équivalente à la condition que la marche de Horner inverse, partant de c_k = 0, atteigne c₁ = 1. En forme close : Σ_{j=1}^{k-1} 2^{A_j} · 3^{−j} ≡ −1 (mod p).*
+
+**Théorème 17.1** (Tour de Hensel). — *La double annulation P_A(2) = P_A'(2) = 0 (mod p) est un système de codimension 2 dans Comp(S,k). Pour q₃ : C/p² = 35/169 < 1, excluant la dégénérescence de Hensel.*
+
+**Proposition 17.3** (Zigzag de coset). — *Pour les premiers Type II (m = 2), les termes de la marche inverse alternent entre les cosets C₀ et C₁ de ⟨2⟩ dans 𝔽_p*, avec période 2.*
+
+L'obstruction ne réside pas dans les valuations (premier ordre) mais dans la **structure fine des résidus** (second ordre). La combinaison de toutes les contraintes — polygone plat, marche inverse, Hensel, zigzag — encercle le zéro de façon croissante et complémentaire à l'approche analytique de la Phase 16.
+
 ---
 
 ## 8. Conclusion
@@ -481,7 +495,9 @@ Nous avons démontré que le problème des cycles positifs de Collatz est gouver
 
 L'analyse structurelle des Phases 14 et 15 approfondit cette obstruction en identifiant une **loi d'incompatibilité universelle** entre les bases 2 et 3, se manifestant simultanément aux niveaux archimédien, entropique et p-adique. La classification des premiers cristallins en Types I et II, et la découverte du premier Type II (p = 929 divisant d₇), révèle une rigidité géométrique de coset qui renforce qualitativement l'obstruction au-delà du simple comptage.
 
-La Phase 16 complète le cadre en traduisant l'Hypothèse (H) dans le langage de la **théorie analytique des nombres**. Le Théorème de Parseval (16.1) établit inconditionnellement le coût énergétique de l'existence d'un cycle, et la stratégie CRT (Proposition 16.4) réduit le problème à l'exclusion du zéro pour un unique premier cristallin. Les techniques de sommes exponentielles (van der Corput, Weil-Deligne, sommes lacunaires) constituent les voies les plus prometteuses vers une résolution.
+La Phase 16 complète le cadre en traduisant l'Hypothèse (H) dans le langage de la **théorie analytique des nombres**. Le Théorème de Parseval (16.1) établit inconditionnellement le coût énergétique de l'existence d'un cycle, et la stratégie CRT (Proposition 16.4) réduit le problème à l'exclusion du zéro pour un unique premier cristallin.
+
+La Phase 17 aborde le problème par la **géométrie p-adique** : le polynôme lacunaire de Steiner, la marche de Horner inverse, la tour de Hensel, et le zigzag de coset. Le polygone de Newton est plat (toutes les valuations sont 0), révélant que l'obstruction est de second ordre (dans les résidus, pas dans les valuations). L'étau analytique (Phase 16) et géométrique (Phase 17) encercle l'Hypothèse (H) par des voies complémentaires.
 
 L'ensemble des résultats computationnels clés a été formalisé en **Lean 4 avec 0 sorry et 0 axiom**, offrant une certification machine des vérifications numériques.
 

@@ -54,7 +54,7 @@ Collatz-Junction-Theorem/
 │   ├── lean-toolchain              # Lean version
 │   └── verified/                   # ★ VERIFIED (0 sorry, 0 axiom) ★
 │       ├── CollatzVerified/
-│       │   └── Basic.lean          # 54 theorems, all proved by Lean 4 kernel
+│       │   └── Basic.lean          # 60 theorems, all proved by Lean 4 kernel
 │       ├── CollatzVerified.lean    # Module root
 │       ├── Main.lean               # Entry point
 │       ├── lakefile.toml           # Lake project config
@@ -63,7 +63,8 @@ Collatz-Junction-Theorem/
 │   ├── verify_nonsurjectivity.py   # Theorem 1 verification (k ∈ [18, 500])
 │   ├── multidimensional_mold.py    # Phase 14: multidimensional obstruction
 │   ├── interdimensional_tension.py # Phase 15: coset rigidity + zero-exclusion
-│   └── analytical_obstruction.py   # Phase 16: character sums + Parseval
+│   ├── analytical_obstruction.py   # Phase 16: character sums + Parseval
+│   └── keyhole_geometry.py         # Phase 17: p-adic geometry + Newton polygon
 └── research_log/
     ├── phase10c_red_team.md                # Phase 10c: red team analysis
     ├── phase10d_reflexion_profonde.md      # Phase 10d: deep reflection
@@ -83,7 +84,8 @@ Collatz-Junction-Theorem/
     ├── phase13_audit_kolmogorov_baker.md   # Phase 13: self-audit (rejected attempt)
     ├── phase14_moule_multidimensionnel.md  # Phase 14: multidimensional mold
     ├── phase15_tension_interdimensionnelle.md # Phase 15: inter-dimensional tension
-    └── phase16_obstruction_analytique.md   # Phase 16: analytical obstruction
+    ├── phase16_obstruction_analytique.md   # Phase 16: analytical obstruction
+    └── phase17_geometrie_serrure.md       # Phase 17: keyhole geometry
 ```
 
 ## Quick Start
@@ -102,6 +104,9 @@ python3 scripts/interdimensional_tension.py
 
 # Phase 16: character sums + Parseval
 python3 scripts/analytical_obstruction.py
+
+# Phase 17: p-adic geometry + Newton polygon
+python3 scripts/keyhole_geometry.py
 ```
 
 ### Read the paper
@@ -113,7 +118,7 @@ The full manuscript is available in two formats:
 ### Lean 4 formalization
 
 The `lean/verified/` directory contains a **fully verified** Lean 4 file:
-- **54 theorems proved, 0 sorry, 0 axiom**
+- **60 theorems proved, 0 sorry, 0 axiom**
 - Non-surjectivity verified for k = 18 through 25
 - Exhaustive zero-exclusion for q₃ (35 compositions)
 - Coset classification: p = 929 is Type II
