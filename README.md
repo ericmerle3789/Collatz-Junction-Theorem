@@ -52,48 +52,62 @@ Collatz-Junction-Theorem/
 │   ├── preprint.tex                # LaTeX source (amsart)
 │   └── Merle_2026_*.pdf            # PDF preprint
 ├── lean/
-│   ├── SyracuseHeight.lean         # Lean 4 skeleton: Syracuse height
-│   ├── JunctionTheorem.lean        # Lean 4 skeleton: Junction Theorem
+│   ├── skeleton/                   # Research-level formalization (sorry roadmap)
+│   │   ├── JunctionTheorem.lean   # Junction Theorem (1 residual sorry + 1 axiom)
+│   │   ├── SyracuseHeight.lean    # Syracuse height (0 sorry — fully proved)
+│   │   ├── BinomialEntropy.lean   # Entropy bounds on binomial coefficients
+│   │   ├── EntropyBound.lean      # Entropy bound via tangent line
+│   │   ├── ConcaveTangent.lean    # Tangent line inequality for concave functions
+│   │   ├── LegendreApprox.lean    # Legendre approximation contrapositive
+│   │   └── FiniteCases.lean       # Crystal nonsurjectivity k ∈ [18, 200]
+│   ├── verified/                   # ★ VERIFIED (0 sorry, 0 axiom) ★
+│   │   ├── CollatzVerified/
+│   │   │   └── Basic.lean         # 73 theorems, all proved by Lean 4 kernel
+│   │   ├── CollatzVerified.lean   # Module root
+│   │   ├── Main.lean              # Entry point
+│   │   ├── lakefile.toml          # Lake project config
+│   │   └── lean-toolchain         # Lean version
 │   ├── lakefile.lean               # Build configuration
-│   ├── lean-toolchain              # Lean version
-│   └── verified/                   # ★ VERIFIED (0 sorry, 0 axiom) ★
-│       ├── CollatzVerified/
-│       │   └── Basic.lean          # 66 theorems, all proved by Lean 4 kernel
-│       ├── CollatzVerified.lean    # Module root
-│       ├── Main.lean               # Entry point
-│       ├── lakefile.toml           # Lake project config
-│       └── lean-toolchain          # Lean version
+│   └── lean-toolchain              # Lean version
 ├── scripts/
 │   ├── verify_nonsurjectivity.py   # Theorem 1 verification (k ∈ [18, 500])
 │   ├── multidimensional_mold.py    # Phase 14: multidimensional obstruction
 │   ├── interdimensional_tension.py # Phase 15: coset rigidity + zero-exclusion
 │   ├── analytical_obstruction.py   # Phase 16: character sums + Parseval
 │   ├── keyhole_geometry.py         # Phase 17: p-adic geometry + Newton polygon
-│   ├── programme_merle.py         # Phase 18: assembly theorem + Programme Merle
-│   └── radar_mellin.py            # Phase 19: Mellin radar + multiplicative obstruction
+│   ├── programme_merle.py          # Phase 18: assembly theorem + Programme Merle
+│   ├── radar_mellin.py             # Phase 19: Mellin radar + multiplicative obstruction
+│   ├── stress_test.py              # 402 mathematical stress tests
+│   └── numerical_audit.py          # Ultra-severe numerical audit (152 checks)
+├── audits/
+│   ├── AUDIT_V1_CERTIFICATION.md   # Post-doctoral certification protocol (P0-P8)
+│   ├── AUDIT_V2_CERTIFICATION.md   # Ultra-severe re-certification
+│   ├── AUDIT_V3_CERTIFICATION.md   # DO-178C/IEC 61508/EAL7 level
+│   └── AUDIT_V4_MATHEMATIQUE.md    # Mathematical verification of logical chain
 └── research_log/
-    ├── phase10c_red_team.md                # Phase 10c: red team analysis
-    ├── phase10d_reflexion_profonde.md      # Phase 10d: deep reflection
-    ├── phase10e_synthese_finale.md         # Phase 10e: final synthesis
-    ├── phase10f_audit_gouzel.md            # Phase 10f: Gouzel-style audit
-    ├── phase10g_hauteur_syracuse.md        # Phase 10g: Syracuse height
-    ├── phase10h_assaut_infini.md           # Phase 10h: infinite assault
-    ├── phase10i_cisaillement_diophantien.md # Phase 10i: Diophantine shearing
-    ├── phase10j_dissonance_resonance.md    # Phase 10j: dissonance/resonance
-    ├── phase10k_estocade.md                # Phase 10k: estocade
-    ├── phase10l_choc_des_cristaux.md       # Phase 10l: crystal clash
-    ├── phase10m_theoreme_fondamental.md    # Phase 10m: fundamental theorem
-    ├── phase11a_obstruction_algebrique.md  # Phase 11a: algebraic obstruction
+    ├── phase10c_red_team.md                  # Phase 10c: red team analysis
+    ├── phase10d_reflexion_profonde.md        # Phase 10d: deep reflection
+    ├── phase10e_synthese_finale.md           # Phase 10e: final synthesis
+    ├── phase10f_audit_gouzel.md              # Phase 10f: Gouzel-style audit
+    ├── phase10g_hauteur_syracuse.md          # Phase 10g: Syracuse height
+    ├── phase10h_assaut_infini.md             # Phase 10h: infinite assault
+    ├── phase10i_cisaillement_diophantien.md  # Phase 10i: Diophantine shearing
+    ├── phase10j_dissonance_resonance.md      # Phase 10j: dissonance/resonance
+    ├── phase10k_estocade.md                  # Phase 10k: estocade
+    ├── phase10l_choc_des_cristaux.md         # Phase 10l: crystal clash
+    ├── phase10m_theoreme_fondamental.md      # Phase 10m: fundamental theorem
+    ├── phase11a_obstruction_algebrique.md    # Phase 11a: algebraic obstruction
     ├── phase11b_verification_computationnelle.md # Phase 11b: computational check
-    ├── phase11c_reduction_lll.md           # Phase 11c: LLL reduction
-    ├── phase12_junction_theorem.md         # Phase 12: Junction Theorem
-    ├── phase13_audit_kolmogorov_baker.md   # Phase 13: self-audit (rejected attempt)
-    ├── phase14_moule_multidimensionnel.md  # Phase 14: multidimensional mold
+    ├── phase11c_reduction_lll.md             # Phase 11c: LLL reduction
+    ├── phase12_junction_theorem.md           # Phase 12: Junction Theorem
+    ├── phase13_audit_kolmogorov_baker.md     # Phase 13: self-audit (rejected attempt)
+    ├── phase14_moule_multidimensionnel.md    # Phase 14: multidimensional mold
     ├── phase15_tension_interdimensionnelle.md # Phase 15: inter-dimensional tension
-    ├── phase16_obstruction_analytique.md   # Phase 16: analytical obstruction
-    ├── phase17_geometrie_serrure.md       # Phase 17: keyhole geometry
-    ├── phase18_programme_merle.md        # Phase 18: Programme Merle (assembly)
-    └── phase19_radar_mellin.md           # Phase 19: Mellin radar (multiplicative)
+    ├── phase16_obstruction_analytique.md     # Phase 16: analytical obstruction
+    ├── phase17_geometrie_serrure.md          # Phase 17: keyhole geometry
+    ├── phase18_programme_merle.md            # Phase 18: Programme Merle (assembly)
+    ├── phase19_radar_mellin.md               # Phase 19: Mellin radar (multiplicative)
+    └── ERRATA.md                             # Corrections to research log values
 ```
 
 ## Quick Start
@@ -141,7 +155,12 @@ The `lean/verified/` directory contains a **fully verified** Lean 4 file:
 - Phase 19 Mellin radar: bridge decomposition, multiplicative Parseval, QR counts
 - CI via GitHub Actions (`lean-check.yml`)
 
-The `lean/` root also contains skeleton files with `sorry` placeholders for deeper results.
+The `lean/skeleton/` directory contains Lean 4 formalizations with:
+- 35+ theorems and lemmas fully proved (Steiner equation, gamma positivity, deficit linear growth, master equations, energy bounds, etc.)
+- Crystal nonsurjectivity **proved** for k ∈ [18, 200] via 183 `native_decide` cases (`FiniteCases.lean`)
+- 1 residual `sorry` in `crystal_nonsurjectivity` for k ≥ 201 only (asymptotic regime, margin > 3 bits, numerically verified to k = 10⁶)
+- 1 `axiom` for Simons-de Weger (external published result, Acta Arith. 2005)
+- 7 files with clean import dependencies and no circular reasoning
 
 ## Mathematical Framework
 
