@@ -484,7 +484,7 @@ theorem entropic_deficit_transition :
 
 /-- Junction coverage: ∀ k ≥ 2, k is in [2,67] or [18,∞) or both.
     Equivalently: ¬∃ k ≥ 2 such that k ≥ 68 ∧ k < 18. -/
-theorem junction_no_gap (k : Nat) (hk : k ≥ 2) : k ≤ 67 ∨ k ≥ 18 := by omega
+theorem junction_no_gap (k : Nat) (_hk : k ≥ 2) : k ≤ 67 ∨ k ≥ 18 := by omega
 
 /-- CRT principle: if p | d and N₀(p) = 0, then no cycle exists.
     Verified for q₃: 13 is prime, 13 | d₃, and N₀(13) = 0. -/
@@ -522,7 +522,7 @@ theorem dickman_exponent_check :
 /-- M(χ_0) = C - N₀: the trivial character sum counts
     compositions with corrSum ≢ 0 (mod p). For q₃: M(χ_0) = 35 - 0 = 35. -/
 theorem mellin_trivial_q3 :
-    (comp_q3.map (fun p => corrSumList p % 13)).filter (· != 0) |>.length = 35 := by
+    ((comp_q3.map (fun p => corrSumList p % 13)).filter (· != 0) |>.length) = 35 := by
   native_decide
 
 /-- Gauss sum τ(χ_0) = Σ_{a=1}^{p-1} e(a/p) = -1 (geometric series).
@@ -549,10 +549,10 @@ theorem mellin_quadratic_q3 :
     mod 13 (all nonzero), exactly 20 are quadratic residues.
     QR mod 13 = {1, 3, 4, 9, 10, 12}. -/
 theorem qr_count_q3 :
-    (comp_q3.map (fun A =>
+    ((comp_q3.map (fun A =>
       let r := corrSumList A % 13
       Nat.pow r 6 % 13  -- Euler criterion: r^{(p-1)/2} mod p
-    )).filter (· == 1) |>.length = 20 := by
+    )).filter (· == 1) |>.length) = 20 := by
   native_decide
 
 /-- The Mellin-Fourier bridge is an EXACT identity (not approximation):

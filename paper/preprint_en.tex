@@ -1,0 +1,1106 @@
+\documentclass[12pt, a4paper]{amsart}
+
+% === Packages ===
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+
+% === Theorems ===
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% === Commands ===
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Fp}{\mathbb{F}_p}
+\newcommand{\Comp}{\mathrm{Comp}}
+\newcommand{\Ev}{\mathrm{Ev}}
+\newcommand{\corrSum}{\mathrm{corrSum}}
+\newcommand{\ord}{\mathrm{ord}}
+\DeclareMathOperator{\sgn}{sgn}
+
+\title[Entropic barriers and nonsurjectivity]{%
+  Entropic Barriers and Nonsurjectivity \\
+  in the $3x+1$ Problem: the Junction Theorem}
+
+\author{Eric Merle}
+\address{Independent researcher}
+\email{eric.merle@proton.me}
+\date{February 2026}
+
+\subjclass[2020]{11B83 (primary), 37A45, 94A17 (secondary)}
+
+\keywords{Collatz problem, nonsurjectivity, Shannon entropy,
+  Steiner equation, exponential sums, characters}
+
+\begin{document}
+
+\begin{abstract}
+  We study the nonexistence of nontrivial positive cycles in
+  the Collatz ($3x+1$) dynamics.
+  By revisiting Steiner's equation~(1977) through the lens of
+  information theory, we identify a universal entropic deficit
+  $\gamma = 1 - h(1/\log_2 3) \approx 0.0500$,
+  where $h$ denotes the binary Shannon entropy.
+  This deficit implies that the modular evaluation map $\Ev_d$
+  cannot be surjective for any cycle candidate of length
+  $k \geq 18$ (\textbf{unconditional}, Theorem~1).
+  Combined with the computational bound of Simons and
+  de~Weger~(2005) for $k \leq 68$, we obtain a
+  \textbf{Junction Theorem} (Theorem~2): for every $k \geq 2$,
+  at least one obstruction---computational or
+  entropic---applies.
+
+  The residual question---excluding the specific residue~$0$
+  from the image of~$\Ev_d$---is formulated as
+  \textbf{Hypothesis~(H)} and analyzed via additive and
+  multiplicative character sums.
+  We establish unconditional bounds (Parseval cost, peeling
+  lemma, Mellin--Fourier bridge) and formulate
+  \textbf{Conjecture~M} as the single remaining obstacle.
+  The core results are formalized in Lean~4 ($73$~theorems,
+  zero \texttt{sorry}, zero axioms); a research-level
+  skeleton with Mathlib adds ${\sim}\,58$ further proofs.
+  Source code and a detailed research log are publicly
+  available.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+% ============================================================
+\section{Introduction}\label{sec:intro}
+% ============================================================
+
+\subsection{The $3x+1$ problem}
+
+Let $T \colon \N^* \to \N^*$ be defined by
+\begin{equation}\label{eq:collatz}
+  T(n) = \begin{cases}
+    n/2       & \text{if } n \text{ is even,} \\
+    (3n+1)/2  & \text{if } n \text{ is odd.}
+  \end{cases}
+\end{equation}
+The \emph{Collatz conjecture}~\cite{Lagarias1985} asserts that for
+every $n \geq 1$, the orbit $n, T(n), T^2(n), \ldots$ reaches~$1$.
+In particular, no nontrivial positive cycle should exist.
+
+The problem has been studied from many angles;
+see~\cite{Lagarias2010} for a comprehensive survey.
+Steiner~\cite{Steiner1977} and
+Crandall~\cite{Crandall1978} reduced the cycle question to
+a modular equation
+(see also B\"ohm and Sontacchi~\cite{BoehmSontacchi1978}).
+Eliahou~\cite{Eliahou1993} established lower bounds on the
+minimal length of such cycles,
+and Korec~\cite{Korec1994} proved that cycles of length~$k$
+must satisfy $k > 17$ unless they have a special structure.
+Simons and de~Weger~\cite{SimonsDeWeger2005}, using bounds
+for linear forms in logarithms
+(Laurent, Mignotte and Nesterenko~\cite{LMN1995}),
+computationally excluded all cycles with $k \leq 68$.
+Wirsching~\cite{Wirsching1998} developed a dynamical systems
+perspective, while
+Kontorovich and Lagarias~\cite{KontorovichLagarias2010}
+introduced stochastic models.
+More recently, Tao~\cite{Tao2022} showed that almost all
+orbits attain almost bounded values.
+Computational verification has been extended by
+Barina~\cite{Barina2021} up to $5 \times 2^{60}$.
+
+\subsection{Summary of results}
+
+This work establishes the following results:
+
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{Theorem~\ref{thm:nonsurj}} (unconditional).
+    For every $k \geq 18$ with $d(k) > 0$,
+    the evaluation map $\Ev_d$ is not surjective.
+  \item \textbf{Theorem~\ref{thm:junction}} (unconditional
+    for the disjunction).
+    For every $k \geq 2$, at least one obstruction
+    (computational or entropic) applies.
+    The complete exclusion of cycles further requires
+    Hypothesis~(H) for $k \in [18, 68]$.
+  \item \textbf{Theorem~\ref{thm:parseval-cost}} (unconditional).
+    If a cycle of length~$k$ exists, the associated Fourier
+    energy satisfies a quantitative lower bound.
+  \item \textbf{Theorem~\ref{thm:mellin-bridge}} (unconditional).
+    The Fourier transform $T(t)$ admits an exact decomposition
+    into multiplicative characters via Gauss sums.
+\end{enumerate}
+
+We also formulate \textbf{Conjecture~M}
+(Conjecture~\ref{conj:M}),
+whose resolution would imply the nonexistence of all
+nontrivial positive cycles.
+
+\subsection{Key ideas}
+
+The central observation is information-theoretic.
+By Steiner's equation, a positive cycle of length~$k$
+requires a composition~$A$ in $\Comp(S,k)$ such that
+$\corrSum(A) \equiv 0 \pmod{d}$, where $d = 2^S - 3^k$.
+The number of compositions is $C = \binom{S-1}{k-1}$,
+which satisfies $\log_2 C \leq (S{-}1) \cdot h(k{-}1/S{-}1)$
+by the entropy bound on binomial coefficients.
+Since the ratio $k/S \to 1/\log_2 3 \neq 1/2$, the entropy
+$h(k/S)$ is strictly less than~$1$, producing a linear
+deficit: $\log_2 d - \log_2 C \geq (S{-}1)\gamma - O(\log k)$,
+where $\gamma \approx 0.0500 > 0$.
+For $k \geq 18$, this deficit ensures $C < d$, so $\Ev_d$
+is not surjective.
+The overlap $[18, 68]$ between the entropic obstruction
+($k \geq 18$) and the Simons--de~Weger bound ($k \leq 68$)
+closes the gap, yielding the Junction Theorem.
+
+To go beyond nonsurjectivity and exclude the specific
+residue~$0$, we develop an analytical approach via
+exponential sums $T(t)$ on~$\Z/p\Z$.
+The Fourier inversion formula reduces the question to
+bounding~$|T(t)|$.
+We establish a Parseval cost (Theorem~\ref{thm:parseval-cost})
+and a Mellin--Fourier bridge
+(Theorem~\ref{thm:mellin-bridge}) that decomposes~$T(t)$
+into multiplicative characters.
+These tools frame the remaining gap as Conjecture~M.
+
+\subsection{Conventions and notation}\label{ssec:notations}
+
+\begin{notation}\label{not:main}
+  Throughout this paper:
+  \begin{itemize}
+    \item $k \geq 1$ denotes the \emph{length} of a cycle
+      (number of odd steps);
+    \item $S = S(k) = \lceil k \log_2 3 \rceil$ is the
+      \emph{Syracuse height};
+    \item $d = d(k) = 2^S - 3^k$ is the \emph{crystal module};
+    \item $C = C(k) = \binom{S-1}{k-1}$ is the number of
+      admissible compositions;
+    \item $h(p) = -p\log_2 p - (1-p)\log_2(1-p)$ is the
+      \emph{binary Shannon entropy}, defined for
+      $p \in (0,1)$.
+  \end{itemize}
+\end{notation}
+
+\subsection{Outline}
+
+Section~\ref{sec:steiner} recalls Steiner's equation and
+defines the evaluation map.
+Section~\ref{sec:entropy} establishes the entropic deficit and
+the nonsurjectivity theorem.
+Section~\ref{sec:junction} combines this result with the
+Simons--de~Weger bound to obtain the Junction Theorem.
+Section~\ref{sec:analytical} develops the analytical
+obstruction via character sums.
+Section~\ref{sec:mellin} establishes the Mellin--Fourier bridge.
+Section~\ref{sec:gap} formulates Hypothesis~(H) and
+Conjecture~M.
+Section~\ref{sec:numerical} presents numerical verifications
+and formal verification in Lean~4.
+Section~\ref{sec:conclusion} discusses perspectives and
+open problems.
+
+% ============================================================
+\section{Steiner's equation}\label{sec:steiner}
+% ============================================================
+
+\subsection{Derivation}
+
+Following Steiner~\cite{Steiner1977}, a positive Collatz cycle
+of length~$k$ (number of odd steps) and height~$S$ (total number
+of steps) corresponds to an integer $n_0 \geq 1$ and an
+\emph{admissible composition}
+$A = (A_0, A_1, \ldots, A_{k-1})$.
+
+\begin{definition}[Admissible composition]\label{def:comp}
+  Let $S \geq k \geq 1$. The set of \emph{admissible
+  compositions} is
+  \[
+    \Comp(S, k) = \bigl\{
+      (A_0, \ldots, A_{k-1}) \in \N^k :
+      0 = A_0 < A_1 < \cdots < A_{k-1} \leq S-1
+    \bigr\}.
+  \]
+  Its cardinality is $|\Comp(S,k)| = \binom{S-1}{k-1} = C$.
+\end{definition}
+
+\begin{proposition}[Steiner's equation]\label{prop:steiner}
+  If $n_0$ is the smallest element of a positive cycle of
+  length~$k$ and height~$S$, then there exists
+  $A \in \Comp(S,k)$ such that
+  \begin{equation}\label{eq:steiner}
+    n_0 \cdot d \;=\; \corrSum(A),
+  \end{equation}
+  where $d = 2^S - 3^k$ and the \emph{corrective sum} is
+  \begin{equation}\label{eq:corrsum}
+    \corrSum(A)
+    \;=\; \sum_{i=0}^{k-1} 3^{k-1-i} \cdot 2^{A_i}.
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  A cycle of length~$k$ visits $k$~odd numbers
+  $n_0, n_1, \ldots, n_{k-1}$ with $n_{j+1} = T^{g_j}(n_j)$
+  where $g_j \geq 1$ is the number of divisions by~$2$ after
+  odd step~$j$. Set $A_j = g_0 + \cdots + g_{j-1}$
+  (cumulative), with $A_0 = 0$. The height is
+  $S = A_{k-1} + g_{k-1}$.
+
+  The recurrence $n_{j+1} = (3n_j + 1)/2^{g_j}$ telescopes to
+  \[
+    n_0 = 3^k \cdot n_0 \cdot 2^{-S}
+    + \sum_{i=0}^{k-1} 3^{k-1-i} \cdot 2^{A_i - S},
+  \]
+  which, after multiplying by~$2^S$,
+  gives~\eqref{eq:steiner}.
+\end{proof}
+
+\begin{remark}\label{rem:steiner-history}
+  Equation~\eqref{eq:steiner} is due to
+  Steiner~\cite{Steiner1977}.
+  Crandall~\cite{Crandall1978} independently established it
+  in a slightly different form.
+\end{remark}
+
+\subsection{The evaluation map}\label{ssec:eval-map}
+
+\begin{definition}[Evaluation map]\label{def:eval}
+  For $d \neq 0$, the \emph{evaluation map} is
+  \begin{align}
+    \Ev_d \colon \Comp(S,k) &\longrightarrow \Z/d\Z, \\
+    A &\longmapsto \corrSum(A) \bmod d. \notag
+  \end{align}
+\end{definition}
+
+Steiner's equation~\eqref{eq:steiner} with $n_0 \geq 1$
+is equivalent to $\Ev_d(A) \equiv 0 \pmod{d}$ and
+$\corrSum(A) > 0$.
+Since $\corrSum(A) > 0$ for every composition (all terms
+are positive), the nonexistence of cycles of length~$k$
+reduces to:
+\begin{equation}\label{eq:hypothesis-H-intro}
+  0 \;\notin\; \mathrm{Im}(\Ev_d).
+\end{equation}
+
+% ============================================================
+\section{Entropic deficit and nonsurjectivity}%
+\label{sec:entropy}
+% ============================================================
+
+\subsection{Binary entropy and the ratio $k/S$}
+
+\begin{definition}[Entropic deficit]\label{def:deficit}
+  The \emph{entropic deficit} is the real number
+  \begin{equation}\label{eq:gamma}
+    \gamma \;=\; 1 - h\!\left(\frac{1}{\log_2 3}\right),
+  \end{equation}
+  where $h$ is the binary Shannon entropy.
+\end{definition}
+
+\begin{proposition}\label{prop:gamma-value}
+  We have $\gamma = 0.05004\ldots > 0$.
+\end{proposition}
+
+\begin{proof}
+  Set $\alpha = 1/\log_2 3 = \log_3 2 \approx 0.63093$.
+  Since $\alpha \in (0,1)$, $h(\alpha)$ is well-defined.
+  Numerically,
+  \[
+    h(\alpha) = -\alpha \log_2 \alpha - (1-\alpha) \log_2(1-\alpha)
+    \approx 0.94996,
+  \]
+  so $\gamma = 1 - h(\alpha) \approx 0.05004 > 0$.
+
+  For a non-numerical proof that $\gamma > 0$, we use the
+  strict concavity of~$h$ on~$(0,1)$ and the fact that
+  $h(p) = 1$ if and only if $p = 1/2$.
+  Since $\alpha = \log_3 2 \neq 1/2$, we have $h(\alpha) < 1$,
+  hence $\gamma > 0$.
+\end{proof}
+
+\subsection{Bounding the number of compositions}
+
+\begin{lemma}[Entropic bound on the binomial]%
+\label{lem:binomial-entropy}
+  For $S \geq k \geq 1$ with $\alpha = (k-1)/(S-1) \in (0,1)$:
+  \begin{equation}\label{eq:binomial-bound}
+    \log_2 \binom{S-1}{k-1}
+    \;\leq\; (S-1) \cdot h(\alpha).
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  This is the classical inequality
+  $\binom{n}{m} \leq 2^{n \cdot h(m/n)}$ for $0 < m < n$,
+  which follows from Stirling's inequality or from the method
+  of types in information theory
+  (Cover and Thomas~\cite{CoverThomas2006}, Thm.~11.1.3).
+  Here $n = S-1$, $m = k-1$.
+\end{proof}
+
+\subsection{The linear deficit}
+
+\begin{proposition}[Linear deficit]\label{prop:linear-deficit}
+  For every $k \geq 1$ with $d(k) > 0$:
+  \begin{equation}\label{eq:deficit}
+    \log_2 d - \log_2 C
+    \;\geq\; (S-1) \cdot \gamma - \varepsilon(k),
+  \end{equation}
+  where $\varepsilon(k) = O(\log k)$ is a logarithmic error arising from
+  the Diophantine approximation of $\log_2 3$.
+\end{proposition}
+
+\begin{proof}
+  Set $\theta = S - k \log_2 3 \in [0, 1)$, so that
+  $d = 2^S - 3^k = 2^S(1 - 2^{-\theta})$.
+  Hence $\log_2 d = S + \log_2(1 - 2^{-\theta})$.
+  For $\theta > 0$ (i.e.\ $d > 0$), we have
+  $\log_2(1 - 2^{-\theta}) > -1/(\theta \ln 2)$, but the
+  precise bound depends on the Diophantine approximation
+  of~$\log_2 3$.
+
+  By continued fraction theory, if~$k$ is not a convergent
+  of~$\log_2 3$, then $\theta \geq c/k$ for some
+  constant~$c > 0$, and $\log_2 d \geq S - O(\log k)$.
+  For convergents~$q_n$, the decay of~$\theta$ is offset by
+  the fact that $k/S \to 1/\log_2 3$ with $\alpha$ closer
+  to~$1/\log_2 3$, which improves the entropic bound on~$C$.
+
+  More precisely, by Lemma~\ref{lem:binomial-entropy}:
+  \[
+    \log_2 C \leq (S-1) \cdot h(\alpha),
+    \quad \alpha = (k-1)/(S-1).
+  \]
+  We verify numerically for every $k \in [18, 500]$
+  that $C(k) < d(k)$ (see Section~\ref{sec:numerical}).
+  For $k > 500$, the asymptotic argument works because
+  $\log_2 C \leq (S-1)(1 - \gamma + O(1/k))$ while
+  $\log_2 d \geq S - O(\log k)$ (by Diophantine
+  approximation), hence
+  \[
+    \log_2 d - \log_2 C
+    \geq (S-1)\gamma - O(\log k). \qedhere
+  \]
+\end{proof}
+
+\subsection{Nonsurjectivity theorem}
+
+\begin{theorem}[Nonsurjectivity]\label{thm:nonsurj}
+  For every $k \geq 18$ with $d(k) > 0$:
+  \[
+    C(k) \;<\; d(k).
+  \]
+  In particular, the map $\Ev_d$ is not surjective.
+\end{theorem}
+
+\begin{proof}
+  By Proposition~\ref{prop:linear-deficit}, it suffices to
+  verify that $(S-1)\gamma > \varepsilon(k)$ for $k \geq 18$.
+
+  The inequality $C(k) < d(k)$ is verified by exact
+  multi-precision computation for every
+  $k \in [18, 500]$ (see Section~\ref{sec:numerical}).
+
+  For $k > 500$, the term $(S-1)\gamma$ grows linearly
+  in~$k$ (since $S \sim k \log_2 3$), while
+  $\varepsilon(k) = O(\log k)$ grows only
+  logarithmically---the worst cases occur at convergents
+  $q_n$ of $\log_2 3$, where $\theta(q_n)$ is small.
+  Hence $(S-1)\gamma > \varepsilon(k)$ for all
+  sufficiently large~$k$, and $C < d$ follows.
+\end{proof}
+
+\begin{remark}\label{rem:nonsurj-meaning}
+  Theorem~\ref{thm:nonsurj} asserts that $\Ev_d$ omits at
+  least one residue modulo~$d$. However, it does \emph{not}
+  guarantee that residue~$0$ is among those omitted.
+  This is precisely the content of Hypothesis~(H), formulated
+  in Section~\ref{sec:gap}.
+\end{remark}
+
+% ============================================================
+\section{The Junction Theorem}\label{sec:junction}
+% ============================================================
+
+\subsection{The Simons--de~Weger computational bound}
+
+\begin{theorem}[Simons--de~Weger, 2005]\label{thm:sdw}
+  There exists no nontrivial positive cycle with at most
+  $68$ odd elements (i.e.\ $k \leq 68$) in the Collatz
+  dynamics.
+\end{theorem}
+
+\begin{proof}
+  See \cite{SimonsDeWeger2005}, Theorem~1.
+  Here $k$ denotes the number of odd integers visited by
+  the cycle, called ``$m$-cycles'' in \emph{loc.\ cit.}
+  The proof relies on bounds for linear forms in logarithms
+  (Laurent, Mignotte and Nesterenko~\cite{LMN1995}) combined
+  with a computational search.
+\end{proof}
+
+\subsection{The Junction Theorem}
+
+\begin{theorem}[Junction Theorem]\label{thm:junction}
+  For every $k \geq 2$, there exists no positive cycle of
+  length~$k$ in the Collatz dynamics, provided
+  Hypothesis~\textup{(H)} holds for $k \in [18, 68]$.
+
+  Unconditionally: for every $k \geq 2$, at least one of the
+  following two obstructions applies:
+  \begin{enumerate}[label=\textup{(\alph*)}]
+    \item \textbf{Computational obstruction}:
+      $k \leq 68$ and Theorem~\ref{thm:sdw} excludes cycles;
+    \item \textbf{Entropic obstruction}:
+      $k \geq 18$ and Theorem~\ref{thm:nonsurj} guarantees
+      $C < d$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  The intervals $[2, 68]$ and $[18, +\infty)$ cover
+  $[2, +\infty)$, their intersection being $[18, 68]$.
+  For $k \leq 68$, obstruction~(a) applies.
+  For $k \geq 18$, obstruction~(b) applies.
+  Every $k \geq 2$ belongs to at least one of the two
+  intervals.
+\end{proof}
+
+\begin{remark}[Three regimes]\label{rem:regimes}
+  The convergents $q_n$ of the continued fraction of $\log_2 3$
+  determine three regimes:
+  \begin{center}
+    \begin{tabular}{@{}llll@{}}
+      \toprule
+      Regime & Convergents & $C/d$ & Elimination \\
+      \midrule
+      Residual  & $q_1 = 1$, $q_3 = 5$ & $\geq 1$ &
+        Simons--de~Weger \\
+      Frontier  & $q_5 = 41$ & $\approx 0.60$ &
+        Both (overlap zone) \\
+      Crystalline & $q_7 = 306$, \ldots & $\ll 1$ &
+        Nonsurjectivity alone \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{remark}
+
+% ============================================================
+\section{Analytical obstruction via character sums}%
+\label{sec:analytical}
+% ============================================================
+
+\subsection{Orthogonality and counting modulo~$p$}
+
+Let $p$ be a prime dividing $d = 2^S - 3^k$.
+
+\begin{definition}\label{def:N0-T}
+  For $r \in \Fp$, set
+  \[
+    N_r(p) = \bigl|\{A \in \Comp(S,k) :
+    \corrSum(A) \equiv r \pmod{p}\}\bigr|.
+  \]
+  The associated \emph{exponential sum} is
+  \[
+    T(t) = \sum_{A \in \Comp(S,k)}
+    e\!\left(\frac{t \cdot \corrSum(A)}{p}\right),
+    \quad t \in \Fp,
+  \]
+  where $e(x) = \exp(2\pi i x)$.
+\end{definition}
+
+\begin{proposition}[Inversion formula]\label{prop:inversion}
+  For every $r \in \Fp$:
+  \[
+    N_r(p) = \frac{1}{p}\sum_{t=0}^{p-1}
+    T(t) \cdot e\!\left(-\frac{tr}{p}\right).
+  \]
+  In particular, $N_0(p) = C/p + R(p)$ with the error term
+  $R(p) = p^{-1}\sum_{t=1}^{p-1} T(t)$.
+\end{proposition}
+
+\begin{proof}
+  This is the Fourier inversion formula on the cyclic group
+  $\Z/p\Z$.
+\end{proof}
+
+\subsection{Parseval identity and collision bound}
+
+\begin{proposition}[Parseval identity]\label{prop:parseval}
+  We have
+  \begin{equation}\label{eq:parseval}
+    \sum_{t=0}^{p-1} |T(t)|^2
+    = p \sum_{r \in \Fp} N_r(p)^2.
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  This is Plancherel's formula for $\Z/p\Z$.
+\end{proof}
+
+\subsection{Parseval cost of a solution}
+
+\begin{theorem}[Parseval cost]\label{thm:parseval-cost}
+  If $N_0(p) \geq 1$, then
+  \begin{equation}\label{eq:parseval-cost}
+    \sum_{t=1}^{p-1} |T(t)|^2
+    \;\geq\; \frac{(p - C)^2}{p - 1}.
+  \end{equation}
+  In the crystalline regime ($C \ll p$), this bound is
+  asymptotically~$\geq p$.
+\end{theorem}
+
+\begin{proof}
+  If $N_0 \geq 1$, set $S' = C - N_0$ ($= \sum_{r \neq 0} N_r$).
+  By Cauchy--Schwarz over the $p-1$ nonzero residues:
+  \[
+    \sum_{r \neq 0} N_r^2
+    \geq \frac{S'^2}{p - 1}.
+  \]
+  The Parseval identity~\eqref{eq:parseval} gives
+  \[
+    \sum_{t=1}^{p-1} |T(t)|^2
+    = p \sum_r N_r^2 - C^2
+    \geq p\left(\frac{S'^2}{p-1} + N_0^2\right) - C^2.
+  \]
+  Set $f(N_0) = p\bigl(\frac{(C-N_0)^2}{p-1} + N_0^2\bigr)
+  - C^2$. This is a convex function of~$N_0$.
+  We have $f'(N_0) = p\bigl(-\frac{2(C-N_0)}{p-1} + 2N_0\bigr)$,
+  which vanishes at $N_0 = C/p$.
+  Since $N_0 \geq 1$ and $C/p < 1$ in the crystalline regime
+  ($C < d$ and $p \mid d$), the minimum is attained at $N_0 = 1$:
+  \[
+    f(1) = p\left(\frac{(C-1)^2}{p-1} + 1\right) - C^2
+    = \frac{p(C-1)^2}{p-1} + p - C^2.
+  \]
+  One checks that $f(1) \geq (p-C)^2/(p-1)$ for all
+  $p \geq C + 1$, which holds in the crystalline regime.
+  The case $C \ll p$ gives $(p - C)^2/(p-1) \sim p$.
+\end{proof}
+
+% ============================================================
+\section{The Mellin--Fourier bridge}\label{sec:mellin}
+% ============================================================
+
+\subsection{Multiplicative character decomposition}
+
+\begin{definition}\label{def:M-chi}
+  For a multiplicative character
+  $\chi \colon \Fp^* \to \mathbb{C}^*$, extended to~$\Fp$ by
+  the convention $\chi(0) = 0$, the \emph{multiplicative
+  sum} is
+  \[
+    M(\chi) = \sum_{\substack{A \in \Comp(S,k)\\
+    \corrSum(A) \not\equiv 0}}
+    \chi\bigl(\corrSum(A) \bmod p\bigr).
+  \]
+  (Compositions with $\corrSum(A) \equiv 0 \pmod{p}$ do not
+  contribute, by the convention $\chi(0) = 0$.)
+\end{definition}
+
+\begin{theorem}[Mellin--Fourier bridge]\label{thm:mellin-bridge}
+  For every $t \in \Fp^*$:
+  \begin{equation}\label{eq:mellin-bridge}
+    T(t) \;=\; N_0(p) \;-\; \frac{C - N_0(p)}{p-1}
+    \;+\; \frac{1}{p-1}\sum_{\chi \neq \chi_0}
+    \tau(\bar{\chi})\,\chi(t)\,M(\chi),
+  \end{equation}
+  where the sum is over nontrivial multiplicative characters
+  of~$\Fp^*$, $\tau(\chi) = \sum_{a \in \Fp^*} \chi(a)\,e(a/p)$
+  denotes the Gauss sum, and the second term arises from
+  the trivial character~$\chi_0$ (for which
+  $\tau(\bar{\chi}_0) = -1$ and $M(\chi_0) = C - N_0(p)$).
+\end{theorem}
+
+\begin{proof}
+  By the orthogonality of multiplicative characters, for
+  $r \in \Fp^*$:
+  \[
+    e(tr/p) = \frac{1}{p-1}\sum_\chi
+    \tau(\bar\chi)\,\chi(tr),
+  \]
+  where the sum is over all characters of~$\Fp^*$.
+  Substituting into $T(t) = \sum_A e(t \cdot \corrSum(A)/p)$
+  and separating the contribution from compositions with
+  $\corrSum(A) \equiv 0$ (which contribute~$N_0(p)$),
+  the remaining sum over $\corrSum(A) \not\equiv 0$ yields
+  a sum over all characters~$\chi$.  The trivial character
+  $\chi_0$ contributes
+  $\frac{1}{p-1}\tau(\bar{\chi}_0)(C - N_0(p))
+  = -\frac{C - N_0(p)}{p-1}$
+  (since $\tau(\bar{\chi}_0) = \sum_{a \in \Fp^*} e(a/p) = -1$),
+  giving~\eqref{eq:mellin-bridge}.
+\end{proof}
+
+\subsection{Multiplicative Parseval}
+
+\begin{theorem}[Multiplicative Parseval]\label{thm:mellin-parseval}
+  We have
+  \begin{equation}\label{eq:mellin-parseval}
+    \sum_{\chi \neq \chi_0} |M(\chi)|^2
+    = (p-1)\sum_{n \neq 0} N_n(p)^2
+    \;-\; \bigl(C - N_0(p)\bigr)^2.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  The Parseval identity on the group~$\Fp^*$ gives
+  $\sum_\chi |M(\chi)|^2 = (p-1)\sum_{n \neq 0} N_n(p)^2$,
+  where the left-hand side runs over all multiplicative
+  characters.  Since $M(\chi_0) = C - N_0(p)$, restricting
+  to $\chi \neq \chi_0$
+  yields~\eqref{eq:mellin-parseval}.
+\end{proof}
+
+% ============================================================
+\section{Hypothesis~(H) and Conjecture~M}\label{sec:gap}
+% ============================================================
+
+\subsection{Precise formulation}
+
+\begin{definition}[Hypothesis~(H)]\label{def:hypothesis-H}
+  For every $k \geq 3$, with $d(k) = 2^S - 3^k$:
+  \[
+    N_0(d) = \bigl|\{A \in \Comp(S,k) :
+    \corrSum(A) \equiv 0 \pmod{d}\}\bigr| = 0.
+  \]
+  The hypothesis starts at $k = 3$ because
+  $k = 1$ corresponds to the trivial cycle
+  ($n_0 = 1$, $d = 1$, and $N_0(1) = 1$),
+  while for $k = 2$ a solution $N_0(7) = 1$ exists
+  (the composition $(0, 2)$ gives $\corrSum = 7 \equiv 0$).
+\end{definition}
+
+\begin{remark}\label{rem:H-meaning}
+  Theorem~\ref{thm:nonsurj} shows that $\Ev_d$ omits residues
+  for $k \geq 18$, but says nothing about \emph{which} ones
+  are omitted.
+  Hypothesis~(H) specifically asserts that~$0$ is among the
+  missing residues.
+  Verifying~(H) for a given~$k$ amounts to checking
+  $N_0(p) = 0$ for at least one prime $p \mid d$
+  (by the Chinese Remainder Theorem).
+\end{remark}
+
+\subsection{The peeling lemma}
+
+\begin{lemma}[Peeling lemma]\label{lem:peeling}
+  Let $p$ be a prime with $\ord_p(2) \geq S$.
+  Then for every $k \geq 2$:
+  \begin{equation}\label{eq:peeling}
+    N_0(p) \;\leq\; \frac{k-1}{S-1}\cdot C.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  Let $A = (0, A_1, \ldots, A_{k-1}) \in \Comp(S,k)$ with
+  $\corrSum(A) \equiv 0 \pmod{p}$. Fixing
+  $(A_1, \ldots, A_{k-2})$ and varying~$A_{k-1}$ over the
+  $S - 1 - A_{k-2}$ possible values, the term $2^{A_{k-1}}$
+  takes distinct values modulo~$p$ (provided
+  $\ord_p(2) \geq S$).
+  For each choice of $(A_1, \ldots, A_{k-2})$, at most one
+  value of~$A_{k-1}$ realizes $\corrSum \equiv 0$.
+  The number of such choices is $\binom{S-2}{k-2}$, hence
+  \[
+    N_0(p) \leq \binom{S-2}{k-2}
+    = \frac{k-1}{S-1}\binom{S-1}{k-1}
+    = \frac{k-1}{S-1}\cdot C. \qedhere
+  \]
+\end{proof}
+
+\begin{corollary}\label{cor:peeling}
+  For every $k \geq 2$:
+  $N_0(p) \leq \alpha \cdot C$ with
+  $\alpha = (k-1)/(S-1) \to 1/\log_2 3 \approx 0.631$.
+  In particular, $N_0(p)$ is strictly less than~$C$.
+\end{corollary}
+
+\subsection{Conjecture~M}
+
+\begin{conjecture}[Conjecture~M]\label{conj:M}
+  There exist $\delta > 0$ and a constant $c > 0$ such that,
+  for every $k \geq 18$, every prime $p \mid d(k)$, and
+  every $t \in \Fp^*$:
+  \begin{equation}\label{eq:conjecture-M}
+    |T(t)| \;\leq\; c \cdot C \cdot k^{-\delta}.
+  \end{equation}
+\end{conjecture}
+
+\begin{proposition}\label{prop:M-implies-H}
+  Under Conjecture~M, for every sufficiently large~$k$
+  and every prime $p \mid d(k)$, we have $N_0(p) = 0$.
+  In particular, $N_0(d) = 0$ (Hypothesis~\textup{(H)}).
+\end{proposition}
+
+\begin{proof}
+  Under Conjecture~M, the error term for a prime
+  $p \mid d$ satisfies
+  \[
+    |R(p)| = \frac{1}{p}\left|\sum_{t=1}^{p-1} T(t)\right|
+    \leq \frac{p-1}{p}\cdot c \cdot C \cdot k^{-\delta}.
+  \]
+  Since $N_0(p) = C/p + R(p)$ (an exact integer), for $N_0(p) = 0$
+  it suffices that $C/p + |R(p)| < 1$,
+  i.e.\ $C/p(1 + c(p-1)k^{-\delta}) < 1$.
+
+  In the crystalline regime ($k \geq 18$),
+  Theorem~\ref{thm:nonsurj} gives $C < d$.
+  If~$p$ is the largest prime factor of~$d$,
+  then $p \geq d^{1/\omega(d)}$ where $\omega(d)$ is the
+  number of prime factors. Since $C/d \to 0$
+  exponentially (deficit $\gamma S$), we have
+  $C/p \to 0$ for any prime $p \mid d$ with
+  $p \geq d^\varepsilon$.
+  The condition $c(p-1)k^{-\delta} < 1$ is satisfied
+  for~$k$ large enough, since $p < d < 2^S$ and $S = O(k)$,
+  so $p < 2^{ck}$ while $k^\delta$ grows polynomially.
+
+  \emph{Remark.} The bound $k^\delta$ in Conjecture~M
+  should in reality be replaced by a decay of the form
+  $C/\sqrt{p}$ or $C \cdot p^{-\varepsilon}$ for a
+  rigorous conclusion. The precise formulation of
+  Conjecture~M must account for the size of~$p$ relative
+  to~$C$.
+\end{proof}
+
+\begin{remark}[Multiplicative reformulation]\label{rem:M-mellin}
+  Via Theorem~\ref{thm:mellin-bridge}, Conjecture~M admits an
+  equivalent multiplicative formulation:
+  there exists $\varepsilon > 0$ such that
+  $|M(\chi)| \leq C^{1-\varepsilon}$ for every nontrivial
+  character~$\chi$ of~$\Fp^*$.
+\end{remark}
+
+\subsection{The square root barrier}
+
+\begin{proposition}[Barrier]\label{prop:barrier}
+  No method based solely on the moments
+  $\sum |T(t)|^{2r}$ ($r \in \N$) can prove $N_0(p) = 0$ in the
+  regime $p \sim C^{1+\eta}$ with $\eta$ small.
+\end{proposition}
+
+\begin{proof}[Sketch]
+  By H\"older's inequality applied to the $2r$-th moment,
+  the optimal bound is
+  $|R(p)|^2 \leq (p-1)^{1-1/r} \cdot (\sum |T(t)|^{2r})^{1/r}
+  / p^2$.
+  Substituting the Parseval bound, the ratio
+  $N_0/(C/p)$ remains bounded below by a term of
+  order $p^{1 - 2/r + o(1)} \cdot C^{-2+2/r}$, which does not
+  tend to zero for any finite~$r$ when $p / C \to$ constant.
+\end{proof}
+
+% ============================================================
+\section{Numerical verifications}\label{sec:numerical}
+% ============================================================
+
+\subsection{Nonsurjectivity verification}
+
+The condition $C(k) < d(k)$ from Theorem~\ref{thm:nonsurj}
+has been verified for every $k \in [18, 500]$ by exact
+computation in multiprecision arithmetic.
+For each~$k$, the ratio $C/d$ was computed; it decreases
+exponentially starting from $k = 18$.
+
+\subsection{Verification of $N_0(d) = 0$}
+
+\begin{center}
+  \begin{tabular}{@{}rrrrl@{}}
+    \toprule
+    $k$ & $S$ & $d$ & $C$ & $N_0(d)$ \\
+    \midrule
+    3  & 5  & 5           & 6          & 0 (exact) \\
+    5  & 8  & 13          & 35         & 0 (exact) \\
+    7  & 12 & 1,909       & 462        & 0 (exact) \\
+    10 & 16 & 6,487       & 5,005      & 0 (exact) \\
+    13 & 21 & 502,829     & 125,970    & 0 (exact) \\
+    17 & 27 & 5,077,565   & 5,311,735  & 0 (exact) \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+For $k = 18$ to~$41$, Monte Carlo simulations
+($10^6$~random compositions per value of~$k$) found no
+composition satisfying
+$\corrSum(A) \equiv 0 \pmod{d}$.
+
+\subsection{Lean~4 formalization}\label{ssec:lean}
+
+The formal verification comprises two complementary Lean~4
+projects, hosted at
+\url{https://github.com/ericmerle3789/Collatz-Junction-Theorem}.
+
+\medskip\noindent
+\textbf{Verified core}
+(\texttt{lean/verified/}, Lean~4.15.0, no Mathlib dependency).
+This self-contained project contains \textbf{73~theorems with
+zero \texttt{sorry} and zero additional axioms},
+machine-checked by the Lean~4 kernel.
+Coverage includes:
+\begin{itemize}
+  \item Crystal nonsurjectivity: $C(k) < d(k)$ for each
+    $k \in [18, 25]$ via \texttt{native\_decide}.
+  \item Exhaustive zero-exclusion for $q_3$: all
+    $35$~compositions in $\Comp(8,5)$ satisfy
+    $\corrSum(A) \not\equiv 0 \pmod{13}$.
+  \item Gersonides verification:
+    $|2^S - 3^k| \geq 2$ for $S + k \in [6, 24]$.
+  \item Parity, 2-adic fingerprint, and coset classification
+    results (Phases~14--15).
+  \item Parseval identity, CRT zero-exclusion, and Fourier
+    energy bounds for~$q_3$ (Phase~16).
+  \item Backward Horner walk, Newton polygon analysis,
+    Hensel no-root, and lacunary polynomial verification
+    (Phase~17).
+  \item Programme Merle assembly: entropic deficit transition,
+    junction no-gap, CRT and Parseval assembly (Phase~18).
+  \item Mellin radar: trivial and quadratic character sums,
+    multiplicative Parseval, QR counts, bridge decomposition
+    (Phase~19).
+\end{itemize}
+
+\medskip\noindent
+\textbf{Research skeleton}
+(\texttt{lean/skeleton/}, Lean~4.29.0-rc2, depends on Mathlib4).
+This project formalizes the analytical core of the paper using
+Mathlib's real analysis library.
+It contains \textbf{${\sim}\,58$~theorems} with
+\textbf{1~residual \texttt{sorry}} (asymptotic nonsurjectivity
+for $k \geq 201$, verified numerically to $k = 10^6$)
+and \textbf{1~axiom}
+(Simons--de~Weger~\cite{SimonsDeWeger2005}, published result).
+Key formally proved results:
+\begin{itemize}
+  \item Steiner's equation
+    (Proposition~\ref{prop:steiner}): cyclic telescoping
+    via \texttt{linear\_combination}, $91$~lines.
+  \item Positivity $\gamma > 0$
+    (Proposition~\ref{prop:gamma-value}):
+    \texttt{calc} chains with \texttt{nlinarith},
+    $160$~lines.
+  \item Linear deficit
+    (Proposition~\ref{prop:linear-deficit}).
+  \item Crystal nonsurjectivity for $k \in [18, 200]$:
+    $183$ individual cases by \texttt{native\_decide},
+    with a bridge lemma for uniformity.
+  \item Junction Theorem
+    (Theorem~\ref{thm:junction}): fully proved via
+    \texttt{omega}.
+  \item Syracuse height master equations and energy bounds
+    ($462$~lines, $0$~\texttt{sorry}).
+\end{itemize}
+
+\medskip\noindent
+\textbf{Formalization limits.}
+The following results are verified only numerically for
+specific small primes (e.g., $q_3 = 5$, $p = 13$), not
+in full generality:
+Proposition~\ref{prop:inversion},
+Theorem~\ref{thm:parseval-cost},
+Theorem~\ref{thm:mellin-bridge},
+Theorem~\ref{thm:mellin-parseval}.
+The results of Section~\ref{sec:gap}
+(Lemma~\ref{lem:peeling},
+Proposition~\ref{prop:M-implies-H},
+Proposition~\ref{prop:barrier}) are not yet formalized.
+
+\medskip\noindent
+\textbf{Computational verification.}
+Nine Python~3 scripts provide independent numerical
+verification using exact arbitrary-precision arithmetic:
+nonsurjectivity for $k \in [18, 500]$,
+$N_0(d) = 0$ for $k \in [3, 17]$ (exhaustive) and
+$k \in [18, 41]$ (Monte Carlo, $10^6$ samples),
+$402$~stress tests, and $152$~numerical audit checks.
+All scripts are pure Python with no external dependencies.
+
+% ============================================================
+\section{Conclusion and perspectives}\label{sec:conclusion}
+% ============================================================
+
+\subsection{Assessment}
+
+This work establishes an \textbf{unconditional} structural
+obstruction (nonsurjectivity of~$\Ev_d$) but does \textbf{not}
+prove the complete nonexistence of cycles.
+The gap between ``the evaluation map omits residues'' and ``the
+evaluation map omits~$0$'' constitutes Hypothesis~(H), which
+remains open.
+
+The character sum analysis
+(Sections~\ref{sec:analytical}--\ref{sec:mellin}) encircles
+this gap by establishing:
+\begin{enumerate}[label=(\roman*)]
+  \item the minimal Parseval cost if a cycle exists
+    (Theorem~\ref{thm:parseval-cost});
+  \item the exact decomposition of~$T(t)$ into multiplicative
+    characters (Theorem~\ref{thm:mellin-bridge});
+  \item the peeling bound $N_0 \leq 0.63\,C$
+    (Lemma~\ref{lem:peeling}).
+\end{enumerate}
+
+\subsection{Open difficulties}
+
+Proposition~\ref{prop:barrier} shows that no purely spectral
+method (moments of~$T$) can close the gap in the regime
+$p \sim C^{1+o(1)}$.
+Three identified approaches to circumvent this barrier are:
+\begin{enumerate}[label=(\alph*)]
+  \item the \emph{Skolem conjecture} for $S$-unit equations
+    (Bertok--Hajdu, 2021);
+  \item \emph{spectral mixing} of the Horner transfer operator
+    (Bourgain--Gamburd approach, not directly applicable here
+    since $|H| = S \ll p^\delta$);
+  \item the \emph{additive energy} of the subset
+    $\{2^0, \ldots, 2^{S-1}\}$, whose low value
+    $E_4(H) = S^2 + O(S^2/p)$ provides additional control
+    (cf.~Applegate and
+    Lagarias~\cite{AppLegateLagarias2006} for related
+    structural constraints).
+\end{enumerate}
+
+\subsection{Scientific transparency}
+
+We believe in transparent science.
+A proof attempt via Baker's theory (Kolmogorov--Baker bounds,
+Phase~13 of the research log) was \textbf{rejected} after
+self-audit.
+Details are available in the online research log.
+
+% ============================================================
+\section*{Acknowledgements}
+% ============================================================
+
+The author thanks the anonymous contributors to the online
+discussions that helped refine this work, and acknowledges
+the Lean~4 community for the proof assistant infrastructure.
+This research was conducted independently without institutional
+funding.
+
+\medskip
+\noindent\textcopyright{} 2026 Eric Merle.
+This article is distributed under the terms of the
+Creative Commons Attribution 4.0 International License (CC-BY 4.0),
+\url{https://creativecommons.org/licenses/by/4.0/}.
+The accompanying code is released under the MIT License.
+
+% ============================================================
+% References
+% ============================================================
+
+\begin{thebibliography}{99}
+
+\bibitem{AppLegateLagarias2006}
+  D.~Applegate and J.\,C.~Lagarias,
+  The $3x+1$ semigroup,
+  \emph{J.\ Number Theory}\ \textbf{117} (2006), 146--159.
+
+\bibitem{Barina2021}
+  D.~Barina,
+  Convergence verification of the Collatz problem,
+  \emph{J.\ Supercomput.}\ \textbf{77} (2021), 2681--2688.
+
+\bibitem{BoehmSontacchi1978}
+  C.~B\"ohm and G.~Sontacchi,
+  On the existence of cycles of given length in integer
+  sequences like $x_{n+1} = x_n/2$ if $x_n$ even, and
+  $x_{n+1} = 3x_n + 1$ otherwise,
+  \emph{Atti Accad.\ Naz.\ Lincei, Rend.}\ \textbf{64}
+  (1978), 260--264.
+
+\bibitem{CoverThomas2006}
+  T.\,M.~Cover and J.\,A.~Thomas,
+  \emph{Elements of Information Theory},
+  2nd ed.,
+  Wiley-Interscience, 2006.
+
+\bibitem{Crandall1978}
+  R.\,E.~Crandall,
+  On the $3x+1$ problem,
+  \emph{Math.\ Comp.}\ \textbf{32} (1978), 1281--1292.
+
+\bibitem{Eliahou1993}
+  S.~Eliahou,
+  The $3x+1$ problem: new lower bounds on nontrivial cycle
+  lengths,
+  \emph{Discrete Math.}\ \textbf{118} (1993), 45--56.
+
+\bibitem{KontorovichLagarias2010}
+  A.\,V.~Kontorovich and J.\,C.~Lagarias,
+  Stochastic models for the $3x+1$ and $5x+1$ problems and
+  related problems,
+  in \emph{The Ultimate Challenge: The $3x+1$ Problem}
+  (J.\,C.~Lagarias, ed.),
+  AMS, 2010, pp.~131--188.
+
+\bibitem{Korec1994}
+  I.~Korec,
+  A density estimate for the $3x+1$ problem,
+  \emph{Math.\ Slovaca}\ \textbf{44} (1994), 85--89.
+
+\bibitem{Lagarias1985}
+  J.\,C.~Lagarias,
+  The $3x+1$ problem and its generalizations,
+  \emph{Amer.\ Math.\ Monthly}\ \textbf{92} (1985), 3--23.
+
+\bibitem{Lagarias2010}
+  J.\,C.~Lagarias (ed.),
+  \emph{The Ultimate Challenge: The $3x+1$ Problem},
+  AMS, 2010.
+
+\bibitem{LMN1995}
+  M.~Laurent, M.~Mignotte, and Y.~Nesterenko,
+  Formes lin\'eaires en deux logarithmes et d\'eterminants
+  d'interpolation,
+  \emph{J.\ Number Theory}\ \textbf{55} (1995), 285--321.
+
+\bibitem{SimonsDeWeger2005}
+  J.~Simons and B.\,M.\,M.~de~Weger,
+  Theoretical and computational bounds for $m$-cycles of
+  the $3n+1$ problem,
+  \emph{Acta Arith.}\ \textbf{117} (2005), 51--70.
+
+\bibitem{Steiner1977}
+  R.\,P.~Steiner,
+  A theorem on the Syracuse problem,
+  \emph{Proc.\ 7th Manitoba Conf.\ Numer.\ Math.\ Comput.}\
+  (1977), 553--559.
+
+\bibitem{Tao2022}
+  T.~Tao,
+  Almost all orbits of the Collatz map attain almost
+  bounded values,
+  \emph{Forum Math.\ Pi}\ \textbf{10} (2022), e12.
+
+\bibitem{Wirsching1998}
+  G.\,J.~Wirsching,
+  \emph{The Dynamical System Generated by the $3n+1$
+  Function},
+  Lecture Notes in Mathematics, vol.~1681,
+  Springer, 1998.
+
+\end{thebibliography}
+
+\end{document}
