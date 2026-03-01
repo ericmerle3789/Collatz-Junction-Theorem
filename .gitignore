@@ -30,3 +30,5 @@ lakefile.olean
 *.bbl
 *.blg
 *.synctex.gz
+*.fdb_latexmk
+*.fls

@@ -283,6 +283,25 @@ $A = (A_0, A_1, \ldots, A_{k-1})$.
   in a slightly different form.
 \end{remark}
 
+\begin{remark}[Arithmetic properties of $\corrSum$]\label{rem:corrsum-arith}
+  For every $A \in \Comp(S,k)$ with $k \geq 2$:
+  \begin{enumerate}[label=\textup{(\roman*)}]
+    \item $\corrSum(A)$ is always odd;
+    \item $3 \nmid \corrSum(A)$.
+  \end{enumerate}
+  For~\textup{(i)}: since $A_0 = 0$ and $A_i \geq 1$ for
+  $i \geq 1$, the only odd summand is
+  $3^{k-1} \cdot 2^0 = 3^{k-1}$; all other terms are even.
+  Hence $\corrSum(A) \equiv 1 \pmod{2}$.
+  For~\textup{(ii)}: every term with $i < k-1$ is divisible by~$3$
+  (since $3^{k-1-i}$ with $k-1-i \geq 1$).
+  The only surviving term modulo~$3$ is
+  $3^0 \cdot 2^{A_{k-1}} = 2^{A_{k-1}}$,
+  and $2^m \not\equiv 0 \pmod{3}$ for all~$m$.
+  In particular, $0 \notin \mathrm{Im}(\Ev_3)$
+  unconditionally.
+\end{remark}
+
 \subsection{The evaluation map}\label{ssec:eval-map}
 
 \begin{definition}[Evaluation map]\label{def:eval}
@@ -961,6 +980,39 @@ this gap by establishing:
     (Lemma~\ref{lem:peeling}).
 \end{enumerate}
 
+Quantitatively, the analysis yields a precise conditional
+criterion:
+
+\begin{proposition}[Theorem~Q]\label{prop:theorem-Q}
+  Suppose that for every $k \geq 18$ and every prime
+  $p \mid d(k)$:
+  \begin{equation}\label{eq:condition-Q}
+    \Bigl|\sum_{t=1}^{p-1} T(t)\Bigr|
+    \;\leq\; 0.041 \cdot C.
+  \end{equation}
+  Then for every $k \geq 3$, no nontrivial positive cycle
+  of length~$k$ exists.
+\end{proposition}
+
+\begin{proof}
+  For $k = 3, \ldots, 17$: $N_0(d) = 0$ by exhaustive
+  verification (Section~\ref{sec:numerical}).
+  For $k \geq 18$:
+  condition~\eqref{eq:condition-Q} gives
+  $N_0(p) \leq (1.041)\,C/p$ for each $p \mid d$.
+  By the CRT inequality (Theorem~\ref{thm:nonsurj}
+  gives $C < d$), the product
+  $\prod_{p_i \mid d}(1.041/p_i)$ tends to~$0$,
+  yielding $N_0(d) = 0$.
+\end{proof}
+
+Condition~\eqref{eq:condition-Q} is strictly weaker than
+Conjecture~M: it requires only that the \emph{sum} of
+exponential sums does not exceed $4.1\%$ of~$C$, rather
+than pointwise decay of each~$|T(t)|$.
+Numerical evidence (Phase~22) confirms it for all tested
+values ($k \leq 41$, all $p \mid d$).
+
 \subsection{Open difficulties}
 
 Proposition~\ref{prop:barrier} shows that no purely spectral
@@ -980,6 +1032,33 @@ Three identified approaches to circumvent this barrier are:
     Lagarias~\cite{AppLegateLagarias2006} for related
     structural constraints).
 \end{enumerate}
+
+These approaches connect to three precise open conjectures
+identified in the research log:
+\begin{itemize}
+  \item \emph{Horner equidistribution}
+    (Conjecture~22.3): there exists $\delta > 0$ such that
+    $|N_r(p) - C/p| \leq C \cdot p^{-1/2-\delta}$ for
+    every~$r \in \Fp$;
+  \item \emph{Strong spectral gap}
+    (Conjecture~$\Delta'$): the effective spectral gap of
+    the Horner walk satisfies
+    $\Delta_{\mathrm{eff}} \geq \delta_1 \cdot S/k$ for
+    some $\delta_1 > 0$;
+  \item \emph{Uniform proportion}
+    (Conjecture~PU): the ordering constraint on
+    compositions is asymptotically independent of the
+    residue class modulo~$p$.
+\end{itemize}
+Under Conjectures~$\Delta'$ and~PU jointly, one obtains
+a conditional chain:
+low additive energy of~$H$
+$\Rightarrow$ spectral mixing
+$\Rightarrow$ equidistribution
+$\Rightarrow$ CRT exclusion
+$\Rightarrow$ no cycles.
+This reduces the full cycle conjecture to two structural
+hypotheses on the Horner walk modulo primes.
 
 \subsection{Scientific transparency}
 

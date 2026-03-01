@@ -13,206 +13,157 @@ We study the subproblem of nonexistence of nontrivial positive cycles in the Col
 
 $$\gamma = 1 - h\!\left(\frac{1}{\log_2 3}\right) \approx 0.0500$$
 
-where $h$ denotes binary Shannon entropy. This deficit implies that the modular evaluation map $\mathrm{Ev}_d$ cannot be surjective for any cycle candidate of length $k \geq 18$ (**unconditional**). Combined with the computational bound of Simons and de Weger (2005) for $k < 68$, we obtain a **Junction Theorem**: for every $k \geq 2$, at least one obstruction — computational or entropic — applies.
+where $h$ denotes binary Shannon entropy. This deficit implies that the modular evaluation map $\mathrm{Ev}_d$ cannot be surjective for any cycle candidate of length $k \geq 18$ (**unconditional**). Combined with the computational bound of Simons and de Weger (2005) for $k < 68$, we obtain a **Junction Theorem**: for every $k \geq 2$, at least one obstruction -- computational or entropic -- applies.
 
-The residual question — excluding the specific residue $0$ from the image — is formulated as an **Exponential Equidistribution Hypothesis** (H), approached via character sum analysis and Weil-type bounds (Phase 16). Phase 18 (Programme Merle) assembles all results into a single proof-by-contradiction framework, reducing the problem to **Conjecture M**: a lacunary Fourier bound on exponential sums. Phase 19 (Mellin Radar) reformulates this via multiplicative character sums $M(\chi)$, providing an exact bridge between additive and multiplicative visions and proposing **Conjecture M_Mellin** as a more natural formulation.
+The residual question -- excluding the specific residue $0$ from the image -- is formulated as an **Exponential Equidistribution Hypothesis** (H), approached via character sum analysis, Weil-type bounds, and the Mellin--Fourier bridge. The complete analysis reduces the nonexistence of cycles to a single quantitative condition (**Theorem Q**): $|\sum T(t)| \leq 0.041 C$.
 
 ## Key Results
 
 | Result | Statement | Status |
 |--------|-----------|--------|
-| **Theorem 1** | For $k \geq 18$ with $d > 0$: $\binom{S-1}{k-1} < d$ | Unconditional |
-| **Theorem 2** (Junction) | For every $k \geq 2$: computational OR entropic obstruction applies | Unconditional |
-| **Theorem 16.1** (Parseval cost) | If a cycle exists: $\sum\lvert T(t)\rvert^2 \geq (p-C)^2/(p-1)$ | Unconditional |
-| **Theorem 18.1** (Assembly) | Under Conjecture M: no positive cycle for any $k \geq 2$ | Conditional on M |
-| **Theorem 19.1** (Mellin-Fourier bridge) | $T(t) = N_0 + \frac{1}{p-1}\sum_\chi \tau(\bar\chi)\chi(t)M(\chi)$ | Unconditional |
-| **Theorem 19.2** (Multiplicative Parseval) | $\sum\lvert M(\chi)\rvert^2 = (p-1)\sum_{n\neq 0} S(n)^2$ | Unconditional |
-| **Conjecture M** | $\lvert T(t)\rvert \leq C \cdot k^{-\delta}$ for all $t, p \mid d$ | Open |
-| **Conjecture M_Mellin** | $\lvert M(\chi)\rvert \leq C^{1-\varepsilon}$ for all non-trivial $\chi$ | Open |
-
-### The Three Regimes
-
-| Regime | Convergents | $C/d$ | Elimination |
-|--------|------------|-------|-------------|
-| Residual | $q_1 = 1$, $q_3 = 5$ | 1.00, 2.69 | Simons-de Weger |
-| Frontier | $q_5 = 41$ | 0.596 | Both (overlap zone) |
-| Crystalline | $q_7 = 306$ | $\approx 2^{-20}$ | Nonsurjectivity |
+| **Theorem 1** (Nonsurjectivity) | For $k \geq 18$: $\binom{S-1}{k-1} < 2^S - 3^k$ | Unconditional |
+| **Theorem 2** (Junction) | For every $k \geq 2$: computational OR entropic obstruction | Unconditional |
+| **Peeling Lemma** | $N_0(p) \leq (k{-}1)/(S{-}1) \cdot C \approx 0.63\,C$ | Unconditional |
+| **Parseval cost** | If a cycle exists: $\sum\|T(t)\|^2 \geq (p-C)^2/(p-1)$ | Unconditional |
+| **Mellin--Fourier bridge** | Exact decomposition of $T(t)$ via multiplicative characters | Unconditional |
+| **Square root barrier** | No purely spectral method closes the gap when $p \sim C^{1+o(1)}$ | Unconditional |
+| **Prop. 22.1** | $N_0(d) = 0$ for $k = 3, \ldots, 17$ (exhaustive) | Unconditional |
+| **corrSum parity** | $\mathrm{corrSum}(A)$ is always odd and never divisible by 3 | Unconditional |
+| **Theorem Q** | If $\|\sum T(t)\| \leq 0.041 C$ for all $p \mid d$: no cycles | Conditional |
+| **Conjecture M** | $\|T(t)\| \leq C \cdot k^{-\delta}$ for all $t, p \mid d$ | Open |
 
 ## Repository Structure
 
 ```
 Collatz-Junction-Theorem/
-├── README.md                       # This file
-├── LICENSE                         # MIT License
-├── .gitignore
-├── .github/workflows/
-│   └── lean-check.yml              # CI: automatic Lean 4 verification
+├── .github/workflows/lean-check.yml    # CI: Lean 4 verification
+├── LICENSE                             # MIT (code)
+├── LICENSE-PAPER                       # CC-BY 4.0 (paper)
+├── README.md
+├── INVENTAIRE.md                       # Complete file catalog
+│
 ├── paper/
-│   ├── preprint.md                 # Full manuscript (French, Markdown)
-│   ├── preprint.tex                # LaTeX source (amsart)
-│   └── Merle_2026_*.pdf            # PDF preprint
+│   ├── preprint_en.tex                 # English preprint (principal)
+│   ├── preprint_fr.tex                 # French preprint (original)
+│   ├── preprint.md                     # Markdown reference
+│   └── Merle_2026_*.pdf                # Compiled PDF
+│
 ├── lean/
-│   ├── skeleton/                   # Research-level formalization (sorry roadmap)
-│   │   ├── JunctionTheorem.lean   # Junction Theorem (1 residual sorry + 1 axiom)
-│   │   ├── SyracuseHeight.lean    # Syracuse height (0 sorry — fully proved)
-│   │   ├── BinomialEntropy.lean   # Entropy bounds on binomial coefficients
-│   │   ├── EntropyBound.lean      # Entropy bound via tangent line
-│   │   ├── ConcaveTangent.lean    # Tangent line inequality for concave functions
-│   │   ├── LegendreApprox.lean    # Legendre approximation contrapositive
-│   │   └── FiniteCases.lean       # Crystal nonsurjectivity k ∈ [18, 200]
-│   ├── verified/                   # ★ VERIFIED (0 sorry, 0 axiom) ★
-│   │   ├── CollatzVerified/
-│   │   │   └── Basic.lean         # 73 theorems, all proved by Lean 4 kernel
-│   │   ├── CollatzVerified.lean   # Module root
-│   │   ├── Main.lean              # Entry point
-│   │   ├── lakefile.toml          # Lake project config
-│   │   └── lean-toolchain         # Lean version
-│   ├── lakefile.lean               # Build configuration
-│   └── lean-toolchain              # Lean version
+│   ├── verified/                       # 73 theorems, 0 sorry, 0 axiom
+│   │   └── CollatzVerified/Basic.lean  # Lean 4.15.0, no Mathlib
+│   ├── skeleton/                       # ~58 theorems, 1 sorry, 1 axiom
+│   │   ├── JunctionTheorem.lean        # Junction Theorem
+│   │   ├── SyracuseHeight.lean         # Syracuse height (0 sorry)
+│   │   ├── BinomialEntropy.lean        # Entropy bounds
+│   │   ├── EntropyBound.lean           # Entropy via tangent
+│   │   ├── ConcaveTangent.lean         # Concave tangent inequality
+│   │   ├── LegendreApprox.lean         # Legendre contrapositive
+│   │   └── FiniteCases.lean            # k in [18, 200] (183 cases)
+│   ├── lakefile.lean                   # Mathlib v4.29.0-rc2
+│   └── lean-toolchain                  # Lean 4.29.0-rc2
+│
 ├── scripts/
-│   ├── verify_nonsurjectivity.py   # Theorem 1 verification (k ∈ [18, 500])
-│   ├── multidimensional_mold.py    # Phase 14: multidimensional obstruction
-│   ├── interdimensional_tension.py # Phase 15: coset rigidity + zero-exclusion
-│   ├── analytical_obstruction.py   # Phase 16: character sums + Parseval
-│   ├── keyhole_geometry.py         # Phase 17: p-adic geometry + Newton polygon
-│   ├── programme_merle.py          # Phase 18: assembly theorem + Programme Merle
-│   ├── radar_mellin.py             # Phase 19: Mellin radar + multiplicative obstruction
-│   ├── stress_test.py              # 402 mathematical stress tests
-│   └── numerical_audit.py          # Ultra-severe numerical audit (152 checks)
+│   ├── core/                           # Published verification (9 scripts)
+│   │   ├── verify_nonsurjectivity.py   # Theorem 1 (k in [18, 500])
+│   │   ├── multidimensional_mold.py    # Phase 14
+│   │   ├── interdimensional_tension.py # Phase 15
+│   │   ├── analytical_obstruction.py   # Phase 16
+│   │   ├── keyhole_geometry.py         # Phase 17
+│   │   ├── programme_merle.py          # Phase 18
+│   │   ├── radar_mellin.py             # Phase 19
+│   │   ├── stress_test.py              # 402 stress tests
+│   │   └── numerical_audit.py          # 152 audit checks
+│   └── exploration/                    # Research exploration (17 scripts)
+│       ├── phase20_*.py                # CRT, mixing, type classification
+│       ├── phase21_*.py                # Mellin spectral, second moment, etc.
+│       └── phase22_*.py                # CRT amplification, spectral bounds
+│
+├── research_log/                       # Complete research journal
+│   ├── phase10c--10m                   # Foundations (red team to crystal clash)
+│   ├── phase11a--11c                   # Algebraic obstruction, LLL reduction
+│   ├── phase12                         # Junction Theorem
+│   ├── phase13                         # Self-audit (rejected attempt)
+│   ├── phase14--19                     # Analytical development
+│   ├── phase20--20d                    # 4 strategic approaches
+│   ├── phase21                         # Mellin master + spectral analysis
+│   ├── phase22                         # Lacunary bounds + CRT
+│   ├── phase23--23f                    # Barriers, bypasses, additive energy
+│   └── ERRATA.md                       # Corrections
+│
 ├── audits/
-│   ├── AUDIT_V1_CERTIFICATION.md   # Post-doctoral certification protocol (P0-P8)
-│   ├── AUDIT_V2_CERTIFICATION.md   # Ultra-severe re-certification
-│   ├── AUDIT_V3_CERTIFICATION.md   # DO-178C/IEC 61508/EAL7 level
-│   └── AUDIT_V4_MATHEMATIQUE.md    # Mathematical verification of logical chain
-└── research_log/
-    ├── phase10c_red_team.md                  # Phase 10c: red team analysis
-    ├── phase10d_reflexion_profonde.md        # Phase 10d: deep reflection
-    ├── phase10e_synthese_finale.md           # Phase 10e: final synthesis
-    ├── phase10f_audit_gouzel.md              # Phase 10f: Gouzel-style audit
-    ├── phase10g_hauteur_syracuse.md          # Phase 10g: Syracuse height
-    ├── phase10h_assaut_infini.md             # Phase 10h: infinite assault
-    ├── phase10i_cisaillement_diophantien.md  # Phase 10i: Diophantine shearing
-    ├── phase10j_dissonance_resonance.md      # Phase 10j: dissonance/resonance
-    ├── phase10k_estocade.md                  # Phase 10k: estocade
-    ├── phase10l_choc_des_cristaux.md         # Phase 10l: crystal clash
-    ├── phase10m_theoreme_fondamental.md      # Phase 10m: fundamental theorem
-    ├── phase11a_obstruction_algebrique.md    # Phase 11a: algebraic obstruction
-    ├── phase11b_verification_computationnelle.md # Phase 11b: computational check
-    ├── phase11c_reduction_lll.md             # Phase 11c: LLL reduction
-    ├── phase12_junction_theorem.md           # Phase 12: Junction Theorem
-    ├── phase13_audit_kolmogorov_baker.md     # Phase 13: self-audit (rejected attempt)
-    ├── phase14_moule_multidimensionnel.md    # Phase 14: multidimensional mold
-    ├── phase15_tension_interdimensionnelle.md # Phase 15: inter-dimensional tension
-    ├── phase16_obstruction_analytique.md     # Phase 16: analytical obstruction
-    ├── phase17_geometrie_serrure.md          # Phase 17: keyhole geometry
-    ├── phase18_programme_merle.md            # Phase 18: Programme Merle (assembly)
-    ├── phase19_radar_mellin.md               # Phase 19: Mellin radar (multiplicative)
-    └── ERRATA.md                             # Corrections to research log values
+│   ├── AUDIT_V1_CERTIFICATION.md       # Initial certification
+│   ├── AUDIT_V2_CERTIFICATION.md       # Ultra-severe re-certification
+│   ├── AUDIT_V3_CERTIFICATION.md       # DO-178C/IEC 61508 level
+│   └── AUDIT_V4_MATHEMATIQUE.md        # Mathematical chain verification
+│
+└── docs/
+    └── plans/                          # Design documents
+        └── 2026-02-27-phase20-4-pistes-design.md
 ```
 
 ## Quick Start
 
+### Read the paper
+
+- **English preprint:** [`paper/preprint_en.tex`](paper/preprint_en.tex) (principal)
+- **French preprint:** [`paper/preprint_fr.tex`](paper/preprint_fr.tex) (original)
+- **Markdown:** [`paper/preprint.md`](paper/preprint.md)
+
 ### Reproduce the computations
 
 ```bash
-# Core theorem verification
-python3 scripts/verify_nonsurjectivity.py
+# Core verification scripts (Phases 14--19)
+python3 scripts/core/verify_nonsurjectivity.py
+python3 scripts/core/analytical_obstruction.py
+python3 scripts/core/programme_merle.py
+python3 scripts/core/radar_mellin.py
+python3 scripts/core/stress_test.py
+python3 scripts/core/numerical_audit.py
 
-# Phase 14: multidimensional obstruction
-python3 scripts/multidimensional_mold.py
-
-# Phase 15: coset rigidity + zero-exclusion
-python3 scripts/interdimensional_tension.py
-
-# Phase 16: character sums + Parseval
-python3 scripts/analytical_obstruction.py
-
-# Phase 17: p-adic geometry + Newton polygon
-python3 scripts/keyhole_geometry.py
-
-# Phase 18: assembly theorem + Programme Merle
-python3 scripts/programme_merle.py
-
-# Phase 19: Mellin radar + multiplicative obstruction
-python3 scripts/radar_mellin.py
+# Exploration scripts (Phases 20--22)
+python3 scripts/exploration/phase22_exploration.py
 ```
-
-### Read the paper
-
-The full manuscript is available in two formats:
-- **PDF:** [`paper/Merle_2026_Barrieres_Entropiques_Collatz.pdf`](paper/Merle_2026_Barrieres_Entropiques_Collatz.pdf)
-- **Markdown:** [`paper/preprint.md`](paper/preprint.md)
 
 ### Lean 4 formalization
 
-The `lean/verified/` directory contains a **fully verified** Lean 4 file:
-- **73 theorems proved, 0 sorry, 0 axiom**
-- Non-surjectivity verified for k = 18 through 25
-- Exhaustive zero-exclusion for q₃ (35 compositions)
-- Coset classification: p = 929 is Type II
-- Gersonides verification: |2^S − 3^k| ≥ 2 for S + k ≥ 6
-- Phase 18 assembly: entropic transition, CRT principle, Parseval energy
-- Phase 19 Mellin radar: bridge decomposition, multiplicative Parseval, QR counts
-- CI via GitHub Actions (`lean-check.yml`)
+**Verified core** (`lean/verified/`, Lean 4.15.0, no Mathlib):
+- **73 theorems, 0 sorry, 0 axiom**
+- Nonsurjectivity for k = 18--25, exhaustive zero-exclusion for q3
+- Parity, coset classification, Parseval, CRT, Mellin radar
+- CI: GitHub Actions (`lean-check.yml`)
 
-The `lean/skeleton/` directory contains Lean 4 formalizations with:
-- 35+ theorems and lemmas fully proved (Steiner equation, gamma positivity, deficit linear growth, master equations, energy bounds, etc.)
-- Crystal nonsurjectivity **proved** for k ∈ [18, 200] via 183 `native_decide` cases (`FiniteCases.lean`)
-- 1 residual `sorry` in `crystal_nonsurjectivity` for k ≥ 201 only (asymptotic regime, margin > 3 bits, numerically verified to k = 10⁶)
-- 1 `axiom` for Simons-de Weger (external published result, Acta Arith. 2005)
-- 7 files with clean import dependencies and no circular reasoning
-
-## Mathematical Framework
-
-### Steiner's Equation (1977)
-
-Any positive Collatz cycle of length $k$ satisfies:
-
-$$n_0 \cdot (2^S - 3^k) = \sum_{i=0}^{k-1} 3^{k-1-i} \cdot 2^{A_i}$$
-
-where $(A_0, \ldots, A_{k-1})$ is a composition of $S - k$ with $A_0 = 0$.
-
-### The Entropic Deficit
-
-The number of admissible compositions satisfies:
-
-$$\log_2 \binom{S-1}{k-1} \approx S \cdot h\!\left(\frac{1}{\log_2 3}\right) = S \cdot (1 - \gamma)$$
-
-while the crystal module has size $\log_2 d \approx S$. The gap $\gamma S$ grows linearly, making $C/d \to 0$ exponentially.
-
-### The Junction
-
-$$[1, 67] \cup [18, +\infty) = [1, +\infty)$$
-
-The overlap $[18, 67]$ ensures complete coverage of all cycle lengths $k \geq 1$.
-
-### Analytical Obstruction (Phase 16)
-
-The character sum framework translates Hypothesis (H) into exponential sum bounds. For each prime $p \mid d$, the Parseval identity yields an **unconditional** lower bound on the Fourier energy required for a cycle to exist:
-
-$$\sum_{t \neq 0} |T(t)|^2 \geq \frac{(p - C)^2}{p - 1}$$
-
-In the crystalline regime ($C \ll p$), this cost approaches $p$, quantifying the anomalous concentration that cycle existence would require.
+**Research skeleton** (`lean/skeleton/`, Lean 4.29.0-rc2, Mathlib4):
+- ~58 theorems, 1 residual sorry (k >= 201, numerically verified to 10^6)
+- 1 axiom (Simons--de Weger, published result)
+- Crystal nonsurjectivity proved for k in [18, 200] via 183 `native_decide` cases
 
 ## Honest Assessment
 
-This work establishes an **unconditional** structural obstruction (nonsurjectivity) but does **not** prove the full nonexistence of cycles. The gap between "the evaluation map misses residues" and "the evaluation map misses $0$ specifically" requires **Conjecture M**, which remains open.
+This work establishes an **unconditional** structural obstruction (nonsurjectivity of the evaluation map) but does **not** prove the full nonexistence of cycles.
 
-Phase 16 encircles this gap via character sum analysis, establishing the Parseval cost unconditionally and reducing the problem to a single-prime zero-exclusion via CRT. Phase 17 contributes p-adic geometric constraints (Newton polygon, Horner walk, Hensel tower, coset zigzag). Phase 18 (Programme Merle) assembles all results and formulates **Conjecture M** ($|T(t)| \leq C \cdot k^{-\delta}$) as the single remaining obstacle. Phase 19 (Radar de Mellin) reformulates this via multiplicative character sums $M(\chi)$, establishing the exact Mellin-Fourier bridge (Theorem 19.1) and multiplicative Parseval (Theorem 19.2), and proposing **Conjecture M_Mellin** ($|M(\chi)| \leq C^{1-\varepsilon}$) as a more natural formulation operating in $\mathbb{F}_p^*$.
+The gap between "the evaluation map omits residues" and "the evaluation map omits 0 specifically" is quantified precisely:
+
+- The **Peeling Lemma** gives $N_0(p) \leq 0.63\,C$ (unconditional).
+- The **Square Root Barrier** shows no purely spectral method suffices when $p \sim C^{1+o(1)}$.
+- **Theorem Q** reduces the complete conjecture to the single condition $|\sum T(t)| \leq 0.041\,C$.
+- Three precise conjectures (Horner equidistribution, spectral gap, uniform proportion) form a conditional chain toward the full resolution.
 
 We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt.
 
-## References
-
-1. R. E. Crandall, "On the 3x + 1 problem", *Math. Comp.* **32** (1978), 1281-1292.
-2. S. Eliahou, "The 3x + 1 problem: new lower bounds on nontrivial cycle lengths", *Discrete Math.* **118** (1993), 45-56.
-3. J. C. Lagarias, "The 3x + 1 problem and its generalizations", *Amer. Math. Monthly* **92** (1985), 3-23.
-4. M. Laurent, M. Mignotte, Y. Nesterenko, "Formes lineaires en deux logarithmes et determinants d'interpolation", *J. Number Theory* **55** (1995), 285-321.
-5. D. Simons, B. de Weger, "Theoretical and computational bounds for m-cycles of the 3n + 1 problem", *Acta Arith.* **117** (2005), 51-70.
-6. R. P. Steiner, "A theorem on the Syracuse problem", *Proc. 7th Manitoba Conf. Numer. Math.* (1977), 553-559.
-7. T. Tao, "Almost all orbits of the Collatz map attain almost bounded values", *Forum Math. Pi* **10** (2022), e12.
-8. T. Barina, "Convergence verification of the Collatz problem", *J. Supercomput.* **77** (2021), 2681-2688.
-
 ## License
 
-This work is released under the MIT License. See [LICENSE](LICENSE) for details.
+- **Code** (Lean proofs, Python scripts): [MIT License](LICENSE)
+- **Paper** (preprints, documentation): [CC-BY 4.0](LICENSE-PAPER)
+
+## References
+
+1. R. E. Crandall, "On the 3x + 1 problem", *Math. Comp.* **32** (1978), 1281--1292.
+2. S. Eliahou, "The 3x + 1 problem: new lower bounds on nontrivial cycle lengths", *Discrete Math.* **118** (1993), 45--56.
+3. J. C. Lagarias, "The 3x + 1 problem and its generalizations", *Amer. Math. Monthly* **92** (1985), 3--23.
+4. M. Laurent, M. Mignotte, Y. Nesterenko, "Formes lineaires en deux logarithmes et determinants d'interpolation", *J. Number Theory* **55** (1995), 285--321.
+5. D. Simons, B. de Weger, "Theoretical and computational bounds for m-cycles of the 3n + 1 problem", *Acta Arith.* **117** (2005), 51--70.
+6. R. P. Steiner, "A theorem on the Syracuse problem", *Proc. 7th Manitoba Conf. Numer. Math.* (1977), 553--559.
+7. T. Tao, "Almost all orbits of the Collatz map attain almost bounded values", *Forum Math. Pi* **10** (2022), e12.
+8. T. Barina, "Convergence verification of the Collatz problem", *J. Supercomput.* **77** (2021), 2681--2688.
+9. D. Applegate, J. C. Lagarias, "The 3x + 1 semigroup", *J. Number Theory* **117** (2006), 146--159.
+10. K. Soundararajan, "Moments of the Riemann zeta function", *Ann. Math.* **170** (2009), 981--993.
