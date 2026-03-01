@@ -573,6 +573,20 @@ langage multiplicatif: la \textbf{Conjecture~$M_{\text{Mellin}}$}
 $\F_p^*$. Le pont Mellin-Fourier (Théorème~\ref{thm:mellin-bridge})
 relie les visions additive et multiplicative par une identité exacte.
 
+\textbf{Vérification numérique de la Condition~(Q).}
+Une investigation systématique (méthodologie GPS, 6~livrables) a
+vérifié la condition quantitative $|\sum_{t=1}^{p-1} T(t)|
+\leq 0{,}041 \cdot C$ pour tout $k \in [18, 28]$ et tous les
+premiers $p \mid d(k)$ testés (25~cas, 0~échecs). Le pire cas est
+$k = 22$, $p = 7$, avec un ratio de~$0{,}013$ (marge $3{,}2\times$).
+La distribution $N_r(p)$ est approximativement constante sur les
+orbites de multiplication par~$2$ dans~$\F_p$ (déviation maximale
+$2{,}2\%$), et un taux de décroissance $\sim k^{-6{,}3}$ est observé
+pour $p = 7$ ($k = 22$ à~$38$). Une stratégie hybride combinant
+vérification directe par DP ($k \leq 40$) et décroissance asymptotique
+($k \geq 41$) apparaît réalisable pour établir la Condition~(Q) pour
+tout $k \geq 18$.
+
 \emph{Limitation.} Le présent travail ne traite que des cycles
 positifs ($d > 0$). L'analyse des cycles négatifs fera l'objet
 d'un travail ultérieur. Mentionnons que Böhm--Sontacchi~\cite{BS1978}

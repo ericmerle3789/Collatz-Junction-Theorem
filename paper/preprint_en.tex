@@ -1025,6 +1025,18 @@ exponential sums does not exceed $4.1\%$ of~$C$, rather
 than pointwise decay of each~$|T(t)|$.
 Numerical evidence confirms it for all tested
 values ($k \leq 41$, all $p \mid d$).
+A systematic investigation (GPS methodology, 6~deliverables)
+verifies Condition~\eqref{eq:condition-Q} for all $k \in [18, 28]$
+and all primes $p \mid d(k)$ with $p \leq 50000$ (25~cases,
+0~failures). The worst case is $k = 22$, $p = 7$, with ratio
+$|p \cdot N_0(p) - C|/C = 0.013$ (margin $3.2\times$). The
+distribution $N_r(p)$ is approximately constant on orbits of
+multiplication by~$2$ in~$\Fp$ (max deviation $2.2\%$), and a
+decay rate $\sim k^{-6.3}$ is observed for $p = 7$ ($k = 22$
+to~$38$). A hybrid strategy combining direct DP verification
+($k \leq 40$) and asymptotic decay ($k \geq 41$) appears feasible
+for establishing Condition~\eqref{eq:condition-Q} for all
+$k \geq 18$.
 
 \subsection{Open difficulties}
 

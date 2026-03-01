@@ -71,6 +71,7 @@ Collatz-Junction-Theorem/
 │   │   ├── keyhole_geometry.py         # Phase 17
 │   │   ├── programme_merle.py          # Phase 18
 │   │   ├── radar_mellin.py             # Phase 19
+│   │   ├── verify_condition_q.py        # Condition (Q) for k=18..28
 │   │   ├── stress_test.py              # 402 stress tests
 │   │   └── numerical_audit.py          # 152 audit checks
 │   └── exploration/                    # Research exploration (17 scripts)
@@ -88,6 +89,7 @@ Collatz-Junction-Theorem/
 │   ├── phase21                         # Mellin master + spectral analysis
 │   ├── phase22                         # Lacunary bounds + CRT
 │   ├── phase23--23f                    # Barriers, bypasses, additive energy
+│   ├── sp5_investigation.md            # SP5: Condition (Q) via GPS methodology
 │   └── ERRATA.md                       # Corrections
 │
 ├── audits/
@@ -120,6 +122,9 @@ python3 scripts/core/radar_mellin.py
 python3 scripts/core/stress_test.py
 python3 scripts/core/numerical_audit.py
 
+# Condition (Q) verification (SP5 investigation)
+python3 scripts/core/verify_condition_q.py
+
 # Exploration scripts (Phases 20--22)
 python3 scripts/exploration/phase22_exploration.py
 ```
@@ -137,6 +142,21 @@ python3 scripts/exploration/phase22_exploration.py
 - 1 axiom (Simons--de Weger, published result)
 - Crystal nonsurjectivity proved for k in [18, 200] via 183 `native_decide` cases
 
+## Numerical Evidence for Condition (Q)
+
+A systematic investigation (GPS methodology, 6 deliverables) has verified the key quantitative condition:
+
+| Component | Status | Details |
+|-----------|--------|---------|
+| Condition (Q): $\|\sum T(t)\| \leq 0.041 C$ | **Verified** k=18..28 | 25 cases, 0 failures |
+| Coset orbit structure | **Verified** | $N_r$ approx. constant on $\langle 2 \rangle$-orbits (max deviation 2.2%) |
+| Multi-scale decomposition | **Semi-rigorous** | 3 regimes (trivial / Cauchy-Schwarz / residual) |
+| Cauchy-Schwarz covers p > 10 | **Verified** | 95% of cases, margin 7x-2800x |
+| Decay rate for p = 7 | **Observed** | $\sim k^{-6.3}$, verified k=22..38 |
+| **Residual lock** | Open | Prove $\|p \cdot N_0(7) - C\|/C \to 0$ at rate $\geq k^{-1}$ |
+
+Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py) and [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md).
+
 ## Honest Assessment
 
 This work establishes an **unconditional** structural obstruction (nonsurjectivity of the evaluation map) but does **not** prove the full nonexistence of cycles.
@@ -148,7 +168,9 @@ The gap between "the evaluation map omits residues" and "the evaluation map omit
 - **Theorem Q** reduces the complete conjecture to the single condition $|\sum T(t)| \leq 0.041\,C$.
 - Three precise conjectures (Horner equidistribution, spectral gap, uniform proportion) form a conditional chain toward the full resolution.
 
-We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt.
+A hybrid strategy combining direct DP verification (k <= 40) and asymptotic decay (k >= 41) appears feasible (estimated 3.5/5) for establishing Condition (Q) for all k >= 18.
+
+We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, and [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the full SP5 investigation log.
 
 ## License
 
