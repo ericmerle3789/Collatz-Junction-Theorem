@@ -10,7 +10,7 @@
 
 > γ = 1 − h(ln 2 / ln 3) ≈ 0.05004447
 
-où h désigne l'entropie binaire de Shannon. Ce déficit exprime le fait que le taux de croissance du nombre de compositions admissibles est strictement inférieur au taux de croissance du module cristallin d = 2^S − 3^k. Il en résulte un **Théorème de Non-Surjectivité** (inconditionnel) : pour tout cycle candidat de longueur k ≥ 18 avec d > 0, l'application d'évaluation modulaire Ev_d ne peut pas être surjective. Conjugué au résultat computationnel de Simons et de Weger (2005), qui exclut tout cycle positif de longueur k < 68, nous obtenons un **Théorème de Jonction** : pour tout k ≥ 2, au moins l'une des deux obstructions — computationnelle ou entropique — s'applique. La question résiduelle — l'exclusion du résidu spécifique 0 de l'image — est formulée comme une **Hypothèse d'Équirépartition Exponentielle** (H), dont nous discutons les fondements numériques et les voies de résolution.
+où h désigne l'entropie binaire de Shannon. Ce déficit exprime le fait que le taux de croissance du nombre de compositions admissibles est strictement inférieur au taux de croissance du module cristallin d = 2^S − 3^k. Il en résulte un **Théorème de Non-Surjectivité** (inconditionnel) : pour tout cycle candidat de longueur k ≥ 18 avec d > 0, l'application d'évaluation modulaire Ev_d ne peut pas être surjective. Conjugué au résultat computationnel de Simons et de Weger (2005), qui exclut tout cycle positif de longueur k ≤ 68, nous obtenons un **Théorème de Jonction** : pour tout k ≥ 2, au moins l'une des deux obstructions — computationnelle ou entropique — s'applique. La question résiduelle — l'exclusion du résidu spécifique 0 de l'image — est formulée comme une **Hypothèse d'Équirépartition Exponentielle** (H), dont nous discutons les fondements numériques et les voies de résolution.
 
 **Mots-clés** : Conjecture de Collatz, problème 3x+1, cycles, équation de Steiner, entropie de Shannon, non-surjectivité modulaire, formes linéaires en logarithmes.
 
@@ -49,7 +49,7 @@ L'existence d'un cycle positif est donc équivalente à l'existence d'une compos
 
 L'étude des cycles de Collatz repose principalement sur deux méthodes :
 
-**(i) Bornes computationnelles.** Steiner (1977), puis Simons et de Weger (2005), ont utilisé la théorie de Baker des formes linéaires en logarithmes, combinée à la réduction LLL, pour démontrer qu'il n'existe aucun cycle positif non trivial de longueur k < 68. Cette borne reste l'état de l'art.
+**(i) Bornes computationnelles.** Steiner (1977), puis Simons et de Weger (2005), ont utilisé la théorie de Baker des formes linéaires en logarithmes, combinée à la réduction LLL, pour démontrer qu'il n'existe aucun cycle positif non trivial de longueur k ≤ 68. Cette borne reste l'état de l'art.
 
 **(ii) Vérifications de convergence.** Barina (2021) a montré que tout entier n < 2^68 converge vers 1 sous l'itération de Collatz. Ce résultat élimine les cycles dont tous les éléments sont inférieurs à 2^68, mais ne fournit pas de borne directe sur la longueur k.
 
@@ -215,7 +215,7 @@ Les seules exceptions sont k ∈ {3, 5, 17}, pour lesquelles :
 | 5 | 8 | 35 | 13 | 2.69 |
 | 17 | 27 | 5311735 | 5077565 | 1.05 |
 
-Ces trois valeurs satisfont toutes k < 68.
+Ces trois valeurs satisfont toutes k ≤ 68.
 
 **Étape 4 : Borne asymptotique rigoureuse (k ≥ 500).**
 
@@ -283,7 +283,7 @@ En résumé : les exceptions k = 3, 5, 17 reflètent des coïncidences diophanti
 
 **Théorème 2** (Jonction). — *Pour tout entier k ≥ 2, au moins l'une des deux obstructions suivantes s'applique à un cycle positif hypothétique de longueur k :*
 
-*(A) Obstruction computationnelle : si k < 68, aucun cycle positif non trivial de longueur k n'existe (Simons et de Weger, 2005).*
+*(A) Obstruction computationnelle : si k ≤ 68, aucun cycle positif non trivial de longueur k n'existe (Simons et de Weger, 2005).*
 
 *(B) Obstruction entropique : si k ≥ 18 et d = 2^⌈k log₂ 3⌉ − 3^k > 0, alors l'application d'évaluation Ev_d n'est pas surjective.*
 
@@ -297,7 +297,7 @@ La partie (A) est le résultat principal de Simons et de Weger (2005), obtenu pa
 
 La partie (B) est le Théorème 1 ci-dessus.
 
-L'intersection est immédiate : tout entier k ≥ 2 vérifie k < 68 ou k ≥ 18 (puisque 18 ≤ 67 < 68). Donc k est couvert par (A) ou (B). ∎
+L'intersection est immédiate : tout entier k ≥ 2 vérifie k ≤ 68 ou k ≥ 18 (puisque 18 ≤ 68). Donc k est couvert par (A) ou (B). ∎
 
 ### 5.3. Architecture des trois régimes
 
@@ -375,7 +375,7 @@ Nous identifions trois voies potentielles :
 
 **Voie 2 : Géométrie arithmétique.** Interpréter l'application Ev_d comme une application entre variétés sur les corps finis, et appliquer les bornes de type Weil-Deligne. La structure de Horner pourrait se prêter à une analyse de type « marche aléatoire sur les fibres ».
 
-**Voie 3 : Extension computationnelle.** Étendre la méthodologie de Simons et de Weger au-delà de k < 68. Avec les ressources computationnelles modernes, atteindre k < 500 est envisageable. Combiné avec la décroissance exponentielle de C/d pour k > 306, cela renforcerait considérablement le résultat.
+**Voie 3 : Extension computationnelle.** Étendre la méthodologie de Simons et de Weger au-delà de k ≤ 68. Avec les ressources computationnelles modernes, atteindre k < 500 est envisageable. Combiné avec la décroissance exponentielle de C/d pour k > 306, cela renforcerait considérablement le résultat.
 
 ---
 
@@ -436,7 +436,7 @@ Le cœur de l'obstruction réside dans une **incompatibilité structurelle entre
 
 Afin de garantir la fiabilité des résultats computationnels, nous avons formalisé les vérifications clés en **Lean 4** (v4.15.0), un assistant de preuve dont le noyau de vérification certifie la correction de chaque théorème.
 
-Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **66 théorèmes prouvés**, **0 sorry** (preuve incomplète) et **0 axiom** (hypothèse non démontrée). Les résultats vérifiés par le noyau Lean incluent :
+Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **73 théorèmes prouvés**, **0 sorry** (preuve incomplète) et **0 axiom** (hypothèse non démontrée). Les résultats vérifiés par le noyau Lean incluent :
 
 | Résultat | Tactique | Phase |
 |----------|----------|-------|
@@ -448,7 +448,7 @@ Le fichier `lean/verified/CollatzVerified/Basic.lean` contient **66 théorèmes 
 | Empreinte 2-adique (Lemme 14.2) pour q₃ | `native_decide` | 14 |
 | ord₉₂₉(2) = 464, Legendre(3, 929) = −1 (Type II) | `native_decide` | 15 |
 | 929 | d₇ (divisibilité vérifiée) | `native_decide` | 15 |
-| Couverture complète : ∀ k ≥ 1, k < 68 ∨ k ≥ 18 | `omega` | — |
+| Couverture complète : ∀ k ≥ 1, k ≤ 68 ∨ k ≥ 18 | `omega` | — |
 | Gersonides borné : |2^S − 3^k| ≥ 2 pour S + k ≥ 6, S,k ≤ 24 | `decide` | 15 |
 
 Un workflow GitHub Actions (`lean-check.yml`) compile automatiquement le fichier et vérifie l'absence de sorry et d'axiomes à chaque push.
@@ -508,7 +508,7 @@ Les trois premiers organes sont **prouvés** (inconditionnels). Le quatrième es
 
 **Théorème 18.1** (Assemblage, conditionnel sous Conjecture M). — *Soit K* = max(68, K_M). Alors pour tout k ≥ 2, il n'existe aucun cycle positif non trivial de longueur k dans la dynamique de Collatz.*
 
-La preuve procède par cas : k < 68 (Simons–de Weger), k ∈ [68, K*] (extension computationnelle), k ≥ K* (absurde via la chaîne Cœur → Bras → Jambes → Tête). La Conjecture M est soutenue par les vérifications exhaustives (q₃), l'analogie avec les marches aléatoires de Diaconis–Shahshahani, et le coût de Parseval (Théorème 16.1).
+La preuve procède par cas : k ≤ 68 (Simons–de Weger), k ∈ [69, K*] (extension computationnelle), k ≥ K* (absurde via la chaîne Cœur → Bras → Jambes → Tête). La Conjecture M est soutenue par les vérifications exhaustives (q₃), l'analogie avec les marches aléatoires de Diaconis–Shahshahani, et le coût de Parseval (Théorème 16.1).
 
 Le Programme Merle réduit la conjecture de Collatz (pour les cycles positifs) à un unique énoncé analytique sur les sommes exponentielles lacunaires en caractéristique finie.
 
@@ -536,7 +536,7 @@ Le cadre s'appuie sur les travaux de Ngom, Alpay et Mboup (2022) sur l'opérateu
 
 ## 8. Conclusion
 
-Nous avons démontré que le problème des cycles positifs de Collatz est gouverné par un déficit entropique fondamental γ = 0.05004447…, qui rend l'application d'évaluation modulaire non surjective pour tout k ≥ 18. Ce résultat, conjugué à la borne computationnelle de Simons-de Weger (k < 68), produit un Théorème de Jonction couvrant l'ensemble des longueurs k ≥ 2.
+Nous avons démontré que le problème des cycles positifs de Collatz est gouverné par un déficit entropique fondamental γ = 0.05004447…, qui rend l'application d'évaluation modulaire non surjective pour tout k ≥ 18. Ce résultat, conjugué à la borne computationnelle de Simons-de Weger (k ≤ 68), produit un Théorème de Jonction couvrant l'ensemble des longueurs k ≥ 2.
 
 L'analyse structurelle des Phases 14 et 15 approfondit cette obstruction en identifiant une **loi d'incompatibilité universelle** entre les bases 2 et 3, se manifestant simultanément aux niveaux archimédien, entropique et p-adique. La classification des premiers cristallins en Types I et II, et la découverte du premier Type II (p = 929 divisant d₇), révèle une rigidité géométrique de coset qui renforce qualitativement l'obstruction au-delà du simple comptage.
 

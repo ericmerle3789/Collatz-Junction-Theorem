@@ -606,7 +606,7 @@ def audit_10_barina_bound():
     # The key question: does the preprint use 2^68 anywhere it matters?
     # The preprint uses Barina only for context (§1.3) and does NOT
     # use the Barina bound in the main proof. The proof relies on
-    # Simons-de Weger (k<68) and entropy bound (k>=18).
+    # Simons-de Weger (k<=68) and entropy bound (k>=18).
     print("  NOTE: Barina's bound is used only for context in preprint.")
     print("  The main proof does NOT depend on Barina's specific threshold.")
     check("Preprint proof does not depend on 2^68 vs 2^71", True, True)

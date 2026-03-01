@@ -78,7 +78,7 @@ Couverture : nonsurjectivite k=18-25, zero-exclusion q3, Gersonides, parite, cos
 
 ## 4. Scripts
 
-### 4.1. Core (`scripts/core/`, 9 scripts, Phases 14-19)
+### 4.1. Core (`scripts/core/`, 10 scripts, Phases 14-19 + SP5)
 
 Scripts publies, verifies, associes au preprint.
 
@@ -91,6 +91,7 @@ Scripts publies, verifies, associes au preprint.
 | `keyhole_geometry.py` | 17 | Geometrie p-adique + Newton |
 | `programme_merle.py` | 18 | Assemblage Programme Merle |
 | `radar_mellin.py` | 19 | Radar Mellin multiplicatif |
+| `verify_condition_q.py` | SP5 | Condition (Q) pour k in [18, 28] |
 | `stress_test.py` | — | 402 tests de robustesse |
 | `numerical_audit.py` | — | 152 verifications numeriques |
 
@@ -118,7 +119,7 @@ Scripts de recherche exploratoire.
 | `phase22_largest_prime_mechanism.py` | 22 | Mecanisme plus grand premier |
 | `phase22_spectral_bound.py` | 22 | Borne spectrale |
 
-## 5. Research Log (`research_log/`, 31 fichiers)
+## 5. Research Log (`research_log/`, 32 fichiers)
 
 ### Fondations (Phases 10-13)
 
@@ -175,6 +176,7 @@ Scripts de recherche exploratoire.
 | Fichier | Contenu |
 |---------|---------|
 | `ERRATA.md` | Corrections aux valeurs du research log |
+| `sp5_investigation.md` | Investigation SP5 : Condition (Q) via GPS |
 
 ## 6. Audits (`audits/`, 4 fichiers)
 

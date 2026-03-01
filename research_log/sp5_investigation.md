@@ -37,7 +37,7 @@ Condition (Q) is a quantitative sufficient condition for Hypothesis (H).
 ### Verified Computationally
 
 - **Condition (Q) holds for all k in [18, 28]** and all primes p | d(k)
-  tested (25+ cases, 0 failures)
+  tested (25 cases, 0 failures)
 - Worst case: k=22, p=7 (ratio = 0.013, margin = 3.2x above threshold)
 - Phase uniformity confirmed by Rayleigh test in all cases
 

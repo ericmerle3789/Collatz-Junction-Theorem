@@ -13,7 +13,7 @@ We study the subproblem of nonexistence of nontrivial positive cycles in the Col
 
 $$\gamma = 1 - h\!\left(\frac{1}{\log_2 3}\right) \approx 0.0500$$
 
-where $h$ denotes binary Shannon entropy. This deficit implies that the modular evaluation map $\mathrm{Ev}_d$ cannot be surjective for any cycle candidate of length $k \geq 18$ (**unconditional**). Combined with the computational bound of Simons and de Weger (2005) for $k < 68$, we obtain a **Junction Theorem**: for every $k \geq 2$, at least one obstruction -- computational or entropic -- applies.
+where $h$ denotes binary Shannon entropy. This deficit implies that the modular evaluation map $\mathrm{Ev}_d$ cannot be surjective for any cycle candidate of length $k \geq 18$ (**unconditional**). Combined with the computational bound of Simons and de Weger (2005) for $k \leq 68$, we obtain a **Junction Theorem**: for every $k \geq 2$, at least one obstruction -- computational or entropic -- applies.
 
 The residual question -- excluding the specific residue $0$ from the image -- is formulated as an **Exponential Equidistribution Hypothesis** (H), approached via character sum analysis, Weil-type bounds, and the Mellin--Fourier bridge. The complete analysis reduces the nonexistence of cycles to a single quantitative condition (**Theorem Q**): $|\sum T(t)| \leq 0.041 C$.
 
@@ -63,7 +63,7 @@ Collatz-Junction-Theorem/
 │   └── lean-toolchain                  # Lean 4.29.0-rc2
 │
 ├── scripts/
-│   ├── core/                           # Published verification (9 scripts)
+│   ├── core/                           # Published verification (10 scripts)
 │   │   ├── verify_nonsurjectivity.py   # Theorem 1 (k in [18, 500])
 │   │   ├── multidimensional_mold.py    # Phase 14
 │   │   ├── interdimensional_tension.py # Phase 15
