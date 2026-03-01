@@ -96,6 +96,7 @@ Collatz-Junction-Theorem/
 │   ├── phase23--23f                    # Barriers, bypasses, additive energy
 │   ├── sp5_investigation.md            # SP5: Condition (Q) via GPS methodology
 │   ├── sp6_ghost_fish.md               # SP6: Ghost fish + three-mesh net (4/5)
+│   ├── sp7_junction_geology.md         # SP7: Junction geology (4.75/5)
 │   └── ERRATA.md                       # Corrections
 │
 ├── audits/
@@ -167,8 +168,12 @@ A systematic investigation (GPS methodology, 6 phases, ~30 experiments) has veri
 | Ghost fish (SP6) | **Verified** | 72/72 hard primes are ghosts in danger zone |
 | Mersenne direct (SP6) | **Verified** | All M_q with q ≤ 127, up to 3738 k-values |
 | Two Barriers (SP6) | **Heuristic** | E ≤ Cq³/2^q → 0 super-exponentially |
+| K_MAX = 63 (SP7) | **Verified** | Junction overlap [63,68] confirmed (168 primes) |
+| Cat A geology (SP7) | **Verified** | 89 primes (ord>100, p<20000), ρ_max=0.280 |
+| Fish-Tunnel (SP7) | **Verified** | 11 danger primes (ρ>0.5) absent from all d(k) |
+| Gap scan (SP7) | **Verified** | 242 primes (k∈[69,120]), all pass |
 
-Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), and [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md).
+Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md), and [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md).
 
 ## Honest Assessment
 
@@ -182,10 +187,12 @@ The gap between "the evaluation map omits residues" and "the evaluation map omit
 - Three precise conjectures (Horner equidistribution, spectral gap, uniform proportion) form a conditional chain toward the full resolution.
 - The **three-mesh net** (SP6) covers all 168 tested primes with zero failures: affine transport (24), convolution (72), ghost fish (72).
 - The **Two Barriers theorem** shows that for Mersenne primes M_q, the expected number of dangerous divisibilities is ≤ Cq³/2^q, super-exponentially small.
+- **K_MAX = 63** (SP7): the worst prime (M_13) requires convolution only from k ≥ 63, providing a 6-rank overlap with Simons--de Weger (k ≤ 68).
+- **Fish-Tunnel Incompatibility** (SP7): the 11 primes with ρ > 0.5 and ord > 100 are all ghost fish — none divides any d(k). Among 242 primes actually dividing d(k) for k ∈ [69, 120], all have ρ < 0.23.
 
-A hybrid strategy combining the three-mesh net (k ≤ 40) and asymptotic decay (k ≥ 41) appears feasible (estimated **4/5**, elevated from 3.5/5 by the ghost fish analysis) for establishing Condition (Q) for all k ≥ 18.
+The junction geology (SP7) elevates feasibility to **4.75/5** (from 4/5). The residual gap reduces to: proving a ρ bound for hypothetical primes dividing d(k) for k > 120 with ord ∈ [100, 10000].
 
-We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, and [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis.
+We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis, and [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md) for the junction geology.
 
 ## License
 

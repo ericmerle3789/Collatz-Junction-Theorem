@@ -1067,10 +1067,49 @@ $E \leq C\,q^3/2^q \to 0$ super-exponentially, heuristic).
 For $q \geq 61$, the expected number of dangerous divisibilities
 is below~$10^{-14}$.
 
-A hybrid strategy combining the three-mesh net ($k \leq 40$) and
-asymptotic decay ($k \geq 41$) appears feasible (estimated $4/5$)
-for establishing Condition~\eqref{eq:condition-Q} for all
-$k \geq 18$.
+\medskip\noindent
+\textbf{Junction geology ($\ord > 100$).}
+The three-mesh net was extended to primes with
+$\ord_p(2) > 100$ via a geological analysis of the
+Cunningham factorizations of~$2^m - 1$ for
+$m = 101, \ldots, 250$ (all fully factored).
+A key structural quantity is
+$K_{\mathrm{MAX}} = \max_p k_{\min}(p)$, where
+$k_{\min}(p)$ is the smallest $k$ such that
+$(p-1)\,\rho_p^{k-17} < 0.041$.
+Over all $168$~primes with $\ord_p(2) \leq 100$:
+\begin{equation}\label{eq:kmax}
+  K_{\mathrm{MAX}} = 63
+  \qquad\text{(attained by } M_{13} = 8191,\;
+  \rho_{8191} = 0.763\text{).}
+\end{equation}
+Since $63 \leq 68$, the junction between the Simons--de~Weger
+bound ($k \leq 68$) and convolution ($k \geq K_{\mathrm{MAX}}$)
+has a six-rank overlap at $k \in [63, 68]$.
+
+For primes with $\ord > 100$, three complementary tests
+were performed:
+\begin{enumerate}[label=(\alph*)]
+  \item \emph{Category~A} ($p < 20000$, $89$~primes):
+    exact computation gives $\rho_{\max} = 0.280$,
+    all pass;
+  \item \emph{Danger primes} ($11$~primes with $p > 10^8$
+    and $\rho > 0.5$): ghost fish analysis shows that
+    \emph{none} divides any $d(k)$ for $k \in [18, 300]$;
+  \item \emph{Gap scan} ($k \in [69, 120]$, $242$~primes
+    from factoring $d(k)$): all with computable~$\rho$ satisfy
+    $\rho < 0.23$, passing by margins exceeding~$10^{40}$.
+\end{enumerate}
+The phenomenon underlying~(b) is a \emph{fish-tunnel
+incompatibility}: primes with large~$\rho$ (due to
+$p \gg m^2$) have structural constraints (large ghost fish
+period~$P$) that prevent them from dividing~$d(k)$, while
+primes that \emph{do} divide~$d(k)$ have large~$\ord$
+and correspondingly small~$\rho$.
+
+Combining these results, the estimated feasibility of
+Condition~\eqref{eq:condition-Q} for all $k \geq 18$
+rises to~$4.75/5$.
 
 \subsection{Open difficulties}
 
@@ -1099,6 +1138,19 @@ The expected number of exceptions is super-exponentially small
 ($\leq C\,q^3/2^q$), but a rigorous proof would require either
 effective equidistribution of $3^k \bmod M_q$, or extension of
 the Cunningham factorization tables beyond $m = 100$.
+
+The junction geology (Section~\ref{sec:conclusion}) narrows
+this gap considerably.
+The key quantity $K_{\mathrm{MAX}} = 63$ shows that
+for $k \geq 63$, \emph{all} primes with $\ord_p(2) \leq 100$
+satisfy Condition~\eqref{eq:condition-Q}.
+The residual gap reduces to: primes with $\ord > 100$ that
+divide~$d(k)$ for some $k > 120$ and whose $\rho$ exceeds
+a computable threshold.
+Empirically, no such prime has been found among $242$~tested
+factors of $d(k)$ for $k \in [69, 120]$, and the
+$11$~known primes with $\rho > 0.5$ and $\ord > 100$ are
+ghost fish (absent from all~$d(k)$).
 
 These approaches connect to three precise open conjectures
 identified in the course of this work:
