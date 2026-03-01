@@ -74,10 +74,15 @@ Collatz-Junction-Theorem/
 │   │   ├── verify_condition_q.py        # Condition (Q) for k=18..28
 │   │   ├── stress_test.py              # 402 stress tests
 │   │   └── numerical_audit.py          # 152 audit checks
-│   └── exploration/                    # Research exploration (17 scripts)
+│   └── exploration/                    # Research exploration (22 scripts)
 │       ├── phase20_*.py                # CRT, mixing, type classification
 │       ├── phase21_*.py                # Mellin spectral, second moment, etc.
-│       └── phase22_*.py                # CRT amplification, spectral bounds
+│       ├── phase22_*.py                # CRT amplification, spectral bounds
+│       ├── sp6_ghost_fish.py           # Ghost fish analysis (17 hard primes)
+│       ├── sp6_ghost_fish_large.py     # Ghost fish for large primes (p > 10^6)
+│       ├── sp6_tunnel_factors.py       # Tunnel: ord_p(2) of d(k) factors
+│       ├── sp6_three_mesh_net.py       # Three-mesh net (168 primes, 0 failures)
+│       └── sp6_mersenne_direct.py      # Mersenne direct verification (q ≤ 127)
 │
 ├── research_log/                       # Complete research journal
 │   ├── phase10c--10m                   # Foundations (red team to crystal clash)
@@ -90,6 +95,7 @@ Collatz-Junction-Theorem/
 │   ├── phase22                         # Lacunary bounds + CRT
 │   ├── phase23--23f                    # Barriers, bypasses, additive energy
 │   ├── sp5_investigation.md            # SP5: Condition (Q) via GPS methodology
+│   ├── sp6_ghost_fish.md               # SP6: Ghost fish + three-mesh net (4/5)
 │   └── ERRATA.md                       # Corrections
 │
 ├── audits/
@@ -127,6 +133,10 @@ python3 scripts/core/verify_condition_q.py
 
 # Exploration scripts (Phases 20--22)
 python3 scripts/exploration/phase22_exploration.py
+
+# SP6: Three-mesh net verification
+python3 scripts/exploration/sp6_three_mesh_net.py
+python3 scripts/exploration/sp6_mersenne_direct.py
 ```
 
 ### Lean 4 formalization
@@ -144,7 +154,7 @@ python3 scripts/exploration/phase22_exploration.py
 
 ## Numerical Evidence for Condition (Q)
 
-A systematic investigation (GPS methodology, 6 deliverables) has verified the key quantitative condition:
+A systematic investigation (GPS methodology, 6 phases, ~30 experiments) has verified the key quantitative condition:
 
 | Component | Status | Details |
 |-----------|--------|---------|
@@ -153,9 +163,12 @@ A systematic investigation (GPS methodology, 6 deliverables) has verified the ke
 | Multi-scale decomposition | **Semi-rigorous** | 3 regimes (trivial / Cauchy-Schwarz / residual) |
 | Cauchy-Schwarz covers p > 10 | **Verified** | 95% of cases, margin 7x-2800x |
 | Decay rate for p = 7 | **Observed** | $\sim k^{-6.3}$, verified k=22..38 |
-| **Residual lock** | Open | Prove $\|p \cdot N_0(7) - C\|/C \to 0$ at rate $\geq k^{-1}$ |
+| Three-mesh net (SP6) | **Verified** | 168 primes (m ≤ 100), 0 failures |
+| Ghost fish (SP6) | **Verified** | 72/72 hard primes are ghosts in danger zone |
+| Mersenne direct (SP6) | **Verified** | All M_q with q ≤ 127, up to 3738 k-values |
+| Two Barriers (SP6) | **Heuristic** | E ≤ Cq³/2^q → 0 super-exponentially |
 
-Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py) and [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md).
+Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), and [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md).
 
 ## Honest Assessment
 
@@ -167,10 +180,12 @@ The gap between "the evaluation map omits residues" and "the evaluation map omit
 - The **Square Root Barrier** shows no purely spectral method suffices when $p \sim C^{1+o(1)}$.
 - **Theorem Q** reduces the complete conjecture to the single condition $|\sum T(t)| \leq 0.041\,C$.
 - Three precise conjectures (Horner equidistribution, spectral gap, uniform proportion) form a conditional chain toward the full resolution.
+- The **three-mesh net** (SP6) covers all 168 tested primes with zero failures: affine transport (24), convolution (72), ghost fish (72).
+- The **Two Barriers theorem** shows that for Mersenne primes M_q, the expected number of dangerous divisibilities is ≤ Cq³/2^q, super-exponentially small.
 
-A hybrid strategy combining direct DP verification (k <= 40) and asymptotic decay (k >= 41) appears feasible (estimated 3.5/5) for establishing Condition (Q) for all k >= 18.
+A hybrid strategy combining the three-mesh net (k ≤ 40) and asymptotic decay (k ≥ 41) appears feasible (estimated **4/5**, elevated from 3.5/5 by the ghost fish analysis) for establishing Condition (Q) for all k ≥ 18.
 
-We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, and [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the full SP5 investigation log.
+We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, and [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis.
 
 ## License
 

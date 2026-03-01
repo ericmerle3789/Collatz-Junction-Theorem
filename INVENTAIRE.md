@@ -3,7 +3,7 @@
 **Projet:** Entropic Barriers and Nonsurjectivity in the 3x+1 Problem
 **Auteur:** Eric Merle
 **Date:** Mars 2026
-**Fichiers:** 87 (hors .git)
+**Fichiers:** 121 (hors .git)
 
 ---
 
@@ -26,7 +26,7 @@
 | `preprint.md` | Version Markdown de reference |
 | `Merle_2026_*.pdf` | PDF compile |
 
-**Contenu du preprint (v2, mars 2026):**
+**Contenu du preprint (v3, mars 2026):**
 - Steiner's equation + proprietes arithmetiques de corrSum (R6/R7)
 - Deficit entropique + nonsurjectivite (Theorem 1)
 - Junction Theorem (Theorem 2)
@@ -36,6 +36,8 @@
 - Square Root Barrier (R5)
 - Verification numerique N0(d)=0 pour k=3..17 (R4)
 - Theorem Q conditionnel (C1)
+- Filet a trois mailles (SP6) : 168 primes, 0 echecs
+- Ghost Fish + Deux Barrieres (SP6) : Mersenne q <= 127
 - 3 conjectures ouvertes + chaine conditionnelle
 - Formalisation Lean 4 (73+58 theoremes)
 
@@ -95,7 +97,7 @@ Scripts publies, verifies, associes au preprint.
 | `stress_test.py` | — | 402 tests de robustesse |
 | `numerical_audit.py` | — | 152 verifications numeriques |
 
-### 4.2. Exploration (`scripts/exploration/`, 17 scripts, Phases 20-22)
+### 4.2. Exploration (`scripts/exploration/`, 22 scripts, Phases 20-22 + SP6)
 
 Scripts de recherche exploratoire.
 
@@ -118,8 +120,13 @@ Scripts de recherche exploratoire.
 | `phase22_gap_verification.py` | 22 | Verification gap |
 | `phase22_largest_prime_mechanism.py` | 22 | Mecanisme plus grand premier |
 | `phase22_spectral_bound.py` | 22 | Borne spectrale |
+| `sp6_ghost_fish.py` | SP6 | Ghost Fish (17 primes dures) |
+| `sp6_ghost_fish_large.py` | SP6 | Ghost Fish LARGE (p > 10^6) |
+| `sp6_tunnel_factors.py` | SP6 | Tunnel : ord_p(2) des facteurs de d(k) |
+| `sp6_three_mesh_net.py` | SP6 | Filet a trois mailles (168 primes, 0 echecs) |
+| `sp6_mersenne_direct.py` | SP6 | Verification directe Mersenne (q <= 127) |
 
-## 5. Research Log (`research_log/`, 32 fichiers)
+## 5. Research Log (`research_log/`, 38 fichiers)
 
 ### Fondations (Phases 10-13)
 
@@ -177,6 +184,7 @@ Scripts de recherche exploratoire.
 |---------|---------|
 | `ERRATA.md` | Corrections aux valeurs du research log |
 | `sp5_investigation.md` | Investigation SP5 : Condition (Q) via GPS |
+| `sp6_ghost_fish.md` | Investigation SP6 : Ghost Fish + filet 3 mailles (4/5) |
 
 ## 6. Audits (`audits/`, 4 fichiers)
 

@@ -950,13 +950,17 @@ Proposition~\ref{prop:barrier}) are not yet formalized.
 
 \medskip\noindent
 \textbf{Computational verification.}
-Nine Python~3 scripts provide independent numerical
-verification using exact arbitrary-precision arithmetic:
+Ten Python~3 scripts in \texttt{scripts/core/} provide independent
+numerical verification using exact arbitrary-precision arithmetic:
 nonsurjectivity for $k \in [18, 500]$,
 $N_0(d) = 0$ for $k \in [3, 17]$ (exhaustive) and
 $k \in [18, 41]$ (Monte Carlo, $10^6$ samples),
 $402$~stress tests, and $152$~numerical audit checks.
-All scripts are pure Python with no external dependencies.
+Five additional scripts in \texttt{scripts/exploration/} implement
+the three-mesh net verification: ghost fish analysis, tunnel
+factorization, exhaustive net coverage for all
+$168$~primes dividing $2^m - 1$ ($m \leq 100$), and direct
+Mersenne verification for $q \leq 127$.
 
 % ============================================================
 \section{Conclusion and perspectives}\label{sec:conclusion}
@@ -1025,16 +1029,46 @@ exponential sums does not exceed $4.1\%$ of~$C$, rather
 than pointwise decay of each~$|T(t)|$.
 Numerical evidence confirms it for all tested
 values ($k \leq 41$, all $p \mid d$).
-A systematic investigation (GPS methodology, 6~deliverables)
-verifies Condition~\eqref{eq:condition-Q} for all $k \in [18, 28]$
+A systematic investigation (GPS methodology, 6~phases,
+${\sim}30$~computational experiments) verifies
+Condition~\eqref{eq:condition-Q} for all $k \in [18, 28]$
 and all primes $p \mid d(k)$ with $p \leq 50000$ (25~cases,
 0~failures). The worst case is $k = 22$, $p = 7$, with ratio
 $|p \cdot N_0(p) - C|/C = 0.013$ (margin $3.2\times$). The
 distribution $N_r(p)$ is approximately constant on orbits of
 multiplication by~$2$ in~$\Fp$ (max deviation $2.2\%$), and a
 decay rate $\sim k^{-6.3}$ is observed for $p = 7$ ($k = 22$
-to~$38$). A hybrid strategy combining direct DP verification
-($k \leq 40$) and asymptotic decay ($k \geq 41$) appears feasible
+to~$38$).
+
+\medskip\noindent
+\textbf{Three-mesh net.}
+A three-level proof structure covers all tested prime factors of
+$2^m - 1$ for $m = 1, \ldots, 100$ ($168$~primes, $0$~failures):
+\begin{enumerate}[label=(\roman*)]
+  \item \emph{Affine transport} (Section~\ref{sec:analytical}):
+    covers all $p \leq 97$ unconditionally, via the commutator
+    identity $[T_2, T_1] = \tau_{-1}$ and diameter
+    $D(p) \leq 1.3 \log_2 p$;
+  \item \emph{Convolution contraction}: for primes where
+    $(p-1)\,\rho_p^{17} < 0.041$, the bound at $k = 18$ suffices
+    ($72$~primes);
+  \item \emph{Ghost fish}: for the remaining $72$~primes (including
+    Mersenne primes up to $M_{89}$), the convolution bound
+    fails at $k = 18$ but no divisibility $p \mid d(k)$ occurs
+    in the danger zone $[18, k_{\min}(p))$.
+\end{enumerate}
+Direct verification for all known Mersenne primes $M_q$ with
+$q \leq 127$ confirms the ghost property (up to $3738$ values
+of~$k$ checked for $M_{127}$). Two independent barriers protect
+larger Mersenne primes: a \emph{size barrier}
+($k \geq q \log_3 2 \approx 0.63\,q$, rigorous) and a
+\emph{density barrier} (expected hits
+$E \leq C\,q^3/2^q \to 0$ super-exponentially, heuristic).
+For $q \geq 61$, the expected number of dangerous divisibilities
+is below~$10^{-14}$.
+
+A hybrid strategy combining the three-mesh net ($k \leq 40$) and
+asymptotic decay ($k \geq 41$) appears feasible (estimated $4/5$)
 for establishing Condition~\eqref{eq:condition-Q} for all
 $k \geq 18$.
 
@@ -1056,6 +1090,15 @@ Three identified approaches to circumvent this barrier are:
     Lagarias~\cite{AppLegateLagarias2006} for related
     structural constraints).
 \end{enumerate}
+A complementary difficulty, identified by the three-mesh net
+analysis, is the \emph{ghost fish gap}: for an undiscovered
+Mersenne prime $M_q$ with $q > 127$, proving that
+$3^k \notin \{2^0, \ldots, 2^{q-1}\} \pmod{M_q}$
+for all $k$ in the danger zone $[k_{\mathrm{size}}, k_{\min})$.
+The expected number of exceptions is super-exponentially small
+($\leq C\,q^3/2^q$), but a rigorous proof would require either
+effective equidistribution of $3^k \bmod M_q$, or extension of
+the Cunningham factorization tables beyond $m = 100$.
 
 These approaches connect to three precise open conjectures
 identified in the course of this work:

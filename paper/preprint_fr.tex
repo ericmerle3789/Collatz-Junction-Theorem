@@ -574,17 +574,47 @@ $\F_p^*$. Le pont Mellin-Fourier (Théorème~\ref{thm:mellin-bridge})
 relie les visions additive et multiplicative par une identité exacte.
 
 \textbf{Vérification numérique de la Condition~(Q).}
-Une investigation systématique (méthodologie GPS, 6~livrables) a
-vérifié la condition quantitative $|\sum_{t=1}^{p-1} T(t)|
-\leq 0{,}041 \cdot C$ pour tout $k \in [18, 28]$ et tous les
-premiers $p \mid d(k)$ testés (25~cas, 0~échecs). Le pire cas est
-$k = 22$, $p = 7$, avec un ratio de~$0{,}013$ (marge $3{,}2\times$).
-La distribution $N_r(p)$ est approximativement constante sur les
-orbites de multiplication par~$2$ dans~$\F_p$ (déviation maximale
-$2{,}2\%$), et un taux de décroissance $\sim k^{-6{,}3}$ est observé
-pour $p = 7$ ($k = 22$ à~$38$). Une stratégie hybride combinant
-vérification directe par DP ($k \leq 40$) et décroissance asymptotique
-($k \geq 41$) apparaît réalisable pour établir la Condition~(Q) pour
+Une investigation systématique (méthodologie GPS, 6~phases,
+${\sim}30$~expériences computationnelles) a vérifié la condition
+quantitative $|\sum_{t=1}^{p-1} T(t)| \leq 0{,}041 \cdot C$ pour
+tout $k \in [18, 28]$ et tous les premiers $p \mid d(k)$ testés
+(25~cas, 0~échecs). Le pire cas est $k = 22$, $p = 7$, avec un
+ratio de~$0{,}013$ (marge $3{,}2\times$). La distribution $N_r(p)$
+est approximativement constante sur les orbites de multiplication
+par~$2$ dans~$\F_p$ (déviation maximale $2{,}2\%$), et un taux de
+décroissance $\sim k^{-6{,}3}$ est observé pour $p = 7$ ($k = 22$
+à~$38$).
+
+\medskip\noindent
+\textbf{Filet à trois mailles.}
+Une structure de preuve à trois niveaux couvre tous les facteurs
+premiers de $2^m - 1$ pour $m = 1, \ldots, 100$ ($168$~premiers,
+$0$~échecs) :
+\begin{enumerate}[label=(\roman*)]
+  \item \emph{Transport affine} : couvre tous les $p \leq 97$
+    inconditionnellement, via l'identité de commutateur
+    $[T_2, T_1] = \tau_{-1}$ ;
+  \item \emph{Contraction par convolution} : pour les premiers où
+    $(p-1)\,\rho_p^{17} < 0{,}041$, la borne à $k = 18$ suffit
+    ($72$~premiers) ;
+  \item \emph{Poissons fantômes} : pour les $72$~premiers restants
+    (y compris les Mersenne jusqu'à $M_{89}$), la convolution
+    échoue à $k = 18$ mais aucune divisibilité $p \mid d(k)$
+    n'apparaît dans la zone danger $[18, k_{\min}(p))$.
+\end{enumerate}
+La vérification directe pour tous les Mersenne $M_q$ connus avec
+$q \leq 127$ confirme la propriété fantôme (jusqu'à $3738$ valeurs
+de~$k$ vérifiées pour $M_{127}$). Deux barrières indépendantes
+protègent les plus grands Mersenne : une \emph{barrière de taille}
+($k \geq q \log_3 2 \approx 0{,}63\,q$, rigoureuse) et une
+\emph{barrière de densité} (nombre attendu d'occurrences
+$E \leq C\,q^3/2^q \to 0$ super-exponentiellement, heuristique).
+Pour $q \geq 61$, le nombre attendu de divisibilités dangereuses
+est inférieur à~$10^{-14}$.
+
+Une stratégie hybride combinant le filet à trois mailles
+($k \leq 40$) et la décroissance asymptotique ($k \geq 41$) apparaît
+réalisable (estimation $4/5$) pour établir la Condition~(Q) pour
 tout $k \geq 18$.
 
 \emph{Limitation.} Le présent travail ne traite que des cycles
