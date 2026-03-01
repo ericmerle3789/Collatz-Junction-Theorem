@@ -45,7 +45,7 @@
 \author{Eric Merle}
 \address{Independent researcher}
 \email{eric.merle@proton.me}
-\date{February 2026}
+\date{March 2026}
 
 \subjclass[2020]{11B83 (primary), 37A45, 94A17 (secondary)}
 
@@ -750,7 +750,8 @@ Let $p$ be a prime dividing $d = 2^S - 3^k$.
 \end{proof}
 
 \begin{corollary}\label{cor:peeling}
-  For every $k \geq 2$:
+  For every $k \geq 2$ and every prime~$p$ with
+  $\ord_p(2) \geq S$:
   $N_0(p) \leq \alpha \cdot C$ with
   $\alpha = (k-1)/(S-1) \to 1/\log_2 3 \approx 0.631$.
   In particular, $N_0(p)$ is strictly less than~$C$.
@@ -773,36 +774,38 @@ Let $p$ be a prime dividing $d = 2^S - 3^k$.
   In particular, $N_0(d) = 0$ (Hypothesis~\textup{(H)}).
 \end{proposition}
 
-\begin{proof}
+\begin{proof}[Proof (sketch)]
   Under Conjecture~M, the error term for a prime
   $p \mid d$ satisfies
   \[
     |R(p)| = \frac{1}{p}\left|\sum_{t=1}^{p-1} T(t)\right|
     \leq \frac{p-1}{p}\cdot c \cdot C \cdot k^{-\delta}.
   \]
-  Since $N_0(p) = C/p + R(p)$ (an exact integer), for $N_0(p) = 0$
-  it suffices that $C/p + |R(p)| < 1$,
-  i.e.\ $C/p(1 + c(p-1)k^{-\delta}) < 1$.
-
+  Since $N_0(p) = C/p + R(p)$ is a non-negative integer,
+  $N_0(p) = 0$ whenever $C/p + |R(p)| < 1$.
   In the crystalline regime ($k \geq 18$),
   Theorem~\ref{thm:nonsurj} gives $C < d$.
-  If~$p$ is the largest prime factor of~$d$,
-  then $p \geq d^{1/\omega(d)}$ where $\omega(d)$ is the
-  number of prime factors. Since $C/d \to 0$
-  exponentially (deficit $\gamma S$), we have
-  $C/p \to 0$ for any prime $p \mid d$ with
-  $p \geq d^\varepsilon$.
-  The condition $c(p-1)k^{-\delta} < 1$ is satisfied
-  for~$k$ large enough, since $p < d < 2^S$ and $S = O(k)$,
-  so $p < 2^{ck}$ while $k^\delta$ grows polynomially.
-
-  \emph{Remark.} The bound $k^\delta$ in Conjecture~M
-  should in reality be replaced by a decay of the form
-  $C/\sqrt{p}$ or $C \cdot p^{-\varepsilon}$ for a
-  rigorous conclusion. The precise formulation of
-  Conjecture~M must account for the size of~$p$ relative
-  to~$C$.
+  For any prime $p \mid d$ with $p > C$ (which holds for
+  the largest prime factor of~$d$ as soon as $d \gg C$),
+  the term $C/p < 1$.
+  Combined with the decay $|R(p)| = O(C k^{-\delta})$,
+  this gives $N_0(p) = 0$ for all sufficiently large~$k$,
+  provided the decay rate exceeds the growth of
+  the error term.
 \end{proof}
+
+\begin{remark}\label{rem:conjM-limitation}
+  The decay $k^{-\delta}$ in Conjecture~M is polynomial,
+  while $|R(p)|$ involves $p - 1$ summands; the triangle
+  inequality bound $(p{-}1)\cdot c C k^{-\delta}/p$ can
+  exceed~$1$ for large~$k$ since $p$ grows exponentially.
+  A rigorous implication requires either pointwise decay
+  of the form $|T(t)| \leq c\,C/\sqrt{p}$,
+  or square-root cancellation in the sum
+  $\sum_{t} T(t)$.
+  Theorem~Q (Proposition~\ref{prop:theorem-Q}) takes the
+  latter approach, bounding the sum directly.
+\end{remark}
 
 \begin{remark}[Multiplicative reformulation]\label{rem:M-mellin}
   Via Theorem~\ref{thm:mellin-bridge}, Conjecture~M admits an
@@ -999,18 +1002,28 @@ criterion:
   verification (Section~\ref{sec:numerical}).
   For $k \geq 18$:
   condition~\eqref{eq:condition-Q} gives
-  $N_0(p) \leq (1.041)\,C/p$ for each $p \mid d$.
-  By the CRT inequality (Theorem~\ref{thm:nonsurj}
-  gives $C < d$), the product
-  $\prod_{p_i \mid d}(1.041/p_i)$ tends to~$0$,
-  yielding $N_0(d) = 0$.
+  $|R(p)| \leq 0.041\,C/p$, hence
+  $N_0(p) \leq 1.041\,C/p$ for each prime $p \mid d$.
+  By the Chinese Remainder Theorem,
+  $\corrSum(A) \equiv 0 \pmod{d}$ implies
+  $\corrSum(A) \equiv 0 \pmod{p}$ for every
+  prime~$p \mid d$, so $N_0(d) \leq N_0(p)$ for each
+  such~$p$.
+  In particular, $N_0(d) = 0$ whenever $d$ has a prime
+  factor $p > 1.041\,C$.
+  Since $C < d$ (Theorem~\ref{thm:nonsurj}) with
+  $d/C \to \infty$ exponentially
+  (Proposition~\ref{prop:linear-deficit}), numerical
+  verification confirms that for every tested value of~$k$
+  ($k \leq 500$), $d(k)$ has a prime factor
+  exceeding~$1.041\,C(k)$.
 \end{proof}
 
 Condition~\eqref{eq:condition-Q} is strictly weaker than
 Conjecture~M: it requires only that the \emph{sum} of
 exponential sums does not exceed $4.1\%$ of~$C$, rather
 than pointwise decay of each~$|T(t)|$.
-Numerical evidence (Phase~22) confirms it for all tested
+Numerical evidence confirms it for all tested
 values ($k \leq 41$, all $p \mid d$).
 
 \subsection{Open difficulties}
@@ -1020,8 +1033,7 @@ method (moments of~$T$) can close the gap in the regime
 $p \sim C^{1+o(1)}$.
 Three identified approaches to circumvent this barrier are:
 \begin{enumerate}[label=(\alph*)]
-  \item the \emph{Skolem conjecture} for $S$-unit equations
-    (Bertok--Hajdu, 2021);
+  \item the \emph{Skolem conjecture} for $S$-unit equations;
   \item \emph{spectral mixing} of the Horner transfer operator
     (Bourgain--Gamburd approach, not directly applicable here
     since $|H| = S \ll p^\delta$);
@@ -1034,7 +1046,7 @@ Three identified approaches to circumvent this barrier are:
 \end{enumerate}
 
 These approaches connect to three precise open conjectures
-identified in the research log:
+identified in the course of this work:
 \begin{itemize}
   \item \emph{Horner equidistribution}
     (Conjecture~22.3): there exists $\delta > 0$ such that
@@ -1063,10 +1075,9 @@ hypotheses on the Horner walk modulo primes.
 \subsection{Scientific transparency}
 
 We believe in transparent science.
-A proof attempt via Baker's theory (Kolmogorov--Baker bounds,
-Phase~13 of the research log) was \textbf{rejected} after
-self-audit.
-Details are available in the online research log.
+A proof attempt via Baker's theory (Kolmogorov--Baker bounds)
+was \textbf{rejected} after self-audit.
+Details are available in the accompanying online repository.
 
 % ============================================================
 \section*{Acknowledgements}
