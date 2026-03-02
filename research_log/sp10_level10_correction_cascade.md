@@ -139,7 +139,32 @@ La cascade de Zénon (8 filtres) n'apporte pas de réduction supplémentaire.
 
 ---
 
-## 5. Références additionnelles (L10)
+## 5. Résultats CI Phase I (k=69..275)
+
+**CI run** : 22592053696 (cancelled après 6h timeout GitHub Actions)
+
+| k_max | PASS | FAIL | timeout | total | %verified |
+|-------|------|------|---------|-------|-----------|
+| 75    |    7 |    0 |       0 |     7 |    100.0% |
+| 100   |   32 |    0 |       0 |    32 |    100.0% |
+| 125   |   56 |    0 |       1 |    57 |     98.2% |
+| 150   |   78 |    0 |       4 |    82 |     95.1% |
+| 175   |   99 |    0 |       8 |   107 |     92.5% |
+| 200   |  116 |    0 |      16 |   132 |     87.9% |
+| 225   |  124 |    0 |      33 |   157 |     79.0% |
+| 250   |  133 |    0 |      49 |   182 |     73.1% |
+| 275   |  141 |    0 |      66 |   207 |     68.1% |
+
+**Résultat** : 141 PASS, **0 FAIL**, 66 timeouts.
+Les timeouts ne sont PAS des échecs : ils signifient que p est trop grand pour
+calculer ρ(p) naïvement en 120s. Le ratio timeout croît car d(k) ∝ 2^{kθ}.
+
+**Conclusion** : Condition (Q) est satisfaite pour TOUS les primes vérifiables
+dans k=69..275. Aucun contre-exemple trouvé.
+
+---
+
+## 7. Références additionnelles (L10)
 
 - Konyagin (2003). Estimates for character sums. Acta Arith. 110.2, 153–166.
 - Bourgain, Katz, Tao (2004). A sum-product estimate in finite fields. GAFA 14, 27–57.
@@ -149,7 +174,7 @@ La cascade de Zénon (8 filtres) n'apporte pas de réduction supplémentaire.
 
 ---
 
-## 6. Scripts créés (L10)
+## 8. Scripts créés (L10)
 
 - `sp10_level10_filter_cascade.py` : Cascade de 8 filtres (F3–F10), analyse complète
 - `sp10_level10_bgk_effective.py` : Investigation BGK, borne Konyagin, impact numérique
@@ -157,7 +182,7 @@ La cascade de Zénon (8 filtres) n'apporte pas de réduction supplémentaire.
 
 ---
 
-## 7. Anti-hallucination log
+## 9. Anti-hallucination log
 
 | # | Erreur détectée | Source | Correction |
 |---|----------------|--------|------------|

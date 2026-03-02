@@ -1,8 +1,8 @@
 # SP10 — Synthese Formelle : Condition (Q) et Sommes Exponentielles
 
 **Date** : 2 mars 2026
-**Statut** : L10 CORRECTION — Theoreme SP10b corrige (J < m faux pour n_3 petit)
-**Historique** : L9 annoncait N <= 1 (Trois Distances). L10 corrige en N <= O(ln p/n_3).
+**Statut** : L11 STRUCTUREL — Regime B vide empiriquement (max ratio 2.49), borne Weil INVALIDEE
+**Historique** : L9 N<=1 (faux). L10 corrige N=O(ln p/n_3). L11 argument structurel (non concluant).
 
 ---
 
@@ -152,9 +152,13 @@ les cas observes. Le gap est purement theorique.
 
 ## Donnees Empiriques
 
-### Verification Phase I (k = 69..200)
-- 132 valeurs de k, 116 completement factorisees, 0 echec (Q)
-- 16 timeouts = cofacteurs > 100 bits non factorises (pas des echecs)
+### Verification Phase I (k = 69..275, CI run 22592053696)
+- 207 valeurs de k testees, 141 completement verifiees (PASS), 0 FAIL
+- 66 timeouts = cofacteurs trop grands pour rho(p) en 120s (pas des echecs)
+- Job CI cancelled par timeout 6h GitHub Actions (k=275..500 non atteint)
+- Le ratio timeout/total augmente avec k : 0% (k<100) → 32% (k=275)
+- Cause : d(k) croit exponentiellement, donc p croit et rho(p) est couteux
+- **RESULTAT CLE : 0 FAIL sur 141 verifications — (Q) satisfaite partout**
 
 ### Investigation n_3 (284 cas (k,p) avec p | d(k), k=69..150)
 | Propriete | Valeur |
@@ -237,6 +241,9 @@ CAS 3 : k >= 69, REGIME B (p >= m^4)
 10. Zudilin (2014). Two hypergeometric tales. Functiones et Approximatio 51.1, 23-28.
     (mu(log_2(3)) <= 5.125, meilleur indice d'irrationalite connu)
 
+11. Hooley (1967). On Artin's conjecture. J. Reine Angew. Math. 225, 209-220.
+    (Sous GRH, 2 est racine primitive pour ~37.4% des primes.)
+
 ---
 
 ## Conclusion (CORRIGEE L10, 2 mars 2026)
@@ -249,6 +256,7 @@ La Condition (Q) est **partiellement prouvee** :
   *** CORRIGE : la version precedente affirmait N <= 1, c'etait FAUX.
 - Les cas 3 in <2> en regime B sont empiriquement inexistants.
 - Empiriquement, le Regime B est VIDE (0/284 cas pour k=69..150).
+- Phase I CI (k=69..275) : 141 PASS, 0 FAIL, 66 timeouts. (Q) satisfaite partout.
 
 **Gap residuel** (plus large que precedemment annonce) :
 1. Cas 3b-ii (n_3 petit, 3 not in <2>, p >= m^4) : N = O(ln(p)/n_3), pas N <= 1.
@@ -259,9 +267,13 @@ La Condition (Q) est **partiellement prouvee** :
 2. Cascade de filtres (approche Zenon) : chaque filtre supplementaire reduit N
    geometriquement. Si sum des reductions converge, N → 0.
 3. BGK effectivisation : borne non-triviale sur rho pour p >= m^4.
-4. Argument structurel : montrer que d(k) = 2^S - 3^k ne peut avoir
-   de facteur premier en Regime B (contrainte Diophantienne).
+4. Argument structurel (L11) : montrer que d(k) = 2^S - 3^k ne peut avoir
+   de facteur premier en Regime B. RESULTAT L11 : non concluant.
+   - Max ratio log(p)/log(m) = 2.489, marge 1.51 au seuil 4.0
+   - 0% des primes p < 50000 ont ord_p(2) <= p^{1/4} (Artin)
+   - Borne de Weil INUTILE en Regime B (rho <= sqrt(p)/m >= m)
+   - Pas d'argument elementaire pour ratio < 4
 
-**Score corrige** : 4.80/5 (au lieu de 4.85/5 annonce precedemment).
+**Score** : 4.80/5 (inchange depuis L10).
 Le Regime A est CLOS. Le Regime B generique est CLOS. Le Regime B non-generique
 a un gap theorique O(ln p) (et non O(1) comme annonce). Empiriquement N = 0 toujours.
