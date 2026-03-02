@@ -97,6 +97,7 @@ Collatz-Junction-Theorem/
 │   ├── sp5_investigation.md            # SP5: Condition (Q) via GPS methodology
 │   ├── sp6_ghost_fish.md               # SP6: Ghost fish + three-mesh net (4/5)
 │   ├── sp7_junction_geology.md         # SP7: Junction geology (4.75/5)
+│   ├── sp8_fish_nature.md              # SP8: Fish nature in d(k) (4.85/5)
 │   └── ERRATA.md                       # Corrections
 │
 ├── audits/
@@ -172,8 +173,12 @@ A systematic investigation (GPS methodology, 6 phases, ~30 experiments) has veri
 | Cat A geology (SP7) | **Verified** | 89 primes (ord>100, p<20000), ρ_max=0.280 |
 | Fish-Tunnel (SP7) | **Verified** | 11 danger primes (ρ>0.5) absent from all d(k) |
 | Gap scan (SP7) | **Verified** | 242 primes (k∈[69,120]), all pass |
+| Fish nature (SP8) | **Verified** | 247 primes (k∈[69,300]), ρ_max=0.225, all pass |
+| Orbit constraint (SP8) | **Proved** | 3^k ∈ ⟨2⟩ mod p for all p \| d(k) |
+| Ratio bound (SP8) | **Verified** | p/m² ≤ 1.13 for all 247 effective primes |
+| Cross-verification (SP8) | **Verified** | Top 5 cases confirmed with mpmath (50 digits) |
 
-Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md), and [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md).
+Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md), [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md), and [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md).
 
 ## Honest Assessment
 
@@ -189,10 +194,11 @@ The gap between "the evaluation map omits residues" and "the evaluation map omit
 - The **Two Barriers theorem** shows that for Mersenne primes M_q, the expected number of dangerous divisibilities is ≤ Cq³/2^q, super-exponentially small.
 - **K_MAX = 63** (SP7): the worst prime (M_13) requires convolution only from k ≥ 63, providing a 6-rank overlap with Simons--de Weger (k ≤ 68).
 - **Fish-Tunnel Incompatibility** (SP7): the 11 primes with ρ > 0.5 and ord > 100 are all ghost fish — none divides any d(k). Among 242 primes actually dividing d(k) for k ∈ [69, 120], all have ρ < 0.23.
+- **Fish Nature** (SP8): extended to k ∈ [69, 300] with 247 primes, ρ_max = 0.225, ALL pass condition (Q). The orbit constraint 3^k ∈ ⟨2⟩ mod p is proved, and p/m² ≤ 1.13 observed universally. Cross-verified with mpmath (50 digits).
 
-The junction geology (SP7) elevates feasibility to **4.75/5** (from 4/5). The residual gap reduces to: proving a ρ bound for hypothetical primes dividing d(k) for k > 120 with ord ∈ [100, 10000].
+The fish nature investigation (SP8) elevates feasibility to **4.85/5** (from 4.75/5). The residual gap reduces to: proving an effective p/m² = O(1) bound for primes dividing d(k), which would yield ρ < 0.5 via Weil. The Bourgain-Glibichuk-Konyagin theorem guarantees this asymptotically but with ineffective constants.
 
-We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis, and [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md) for the junction geology.
+We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis, [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md) for the junction geology, and [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md) for the fish nature in d(k).
 
 ## License
 

@@ -3,7 +3,7 @@
 **Projet:** Entropic Barriers and Nonsurjectivity in the 3x+1 Problem
 **Auteur:** Eric Merle
 **Date:** Mars 2026
-**Fichiers:** 126 (hors .git)
+**Fichiers:** 129 (hors .git)
 
 ---
 
@@ -98,7 +98,7 @@ Scripts publies, verifies, associes au preprint.
 | `stress_test.py` | — | 402 tests de robustesse |
 | `numerical_audit.py` | — | 152 verifications numeriques |
 
-### 4.2. Exploration (`scripts/exploration/`, 26 scripts, Phases 20-22 + SP6-SP7)
+### 4.2. Exploration (`scripts/exploration/`, 28 scripts, Phases 20-22 + SP6-SP8)
 
 Scripts de recherche exploratoire.
 
@@ -130,8 +130,10 @@ Scripts de recherche exploratoire.
 | `sp7_rho_precise.py` | SP7 | Calcul precis de rho (arithmetique modulaire) |
 | `sp7_ghost_fish_danger.py` | SP7 | Fish-Tunnel Incompatibility (11 primes danger) |
 | `sp7_gap_scan.py` | SP7 | Scan exhaustif d(k) pour k in [69,120] |
+| `sp8_fish_nature.py` | SP8 | Nature des poissons dans d(k), k in [69,300] (vectorise) |
+| `sp8_fish_tunnel_analysis.py` | SP8 | Analyse theorique mecanisme Fish-Tunnel |
 
-## 5. Research Log (`research_log/`, 39 fichiers)
+## 5. Research Log (`research_log/`, 40 fichiers)
 
 ### Fondations (Phases 10-13)
 
@@ -191,6 +193,7 @@ Scripts de recherche exploratoire.
 | `sp5_investigation.md` | Investigation SP5 : Condition (Q) via GPS |
 | `sp6_ghost_fish.md` | Investigation SP6 : Ghost Fish + filet 3 mailles (4/5) |
 | `sp7_junction_geology.md` | Investigation SP7 : Geologie de jonction (4.75/5) |
+| `sp8_fish_nature.md` | Investigation SP8 : Nature des poissons (4.85/5) |
 
 ## 6. Audits (`audits/`, 4 fichiers)
 
