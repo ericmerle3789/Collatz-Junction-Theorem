@@ -1154,10 +1154,18 @@ shows $k_{\mathrm{crit}}(p) < n_3$ for $m \geq 4$, so that
 no prime in this case divides any~$d(k)$ in the critical
 range.
 In the general case ($3 \notin \langle 2 \rangle$,
-$n_3 < (p-1)/m$), the Three Distances Theorem
-(S\'os~\cite{Sos1958}) gives
-$N(p, k_{\mathrm{crit}}) \leq 1$.
-Empirically, Regime~B is \emph{empty} among all
+$n_3 < (p-1)/m$), the number of multiples of~$n_3$ in
+$[69, k_{\mathrm{crit}}]$ satisfying the Beatty congruence
+is bounded by
+$N(p, k_{\mathrm{crit}})
+  \leq \lfloor 3 \ln(p) / n_3 \rfloor + 1$,
+which is~$O(\ln p / n_3)$.
+When $n_3 > 3m \ln p$, one obtains $N = 0$ directly
+(since $k_{\mathrm{crit}} < n_3$).
+For small~$n_3$ (e.g.\ $n_3 = 2$), the bound can reach
+$O(\ln m)$, so the Beatty filter alone does not close this
+case.
+Empirically, however, Regime~B is \emph{empty} among all
 $284$~observed divisibility pairs $(k, p)$ for
 $k \in [69, 150]$: every prime factor of~$d(k)$ satisfies
 $p < m^4$.
@@ -1165,10 +1173,10 @@ $p < m^4$.
 Combining the regime analysis with the junction geology,
 the estimated feasibility of
 Condition~\eqref{eq:condition-Q} for all $k \geq 18$
-rises to~$4.85/5$.
-The residual gap reduces to the single case
-$N = 1$ in Regime~B with $n_3 < (p-1)/m$, which is
-empirically absent.
+rises to~$4.80/5$.
+The residual gap is the case $n_3 \leq 3m\ln p$ in
+Regime~B, where $N = O(\ln p / n_3)$;
+this case is empirically absent.
 
 \subsection{Open difficulties}
 
@@ -1214,11 +1222,16 @@ ghost fish (absent from all~$d(k)$).
 The regime analysis further narrows the gap:
 Regime~A is closed by~\cite{DiBenedetto2020} combined with
 finite verification, while Regime~B is addressed by a Beatty
-counting argument (S\'os~\cite{Sos1958}).
-The sole formal lacuna is the case $N = 1$ in Regime~B when
-$n_3 < (p-1)/m$, which would require either a nontrivial
-bound $\rho \leq 1 - c/m^\alpha$ ($\alpha < 1$) or a $p$-adic
-Baker argument to exclude the unique candidate~$k$.
+counting argument.
+In the generic case ($n_3 = (p-1)/m$), one obtains $N = 0$.
+The formal lacuna is the case $n_3 \leq 3m\ln p$ in Regime~B,
+where the equidistribution bound gives
+$N \leq \lfloor 3\ln(p)/n_3 \rfloor + 1 = O(\ln p / n_3)$.
+Closing this gap would require either a nontrivial
+bound $\rho \leq 1 - c/m^\alpha$ ($\alpha < 1$), a cascade
+of Diophantine filters reducing~$N$ to~$0$, or
+an effective version of the Bourgain--Glibichuk--Konyagin
+sum-product estimate for $\langle 2 \rangle \bmod p$.
 
 These approaches connect to three precise open conjectures
 identified in the course of this work:

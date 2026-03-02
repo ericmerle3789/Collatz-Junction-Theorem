@@ -1,7 +1,8 @@
 # SP10 — Synthese Formelle : Condition (Q) et Sommes Exponentielles
 
 **Date** : 2 mars 2026
-**Statut** : L9 COMPLETE — Proposition SP10 formalisable
+**Statut** : L10 CORRECTION — Theoreme SP10b corrige (J < m faux pour n_3 petit)
+**Historique** : L9 annoncait N <= 1 (Trois Distances). L10 corrige en N <= O(ln p/n_3).
 
 ---
 
@@ -91,32 +92,61 @@ Or 3m*ln(p) <= 3m*m*ln(2) = 3m^2*ln(2) < m^3 - 1 pour m >= 4.
 Donc k_crit < n_3, et tout k in [69, k_crit] satisfait k < n_3, donc k n'est pas
 un multiple de n_3. Par Lemme 1, p ne divise pas d(k). QED.
 
-### Theoreme SP10b (Regime B, cas general — N <= 1)
+### Theoreme SP10b (Regime B, cas general — borne corrigee)
 
-**Enonce** : Soit p premier avec m = ord_p(2) >= 4, p >= m^4, et 3 not in <2> mod p.
-Alors #{k in [69, k_crit(p)] : p | d(k)} <= 1.
+**ERRATA (L10, 2 mars 2026)** : La version precedente affirmait "J < m est prouvee"
+pour tout n_3. C'est INCORRECT. Pour n_3 petit (ex: n_3 = 2, m = 5), on a
+J = 3m*ln(p)/n_3 ~ 48 >> 5 = m. Le contre-exemple montre que l'argument des Trois
+Distances ne s'applique pas dans ce regime. La correction distingue deux sous-cas.
+
+#### Sous-cas SP10b-i (n_3 > 3*ln(p)) : N = 0
+
+**Enonce** : Soit p premier avec m = ord_p(2) >= 4, p >= m^4, et n_3 > 3*ln(p).
+Alors N(p, k_crit) = 0 (aucune divisibilite possible).
+
+**Preuve** : Par Lemme 2, k_crit <= 3m*ln(p). Le plus petit multiple de n_3
+dans [1, k_crit] est n_3 > 3*ln(p). Or k_crit/n_3 <= 3m*ln(p)/(3*ln(p)) = m.
+Mais le premier multiple n_3 > 3*ln(p) > k_crit/(m) est deja potentiellement
+dans la zone. Plus precisement : le nombre de multiples de n_3 dans [69, k_crit]
+est J = floor(k_crit/n_3) <= floor(3m*ln(p)/n_3) < m.
+Or J = 0 si n_3 > k_crit, ce qui arrive quand n_3 > 3m*ln(p). Pour
+n_3 > 3*ln(p) et p >= m^4, on a J < m mais on ne peut conclure J = 0 en general.
+
+CORRECTION : Ce sous-cas necessite n_3 > 3m*ln(p) pour garantir J = 0, ce qui
+est plus restrictif. On pose le seuil n_3^* = 3m*ln(p).
+
+Si n_3 > n_3^* = 3m*ln(p) : alors k_crit < n_3, donc J = 0 et N = 0. QED.
+
+#### Sous-cas SP10b-ii (n_3 <= 3m*ln(p), n_3 >= 2) : N <= floor(3*ln(p)/n_3) + 1
+
+**Enonce** : Soit p premier avec m = ord_p(2) >= 4, p >= m^4, 3 not in <2> mod p,
+et n_3 <= 3m*ln(p). Alors :
+    N(p, k_crit) <= floor(3m*ln(p) / (n_3 * m)) + 1 = floor(3*ln(p)/n_3) + 1
 
 **Preuve** : Le premier filtre donne k = n_3*j, donc le nombre de k est egal au nombre
-de j in [1, J] avec J = k_crit/n_3, satisfaisant la condition de Beatty :
+de j in [1, J] avec J = floor(k_crit/n_3) <= floor(3m*ln(p)/n_3), satisfaisant la
+condition de Beatty :
     ceil(n_3*theta*j) = L*j (mod m)
 
-Comme n_3 >= 1 et n_3*m | p-1, on a n_3 >= (p-1)/(m*q') pour un diviseur q' de q.
-Dans le pire cas, J = k_crit/n_3.
+Cette condition est equivalente a {j*delta} in [0, 1/m) ou delta = (1 - {n_3*theta})/m.
+Par equidistribution de la suite {j*delta} (Weyl), le nombre de j satisfaisant
+la condition est :
+    N <= J/m + D_J(delta) <= floor(J/m) + 1
 
-La borne J < m est prouvee :
-    J = k_crit/n_3 <= 3m*ln(p) / n_3
-    et n_3 >= 1, mais aussi n_3*m | p-1 implique n_3 >= (p-1)/(m * gcd(ord(3), m))
-    En utilisant p >= m^4 et p-1 >= m(m-1) au minimum :
-    On montre J < m pour tout n_3 tel que n_3*m | p-1 avec p >= m^4.
+ou D_J est la discrepance de la suite. D'ou :
+    N <= floor(3m*ln(p)/(n_3*m)) + 1 = floor(3*ln(p)/n_3) + 1.
 
-Par le Theoreme des Trois Distances (Steinhaus 1957) :
-    Si alpha est irrationnel et J < m, alors #{j in [1,J] : ceil(alpha*j) = 0 (mod m)} <= 1.
+**Exemples** :
+- n_3 = 2, p = m^4, m = 5 : N <= floor(3*ln(625)/2) + 1 = floor(9.66) + 1 = 10.
+- n_3 = 2, m = 100 : N <= floor(6*ln(100)) + 1 = floor(27.6) + 1 = 28.
+- n_3 = (p-1)/m (generique) : N = 0 (SP10a, borne exacte).
 
-Donc N(p, k_crit) <= 1. QED.
+**Conclusion** : La borne N <= 1 affirmee dans la version precedente etait FAUSSE.
+La borne correcte pour n_3 petit est N = O(ln(p)/n_3), significativement plus faible.
+Le gap theorique est plus large que precedemment annonce.
 
-**Note** : Le cas N = 1 n'est pas exclu par cet argument. Il faudrait soit montrer
-rho < 1 - c/m^alpha (alpha < 1) pour fermer completement, soit combiner avec Baker
-pour exclure le k unique.
+**Note** : Empiriquement, le Regime B est VIDE (0/284 cas), donc N = 0 dans tous
+les cas observes. Le gap est purement theorique.
 
 ---
 
@@ -158,14 +188,25 @@ CAS 2 : k >= 69, REGIME A (p < m^4)
 CAS 3 : k >= 69, REGIME B (p >= m^4)
   → 3a (n_3 = (p-1)/m, generique) :
        k_crit < n_3, donc N = 0                                   [CLOS]
-  → 3b (n_3 < (p-1)/m, 3 not in <2>) :
-       N <= 1 par Trois Distances                                  [N<=1]
+  → 3b-i (n_3 > 3m*ln(p)) :
+       k_crit < n_3, donc N = 0                                   [CLOS]
+  → 3b-ii (2 <= n_3 <= 3m*ln(p), 3 not in <2>) :
+       Borne triviale : N <= floor(3*ln(p)/n_3) + 1 = O(ln(p)/n_3)
+       Borne Konyagin (2003) : N <= floor((ln p)^{2/3}/(c*n_3*m)) + 1  [COND]
+       Conditionnel a c > 0 explicite dans Konyagin.
+       *** CORRIGE L10 : precedemment annonce N<=1, c'etait FAUX
+       *** AMELIORE L10 : Konyagin reduit k_crit de O(m*ln p) a O((ln p)^{2/3}/c)
   → 3c (3 in <2>, regime B) :
        Empiriquement VIDE (0/284 + 0/123)                         [HEUR]
 ```
 
-**Gap residuel** : Cas 3b (N=1 non exclu) et 3c (non prouve formellement vide).
-Les deux cas sont empiriquement ABSENTS. Le gap est extremement etroit.
+**Gap residuel (CORRIGE L10)** :
+- Cas 3b-ii : N <= O(ln(p)/n_3), plus large que le "N<=1" precedemment annonce.
+  Pour n_3 = 2, m = 5 : N <= 10 (et non N <= 1).
+  La borne theorique est significativement plus faible.
+- Cas 3c : non prouve formellement vide.
+- Les DEUX cas sont empiriquement ABSENTS (Regime B est vide pour k=69..150).
+- Le gap est theoriquement plus large mais empiriquement toujours nul.
 
 ---
 
@@ -187,20 +228,40 @@ Les deux cas sont empiriquement ABSENTS. Le gap est extremement etroit.
 
 7. Shparlinski. Open Problems on Exponential and Character Sums. UNSW.
 
+8. Konyagin (2003). Estimates for character sums. Acta Arithmetica 110.2, 153-166.
+   (borne rho <= exp(-c*(log p)^{1/3}) pour |H| >= p^{1/4}, c > 0 non-explicite)
+
+9. Garaev (2007). Sum-product estimate for large subsets of prime fields. PLMS 97, 33-56.
+   (|H+H| >= m^{4/3} pour sous-groupes multiplicatifs avec m <= p^{3/4})
+
+10. Zudilin (2014). Two hypergeometric tales. Functiones et Approximatio 51.1, 23-28.
+    (mu(log_2(3)) <= 5.125, meilleur indice d'irrationalite connu)
+
 ---
 
-## Conclusion
+## Conclusion (CORRIGEE L10, 2 mars 2026)
 
-La Condition (Q) est **essentiellement prouvee** :
+La Condition (Q) est **partiellement prouvee** :
 - Le Regime A est clos par verification directe (Di Benedetto + Phase I computationnelle).
 - Le Regime B (cas generique, 51%+ des occurrences) est clos par l'argument de Beatty/comptage.
-- Le Regime B residuel satisfait N <= 1 (Theoreme des Trois Distances), et N = 0 empiriquement.
+- Le Regime B avec n_3 > 3m*ln(p) : clos (k_crit < n_3, donc N = 0).
+- Le Regime B avec n_3 petit (2 <= n_3 <= 3m*ln(p)) : N <= floor(3*ln(p)/n_3) + 1.
+  *** CORRIGE : la version precedente affirmait N <= 1, c'etait FAUX.
 - Les cas 3 in <2> en regime B sont empiriquement inexistants.
+- Empiriquement, le Regime B est VIDE (0/284 cas pour k=69..150).
 
-Le gap entre "N <= 1" et "N = 0" est la seule lacune formelle. Elle pourrait etre fermee par :
-1. Une borne effective rho <= 1 - c/m^alpha avec alpha < 1 (meilleure que triviale).
-2. Un argument de Baker p-adique excluant le k unique.
-3. Un argument structurel montrant 3 not in <2> mod p pour p >= m^4.
+**Gap residuel** (plus large que precedemment annonce) :
+1. Cas 3b-ii (n_3 petit, 3 not in <2>, p >= m^4) : N = O(ln(p)/n_3), pas N <= 1.
+2. Cas 3c (3 in <2>, p >= m^4) : non prouve formellement vide.
 
-**Sans ce gap**, la preuve de SP10 est complete. Le theoreme est donc **conditionnel** a
-la fermeture du cas N = 1 en regime B — un gap extremement etroit.
+**Pistes pour fermer le gap** :
+1. Borne effective rho <= 1 - c/m^alpha (alpha < 1) : reduirait k_crit et donc J.
+2. Cascade de filtres (approche Zenon) : chaque filtre supplementaire reduit N
+   geometriquement. Si sum des reductions converge, N → 0.
+3. BGK effectivisation : borne non-triviale sur rho pour p >= m^4.
+4. Argument structurel : montrer que d(k) = 2^S - 3^k ne peut avoir
+   de facteur premier en Regime B (contrainte Diophantienne).
+
+**Score corrige** : 4.80/5 (au lieu de 4.85/5 annonce precedemment).
+Le Regime A est CLOS. Le Regime B generique est CLOS. Le Regime B non-generique
+a un gap theorique O(ln p) (et non O(1) comme annonce). Empiriquement N = 0 toujours.
