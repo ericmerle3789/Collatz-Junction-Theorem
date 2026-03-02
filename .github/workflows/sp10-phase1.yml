@@ -1,0 +1,50 @@
+name: SP10 Phase I — Condition (Q) Verification
+
+on:
+  push:
+    paths:
+      - 'scripts/exploration/sp10_level8_phase1_final.py'
+  workflow_dispatch:
+
+jobs:
+  verify-condition-q:
+    name: "SP10 — (Q) k=69..500"
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install sympy
+
+      - name: Run Phase I verification (k=69..500)
+        env:
+          MODE: github
+        run: |
+          cd scripts/exploration
+          python sp10_level8_phase1_final.py 2>&1 | tee ../../sp10_phase1_output.txt
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sp10-phase1-results
+          path: sp10_phase1_output.txt
+          retention-days: 90
+
+      - name: Check for failures
+        if: always()
+        run: |
+          grep -c "ECHECS REELS DETECTES" sp10_phase1_output.txt && exit 1 || echo "No Q failures"
+
+      - name: Extract summary
+        if: always()
+        run: |
+          echo "=== SUMMARY ==="
+          tail -30 sp10_phase1_output.txt
