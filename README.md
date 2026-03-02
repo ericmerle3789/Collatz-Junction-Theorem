@@ -74,7 +74,7 @@ Collatz-Junction-Theorem/
 │   │   ├── verify_condition_q.py        # Condition (Q) for k=18..28
 │   │   ├── stress_test.py              # 402 stress tests
 │   │   └── numerical_audit.py          # 152 audit checks
-│   └── exploration/                    # Research exploration (22 scripts)
+│   └── exploration/                    # Research exploration (32 scripts)
 │       ├── phase20_*.py                # CRT, mixing, type classification
 │       ├── phase21_*.py                # Mellin spectral, second moment, etc.
 │       ├── phase22_*.py                # CRT amplification, spectral bounds
@@ -82,7 +82,10 @@ Collatz-Junction-Theorem/
 │       ├── sp6_ghost_fish_large.py     # Ghost fish for large primes (p > 10^6)
 │       ├── sp6_tunnel_factors.py       # Tunnel: ord_p(2) of d(k) factors
 │       ├── sp6_three_mesh_net.py       # Three-mesh net (168 primes, 0 failures)
-│       └── sp6_mersenne_direct.py      # Mersenne direct verification (q ≤ 127)
+│       ├── sp6_mersenne_direct.py      # Mersenne direct verification (q ≤ 127)
+│       ├── sp7_*.py                    # Junction geology, gap scan
+│       ├── sp8_*.py                    # Fish nature scan, tunnel analysis
+│       └── sp9_*.py                    # Extension k→500, D28 analysis, Voie 4
 │
 ├── research_log/                       # Complete research journal
 │   ├── phase10c--10m                   # Foundations (red team to crystal clash)
@@ -98,6 +101,7 @@ Collatz-Junction-Theorem/
 │   ├── sp6_ghost_fish.md               # SP6: Ghost fish + three-mesh net (4/5)
 │   ├── sp7_junction_geology.md         # SP7: Junction geology (4.75/5)
 │   ├── sp8_fish_nature.md              # SP8: Fish nature in d(k) (4.85/5)
+│   ├── sp9_formalization_and_extension.md # SP9: Extension k→500, D28-D30 (4.85/5)
 │   └── ERRATA.md                       # Corrections
 │
 ├── audits/
@@ -177,8 +181,14 @@ A systematic investigation (GPS methodology, 6 phases, ~30 experiments) has veri
 | Orbit constraint (SP8) | **Proved** | 3^k ∈ ⟨2⟩ mod p for all p \| d(k) |
 | Ratio bound (SP8) | **Verified** | p/m² ≤ 1.13 for all 247 effective primes |
 | Cross-verification (SP8) | **Verified** | Top 5 cases confirmed with mpmath (50 digits) |
+| Extended scan (SP9) | **Verified** | 541 primes (k∈[69,500]), ρ_max=0.255, all pass |
+| Reduced divisibility D28 (SP9) | **Proved** | p \| (2^r − 3^k) with r = S mod m < m |
+| Ratio bound extended (SP9) | **Verified** | p/m² ≤ 2.73 (1 outlier), 96.1% < 0.10 |
+| Weil sufficient (SP9) | **Verified** | 529/541 (97.8%) have ρ\_Weil < 0.5 |
+| Cross-verification (SP9) | **Verified** | All new worst cases confirmed with mpmath (50 digits) |
+| Voie 4 bypass (SP9) | **Dead end** | No arithmetic obstruction for p ≥ 5 |
 
-Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md), [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md), and [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md).
+Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md), [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md), [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md), and [`research_log/sp9_formalization_and_extension.md`](research_log/sp9_formalization_and_extension.md).
 
 ## Honest Assessment
 
@@ -195,10 +205,11 @@ The gap between "the evaluation map omits residues" and "the evaluation map omit
 - **K_MAX = 63** (SP7): the worst prime (M_13) requires convolution only from k ≥ 63, providing a 6-rank overlap with Simons--de Weger (k ≤ 68).
 - **Fish-Tunnel Incompatibility** (SP7): the 11 primes with ρ > 0.5 and ord > 100 are all ghost fish — none divides any d(k). Among 242 primes actually dividing d(k) for k ∈ [69, 120], all have ρ < 0.23.
 - **Fish Nature** (SP8): extended to k ∈ [69, 300] with 247 primes, ρ_max = 0.225, ALL pass condition (Q). The orbit constraint 3^k ∈ ⟨2⟩ mod p is proved, and p/m² ≤ 1.13 observed universally. Cross-verified with mpmath (50 digits).
+- **Formalization & Extension** (SP9): extended to k ∈ [69, 500] with 541 primes (119% increase), ρ_max = 0.255, ALL pass. New reduced divisibility theorem D28: p | (2^r − 3^k) with r < m. New worst ρ = 0.255 (D29). First p/m² > 1.5 found: p/m² = 2.73 (D30, 1 outlier out of 541). Voie 4 (arithmetic bypass) confirmed dead end for p ≥ 5.
 
-The fish nature investigation (SP8) elevates feasibility to **4.85/5** (from 4.75/5). The residual gap reduces to: proving an effective p/m² = O(1) bound for primes dividing d(k), which would yield ρ < 0.5 via Weil. The Bourgain-Glibichuk-Konyagin theorem guarantees this asymptotically but with ineffective constants.
+The SP9 investigation confirms feasibility at **4.85/5**. The extended scan (541 primes, k → 500) with zero failures strengthens the empirical case substantially. The D30 discovery (p/m² = 2.73) partially refutes the SP8 hypothesis p/m² ≤ 1.25, but Weil remains sufficient for 97.8% of primes and ρ stays well below 0.5 even for outliers. The residual gap remains: proving an effective ρ < 0.5 bound universally requires either (a) an effective constant in BGK, or (b) a Diophantine argument specific to d(k) = 2^S − 3^k.
 
-We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis, [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md) for the junction geology, and [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md) for the fish nature in d(k).
+We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis, [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md) for the junction geology, [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md) for the fish nature in d(k), and [`research_log/sp9_formalization_and_extension.md`](research_log/sp9_formalization_and_extension.md) for the formalization and extension to k = 500.
 
 ## License
 

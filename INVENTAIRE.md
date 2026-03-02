@@ -3,7 +3,7 @@
 **Projet:** Entropic Barriers and Nonsurjectivity in the 3x+1 Problem
 **Auteur:** Eric Merle
 **Date:** Mars 2026
-**Fichiers:** 129 (hors .git)
+**Fichiers:** 134 (hors .git)
 
 ---
 
@@ -98,7 +98,7 @@ Scripts publies, verifies, associes au preprint.
 | `stress_test.py` | — | 402 tests de robustesse |
 | `numerical_audit.py` | — | 152 verifications numeriques |
 
-### 4.2. Exploration (`scripts/exploration/`, 28 scripts, Phases 20-22 + SP6-SP8)
+### 4.2. Exploration (`scripts/exploration/`, 32 scripts, Phases 20-22 + SP6-SP9)
 
 Scripts de recherche exploratoire.
 
@@ -132,8 +132,12 @@ Scripts de recherche exploratoire.
 | `sp7_gap_scan.py` | SP7 | Scan exhaustif d(k) pour k in [69,120] |
 | `sp8_fish_nature.py` | SP8 | Nature des poissons dans d(k), k in [69,300] (vectorise) |
 | `sp8_fish_tunnel_analysis.py` | SP8 | Analyse theorique mecanisme Fish-Tunnel |
+| `sp9_scan_v3.py` | SP9 | Scan k ∈ [69,500], trial division d(k), 541 primes |
+| `sp9_mpmath_new_worst.py` | SP9 | Verification mpmath 50 decimales des pires cas SP9 |
+| `sp9_d26_analysis.py` | SP9 | Analyse D26/D28, contrainte divisibilite reduite |
+| `sp9_voie4_bypass.py` | SP9 | Voie 4 bypass arithmetique (dead end confirme) |
 
-## 5. Research Log (`research_log/`, 40 fichiers)
+## 5. Research Log (`research_log/`, 41 fichiers)
 
 ### Fondations (Phases 10-13)
 
@@ -194,6 +198,7 @@ Scripts de recherche exploratoire.
 | `sp6_ghost_fish.md` | Investigation SP6 : Ghost Fish + filet 3 mailles (4/5) |
 | `sp7_junction_geology.md` | Investigation SP7 : Geologie de jonction (4.75/5) |
 | `sp8_fish_nature.md` | Investigation SP8 : Nature des poissons (4.85/5) |
+| `sp9_formalization_and_extension.md` | Investigation SP9 : Extension k→500, D28-D30, Voie 4 (4.85/5) |
 
 ## 6. Audits (`audits/`, 4 fichiers)
 
