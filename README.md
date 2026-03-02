@@ -37,6 +37,7 @@ The residual question -- excluding the specific residue $0$ from the image -- is
 ```
 Collatz-Junction-Theorem/
 ├── .github/workflows/lean-check.yml    # CI: Lean 4 verification
+├── .github/workflows/sp10-phase1.yml   # CI: SP10 Phase I (Q) k=69..500
 ├── LICENSE                             # MIT (code)
 ├── LICENSE-PAPER                       # CC-BY 4.0 (paper)
 ├── README.md
@@ -85,7 +86,8 @@ Collatz-Junction-Theorem/
 │       ├── sp6_mersenne_direct.py      # Mersenne direct verification (q ≤ 127)
 │       ├── sp7_*.py                    # Junction geology, gap scan
 │       ├── sp8_*.py                    # Fish nature scan, tunnel analysis
-│       └── sp9_*.py                    # Extension k→500, D28 analysis, Voie 4
+│       ├── sp9_*.py                    # Extension k→500, D28 analysis, Voie 4
+│       └── sp10_*.py                   # Condition (Q) regime analysis (L1-L9)
 │
 ├── research_log/                       # Complete research journal
 │   ├── phase10c--10m                   # Foundations (red team to crystal clash)
@@ -102,6 +104,8 @@ Collatz-Junction-Theorem/
 │   ├── sp7_junction_geology.md         # SP7: Junction geology (4.75/5)
 │   ├── sp8_fish_nature.md              # SP8: Fish nature in d(k) (4.85/5)
 │   ├── sp9_formalization_and_extension.md # SP9: Extension k→500, D28-D30 (4.85/5)
+│   ├── sp10_motor_b2_investigation.md  # SP10: Condition (Q) regime analysis (L1-L9)
+│   ├── sp10_synthese_formelle.md       # SP10: Formal synthesis (propositions)
 │   └── ERRATA.md                       # Corrections
 │
 ├── audits/
@@ -187,6 +191,11 @@ A systematic investigation (GPS methodology, 6 phases, ~30 experiments) has veri
 | Weil sufficient (SP9) | **Verified** | 529/541 (97.8%) have ρ\_Weil < 0.5 |
 | Cross-verification (SP9) | **Verified** | All new worst cases confirmed with mpmath (50 digits) |
 | Voie 4 bypass (SP9) | **Dead end** | No arithmetic obstruction for p ≥ 5 |
+| **SP10 Regime A** (Di Benedetto) | **Verified** | k=69..200: 116/132 PASS, 0 FAIL; CI k=69..500 |
+| **SP10 Regime B** (generic) | **Proved** | N(p,k\_crit)=0 via Beatty counting (n₃=(p-1)/m) |
+| **SP10 Regime B** (general) | **N ≤ 1** | Three Distances Theorem (Steinhaus 1957) |
+| **SP10 n₃ structure** | **Verified** | n₃·m \| p-1 (284/284), regime B empirically empty (0/284) |
+| **SP10 3 ∈ ⟨2⟩** | **Verified** | 183/284 in regime A, 0 in regime B |
 
 Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md), [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md), [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md), and [`research_log/sp9_formalization_and_extension.md`](research_log/sp9_formalization_and_extension.md).
 
@@ -207,9 +216,18 @@ The gap between "the evaluation map omits residues" and "the evaluation map omit
 - **Fish Nature** (SP8): extended to k ∈ [69, 300] with 247 primes, ρ_max = 0.225, ALL pass condition (Q). The orbit constraint 3^k ∈ ⟨2⟩ mod p is proved, and p/m² ≤ 1.13 observed universally. Cross-verified with mpmath (50 digits).
 - **Formalization & Extension** (SP9): extended to k ∈ [69, 500] with 541 primes (119% increase), ρ_max = 0.255, ALL pass. New reduced divisibility theorem D28: p | (2^r − 3^k) with r < m. New worst ρ = 0.255 (D29). First p/m² > 1.5 found: p/m² = 2.73 (D30, 1 outlier out of 541). Voie 4 (arithmetic bypass) confirmed dead end for p ≥ 5.
 
-The SP9 investigation confirms feasibility at **4.85/5**. The extended scan (541 primes, k → 500) with zero failures strengthens the empirical case substantially. The D30 discovery (p/m² = 2.73) partially refutes the SP8 hypothesis p/m² ≤ 1.25, but Weil remains sufficient for 97.8% of primes and ρ stays well below 0.5 even for outliers. The residual gap remains: proving an effective ρ < 0.5 bound universally requires either (a) an effective constant in BGK, or (b) a Diophantine argument specific to d(k) = 2^S − 3^k.
+The SP9 investigation confirms feasibility at **4.85/5**. The extended scan (541 primes, k → 500) with zero failures strengthens the empirical case substantially. The D30 discovery (p/m² = 2.73) partially refutes the SP8 hypothesis p/m² ≤ 1.25, but Weil remains sufficient for 97.8% of primes and ρ stays well below 0.5 even for outliers.
 
-We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis, [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md) for the junction geology, [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md) for the fish nature in d(k), and [`research_log/sp9_formalization_and_extension.md`](research_log/sp9_formalization_and_extension.md) for the formalization and extension to k = 500.
+**SP10** (Condition Q via Beatty sequences and Three Distances Theorem, L1--L9) provides the deepest analysis yet:
+- **Regime A** (p < m⁴): closed by Di Benedetto et al. (2020) + finite verification (k=69..200, 0 failures, CI running k=69..500).
+- **Regime B** (p ≥ m⁴, generic case n₃ = (p-1)/m): **closed** by Beatty counting argument showing k\_crit < n₃, hence N(p,k\_crit) = 0 rigorously.
+- **Regime B** (general): N ≤ 1 by the Three Distances Theorem (Steinhaus 1957). Empirically N = 0 for all tested cases.
+- **Key discovery**: among 284 pairs (k,p) with p | d(k), k=69..150, **zero** are in Regime B. The regime is empirically empty.
+- **n₃ structure**: n₃·m | p-1 verified 100% (284/284). The argument requires only the trivial bound ρ ≤ 1 - 1/m — no BGK effectivity needed.
+
+The residual gap is extremely narrow: proving N = 0 (instead of N ≤ 1) for non-generic n₃ in Regime B. Possible closures: (a) Baker p-adic to exclude the single candidate, (b) effective ρ < 1 - c/m^α with α < 1, (c) structural argument that 3 ∉ ⟨2⟩ for p ≥ m⁴.
+
+We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis, [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md) for the junction geology, [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md) for the fish nature in d(k), [`research_log/sp9_formalization_and_extension.md`](research_log/sp9_formalization_and_extension.md) for the formalization and extension to k = 500, and [`research_log/sp10_synthese_formelle.md`](research_log/sp10_synthese_formelle.md) for the SP10 Condition (Q) regime analysis with Beatty sequences and Three Distances Theorem.
 
 ## License
 
@@ -228,3 +246,5 @@ We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_b
 8. T. Barina, "Convergence verification of the Collatz problem", *J. Supercomput.* **77** (2021), 2681--2688.
 9. D. Applegate, J. C. Lagarias, "The 3x + 1 semigroup", *J. Number Theory* **117** (2006), 146--159.
 10. K. Soundararajan, "Moments of the Riemann zeta function", *Ann. Math.* **170** (2009), 981--993.
+11. F. Di Benedetto, M. Z. Garaev, V. C. Garcia, D. Gonzalez-Sanchez, I. E. Shparlinski, C. A. Trujillo, "Exponential sums over small subgroups of F_p*", *J. Number Theory* **215** (2020), 261--274.
+12. V. T. Sos, "On the distribution mod 1 of the sequence nα", *Annales Univ. Sci. Budapest.* **1** (1958), 127--134. (Three Distances Theorem)

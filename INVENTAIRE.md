@@ -3,7 +3,7 @@
 **Projet:** Entropic Barriers and Nonsurjectivity in the 3x+1 Problem
 **Auteur:** Eric Merle
 **Date:** Mars 2026
-**Fichiers:** 134 (hors .git)
+**Fichiers:** 143 (hors .git)
 
 ---
 
@@ -98,7 +98,7 @@ Scripts publies, verifies, associes au preprint.
 | `stress_test.py` | — | 402 tests de robustesse |
 | `numerical_audit.py` | — | 152 verifications numeriques |
 
-### 4.2. Exploration (`scripts/exploration/`, 32 scripts, Phases 20-22 + SP6-SP9)
+### 4.2. Exploration (`scripts/exploration/`, 38 scripts, Phases 20-22 + SP6-SP10)
 
 Scripts de recherche exploratoire.
 
@@ -136,8 +136,14 @@ Scripts de recherche exploratoire.
 | `sp9_mpmath_new_worst.py` | SP9 | Verification mpmath 50 decimales des pires cas SP9 |
 | `sp9_d26_analysis.py` | SP9 | Analyse D26/D28, contrainte divisibilite reduite |
 | `sp9_voie4_bypass.py` | SP9 | Voie 4 bypass arithmetique (dead end confirme) |
+| `sp10_level8_phase1_final.py` | SP10 | Phase I verification (Q) k=69..500 (local+CI) |
+| `sp10_level8_debug_fail.py` | SP10 | Debug des faux positifs Phase I (p=31, p=257) |
+| `sp10_level9_baker_matveev.py` | SP10 | Piste 2: Baker-Matveev (v_p toujours petit) |
+| `sp10_level9_counting.py` | SP10 | Piste 1: Comptage via structure ⟨2⟩ + Beatty |
+| `sp10_level9_beatty_formal.py` | SP10 | Formalisation Beatty + Trois Distances |
+| `sp10_level9_n3_corrected.py` | SP10 | Investigation n₃ CORRIGEE (regime B vide) |
 
-## 5. Research Log (`research_log/`, 41 fichiers)
+## 5. Research Log (`research_log/`, 43 fichiers)
 
 ### Fondations (Phases 10-13)
 
@@ -199,6 +205,8 @@ Scripts de recherche exploratoire.
 | `sp7_junction_geology.md` | Investigation SP7 : Geologie de jonction (4.75/5) |
 | `sp8_fish_nature.md` | Investigation SP8 : Nature des poissons (4.85/5) |
 | `sp9_formalization_and_extension.md` | Investigation SP9 : Extension k→500, D28-D30, Voie 4 (4.85/5) |
+| `sp10_motor_b2_investigation.md` | Investigation SP10 : Condition (Q) analysis L1-L9 (80K+ mots) |
+| `sp10_synthese_formelle.md` | SP10 : Synthese formelle — propositions et architecture de preuve |
 
 ## 6. Audits (`audits/`, 4 fichiers)
 
@@ -220,6 +228,7 @@ Scripts de recherche exploratoire.
 | Fichier | Action |
 |---------|--------|
 | `lean-check.yml` | Verification automatique : 0 sorry, 0 axiom supplementaire |
+| `sp10-phase1.yml` | SP10 Phase I: verification Condition (Q) k=69..500 |
 
 ---
 

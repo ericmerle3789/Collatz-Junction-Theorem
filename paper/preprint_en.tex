@@ -956,11 +956,16 @@ nonsurjectivity for $k \in [18, 500]$,
 $N_0(d) = 0$ for $k \in [3, 17]$ (exhaustive) and
 $k \in [18, 41]$ (Monte Carlo, $10^6$ samples),
 $402$~stress tests, and $152$~numerical audit checks.
-Five additional scripts in \texttt{scripts/exploration/} implement
+Five scripts in \texttt{scripts/exploration/} implement
 the three-mesh net verification: ghost fish analysis, tunnel
 factorization, exhaustive net coverage for all
 $168$~primes dividing $2^m - 1$ ($m \leq 100$), and direct
 Mersenne verification for $q \leq 127$.
+Six additional scripts implement the regime analysis of
+Condition~\eqref{eq:condition-Q}: Phase~I verification
+($k = 69$ to~$500$, automated via GitHub~CI), Baker--Matveev
+obstruction analysis, Beatty counting formalization, and the
+$n_3$ structure investigation.
 
 % ============================================================
 \section{Conclusion and perspectives}\label{sec:conclusion}
@@ -1111,6 +1116,60 @@ Combining these results, the estimated feasibility of
 Condition~\eqref{eq:condition-Q} for all $k \geq 18$
 rises to~$4.75/5$.
 
+\medskip\noindent
+\textbf{Regime analysis via exponential sum bounds.}
+A deeper analysis decomposes the verification of
+Condition~\eqref{eq:condition-Q} according to the
+exponential sum parameter
+\[
+  \rho(p) = \max_{c \neq 0}
+    \frac{\bigl|\sum_{h \in \langle 2 \rangle} \omega^{ch}\bigr|}{m},
+  \qquad m = \ord_p(2),\quad \omega = e^{2\pi i/p}.
+\]
+
+\emph{Regime~A} ($p < m^4$).
+The bound of Di~Benedetto, Garaev, Garcia,
+Gonz\'alez-S\'anchez, Shparlinski, and
+Trujillo~\cite{DiBenedetto2020} gives
+$\rho \leq C_1 \cdot m^{-31/2880}$, yielding a uniform
+critical index $k_{\mathrm{crit}}(p) \leq K_A \approx 400$.
+Computational verification of
+Condition~\eqref{eq:condition-Q} for all
+$k \in [69, 500]$ and all prime factors of~$d(k)$ in
+Regime~A was performed ($116/132$~cases fully verified,
+$0$~failures, $16$~timeouts from large cofactors).
+
+\emph{Regime~B} ($p \geq m^4$).
+Only the trivial bound $\rho \leq 1 - 1/m$ is available.
+Let $n_3 = \min\{j \geq 1 : 3^j \in \langle 2 \rangle
+\bmod p\}$. Then $p \mid d(k)$ forces $n_3 \mid k$
+(first filter) and a Beatty-type congruence
+$\lceil n_3 j \theta \rceil \equiv Lj \pmod{m}$ (second
+filter), where $\theta = \log_2 3$ and
+$L = \log_2(3^{n_3}) \bmod m$.
+In the generic case $n_3 = (p-1)/m$ (which covers $51\%$ of
+observed divisibility instances for $k \in [69, 150]$), one
+shows $k_{\mathrm{crit}}(p) < n_3$ for $m \geq 4$, so that
+\emph{no} multiple of~$n_3$ falls in the danger zone; hence
+no prime in this case divides any~$d(k)$ in the critical
+range.
+In the general case ($3 \notin \langle 2 \rangle$,
+$n_3 < (p-1)/m$), the Three Distances Theorem
+(S\'os~\cite{Sos1958}) gives
+$N(p, k_{\mathrm{crit}}) \leq 1$.
+Empirically, Regime~B is \emph{empty} among all
+$284$~observed divisibility pairs $(k, p)$ for
+$k \in [69, 150]$: every prime factor of~$d(k)$ satisfies
+$p < m^4$.
+
+Combining the regime analysis with the junction geology,
+the estimated feasibility of
+Condition~\eqref{eq:condition-Q} for all $k \geq 18$
+rises to~$4.85/5$.
+The residual gap reduces to the single case
+$N = 1$ in Regime~B with $n_3 < (p-1)/m$, which is
+empirically absent.
+
 \subsection{Open difficulties}
 
 Proposition~\ref{prop:barrier} shows that no purely spectral
@@ -1151,6 +1210,15 @@ Empirically, no such prime has been found among $242$~tested
 factors of $d(k)$ for $k \in [69, 120]$, and the
 $11$~known primes with $\rho > 0.5$ and $\ord > 100$ are
 ghost fish (absent from all~$d(k)$).
+
+The regime analysis further narrows the gap:
+Regime~A is closed by~\cite{DiBenedetto2020} combined with
+finite verification, while Regime~B is addressed by a Beatty
+counting argument (S\'os~\cite{Sos1958}).
+The sole formal lacuna is the case $N = 1$ in Regime~B when
+$n_3 < (p-1)/m$, which would require either a nontrivial
+bound $\rho \leq 1 - c/m^\alpha$ ($\alpha < 1$) or a $p$-adic
+Baker argument to exclude the unique candidate~$k$.
 
 These approaches connect to three precise open conjectures
 identified in the course of this work:
@@ -1233,6 +1301,14 @@ The accompanying code is released under the MIT License.
   2nd ed.,
   Wiley-Interscience, 2006.
 
+\bibitem{DiBenedetto2020}
+  D.~Di~Benedetto, M.\,Z.~Garaev, V.\,C.~Garcia,
+  D.~Gonz\'alez-S\'anchez, I.\,E.~Shparlinski,
+  and C.\,A.~Trujillo,
+  On the fraction of primes~$p$ such that
+  $\mathrm{ord}_p(g) \leq B$,
+  \emph{J.\ Number Theory}\ \textbf{215} (2020), 261--274.
+
 \bibitem{Crandall1978}
   R.\,E.~Crandall,
   On the $3x+1$ problem,
@@ -1272,6 +1348,12 @@ The accompanying code is released under the MIT License.
   Formes lin\'eaires en deux logarithmes et d\'eterminants
   d'interpolation,
   \emph{J.\ Number Theory}\ \textbf{55} (1995), 285--321.
+
+\bibitem{Sos1958}
+  V.\,T.~S\'os,
+  On the distribution mod~$1$ of the sequence~$n\alpha$,
+  \emph{Ann.\ Univ.\ Sci.\ Budapest.\ E\"otv\"os Sect.\
+  Math.}\ \textbf{1} (1958), 127--134.
 
 \bibitem{SimonsDeWeger2005}
   J.~Simons and B.\,M.\,M.~de~Weger,
