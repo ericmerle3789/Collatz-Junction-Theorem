@@ -3,7 +3,7 @@
 **Projet:** Entropic Barriers and Nonsurjectivity in the 3x+1 Problem
 **Auteur:** Eric Merle
 **Date:** Mars 2026
-**Fichiers:** 143 (hors .git)
+**Fichiers:** 146 (hors .git)
 
 ---
 
@@ -98,7 +98,7 @@ Scripts publies, verifies, associes au preprint.
 | `stress_test.py` | — | 402 tests de robustesse |
 | `numerical_audit.py` | — | 152 verifications numeriques |
 
-### 4.2. Exploration (`scripts/exploration/`, 42 scripts, Phases 20-22 + SP6-SP10 + A1-A2+-B3)
+### 4.2. Exploration (`scripts/exploration/`, 45 scripts, Phases 20-22 + SP6-SP10 + A1-A2+-B3-C-D)
 
 Scripts de recherche exploratoire.
 
@@ -146,6 +146,9 @@ Scripts de recherche exploratoire.
 | `phase_a2_regime_b_extension.py` | A2 | Classification Regime A/B k=18..67 (165 premiers) |
 | `phase_a2plus_ecm_cofactors.py` | A2+ | Factorisation ECM 12 cofacteurs (25 premiers) |
 | `phase_b3_PU_verify.py` | B3 | Verification Proportion Uniformity (22 paires) |
+| `phase_c_structural_proof.py` | C | Census Regime B (m≤300) + analyse structurelle (5 analyses) |
+| `phase_c_regime_b_hunt.py` | C | Chasse Regime B 4 routes (classification, enumeration, non-divisibilite, structure) |
+| `phase_d_formal_proof.py` | D | Theoreme formel + synthese (Proposition L13) |
 
 ## 5. Research Log (`research_log/`, 48 fichiers)
 

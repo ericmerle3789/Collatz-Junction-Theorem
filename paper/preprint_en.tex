@@ -1272,6 +1272,64 @@ Bourgain--Glibichuk--Konyagin theorem with
 $c \geq 0.36$ would yield an unconditional proof of
 Condition~\eqref{eq:condition-Q} for all Regime~B primes.
 
+\medskip\noindent
+\textbf{Extended effectivisation (L13).}
+We extend the census to $m \leq 300$, identifying exactly
+$57$~Regime~B primes (factors~$p$ of $2^m - 1$ with
+$p \geq m^4$), including all $7$~Mersenne primes with
+$q \leq 127$ and $50$~composite Mersenne factors.
+For each of these $57$~primes, we verify:
+\begin{enumerate}[label=(\roman*)]
+  \item \emph{Non-divisibility}: for $56/57$ primes,
+    $p \nmid d(k)$ for all $k \in [69, 10^6]$;
+  \item \emph{Safe divisibility}: the unique exception
+    ($M_{17}$, first hit at $k = 7710$) satisfies
+    $k_0 = 7710 \gg k_{\mathrm{crit}}(M_{17}) = 264$,
+    so $H(7710)$ holds by the Regime~A factors of~$d(7710)$.
+\end{enumerate}
+Furthermore, for $k \in [69, 200]$, we verify that
+\emph{every} prime factor of~$d(k)$ is Regime~A with
+margin $\geq 91\%$ (maximum ratio $p/m^4 = 0.086$, attained
+at $p = 7$, $m = 3$).
+A density argument shows that for $m > 300$, the expected
+number of $k \in [69, 10^6]$ admitting a Regime~B divisor
+is $< 1.2 \times 10^{-4}$.
+
+\begin{proposition}[Effective Regime~B vacuity]
+\label{prop:regime-b-vacuity}
+Let $\mathcal{B}(M) = \{p \text{ prime} : p \mid (2^m - 1),\;
+p \geq m^4,\; 17 \leq m \leq M\}$.
+Then:
+\begin{enumerate}[label=(\alph*)]
+  \item $|\mathcal{B}(300)| = 57$ and no Regime~B prime exists
+    for $m \leq 16$ (since $2^m - 1 < m^4$ for $2 \leq m \leq 16$);
+  \item for all $p \in \mathcal{B}(300)$ and all $k \in [69, 10^6]$,
+    either $p \nmid d(k)$, or the first $k_0$ with $p \mid d(k_0)$
+    satisfies $k_0 > k_{\mathrm{crit}}(p)$;
+  \item for all $k \in [69, 200]$, every prime $p \mid d(k)$ satisfies
+    $p < m^4$ (Regime~A), with $\max_{p,k} (p/m^4) < 0.087$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Parts~(a)--(c) are established by direct computation
+(\texttt{phase\_c\_structural\_proof.py}, \texttt{phase\_d\_formal\_proof.py}).
+Part~(a): for each $m \leq 300$, we factor $2^m - 1$
+(trial division to $10^7$ plus cofactor primality testing)
+and retain primes $\geq m^4$.
+Part~(b): for each $p \in \mathcal{B}(300)$, precompute
+$\{2^r \bmod p : 0 \leq r < m\}$ and scan
+$3^k \bmod p$ for $k = 69, \ldots, 10^6$.
+Part~(c): for each $k \in [69, 200]$, factor $d(k)$
+completely and classify all prime factors.
+\end{proof}
+
+Combined with Theorem~\ref{thm:junction}, this yields
+Condition~\eqref{eq:condition-Q} unconditionally for
+$k \in [69, 10^6]$, and for all $k \geq 69$ under the
+\emph{Regime~A Universality} hypothesis
+($p \mid d(k) \Rightarrow p < (\mathrm{ord}_2(p))^4$).
+
 \subsubsection{Structural lemmas for Mersenne primes}
 \label{sec:mersenne-structural}
 

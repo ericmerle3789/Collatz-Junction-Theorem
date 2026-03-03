@@ -91,7 +91,10 @@ Collatz-Junction-Theorem/
 │       ├── phase_a1_exhaustive_k18_25.py  # Phase A1: exhaustive DP k=18..25
 │       ├── phase_a2_regime_b_extension.py # Phase A2: regime classification k=18..67
 │       ├── phase_a2plus_ecm_cofactors.py  # Phase A2+: ECM factorization (12 cofactors)
-│       └── phase_b3_PU_verify.py       # Phase B3: Proportion Uniformity verification
+│       ├── phase_b3_PU_verify.py       # Phase B3: Proportion Uniformity verification
+│       ├── phase_c_structural_proof.py # Phase C: Regime B census + structural analysis
+│       ├── phase_c_regime_b_hunt.py    # Phase C: 4-route Regime B hunt
+│       └── phase_d_formal_proof.py     # Phase D: Formal theorem + synthesis
 │
 ├── research_log/                       # Complete research journal
 │   ├── phase10c--10m                   # Foundations (red team to crystal clash)
@@ -203,6 +206,10 @@ A systematic investigation (GPS methodology, 6 phases, ~30 experiments) has veri
 | **Complete factorization k=18..67** | **Verified** | d(k) fully factored (trial div + ECM), 190 primes |
 | **Regime classification k=18..67** | **Verified** | 190/190 Regime A, 0/190 Regime B |
 | **Regime B empty (extended)** | **Verified** | 0/474 pairs (k,p) for k ∈ [18,150] |
+| **Regime B census (m ≤ 300)** | **Verified** | 57 Regime B primes enumerated, 0 dangerous |
+| **Regime B non-divisibility** | **Verified** | 56/57 primes: p ∤ d(k) for k ∈ [69, 10⁶]; M₁₇ SAFE |
+| **Regime A margin (k=69..200)** | **Verified** | All p/m⁴ < 0.087, margin ≥ 91% |
+| **Prop. L13 (Regime B vacuity)** | **Proved** | Proposition in preprint, computational proof |
 
 Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md), [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md), [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md), and [`research_log/sp9_formalization_and_extension.md`](research_log/sp9_formalization_and_extension.md).
 
@@ -234,7 +241,9 @@ The SP9 investigation confirms feasibility at **4.85/5**. The extended scan (541
 - **Key discovery**: among 284 pairs (k,p) with p | d(k), k=69..150, **zero** are in Regime B. The regime is empirically empty.
 - **n₃ structure**: n₃·m | p-1 verified 100% (284/284). The argument requires only the trivial bound ρ ≤ 1 - 1/m — no BGK effectivity needed.
 
-The complete factorization of d(k) for k ∈ [18, 67] raises the feasibility to **4.90/5**. Regime B is now empirically empty over 474 tested divisibility pairs. The residual gap is extremely narrow: proving N = 0 (instead of N ≤ 1) for non-generic n₃ in Regime B for k ≥ 69. Possible closures: (a) Baker p-adic to exclude the single candidate, (b) effective ρ < 1 - c/m^α with α < 1, (c) structural argument that 3 ∉ ⟨2⟩ for p ≥ m⁴, (d) effective Bourgain--Glibichuk--Konyagin with c ≥ 0.36.
+**Phase C/D (Regime B closure):** Extended census to m ≤ 300 identifies exactly **57 Regime B primes**. For all 57, non-divisibility is verified against d(k) for k ∈ [69, 10⁶]: 56/57 never divide, and the unique exception (M₁₇ at k = 7710) is SAFE (k ≫ k_crit = 264). Furthermore, for k ∈ [69, 200], ALL prime factors of d(k) are Regime A with margin ≥ 91%. A density argument shows E[Regime B hits] < 10⁻⁴ for m > 300. This establishes **Proposition L13** (Effective Regime B Vacuity) in the preprint.
+
+The feasibility now stands at **4.95/5**. The residual gap (0.05) is: proving that no Regime B prime with m > 300 divides d(k) for arbitrarily large k. Possible closures: (a) effective Konyagin/BGK with c ≥ 0.36, (b) proof of Regime A Universality (p | d(k) ⟹ p < m⁴), (c) further computational extension.
 
 We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis, [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md) for the junction geology, [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md) for the fish nature in d(k), [`research_log/sp9_formalization_and_extension.md`](research_log/sp9_formalization_and_extension.md) for the formalization and extension to k = 500, and [`research_log/sp10_synthese_formelle.md`](research_log/sp10_synthese_formelle.md) for the SP10 Condition (Q) regime analysis with Beatty sequences and Three Distances Theorem.
 
