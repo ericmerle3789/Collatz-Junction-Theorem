@@ -87,7 +87,11 @@ Collatz-Junction-Theorem/
 │       ├── sp7_*.py                    # Junction geology, gap scan
 │       ├── sp8_*.py                    # Fish nature scan, tunnel analysis
 │       ├── sp9_*.py                    # Extension k→500, D28 analysis, Voie 4
-│       └── sp10_*.py                   # Condition (Q) regime analysis (L1-L9)
+│       ├── sp10_*.py                   # Condition (Q) regime analysis (L1-L9)
+│       ├── phase_a1_exhaustive_k18_25.py  # Phase A1: exhaustive DP k=18..25
+│       ├── phase_a2_regime_b_extension.py # Phase A2: regime classification k=18..67
+│       ├── phase_a2plus_ecm_cofactors.py  # Phase A2+: ECM factorization (12 cofactors)
+│       └── phase_b3_PU_verify.py       # Phase B3: Proportion Uniformity verification
 │
 ├── research_log/                       # Complete research journal
 │   ├── phase10c--10m                   # Foundations (red team to crystal clash)
@@ -196,6 +200,9 @@ A systematic investigation (GPS methodology, 6 phases, ~30 experiments) has veri
 | **SP10 Regime B** (general) | **N ≤ 1** | Three Distances Theorem (Steinhaus 1957) |
 | **SP10 n₃ structure** | **Verified** | n₃·m \| p-1 (284/284), regime B empirically empty (0/284) |
 | **SP10 3 ∈ ⟨2⟩** | **Verified** | 183/284 in regime A, 0 in regime B |
+| **Complete factorization k=18..67** | **Verified** | d(k) fully factored (trial div + ECM), 190 primes |
+| **Regime classification k=18..67** | **Verified** | 190/190 Regime A, 0/190 Regime B |
+| **Regime B empty (extended)** | **Verified** | 0/474 pairs (k,p) for k ∈ [18,150] |
 
 Worst case: k=22, p=7, ratio=0.013, margin=3.2x. See [`scripts/core/verify_condition_q.py`](scripts/core/verify_condition_q.py), [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md), [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md), [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md), [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md), and [`research_log/sp9_formalization_and_extension.md`](research_log/sp9_formalization_and_extension.md).
 
@@ -218,6 +225,8 @@ The gap between "the evaluation map omits residues" and "the evaluation map omit
 
 The SP9 investigation confirms feasibility at **4.85/5**. The extended scan (541 primes, k → 500) with zero failures strengthens the empirical case substantially. The D30 discovery (p/m² = 2.73) partially refutes the SP8 hypothesis p/m² ≤ 1.25, but Weil remains sufficient for 97.8% of primes and ρ stays well below 0.5 even for outliers.
 
+**Phase A2/A2+ (gap closure k=18..67):** Complete factorization of d(k) for all k ∈ [18, 67] by trial division + ECM reveals **190 prime factors, all in Regime A (0 in Regime B)**. This extends the "Regime B empty" pattern from k ∈ [69, 150] (284 pairs) to k ∈ [18, 150] (**474 pairs**, zero exceptions). For k ≤ 68, this provides independent structural confirmation complementing Simons--de Weger (2005). See [`scripts/exploration/phase_a2_regime_b_extension.py`](scripts/exploration/phase_a2_regime_b_extension.py) and [`scripts/exploration/phase_a2plus_ecm_cofactors.py`](scripts/exploration/phase_a2plus_ecm_cofactors.py).
+
 **SP10** (Condition Q via Beatty sequences and Three Distances Theorem, L1--L9) provides the deepest analysis yet:
 - **Regime A** (p < m⁴): closed by Di Benedetto et al. (2020) + finite verification (k=69..200, 0 failures, CI running k=69..500).
 - **Regime B** (p ≥ m⁴, generic case n₃ = (p-1)/m): **closed** by Beatty counting argument showing k\_crit < n₃, hence N(p,k\_crit) = 0 rigorously.
@@ -225,7 +234,7 @@ The SP9 investigation confirms feasibility at **4.85/5**. The extended scan (541
 - **Key discovery**: among 284 pairs (k,p) with p | d(k), k=69..150, **zero** are in Regime B. The regime is empirically empty.
 - **n₃ structure**: n₃·m | p-1 verified 100% (284/284). The argument requires only the trivial bound ρ ≤ 1 - 1/m — no BGK effectivity needed.
 
-The residual gap is extremely narrow: proving N = 0 (instead of N ≤ 1) for non-generic n₃ in Regime B. Possible closures: (a) Baker p-adic to exclude the single candidate, (b) effective ρ < 1 - c/m^α with α < 1, (c) structural argument that 3 ∉ ⟨2⟩ for p ≥ m⁴.
+The complete factorization of d(k) for k ∈ [18, 67] raises the feasibility to **4.90/5**. Regime B is now empirically empty over 474 tested divisibility pairs. The residual gap is extremely narrow: proving N = 0 (instead of N ≤ 1) for non-generic n₃ in Regime B for k ≥ 69. Possible closures: (a) Baker p-adic to exclude the single candidate, (b) effective ρ < 1 - c/m^α with α < 1, (c) structural argument that 3 ∉ ⟨2⟩ for p ≥ m⁴, (d) effective Bourgain--Glibichuk--Konyagin with c ≥ 0.36.
 
 We believe in transparent science: see [`research_log/phase13_audit_kolmogorov_baker.md`](research_log/phase13_audit_kolmogorov_baker.md) for a detailed self-audit of a rejected proof attempt, [`research_log/sp5_investigation.md`](research_log/sp5_investigation.md) for the SP5 investigation, [`research_log/sp6_ghost_fish.md`](research_log/sp6_ghost_fish.md) for the SP6 ghost fish analysis, [`research_log/sp7_junction_geology.md`](research_log/sp7_junction_geology.md) for the junction geology, [`research_log/sp8_fish_nature.md`](research_log/sp8_fish_nature.md) for the fish nature in d(k), [`research_log/sp9_formalization_and_extension.md`](research_log/sp9_formalization_and_extension.md) for the formalization and extension to k = 500, and [`research_log/sp10_synthese_formelle.md`](research_log/sp10_synthese_formelle.md) for the SP10 Condition (Q) regime analysis with Beatty sequences and Three Distances Theorem.
 

@@ -98,7 +98,7 @@ Scripts publies, verifies, associes au preprint.
 | `stress_test.py` | — | 402 tests de robustesse |
 | `numerical_audit.py` | — | 152 verifications numeriques |
 
-### 4.2. Exploration (`scripts/exploration/`, 38 scripts, Phases 20-22 + SP6-SP10)
+### 4.2. Exploration (`scripts/exploration/`, 42 scripts, Phases 20-22 + SP6-SP10 + A1-A2+-B3)
 
 Scripts de recherche exploratoire.
 
@@ -142,8 +142,12 @@ Scripts de recherche exploratoire.
 | `sp10_level9_counting.py` | SP10 | Piste 1: Comptage via structure ⟨2⟩ + Beatty |
 | `sp10_level9_beatty_formal.py` | SP10 | Formalisation Beatty + Trois Distances |
 | `sp10_level9_n3_corrected.py` | SP10 | Investigation n₃ CORRIGEE (regime B vide) |
+| `phase_a1_exhaustive_k18_25.py` | A1 | Verification exhaustive DP k=18..25 |
+| `phase_a2_regime_b_extension.py` | A2 | Classification Regime A/B k=18..67 (165 premiers) |
+| `phase_a2plus_ecm_cofactors.py` | A2+ | Factorisation ECM 12 cofacteurs (25 premiers) |
+| `phase_b3_PU_verify.py` | B3 | Verification Proportion Uniformity (22 paires) |
 
-## 5. Research Log (`research_log/`, 43 fichiers)
+## 5. Research Log (`research_log/`, 48 fichiers)
 
 ### Fondations (Phases 10-13)
 
@@ -207,6 +211,11 @@ Scripts de recherche exploratoire.
 | `sp9_formalization_and_extension.md` | Investigation SP9 : Extension k→500, D28-D30, Voie 4 (4.85/5) |
 | `sp10_motor_b2_investigation.md` | Investigation SP10 : Condition (Q) analysis L1-L9 (80K+ mots) |
 | `sp10_synthese_formelle.md` | SP10 : Synthese formelle — propositions et architecture de preuve |
+| `phase_a1_resultats.tmp.md` | Phase A1 : resultats verification exhaustive k=18..25 |
+| `phase_a2_resultats.tmp.md` | Phase A2 : classification Regime A/B k=18..67 (0/165 Regime B) |
+| `phase_a2plus_resultats.tmp.md` | Phase A2+ : ECM 12 cofacteurs, 25 nouveaux premiers (tous Regime A) |
+| `phase_b3_resultats.tmp.md` | Phase B3 : Proportion Uniformity (ratio=0.999, P(pi0=0)=0) |
+| `synthese_gap_closure.tmp.md` | Synthese complete fermeture du gap k=18..67 |
 
 ## 6. Audits (`audits/`, 4 fichiers)
 

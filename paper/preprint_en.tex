@@ -971,6 +971,39 @@ systematic divisibility testing, Konyagin constant
 computation, and cascade filter analysis for all $20$
 Regime~B primes with $m \leq 130$).
 
+\medskip\noindent
+\textbf{Complete factorization and regime classification for
+$k = 18$ to~$67$.}
+The modular $d(k) = 2^S - 3^k$ was completely factored for
+every $k \in [18, 67]$: trial division up to~$10^7$ identified
+$127$~small primes and $38$~prime cofactors; the remaining
+$12$~composite cofactors (for
+$k \in \{46, 47, 53, 54, 57, 58, 59, 62, 63, 64, 65, 66\}$,
+$16$ to~$28$ decimal digits) were factored by Lenstra's
+elliptic curve method (ECM via \texttt{sympy.factorint}),
+yielding $25$~new primes.
+Each factorization was verified by checking that the product
+of factors equals~$d(k)$.
+For every prime factor~$p$, the multiplicative order
+$m = \ord_p(2)$ was computed via factorization of~$p - 1$,
+and the regime classification ($p < m^4$: Regime~A;
+$p \geq m^4$: Regime~B) was performed.
+
+\textbf{Result: $190/190$~prime factors are in Regime~A.
+Zero are in Regime~B.}
+Combined with the $284$~pairs from $k \in [69, 150]$
+(Section~\ref{sec:conclusion}), Regime~B is empirically empty
+over $474$~divisibility pairs $(k, p)$ spanning
+$k \in [18, 150]$.
+The range $k \leq 68$ is already covered by
+Theorem~\ref{thm:sdw} (Simons--de~Weger),
+so this regime classification provides an independent
+structural confirmation rather than a new proof for these
+values of~$k$.
+The scripts are available in \texttt{scripts/exploration/}
+(\texttt{phase\_a2\_regime\_b\_extension.py} and
+\texttt{phase\_a2plus\_ecm\_cofactors.py}).
+
 % ============================================================
 \section{Conclusion and perspectives}\label{sec:conclusion}
 % ============================================================
@@ -1170,17 +1203,23 @@ For small~$n_3$ (e.g.\ $n_3 = 2$), the bound can reach
 $O(\ln m)$, so the Beatty filter alone does not close this
 case.
 Empirically, however, Regime~B is \emph{empty} among all
-$284$~observed divisibility pairs $(k, p)$ for
-$k \in [69, 150]$: every prime factor of~$d(k)$ satisfies
-$p < m^4$.
+$474$~observed divisibility pairs $(k, p)$ for
+$k \in [18, 150]$: every prime factor of~$d(k)$ satisfies
+$p < m^4$ ($284$~pairs for $k \in [69, 150]$, plus
+$190$~additional pairs for $k \in [18, 67]$ via complete
+factorization of~$d(k)$ by ECM;
+see Section~\ref{sec:numerical}).
 
-Combining the regime analysis with the junction geology,
+Combining the regime analysis with the junction geology and
+the complete factorization of~$d(k)$ for $k \in [18, 67]$
+($190$~additional prime factors, all Regime~A;
+see Section~\ref{sec:numerical}),
 the estimated feasibility of
 Condition~\eqref{eq:condition-Q} for all $k \geq 18$
-rises to~$4.80/5$.
+rises to~$4.90/5$.
 The residual gap is the case $n_3 \leq 3m\ln p$ in
 Regime~B, where $N = O(\ln p / n_3)$;
-this case is empirically absent.
+this case is empirically absent over $474$~tested pairs.
 
 \medskip\noindent
 \textbf{Quantitative effectivisation (L12).}
@@ -1379,6 +1418,11 @@ The regime analysis further narrows the gap:
 Regime~A is closed by~\cite{DiBenedetto2020} combined with
 finite verification, while Regime~B is addressed by a Beatty
 counting argument and quantitative effectivisation.
+The complete factorization of~$d(k)$ for all $k \in [18, 67]$
+(Section~\ref{sec:numerical}) shows that \emph{every} prime
+factor in this range is in Regime~A ($190/190$, $0$~in
+Regime~B), confirming that the Regime~B case does not arise
+in the junction overlap zone.
 In the generic case ($n_3 = (p-1)/m$), one obtains $N = 0$.
 The formal lacuna is the case $n_3 \leq 3m\ln p$ in Regime~B,
 where the equidistribution bound gives
@@ -1387,6 +1431,11 @@ All $20$ concrete Regime~B primes (for $m \leq 130$) satisfy
 Condition~\eqref{eq:condition-Q}, and the required Konyagin
 constant is modest ($c \geq 0.36$,
 see~\eqref{eq:c-min}).
+Moreover, the complete factorization of~$d(k)$ for
+$k \in [18, 67]$ reveals that Regime~B is absent in this
+range as well ($0/190$), extending the empirical observation
+from $0/284$ ($k \in [69, 150]$) to $0/474$
+($k \in [18, 150]$).
 Closing this gap unconditionally would require
 an effective version of the Bourgain--Glibichuk--Konyagin
 sum-product estimate for $\langle 2 \rangle \bmod p$
