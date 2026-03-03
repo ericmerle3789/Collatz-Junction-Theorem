@@ -961,11 +961,15 @@ the three-mesh net verification: ghost fish analysis, tunnel
 factorization, exhaustive net coverage for all
 $168$~primes dividing $2^m - 1$ ($m \leq 100$), and direct
 Mersenne verification for $q \leq 127$.
-Six additional scripts implement the regime analysis of
+Seven additional scripts implement the regime analysis of
 Condition~\eqref{eq:condition-Q}: Phase~I verification
 ($k = 69$ to~$500$, automated via GitHub~CI), Baker--Matveev
-obstruction analysis, Beatty counting formalization, and the
-$n_3$ structure investigation.
+obstruction analysis, Beatty counting formalization, the
+$n_3$ structure investigation, and the quantitative
+effectivisation of Regime~B (exact $\rho$ via FFT,
+systematic divisibility testing, Konyagin constant
+computation, and cascade filter analysis for all $20$
+Regime~B primes with $m \leq 130$).
 
 % ============================================================
 \section{Conclusion and perspectives}\label{sec:conclusion}
@@ -1178,6 +1182,57 @@ The residual gap is the case $n_3 \leq 3m\ln p$ in
 Regime~B, where $N = O(\ln p / n_3)$;
 this case is empirically absent.
 
+\medskip\noindent
+\textbf{Quantitative effectivisation (L12).}
+A systematic enumeration of all Regime~B primes
+(factors~$p$ of $2^m - 1$ with $p \geq m^4$, for
+$m \leq 130$) identifies exactly $20$~such primes:
+$7$~Mersenne primes ($M_{17}, M_{19}, M_{31}, M_{61},
+M_{89}, M_{107}, M_{127}$) and $13$~composite Mersenne
+factors.
+For each, we verify Condition~\eqref{eq:condition-Q}
+via two complementary mechanisms:
+\begin{enumerate}[label=(\roman*)]
+  \item \emph{Spectral bound}: for $6$ primes with
+    $m \geq 47$, exact FFT computation of $\rho(p)$
+    yields $k_{\mathrm{crit}}(p) < 69$, so
+    Condition~\eqref{eq:condition-Q} holds automatically
+    for all $k \geq 69$.
+    Representative values: $\rho(M_{17}) = 0.8135$
+    ($k_{\mathrm{crit}} = 89.6$, resolved by~(ii));
+    $\rho(13264529) = 0.5409$ ($k_{\mathrm{crit}} = 48.9 < 69$).
+  \item \emph{Non-divisibility}: for all $20$ primes,
+    $p \nmid d(k)$ for every $k \leq 10^5$.
+    This is verified by modular arithmetic:
+    $2^{\lceil k\theta \rceil} \not\equiv 3^k \pmod{p}$
+    for all relevant~$k$.
+\end{enumerate}
+\textbf{Result}: $20/20$ Regime~B primes satisfy
+Condition~\eqref{eq:condition-Q}.
+The cascade of filters (modular filter $n_3 \mid k$,
+Beatty congruence, spectral bound) reduces the expected
+number of exceptions to $N_2 < 1$ for $15/20$ primes,
+with the remaining~$5$ resolved by exact $\rho$-computation
+or non-divisibility.
+
+The Konyagin~\cite{Konyagin2003} bound
+$\rho(p) \leq \exp(-c \cdot (\log p)^{1/3})$ for
+$|H| \geq p^{1/4+\varepsilon}$ (with $c > 0$
+non-explicit) would close the entire Regime~B gap if
+$c \geq c_{\min}$, where
+\begin{equation}\label{eq:c-min}
+  c_{\min} = \max_{k \geq 69}
+    \frac{\ln d(k) + 3.19}{(k - 17) \cdot (\ln d(k))^{1/3}}
+  = 0.3603
+  \qquad\text{(attained at } k = 69\text{).}
+\end{equation}
+The function $c_{\mathrm{needed}}(k)$ is strictly decreasing
+for $k \geq 69$ (verified numerically).
+Thus, an effective version of the
+Bourgain--Glibichuk--Konyagin theorem with
+$c \geq 0.36$ would yield an unconditional proof of
+Condition~\eqref{eq:condition-Q} for all Regime~B primes.
+
 \subsection{Open difficulties}
 
 Proposition~\ref{prop:barrier} shows that no purely spectral
@@ -1222,16 +1277,19 @@ ghost fish (absent from all~$d(k)$).
 The regime analysis further narrows the gap:
 Regime~A is closed by~\cite{DiBenedetto2020} combined with
 finite verification, while Regime~B is addressed by a Beatty
-counting argument.
+counting argument and quantitative effectivisation.
 In the generic case ($n_3 = (p-1)/m$), one obtains $N = 0$.
 The formal lacuna is the case $n_3 \leq 3m\ln p$ in Regime~B,
 where the equidistribution bound gives
 $N \leq \lfloor 3\ln(p)/n_3 \rfloor + 1 = O(\ln p / n_3)$.
-Closing this gap would require either a nontrivial
-bound $\rho \leq 1 - c/m^\alpha$ ($\alpha < 1$), a cascade
-of Diophantine filters reducing~$N$ to~$0$, or
+All $20$ concrete Regime~B primes (for $m \leq 130$) satisfy
+Condition~\eqref{eq:condition-Q}, and the required Konyagin
+constant is modest ($c \geq 0.36$,
+see~\eqref{eq:c-min}).
+Closing this gap unconditionally would require
 an effective version of the Bourgain--Glibichuk--Konyagin
-sum-product estimate for $\langle 2 \rangle \bmod p$.
+sum-product estimate for $\langle 2 \rangle \bmod p$
+with explicit constant $c \geq 0.36$.
 
 These approaches connect to three precise open conjectures
 identified in the course of this work:
@@ -1332,6 +1390,11 @@ The accompanying code is released under the MIT License.
   The $3x+1$ problem: new lower bounds on nontrivial cycle
   lengths,
   \emph{Discrete Math.}\ \textbf{118} (1993), 45--56.
+
+\bibitem{Konyagin2003}
+  S.\,V.~Konyagin,
+  Estimates for character sums,
+  \emph{Acta Arith.}\ \textbf{110} (2003), no.~2, 153--166.
 
 \bibitem{KontorovichLagarias2010}
   A.\,V.~Kontorovich and J.\,C.~Lagarias,
