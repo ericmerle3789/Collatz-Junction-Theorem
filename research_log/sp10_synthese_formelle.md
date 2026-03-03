@@ -1,8 +1,8 @@
 # SP10 — Synthese Formelle : Condition (Q) et Sommes Exponentielles
 
-**Date** : 2 mars 2026
-**Statut** : L11 STRUCTUREL — Regime B vide empiriquement (max ratio 2.49), borne Weil INVALIDEE
-**Historique** : L9 N<=1 (faux). L10 corrige N=O(ln p/n_3). L11 argument structurel (non concluant).
+**Date** : 3 mars 2026
+**Statut** : L12 EFFECTIVISATION — 20/20 Regime B satisfont (Q), c_min=0.3603
+**Historique** : L9 N<=1 (faux). L10 corrige N=O(ln p/n_3). L11 structurel (non concluant). L12 effectivisation quantitative.
 
 ---
 
@@ -200,17 +200,21 @@ CAS 3 : k >= 69, REGIME B (p >= m^4)
        Conditionnel a c > 0 explicite dans Konyagin.
        *** CORRIGE L10 : precedemment annonce N<=1, c'etait FAUX
        *** AMELIORE L10 : Konyagin reduit k_crit de O(m*ln p) a O((ln p)^{2/3}/c)
+       *** L12 EFFECTIVISATION : 20/20 premiers Regime B satisfont (Q)
+           c_min = 0.3603 (k=69). Si c >= 0.36 dans Konyagin : gap FERME.
+           6/20 resolus par rho (k_crit < 69), 14/20 par non-divisibilite.
   → 3c (3 in <2>, regime B) :
-       Empiriquement VIDE (0/284 + 0/123)                         [HEUR]
+       Empiriquement VIDE (0/284 + 0/123 + 0/20)                  [HEUR]
 ```
 
-**Gap residuel (CORRIGE L10)** :
+**Gap residuel (CORRIGE L10, QUANTIFIE L12)** :
 - Cas 3b-ii : N <= O(ln(p)/n_3), plus large que le "N<=1" precedemment annonce.
   Pour n_3 = 2, m = 5 : N <= 10 (et non N <= 1).
-  La borne theorique est significativement plus faible.
+  L12 : 20/20 premiers de Regime B (m <= 130) satisfont (Q).
+  c_min = 0.3603 pour Konyagin (atteint en k=69).
 - Cas 3c : non prouve formellement vide.
-- Les DEUX cas sont empiriquement ABSENTS (Regime B est vide pour k=69..150).
-- Le gap est theoriquement plus large mais empiriquement toujours nul.
+- Les DEUX cas sont empiriquement ABSENTS (Regime B vide pour k=69..150 + 20/20 premiers).
+- Le gap est theoriquement ouvert mais empiriquement nul. Konyagin c >= 0.36 fermerait.
 
 ---
 
@@ -244,36 +248,40 @@ CAS 3 : k >= 69, REGIME B (p >= m^4)
 11. Hooley (1967). On Artin's conjecture. J. Reine Angew. Math. 225, 209-220.
     (Sous GRH, 2 est racine primitive pour ~37.4% des primes.)
 
+12. Bourgain, Katz, Tao (2004). A sum-product estimate in finite fields.
+    GAFA 14, 27-57. (fondation de la methode sum-product)
+
 ---
 
-## Conclusion (CORRIGEE L10, 2 mars 2026)
+## Conclusion (MISE A JOUR L12, 3 mars 2026)
 
 La Condition (Q) est **partiellement prouvee** :
 - Le Regime A est clos par verification directe (Di Benedetto + Phase I computationnelle).
 - Le Regime B (cas generique, 51%+ des occurrences) est clos par l'argument de Beatty/comptage.
 - Le Regime B avec n_3 > 3m*ln(p) : clos (k_crit < n_3, donc N = 0).
 - Le Regime B avec n_3 petit (2 <= n_3 <= 3m*ln(p)) : N <= floor(3*ln(p)/n_3) + 1.
-  *** CORRIGE : la version precedente affirmait N <= 1, c'etait FAUX.
-- Les cas 3 in <2> en regime B sont empiriquement inexistants.
+  *** CORRIGE L10 : la version precedente affirmait N <= 1, c'etait FAUX.
+- Les cas 3 in <2> en regime B sont empiriquement inexistants (0/284 + 0/123 + 0/20).
 - Empiriquement, le Regime B est VIDE (0/284 cas pour k=69..150).
 - Phase I CI (k=69..275) : 141 PASS, 0 FAIL, 66 timeouts. (Q) satisfaite partout.
 
-**Gap residuel** (plus large que precedemment annonce) :
-1. Cas 3b-ii (n_3 petit, 3 not in <2>, p >= m^4) : N = O(ln(p)/n_3), pas N <= 1.
+**Resultats L12 (effectivisation quantitative)** :
+- 20 premiers de Regime B identifies pour m <= 130 (7 Mersenne + 13 composites)
+- **20/20 satisfont (Q)** : 6 par rho (k_crit < 69), 14 par non-divisibilite
+- c_min = 0.3603 : si c >= 0.36 dans Konyagin (2003), gap Regime B FERME
+- Cascade efficace : 15/20 ont N_2 < 1 apres filtres n_3 + Beatty
+
+**Gap residuel** (quantifie L12) :
+1. Cas 3b-ii (n_3 petit, 3 not in <2>, p >= m^4) : conditionnel a Konyagin c >= 0.36.
 2. Cas 3c (3 in <2>, p >= m^4) : non prouve formellement vide.
+Note : TOUS les cas concrets testes (20/20) sont resolus.
 
 **Pistes pour fermer le gap** :
-1. Borne effective rho <= 1 - c/m^alpha (alpha < 1) : reduirait k_crit et donc J.
-2. Cascade de filtres (approche Zenon) : chaque filtre supplementaire reduit N
-   geometriquement. Si sum des reductions converge, N → 0.
-3. BGK effectivisation : borne non-triviale sur rho pour p >= m^4.
-4. Argument structurel (L11) : montrer que d(k) = 2^S - 3^k ne peut avoir
-   de facteur premier en Regime B. RESULTAT L11 : non concluant.
-   - Max ratio log(p)/log(m) = 2.489, marge 1.51 au seuil 4.0
-   - 0% des primes p < 50000 ont ord_p(2) <= p^{1/4} (Artin)
-   - Borne de Weil INUTILE en Regime B (rho <= sqrt(p)/m >= m)
-   - Pas d'argument elementaire pour ratio < 4
+1. Konyagin effectivisation : c >= 0.36 suffit (valeur modeste).
+2. Argument structurel sur d(k) (L11 : non concluant).
+3. GRH + Artin : fermerait cas 3c conditionnellement.
+4. Extension numerique : tester m = 131..300.
 
-**Score** : 4.80/5 (inchange depuis L10).
+**Score** : 4.80/5 (inchange).
 Le Regime A est CLOS. Le Regime B generique est CLOS. Le Regime B non-generique
-a un gap theorique O(ln p) (et non O(1) comme annonce). Empiriquement N = 0 toujours.
+a un gap theorique conditionnel a Konyagin (c >= 0.36). Empiriquement N = 0 toujours.
