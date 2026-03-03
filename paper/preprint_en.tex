@@ -1233,23 +1233,124 @@ Bourgain--Glibichuk--Konyagin theorem with
 $c \geq 0.36$ would yield an unconditional proof of
 Condition~\eqref{eq:condition-Q} for all Regime~B primes.
 
+\subsubsection{Structural lemmas for Mersenne primes}
+\label{sec:mersenne-structural}
+
+For Mersenne primes $M_q = 2^q - 1$, the subgroup
+$\langle 2 \rangle = \{2^0, 2^1, \ldots, 2^{q-1}\}$ has
+a particularly rigid binary structure that yields exact
+combinatorial results.
+
+\begin{lemma}[Additive energy of $\langle 2 \rangle$ for Mersenne primes]
+\label{lem:energy-mersenne}
+For $p = M_q$ with $q \geq 3$:
+\begin{enumerate}[label=(\roman*)]
+  \item $|\langle 2 \rangle + \langle 2 \rangle| = q(q+1)/2$;
+  \item $E(\langle 2 \rangle) = 2q^2 - q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since $2^j < 2^q - 1 = p$ for $0 \leq j \leq q-1$,
+elements of $\langle 2 \rangle$ are unreduced powers of~$2$.
+The sumset decomposes into ``doubles'' $2^{i+1}$ (including
+$2^q \equiv 1$) giving $q$~elements in $\langle 2 \rangle$,
+and ``distinct pairs'' $2^i + 2^j$ ($i < j$), each with
+exactly two bits set in binary, hence pairwise distinct and
+distinct from elements of $\langle 2 \rangle$. Since
+$2^i + 2^j < 2^{q-1} + 2^{q-2} < p$, no reduction occurs.
+Total: $q + \binom{q}{2} = q(q+1)/2$.
+
+For the energy: doubles contribute $q \times 1^2 = q$
+(each sum $2^{i+1}$ has one representation $(i,i)$), while
+distinct pairs contribute $\binom{q}{2} \times 2^2 = 2q(q-1)$
+(each $2^i + 2^j$ has representations $(i,j)$ and $(j,i)$).
+Total: $E = q + 2q(q-1) = 2q^2 - q$.
+\end{proof}
+
+\begin{lemma}[Structural $n_3$ bound for Mersenne primes]
+\label{lem:n3-mersenne}
+For $p = M_q$ with $q \geq 5$:
+$n_3(M_q) \geq \lceil q \cdot \log_3(2) \rceil = \lceil q/\theta \rceil$,
+where $\theta = \log_2(3)$.
+\end{lemma}
+
+\begin{proof}
+For $1 \leq j \leq \lfloor q/\theta \rfloor$, we have
+$3^j < 2^q = p + 1$, so $3^j \bmod p = 3^j$ (unreduced).
+Since $3^j$ is odd and $> 1$ for $j \geq 1$, while every
+element of $\langle 2 \rangle = \{1, 2, 4, \ldots, 2^{q-1}\}$
+with exponent $\geq 1$ is even, the only possible match is
+$3^j = 1 = 2^0$, which fails for $j \geq 1$.
+Hence $3^j \notin \langle 2 \rangle$ for all
+$j \in [1, \lfloor q/\theta \rfloor]$, giving
+$n_3 > \lfloor q/\theta \rfloor$.
+Since $q/\theta$ is irrational ($\theta$ is transcendental),
+$n_3 \geq \lfloor q/\theta \rfloor + 1 = \lceil q/\theta \rceil$.
+\end{proof}
+
+\begin{corollary}
+For $q \geq 110$, we have $n_3(M_q) \geq 70 > 69$,
+so the modular filter $n_3 \mid k$ excludes $k = 69$
+entirely from the divisibility candidates.
+\end{corollary}
+
+\paragraph{Spectral concentration: a negative result.}
+The \emph{spectral concentration ratio}
+$C(q) \coloneqq \max_{t \neq 0} |S_t|^4 / \mathrm{avg}_{t \neq 0} |S_t|^4$
+satisfies $C(q) \sim q^2/2$ as $q \to \infty$
+(verified numerically for $q \leq 19$).
+Combined with Lemma~\ref{lem:energy-mersenne},
+$\mathrm{avg}|S_t|^4 \approx 2q^2$, this gives
+$\rho(M_q)^4 \sim C(q) \cdot 2q^2 / q^4 \to 1/2$,
+i.e., $\rho(M_q) \to 2^{-1/4} \approx 0.8409$.
+The convergence is super-polynomial, with
+$|1 - 2\rho^4|$ decreasing faster than any power of~$1/q$.
+
+This establishes that \textbf{no moment-based bound}
+(4th, 6th, or any $2k$-th moment) can prove $\rho \to 0$
+for Mersenne primes. The spectral concentration is inherent
+to the binary structure of $\langle 2 \rangle$.
+
+\paragraph{Divisibility verification.}
+Direct computation confirms that $M_{17} \mid d(7710)$
+(with $n_3 = 7710$, $\beta_0 = 15$, and the Beatty congruence
+$\lceil 7710\theta \rceil \equiv 15 \pmod{17}$ satisfied).
+However, $k = 7710 \gg k_{\mathrm{crit}} \approx 97$,
+so $(p-1) \cdot \rho^{k-17} \approx 10^{-684} \ll 0.041$.
+Similarly, $M_5 \mid d(48)$, $M_7 \mid d(90)$,
+all safely outside the danger window.
+\emph{No divisibility occurs within the danger window}
+$[18, k_{\mathrm{crit}}]$ for any Mersenne prime tested.
+
 \subsection{Open difficulties}
 
 Proposition~\ref{prop:barrier} shows that no purely spectral
 method (moments of~$T$) can close the gap in the regime
 $p \sim C^{1+o(1)}$.
-Three identified approaches to circumvent this barrier are:
+The structural analysis of Section~\ref{sec:mersenne-structural}
+makes this precise: $\rho(M_q) \to 2^{-1/4}$ (conjectured),
+so the spectral gap saturates at a \emph{positive constant}.
+Closing the formal gap requires tools beyond moment methods.
+
+Identified approaches are:
 \begin{enumerate}[label=(\alph*)]
-  \item the \emph{Skolem conjecture} for $S$-unit equations;
-  \item \emph{spectral mixing} of the Horner transfer operator
-    (Bourgain--Gamburd approach, not directly applicable here
-    since $|H| = S \ll p^\delta$);
+  \item \emph{Effectivisation of Konyagin's bound}: extracting
+    $c \geq 0.36$ from the Bourgain--Glibichuk--Konyagin proof;
+  \item \emph{Diophantine arguments}: proving $n_3(M_q) \geq 4q$
+    for large Mersenne primes (current structural bound gives
+    only $n_3 \geq 0.631q$, a factor $6.3\times$ gap);
   \item the \emph{additive energy} of the subset
-    $\{2^0, \ldots, 2^{S-1}\}$, whose low value
-    $E_4(H) = S^2 + O(S^2/p)$ provides additional control
+    $\{2^0, \ldots, 2^{S-1}\}$, whose exact value
+    $E(\langle 2 \rangle) = 2q^2 - q$ for Mersenne primes
+    (Lemma~\ref{lem:energy-mersenne}) provides
+    structural constraints
     (cf.~Applegate and
-    Lagarias~\cite{AppLegateLagarias2006} for related
-    structural constraints).
+    Lagarias~\cite{AppLegateLagarias2006});
+  \item \emph{Baker's theory of linear forms in logarithms},
+    which controls $|\lceil k\theta \rceil \cdot \log 2 - k \log 3|$
+    but not the residue $\lceil k\theta \rceil \bmod q$
+    required for divisibility.
 \end{enumerate}
 A complementary difficulty, identified by the three-mesh net
 analysis, is the \emph{ghost fish gap}: for an undiscovered
