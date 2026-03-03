@@ -3,7 +3,7 @@
 **Projet:** Entropic Barriers and Nonsurjectivity in the 3x+1 Problem
 **Auteur:** Eric Merle
 **Date:** Mars 2026
-**Fichiers:** 146 (hors .git)
+**Fichiers:** 147 (hors .git)
 
 ---
 
@@ -39,6 +39,8 @@
 - Filet a trois mailles (SP6) : 168 primes, 0 echecs
 - Ghost Fish + Deux Barrieres (SP6) : Mersenne q <= 127
 - Geologie de jonction (SP7) : K_MAX=63, Fish-Tunnel Incompatibility
+- Proposition L13 : Effective Regime B Vacuity (57 primes, 0 dangerous)
+- Proposition L14 : One Good Prime Suffices (CRT bypass, Regime B irrelevant)
 - 3 conjectures ouvertes + chaine conditionnelle
 - Formalisation Lean 4 (73+58 theoremes)
 
@@ -98,7 +100,7 @@ Scripts publies, verifies, associes au preprint.
 | `stress_test.py` | — | 402 tests de robustesse |
 | `numerical_audit.py` | — | 152 verifications numeriques |
 
-### 4.2. Exploration (`scripts/exploration/`, 45 scripts, Phases 20-22 + SP6-SP10 + A1-A2+-B3-C-D)
+### 4.2. Exploration (`scripts/exploration/`, 46 scripts, Phases 20-22 + SP6-SP10 + A1-A2+-B3-C-D-E)
 
 Scripts de recherche exploratoire.
 
@@ -149,6 +151,7 @@ Scripts de recherche exploratoire.
 | `phase_c_structural_proof.py` | C | Census Regime B (m≤300) + analyse structurelle (5 analyses) |
 | `phase_c_regime_b_hunt.py` | C | Chasse Regime B 4 routes (classification, enumeration, non-divisibilite, structure) |
 | `phase_d_formal_proof.py` | D | Theoreme formel + synthese (Proposition L13) |
+| `phase_e_one_good_prime.py` | E | CRT bypass : One Good Prime Suffices (Proposition L14) |
 
 ## 5. Research Log (`research_log/`, 48 fichiers)
 

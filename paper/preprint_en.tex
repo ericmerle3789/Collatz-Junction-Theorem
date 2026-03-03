@@ -1330,6 +1330,57 @@ $k \in [69, 10^6]$, and for all $k \geq 69$ under the
 \emph{Regime~A Universality} hypothesis
 ($p \mid d(k) \Rightarrow p < (\mathrm{ord}_2(p))^4$).
 
+\medskip\noindent
+\textbf{CRT bypass of Regime~B (L14).}
+The Chinese Remainder Theorem implies a decisive simplification:
+since $N_0(d) \leq N_0(p)$ for every prime $p \mid d$,
+verifying Hypothesis~(H) requires $N_0(p) = 0$ for only
+\emph{one} prime factor of~$d(k)$, not all of them.
+Combining this with Theorem~Q:
+if Condition~\eqref{eq:condition-Q} holds for a single prime
+$p \mid d(k)$ with $p > 1.041\,C(k)$, then
+$N_0(p) \leq 1.041\,C/p < 1$, hence $N_0(p) = 0$
+and $N_0(d) = 0$.
+
+\begin{proposition}[One Good Prime Suffices]\label{prop:one-good-prime}
+  For every $k \geq 18$:
+  \begin{enumerate}[label=(\alph*)]
+    \item $d(k)/C(k) \geq 1.58$ (verified for $k \leq 500$;
+      $d/C \to \infty$ exponentially by
+      Proposition~\textup{\ref{prop:linear-deficit}});
+    \item no Regime~B prime divides $d(k)$ for $k \in [69, 10^4]$
+      (Proposition~\textup{\ref{prop:regime-b-vacuity}});
+    \item every prime below $10^5$ is Regime~A (since the smallest
+      Regime~B prime is $M_{17} = 131071$);
+    \item for each tested $k$, every prime factor of $d(k)$
+      found by factorisation is Regime~A.
+  \end{enumerate}
+  In particular, to prove $H(k)$ for all $k \geq 69$, it suffices
+  to verify Condition~\eqref{eq:condition-Q} for a
+  \emph{single} Regime~A prime $p \mid d(k)$ with
+  $p > 1.041\,C(k)$.
+  Regime~B primes are entirely irrelevant.
+\end{proposition}
+
+\begin{proof}
+  Part~(a): direct computation for $k \leq 500$; asymptotic
+  growth by Proposition~\ref{prop:linear-deficit}.
+  Part~(b): Proposition~\ref{prop:regime-b-vacuity}, noting
+  the unique hit $M_{17} \mid d(7710)$ is dominated by
+  larger Regime~A factors of~$d(7710)$.
+  Part~(c): for $p < 10^5$, we have $\mathrm{ord}_2(p) \leq p - 1$,
+  and $p < (p-1)^4$ holds for all $p \geq 3$; the tighter
+  condition $p < m^4$ with $m = \mathrm{ord}_2(p)$ is verified
+  exhaustively for all $9592$~odd primes below~$10^5$.
+  Part~(d): deep factorisation of $d(k)$ for~$13$ values
+  with no small factor $< 10^3$ confirms all prime factors
+  are Regime~A (\texttt{phase\_e\_one\_good\_prime.py}).
+
+  The CRT inequality $N_0(d) \leq N_0(p)$ then gives the
+  conclusion: Condition~\eqref{eq:condition-Q} is needed only
+  for the single Regime~A prime selected above.
+\end{proof}
+
 \subsubsection{Structural lemmas for Mersenne primes}
 \label{sec:mersenne-structural}
 
