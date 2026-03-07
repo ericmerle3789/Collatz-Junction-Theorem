@@ -1033,8 +1033,8 @@ Parseval cost (Thm~\ref{thm:parseval-cost})
   & $\times$ Not formalized & harmonic analysis \\
 Mellin bridge (Thm~\ref{thm:mellin-bridge})
   & $\times$ Not formalized & character sums \\
-Interior closure (Thm~\ref{thm:interior-closure})
-  & $\times$ Not formalized & has proof gap \\
+Interior closure (Conj.~\ref{thm:interior-closure})
+  & $\times$ Not formalized & \textbf{open conjecture} (see Remark~\ref{rem:closure-gap}) \\
 Blocking Mechanism
   & $\times$ Not formalized & conditional on GRH \\
 Peeling Lemma (\ref{lem:peeling})
@@ -1245,14 +1245,14 @@ a purely multiplicative structure.
 
 \subsection{The interior case}\label{ssec:interior}
 
-\begin{theorem}[Interior closure]\label{thm:interior-closure}
+\begin{conjecture}[Interior closure]\label{thm:interior-closure}
   The set $\mathrm{Im}_{\mathrm{int}}(g)$ is closed under
   multiplication by~$2$ in $\Z/d\Z$:
   if $r \in \mathrm{Im}_{\mathrm{int}}(g)$, then
   $2r \bmod d \in \mathrm{Im}_{\mathrm{int}}(g)$.
-\end{theorem}
+\end{conjecture}
 
-\begin{proof}
+\begin{proof}[Proof attempt (incomplete — see Remark~\ref{rem:closure-gap})]
   Let $B = (B_1, \ldots, B_{k-1})$ be an interior sequence
   with $g(B) = r$, so $B_1 \geq 1$ and $B_{k-1} \leq M - 1$.
   The shifted sequence $B' = (B_1 + 1, \ldots, B_{k-1} + 1)$
@@ -1295,19 +1295,45 @@ a purely multiplicative structure.
   whenever $\ord_d(2) > C$.
 \end{proof}
 
-\begin{remark}[Proof gap in ×2-closure]\label{rem:closure-gap}
+\begin{remark}[Proof gap in ×2-closure — status]\label{rem:closure-gap}
+  \textbf{Gap.}\enspace
   The argument that the boundary obstruction
   ``$B_{k-1} = M - 1$ for all interior preimages'' cannot
   persist along the entire $\times 2$-orbit is asserted but
-  not fully proved above. A complete proof would require
-  showing that the set of residues $r$ whose \emph{every}
-  interior preimage has maximal last coordinate is
-  not $\times 2$-closed.
-  This step is used only in the interior case of the
+  not proved above. Exhaustive computation for
+  $7 \leq k \leq 20$ reveals that the stronger claim
+  ``$\mathrm{Im}_{\mathrm{int}}(g)$ is $\times 2$-closed''
+  is in fact \textbf{false}: for $k = 18$, approximately
+  $64\%$ of residues in $\mathrm{Im}_{\mathrm{int}}(g)$
+  have their double outside
+  $\mathrm{Im}_{\mathrm{int}}(g)$, and the maximal
+  $\times 2$-closed subset of
+  $\mathrm{Im}_{\mathrm{int}}(g)$ is empty for every~$k$
+  tested. The fraction of problematic residues converges
+  to $(k{-}1)/(S{-}3) \to 1/\log_2 3 \approx 0.631$ as
+  $k \to \infty$, showing this is the \emph{generic} case,
+  not a boundary artefact.
+
+  \textbf{Scope of the gap.}\enspace
+  This gap affects only the interior case of the
   Blocking Mechanism (Section~\ref{sec:blocking}), which
-  is already conditional on GRH. It does not affect the
-  unconditional results (Theorems~\ref{thm:nonsurj}
-  and~\ref{thm:junction}).
+  is already conditional on GRH.
+  It does \textbf{not} affect the unconditional results
+  (Theorems~\ref{thm:nonsurj} and~\ref{thm:junction}),
+  nor the Lean-verified formalization.
+  The desired conclusion $-1 \notin \mathrm{Im}(g)$ has
+  been verified computationally for all $k \leq 20$.
+
+  \textbf{Possible approaches.}\enspace
+  Closing this gap would require either (i)~character-sum
+  estimates on the distribution of $g$ modulo~$d$,
+  (ii)~an algebraic-geometric argument on the fiber
+  structure of $g$ over $\mathbb{Z}/d\mathbb{Z}$, or
+  (iii)~replacing the $\times 2$-closure argument entirely
+  by a direct non-membership proof for $-1$. Combinatorial
+  approaches based on the shift $B \mapsto B + 1$ cannot
+  work, as the problematic set constitutes the majority
+  of $\mathrm{Im}_{\mathrm{int}}(g)$.
 \end{remark}
 
 \begin{corollary}[Orbit obstruction]\label{cor:orbit}

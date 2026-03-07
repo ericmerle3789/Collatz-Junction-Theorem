@@ -56,6 +56,8 @@ research_log/CONJECTURE_*.md
 research_log/CORRECTIONS_LOG.md
 research_log/sp1-sp5/
 scripts/exploration/
+docs/plans/
+lean/skeleton/PLAN_*.md
 
 # Older audit versions (only V8 is final)
 audits/AUDIT_V5_*.md
