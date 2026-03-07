@@ -63,5 +63,10 @@ audits/AUDIT_V6_*.md
 audits/AUDIT_V7_*.md
 audits/AUDIT_V8_MASTER_STRATEGY.md
 
+# Obsolete paper versions (only preprint_en.tex + preprint_en.pdf are canonical)
+paper/preprint_fr.tex
+paper/preprint.md
+paper/Merle_2026_Barrieres_Entropiques_Collatz.pdf
+
 # Archive (large, not for GitHub)
 archive/
