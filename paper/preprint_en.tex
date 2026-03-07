@@ -63,8 +63,11 @@
   \textbf{Stage~I} (unconditional): an information-theoretic
   argument shows the evaluation map $\Ev_d$ is not surjective
   for $k \geq 18$. Combined with Simons--de~Weger~(2005), the
-  \textbf{Junction Theorem} provides a universal obstruction
-  for every $k \geq 2$.
+  \textbf{Junction Theorem} guarantees that for every
+  $k \geq 2$, at least one obstruction (computational or
+  entropic) applies. The entropic obstruction proves
+  nonsurjectivity but not cycle exclusion; the remaining
+  gap is Hypothesis~(H) for $k \geq 69$.
   \textbf{Stage~II} (conditional on GRH): using the
   reformulation $f(B) = \sum u^j \cdot 2^{B_j}$ with
   $u = 2 \cdot 3^{-1} \bmod d$ ($d = 2^S - 3^k$),
@@ -83,7 +86,9 @@
   Artin's conjecture for primes $d = 2^S - 3^k$.
 
   The core results are formalized in Lean~4
-  ($73$~theorems, zero \texttt{sorry}, zero axioms);
+  ($73$~theorem declarations---including computational
+  identities and helper lemmas---with zero \texttt{sorry}
+  and zero axioms);
   a research skeleton with Mathlib adds
   ${\sim}\,60$ further proofs with zero \texttt{sorry}
   and two axioms (Simons--de~Weger~2005; continued fraction
@@ -149,7 +154,8 @@ This work establishes the following results:
     For every $k \geq 2$, at least one obstruction
     (computational or entropic) applies.
     The complete exclusion of cycles further requires
-    Hypothesis~(H) for $k \in [18, 68]$.
+    Hypothesis~(H) for $k \geq 69$
+    (see Remark~\ref{rem:junction-scope}).
   \item \textbf{Theorem~\ref{thm:parseval-cost}} (unconditional).
     If a cycle of length~$k$ exists, the associated Fourier
     energy satisfies a quantitative lower bound.
@@ -180,7 +186,11 @@ For $k \geq 18$, this deficit ensures $C < d$, so $\Ev_d$
 is not surjective.
 The overlap $[18, 68]$ between the entropic obstruction
 ($k \geq 18$) and the Simons--de~Weger bound ($k \leq 68$)
-closes the gap, yielding the Junction Theorem.
+ensures that every $k \geq 2$ is covered by at least one
+obstruction, yielding the Junction Theorem.
+The remaining gap---proving that residue~$0$ is among
+those omitted by~$\Ev_d$---is Hypothesis~(H),
+addressed conditionally by the Blocking Mechanism.
 
 To go beyond nonsurjectivity and exclude the specific
 residue~$0$, we develop an analytical approach via
@@ -490,18 +500,15 @@ reduces to:
 \subsection{The Junction Theorem}
 
 \begin{theorem}[Junction Theorem]\label{thm:junction}
-  For every $k \geq 2$, there exists no positive cycle of
-  length~$k$ in the Collatz dynamics, provided
-  Hypothesis~\textup{(H)} holds for $k \in [18, 68]$.
-
-  Unconditionally: for every $k \geq 2$, at least one of the
+  For every $k \geq 2$, at least one of the
   following two obstructions applies:
   \begin{enumerate}[label=\textup{(\alph*)}]
     \item \textbf{Computational obstruction}:
-      $k \leq 68$ and Theorem~\ref{thm:sdw} excludes cycles;
+      $k \leq 68$ and Theorem~\ref{thm:sdw} excludes
+      all cycles of length~$k$;
     \item \textbf{Entropic obstruction}:
       $k \geq 18$ and Theorem~\ref{thm:nonsurj} guarantees
-      $C < d$.
+      $C < d$, so $\Ev_d$ is not surjective.
   \end{enumerate}
 \end{theorem}
 
@@ -513,6 +520,28 @@ reduces to:
   Every $k \geq 2$ belongs to at least one of the two
   intervals.
 \end{proof}
+
+\begin{remark}[Scope of each obstruction]\label{rem:junction-scope}
+  The two obstructions differ in logical strength.
+  Obstruction~(a) is \emph{definitive}: it proves that no
+  cycle of length~$k$ exists for $k \leq 68$.
+  Obstruction~(b) is \emph{structural}: it proves that
+  $\Ev_d$ omits at least one residue modulo~$d$, but does
+  not identify \emph{which} residue is omitted
+  (cf.\ Remark~\ref{rem:nonsurj-meaning}).
+  In particular, nonsurjectivity alone does not exclude
+  cycles.
+
+  Complete cycle exclusion for $k \geq 69$ requires
+  the additional Hypothesis~\textup{(H)}---namely that
+  residue~$0$ is among those omitted by~$\Ev_d$.
+  Note that \textup{(H)} for $k \in [18, 68]$ already
+  follows from Theorem~\ref{thm:sdw} (no cycles
+  $\Rightarrow$ $N_0(d) = 0$).
+  The Blocking Mechanism (Section~\ref{sec:blocking})
+  establishes \textup{(H)} for all $k \geq 3$, conditional
+  on GRH.
+\end{remark}
 
 \begin{remark}[Three regimes]\label{rem:regimes}
   The convergents $q_n$ of the continued fraction of $\log_2 3$
@@ -527,7 +556,7 @@ reduces to:
       Frontier  & $q_5 = 41$ & $\approx 0.60$ &
         Both (overlap zone) \\
       Crystalline & $q_7 = 306$, \ldots & $\ll 1$ &
-        Nonsurjectivity alone \\
+        Nonsurjectivity (+ Hyp.~(H)) \\
       \bottomrule
     \end{tabular}
   \end{center}
@@ -776,11 +805,21 @@ Let $p$ be a prime dividing $d = 2^S - 3^k$.
   \end{equation}
 \end{conjecture}
 
-\begin{proposition}\label{prop:M-implies-H}
+\begin{proposition}[Heuristic]\label{prop:M-implies-H}
   Under Conjecture~M, for every sufficiently large~$k$
-  and every prime $p \mid d(k)$, we have $N_0(p) = 0$.
+  and every prime $p \mid d(k)$, we expect $N_0(p) = 0$.
   In particular, $N_0(d) = 0$ (Hypothesis~\textup{(H)}).
 \end{proposition}
+
+\noindent\textbf{Caveat.}
+The proof below is a sketch.  The rigorous
+implication ``Conjecture~M $\Rightarrow$
+Hypothesis~(H)'' is \emph{not} established: the
+triangle inequality does not close when $p$ grows
+exponentially (see Remark~\ref{rem:conjM-limitation}).
+Theorem~Q (Proposition~\ref{prop:theorem-Q}) provides an
+alternative conditional criterion that avoids this
+difficulty.
 
 \begin{proof}[Proof (sketch)]
   Under Conjecture~M, the error term for a prime
@@ -885,9 +924,12 @@ projects, hosted at
 \medskip\noindent
 \textbf{Verified core}
 (\texttt{lean/verified/}, Lean~4.15.0, no Mathlib dependency).
-This self-contained project contains \textbf{73~theorems with
-zero \texttt{sorry} and zero additional axioms},
-machine-checked by the Lean~4 kernel.
+This self-contained project contains \textbf{73~theorem
+declarations} (of which approximately 30 encode non-trivial
+mathematical results; the remainder are computational
+identities, helper lemmas, and redundant restatements),
+\textbf{with zero \texttt{sorry} and zero additional axioms},
+all machine-checked by the Lean~4 kernel.
 Coverage includes:
 \begin{itemize}
   \item Crystal nonsurjectivity: $C(k) < d(k)$ for each
@@ -922,7 +964,8 @@ and \textbf{2~axioms}:
 (i)~Simons--de~Weger~\cite{SimonsDeWeger2005} (published result,
 used for $k \leq 68$), and
 (ii)~a continued fraction lower bound for convergents of
-$\log_2 3$ (Hardy \& Wright~\S10.8, not yet in Mathlib).
+$\log_2 3$ (Hardy \& Wright~\cite{HardyWright2008},
+\S10.8; not yet in Mathlib).
 Key formally proved results:
 \begin{itemize}
   \item Steiner's equation
@@ -1193,11 +1236,27 @@ a purely multiplicative structure.
   If $B_{k-1} \leq M - 2$, then $B + 1$ is interior and
   $g(B + 1) = 2r$.
   The only obstruction is $B_{k-1} = M - 1$ for all interior
-  preimages of~$r$; we show this cannot persist along the orbit.
+  preimages of~$r$; we argue this cannot persist along the
+  orbit (see Remark~\ref{rem:closure-gap} below).
   Since $|\mathrm{Im}_{\mathrm{int}}(g)| \leq C$ and the
   orbit has length $\ord_d(2)$, the ×2-closure is complete
   whenever $\ord_d(2) > C$.
 \end{proof}
+
+\begin{remark}[Proof gap in ×2-closure]\label{rem:closure-gap}
+  The argument that the boundary obstruction
+  ``$B_{k-1} = M - 1$ for all interior preimages'' cannot
+  persist along the entire $\times 2$-orbit is asserted but
+  not fully proved above. A complete proof would require
+  showing that the set of residues $r$ whose \emph{every}
+  interior preimage has maximal last coordinate is
+  not $\times 2$-closed.
+  This step is used only in the interior case of the
+  Blocking Mechanism (Section~\ref{sec:blocking}), which
+  is already conditional on GRH. It does not affect the
+  unconditional results (Theorems~\ref{thm:nonsurj}
+  and~\ref{thm:junction}).
+\end{remark}
 
 \begin{corollary}[Orbit obstruction]\label{cor:orbit}
   If $-1 \in \mathrm{Im}_{\mathrm{int}}(g)$ and
@@ -1612,12 +1671,16 @@ Quantitatively, the analysis yields a precise conditional
 criterion:
 
 \begin{proposition}[Theorem~Q]\label{prop:theorem-Q}
-  Suppose that for every $k \geq 18$ and every prime
-  $p \mid d(k)$:
-  \begin{equation}\label{eq:condition-Q}
-    \Bigl|\sum_{t=1}^{p-1} T(t)\Bigr|
-    \;\leq\; 0.041 \cdot C.
-  \end{equation}
+  Suppose that for every $k \geq 18$:
+  \begin{enumerate}[label=\textup{(\arabic*)}]
+    \item for every prime $p \mid d(k)$,
+    \begin{equation}\label{eq:condition-Q}
+      \Bigl|\sum_{t=1}^{p-1} T(t)\Bigr|
+      \;\leq\; 0.041 \cdot C;
+    \end{equation}
+    \item $d(k)$ has at least one prime factor
+    $p > 1.041\,C(k)$.
+  \end{enumerate}
   Then for every $k \geq 3$, no nontrivial positive cycle
   of length~$k$ exists.
 \end{proposition}
@@ -1635,14 +1698,31 @@ criterion:
   prime~$p \mid d$, so $N_0(d) \leq N_0(p)$ for each
   such~$p$.
   In particular, $N_0(d) = 0$ whenever $d$ has a prime
-  factor $p > 1.041\,C$.
+  factor $p > 1.041\,C$, which is precisely
+  Condition~(2).
+\end{proof}
+
+\begin{remark}[Status of Condition~(2)]\label{rem:condition-2-status}
+  Condition~(2) requires that $d(k)$ possess a prime
+  factor exceeding~$1.041\,C(k)$.
   Since $C < d$ (Theorem~\ref{thm:nonsurj}) with
   $d/C \to \infty$ exponentially
-  (Proposition~\ref{prop:linear-deficit}), numerical
-  verification confirms that for every tested value of~$k$
-  ($k \leq 500$), $d(k)$ has a prime factor
-  exceeding~$1.041\,C(k)$.
-\end{proof}
+  (Proposition~\ref{prop:linear-deficit}), such a prime
+  factor exists whenever~$d(k)$ is itself prime or has
+  a large prime component.
+  However, numerical verification for
+  $k \in [18, 100]$ shows that only $8$ out of $83$
+  values of~$k$ satisfy
+  $\max_{p \mid d(k)} p > 1.041\,C(k)$.
+  This condition is therefore \emph{not} universally
+  satisfied and constitutes a genuine hypothesis of
+  Theorem~Q.
+  A refined argument exploiting the CRT inequality
+  with \emph{multiple} primes simultaneously---requiring
+  $\prod_{p \mid d} (1 - N_0(p)/C) > 0$ rather than
+  $N_0(p) = 0$ for a single~$p$---could potentially
+  relax Condition~(2), but this is not pursued here.
+\end{remark}
 
 Condition~\eqref{eq:condition-Q} is strictly weaker than
 Conjecture~M: it requires only that the \emph{sum} of
@@ -1847,7 +1927,7 @@ $c \geq c_{\min}$, where
 The function $c_{\mathrm{needed}}(k)$ is strictly decreasing
 for $k \geq 69$ (verified numerically).
 Thus, an effective version of the
-Bourgain--Glibichuk--Konyagin theorem with
+Bourgain--Glibichuk--Konyagin~\cite{BGK2006} theorem with
 $c \geq 0.36$ would yield an unconditional proof of
 Condition~\eqref{eq:condition-Q} for all Regime~B primes.
 
@@ -1915,9 +1995,12 @@ The Chinese Remainder Theorem implies a decisive simplification:
 since $N_0(d) \leq N_0(p)$ for every prime $p \mid d$,
 verifying Hypothesis~(H) requires $N_0(p) = 0$ for only
 \emph{one} prime factor of~$d(k)$, not all of them.
-Combining this with Theorem~Q:
+Combining this with the mechanism of Theorem~Q
+(Proposition~\ref{prop:theorem-Q}):
 if Condition~\eqref{eq:condition-Q} holds for a single prime
-$p \mid d(k)$ with $p > 1.041\,C(k)$, then
+$p \mid d(k)$ with $p > 1.041\,C(k)$
+(i.e., Conditions~(1) and~(2) of Theorem~Q are met
+for that prime), then
 $N_0(p) \leq 1.041\,C/p < 1$, hence $N_0(p) = 0$
 and $N_0(d) = 0$.
 
@@ -2063,7 +2146,7 @@ Closing the formal gap requires tools beyond moment methods.
 Identified approaches are:
 \begin{enumerate}[label=(\alph*)]
   \item \emph{Effectivisation of Konyagin's bound}: extracting
-    $c \geq 0.36$ from the Bourgain--Glibichuk--Konyagin proof;
+    $c \geq 0.36$ from the Bourgain--Glibichuk--Konyagin~\cite{BGK2006} proof;
   \item \emph{Diophantine arguments}: proving $n_3(M_q) \geq 4q$
     for large Mersenne primes (current structural bound gives
     only $n_3 \geq 0.631q$, a factor $6.3\times$ gap);
@@ -2125,7 +2208,7 @@ range as well ($0/190$), extending the empirical observation
 from $0/284$ ($k \in [69, 150]$) to $0/474$
 ($k \in [18, 150]$).
 Closing this gap unconditionally would require
-an effective version of the Bourgain--Glibichuk--Konyagin
+an effective version of the Bourgain--Glibichuk--Konyagin~\cite{BGK2006}
 sum-product estimate for $\langle 2 \rangle \bmod p$
 with explicit constant $c \geq 0.36$.
 
@@ -2228,6 +2311,18 @@ The accompanying code is released under the MIT License.
   The $3x+1$ problem: new lower bounds on nontrivial cycle
   lengths,
   \emph{Discrete Math.}\ \textbf{118} (1993), 45--56.
+
+\bibitem{BGK2006}
+  J.~Bourgain, A.\,A.~Glibichuk, and S.\,V.~Konyagin,
+  Estimates for the number of sums and products and for
+  exponential sums in fields of prime order,
+  \emph{J.\ London Math.\ Soc.\ (2)}\ \textbf{73} (2006),
+  380--398.
+
+\bibitem{HardyWright2008}
+  G.\,H.~Hardy and E.\,M.~Wright,
+  \emph{An Introduction to the Theory of Numbers},
+  6th ed., Oxford University Press, 2008.
 
 \bibitem{Hooley1967}
   C.~Hooley,

@@ -32,3 +32,13 @@ lakefile.olean
 *.synctex.gz
 *.fdb_latexmk
 *.fls
+
+# Research binaries (local sieve/scan tools)
+scripts/tools/mscan_*
+scripts/tools/sieve_*
+
+# Temporary research notes
+*.tmp.md
+
+# Archive (large, not for GitHub)
+archive/

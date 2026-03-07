@@ -377,8 +377,11 @@ theorem fourier_energy_q3 : 1521 - 1225 = 296 := by native_decide
 
 /-- Parseval cost check (Theorem 16.1): if N₀ ≥ 1 for q₃,
     then Σ_{t≠0}|T(t)|² ≥ (p-C)²/(p-1) = (13-35)²/12 = 484/12 = 40.
-    Here 296 ≥ 40, so the bound is satisfied (trivially in residual regime). -/
-theorem parseval_cost_q3 : 296 ≥ (13 - 35) * (13 - 35) / 12 := by native_decide
+    Here 296 ≥ 40, so the bound is satisfied (trivially in residual regime).
+
+    Note: we write (C - p) instead of (p - C) to avoid Nat underflow
+    (since C = 35 > p = 13). The square is symmetric: (p-C)² = (C-p)². -/
+theorem parseval_cost_q3 : 296 ≥ (35 - 13) * (35 - 13) / 12 := by native_decide
 
 /-- The sum of all N_r equals C = 35 (conservation). -/
 theorem residue_sum_q3 :
