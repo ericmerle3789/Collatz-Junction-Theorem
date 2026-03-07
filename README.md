@@ -90,9 +90,10 @@ Collatz-Junction-Theorem/
 │   └── Merle_2026_*.pdf             # Compiled PDF
 │
 ├── lean/
-│   ├── verified/                    # 73 theorem declarations (~30 non-trivial), 0 sorry, 0 axiom
-│   │   └── CollatzVerified/Basic.lean
-│   ├── skeleton/                    # ~60 theorems, 0 sorry, 2 axioms
+│   ├── verified/                    # 97 theorem declarations (~40 non-trivial), 0 sorry, 0 axiom
+│   │   └── CollatzVerified/Basic.lean  (73 thms)
+│   │   └── CollatzVerified/G2c.lean    (24 thms)
+│   ├── skeleton/                    # ~38 theorems, 0 sorry, 2 axioms
 │   │   ├── JunctionTheorem.lean
 │   │   ├── SyracuseHeight.lean
 │   │   ├── BinomialEntropy.lean

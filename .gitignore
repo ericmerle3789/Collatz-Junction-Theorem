@@ -40,5 +40,28 @@ scripts/tools/sieve_*
 # Temporary research notes
 *.tmp.md
 
+# Internal session prompts (not project content)
+META_PROMPT*.md
+INVENTAIRE.md
+
+# Scratch/work-in-progress notes
+*_scratch.md
+brouillon_*.md
+
+# Internal project management (not for publication)
+STATUS.md
+SISTER_PROJECT.md
+research_protocol/
+research_log/CONJECTURE_*.md
+research_log/CORRECTIONS_LOG.md
+research_log/sp1-sp5/
+scripts/exploration/
+
+# Older audit versions (only V8 is final)
+audits/AUDIT_V5_*.md
+audits/AUDIT_V6_*.md
+audits/AUDIT_V7_*.md
+audits/AUDIT_V8_MASTER_STRATEGY.md
+
 # Archive (large, not for GitHub)
 archive/

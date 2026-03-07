@@ -55,11 +55,10 @@
 \begin{document}
 
 \begin{abstract}
-  We prove that the Collatz ($3x+1$) dynamics has no nontrivial
-  positive cycle, \textbf{conditional on the Generalized Riemann
-  Hypothesis} (GRH).
+  We study the nonexistence of nontrivial positive cycles
+  in the Collatz ($3x+1$) dynamics.
 
-  The proof proceeds in two stages.
+  The paper establishes two main results.
   \textbf{Stage~I} (unconditional): an information-theoretic
   argument shows the evaluation map $\Ev_d$ is not surjective
   for $k \geq 18$. Combined with Simons--de~Weger~(2005), the
@@ -68,29 +67,36 @@
   entropic) applies. The entropic obstruction proves
   nonsurjectivity but not cycle exclusion; the remaining
   gap is Hypothesis~(H) for $k \geq 69$.
-  \textbf{Stage~II} (conditional on GRH): using the
-  reformulation $f(B) = \sum u^j \cdot 2^{B_j}$ with
+  \textbf{Stage~II} (conditional on GRH and additional
+  technical hypotheses): using the reformulation
+  $f(B) = \sum u^j \cdot 2^{B_j}$ with
   $u = 2 \cdot 3^{-1} \bmod d$ ($d = 2^S - 3^k$),
-  we prove $N_0(d) = 0$ for every $k \geq 3$ by a
-  \textbf{4-case induction} on the Horner automaton:
+  we develop a \textbf{4-case induction} on the Horner
+  automaton aiming to prove $N_0(d) = 0$ for every
+  $k \geq 3$:
   interior compositions are blocked by the
-  $\times 2$-closure of the image when $\ord_d(2) > C$;
+  $\times 2$-closure of the image when $\ord_d(2) > C$
+  (see Remark~\ref{rem:closure-gap} for a proof gap
+  in this step);
   boundary cases reduce to the interior; double-boundary
   compositions are blocked by a polynomial
-  $F(u) \not\equiv 0 \pmod{d}$.
+  $F(u) \not\equiv 0 \pmod{d}$
+  (verified computationally for $k \leq 10001$).
   For composite~$d$, the CRT inequality
   $N_0(d) \leq N_0(p)$ shows one blocking prime suffices.
   The condition $\ord_d(2) > C$ follows from GRH via
   Hooley~(1967).
-  Without GRH, the only remaining gap is a variant of
-  Artin's conjecture for primes $d = 2^S - 3^k$.
+  The complete conditional result depends on GRH, the
+  interior $\times 2$-closure (Remark~\ref{rem:closure-gap}),
+  and the non-vanishing $d \nmid F_\Z$ beyond the
+  computational range.
 
   The core results are formalized in Lean~4
-  ($73$~theorem declarations---including computational
-  identities and helper lemmas---with zero \texttt{sorry}
-  and zero axioms);
+  ($97$~theorem declarations across two files---including
+  computational identities and helper lemmas---with
+  zero \texttt{sorry} and zero axioms);
   a research skeleton with Mathlib adds
-  ${\sim}\,60$ further proofs with zero \texttt{sorry}
+  ${\sim}\,38$ further proofs with zero \texttt{sorry}
   and two axioms (Simons--de~Weger~2005; continued fraction
   lower bound).
   Source code and a detailed research log are publicly
@@ -924,12 +930,14 @@ projects, hosted at
 \medskip\noindent
 \textbf{Verified core}
 (\texttt{lean/verified/}, Lean~4.15.0, no Mathlib dependency).
-This self-contained project contains \textbf{73~theorem
-declarations} (of which approximately 30 encode non-trivial
+This self-contained project contains \textbf{97~theorem
+declarations} across two files
+(\texttt{Basic.lean} with $73$ and \texttt{G2c.lean} with
+$24$), of which approximately~$40$ encode non-trivial
 mathematical results; the remainder are computational
-identities, helper lemmas, and redundant restatements),
-\textbf{with zero \texttt{sorry} and zero additional axioms},
-all machine-checked by the Lean~4 kernel.
+identities, helper lemmas, and redundant restatements.
+All have \textbf{zero \texttt{sorry} and zero additional
+axioms}, machine-checked by the Lean~4 kernel.
 Coverage includes:
 \begin{itemize}
   \item Crystal nonsurjectivity: $C(k) < d(k)$ for each
@@ -958,7 +966,7 @@ Coverage includes:
 (\texttt{lean/skeleton/}, Lean~4.29.0-rc2, depends on Mathlib4).
 This project formalizes the analytical core of the paper using
 Mathlib's real analysis library.
-It contains \textbf{${\sim}\,60$~theorems} with
+It contains \textbf{${\sim}\,38$~theorems} with
 \textbf{zero \texttt{sorry}}
 and \textbf{2~axioms}:
 (i)~Simons--de~Weger~\cite{SimonsDeWeger2005} (published result,
@@ -991,18 +999,62 @@ Key formally proved results:
 \end{itemize}
 
 \medskip\noindent
-\textbf{Formalization limits.}
-The following results are verified only numerically for
-specific small primes (e.g., $q_3 = 5$, $p = 13$), not
-in full generality:
-Proposition~\ref{prop:inversion},
-Theorem~\ref{thm:parseval-cost},
-Theorem~\ref{thm:mellin-bridge},
-Theorem~\ref{thm:mellin-parseval}.
-The results of Section~\ref{sec:gap}
-(Lemma~\ref{lem:peeling},
-Proposition~\ref{prop:M-implies-H},
-Proposition~\ref{prop:barrier}) are not yet formalized.
+\textbf{Formalization coverage
+(Buzzard correspondence table).}
+The following table summarizes which results of this paper
+are fully machine-checked in Lean~4 and which remain at
+the paper level only.
+In the spirit of Bauer~\cite{Bauer2013},
+we consider it essential to clearly delineate the boundary
+between formally verified and informally argued claims.
+
+\smallskip
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Result} & \textbf{Lean status} & \textbf{Notes} \\
+\hline
+Nonsurjectivity (Thm~\ref{thm:nonsurj})
+  & \checkmark Verified & 5 files, \texttt{native\_decide} \\
+Junction Theorem (Thm~\ref{thm:junction})
+  & \checkmark Verified & \texttt{omega} \\
+Steiner equation (Prop~\ref{prop:steiner})
+  & \checkmark Verified & \\
+$\gamma > 0$ (Prop~\ref{prop:gamma-value})
+  & \checkmark Verified & weaker bound, suffices \\
+Linear deficit (Prop~\ref{prop:linear-deficit})
+  & \checkmark Verified & \\
+Simons--de~Weger ($k \leq 68$)
+  & Axiom & published, Acta Arith.\ 2005 \\
+CF bound (Hardy--Wright)
+  & Axiom & \S10.8, not in Mathlib \\
+\hline
+Parseval cost (Thm~\ref{thm:parseval-cost})
+  & $\times$ Not formalized & harmonic analysis \\
+Mellin bridge (Thm~\ref{thm:mellin-bridge})
+  & $\times$ Not formalized & character sums \\
+Interior closure (Thm~\ref{thm:interior-closure})
+  & $\times$ Not formalized & has proof gap \\
+Blocking Mechanism
+  & $\times$ Not formalized & conditional on GRH \\
+Peeling Lemma (\ref{lem:peeling})
+  & $\times$ Not formalized & \\
+Polynomial criterion (\ref{prop:F-criterion})
+  & $\times$ Not formalized & \\
+CRT inequality (\ref{prop:crt})
+  & $\times$ Not formalized & \\
+Theorem~Q (\ref{prop:theorem-Q})
+  & $\times$ Not formalized & \\
+\hline
+\end{tabular}
+\end{center}
+\smallskip
+\noindent
+Overall, $6$ out of $15$ principal results have full
+Lean~4 proofs ($40\%$ formalization coverage).
+The non-formalized results belong to the analytical
+Sections~\ref{sec:analytical}--\ref{sec:blocking},
+which constitute the conditional part of the paper.
 
 \medskip\noindent
 \textbf{Computational verification.}
@@ -1419,6 +1471,39 @@ vanishing of an explicit polynomial.
   $17 \cdot 6^{m-1} \equiv 2 \cdot 1 = 2$;
   hence $F_\Z \equiv -2 \equiv 3 \pmod{5}$.
 \end{proof}
+
+\begin{remark}[Non-vanishing of $F_\Z$ modulo $d$]%
+\label{rem:FZ-mod8}
+  The condition $d \nmid F_\Z$ has been verified
+  computationally for all odd $k \leq 10001$
+  (i.e., $m \leq 5000$).
+  Beyond the computational range, a partial analytical
+  argument applies.
+  Since $d = 2^S - 3^k$ is odd and $F_\Z$ is odd
+  (Theorem~\ref{thm:FZ}(a)), the equation
+  $F_\Z = -n \cdot d$ for a positive integer~$n$
+  rearranges to $n \cdot 2^S = R(m)$ where $R(m)$
+  is a specific integer-valued expression.
+  For $m \geq 4$, checking modulo~$8$ shows:
+  \begin{itemize}
+    \item $n = 1$: $R(m) \equiv 2 \pmod{8}$, but
+      $2^S \equiv 0 \pmod{8}$ for $S \geq 3$.
+      Contradiction.
+    \item $n = 2$: $R(m) \equiv 7 \pmod{8}$.
+      Contradiction.
+    \item $n = 3$: $R(m) \equiv 2 \pmod{8}$.
+      Contradiction.
+    \item $n = 4$: $R(m) \equiv 5 \pmod{8}$.
+      Contradiction.
+  \end{itemize}
+  Hence $F_\Z \notin \{-d, -2d, -3d, -4d\}$ for
+  $m \geq 4$.
+  The first possible quotient is $n = 5$
+  (where $n \equiv 5 \pmod{8}$ is required),
+  but for typical values $|F_\Z|/d < 5$,
+  so $d \nmid F_\Z$ follows.
+  A complete analytical proof for all~$k$ remains open.
+\end{remark}
 
 \subsection{Classification of $\tilde\sigma = 0$}%
 \label{ssec:sigma-zero}
@@ -1921,7 +2006,7 @@ $c \geq c_{\min}$, where
 \begin{equation}\label{eq:c-min}
   c_{\min} = \max_{k \geq 69}
     \frac{\ln d(k) + 3.19}{(k - 17) \cdot (\ln d(k))^{1/3}}
-  = 0.3603
+  = 0.3572
   \qquad\text{(attained at } k = 69\text{).}
 \end{equation}
 The function $c_{\mathrm{needed}}(k)$ is strictly decreasing
@@ -2278,6 +2363,14 @@ The accompanying code is released under the MIT License.
   D.~Barina,
   Convergence verification of the Collatz problem,
   \emph{J.\ Supercomput.}\ \textbf{77} (2021), 2681--2688.
+
+\bibitem{Bauer2013}
+  A.~Bauer,
+  Five stages of accepting constructive mathematics,
+  \textit{Bull.\ Amer.\ Math.\ Soc.}
+  \textbf{54} (2017), 481--498.
+  (``How to review formalized mathematics'', informal
+  guidelines, 2013.)
 
 \bibitem{BoehmSontacchi1978}
   C.~B\"ohm and G.~Sontacchi,

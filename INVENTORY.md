@@ -46,7 +46,7 @@
 - Proposition L14: One Good Prime Suffices
 - Sessions 10b-10f20 (Blocking Mechanism)
 - 3 open conjectures + conditional chain
-- Lean 4 formalization (73 + ~60 theorems)
+- Lean 4 formalization (97 verified + ~38 skeleton theorems)
 
 ## 3. Lean (`lean/`, 22 files)
 
@@ -55,6 +55,7 @@
 | File | Contents | sorry | axiom |
 |------|----------|:-----:|:-----:|
 | `CollatzVerified/Basic.lean` | 73 theorems | 0 | 0 |
+| `CollatzVerified/G2c.lean` | 24 theorems (CRT, modular) | 0 | 0 |
 | `CollatzVerified.lean` | Module root | — | — |
 | `Main.lean` | Entry point | — | — |
 | `lakefile.toml` | Lake config | — | — |
