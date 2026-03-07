@@ -80,7 +80,7 @@ Collatz-Junction-Theorem/
 ├── LICENSE                          # MIT (code)
 ├── LICENSE-PAPER                    # CC-BY 4.0 (paper)
 ├── README.md
-├── INVENTAIRE.md                    # Complete file catalog
+├── INVENTORY.md                     # Complete file catalog (English)
 ├── META_PROMPT_SESSION_NEXT.md      # Session continuation prompt
 │
 ├── paper/
@@ -92,14 +92,17 @@ Collatz-Junction-Theorem/
 ├── lean/
 │   ├── verified/                    # 73 theorems, 0 sorry, 0 axiom
 │   │   └── CollatzVerified/Basic.lean
-│   ├── skeleton/                    # ~58 theorems, 1 sorry, 1 axiom
+│   ├── skeleton/                    # ~60 theorems, 0 sorry, 2 axioms
 │   │   ├── JunctionTheorem.lean
 │   │   ├── SyracuseHeight.lean
 │   │   ├── BinomialEntropy.lean
 │   │   ├── EntropyBound.lean
 │   │   ├── ConcaveTangent.lean
 │   │   ├── LegendreApprox.lean
-│   │   └── FiniteCases.lean
+│   │   ├── FiniteCases.lean
+│   │   ├── FiniteCasesExtended.lean
+│   │   ├── FiniteCasesExtended2.lean
+│   │   └── AsymptoticBound.lean
 │   ├── lakefile.lean                # Mathlib v4.29.0-rc2
 │   └── lean-toolchain               # Lean 4.29.0-rc2
 │
@@ -176,9 +179,11 @@ python3 scripts/exploration/sp6_three_mesh_net.py
 - CI: GitHub Actions (`lean-check.yml`)
 
 **Research skeleton** (`lean/skeleton/`, Lean 4.29.0-rc2, Mathlib4):
-- ~58 theorems, 1 residual sorry (k >= 201, numerically verified to 10^6)
-- 1 axiom (Simons--de Weger, published result)
-- Crystal nonsurjectivity for k in [18, 200] via 183 `native_decide` cases
+- ~60 theorems, **0 sorry**, 2 axioms
+- Axiom 1: Simons--de Weger (published result, Acta Arith. 2005)
+- Axiom 2: continued fraction lower bound for convergents of log₂3 (Hardy & Wright §10.8, not yet in Mathlib)
+- Crystal nonsurjectivity for k in [18, 665] via 648 `native_decide` cases
+- Asymptotic nonsurjectivity for k >= 666 via Legendre contrapositive + CF axiom
 
 ## Honest Assessment
 

@@ -85,7 +85,9 @@
   The core results are formalized in Lean~4
   ($73$~theorems, zero \texttt{sorry}, zero axioms);
   a research skeleton with Mathlib adds
-  ${\sim}\,58$ further proofs.
+  ${\sim}\,60$ further proofs with zero \texttt{sorry}
+  and two axioms (Simons--de~Weger~2005; continued fraction
+  lower bound).
   Source code and a detailed research log are publicly
   available.
 \end{abstract}
@@ -914,11 +916,13 @@ Coverage includes:
 (\texttt{lean/skeleton/}, Lean~4.29.0-rc2, depends on Mathlib4).
 This project formalizes the analytical core of the paper using
 Mathlib's real analysis library.
-It contains \textbf{${\sim}\,58$~theorems} with
-\textbf{1~residual \texttt{sorry}} (asymptotic nonsurjectivity
-for $k \geq 201$, verified numerically to $k = 10^6$)
-and \textbf{1~axiom}
-(Simons--de~Weger~\cite{SimonsDeWeger2005}, published result).
+It contains \textbf{${\sim}\,60$~theorems} with
+\textbf{zero \texttt{sorry}}
+and \textbf{2~axioms}:
+(i)~Simons--de~Weger~\cite{SimonsDeWeger2005} (published result,
+used for $k \leq 68$), and
+(ii)~a continued fraction lower bound for convergents of
+$\log_2 3$ (Hardy \& Wright~\S10.8, not yet in Mathlib).
 Key formally proved results:
 \begin{itemize}
   \item Steiner's equation
@@ -930,9 +934,12 @@ Key formally proved results:
     $160$~lines.
   \item Linear deficit
     (Proposition~\ref{prop:linear-deficit}).
-  \item Crystal nonsurjectivity for $k \in [18, 200]$:
-    $183$ individual cases by \texttt{native\_decide},
+  \item Crystal nonsurjectivity for $k \in [18, 665]$:
+    $648$ individual cases by \texttt{native\_decide},
     with a bridge lemma for uniformity.
+  \item Asymptotic nonsurjectivity for $k \geq 666$:
+    Legendre contrapositive for non-convergent ratios,
+    continued fraction axiom for convergent ratios.
   \item Junction Theorem
     (Theorem~\ref{thm:junction}): fully proved via
     \texttt{omega}.

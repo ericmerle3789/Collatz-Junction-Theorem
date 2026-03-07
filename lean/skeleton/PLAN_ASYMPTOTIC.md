@@ -1,4 +1,10 @@
-# Plan : Fermer le sorry k>=307 — 0 sorry, 0 axiom
+# Plan : Close the sorry k>=307 — COMPLETED
+
+**Status: COMPLETED (March 2026)**
+- 0 sorry, 2 axioms (Simons--de Weger + CF lower bound)
+- See `AsymptoticBound.lean` for the implementation
+
+## Original plan (historical, in French)
 
 ## Stratégie en 2 sous-cas
 
