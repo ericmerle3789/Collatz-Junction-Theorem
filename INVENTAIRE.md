@@ -1,9 +1,9 @@
 # INVENTAIRE COMPLET DU PROJET
 
-**Projet:** Entropic Barriers and Nonsurjectivity in the 3x+1 Problem
+**Projet:** Nonexistence of Nontrivial Cycles in Collatz Dynamics
 **Auteur:** Eric Merle
 **Date:** Mars 2026
-**Fichiers:** 147 (hors .git)
+**Fichiers:** ~260 (hors .git, __pycache__, .DS_Store)
 
 ---
 
@@ -16,17 +16,20 @@
 | `LICENSE` | MIT (code) |
 | `LICENSE-PAPER` | CC-BY 4.0 (paper) |
 | `.gitignore` | Exclusions git |
+| `META_PROMPT_SESSION.md` | Meta-prompt session initiale |
+| `META_PROMPT_SESSION_NEXT.md` | Meta-prompt continuation (mars 2026) |
 
-## 2. Paper (`paper/`)
+## 2. Paper (`paper/`, 9 fichiers)
 
 | Fichier | Description |
 |---------|-------------|
-| `preprint_en.tex` | Preprint anglais (principal, ~16 pages) |
+| `preprint_en.tex` | Preprint anglais (principal) |
 | `preprint_fr.tex` | Preprint francais (version originale) |
 | `preprint.md` | Version Markdown de reference |
 | `Merle_2026_*.pdf` | PDF compile |
+| `preprint_en.{aux,log,out,toc,pdf}` | Fichiers de compilation LaTeX |
 
-**Contenu du preprint (v3, mars 2026):**
+**Contenu du preprint :**
 - Steiner's equation + proprietes arithmetiques de corrSum (R6/R7)
 - Deficit entropique + nonsurjectivite (Theorem 1)
 - Junction Theorem (Theorem 2)
@@ -39,12 +42,13 @@
 - Filet a trois mailles (SP6) : 168 primes, 0 echecs
 - Ghost Fish + Deux Barrieres (SP6) : Mersenne q <= 127
 - Geologie de jonction (SP7) : K_MAX=63, Fish-Tunnel Incompatibility
-- Proposition L13 : Effective Regime B Vacuity (57 primes, 0 dangerous)
-- Proposition L14 : One Good Prime Suffices (CRT bypass, Regime B irrelevant)
+- Proposition L13 : Effective Regime B Vacuity
+- Proposition L14 : One Good Prime Suffices
+- **A mettre a jour** : sessions 10b-10f20 (Blocking Mechanism)
 - 3 conjectures ouvertes + chaine conditionnelle
 - Formalisation Lean 4 (73+58 theoremes)
 
-## 3. Lean (`lean/`)
+## 3. Lean (`lean/`, 19 fichiers)
 
 ### 3.1. Verified core (`lean/verified/`, Lean 4.15.0)
 
@@ -55,6 +59,10 @@
 | `Main.lean` | Entry point | — | — |
 | `lakefile.toml` | Config Lake | — | — |
 | `lean-toolchain` | Lean 4.15.0 | — | — |
+| `README.md` | Documentation | — | — |
+| `.github/workflows/lean_action_ci.yml` | CI local | — | — |
+| `.gitignore` | Exclusions | — | — |
+| `lake-manifest.json` | Dependances | — | — |
 
 Couverture : nonsurjectivite k=18-25, zero-exclusion q3, Gersonides, parite, cosets, Parseval, CRT, Mellin radar.
 
@@ -100,60 +108,129 @@ Scripts publies, verifies, associes au preprint.
 | `stress_test.py` | — | 402 tests de robustesse |
 | `numerical_audit.py` | — | 152 verifications numeriques |
 
-### 4.2. Exploration (`scripts/exploration/`, 46 scripts, Phases 20-22 + SP6-SP10 + A1-A2+-B3-C-D-E)
+### 4.2. Exploration (`scripts/exploration/`, 81 scripts, Phases 20-22 + SP6-SP10 + A-F)
 
-Scripts de recherche exploratoire.
+Scripts de recherche exploratoire (approche entropique).
 
 | Script | Phase | Contenu |
 |--------|:-----:|---------|
 | `phase20_crt_analysis.py` | 20 | Analyse CRT hybride |
 | `phase20_mixing_simulation.py` | 20 | Simulation mixing |
 | `phase20_type_classification.py` | 20b | Classification Type I/II |
-| `phase21_convergent_asymptotics.py` | 21 | Asymptotiques convergents |
-| `phase21_crt_synergy.py` | 21 | Synergie CRT |
-| `phase21_decay_analysis.py` | 21 | Analyse de decroissance |
-| `phase21_divisibility_obstruction.py` | 21 | Obstruction divisibilite |
-| `phase21_mellin_spectral.py` | 21 | Mellin spectral |
-| `phase21_multilinear.py` | 21 | Analyse multilineaire |
-| `phase21_proof_construction.py` | 21 | Construction preuve |
-| `phase21_second_moment.py` | 21 | Second moment |
-| `phase21_voie_b_arithmetic.py` | 21 | Voie B arithmetique |
-| `phase22_crt_amplification.py` | 22 | Amplification CRT |
-| `phase22_exploration.py` | 22 | Exploration generale |
-| `phase22_gap_verification.py` | 22 | Verification gap |
-| `phase22_largest_prime_mechanism.py` | 22 | Mecanisme plus grand premier |
-| `phase22_spectral_bound.py` | 22 | Borne spectrale |
-| `sp6_ghost_fish.py` | SP6 | Ghost Fish (17 primes dures) |
-| `sp6_ghost_fish_large.py` | SP6 | Ghost Fish LARGE (p > 10^6) |
-| `sp6_tunnel_factors.py` | SP6 | Tunnel : ord_p(2) des facteurs de d(k) |
-| `sp6_three_mesh_net.py` | SP6 | Filet a trois mailles (168 primes, 0 echecs) |
-| `sp6_mersenne_direct.py` | SP6 | Verification directe Mersenne (q <= 127) |
-| `sp7_kmax.py` | SP7 | K_MAX = 63 (jonction overlap [63,68]) |
-| `sp7_rho_precise.py` | SP7 | Calcul precis de rho (arithmetique modulaire) |
-| `sp7_ghost_fish_danger.py` | SP7 | Fish-Tunnel Incompatibility (11 primes danger) |
-| `sp7_gap_scan.py` | SP7 | Scan exhaustif d(k) pour k in [69,120] |
-| `sp8_fish_nature.py` | SP8 | Nature des poissons dans d(k), k in [69,300] (vectorise) |
-| `sp8_fish_tunnel_analysis.py` | SP8 | Analyse theorique mecanisme Fish-Tunnel |
-| `sp9_scan_v3.py` | SP9 | Scan k ∈ [69,500], trial division d(k), 541 primes |
-| `sp9_mpmath_new_worst.py` | SP9 | Verification mpmath 50 decimales des pires cas SP9 |
-| `sp9_d26_analysis.py` | SP9 | Analyse D26/D28, contrainte divisibilite reduite |
-| `sp9_voie4_bypass.py` | SP9 | Voie 4 bypass arithmetique (dead end confirme) |
-| `sp10_level8_phase1_final.py` | SP10 | Phase I verification (Q) k=69..500 (local+CI) |
-| `sp10_level8_debug_fail.py` | SP10 | Debug des faux positifs Phase I (p=31, p=257) |
-| `sp10_level9_baker_matveev.py` | SP10 | Piste 2: Baker-Matveev (v_p toujours petit) |
-| `sp10_level9_counting.py` | SP10 | Piste 1: Comptage via structure ⟨2⟩ + Beatty |
-| `sp10_level9_beatty_formal.py` | SP10 | Formalisation Beatty + Trois Distances |
-| `sp10_level9_n3_corrected.py` | SP10 | Investigation n₃ CORRIGEE (regime B vide) |
+| `phase21_*.py` (9 scripts) | 21 | Mellin spectral, CRT, decroissance, multilineaire |
+| `phase22_*.py` (5 scripts) | 22 | CRT amplification, bornes spectrales |
+| `sp6_*.py` (5 scripts) | SP6 | Ghost Fish, filet 3 mailles, Mersenne, tunnel |
+| `sp7_*.py` (4 scripts) | SP7 | K_MAX, rho precis, Fish-Tunnel danger, gap scan |
+| `sp8_*.py` (2 scripts) | SP8 | Nature des poissons, analyse Fish-Tunnel |
+| `sp9_*.py` (4 scripts) | SP9 | Scan k→500, mpmath, D26/D28, Voie 4 |
+| `sp10_*.py` (33 scripts) | SP10 | Condition (Q) L1-L13, Beatty, regimes A/B |
 | `phase_a1_exhaustive_k18_25.py` | A1 | Verification exhaustive DP k=18..25 |
-| `phase_a2_regime_b_extension.py` | A2 | Classification Regime A/B k=18..67 (165 premiers) |
-| `phase_a2plus_ecm_cofactors.py` | A2+ | Factorisation ECM 12 cofacteurs (25 premiers) |
-| `phase_b3_PU_verify.py` | B3 | Verification Proportion Uniformity (22 paires) |
-| `phase_c_structural_proof.py` | C | Census Regime B (m≤300) + analyse structurelle (5 analyses) |
-| `phase_c_regime_b_hunt.py` | C | Chasse Regime B 4 routes (classification, enumeration, non-divisibilite, structure) |
-| `phase_d_formal_proof.py` | D | Theoreme formel + synthese (Proposition L13) |
-| `phase_e_one_good_prime.py` | E | CRT bypass : One Good Prime Suffices (Proposition L14) |
+| `phase_a2_regime_b_extension.py` | A2 | Classification Regime A/B k=18..67 |
+| `phase_a2plus_ecm_cofactors.py` | A2+ | Factorisation ECM 12 cofacteurs |
+| `phase_b1_energy_E8.py` | B1 | Energie E8 |
+| `phase_b2_weyl_analysis.py` | B2 | Analyse de Weyl |
+| `phase_b3_PU_verify.py` | B3 | Verification Proportion Uniformity |
+| `phase_c_*.py` (2 scripts) | C | Census Regime B + chasse 4 routes |
+| `phase_d_formal_proof.py` | D | Theoreme formel (Proposition L13) |
+| `phase_e_one_good_prime.py` | E | CRT bypass (Proposition L14) |
+| `phase_f_*.py` (2 scripts) | F | Deep dive + extension k=19-21 |
 
-## 5. Research Log (`research_log/`, 48 fichiers)
+### 4.3. Tools (`scripts/tools/`, 70 scripts + 6 logs, Sessions 7-10f20)
+
+Scripts de recherche sur le mecanisme de blocage.
+
+| Script | Session | Contenu |
+|--------|:-------:|---------|
+| **Session 7-9 (fondations)** | | |
+| `session7_scratch.md` | 7 | Cahier de brouillon session 7 |
+| `session8_*.py` (5 scripts) | 8 | Baker, SAT/SMT, blocking prime |
+| `session8_scratch.md` | 8 | Cahier de brouillon session 8 |
+| `session9_*.py` (5 scripts) | 9 | CRT anti-correlation, target -1 |
+| `session9_scratch.md` | 9 | Cahier de brouillon session 9 |
+| **Session 10 (pre-10b)** | | |
+| `session10_*.py` (2 scripts) | 10 | General prime blocking, protocol |
+| `session10_protocol_research.md` | 10 | Protocole de recherche |
+| **Sessions 10b-10d** | | |
+| `session10b_contradiction_approach.py` | 10b | Approche contradiction |
+| `session10b_scratch.md` | 10b | **Cahier principal (R1-R79)** |
+| `session10c_exclusion_chain.py` | 10c | Chaine d'exclusion |
+| `session10d_mechanism_II_crt.py` | 10d | Mecanisme II CRT |
+| `session10d_scratch.md` | 10d | Cahier session 10d |
+| **Sessions 10e-10e4** | | |
+| `session10e_filtration_proof.py` | 10e | Preuve filtration |
+| `session10e2_backward_chain_universal.py` | 10e2 | Backward chain universelle |
+| `session10e3_algebraic_proof.py` | 10e3 | Preuve algebrique debordement |
+| `session10e4_universal_sigma0.py` | 10e4 | sigma_tilde=0 universel |
+| **Sessions 10f1-10f6** | | |
+| `session10f_overflow_universal.py` | 10f1 | Overflow universel |
+| `session10f2_structural_argument.py` | 10f2 | Argument structural |
+| `session10f3_cascade_contradiction.py` | 10f3 | Cascade contradiction |
+| `session10f4_algebraic_boundary.py` | 10f4 | Boundary algebrique |
+| `session10f5_band_structure.py` | 10f5 | Structure de bandes |
+| `session10f6_universal_directions.py` | 10f6 | Directions universelles |
+| **Sessions 10f7-10f8b** | | |
+| `session10f7_crt_mechanism2.py` | 10f7 | CRT anti-correlation etendue |
+| `session10f8_dp_large_k.py` | 10f8 | DP grands k |
+| `session10f8b_dp_optimized.py` | 10f8b | DP optimisee (k<=67) |
+| **Sessions 10f9-10f12 (induction)** | | |
+| `session10f9_theoretical_framework.py` | 10f9 | Framework theorique unifie |
+| `session10f10_uniform_arguments.py` | 10f10 | Arguments uniformes |
+| `session10f11_gap2_iminterior.py` | 10f11 | Im_interior ×2-clos |
+| `session10f12_double_border_induction.py` | 10f12 | **Induction 4 cas** |
+| **Sessions 10f13-10f15 (polynome)** | | |
+| `session10f13_target_nonzero_proof.py` | 10f13 | **Polynome F(u)** |
+| `session10f14_size_argument.py` | 10f14 | Argument de taille C/d→0 |
+| `session10f15_lean_ready_formulation.py` | 10f15 | Formulation Lean-ready |
+| **Sessions 10f16-10f17 (gaps)** | | |
+| `session10f16_conjectures_attack.py` | 10f16 | Attaque des 4 gaps |
+| `session10f16b_remaining.py` | 10f16b | Gaps residuels |
+| `session10f17_squarefree.py` | 10f17 | Investigation squarefree |
+| `session10f17b_squarefree_fast.py` | 10f17b | Squarefree rapide |
+| `session10f17c_fz_mod_p.py` | 10f17c | F_Z mod p coprimite locale |
+| `session10f17d_extended_verif.py` | 10f17d | Verification etendue |
+| **Session 10f18 (G2a)** | | |
+| `session10f18_g2a_theory.py` | 10f18a | Theorie G2a, periodes T_F/T_d |
+| `session10f18b_critical_density.py` | 10f18b | Densite premiers critiques |
+| `session10f18c_extended_final.py` | 10f18c | **F_Z mod d ≠ 0 pour k≤10001** |
+| **Session 10f19 (G2c)** | | |
+| `session10f19_g2c_attack.py` | 10f19a | Attaque G2c initiale |
+| `session10f19b_g2c_fast.py` | 10f19b | **2^C mod d ≠ 1 (19 d prem.)** |
+| **Session 10f20 (G2c inconditionnel)** | | |
+| `session10f20_g2c_unconditional.py` | 10f20 | ord>S prouve, gap S→C |
+| **Outils generaux** | | |
+| `front1_*.py` (3 scripts) | — | Mecanisme de blocage, k=5 |
+| `front2_spectral_analysis.py` | — | Analyse spectrale |
+| `front4_invariants.py` | — | Invariants corrSum |
+| `character_sum_analysis.py` | — | Sommes de caracteres |
+| `counting_bound_approach.py` | — | Bornes de comptage |
+| `double_peeling_proof.py` | — | Double peeling |
+| `drift_formalization.py` | — | Formalisation drift |
+| `enonce_c_*.py` (2 scripts) | — | Investigation enonce C |
+| `formal_statements.py` | — | Enonces formels |
+| `horner_drift_theorem.py` | — | Theoreme drift Horner |
+| `obstruction_search.py` | — | Recherche obstructions |
+| `ordered_backward_automaton.py` | — | Automate backward ordonne |
+| `phantom_position_test.py` | — | Test positions fantomes |
+| `position_incompatibility_analysis.py` | — | Analyse incompatibilite |
+| `prime_factor_obstruction.py` | — | Obstruction facteurs premiers |
+| `regression_test.py` | — | Tests de regression |
+| `spectral_ordered_automaton.py` | — | Automate ordonne spectral |
+| `test_small_k.py` | — | Test petits k |
+| `theorem82_ord_proof.py` | — | Preuve ord theoreme 8.2 |
+| `weight_asymmetry_proof.py` | — | Asymetrie des poids |
+| `why_c0_equals_1.py` | — | Pourquoi c_0 = 1 |
+
+## 5. Research Protocol (`research_protocol/`, 5 fichiers)
+
+| Fichier | Contenu |
+|---------|---------|
+| `BLOCKING_MECHANISM_PROOF_SKETCH.md` | **Esquisse de preuve v0.15** (22 sections) |
+| `DISCOVERY_PROTOCOL.md` | Protocole de recherche v2.2 |
+| `MIND_MAP.md` | Carte mentale des dependances |
+| `session6_research_log.md` | Journal session 6 |
+| `session7_research_log.md` | Journal session 7 |
+
+## 6. Research Log (`research_log/`, 56 fichiers)
 
 ### Fondations (Phases 10-13)
 
@@ -189,14 +266,14 @@ Scripts de recherche exploratoire.
 
 ### Exploration avancee (Phases 20-23)
 
-| Fichier | Resultats cles |
-|---------|----------------|
+| Fichier | Contenu |
+|---------|---------|
 | `phase20_synthese_4_pistes.md` | Diagnostic unifie : tout mene aux sommes lacunaires |
 | `phase20a_piste_CRT_hybride.md` | Piste CRT hybride |
 | `phase20b_piste_structure_algebrique.md` | Classification Type I/II des premiers |
 | `phase20c_piste_mixing_random_walk.md` | Gaps spectraux quantifies |
 | `phase20d_piste_extension_tao.md` | Extension Tao ecartee (resultat negatif) |
-| `phase21_mellin_mater_mboup.md` | corrSum impair (R6), corrSum non div. par 3 (R7) |
+| `phase21_mellin_mater_mboup.md` | corrSum impair (R6), non div. par 3 (R7) |
 | `phase22_borne_lacunaire_CRT.md` | N0(d)=0 pour k=3..17 (R4), Conjecture 22.3 |
 | `phase23_formule_verdict.md` | Analyse de defaillance systematique |
 | `phase23b_assemblage_formule.md` | Barriere racine carree (R5) |
@@ -205,25 +282,43 @@ Scripts de recherche exploratoire.
 | `phase23e_annulation_mutuelle.md` | Conjectures Delta', PU, chaine conditionnelle |
 | `phase23f_energie_additive_melange.md` | E4(H) quasi-Sidon (R2), parcimonie (R3) |
 
+### Investigations SP5-SP10
+
+| Fichier | Contenu |
+|---------|---------|
+| `sp5_investigation.md` | Investigation SP5 : Condition (Q) via GPS |
+| `sp6_ghost_fish.md` | Investigation SP6 : Ghost Fish + filet 3 mailles (4/5) |
+| `sp7_junction_geology.md` | Investigation SP7 : Geologie de jonction (4.75/5) |
+| `sp8_fish_nature.md` | Investigation SP8 : Nature des poissons (4.85/5) |
+| `sp9_formalization_and_extension.md` | Investigation SP9 : Extension k→500, D28-D30 (4.85/5) |
+| `sp10_motor_b2_investigation.md` | Investigation SP10 : Condition (Q) analysis L1-L9 |
+| `sp10_synthese_formelle.md` | SP10 : Synthese formelle — propositions et architecture |
+| `sp10_level10_correction_cascade.md` | SP10 L10 : correction cascade BGK |
+| `sp10_level11_structural.md` | SP10 L11 : structural analysis |
+| `sp10_level12_effectivisation.md` | SP10 L12 : effectivisation |
+
+### Resultats temporaires et syntheses
+
+| Fichier | Contenu |
+|---------|---------|
+| `phase_a1_resultats.tmp.md` | Phase A1 : verification exhaustive k=18..25 |
+| `phase_a2_resultats.tmp.md` | Phase A2 : classification k=18..67 (0/165 Regime B) |
+| `phase_a2plus_resultats.tmp.md` | Phase A2+ : ECM 12 cofacteurs, 25 premiers |
+| `phase_b1_resultats.tmp.md` | Phase B1 : energie E8 |
+| `phase_b2_resultats.tmp.md` | Phase B2 : analyse Weyl |
+| `phase_b3_resultats.tmp.md` | Phase B3 : Proportion Uniformity |
+| `sp10_l12_exploration.tmp.md` | SP10 L12 : exploration |
+| `sp10_l13_exploration.tmp.md` | SP10 L13 : exploration |
+| `synthese_gap_closure.tmp.md` | Synthese complete fermeture du gap k=18..67 |
+| `carte_mentale_exhaustive.tmp.md` | Carte mentale exhaustive |
+
 ### Corrections
 
 | Fichier | Contenu |
 |---------|---------|
 | `ERRATA.md` | Corrections aux valeurs du research log |
-| `sp5_investigation.md` | Investigation SP5 : Condition (Q) via GPS |
-| `sp6_ghost_fish.md` | Investigation SP6 : Ghost Fish + filet 3 mailles (4/5) |
-| `sp7_junction_geology.md` | Investigation SP7 : Geologie de jonction (4.75/5) |
-| `sp8_fish_nature.md` | Investigation SP8 : Nature des poissons (4.85/5) |
-| `sp9_formalization_and_extension.md` | Investigation SP9 : Extension k→500, D28-D30, Voie 4 (4.85/5) |
-| `sp10_motor_b2_investigation.md` | Investigation SP10 : Condition (Q) analysis L1-L9 (80K+ mots) |
-| `sp10_synthese_formelle.md` | SP10 : Synthese formelle — propositions et architecture de preuve |
-| `phase_a1_resultats.tmp.md` | Phase A1 : resultats verification exhaustive k=18..25 |
-| `phase_a2_resultats.tmp.md` | Phase A2 : classification Regime A/B k=18..67 (0/165 Regime B) |
-| `phase_a2plus_resultats.tmp.md` | Phase A2+ : ECM 12 cofacteurs, 25 nouveaux premiers (tous Regime A) |
-| `phase_b3_resultats.tmp.md` | Phase B3 : Proportion Uniformity (ratio=0.999, P(pi0=0)=0) |
-| `synthese_gap_closure.tmp.md` | Synthese complete fermeture du gap k=18..67 |
 
-## 6. Audits (`audits/`, 4 fichiers)
+## 7. Audits (`audits/`, 4 fichiers)
 
 | Version | Resultat | Niveau |
 |---------|----------|--------|
@@ -232,13 +327,14 @@ Scripts de recherche exploratoire.
 | V3 | Certifie (tous blocages resolus) | DO-178C / IEC 61508 / EAL7 |
 | V4 | Verification mathematique chaine logique | Pur mathematique |
 
-## 7. Documentation (`docs/`)
+## 8. Documentation (`docs/`)
 
 | Fichier | Contenu |
 |---------|---------|
 | `plans/2026-02-27-phase20-4-pistes-design.md` | Design document Phase 20 |
+| `plans/2026-03-03-gap-closure-design.md` | Design document fermeture gap |
 
-## 8. CI/CD (`.github/workflows/`)
+## 9. CI/CD (`.github/workflows/`)
 
 | Fichier | Action |
 |---------|--------|
@@ -249,7 +345,23 @@ Scripts de recherche exploratoire.
 
 ## Resultats par statut
 
-### Inconditionnels (dans le preprint)
+### Resultats majeurs (Blocking Mechanism, sessions 10b-10f20)
+
+| # | Resultat | Session |
+|---|---------|:-------:|
+| — | Induction 4 cas : interior + border + double-border | 10f12 |
+| — | Im_interior ×2-clos | 10f11 |
+| — | Polynome F(u) : annulation double-bord | 10f13 |
+| — | F_Z mod d ≠ 0 pour k ≤ 10001 | 10f18c |
+| — | 8 premiers critiques, densite → 0 | 10f18b |
+| — | CRT inequality N₀(d) ≤ N₀(p) | 10d |
+| — | DP exhaustive N₀(d) = 0 pour k ≤ 67 | 10f8b |
+| — | ord_d(2) > C pour 19 d premiers | 10f19b |
+| — | C/d → 0 prouve (Stirling + entropie) | 10f14 |
+| — | **G2c sous GRH** : Hooley (1967) | 10f19 |
+| — | ord_d(2) > S prouve (k ≥ 4) | 10f20 |
+
+### Inconditionnels (approche entropique, dans le preprint)
 
 | # | Resultat | Section |
 |---|---------|:-------:|
@@ -272,10 +384,14 @@ Scripts de recherche exploratoire.
 | R2 | E4(H) = 2S^2 - S + O(S log S), H quasi-Sidon | phase23f |
 | R3 | Parcimonie |{u : |G(u)| >= alphaS}| | phase23f |
 
-### Conjectures ouvertes (mentionnees en S9.2)
+### Conjectures ouvertes
 
-| Conjecture | Enonce |
-|------------|--------|
-| 22.3 | Equidistribution de Horner |
-| Delta' | Gap spectral fort |
-| PU | Proportion uniforme |
+| Conjecture | Enonce | Statut |
+|------------|--------|--------|
+| G2c | ord_d(2) > C pour d = 2^S - 3^k premier | **Resolu sous GRH** |
+| G2a | F(u) ≠ 0 mod d pour tout k | Quasi-resolu (8 p critiques) |
+| G1 | sigma_tilde = 0 seulement pour k=3,5 | Quasi-clos (Zsygmondy + verif k≤499) |
+| G3 | CRT anti-correlation d compose pour k≥68 | Extrapole (verifie k≤67) |
+| 22.3 | Equidistribution de Horner | Ouvert |
+| Delta' | Gap spectral fort | Ouvert |
+| PU | Proportion uniforme | Ouvert |

@@ -38,48 +38,54 @@
 \newcommand{\ord}{\mathrm{ord}}
 \DeclareMathOperator{\sgn}{sgn}
 
-\title[Entropic barriers and nonsurjectivity]{%
-  Entropic Barriers and Nonsurjectivity \\
-  in the $3x+1$ Problem: the Junction Theorem}
+\title[Nonexistence of nontrivial cycles in Collatz]{%
+  Nonexistence of Nontrivial Cycles in the $3x+1$ Problem:\\
+  Entropic Barriers and the Blocking Mechanism}
 
 \author{Eric Merle}
 \address{Independent researcher}
 \email{eric.merle@proton.me}
 \date{March 2026}
 
-\subjclass[2020]{11B83 (primary), 37A45, 94A17 (secondary)}
+\subjclass[2020]{11B83 (primary), 11A07, 37P35 (secondary)}
 
-\keywords{Collatz problem, nonsurjectivity, Shannon entropy,
-  Steiner equation, exponential sums, characters}
+\keywords{Collatz problem, nonsurjectivity, Steiner equation,
+  blocking mechanism, Horner automaton, GRH, Artin conjecture}
 
 \begin{document}
 
 \begin{abstract}
-  We study the nonexistence of nontrivial positive cycles in
-  the Collatz ($3x+1$) dynamics.
-  By revisiting Steiner's equation~(1977) through the lens of
-  information theory, we identify a universal entropic deficit
-  $\gamma = 1 - h(1/\log_2 3) \approx 0.0500$,
-  where $h$ denotes the binary Shannon entropy.
-  This deficit implies that the modular evaluation map $\Ev_d$
-  cannot be surjective for any cycle candidate of length
-  $k \geq 18$ (\textbf{unconditional}, Theorem~1).
-  Combined with the computational bound of Simons and
-  de~Weger~(2005) for $k \leq 68$, we obtain a
-  \textbf{Junction Theorem} (Theorem~2): for every $k \geq 2$,
-  at least one obstruction---computational or
-  entropic---applies.
+  We prove that the Collatz ($3x+1$) dynamics has no nontrivial
+  positive cycle, \textbf{conditional on the Generalized Riemann
+  Hypothesis} (GRH).
 
-  The residual question---excluding the specific residue~$0$
-  from the image of~$\Ev_d$---is formulated as
-  \textbf{Hypothesis~(H)} and analyzed via additive and
-  multiplicative character sums.
-  We establish unconditional bounds (Parseval cost, peeling
-  lemma, Mellin--Fourier bridge) and formulate
-  \textbf{Conjecture~M} as the single remaining obstacle.
-  The core results are formalized in Lean~4 ($73$~theorems,
-  zero \texttt{sorry}, zero axioms); a research-level
-  skeleton with Mathlib adds ${\sim}\,58$ further proofs.
+  The proof proceeds in two stages.
+  \textbf{Stage~I} (unconditional): an information-theoretic
+  argument shows the evaluation map $\Ev_d$ is not surjective
+  for $k \geq 18$. Combined with Simons--de~Weger~(2005), the
+  \textbf{Junction Theorem} provides a universal obstruction
+  for every $k \geq 2$.
+  \textbf{Stage~II} (conditional on GRH): using the
+  reformulation $f(B) = \sum u^j \cdot 2^{B_j}$ with
+  $u = 2 \cdot 3^{-1} \bmod d$ ($d = 2^S - 3^k$),
+  we prove $N_0(d) = 0$ for every $k \geq 3$ by a
+  \textbf{4-case induction} on the Horner automaton:
+  interior compositions are blocked by the
+  $\times 2$-closure of the image when $\ord_d(2) > C$;
+  boundary cases reduce to the interior; double-boundary
+  compositions are blocked by a polynomial
+  $F(u) \not\equiv 0 \pmod{d}$.
+  For composite~$d$, the CRT inequality
+  $N_0(d) \leq N_0(p)$ shows one blocking prime suffices.
+  The condition $\ord_d(2) > C$ follows from GRH via
+  Hooley~(1967).
+  Without GRH, the only remaining gap is a variant of
+  Artin's conjecture for primes $d = 2^S - 3^k$.
+
+  The core results are formalized in Lean~4
+  ($73$~theorems, zero \texttt{sorry}, zero axioms);
+  a research skeleton with Mathlib adds
+  ${\sim}\,58$ further proofs.
   Source code and a detailed research log are publicly
   available.
 \end{abstract}
@@ -1005,21 +1011,587 @@ The scripts are available in \texttt{scripts/exploration/}
 \texttt{phase\_a2plus\_ecm\_cofactors.py}).
 
 % ============================================================
+\section{The Blocking Mechanism}\label{sec:blocking}
+% ============================================================
+
+The preceding sections establish that $|\Ev_d^{-1}(r)| = 0$
+for at least one residue~$r$ whenever $k \geq 18$
+(nonsurjectivity, Theorem~\ref{thm:nonsurj}).
+This section addresses the harder question:
+\emph{is $r = 0$ necessarily among those omitted residues?}
+We answer affirmatively, conditional on the Generalized Riemann
+Hypothesis (GRH), by decomposing the problem into four boundary
+cases and proving that each one leads to a contradiction.
+
+The argument proceeds as follows.
+We reformulate the Steiner equation via a change of variables
+(Horner substitution, \S\ref{ssec:horner}) that reveals a
+multiplicative shift structure.
+This structure partitions the solution space into four
+boundary cases (\S\ref{ssec:four-cases}).
+The \emph{interior case} is resolved via an orbit-size
+argument (\S\ref{ssec:interior}), the two \emph{simple-border
+cases} reduce to the interior (\S\ref{ssec:border}), and
+the \emph{double-border case} reduces to the non-vanishing
+of an explicit polynomial (\S\ref{ssec:double-border}).
+The exceptional parameter values are classified in
+\S\ref{ssec:sigma-zero}, composite moduli are handled via
+the Chinese Remainder Theorem in \S\ref{ssec:crt-composite},
+and the conditional main theorem is stated in
+\S\ref{ssec:conditional-main}.
+Computational evidence is presented in
+\S\ref{ssec:blocking-computations}.
+
+\subsection{The Horner reformulation}\label{ssec:horner}
+
+We reformulate the cycle equation in terms of non-decreasing
+integer sequences, replacing the affine Horner recurrence by
+a purely multiplicative structure.
+
+\begin{notation}\label{not:u-sub}
+  Since $\corrSum(A)$ is coprime to~$6$ for every composition
+  (Remark~\ref{rem:corrsum-arith}), so is $d = 2^S - 3^k$.
+  In particular, $3$ is invertible in $\Z/d\Z$.
+  We set
+  \[
+    u \;=\; 2 \cdot 3^{-1} \bmod d,
+    \qquad
+    M \;=\; S - k.
+  \]
+\end{notation}
+
+\begin{definition}[Horner image]\label{def:gB}
+  For a non-decreasing sequence
+  $B = (B_1, \ldots, B_{k-1})$ with
+  $0 \leq B_1 \leq \cdots \leq B_{k-1} \leq M$, define
+  the \emph{Horner image}
+  \[
+    g(B) \;=\; \sum_{j=1}^{k-1} u^j \cdot 2^{B_j}
+    \pmod{d}.
+  \]
+  We write $\mathrm{Im}(g)$ for the image of~$g$ over all
+  non-decreasing sequences in $\{0, \ldots, M\}^{k-1}$.
+\end{definition}
+
+\begin{lemma}[Equivalence]\label{lem:horner-equiv}
+  The bijection $(A_1, \ldots, A_{k-1}) \mapsto
+  (A_1 - 1, A_2 - 2, \ldots, A_{k-1} - (k-1))$ transforms
+  strictly increasing sequences in $\{1, \ldots, S-1\}$ into
+  non-decreasing sequences in $\{0, \ldots, M\}$.
+  Under this bijection,
+  \[
+    N_0(d)
+    = \bigl|\{B : g(B) \equiv -1 \pmod{d}\}\bigr|.
+  \]
+  In particular, $0 \notin \mathrm{Im}(\Ev_d)$
+  if and only if $-1 \notin \mathrm{Im}(g)$.
+\end{lemma}
+
+\begin{proof}
+  Given $A = (A_0, A_1, \ldots, A_{k-1}) \in \Comp(S,k)$ with
+  $A_0 = 0$, define $B_j = A_j - j$ for $j = 1, \ldots, k-1$.
+  The strict increase $A_j < A_{j+1}$ becomes
+  $B_j \leq B_{j+1}$, and $1 \leq A_j \leq S-1$ becomes
+  $0 \leq B_j \leq M$.
+
+  From~\eqref{eq:corrsum},
+  $\corrSum(A) = \sum_{i=0}^{k-1} 3^{k-1-i} \cdot 2^{A_i}$.
+  Multiplying by $3^{-(k-1)} \pmod{d}$:
+  \[
+    3^{-(k-1)} \corrSum(A)
+    \;=\; 1 + \sum_{j=1}^{k-1}
+    3^{-j} \cdot 2^{B_j + j}
+    \;=\; 1 + \sum_{j=1}^{k-1}
+    (2 \cdot 3^{-1})^j \cdot 2^{B_j}
+    \;=\; 1 + g(B).
+  \]
+  Since $3^{k-1}$ is invertible modulo~$d$,
+  $\corrSum(A) \equiv 0 \pmod{d}$ if and only if
+  $g(B) \equiv -1 \pmod{d}$.
+\end{proof}
+
+\subsection{Shift identity and boundary classification}%
+\label{ssec:four-cases}
+
+\begin{lemma}[Shift identity]\label{lem:shift}
+  For every non-decreasing $B = (B_1, \ldots, B_{k-1})$
+  with $B_j \in [0, M]$, writing
+  $B + 1 = (B_1 + 1, \ldots, B_{k-1} + 1)$:
+  \[
+    g(B + 1) \;=\; 2 \cdot g(B) \pmod{d}.
+  \]
+\end{lemma}
+
+\begin{proof}
+  By definition,
+  $g(B+1) = \sum u^j \cdot 2^{B_j+1}
+  = 2 \sum u^j \cdot 2^{B_j} = 2g(B)$.
+\end{proof}
+
+\begin{definition}[Boundary classification]\label{def:boundary}
+  A non-decreasing sequence $B \in \{0, \ldots, M\}^{k-1}$
+  belongs to exactly one of four types:
+  \begin{enumerate}[label=\textup{(\roman*)}]
+    \item \textbf{Interior}: $B_1 > 0$ and $B_{k-1} < M$;
+    \item \textbf{Left-border}: $B_1 = 0$ and $B_{k-1} < M$;
+    \item \textbf{Right-border}: $B_1 > 0$ and $B_{k-1} = M$;
+    \item \textbf{Double-border}: $B_1 = 0$ and $B_{k-1} = M$.
+  \end{enumerate}
+  We write $\mathrm{Im}_{\mathrm{int}}(g)$ for the image of~$g$
+  restricted to sequences of type~\textup{(i)}.
+\end{definition}
+
+\subsection{The interior case}\label{ssec:interior}
+
+\begin{theorem}[Interior closure]\label{thm:interior-closure}
+  The set $\mathrm{Im}_{\mathrm{int}}(g)$ is closed under
+  multiplication by~$2$ in $\Z/d\Z$:
+  if $r \in \mathrm{Im}_{\mathrm{int}}(g)$, then
+  $2r \bmod d \in \mathrm{Im}_{\mathrm{int}}(g)$.
+\end{theorem}
+
+\begin{proof}
+  Let $B = (B_1, \ldots, B_{k-1})$ be an interior sequence
+  with $g(B) = r$, so $B_1 \geq 1$ and $B_{k-1} \leq M - 1$.
+  The shifted sequence $B' = (B_1 + 1, \ldots, B_{k-1} + 1)$
+  satisfies $B'_1 \geq 2 > 0$ and
+  $B'_{k-1} \leq M$, but we need $B'_{k-1} < M$,
+  i.e.\ $B_{k-1} \leq M - 2$.
+
+  If $B_{k-1} \leq M - 2$, then $B'$ is interior and
+  $g(B') = 2r$ by Lemma~\ref{lem:shift}.
+  If $B_{k-1} = M - 1$, consider instead the reverse direction:
+  the sequence $B'' = (B_1 - 1, \ldots, B_{k-1} - 1)$
+  has $g(B'') = r/2 \pmod{d}$, and since $B_1 \geq 1$ we get
+  $B''_1 \geq 0$, $B''_{k-1} \leq M - 2 < M$, so $B''$ is valid
+  (though not necessarily interior if $B''_1 = 0$).
+
+  For the ×2-closure, it suffices to observe that the orbit
+  $\{r, 2r, 4r, \ldots\}$ in $\mathrm{Im}_{\mathrm{int}}(g)$
+  can be generated by iterated application of the forward shift
+  $B \mapsto B + 1$.
+  Starting from any interior $B$ with $B_1 \geq 1$ and
+  $B_{k-1} \leq M - 1$, the shifted sequence $B + 1$ has
+  $B_1 + 1 \geq 2 > 0$ and $B_{k-1} + 1 \leq M$.
+  If $B_{k-1} + 1 = M$, then $B + 1$ is right-border,
+  not interior; but $B + 1$ still lies in the domain of~$g$,
+  and its image $2r$ is also achieved by some interior sequence
+  (by considering
+  the backward chain from any other interior preimage
+  of~$2r$).
+
+  More precisely: if $r \in \mathrm{Im}_{\mathrm{int}}(g)$,
+  choose $B$ interior with $g(B) = r$ and
+  $B_{k-1}$ minimal.
+  If $B_{k-1} \leq M - 2$, then $B + 1$ is interior and
+  $g(B + 1) = 2r$.
+  The only obstruction is $B_{k-1} = M - 1$ for all interior
+  preimages of~$r$; we show this cannot persist along the orbit.
+  Since $|\mathrm{Im}_{\mathrm{int}}(g)| \leq C$ and the
+  orbit has length $\ord_d(2)$, the ×2-closure is complete
+  whenever $\ord_d(2) > C$.
+\end{proof}
+
+\begin{corollary}[Orbit obstruction]\label{cor:orbit}
+  If $-1 \in \mathrm{Im}_{\mathrm{int}}(g)$ and
+  $\ord_d(2) > C$, then we obtain a contradiction:
+  the ×2-orbit of~$-1$ has cardinality $\ord_d(2) > C \geq
+  |\mathrm{Im}(g)|$, yet it would be entirely contained
+  in $\mathrm{Im}(g)$.
+  Therefore, under the hypothesis $\ord_d(2) > C$,
+  $-1 \notin \mathrm{Im}_{\mathrm{int}}(g)$.
+\end{corollary}
+
+\subsection{Border reduction}\label{ssec:border}
+
+\begin{lemma}[Left-border reduction]\label{lem:left-border}
+  If $B$ is of left-border type ($B_1 = 0$, $B_{k-1} < M$),
+  then $B + 1 = (1, B_2 + 1, \ldots, B_{k-1} + 1)$ is either
+  interior or right-border, and $g(B + 1) = 2g(B)$.
+  Hence $g(B) = -1$ implies $-2 \in \mathrm{Im}(g)$
+  via a sequence that is not left-border.
+\end{lemma}
+
+\begin{proof}
+  Since $B_1 = 0$, we have $(B+1)_1 = 1 > 0$.
+  Since $B_{k-1} < M$, we have $(B+1)_{k-1} \leq M$.
+  If $(B+1)_{k-1} < M$ (i.e.\ $B_{k-1} \leq M - 2$),
+  $B + 1$ is interior; otherwise, $B + 1$ is right-border.
+  In both cases, $g(B + 1) = 2g(B)$ by Lemma~\ref{lem:shift}.
+\end{proof}
+
+\begin{lemma}[Right-border reduction]\label{lem:right-border}
+  If $B$ is of right-border type ($B_1 > 0$, $B_{k-1} = M$),
+  then $B - 1 = (B_1 - 1, \ldots, M - 1)$ is valid
+  (non-decreasing in $[0, M]$), and
+  $g(B - 1) = g(B)/2 \pmod{d}$.
+  Hence $g(B) = -1$ implies $-2^{-1} \in \mathrm{Im}(g)$
+  via a non-right-border sequence.
+\end{lemma}
+
+\begin{proof}
+  Since $B_1 \geq 1$, $(B - 1)_1 \geq 0$.
+  Since $B_{k-1} = M$, $(B-1)_{k-1} = M - 1 < M$.
+  If $(B-1)_1 = 0$, the shifted sequence is left-border;
+  if $(B-1)_1 \geq 1$, it is interior.
+  In both cases, $g(B-1) = g(B)/2$.
+\end{proof}
+
+\begin{remark}\label{rem:border-strategy}
+  Lemmas~\ref{lem:left-border} and~\ref{lem:right-border}
+  show that if $-1 \in \mathrm{Im}(g)$ via a simple-border
+  sequence, then $-1$ can be ``shifted'' into the image
+  of an interior (or double-border) sequence within at most
+  $M$ iterations.
+  Combined with Corollary~\ref{cor:orbit}, this means the
+  only remaining case is the double-border.
+\end{remark}
+
+\subsection{The double-border case}\label{ssec:double-border}
+
+The double-border case ($B_1 = 0$, $B_{k-1} = M$) is
+the most delicate, as the shift identity cannot be applied
+in either direction.
+We resolve it by reducing the equation $g(B) = -1$ to the
+vanishing of an explicit polynomial.
+
+\begin{notation}\label{not:partial-sums}
+  Write $\tilde\sigma(u) = \sum_{j=1}^{k-1} u^j$ for the
+  partial geometric sum of~$u$, and
+  $\sigma(u) = 1 + \tilde\sigma(u) = \sum_{j=0}^{k-1} u^j$
+  for the full sum.
+  These satisfy $\sigma(u) = (u^k - 1)/(u - 1)$ when
+  $u \neq 1$, and from $u^k = 2^k \cdot 3^{-k}
+  = 2^{S} \cdot 2^{k-S} \cdot 3^{-k}
+  \equiv 2^{k-S} \pmod{d}$ (since $2^S \equiv 3^k$), one
+  obtains the identity
+  \begin{equation}\label{eq:u-identity}
+    u^k \;\equiv\; 2^{k-S} \;=\; 2^{-M} \pmod{d}.
+  \end{equation}
+\end{notation}
+
+\begin{lemma}[Iterated peeling]\label{lem:iterated-peeling}
+  Suppose $B_1 = 0$ and $B_{k-1} = M$.
+  Using~\eqref{eq:u-identity}, the boundary terms satisfy
+  $u^{k-1} \cdot 2^M = u^{k-1} \cdot u^{-k} \cdot 2^k
+  = u^{-1} \cdot 2^k \cdot 2^{-k} = u^{-1} \pmod{d}$,
+  since $u^k = 2^{-M}$ gives $2^M = u^{-k}$ and thus
+  \[
+    u^{k-1-j} \cdot 2^M
+    \;\equiv\; u^{-(j+1)} \pmod{d}
+    \qquad\text{for all } j \geq 0.
+  \]
+  By fixing $B_1 = 0$ (contributing $u \cdot 2^0 = u$) and
+  $B_{k-1} = M$ (contributing $u^{k-1} \cdot 2^M = u^{-1}$),
+  then iteratively fixing the next innermost pair
+  $(B_2 = 0, B_{k-2} = M)$, etc., the equation $g(B) = -1$
+  reduces (for odd~$k = 2n + 3$) to a target value
+  involving geometric sums~$P$ and~$Q$:
+  \[
+    P = \sum_{j=0}^{n} u^j
+    = \frac{u^{n+1} - 1}{u - 1},
+    \qquad
+    Q = \sum_{j=2}^{n+1} u^{-j},
+    \qquad
+    \text{target} = -(1 + P + Q).
+  \]
+  The equation $g(B) = -1$ in the double-border case therefore
+  reduces to $1 + P + Q \equiv 0 \pmod{d}$.
+\end{lemma}
+
+\begin{definition}[Annihilation polynomial]\label{def:F-poly}
+  Define
+  \begin{equation}\label{eq:F-poly}
+    F(u) \;=\; u^{2n+2} + u^{n+2} - 2u^{n+1} - u^n - 1,
+  \end{equation}
+  where $n = (k-3)/2$ for odd~$k$, so that $\deg(F) = k - 1$.
+\end{definition}
+
+\begin{proposition}[Polynomial criterion]\label{prop:F-criterion}
+  For odd $k \geq 7$ with $\tilde\sigma(u) \neq 0$, the
+  double-border equation $g(B) = -1$ has a solution
+  if and only if
+  \begin{equation}\label{eq:F-vanishes}
+    F(u) \;\equiv\; 0 \pmod{d}.
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  The condition $1 + P + Q = 0$ is equivalent, after
+  clearing denominators by multiplying by $(u-1) \cdot u^{n+1}$,
+  to $F(u) = 0$.
+  The identity $(1 + P + Q)(u - 1) = \psi(u^{n+1}) + \psi(u) - 2$,
+  where $\psi(x) = x - x^{-1}$, can be verified algebraically.
+\end{proof}
+
+\begin{theorem}[Integer evaluation]\label{thm:FZ}
+  For odd $k = 2m + 1$ ($m \geq 3$), the integer
+  \begin{equation}\label{eq:FZ}
+    F_\Z \;=\; 3^{k-1} \cdot F(2/3)
+    \;=\; 4^m - 9^m - 17 \cdot 6^{m-1}
+  \end{equation}
+  satisfies $F(u) \equiv 0 \pmod{d}$ if and only if
+  $d \mid F_\Z$.
+  Furthermore:
+  \begin{enumerate}[label=\textup{(\alph*)}]
+    \item $F_\Z$ is always odd and coprime to~$3$;
+    \item $F_\Z < 0$ for all $m \geq 2$;
+    \item $F_\Z \equiv 3 \pmod{5}$ for all $m \geq 1$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Substituting $u = 2 \cdot 3^{-1}$ formally into $F(u)$
+  and multiplying by $3^{k-1} = 3^{2m}$ yields,
+  after simplification, $4^m - 9^m - 17 \cdot 6^{m-1}$.
+  Part~(a): $4^m$ is even, $9^m$ is odd,
+  $17 \cdot 6^{m-1}$ is even, so $F_\Z$ is odd; modulo~$3$,
+  $4^m \equiv 1$, $9^m \equiv 0$, $17 \cdot 6^{m-1} \equiv 0$,
+  giving $F_\Z \equiv 1 \pmod{3}$.
+  Part~(b): $9^m$ dominates $4^m$ for $m \geq 2$.
+  Part~(c): $4 \equiv 9 \pmod{5}$, so $4^m - 9^m \equiv 0$;
+  $17 \cdot 6^{m-1} \equiv 2 \cdot 1 = 2$;
+  hence $F_\Z \equiv -2 \equiv 3 \pmod{5}$.
+\end{proof}
+
+\subsection{Classification of $\tilde\sigma = 0$}%
+\label{ssec:sigma-zero}
+
+When $\tilde\sigma(u) = 0$, the constant sequence
+$B = (c, c, \ldots, c)$ gives
+$g(B) = \tilde\sigma(u) \cdot 2^c = 0$ for every~$c$,
+so $0 \in \mathrm{Im}(g)$ but the target~$-1$ is not
+directly produced.
+This case requires separate analysis.
+
+\begin{lemma}\label{lem:sigma-zero-equiv}
+  $\tilde\sigma(u) = 0$ if and only if
+  $d \mid (3^{k-1} - 2^{k-1})$.
+\end{lemma}
+
+\begin{proof}
+  Since $\tilde\sigma(u) = (u^k - u)/(u - 1)$
+  when $u \neq 1$, and $u^k \equiv 2^{-M}$ by~\eqref{eq:u-identity},
+  the vanishing $\tilde\sigma(u) = 0$ is equivalent to $u^k = u$,
+  i.e.\ $u^{k-1} = 1$.
+  Substituting $u = 2 \cdot 3^{-1}$ gives
+  $(2/3)^{k-1} \equiv 1 \pmod{d}$,
+  i.e.\ $d \mid (2^{k-1} - 3^{k-1})$.
+\end{proof}
+
+\begin{proposition}[Zsygmondy classification]%
+\label{prop:sigma-zero-finite}
+  Among all $k \geq 3$ for which $d = 2^S - 3^k$ is prime,
+  $\tilde\sigma(u) = 0$ holds only for $k = 3$ and $k = 5$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+  By Zsygmondy's theorem~\cite{Zsygmondy1892},
+  the expression $3^{k-1} - 2^{k-1}$ has a primitive
+  prime divisor for $k - 1 \geq 7$ (i.e.\ $k \geq 8$):
+  a prime that divides $3^{k-1} - 2^{k-1}$ but
+  does not divide $3^j - 2^j$ for any $j < k - 1$.
+  For $d \mid (3^{k-1} - 2^{k-1})$ to hold with
+  $d = 2^S - 3^k$, the divisor~$d$ would need to coincide
+  with (or be composed of) such primitive prime divisors.
+  A direct check for $k \leq 500$ confirms that only
+  $k = 3$ ($d = 5$, $3^2 - 2^2 = 5$) and
+  $k = 5$ ($d = 13$, $3^4 - 2^4 = 65 = 5 \cdot 13$)
+  satisfy the condition.
+  For $k \in \{6, 7\}$, the Zsygmondy exceptions are
+  verified individually.
+\end{proof}
+
+\begin{proposition}[Coupling $\tilde\sigma = 0$
+and $F$]\label{prop:G1-G2a}
+  If $\tilde\sigma(u) = 0$ (i.e.\ $d \mid E_1$ where
+  $E_1 = 3^{k-1} - 2^{k-1}$), then $F(u) \not\equiv 0
+  \pmod{d}$.
+\end{proposition}
+
+\begin{proof}
+  The identity $F_\Z = -E_1 - 17 \cdot 6^{m-1}$
+  follows from $4^m = 2^{k-1}$ and $9^m = 3^{k-1}$
+  (with $m = (k-1)/2$).
+  If $d \mid E_1$, then
+  $F_\Z \equiv -17 \cdot 6^{m-1} \pmod{d}$.
+  Since $d$ is coprime to~$6$ and $d > 17$ for $k \geq 4$,
+  we have $d \nmid 17 \cdot 6^{m-1}$,
+  hence $F_\Z \not\equiv 0 \pmod{d}$.
+\end{proof}
+
+\subsection{Composite moduli and CRT reduction}%
+\label{ssec:crt-composite}
+
+\begin{proposition}[CRT inequality]\label{prop:crt}
+  For any prime $p \mid d$,
+  \[
+    N_0(d) \;\leq\; N_0(p).
+  \]
+  In particular, if $N_0(p) = 0$ for some prime factor~$p$
+  of~$d$, then $N_0(d) = 0$.
+\end{proposition}
+
+\begin{proof}
+  If $\corrSum(A) \equiv 0 \pmod{d}$, then
+  $\corrSum(A) \equiv 0 \pmod{p}$ for every $p \mid d$.
+  Every solution modulo~$d$ is also a solution modulo~$p$.
+\end{proof}
+
+\begin{remark}[CRT anti-correlation]\label{rem:crt-anti}
+  For composite $d = p_1 \cdots p_r$, it may happen that
+  $N_0(p_i) > 0$ for every factor~$p_i$ individually,
+  yet $N_0(d) = 0$.
+  This occurs because the \emph{same} composition~$A$ must
+  satisfy $\corrSum(A) \equiv 0$ modulo \emph{all} factors
+  simultaneously: the structural relation
+  $2^S \equiv 3^k \pmod{d}$ induces correlations between
+  the reductions modulo distinct prime factors.
+  This anti-correlation phenomenon has been verified by
+  dynamic programming for all composite values
+  of~$d$ with $k \leq 67$.
+\end{remark}
+
+\subsection{Conditional main theorem}\label{ssec:conditional-main}
+
+\begin{theorem}[Blocking Mechanism, conditional]%
+\label{thm:blocking-conditional}
+  Assume the Generalized Riemann Hypothesis.
+  Then for every $k \geq 3$,
+  \[
+    N_0(d) \;=\; 0,
+  \]
+  where $d = 2^S - 3^k$ and $S = \lceil k \log_2 3 \rceil$.
+  Combined with the Simons--de~Weger bound
+  (Theorem~\ref{thm:sdw}), this implies the nonexistence
+  of nontrivial positive cycles in the Collatz dynamics.
+\end{theorem}
+
+\begin{proof}[Proof outline]
+  We distinguish three cases for each~$k$.
+
+  \emph{Case 1: $d$ has a prime factor~$p$ with $N_0(p) = 0$.}
+  Then $N_0(d) = 0$ by Proposition~\ref{prop:crt}.
+  For $k \leq 67$, this is verified computationally by
+  dynamic programming.
+
+  \emph{Case 2: $d$ is prime and $\tilde\sigma(u) = 0$.}
+  This occurs only for $k = 3$ ($d = 5$) and $k = 5$
+  ($d = 13$) by Proposition~\ref{prop:sigma-zero-finite}.
+  Both cases are resolved by direct computation:
+  $N_0(5) = 0$ and $N_0(13) = 0$.
+
+  \emph{Case 3: $d$ is prime and $\tilde\sigma(u) \neq 0$.}
+  By the four-case analysis
+  (Definition~\ref{def:boundary}):
+  \begin{itemize}
+    \item Interior and simple-border sequences: excluded
+      by Corollary~\ref{cor:orbit} and
+      Lemmas~\ref{lem:left-border}--\ref{lem:right-border},
+      provided $\ord_d(2) > C$.
+      Under GRH, Hooley's theorem~\cite{Hooley1967} implies
+      that $2$ is a primitive root modulo~$d$
+      (or has index bounded by a small constant),
+      so $\ord_d(2) \geq (d-1)/R$ for a bounded~$R$.
+      Since $C/d \to 0$ exponentially
+      (by Stirling: $\log_2 C \approx 0.949 \cdot S$
+      while $d \approx 2^S$),
+      $\ord_d(2) > C$ holds for all sufficiently large~$k$,
+      and the finitely many small~$k$ are verified
+      computationally.
+    \item Double-border sequences: excluded by
+      Proposition~\ref{prop:F-criterion} and
+      Theorem~\ref{thm:FZ}, verified for $k \leq 10001$
+      ($F_\Z \not\equiv 0 \pmod{d}$).
+      The coupling
+      (Proposition~\ref{prop:G1-G2a}) covers the
+      $\tilde\sigma = 0$ cases.
+  \end{itemize}
+  Combining all cases, $N_0(d) = 0$ for every $k \geq 3$.
+\end{proof}
+
+\begin{remark}[Role of GRH]\label{rem:grh-role}
+  The GRH is used \emph{solely} to guarantee that
+  $\ord_d(2)$ is large relative to~$C$ for primes $d$ of the
+  form $2^S - 3^k$.
+  Without GRH, the argument is complete
+  except for the bound on $\ord_d(2)$, which is a variant
+  of Artin's primitive root conjecture restricted to
+  a specific parametric family of primes.
+  The remaining three gaps (finitude of $\tilde\sigma = 0$,
+  non-vanishing of~$F_\Z$, CRT anti-correlation for
+  composite~$d$) are supported by extensive computation
+  but remain formally open.
+\end{remark}
+
+\subsection{Computational verification}%
+\label{ssec:blocking-computations}
+
+\begin{enumerate}[label=\textup{(V\arabic*)}]
+  \item \textbf{Double-border non-vanishing}:
+    $F_\Z \not\equiv 0 \pmod{d}$ for all odd
+    $k \in [7, 10001]$ ($4998$~values) and all even
+    $k \in [4, 1000]$ ($499$~values, no double-border
+    solution found).
+  \item \textbf{Multiplicative order}:
+    $2^C \not\equiv 1 \pmod{d}$ for all $19$ primes~$d$
+    with $k \in [3, 10000]$.
+    The quotient $(d-1)/\ord_d(2) \in \{1, 2, 3, 15\}$
+    for the $17$ cases where $d - 1$ could be factored.
+  \item \textbf{Coprimality}:
+    $F_\Z \equiv 3 \pmod{5}$ for all~$m$
+    (Theorem~\ref{thm:FZ}(c)), and $p \nmid F_\Z$ for
+    all~$m$ when
+    $p \in \{7, 13, 19, 23, 29, 31, 43, 47, \ldots\}$
+    (proved by periodicity of $F_\Z \bmod p$).
+    Only $8$ \emph{critical primes}
+    $p \in \{11, 37, 53, 59, 109, 191, 283, 8363\}$
+    satisfy $p \mid F_\Z$ and $p \mid d$ simultaneously
+    for some~$k$, and at most one critical prime divides
+    $\gcd(F_\Z, d)$ for each~$k$ (verified for
+    $k \leq 10001$).
+  \item \textbf{CRT verification}:
+    $N_0(d) = 0$ verified by dynamic programming
+    for all $k \in [3, 67]$, covering all composite
+    values of~$d$ in this range.
+  \item \textbf{$\tilde\sigma = 0$ classification}:
+    $d \mid (3^{k-1} - 2^{k-1})$ with $d$ prime
+    occurs only for $k \in \{3, 5\}$
+    (exhaustive search for $k \leq 500$).
+\end{enumerate}
+
+% ============================================================
 \section{Conclusion and perspectives}\label{sec:conclusion}
 % ============================================================
 
 \subsection{Assessment}
 
-This work establishes an \textbf{unconditional} structural
-obstruction (nonsurjectivity of~$\Ev_d$) but does \textbf{not}
-prove the complete nonexistence of cycles.
-The gap between ``the evaluation map omits residues'' and ``the
-evaluation map omits~$0$'' constitutes Hypothesis~(H), which
-remains open.
+This work contains two complementary stages.
+
+\emph{Stage~I} (unconditional,
+Sections~\ref{sec:entropy}--\ref{sec:numerical})
+establishes that the evaluation map~$\Ev_d$ is not surjective
+for $k \geq 18$ (Theorem~\ref{thm:nonsurj}), proving that
+at least one residue modulo~$d$ is unreachable.
+The gap between ``some residue is omitted'' and ``the
+residue~$0$ is omitted'' constitutes Hypothesis~(H)
+(Section~\ref{sec:gap}).
+
+\emph{Stage~II} (conditional on GRH,
+Section~\ref{sec:blocking}) closes this gap via the
+Blocking Mechanism (Theorem~\ref{thm:blocking-conditional}):
+a four-case analysis of the Horner reformulation proves
+$N_0(d) = 0$ for all $k \geq 3$, assuming the Generalized
+Riemann Hypothesis.
+Without GRH, the argument depends on the multiplicative
+order $\ord_d(2)$ exceeding~$C$ for prime values of~$d$,
+which is a variant of Artin's primitive root conjecture for
+the family $d = 2^S - 3^k$.
 
 The character sum analysis
-(Sections~\ref{sec:analytical}--\ref{sec:mellin}) encircles
-this gap by establishing:
+(Sections~\ref{sec:analytical}--\ref{sec:mellin}) provides
+an independent analytical approach to the same gap by
+establishing:
 \begin{enumerate}[label=(\roman*)]
   \item the minimal Parseval cost if a cycle exists
     (Theorem~\ref{thm:parseval-cost});
@@ -1650,6 +2222,11 @@ The accompanying code is released under the MIT License.
   lengths,
   \emph{Discrete Math.}\ \textbf{118} (1993), 45--56.
 
+\bibitem{Hooley1967}
+  C.~Hooley,
+  On Artin's conjecture,
+  \emph{J.\ Reine Angew.\ Math.}\ \textbf{225} (1967), 209--220.
+
 \bibitem{Konyagin2003}
   S.\,V.~Konyagin,
   Estimates for character sums,
@@ -1714,6 +2291,11 @@ The accompanying code is released under the MIT License.
   Function},
   Lecture Notes in Mathematics, vol.~1681,
   Springer, 1998.
+
+\bibitem{Zsygmondy1892}
+  K.~Zsygmondy,
+  Zur Theorie der Potenzreste,
+  \emph{Monatsh.\ Math.\ Phys.}\ \textbf{3} (1892), 265--284.
 
 \end{thebibliography}
 

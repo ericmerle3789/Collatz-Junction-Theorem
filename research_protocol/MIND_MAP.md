@@ -1,5 +1,5 @@
 # CARTE MENTALE : PREUVE DE N₀(d) = 0 UNIVERSEL
-## Graphe de dependances complet — Mis a jour 4 mars 2026 (session 10e4 — Protocole v2.2 + Architecture 3 cas + σ̃=0 prouve)
+## Graphe de dependances complet — Mis a jour 6 mars 2026 (session 10f22 — G2c 19/19 INCONDITIONNEL via taille + camera thermique, PLUS AUCUN REBELLE)
 
 ---
 
@@ -563,9 +563,10 @@ l'etat 0 est inatteignable dans l'automate de Horner
 avec 1 <= p_1 < p_2 < ... < p_{k-1} <= S-1,
 en raison de l'interaction de trois contraintes :
 
-  (A) GAP ALGEBRIQUE : ord_d(2) > S-1 pour k >= 4
+  (A) GAP ALGEBRIQUE : ord_d(2) > C pour d premier (G2c, conditionnel GRH)
       ==> les residus {2^p mod d : p = 1,...,S-1} ne couvrent pas Z/dZ*
       ==> certaines transitions de l'automate sont "impossibles"
+      NOTE : "ord >= S" FAUX pour k=3 (ord_5(2)=4 < S=5). Correction session 10f21.
 
   (B) CONTRAINTE D'ORDRE : les positions doivent etre strictement croissantes
       ==> a chaque pas, les positions encore disponibles diminuent
@@ -1197,33 +1198,84 @@ APPROCHE PRINCIPALE : Exploiter la dependance induite par 2^S = 3^k mod d
     - Ordres multiplicatifs : N₀(p)=0 correle avec ord_p(2) grand
 ```
 
-### AXE STRATEGIQUE 3 : Prouver l'Enonce A (ord_d(2) >= S)
+### AXE STRATEGIQUE 3 : G2c — ord_d(2) > C pour d premier
 ```
-PRIORITE : ★★★ (IMPORTANT mais pas bloquant pour Mec I)
-OBJECTIF : Pour tout k >= 4, prouver ord_d(2) >= S
+PRIORITE : ★★★★★ (19/19 INCONDITIONNEL pour k <= 10000, CAMERA THERMIQUE)
+OBJECTIF INITIAL : Pour tout k >= 4, prouver ord_d(2) >= S
+OBJECTIF REFORMULE (session 10f21) : Prouver 2^C ≢ 1 mod d
+OBJECTIF AFFINE (session 10f22) : Prouver ord ∤ C via gcd(C, d-1) + camera thermique
+
+  *** ERREUR CORRIGEE (session 10f21) ***
+  L'affirmation "d > 2^{S-1}" est FAUSSE (d < 2^{S-1} toujours).
+  Contre-exemple : k=3, d=5, S=5, ord_5(2) = 4 < S = 5.
+  La "preuve" de ord >= S basee sur cette affirmation est INVALIDE.
 
   *** REDUCTION CRITIQUE (session 8) ***
   ord_d(2) = S-1  <=>  d | (3^k - 2)
   Verifie : d ne divise JAMAIS 3^k - 2 pour k=4..35
-  k=3 est le SEUL cas (d=5, 3^3-2=25=5*5)
 
-  APPROCHE 1 : Argument arithmetique direct
-    - d | (3^k - 2) => d <= 3^k - 2 < 3^k
-    - Mais d = 2^S - 3^k, donc 2^S - 3^k <= 3^k - 2
-    - i.e. 2^S <= 2*3^k - 2, mais 2^S >= 3^k (par def de S)
-    - La condition est 2^S <= 2*3^k - 2, equivalente a theta <= log_2(2 - 2/3^k)
-    - Pour grand k : theta < log_2(2) = 1, ce qui est TOUJOURS vrai
-    - ==> L'argument de taille ne suffit PAS a exclure r=S-1
+  *** INVESTIGATION G2c (session 10f21) ***
+  Q = (d-1)/ord_d(2) analyse pour 19 d premiers (k ≤ 10000) :
+    - Q_exact (11 cas factorisables) : {1, 2, 3, 15}
+    - Q_pred (19 cas, methode residuacite) : {1, 2, 3, 10, 14, 15, 95}
+    - Max Q = 95 (k=655), premiers p | Q : {2, 3, 5, 7, 19}
+    - G2c : 19/19 VERIFIE (2^C ≢ 1 mod d)
 
-  APPROCHE 2 : Baker (formes lineaires de logarithmes)
-    - |k*log(3) - S*log(2)| > exp(-C*log(k)*log(S))
-    - Pour grand k : borne effective exclut d | (3^k - 2)
-    - Pour petit k : verification directe (deja faite k=4..35)
+  Resultats structurels PROUVES :
+    - k pair ⟹ 2 | Q (2 est QR mod d)
+    - k impair ⟹ Q impair (2 n'est pas QR)
+    - S impair ⟹ 3 ∤ Q
+    - C/d → 0 exponentiellement (2^{-0.051·S})
 
-  APPROCHE 3 : Exclure chaque r ∈ {1,...,S-2} individuellement
-    - d | (2^r - 1) pour r < S-1 : argument de taille souvent fonctionne
-    - Mais echoue pour ~50% des k (quand 2^{S-1} > d)
-    - Combiner avec factorisation de d et ord_{p^e}(2)
+  *** INVESTIGATION G2c (session 10f22) — PROGRES MAJEUR ***
+  5 iterations G-V-R avec protocole strict :
+
+  ITERATION 1 (v_2) : v_2(C) <= 1 INVALIDE (48159/49999 = 96% ont v_2(C)>=2)
+    Resultat partiel : v_2 prouve G2c pour k=3,5,13,69,73 (5/19)
+
+  ITERATION 2 (gcd) : gcd(C, d-1) approach
+    2^{gcd(C,d-1)} ≢ 1 mod d pour 19/19 ★★★★★
+    MAIS gcd < ord ⟺ C < ord (equiv. Artin theoriquement)
+
+  ITERATION 3 (taille) : *** DECOUVERTE MAJEURE ***
+    Si g = gcd(C,d-1) < log_2(d), alors 2^g mod d = 2^g ≠ 1
+    (argument ELEMENTAIRE : 0 < 2^g < d, pas de reduction modulaire)
+    COUVRE 15/19 CAS INCONDITIONNELLEMENT ★★★★★
+    4 rebelles : k=61, 3895, 4500, 6891 (gcd >= log_2(d))
+
+  ITERATION 4 (controle gcd) : analyse d-1 mod p
+    Seulement 2-6% des premiers de C divisent aussi d-1
+    Heuristique g ≈ S^c, rebelles c > 1, non-rebelles c < 1
+    IMPASSE STRUCTURELLE : borner le produit des p communs ⟺ Artin
+
+  ITERATION 5 (primes temoins) : *** LUMIERE SPECIALE ***
+    Idee (Eric) : chercher un prime p "temoin" tel que v_p(ord) > v_p(C)
+    3 rebelles RESOLUS :
+      k=3895 : temoin p=3 (v_3(ord)=3 > v_3(C)=0)
+      k=4500 : temoin p=43 (v_43(ord)=1 > v_43(C)=0)
+      k=61   : temoin p=5179 + factorisation d-1 (Q_exact=1, C < ord)
+    k=6891 : non resolu par temoins (aucun p <= 10000)
+
+  ITERATION 5bis (ultrason) : recherche q > S-1 divisant d-1
+    663 252 premiers scannes dans (10921, 10^7] — ZERO hits
+    Confirme heuristiquement que d-1 a des facteurs enormes > S-1
+
+  ITERATION 5ter (camera thermique) : *** RESOLUTION COMPLETE ***
+    Theoreme (Camera Thermique — Eric Merle) :
+      M = partie (S-1)-smooth de d-1. Si 2^M not equiv 1 mod d,
+      alors ord a un facteur q > S-1, et v_q(C)=0, donc ord ne divise pas C.
+    k=6891 : M = 2^2*3*11*61*131 = 1054812 (21 bits), 2^M mod d ≠ 1 ★★★★★
+    Camera thermique : 17/19 cas (echoue k=3, k=5 ou d-1 est smooth)
+    Argument de taille : 15/19 cas
+    *** UNION TAILLE + THERMAL = 19/19 *** (ensembles d'echec disjoints)
+
+  BILAN :
+    - 19/19 cas : PROUVE INCONDITIONNELLEMENT (taille + camera thermique)
+    - Sous GRH : RESOLU pour tout k (Hooley 1967)
+    - Cas general k > 10000 : camera thermique calculable cas par cas,
+      preuve generale ouverte (plus faible qu'Artin)
+  STATUT : 19/19 INCONDITIONNEL apres 7 iterations G-V-R (k <= 10000).
+    Progres : 10f21 "tout Artin" → iter3 "15/19" → iter5 "18/19" → iter5ter "19/19".
 ```
 
 ### AXE STRATEGIQUE 4 : Double Peeling comme cadre unificateur
@@ -1284,10 +1336,21 @@ NOUVELLE HIERARCHIE (par impact et faisabilite) :
         k=12 : paires insuffisantes, triplet requis (Mec III)
       Dependance : beneficie de (1)
 
-  (3) ★★★ ENONCE A VIA BAKER (ord_d(2) >= S)
-      Impact : renforce le gap algebrique (composante A du mecanisme)
-      Faisabilite : HAUTE pour grand k (Baker), directe pour petit k
-      Dependance : aucune, mais MOINS critique qu'initialement pense
+  (3) ★★★★★ ENONCE A / G2c (ord_d(2) > C pour d premier)
+      Impact : requis pour le cas d premier, composante A du mecanisme
+      Faisabilite :
+        - Sous GRH : RESOLU pour tout k (Hooley 1967, Artin)
+        - 19/19 INCONDITIONNEL pour k <= 10000 (session 10f22) ★★★★★ :
+          15/19 par argument de taille : g = gcd(C,d-1) < log_2(d) => 2^g ≠ 1
+          +4/19 par camera thermique : 2^M not equiv 1 mod d (M = smooth part)
+          Theoreme Camera Thermique (Eric) : si 2^M not equiv 1, ord a un
+          facteur q > S-1, v_q(C)=0, donc ord ne divise pas C. 5 lignes, pur.
+          Les 2 methodes (taille + thermal) ont des echecs DISJOINTS.
+        - k > 10000 : camera thermique calculable par cas, general OUVERT
+          (beaucoup plus faible qu'Artin : seulement "ord non smooth")
+        - G2c verifie computationnellement 19/19 (k <= 10000)
+      Dependance : aucune
+      STATUT : 19/19 INCONDITIONNEL (k <= 10000), OUVERT general
 
   (4) ★★★ DOUBLE PEELING FORMEL
       Impact : preuve unifiee si formalisable
@@ -1299,12 +1362,16 @@ NOUVELLE HIERARCHIE (par impact et faisabilite) :
       Faisabilite : HAUTE (computationnelle)
       Dependance : aucune
 
-  PISTES FERMEES (session 8) :
+  PISTES FERMEES (sessions 8, 10f21) :
     - Invariant universel mod m : FERME (Front 4, aucun au-dela mod 2+3)
     - Argument de taille simple (2^r < d) : FERME (~50% k echouent)
     - Matrice de transfert spectrale : FERME (difficulte equivalente)
     - Enonce C comme lemme isole : FERME (equivalent a N_0(d)=0 restreint)
     - "Gros premier bloque toujours" : REFUTE (k=6,9,10,12,14-16)
+    - G2c pour k <= 10000 : FERME — 19/19 INCONDITIONNEL ★★★★★
+      Session 10f22 : taille (15/19) + camera thermique (17/19), union = 19/19
+      k=6891 resolu par camera thermique : M=1054812, 2^M not equiv 1 mod d
+    - G2c general (tout k) : OUVERT — camera thermique calculable mais non prouvee
 ```
 
 ### Vision long terme
@@ -1331,10 +1398,17 @@ STRATEGIE EN 5 PILIERS (mise a jour session 8) :
     ==> Morphisme phi : compositions -> Z/p1Z x Z/p2Z, (-1,-1) ∉ Image
     Statut : QUANTIFIE, preuve generale en cours
 
-  Pilier 4 : ENONCE A (ord_d(2) >= S pour k >= 4) via Baker
-    ==> Renforce le gap algebrique pour les 3 mecanismes
-    ==> Reduit a : d ne divise pas (3^k - 2) (verifie k=4..35)
-    Statut : REDUIT, VERIFICATION ETENDUE
+  Pilier 4 : G2c / ENONCE A (ord_d(2) > C pour d premier)
+    ==> Requis pour d premier : 2^C mod d ≠ 1
+    ==> Sous GRH : RESOLU pour tout k (Hooley → Artin → ord ≈ d >> C)
+    ==> 19/19 INCONDITIONNEL pour k <= 10000 (session 10f22) ★★★★★ :
+        15/19 par argument de taille g < log_2(d)
+        +4/19 par camera thermique (2^M not equiv 1, M = smooth part de d-1)
+        Theoreme Camera Thermique (Eric) : methode unifiee, 5 lignes
+        Les methodes taille et thermal ont des echecs DISJOINTS => union = 19/19
+    ==> k > 10000 : camera thermique calculable cas par cas, general OUVERT
+    ==> 7 iterations G-V-R (10f22), 19/19 resolus
+    Statut : 19/19 INCONDITIONNEL (k <= 10000), OUVERT general (k > 10000)
 
   Pilier 5 : VERIFICATION COMPUTATIONNELLE
     ==> Double Peeling : N_0(d) = 0 pour k=3..14 (positions incompatibles)
