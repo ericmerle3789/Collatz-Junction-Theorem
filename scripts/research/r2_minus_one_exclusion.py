@@ -69,6 +69,9 @@ from itertools import combinations
 from collections import Counter, defaultdict
 from functools import lru_cache
 
+# Force unbuffered output so progress is visible
+print = lambda *args, _print=print, **kwargs: (_print(*args, **kwargs, flush=True))
+
 
 # ============================================================================
 # MATHEMATICAL PRIMITIVES
@@ -619,8 +622,8 @@ def approach_C(k_max=25):
 
     For CRT sieving mod p | d: P(B) = -3 mod p.
 
-    Uses bitset DP (Python integers as bitsets) for moduli up to ~3 billion,
-    enabling full verification for k=3..22.
+    Uses bitset DP (Python integers as bitsets) for moduli up to ~500M,
+    enabling full verification for k=3..18 on a 16GB machine.
     """
     print()
     print("=" * 72)
@@ -769,8 +772,9 @@ def approach_C(k_max=25):
         print(f"  k={k}: d={r['d']}, {st} [{r['method']}]")
 
     print("""
-  STATUS: CRT sieving + bitset DP verifies per-k up to k=22.
-  For k >= 23, d > 43 billion exceeds memory limits.
+  STATUS: CRT sieving + bitset DP verifies per-k up to k=18.
+  For k >= 19, d > 500M exceeds bitset memory limit.
+  CRT pairs/triples all show 100% coverage for k=19..25.
   No universal analytic proof found yet.
 """)
     return results
@@ -906,9 +910,11 @@ def main():
    Exhaustive enumeration confirms -1 not in Im(f) for k=3..17.
    Fourier bounds insufficient. Needs Weil-type estimates.
 
-3. APPROACH C (CRT Sieving + Bitset DP) -- VERIFIED k=3..22:
-   Bitset DP confirms -1 not in Im(f) for k=3..22.
-   k >= 23 has d > 43B, exceeding memory limits (~115 GB needed).
+3. APPROACH C (CRT Sieving + Bitset DP) -- VERIFIED k=3..18:
+   Full bitset DP or per-prime obstruction confirms -1 not in Im(f) for k=3..18.
+   For k >= 19, d > 500M exceeds bitset memory limit (500M, ~1.5 GB).
+   Per-prime and CRT-pair checks all show 100% coverage (surjective mod p),
+   meaning no per-prime or small-CRT obstruction exists for those k.
    Some k have per-prime obstructions; others need full DP mod d.
 
 4. RECOMMENDED PATHS:

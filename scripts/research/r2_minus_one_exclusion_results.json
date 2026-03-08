@@ -1,8 +1,8 @@
 {
-  "sha256_results": "8892db077bf857b9fd1dcf345dabedc92143fe809d294c309c2f78f27b818f36",
-  "sha256_script": "839aba7a15a9237ab50b1d430253c88615c498d7e76819edfbfef9565e2f3344",
-  "timestamp": "2026-03-08 10:18:06",
-  "elapsed_seconds": 321.18849086761475,
+  "sha256_results": "33bc3499cf2c1c849c442702f13eb876b431f5d0c566d4f94f2a045562adc8a3",
+  "sha256_script": "f784e30956a938cdb5a8e6d85d480323aec6abf95d5fda0c96405c1cebbaea87",
+  "timestamp": "2026-03-08 10:23:29",
+  "elapsed_seconds": 14.666528940200806,
   "results": {
     "approach_A": "parity_does_not_work",
     "approach_B": {
@@ -208,15 +208,15 @@
         "k": 19,
         "d": 985222181,
         "C": 86493225,
-        "excluded": true,
-        "method": "CRT([985222181])"
+        "excluded": null,
+        "method": "no_obstruction"
       },
       "20": {
         "k": 20,
         "d": 808182895,
         "C": 141120525,
-        "excluded": true,
-        "method": "CRT([808182895])"
+        "excluded": null,
+        "method": "no_obstruction"
       },
       "21": {
         "k": 21,
@@ -229,8 +229,8 @@
         "k": 22,
         "d": 2978678759,
         "C": 927983760,
-        "excluded": true,
-        "method": "CRT([2978678759])"
+        "excluded": null,
+        "method": "partial"
       },
       "23": {
         "k": 23,
