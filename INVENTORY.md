@@ -117,7 +117,7 @@ Published, verified scripts associated with the preprint.
 | `transient_zero_analysis.py` | R | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p |
 | `image_density_analysis.py` | R | Image density: |Im(Ev_d)|/d matches birthday model (negative result) |
 
-### 4.2. Research (`scripts/research/`, 27 files, Multi-agent investigation Rounds 1-6)
+### 4.2. Research (`scripts/research/`, 31 files, Multi-agent investigation Rounds 1-7)
 
 Research sprint on the Transient Zero Property — multi-agent investigation.
 
@@ -626,6 +626,59 @@ Research scripts for the blocking mechanism.
 | — | Backward reachability proves N₀=0 for k=3..6 (combinatorial, no Fourier) | `r6_alternative_proofs.py` | **Proved** |
 | — | Axiom small_gap_crystal_bound eliminable (first fires at k=15601, margin 1230 bits) | `r6_lean_entropy_theorem.py` | Analysed |
 | — | R12 "Horner distinct" over-formulated: duplicates exist for most k, but corrSum≠0 mod d holds | `r6_proof_validator.py` | **Corrected** |
+| R31 | **WR backward reachability BLOCKS k=3,4,5,7,8,11**: WR constraint is THE mechanism | `r7_backward_reachability.py` | **Proved** |
+| — | Unconstrained reachability always saturates (no blocking); WR essential | `r7_backward_reachability.py` | **Proved (negative)** |
+| — | k=6,9,10,12 remain open by backward reachability alone | `r7_backward_reachability.py` | Open |
+| R32 | **α(k) NOT constant**: ranges 0.58-7.26, mean 2.38, growth ~0.50·k^{0.68} | `r7_direct_bound_parseval.py` | **Measured** |
+| — | Strict cancellation |T| < C confirmed for ALL (k,p,t) tested k=3..12 | `r7_direct_bound_parseval.py` | **Verified** |
+| — | Parseval identity verified exactly; distribution entropy → log(p) | `r7_direct_bound_parseval.py` | **Verified** |
+| R33 | **T_p(t) = restricted permanent** of k×S roots-of-unity matrix | `r7_innovations.py` | **Proved** |
+| — | WR correction ratio drops ~1.94 (k=3) → ~0.00004 (k=8): exponential cancellation | `r7_innovations.py` | **Observed** |
+| — | corrSum = 3^{k-1}·h_A(1/3) generating function identity | `r7_innovations.py` | **Proved** |
+| — | Entropy mismatch grows with k (compression paradox confirmed) | `r7_innovations.py` | **Observed** |
+| R34 | **WHY Collatz resists: 3 layers** (arithmetic + combinatorial + phase transition) | `r7_why_paths_close.py` | **Investigated** |
+| — | WR creates POSITIVE correlations, collapses DOF to ~1.3 effective dimensions | `r7_why_paths_close.py` | **Proved** |
+| — | Phase transition at dim_eff ≈ 1: p_crit = (S/k)^k grows monotonically | `r7_why_paths_close.py` | **Mapped** |
+| — | Residue 0 slightly over-represented (+0.097); exclusion is algebraic not distributional | `r7_why_paths_close.py` | **Observed** |
+| — | Bottleneck primes always in CRITICAL regime (dim_eff 0.5-1.0) | `r7_why_paths_close.py` | **Mapped** |
+
+#### Round 7 — Backward reachability, Parseval bound, innovations, investigation
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r7_backward_reachability.py` | Combinatoire | Per-prime backward reachability + WR-constrained + transition matrices |
+| `r7_direct_bound_parseval.py` | Analyste | Direct bound |T/C| ≤ α/√p via Parseval + moment methods |
+| `r7_innovations.py` | Innovateur | 5 innovations: add→mult, IFS, permanent, algebraic geo, compression |
+| `r7_why_paths_close.py` | Investigateur | Why paths close: WR curse, phase transition, hidden order |
+
+**Key findings (Round 7):**
+
+1. **WR-constrained backward reachability BLOCKS k=3,4,5,7,8,11** (R31):
+   Without-replacement constraint eliminates residues invisible to unconstrained analysis.
+   Unconstrained reachability always saturates (R_j = Z/pZ). WR is THE mechanism.
+   k=6,9,10,12 remain open by this method alone.
+
+2. **Direct bound |T/C| ≤ α/√p: α NOT constant** (R32):
+   α(k) ranges from 0.58 (k=7) to 7.26 (k=9). Mean α ≈ 2.38.
+   Best fit: α ~ 0.50·k^{0.68} (sublinear growth). Strict cancellation |T| < C confirmed
+   for ALL (k, p, t) tested (k=3..12). Regime partition covers all k=3..20.
+   WARNING: α² ≥ S for k=4 and k=9 — gaps in regime-conditional proof.
+
+3. **T_p(t) IS a restricted permanent** (R33):
+   corrSum = 3^{k-1}·h_A(1/3) (generating function). T_p(t) = Σ_A ∏_j ω^{...}
+   is a permanent of a k×S roots-of-unity matrix. WR correction ratio drops from
+   ~1.94 (k=3) to ~0.00004 (k=8): exponentially growing cancellation.
+   RECOMMENDED: apply Barvinok/Gurvits permanent bounds.
+
+4. **WHY Collatz resists: 3 structural layers** (R34):
+   (a) Arithmetic: d = 2^S - 3^k factorization controlled by ord_p(2), ord_p(3);
+       at continued fraction convergents of log₂3, d has few factors.
+   (b) Combinatorial: WR collapses k-1 DOF to ~1.3 effective dimensions
+       (positive correlations, NOT negative). Markov error E absorbs mismatch.
+   (c) Phase transition: dim_eff ≈ 1 at critical primes creates no-man's-land.
+   ESSENTIAL INSIGHT: corrSum is too structured for random methods, too random
+   for algebraic methods. Three strategies identified: A (dimensional collapse),
+   B (phase transition bridging), C (Chebotarev density for 2^S-3^k).
 
 ### Conditional (in the preprint)
 
