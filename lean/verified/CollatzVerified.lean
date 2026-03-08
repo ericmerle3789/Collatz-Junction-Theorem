@@ -2,3 +2,4 @@
 -- Import modules here that should be built as part of the library.
 import CollatzVerified.Basic
 import CollatzVerified.G2c
+import CollatzVerified.NewResults
