@@ -68,6 +68,17 @@ For composite $d$, the CRT inequality $N_0(d) \leq N_0(p)$ shows one blocking pr
 | **corrSum mod 4** | $\mathrm{corrSum}(A) \in \{1, 3\} \pmod{4}$ | Unconditional |
 | **No universal invariant** | Beyond $\gcd(\mathrm{corrSum}, 6) = 1$, no further universal congruence exists | Proved (exhaustive) |
 
+### New results (March 2026)
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| **Gap C closure** | $d \nmid F_Z$ for all odd $k \geq 7$ via 2-adic valuation | **Unconditional** |
+| **Transient Zero** | $c_j \equiv 0 \pmod{p} \Rightarrow c_{j+1} \not\equiv 0 \pmod{p}$ | Unconditional |
+| **Doubly stochastic** | Horner transition matrix $T$ on $\mathbb{Z}/p\mathbb{Z}$ is doubly stochastic | **Proved** |
+| **Image density** | $\lvert\mathrm{Im}(\mathrm{Ev}_d)\rvert/d$ matches birthday model (no extra thinning) | Negative result |
+
+The **doubly stochastic theorem** shows that the Transient Zero Property has no effect on the stationary distribution: $\pi(0) = 1/p$ exactly. This closes the "single-prime Markov" approach and redirects research toward multi-prime CRT correlations.
+
 ## Known Gaps
 
 ### 1. Interior ×2-closure (Conjecture 7.4)
@@ -107,12 +118,13 @@ Collatz-Junction-Theorem/
 │       └── BinomialEntropy.lean, ...    (supporting lemmas)
 │
 ├── scripts/
-│   ├── core/                   # Published verification scripts (10 files)
+│   ├── core/                   # Published verification scripts (13 files)
+│   ├── research/               # Research sprint: Transient Zero investigation (5 files)
 │   └── tools/                  # Blocking mechanism verification (70+ scripts)
 │
 ├── research_log/               # Research journal (phases 10--23)
 │
-└── audits/                     # Certification audits (V1--V4, V8)
+└── audits/                     # Certification audits (V1--V4, V8: 4-expert panel 7.4/10)
 ```
 
 ## Quick Start
@@ -141,6 +153,22 @@ python3 scripts/core/verify_nonsurjectivity.py
 python3 scripts/core/stress_test.py
 python3 scripts/core/numerical_audit.py
 python3 scripts/core/verify_condition_q.py
+```
+
+### Reproduce the new results (March 2026)
+
+```bash
+# Gap C closure: d does not divide F_Z for all odd k >= 7
+python3 scripts/core/prove_fz_gap_closure.py
+
+# Transient Zero Property + Horner chain analysis
+python3 scripts/core/transient_zero_analysis.py
+
+# Image density: birthday model match (negative result)
+python3 scripts/core/image_density_analysis.py
+
+# Markov analysis: doubly stochastic theorem
+python3 scripts/research/tz_markov_analysis.py
 ```
 
 ### Lean 4 formalization

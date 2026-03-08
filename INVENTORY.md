@@ -3,7 +3,7 @@
 **Project:** Nonexistence of Nontrivial Cycles in Collatz Dynamics
 **Author:** Eric Merle
 **Date:** March 2026
-**Files:** ~260 (excluding .git, __pycache__, .DS_Store)
+**Files:** ~270 (excluding .git, __pycache__, .DS_Store)
 
 ---
 
@@ -97,7 +97,7 @@ Coverage: nonsurjectivity k=18-25, zero-exclusion q3, Gersonides, parity, cosets
 
 ## 4. Scripts
 
-### 4.1. Core (`scripts/core/`, 10 scripts, Phases 14-19 + SP5)
+### 4.1. Core (`scripts/core/`, 13 scripts, Phases 14-19 + SP5 + Research)
 
 Published, verified scripts associated with the preprint.
 
@@ -113,8 +113,28 @@ Published, verified scripts associated with the preprint.
 | `verify_condition_q.py` | SP5 | Condition (Q) for k in [18, 28] |
 | `stress_test.py` | — | 402 robustness tests |
 | `numerical_audit.py` | — | 152 numerical verifications |
+| `prove_fz_gap_closure.py` | R | **Gap C closure**: d ∤ F_Z for all odd k ≥ 7 (2-adic valuation) |
+| `transient_zero_analysis.py` | R | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p |
+| `image_density_analysis.py` | R | Image density: |Im(Ev_d)|/d matches birthday model (negative result) |
 
-### 4.2. Exploration (`scripts/exploration/`, 81 scripts, Phases 20-22 + SP6-SP10 + A-F)
+### 4.2. Research (`scripts/research/`, 5 files, Transient Zero investigation)
+
+Research sprint on the Transient Zero Property — multi-agent investigation.
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `tz_arc_decomposition.py` | Théoricien | Arc decomposition of Horner chains between zeros |
+| `tz_exhaustive_enumeration.py` | Calculateur | Exhaustive zero census for small k |
+| `tz_markov_analysis.py` | Probabiliste | Markov chain model — **doubly stochastic theorem** |
+| `tz_bridge_connections.py` | Connecteur | Cross-prime correlations via CRT |
+| `tz_exhaustive_results.json` | Calculateur | Raw enumeration data |
+
+**Key finding**: The Horner transition matrix is doubly stochastic (proved), so the
+Transient Zero Property has NO effect on the stationary probability π(0) = 1/p.
+The constraint is "invisible" at the single-prime level. Multi-prime correlations
+via CRT remain under investigation.
+
+### 4.3. Exploration (`scripts/exploration/`, 81 scripts, Phases 20-22 + SP6-SP10 + A-F)
 
 Research exploration scripts (entropic approach).
 
@@ -141,7 +161,7 @@ Research exploration scripts (entropic approach).
 | `phase_e_one_good_prime.py` | E | CRT bypass (Proposition L14) |
 | `phase_f_*.py` (2 scripts) | F | Deep dive + extension k=19-21 |
 
-### 4.3. Tools (`scripts/tools/`, 70+ scripts + 6 logs, Sessions 7-10f26)
+### 4.4. Tools (`scripts/tools/`, 70+ scripts + 6 logs, Sessions 7-10f26)
 
 Research scripts for the blocking mechanism.
 
@@ -336,7 +356,7 @@ Research scripts for the blocking mechanism.
 |------|---------|
 | `ERRATA.md` | Corrections to research log values |
 
-## 7. Audits (`audits/`, 4 files)
+## 7. Audits (`audits/`, 5 files)
 
 | Version | Result | Level |
 |---------|--------|-------|
@@ -344,6 +364,7 @@ Research scripts for the blocking mechanism.
 | V2 | New blocker identified | Ultra-severe |
 | V3 | Certified (all blockers resolved) | DO-178C / IEC 61508 / EAL7 |
 | V4 | Mathematical verification of logical chain | Pure mathematics |
+| V8 | Red Team 4-expert panel (7.4/10, PUBLISH after revision) | Expert panel |
 
 ## 8. Documentation (`docs/`)
 
@@ -388,6 +409,16 @@ Research scripts for the blocking mechanism.
 | R5 | Square root barrier | S7.4 |
 | R6 | corrSum always odd | S2.1 |
 | R7 | corrSum never divisible by 3 | S2.1 |
+
+### New results (March 2026 research sprint)
+
+| # | Result | Script | Status |
+|---|--------|--------|--------|
+| R8 | **Gap C closed**: d ∤ F_Z for all odd k ≥ 7 (2-adic valuation) | `prove_fz_gap_closure.py` | **Proved** |
+| R9 | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p (p odd) | `transient_zero_analysis.py` | **Proved** (trivial) |
+| R10 | Image density matches birthday model (no extra thinning) | `image_density_analysis.py` | Negative result |
+| R11 | **Doubly stochastic theorem**: Horner transition matrix T is doubly stochastic | `tz_markov_analysis.py` | **Proved** |
+| — | TZ constraint invisible at single-prime level (π(0) = 1/p exactly) | `tz_markov_analysis.py` | Proved (negative) |
 
 ### Conditional (in the preprint)
 

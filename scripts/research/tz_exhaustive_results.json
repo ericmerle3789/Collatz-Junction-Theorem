@@ -1,0 +1,1131 @@
+{
+  "sha256": "66f8d5ef5dacace7a2065c0ff1732a3a27a7fffb596f880c2385184780960e80",
+  "timestamp": "2026-03-08 09:08:27",
+  "config": {
+    "K_MAX": 15,
+    "PRIME_LIMIT": 500
+  },
+  "results": [
+    {
+      "k": 3,
+      "p": 5,
+      "S": 5,
+      "n_internal_positions": 1,
+      "total_subsets": 6,
+      "N_final_zero": 1,
+      "N_final_nonzero": 5,
+      "P_final_zero": 0.16666666666666666,
+      "expected_P_final_zero": 0.2,
+      "ratio_observed_over_expected": 0.8333333333333333,
+      "N_fz_with_iz": 0,
+      "N_fz_zero_free": 1,
+      "N_fnz_with_iz": 0,
+      "P_iz_given_fz": 0.0,
+      "P_iz_given_fnz": 0.0,
+      "P_iz_random": 0.19999999999999996,
+      "zero_free_ratio": 1.0,
+      "zero_free_random": 0.8,
+      "zero_pos_final_zero": {},
+      "zero_pos_final_nonzero": {},
+      "n_internal_zeros_dist": {
+        "0": [
+          1,
+          5
+        ]
+      },
+      "cond_probs": {},
+      "cond_numerator": {},
+      "cond_denominator": {}
+    },
+    {
+      "k": 4,
+      "p": 47,
+      "S": 7,
+      "n_internal_positions": 2,
+      "total_subsets": 20,
+      "N_final_zero": 0,
+      "N_final_nonzero": 20,
+      "P_final_zero": 0.0,
+      "expected_P_final_zero": 0.02127659574468085,
+      "ratio_observed_over_expected": 0.0,
+      "N_fz_with_iz": 0,
+      "N_fz_zero_free": 0,
+      "N_fnz_with_iz": 0,
+      "P_iz_given_fz": "NaN",
+      "P_iz_given_fnz": 0.0,
+      "P_iz_random": 0.04210049796287918,
+      "zero_free_ratio": "NaN",
+      "zero_free_random": 0.9578995020371208,
+      "zero_pos_final_zero": {},
+      "zero_pos_final_nonzero": {},
+      "n_internal_zeros_dist": {
+        "0": [
+          0,
+          20
+        ]
+      },
+      "cond_probs": {},
+      "cond_numerator": {},
+      "cond_denominator": {}
+    },
+    {
+      "k": 5,
+      "p": 13,
+      "S": 8,
+      "n_internal_positions": 3,
+      "total_subsets": 35,
+      "N_final_zero": 5,
+      "N_final_nonzero": 30,
+      "P_final_zero": 0.14285714285714285,
+      "expected_P_final_zero": 0.07692307692307693,
+      "ratio_observed_over_expected": 1.857142857142857,
+      "N_fz_with_iz": 3,
+      "N_fz_zero_free": 2,
+      "N_fnz_with_iz": 10,
+      "P_iz_given_fz": 0.6,
+      "P_iz_given_fnz": 0.3333333333333333,
+      "P_iz_random": 0.21347291761492937,
+      "zero_free_ratio": 0.4,
+      "zero_free_random": 0.7865270823850706,
+      "zero_pos_final_zero": {
+        "2": 3
+      },
+      "zero_pos_final_nonzero": {
+        "2": 7,
+        "3": 3
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          2,
+          20
+        ],
+        "1": [
+          3,
+          10
+        ]
+      },
+      "cond_probs": {
+        "2": 0.3,
+        "3": 0.0
+      },
+      "cond_numerator": {
+        "2": 3,
+        "3": 0
+      },
+      "cond_denominator": {
+        "2": 10,
+        "3": 3
+      }
+    },
+    {
+      "k": 6,
+      "p": 5,
+      "S": 10,
+      "n_internal_positions": 4,
+      "total_subsets": 126,
+      "N_final_zero": 27,
+      "N_final_nonzero": 99,
+      "P_final_zero": 0.21428571428571427,
+      "expected_P_final_zero": 0.2,
+      "ratio_observed_over_expected": 1.0714285714285714,
+      "N_fz_with_iz": 6,
+      "N_fz_zero_free": 21,
+      "N_fnz_with_iz": 58,
+      "P_iz_given_fz": 0.2222222222222222,
+      "P_iz_given_fnz": 0.5858585858585859,
+      "P_iz_random": 0.5903999999999999,
+      "zero_free_ratio": 0.7777777777777778,
+      "zero_free_random": 0.4096000000000001,
+      "zero_pos_final_zero": {
+        "2": 3,
+        "3": 3
+      },
+      "zero_pos_final_nonzero": {
+        "4": 25,
+        "2": 12,
+        "3": 22
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          21,
+          41
+        ],
+        "1": [
+          6,
+          57
+        ],
+        "2": [
+          0,
+          1
+        ]
+      },
+      "cond_probs": {
+        "2": 0.2,
+        "3": 0.12,
+        "4": 0.0
+      },
+      "cond_numerator": {
+        "2": 3,
+        "3": 3,
+        "4": 0
+      },
+      "cond_denominator": {
+        "4": 25,
+        "2": 15,
+        "3": 25
+      }
+    },
+    {
+      "k": 6,
+      "p": 59,
+      "S": 10,
+      "n_internal_positions": 4,
+      "total_subsets": 126,
+      "N_final_zero": 0,
+      "N_final_nonzero": 126,
+      "P_final_zero": 0.0,
+      "expected_P_final_zero": 0.01694915254237288,
+      "ratio_observed_over_expected": 0.0,
+      "N_fz_with_iz": 0,
+      "N_fz_zero_free": 0,
+      "N_fnz_with_iz": 7,
+      "P_iz_given_fz": "NaN",
+      "P_iz_given_fnz": 0.05555555555555555,
+      "P_iz_random": 0.06609236119976936,
+      "zero_free_ratio": "NaN",
+      "zero_free_random": 0.9339076388002306,
+      "zero_pos_final_zero": {},
+      "zero_pos_final_nonzero": {
+        "3": 4,
+        "4": 3
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          0,
+          119
+        ],
+        "1": [
+          0,
+          7
+        ]
+      },
+      "cond_probs": {
+        "3": 0.0,
+        "4": 0.0
+      },
+      "cond_numerator": {
+        "3": 0,
+        "4": 0
+      },
+      "cond_denominator": {
+        "3": 4,
+        "4": 3
+      }
+    },
+    {
+      "k": 7,
+      "p": 23,
+      "S": 12,
+      "n_internal_positions": 5,
+      "total_subsets": 462,
+      "N_final_zero": 22,
+      "N_final_nonzero": 440,
+      "P_final_zero": 0.047619047619047616,
+      "expected_P_final_zero": 0.043478260869565216,
+      "ratio_observed_over_expected": 1.0952380952380951,
+      "N_fz_with_iz": 0,
+      "N_fz_zero_free": 22,
+      "N_fnz_with_iz": 53,
+      "P_iz_given_fz": 0.0,
+      "P_iz_given_fnz": 0.12045454545454545,
+      "P_iz_random": 0.19929189603475128,
+      "zero_free_ratio": 1.0,
+      "zero_free_random": 0.8007081039652487,
+      "zero_pos_final_zero": {},
+      "zero_pos_final_nonzero": {
+        "4": 31,
+        "5": 22
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          22,
+          387
+        ],
+        "1": [
+          0,
+          53
+        ]
+      },
+      "cond_probs": {
+        "4": 0.0,
+        "5": 0.0
+      },
+      "cond_numerator": {
+        "4": 0,
+        "5": 0
+      },
+      "cond_denominator": {
+        "4": 31,
+        "5": 22
+      }
+    },
+    {
+      "k": 7,
+      "p": 83,
+      "S": 12,
+      "n_internal_positions": 5,
+      "total_subsets": 462,
+      "N_final_zero": 5,
+      "N_final_nonzero": 457,
+      "P_final_zero": 0.010822510822510822,
+      "expected_P_final_zero": 0.012048192771084338,
+      "ratio_observed_over_expected": 0.8982683982683982,
+      "N_fz_with_iz": 0,
+      "N_fz_zero_free": 5,
+      "N_fnz_with_iz": 5,
+      "P_iz_given_fz": 0.0,
+      "P_iz_given_fnz": 0.010940919037199124,
+      "P_iz_random": 0.058806758293202144,
+      "zero_free_ratio": 1.0,
+      "zero_free_random": 0.9411932417067979,
+      "zero_pos_final_zero": {},
+      "zero_pos_final_nonzero": {
+        "5": 5
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          5,
+          452
+        ],
+        "1": [
+          0,
+          5
+        ]
+      },
+      "cond_probs": {
+        "5": 0.0
+      },
+      "cond_numerator": {
+        "5": 0
+      },
+      "cond_denominator": {
+        "5": 5
+      }
+    },
+    {
+      "k": 8,
+      "p": 7,
+      "S": 13,
+      "n_internal_positions": 6,
+      "total_subsets": 792,
+      "N_final_zero": 69,
+      "N_final_nonzero": 723,
+      "P_final_zero": 0.08712121212121213,
+      "expected_P_final_zero": 0.14285714285714285,
+      "ratio_observed_over_expected": 0.609848484848485,
+      "N_fz_with_iz": 56,
+      "N_fz_zero_free": 13,
+      "N_fnz_with_iz": 525,
+      "P_iz_given_fz": 0.8115942028985508,
+      "P_iz_given_fnz": 0.7261410788381742,
+      "P_iz_random": 0.6034305433960339,
+      "zero_free_ratio": 0.18840579710144928,
+      "zero_free_random": 0.3965694566039662,
+      "zero_pos_final_zero": {
+        "3": 10,
+        "5": 33,
+        "2": 33,
+        "4": 10
+      },
+      "zero_pos_final_nonzero": {
+        "2": 457,
+        "4": 314,
+        "6": 230,
+        "3": 11,
+        "5": 18
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          13,
+          198
+        ],
+        "1": [
+          26,
+          191
+        ],
+        "2": [
+          30,
+          163
+        ],
+        "3": [
+          0,
+          171
+        ]
+      },
+      "cond_probs": {
+        "2": 0.0673469387755102,
+        "3": 0.47619047619047616,
+        "4": 0.030864197530864196,
+        "5": 0.6470588235294118,
+        "6": 0.0
+      },
+      "cond_numerator": {
+        "3": 10,
+        "5": 33,
+        "2": 33,
+        "4": 10,
+        "6": 0
+      },
+      "cond_denominator": {
+        "2": 490,
+        "4": 324,
+        "6": 230,
+        "3": 21,
+        "5": 51
+      }
+    },
+    {
+      "k": 8,
+      "p": 233,
+      "S": 13,
+      "n_internal_positions": 6,
+      "total_subsets": 792,
+      "N_final_zero": 5,
+      "N_final_nonzero": 787,
+      "P_final_zero": 0.006313131313131313,
+      "expected_P_final_zero": 0.004291845493562232,
+      "ratio_observed_over_expected": 1.470959595959596,
+      "N_fz_with_iz": 0,
+      "N_fz_zero_free": 5,
+      "N_fnz_with_iz": 2,
+      "P_iz_given_fz": 0.0,
+      "P_iz_given_fnz": 0.0025412960609911056,
+      "P_iz_random": 0.025476349925119157,
+      "zero_free_ratio": 1.0,
+      "zero_free_random": 0.9745236500748808,
+      "zero_pos_final_zero": {},
+      "zero_pos_final_nonzero": {
+        "3": 1,
+        "5": 1
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          5,
+          785
+        ],
+        "1": [
+          0,
+          2
+        ]
+      },
+      "cond_probs": {
+        "3": 0.0,
+        "5": 0.0
+      },
+      "cond_numerator": {
+        "3": 0,
+        "5": 0
+      },
+      "cond_denominator": {
+        "3": 1,
+        "5": 1
+      }
+    },
+    {
+      "k": 9,
+      "p": 5,
+      "S": 15,
+      "n_internal_positions": 7,
+      "total_subsets": 3003,
+      "N_final_zero": 601,
+      "N_final_nonzero": 2402,
+      "P_final_zero": 0.20013320013320013,
+      "expected_P_final_zero": 0.2,
+      "ratio_observed_over_expected": 1.0006660006660006,
+      "N_fz_with_iz": 452,
+      "N_fz_zero_free": 149,
+      "N_fnz_with_iz": 2137,
+      "P_iz_given_fz": 0.7520798668885191,
+      "P_iz_given_fnz": 0.8896752706078268,
+      "P_iz_random": 0.7902847999999999,
+      "zero_free_ratio": 0.24792013311148087,
+      "zero_free_random": 0.20971520000000007,
+      "zero_pos_final_zero": {
+        "3": 133,
+        "2": 62,
+        "4": 113,
+        "5": 133,
+        "6": 62
+      },
+      "zero_pos_final_nonzero": {
+        "5": 544,
+        "4": 470,
+        "2": 269,
+        "7": 600,
+        "6": 515,
+        "3": 455
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          149,
+          265
+        ],
+        "1": [
+          401,
+          1437
+        ],
+        "2": [
+          51,
+          684
+        ],
+        "3": [
+          0,
+          16
+        ]
+      },
+      "cond_probs": {
+        "2": 0.18731117824773413,
+        "3": 0.2261904761904762,
+        "4": 0.19382504288164665,
+        "5": 0.1964549483013294,
+        "6": 0.10745233968804159,
+        "7": 0.0
+      },
+      "cond_numerator": {
+        "3": 133,
+        "2": 62,
+        "4": 113,
+        "5": 133,
+        "6": 62,
+        "7": 0
+      },
+      "cond_denominator": {
+        "5": 677,
+        "4": 583,
+        "2": 331,
+        "7": 600,
+        "3": 588,
+        "6": 577
+      }
+    },
+    {
+      "k": 10,
+      "p": 13,
+      "S": 16,
+      "n_internal_positions": 8,
+      "total_subsets": 5005,
+      "N_final_zero": 351,
+      "N_final_nonzero": 4654,
+      "P_final_zero": 0.07012987012987013,
+      "expected_P_final_zero": 0.07692307692307693,
+      "ratio_observed_over_expected": 0.9116883116883115,
+      "N_fz_with_iz": 171,
+      "N_fz_zero_free": 180,
+      "N_fnz_with_iz": 2336,
+      "P_iz_given_fz": 0.48717948717948717,
+      "P_iz_given_fnz": 0.5019338203695746,
+      "P_iz_random": 0.4728877006460074,
+      "zero_free_ratio": 0.5128205128205128,
+      "zero_free_random": 0.5271122993539926,
+      "zero_pos_final_zero": {
+        "2": 75,
+        "4": 18,
+        "3": 25,
+        "5": 18,
+        "7": 75,
+        "6": 25
+      },
+      "zero_pos_final_nonzero": {
+        "2": 1212,
+        "8": 386,
+        "5": 248,
+        "4": 488,
+        "7": 241,
+        "3": 306,
+        "6": 408
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          180,
+          2318
+        ],
+        "1": [
+          126,
+          1576
+        ],
+        "2": [
+          25,
+          588
+        ],
+        "3": [
+          20,
+          151
+        ],
+        "4": [
+          0,
+          21
+        ]
+      },
+      "cond_probs": {
+        "2": 0.05827505827505827,
+        "3": 0.0755287009063444,
+        "4": 0.03557312252964427,
+        "5": 0.06766917293233082,
+        "6": 0.057736720554272515,
+        "7": 0.23734177215189872,
+        "8": 0.0
+      },
+      "cond_numerator": {
+        "2": 75,
+        "4": 18,
+        "3": 25,
+        "5": 18,
+        "7": 75,
+        "6": 25,
+        "8": 0
+      },
+      "cond_denominator": {
+        "2": 1287,
+        "8": 386,
+        "5": 266,
+        "4": 506,
+        "7": 316,
+        "3": 331,
+        "6": 433
+      }
+    },
+    {
+      "k": 10,
+      "p": 499,
+      "S": 16,
+      "n_internal_positions": 8,
+      "total_subsets": 5005,
+      "N_final_zero": 10,
+      "N_final_nonzero": 4995,
+      "P_final_zero": 0.001998001998001998,
+      "expected_P_final_zero": 0.002004008016032064,
+      "ratio_observed_over_expected": 0.9970029970029971,
+      "N_fz_with_iz": 0,
+      "N_fz_zero_free": 10,
+      "N_fnz_with_iz": 27,
+      "P_iz_given_fz": 0.0,
+      "P_iz_given_fnz": 0.005405405405405406,
+      "P_iz_random": 0.01592006435225468,
+      "zero_free_ratio": 1.0,
+      "zero_free_random": 0.9840799356477453,
+      "zero_pos_final_zero": {},
+      "zero_pos_final_nonzero": {
+        "5": 6,
+        "8": 4,
+        "6": 5,
+        "7": 12
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          10,
+          4968
+        ],
+        "1": [
+          0,
+          27
+        ]
+      },
+      "cond_probs": {
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0
+      },
+      "cond_numerator": {
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "cond_denominator": {
+        "5": 6,
+        "8": 4,
+        "6": 5,
+        "7": 12
+      }
+    },
+    {
+      "k": 11,
+      "p": 11,
+      "S": 18,
+      "n_internal_positions": 9,
+      "total_subsets": 19448,
+      "N_final_zero": 1764,
+      "N_final_nonzero": 17684,
+      "P_final_zero": 0.09070341423282599,
+      "expected_P_final_zero": 0.09090909090909091,
+      "ratio_observed_over_expected": 0.9977375565610859,
+      "N_fz_with_iz": 658,
+      "N_fz_zero_free": 1106,
+      "N_fnz_with_iz": 9971,
+      "P_iz_given_fz": 0.373015873015873,
+      "P_iz_given_fnz": 0.5638430219407374,
+      "P_iz_random": 0.5759023816275153,
+      "zero_free_ratio": 0.626984126984127,
+      "zero_free_random": 0.4240976183724848,
+      "zero_pos_final_zero": {
+        "3": 18,
+        "4": 223,
+        "2": 1,
+        "5": 174,
+        "6": 223,
+        "7": 18,
+        "8": 1
+      },
+      "zero_pos_final_nonzero": {
+        "6": 1600,
+        "4": 2162,
+        "3": 201,
+        "8": 1767,
+        "2": 9,
+        "9": 1775,
+        "7": 1658,
+        "5": 1684
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          1106,
+          7713
+        ],
+        "1": [
+          658,
+          9086
+        ],
+        "2": [
+          0,
+          885
+        ]
+      },
+      "cond_probs": {
+        "2": 0.1,
+        "3": 0.0821917808219178,
+        "4": 0.09350104821802935,
+        "5": 0.09364908503767493,
+        "6": 0.12232583653318706,
+        "7": 0.010739856801909307,
+        "8": 0.0005656108597285068,
+        "9": 0.0
+      },
+      "cond_numerator": {
+        "3": 18,
+        "4": 223,
+        "2": 1,
+        "5": 174,
+        "6": 223,
+        "7": 18,
+        "8": 1,
+        "9": 0
+      },
+      "cond_denominator": {
+        "6": 1823,
+        "4": 2385,
+        "3": 219,
+        "8": 1768,
+        "2": 10,
+        "9": 1775,
+        "7": 1676,
+        "5": 1858
+      }
+    },
+    {
+      "k": 12,
+      "p": 5,
+      "S": 20,
+      "n_internal_positions": 10,
+      "total_subsets": 75582,
+      "N_final_zero": 15105,
+      "N_final_nonzero": 60477,
+      "P_final_zero": 0.19984917043740574,
+      "expected_P_final_zero": 0.2,
+      "ratio_observed_over_expected": 0.9992458521870287,
+      "N_fz_with_iz": 14138,
+      "N_fz_zero_free": 967,
+      "N_fnz_with_iz": 58923,
+      "P_iz_given_fz": 0.9359814630916915,
+      "P_iz_given_fnz": 0.9743042809663178,
+      "P_iz_random": 0.8926258175999999,
+      "zero_free_ratio": 0.06401853690830851,
+      "zero_free_random": 0.10737418240000006,
+      "zero_pos_final_zero": {
+        "6": 3387,
+        "2": 1614,
+        "3": 2927,
+        "4": 2877,
+        "5": 3387,
+        "7": 2877,
+        "8": 2927,
+        "9": 1614
+      },
+      "zero_pos_final_nonzero": {
+        "5": 14326,
+        "10": 15135,
+        "4": 11622,
+        "9": 13499,
+        "2": 6460,
+        "7": 12127,
+        "3": 11692,
+        "8": 12206,
+        "6": 10984
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          967,
+          1554
+        ],
+        "1": [
+          7222,
+          18560
+        ],
+        "2": [
+          6360,
+          31793
+        ],
+        "3": [
+          556,
+          8375
+        ],
+        "4": [
+          0,
+          195
+        ]
+      },
+      "cond_probs": {
+        "2": 0.19990091652216993,
+        "3": 0.20021889322115055,
+        "4": 0.1984274777570867,
+        "5": 0.19121549144695987,
+        "6": 0.23568297265326005,
+        "7": 0.19174886696880833,
+        "8": 0.19341835723253817,
+        "9": 0.10679547409514988,
+        "10": 0.0
+      },
+      "cond_numerator": {
+        "6": 3387,
+        "2": 1614,
+        "3": 2927,
+        "4": 2877,
+        "5": 3387,
+        "7": 2877,
+        "8": 2927,
+        "9": 1614,
+        "10": 0
+      },
+      "cond_denominator": {
+        "5": 17713,
+        "10": 15135,
+        "4": 14499,
+        "9": 15113,
+        "2": 8074,
+        "7": 15004,
+        "3": 14619,
+        "8": 15133,
+        "6": 14371
+      }
+    },
+    {
+      "k": 12,
+      "p": 59,
+      "S": 20,
+      "n_internal_positions": 10,
+      "total_subsets": 75582,
+      "N_final_zero": 1272,
+      "N_final_nonzero": 74310,
+      "P_final_zero": 0.01682940382630785,
+      "expected_P_final_zero": 0.01694915254237288,
+      "ratio_observed_over_expected": 0.9929348257521633,
+      "N_fz_with_iz": 102,
+      "N_fz_zero_free": 1170,
+      "N_fnz_with_iz": 9465,
+      "P_iz_given_fz": 0.08018867924528301,
+      "P_iz_given_fnz": 0.12737182075090836,
+      "P_iz_random": 0.157131508373773,
+      "zero_free_ratio": 0.9198113207547169,
+      "zero_free_random": 0.842868491626227,
+      "zero_pos_final_zero": {
+        "3": 28,
+        "4": 22,
+        "8": 28,
+        "5": 1,
+        "6": 1,
+        "7": 22
+      },
+      "zero_pos_final_nonzero": {
+        "3": 1974,
+        "10": 1331,
+        "6": 1101,
+        "9": 1376,
+        "7": 1302,
+        "5": 208,
+        "8": 1132,
+        "4": 1310
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          1170,
+          64845
+        ],
+        "1": [
+          102,
+          9196
+        ],
+        "2": [
+          0,
+          269
+        ]
+      },
+      "cond_probs": {
+        "3": 0.013986013986013986,
+        "4": 0.016516516516516516,
+        "5": 0.004784688995215311,
+        "6": 0.0009074410163339383,
+        "7": 0.01661631419939577,
+        "8": 0.02413793103448276,
+        "9": 0.0,
+        "10": 0.0
+      },
+      "cond_numerator": {
+        "3": 28,
+        "4": 22,
+        "8": 28,
+        "5": 1,
+        "6": 1,
+        "7": 22,
+        "9": 0,
+        "10": 0
+      },
+      "cond_denominator": {
+        "3": 2002,
+        "10": 1331,
+        "6": 1102,
+        "9": 1376,
+        "7": 1324,
+        "5": 209,
+        "8": 1160,
+        "4": 1332
+      }
+    },
+    {
+      "k": 14,
+      "p": 79,
+      "S": 23,
+      "n_internal_positions": 12,
+      "total_subsets": 497420,
+      "N_final_zero": 6232,
+      "N_final_nonzero": 491188,
+      "P_final_zero": 0.012528647822765469,
+      "expected_P_final_zero": 0.012658227848101266,
+      "ratio_observed_over_expected": 0.989763177998472,
+      "N_fz_with_iz": 1752,
+      "N_fz_zero_free": 4480,
+      "N_fnz_with_iz": 103054,
+      "P_iz_given_fz": 0.2811296534017972,
+      "P_iz_given_fnz": 0.209805614143668,
+      "P_iz_random": 0.141757263068515,
+      "zero_free_ratio": 0.7188703465982028,
+      "zero_free_random": 0.858242736931485,
+      "zero_pos_final_zero": {
+        "3": 925,
+        "6": 117,
+        "5": 2,
+        "8": 2,
+        "7": 117,
+        "10": 925
+      },
+      "zero_pos_final_nonzero": {
+        "3": 74657,
+        "10": 5095,
+        "5": 964,
+        "11": 6307,
+        "8": 4289,
+        "12": 6421,
+        "6": 12189,
+        "7": 4350,
+        "9": 6698,
+        "4": 67
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          4480,
+          388134
+        ],
+        "1": [
+          1416,
+          87192
+        ],
+        "2": [
+          336,
+          13993
+        ],
+        "3": [
+          0,
+          1617
+        ],
+        "4": [
+          0,
+          252
+        ]
+      },
+      "cond_probs": {
+        "3": 0.012238363631552486,
+        "4": 0.0,
+        "5": 0.002070393374741201,
+        "6": 0.009507557289127255,
+        "7": 0.026192075218267292,
+        "8": 0.00046609182008855747,
+        "9": 0.0,
+        "10": 0.1536544850498339,
+        "11": 0.0,
+        "12": 0.0
+      },
+      "cond_numerator": {
+        "3": 925,
+        "6": 117,
+        "5": 2,
+        "8": 2,
+        "7": 117,
+        "10": 925,
+        "4": 0,
+        "9": 0,
+        "11": 0,
+        "12": 0
+      },
+      "cond_denominator": {
+        "3": 75582,
+        "10": 6020,
+        "5": 966,
+        "11": 6307,
+        "8": 4291,
+        "12": 6421,
+        "6": 12306,
+        "7": 4467,
+        "9": 6698,
+        "4": 67
+      }
+    },
+    {
+      "k": 15,
+      "p": 13,
+      "S": 24,
+      "n_internal_positions": 13,
+      "total_subsets": 817190,
+      "N_final_zero": 62997,
+      "N_final_nonzero": 754193,
+      "P_final_zero": 0.07708978328173374,
+      "expected_P_final_zero": 0.07692307692307693,
+      "ratio_observed_over_expected": 1.0021671826625387,
+      "N_fz_with_iz": 42672,
+      "N_fz_zero_free": 20325,
+      "N_fnz_with_iz": 486401,
+      "P_iz_given_fz": 0.6773655888375637,
+      "P_iz_given_fnz": 0.6449290831391965,
+      "P_iz_random": 0.6467415015288391,
+      "zero_free_ratio": 0.3226344111624363,
+      "zero_free_random": 0.3532584984711608,
+      "zero_pos_final_zero": {
+        "2": 15658,
+        "4": 5885,
+        "3": 3865,
+        "5": 2852,
+        "6": 5464,
+        "7": 2951,
+        "8": 5464,
+        "9": 2852,
+        "10": 5885,
+        "11": 3865,
+        "12": 15658
+      },
+      "zero_pos_final_nonzero": {
+        "12": 47126,
+        "10": 56783,
+        "8": 58334,
+        "5": 36975,
+        "4": 71166,
+        "9": 56780,
+        "3": 47070,
+        "6": 64581,
+        "13": 62626,
+        "7": 47427,
+        "11": 58078,
+        "2": 187832
+      },
+      "n_internal_zeros_dist": {
+        "0": [
+          20325,
+          267792
+        ],
+        "1": [
+          22754,
+          267845
+        ],
+        "2": [
+          13620,
+          147850
+        ],
+        "3": [
+          5048,
+          54476
+        ],
+        "4": [
+          1025,
+          13690
+        ],
+        "5": [
+          189,
+          2195
+        ],
+        "6": [
+          36,
+          345
+        ]
+      },
+      "cond_probs": {
+        "2": 0.07694727013612462,
+        "3": 0.07588102483557475,
+        "4": 0.0763779834135832,
+        "5": 0.07160971200441911,
+        "6": 0.078006995502891,
+        "7": 0.0585771566953829,
+        "8": 0.08564531803504812,
+        "9": 0.047826670244164204,
+        "10": 0.09390757643454395,
+        "11": 0.062396073809792875,
+        "12": 0.249394750254842,
+        "13": 0.0
+      },
+      "cond_numerator": {
+        "2": 15658,
+        "4": 5885,
+        "3": 3865,
+        "5": 2852,
+        "6": 5464,
+        "7": 2951,
+        "8": 5464,
+        "9": 2852,
+        "10": 5885,
+        "11": 3865,
+        "12": 15658,
+        "13": 0
+      },
+      "cond_denominator": {
+        "12": 62784,
+        "2": 203490,
+        "10": 62668,
+        "8": 63798,
+        "5": 39827,
+        "4": 77051,
+        "9": 59632,
+        "3": 50935,
+        "6": 70045,
+        "13": 62626,
+        "7": 50378,
+        "11": 61943
+      }
+    }
+  ]
+}
