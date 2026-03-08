@@ -930,10 +930,9 @@ projects, hosted at
 \medskip\noindent
 \textbf{Verified core}
 (\texttt{lean/verified/}, Lean~4.15.0, no Mathlib dependency).
-This self-contained project contains \textbf{97~theorem
-declarations} across two files
-(\texttt{Basic.lean} with $73$ and \texttt{G2c.lean} with
-$24$), of which approximately~$40$ encode non-trivial
+This self-contained project contains \textbf{280~theorem
+declarations} across seven files, of which
+approximately~$120$ encode non-trivial
 mathematical results; the remainder are computational
 identities, helper lemmas, and redundant restatements.
 All have \textbf{zero \texttt{sorry} and zero additional
@@ -941,24 +940,33 @@ axioms}, machine-checked by the Lean~4 kernel.
 Coverage includes:
 \begin{itemize}
   \item Crystal nonsurjectivity: $C(k) < d(k)$ for each
-    $k \in [18, 25]$ via \texttt{native\_decide}.
-  \item Exhaustive zero-exclusion for $q_3$: all
-    $35$~compositions in $\Comp(8,5)$ satisfy
-    $\corrSum(A) \not\equiv 0 \pmod{13}$.
-  \item Gersonides verification:
-    $|2^S - 3^k| \geq 2$ for $S + k \in [6, 24]$.
-  \item Parity, 2-adic fingerprint, and coset classification
-    results (Phases~14--15).
-  \item Parseval identity, CRT zero-exclusion, and Fourier
-    energy bounds for~$q_3$ (Phase~16).
-  \item Backward Horner walk, Newton polygon analysis,
-    Hensel no-root, and lacunary polynomial verification
-    (Phase~17).
-  \item Programme Merle assembly: entropic deficit transition,
-    junction no-gap, CRT and Parseval assembly (Phase~18).
-  \item Mellin radar: trivial and quadratic character sums,
-    multiplicative Parseval, QR counts, bridge decomposition
-    (Phase~19).
+    $k \in [18, 25]$ via \texttt{native\_decide}
+    (\texttt{Basic.lean}, $73$~theorems).
+  \item CRT, modular arithmetic, zero-exclusion for~$q_3$
+    (\texttt{G2c.lean}, $24$~theorems).
+  \item Zero-exclusion $N_0(d) = 0$ for $k = 3, \ldots, 8$:
+    exhaustive verification of $3{,}968$~compositions
+    (\texttt{NewResults.lean}, $49$~theorems).
+  \item Transfer matrix theory: bidiagonal construction,
+    strict cancellation $|T_p(t)|/C < 1$
+    (\texttt{TransferMatrix.lean}, $31$~theorems).
+  \item Extended zero-exclusion for $k = 9, 10, 11$:
+    $22{,}724$~compositions verified
+    (\texttt{ExtendedCases.lean}, $15$~theorems).
+  \item Zero-exclusion for $k = 12, 13, 14$:
+    CRT blocking for composite~$d$,
+    $728{,}897$~compositions verified
+    (\texttt{HigherCases.lean}, $38$~theorems).
+  \item Grand theorem $k = 3, \ldots, 15$:
+    $1{,}546{,}059$~compositions verified,
+    structural facts P1--P4 (oddness, coprime-to-3,
+    positivity, geometric series)
+    (\texttt{StructuralFacts.lean}, $52$~theorems).
+  \item Parity, 2-adic fingerprint, coset classification,
+    Parseval identity, Fourier energy bounds,
+    backward Horner walk, Newton polygons,
+    Programme Merle assembly, Mellin radar
+    (Phases~14--19).
 \end{itemize}
 
 \medskip\noindent
@@ -1050,8 +1058,11 @@ Theorem~Q (\ref{prop:theorem-Q})
 \end{center}
 \smallskip
 \noindent
-Overall, $6$ out of $15$ principal results have full
-Lean~4 proofs ($40\%$ formalization coverage).
+Overall, $6$ out of $15$ principal results from the paper have full
+Lean~4 proofs ($40\%$ formalization coverage of the paper's claims).
+The verified core additionally contains $183$~computational theorems
+establishing $N_0(d) = 0$ for $k = 3, \ldots, 15$, transfer matrix
+bounds, and structural invariants (total: $280$~theorems).
 The non-formalized results belong to the analytical
 Sections~\ref{sec:analytical}--\ref{sec:blocking},
 which constitute the conditional part of the paper.

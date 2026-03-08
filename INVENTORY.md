@@ -3,7 +3,7 @@
 **Project:** Nonexistence of Nontrivial Cycles in Collatz Dynamics
 **Author:** Eric Merle
 **Date:** March 2026
-**Files:** ~270 (excluding .git, __pycache__, .DS_Store)
+**Files:** ~295 (excluding .git, __pycache__, .DS_Store)
 
 ---
 
@@ -54,8 +54,13 @@
 
 | File | Contents | sorry | axiom |
 |------|----------|:-----:|:-----:|
-| `CollatzVerified/Basic.lean` | 73 theorems | 0 | 0 |
+| `CollatzVerified/Basic.lean` | 73 theorems (nonsurjectivity, CRT, Parseval) | 0 | 0 |
 | `CollatzVerified/G2c.lean` | 24 theorems (CRT, modular) | 0 | 0 |
+| `CollatzVerified/NewResults.lean` | 49 theorems (k=3..8 zero-exclusion, parity) | 0 | 0 |
+| `CollatzVerified/TransferMatrix.lean` | 31 theorems (transfer matrix, strict cancel.) | 0 | 0 |
+| `CollatzVerified/ExtendedCases.lean` | 15 theorems (k=9..11 zero-exclusion) | 0 | 0 |
+| `CollatzVerified/HigherCases.lean` | 38 theorems (k=12..14 zero-exclusion) | 0 | 0 |
+| `CollatzVerified/StructuralFacts.lean` | 52 theorems (k=15, structural P1-P4) | 0 | 0 |
 | `CollatzVerified.lean` | Module root | — | — |
 | `Main.lean` | Entry point | — | — |
 | `lakefile.toml` | Lake config | — | — |
@@ -65,7 +70,8 @@
 | `.gitignore` | Exclusions | — | — |
 | `lake-manifest.json` | Dependencies | — | — |
 
-Coverage: nonsurjectivity k=18-25, zero-exclusion q3, Gersonides, parity, cosets, Parseval, CRT, Mellin radar.
+**Total verified: 280 theorems, 0 sorry, 0 axiom. 1,546,059 compositions verified.**
+Coverage: nonsurjectivity k=18-25, zero-exclusion k=3..15, transfer matrix, strict cancellation, structural facts (parity, coprime-3, positivity, geometric series), Parseval, CRT, Mellin radar.
 
 ### 3.2. Research skeleton (`lean/skeleton/`, Lean 4.29.0-rc2 + Mathlib4)
 
@@ -117,7 +123,7 @@ Published, verified scripts associated with the preprint.
 | `transient_zero_analysis.py` | R | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p |
 | `image_density_analysis.py` | R | Image density: |Im(Ev_d)|/d matches birthday model (negative result) |
 
-### 4.2. Research (`scripts/research/`, 34 files, Multi-agent investigation Rounds 1-8)
+### 4.2. Research (`scripts/research/`, 53 files, Multi-agent investigation Rounds 1-14)
 
 Research sprint on the Transient Zero Property — multi-agent investigation.
 
@@ -655,6 +661,76 @@ Research scripts for the blocking mechanism.
 | — | Chebotarev: Artin constant 0.370 vs theoretical 0.374 — confirmed | `r8_synthesis_formalization.py` | **Confirmed** |
 | — | CRT independence χ²/df ≈ 1.0 (strong independence across primes) | `r8_synthesis_formalization.py` | **Confirmed** |
 | — | Regime 2 (S≤p≤C): restricted permanent bounds = THE MISSING PIECE (1/5) | `r8_synthesis_formalization.py` | **Identified** |
+
+#### Round 9 — Deep structural attack
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r9_character_sum_bounds.py` | Analyste | Character sum bounds, cubing relation, ESF identity |
+| `r9_g2c_unconditional.py` | G2c | Unconditional approach to ord_d(2) > C |
+| `r9_interior_direct.py` | Directe | Direct interior image analysis |
+
+#### Round 10 — Proof synthesis
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r10_direct_n0_proof.py` | Prouveur | Direct N₀(d) = 0 proof attempt |
+| `r10_spectral_proof.py` | Spectral | Spectral method for transfer matrix bounds |
+| `r10_proof_synthesis.py` | Synthèse | Proof chain assembly |
+
+#### Round 11 — Blocking prime + CRT universality
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r11_blocking_prime.py` | Bloqueur | Prime blocking mechanism analysis |
+| `r11_weil_bound.py` | Weil | Weil-type bound investigation |
+| `r11_crt_universality.py` | CRT | CRT universality verification k=3..16 |
+
+#### Round 12 — α bound + algebraic structure + Lean k=12..14
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r12_alpha_bound.py` | Analyste | α ≤ 3.08 verified k=3..20; Montgomery-Vaughan pathway |
+| `r12_crt_proof.py` | CRT | CRT universality k=3..15; conditional proof assembled |
+| `r12_algebraic_structure.py` | Algébriste | g-form σ = Σ g^j·2^{B_j}; 7 proven facts P1-P7 |
+
+**Key findings (Round 12):** α parameter bounded, CRT conditional proof structure, g-form algebraic structure identified. Lean: 228 theorems (k=12..14 added in HigherCases.lean).
+
+#### Round 13 — Large prime factors + equidistribution + direct N₀ proof
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r13_lpf_bound.py` | Facteurs | P+(d) > C only 11% of k; d > C for 97% |
+| `r13_equidistribution.py` | Équidist. | Lyapunov gap strict; martingale contraction < 1 |
+| `r13_direct_n0.py` | Directe | **PROVED**: corrSum_min ≢ 0 (mod p) for p > C algebraically |
+
+**Key findings (Round 13):** corrSum_min ≢ 0 (mod p) for p > C proved algebraically (gap: extending to ALL corrSum). Lean: 280 theorems (k=15 + structural facts in StructuralFacts.lean). Grand theorem no_cycle_3_to_15.
+
+#### Round 14 — Cross-domain innovation + 2-adic tower
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r14_innovator.py` | Innovateur | 8 cross-domain approaches; **CARRY PROPAGATION OBSTRUCTION** identified |
+| `r14_investigator.py` | Investigateur | **2-ADIC TOWER**: v₂(corrSum+m·3^k) ≠ S; m≥2 proved, gcd(m,6)=1 |
+| `r14_operator_proof.py` | Opérateur | m-elimination: all feasible m eliminated k=3..15 |
+| `r14_synthesis.py` | Synthèse | **HONEST**: proof NOT complete. k≤68 (SdW), all k under GRH. Gap at k≥69 |
+
+**Key findings (Round 14):**
+1. **Carry Propagation Obstruction** (MOST PROMISING): corrSum + n·3^k = n·2^S imposes
+   simultaneous binary and ternary digit constraints. Base-3 overlap shrinks with m.
+2. **2-Adic Tower**: v₂(corrSum(A) + m·3^k) NEVER equals S — potential universal argument.
+3. **m-elimination**: m ≥ 2 (proved), m odd coprime to 3 (proved), all m eliminated k=3..14.
+4. **Honest assessment**: proof NOT complete unconditionally for k ≥ 69.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R38 | **Carry Propagation**: corrSum + n·3^k = n·2^S, base-3 overlap → 0 | **Identified** |
+| R39 | **2-Adic Tower**: v₂(corrSum + m·3^k) ≠ S for all tested (A,m) | **Observed** |
+| R40 | **m ≥ 2**: min(corrSum) > d for all k ≥ 3 | **Proved** |
+| R41 | **gcd(m,6) = 1**: m must be odd and coprime to 3 | **Proved** |
+| R42 | **m-elimination complete**: all feasible m eliminated for k = 3..14 | **Proved** |
+| R43 | **v₃(corrSum) = 0** always: 3-adic valuation zero | **Proved** |
+| R44 | **corrSum mod 9 ∈ {1,2,4,5,7,8}**: excludes {0,3,6} | **Proved** |
 
 #### Round 7 — Backward reachability, Parseval bound, innovations, investigation
 
