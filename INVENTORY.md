@@ -117,7 +117,7 @@ Published, verified scripts associated with the preprint.
 | `transient_zero_analysis.py` | R | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p |
 | `image_density_analysis.py` | R | Image density: |Im(Ev_d)|/d matches birthday model (negative result) |
 
-### 4.2. Research (`scripts/research/`, 23 files, Multi-agent investigation Rounds 1-5)
+### 4.2. Research (`scripts/research/`, 27 files, Multi-agent investigation Rounds 1-6)
 
 Research sprint on the Transient Zero Property — multi-agent investigation.
 
@@ -244,7 +244,7 @@ P(cycle) ≈ ∏(1/p) exponentially small.
 
 → Round 5: Formalization path, algebraic classification, extended verification, publication strategy.
 
-#### Round 5 — Formalization, structure, and strategy
+#### Round 5 — Formalization, structure, and strategy (CLOSED)
 
 | Script | Agent | Contents |
 |--------|:-----:|---------|
@@ -273,6 +273,42 @@ P(cycle) ≈ ∏(1/p) exponentially small.
 4. **Publication strategy** (R26): Target Experimental Mathematics.
    Core = Junction Theorem + doubly stochastic + 2-adic + mixing time failure.
    Score: 4.5/5. Missing for 5/5: CRT independence proof or extended Lean coverage.
+
+→ Round 6: Attack the missing piece, validate all claims, explore alternatives.
+
+#### Round 6 — The missing piece attack and validation
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r6_wr_correction_bound.py` | Analyste | Without-replacement correction bound — PATH D analysis |
+| `r6_alternative_proofs.py` | Innovateur | 5 alternative proof strategies + carry propagation |
+| `r6_lean_entropy_theorem.py` | Lean | Lean4 entropy bound theorem design + gap analysis |
+| `r6_proof_validator.py` | Vérificateur | Devil's advocate — stress-testing all 26 claims |
+
+**Key findings (Round 6):**
+
+1. **PATH D is ILL-POSED** (R27): The decomposition T_p = T_Markov + E fails because
+   |T_Markov| decays exponentially (~(√p/S)^{k-1}) while |T_exact| decays polynomially
+   (~C/√p). The "correction" IS the sum (|E|/|T_Markov| reaches 10^13). Negative dependence
+   |T_exact| ≤ |T_Markov| fails spectacularly (5416/5420 violations). However, the DIRECT
+   bound |T_exact/C| ≤ α/√p works with α ≈ 7.26 (verified k=3..12).
+
+2. **No alternative bypasses Fourier for all k** (R28): 5 strategies tested (combinatorial,
+   p-adic, extremal, polynomial, information-theoretic). All confirm N₀=0 computationally
+   but cannot scale to a proof for all k. The carry propagation via backward reachability
+   is the MOST PROMISING (4/5): exact combinatorial proof for k=3..6, no Fourier needed.
+   Recommended: per-prime backward reachability + CRT for intermediate k.
+
+3. **Lean entropy chain ALREADY COMPLETE** (R29): Audit of 14 Lean files shows 43 theorems,
+   0 sorry, 2 axioms (simons_de_weger, small_gap_crystal_bound). The axiom CF first fires
+   at k=15601 with 1230-bit margin. Eliminable via factorization lemma (difficulty 6/10).
+   GAP-1 (QuasiUniformity hypothesis) is the fundamental open problem.
+
+4. **0 critical bugs** (R30): Devil's advocate stress-tested R1-R26. Zero counterexamples
+   to N₀(d)=0 for k=3..20. gcd(d,6)=1 proved algebraically. R12 ("Horner chain elements
+   distinct") is over-formulated: duplicates exist for most k, but corrSum≠0 mod d holds.
+   CRT product ≥ 1 for k=6,9,10 handled by Mechanism C (expected). Publication score
+   revised to 4.0/5.
 
 ### 4.3. Exploration (`scripts/exploration/`, 81 scripts, Phases 20-22 + SP6-SP10 + A-F)
 
@@ -582,6 +618,14 @@ Research scripts for the blocking mechanism.
 | — | k=17 anomaly resolved: C·∏ρ_p = 0.257 < 1 despite C/d > 1 | `r5_extended_verification.py` | **Verified** |
 | — | "One good prime" theorem FAILS: only 25% of k have blocking primes | `r5_extended_verification.py` | Proved (negative) |
 | R26 | **Publication strategy**: target Experimental Mathematics, score 4.5/5 | `r5_publication_strategy.py` | Strategy |
+| R27 | **Markov decomposition ILL-POSED**: |E| >> |T_Markov| (ratio 10^13), PATH D closed | `r6_wr_correction_bound.py` | **Proved (negative)** |
+| R28 | **No alternative bypasses Fourier**: carry propagation most promising (4/5) | `r6_alternative_proofs.py` | **Investigated** |
+| R29 | **Lean entropy chain COMPLETE**: 0 sorry, 2 axioms, 1 hypothesis (QU) | `r6_lean_entropy_theorem.py` | **Audited** |
+| R30 | **Devil's advocate**: 0 critical bugs, 25/26 verified, R12 over-formulated | `r6_proof_validator.py` | **Validated** |
+| — | Direct bound |T/C| ≤ α/√p viable with α ≈ 7.26 (verified k=3..12) | `r6_wr_correction_bound.py` | Observed |
+| — | Backward reachability proves N₀=0 for k=3..6 (combinatorial, no Fourier) | `r6_alternative_proofs.py` | **Proved** |
+| — | Axiom small_gap_crystal_bound eliminable (first fires at k=15601, margin 1230 bits) | `r6_lean_entropy_theorem.py` | Analysed |
+| — | R12 "Horner distinct" over-formulated: duplicates exist for most k, but corrSum≠0 mod d holds | `r6_proof_validator.py` | **Corrected** |
 
 ### Conditional (in the preprint)
 

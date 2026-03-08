@@ -95,8 +95,13 @@ For composite $d$, the CRT inequality $N_0(d) \leq N_0(p)$ shows one blocking pr
 | **Mechanism B dominates** | For $k \geq 14$: CRT product $< 1$ in 100% of cases ($k=18\text{--}30$) | **Verified** ($k \leq 30$) |
 | **k=17 anomaly resolved** | $C \cdot \prod \rho_p = 0.257 < 1$ despite $C/d > 1$ | **Verified** |
 | **Horner sum classified** | Weighted subset character sum (Bourgain-type); not covered by Weil/Deligne | **Classified** |
+| **Markov decomposition ill-posed** | $|E| \gg |T_{\text{Markov}}|$ (ratio $10^{13}$); PATH D closed | **Proved (negative)** |
+| **Direct bound viable** | $|T_{\text{exact}}/C| \leq \alpha/\sqrt{p}$ with $\alpha \approx 7.26$ (verified $k=3\text{--}12$) | **Observed** |
+| **Carry propagation** | Backward reachability proves $N_0 = 0$ for $k = 3\text{--}6$ (no Fourier) | **Proved** |
+| **Lean chain complete** | 0 sorry, 2 axioms, 43 theorems; axiom CF eliminable (margin 1230 bits at $k=15601$) | **Audited** |
+| **Proof validated** | Devil's advocate: 0 critical bugs, 25/26 verified; R12 over-formulated | **Validated** |
 
-The **doubly stochastic theorem** shows that $\pi(0) = 1/p$ exactly. Rounds 1--2 establish that every local approach gives $P(0) \approx 1/p$; the obstruction is the **global CRT product**. Round 3 confirms CRT independence and combinatorial rigidity. Round 4 reveals the **mixing time approach is an impasse** and constructs a **Fourier-CRT universal key**. Round 5 extends verification to $k = 3\text{--}30$: **Mechanism B (CRT product $< 1$) dominates for all $k \geq 14$**, the k=17 anomaly is resolved ($C \cdot \prod \rho_p = 0.257$), and the Horner exponential sum is classified as a **weighted subset character sum** closest to Bourgain (2005), with the proof reducing to bounding the without-replacement correction $|T_{\text{exact}} - T_{\text{Markov}}|$ for intermediate primes.
+The **doubly stochastic theorem** shows that $\pi(0) = 1/p$ exactly. Rounds 1--2 establish that every local approach gives $P(0) \approx 1/p$; the obstruction is the **global CRT product**. Round 3 confirms CRT independence and combinatorial rigidity. Round 4 reveals the **mixing time approach is an impasse** and constructs a **Fourier-CRT universal key**. Round 5 extends verification to $k = 3\text{--}30$: **Mechanism B (CRT product $< 1$) dominates for all $k \geq 14$**, the k=17 anomaly is resolved ($C \cdot \prod \rho_p = 0.257$), and the Horner exponential sum is classified as a **weighted subset character sum** closest to Bourgain (2005). Round 6 closes PATH D (Markov decomposition): $|E| \gg |T_{\text{Markov}}|$, but the **direct bound** $|T/C| \leq \alpha/\sqrt{p}$ with $\alpha \approx 7.26$ is viable. **Carry propagation** (backward reachability through the Horner chain) yields exact combinatorial proofs for $k = 3\text{--}6$ without Fourier analysis. The Lean formalization chain is **already complete** (0 sorry), with 2 axioms (one eliminable). Devil's advocate validation finds 0 critical bugs; R12 ("Horner distinct") needs reformulation. Publication score revised to **4.0/5**.
 
 ## Known Gaps
 
@@ -138,7 +143,7 @@ Collatz-Junction-Theorem/
 │
 ├── scripts/
 │   ├── core/                   # Published verification scripts (13 files)
-│   ├── research/               # Multi-agent investigation: Rounds 1-5 (23 files)
+│   ├── research/               # Multi-agent investigation: Rounds 1-6 (27 files)
 │   └── tools/                  # Blocking mechanism verification (70+ scripts)
 │
 ├── research_log/               # Research journal (phases 10--23)
