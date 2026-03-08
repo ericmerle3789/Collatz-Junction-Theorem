@@ -92,8 +92,11 @@ For composite $d$, the CRT inequality $N_0(d) \leq N_0(p)$ shows one blocking pr
 | **3 exclusion mechanisms** | A=prime blocks (54%), B=CRT$<$1 (15%), C=true super-exclusion (31%) | **Quantified** |
 | **Hybrid approach** | Exhaustive $k \leq 17$ + $C(S{-}1,k{-}1) < d$ for $k \geq 18$: technically complete | **Proved** |
 | **Fourier-CRT key** | For $k=8$: $C \cdot \prod \rho_p = 0.664 < 1$ proves $N_0 = 0$ | **Framework** |
+| **Mechanism B dominates** | For $k \geq 14$: CRT product $< 1$ in 100% of cases ($k=18\text{--}30$) | **Verified** ($k \leq 30$) |
+| **k=17 anomaly resolved** | $C \cdot \prod \rho_p = 0.257 < 1$ despite $C/d > 1$ | **Verified** |
+| **Horner sum classified** | Weighted subset character sum (Bourgain-type); not covered by Weil/Deligne | **Classified** |
 
-The **doubly stochastic theorem** shows that $\pi(0) = 1/p$ exactly. The **2-adic theorem** and **mod 12 determination** reveal the precise local arithmetic structure. Rounds 1--2 establish that every local approach gives $P(0) \approx 1/p$; the obstruction is the **global CRT product**. Round 3 confirms CRT independence ($\chi^2/\text{df} = 1.026$) and that rigidity is combinatorial (subset constraint). Round 4 reveals the **mixing time approach is an impasse** (chain mixes fast), identifies **3 quantified exclusion mechanisms**, and constructs a **Fourier-CRT universal key** that reduces the full proof to a single Weil-type estimate $|T_p(t')| \leq C/p^{1/2+\varepsilon}$ for the Horner exponential sum (Deligne's theorem).
+The **doubly stochastic theorem** shows that $\pi(0) = 1/p$ exactly. Rounds 1--2 establish that every local approach gives $P(0) \approx 1/p$; the obstruction is the **global CRT product**. Round 3 confirms CRT independence and combinatorial rigidity. Round 4 reveals the **mixing time approach is an impasse** and constructs a **Fourier-CRT universal key**. Round 5 extends verification to $k = 3\text{--}30$: **Mechanism B (CRT product $< 1$) dominates for all $k \geq 14$**, the k=17 anomaly is resolved ($C \cdot \prod \rho_p = 0.257$), and the Horner exponential sum is classified as a **weighted subset character sum** closest to Bourgain (2005), with the proof reducing to bounding the without-replacement correction $|T_{\text{exact}} - T_{\text{Markov}}|$ for intermediate primes.
 
 ## Known Gaps
 
@@ -135,7 +138,7 @@ Collatz-Junction-Theorem/
 │
 ├── scripts/
 │   ├── core/                   # Published verification scripts (13 files)
-│   ├── research/               # Multi-agent investigation: Rounds 1-4 (18 files)
+│   ├── research/               # Multi-agent investigation: Rounds 1-5 (23 files)
 │   └── tools/                  # Blocking mechanism verification (70+ scripts)
 │
 ├── research_log/               # Research journal (phases 10--23)

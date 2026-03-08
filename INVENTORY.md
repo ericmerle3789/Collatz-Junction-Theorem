@@ -117,7 +117,7 @@ Published, verified scripts associated with the preprint.
 | `transient_zero_analysis.py` | R | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p |
 | `image_density_analysis.py` | R | Image density: |Im(Ev_d)|/d matches birthday model (negative result) |
 
-### 4.2. Research (`scripts/research/`, 18 files, Multi-agent investigation Rounds 1-4)
+### 4.2. Research (`scripts/research/`, 23 files, Multi-agent investigation Rounds 1-5)
 
 Research sprint on the Transient Zero Property — multi-agent investigation.
 
@@ -241,6 +241,38 @@ P(cycle) ≈ ∏(1/p) exponentially small.
    **For k=8: C·∏ρ_p = 0.664 < 1 — N₀=0 PROVED by CRT bound alone.**
    Missing piece: prove |T_p(t')| ≤ C/p^{1/2+ε} (Weil-type estimate for
    Horner exponential sum — Deligne's theorem).
+
+→ Round 5: Formalization path, algebraic classification, extended verification, publication strategy.
+
+#### Round 5 — Formalization, structure, and strategy
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r5_lean_proof_path.py` | Formaliste | Lean4 proof path for dimension bound |
+| `r5_algebraic_structure.py` | Algébriste | Algebraic classification of Horner exponential sum |
+| `r5_extended_verification.py` | Computationnel | Extended verification k=3..30 + mechanism classification |
+| `r5_extended_results.json` | Computationnel | Full results: mechanisms, Fourier bounds, k=17 anomaly |
+| `r5_publication_strategy.py` | Stratège | Publication plan: inventory, structure, comparison, strategy |
+
+**Key findings (Round 5):**
+
+1. **Lean proof path** (R23): Dimension bound C(S-1,k-1) < d IS formalisable.
+   AsymptoticBound.lean already has γ ≥ 1/40. Exceptions = {3, 5, 17}.
+   One axiom remains (small_gap_crystal_bound), removable via native_decide.
+
+2. **Algebraic classification** (R24): Horner sum = weighted subset character sum
+   with doubly geometric structure. NOT covered by Weil/Deligne directly.
+   Closest: Bourgain (2005) unweighted subset sums. Gap = rank-dependent weights.
+   Best strategy: decompose T_p = T_Markov + E, bound each term separately.
+
+3. **Extended verification** (R25): k=3..30 classified. **Mechanism B dominates
+   for k ≥ 14** (100% for k=18..30). CRT N₀ always < 1 for k ≥ 18.
+   k=17 anomaly RESOLVED: C·∏ρ_p = 0.257 < 1 despite C/d > 1.
+   "One good prime" theorem FAILS (only 25% of k have blocking primes).
+
+4. **Publication strategy** (R26): Target Experimental Mathematics.
+   Core = Junction Theorem + doubly stochastic + 2-adic + mixing time failure.
+   Score: 4.5/5. Missing for 5/5: CRT independence proof or extended Lean coverage.
 
 ### 4.3. Exploration (`scripts/exploration/`, 81 scripts, Phases 20-22 + SP6-SP10 + A-F)
 
@@ -544,6 +576,12 @@ Research scripts for the blocking mechanism.
 | R21 | **Connection map**: Approach C (hybrid) technically complete, k=17 unique anomaly | `r4_connection_map.py` | **Proved** |
 | R22 | **Universal key**: Fourier+CRT factorization, for k=8: C·∏ρ_p=0.664<1 proves N₀=0 | `r4_universal_key.py` | **Framework** |
 | — | Reduction to Weil-type estimate for Horner exponential sum (Deligne's theorem) | `r4_universal_key.py` | Open |
+| R23 | **Lean proof path**: dimension bound C<d formalisable, γ≥1/40 already proved | `r5_lean_proof_path.py` | **Formalisable** |
+| R24 | **Algebraic classification**: Horner sum = Bourgain-type, NOT Weil/Deligne | `r5_algebraic_structure.py` | **Classified** |
+| R25 | **Mechanism B dominates k≥14**: CRT product < 1 for all k=18..30 | `r5_extended_verification.py` | **Verified** |
+| — | k=17 anomaly resolved: C·∏ρ_p = 0.257 < 1 despite C/d > 1 | `r5_extended_verification.py` | **Verified** |
+| — | "One good prime" theorem FAILS: only 25% of k have blocking primes | `r5_extended_verification.py` | Proved (negative) |
+| R26 | **Publication strategy**: target Experimental Mathematics, score 4.5/5 | `r5_publication_strategy.py` | Strategy |
 
 ### Conditional (in the preprint)
 
