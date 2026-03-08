@@ -117,7 +117,7 @@ Published, verified scripts associated with the preprint.
 | `transient_zero_analysis.py` | R | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p |
 | `image_density_analysis.py` | R | Image density: |Im(Ev_d)|/d matches birthday model (negative result) |
 
-### 4.2. Research (`scripts/research/`, 31 files, Multi-agent investigation Rounds 1-7)
+### 4.2. Research (`scripts/research/`, 34 files, Multi-agent investigation Rounds 1-8)
 
 Research sprint on the Transient Zero Property — multi-agent investigation.
 
@@ -641,6 +641,20 @@ Research scripts for the blocking mechanism.
 | — | Phase transition at dim_eff ≈ 1: p_crit = (S/k)^k grows monotonically | `r7_why_paths_close.py` | **Mapped** |
 | — | Residue 0 slightly over-represented (+0.097); exclusion is algebraic not distributional | `r7_why_paths_close.py` | **Observed** |
 | — | Bottleneck primes always in CRITICAL regime (dim_eff 0.5-1.0) | `r7_why_paths_close.py` | **Mapped** |
+| R35 | **Permanent bounds**: Hadamard proves k=3,4; CRT product < 1 for ALL k=3..12 | `r8_permanent_bounds.py` | **Proved** |
+| — | 1D collapse stable: PC1 = 84.9-88.4%, dim_eff = 1.13-1.18 ∀k=3..10 | `r8_permanent_bounds.py` | **Confirmed** |
+| — | Van der Waerden FAILS (complex matrices); empirical non-vanishing ∀(k,p,t) | `r8_permanent_bounds.py` | **Proved (negative)** |
+| — | Littlewood-Offord: near-uniform distribution (H/log₂p = 0.74-1.0) | `r8_permanent_bounds.py` | **Observed** |
+| R36 | **k=3..17 ALL CLOSED: N₀(d)=0** by exhaustive verification + WR-coarse | `r8_wr_extended.py` | **Proved** |
+| — | CRT blocking: k=6 N₀(5)=36, N₀(59)=6, N₀(295)=0 (jointly unsatisfiable) | `r8_wr_extended.py` | **Proved** |
+| — | Position-set tracking identical to coarse (coarse was already tight) | `r8_wr_extended.py` | **Proved** |
+| — | k=18..20 OPEN (>10M subsets, needs new method) | `r8_wr_extended.py` | Open |
+| R37 | **Proof architecture**: 3 blocks — Block 1+2 DONE, Block 3 = THE GAP | `r8_synthesis_formalization.py` | **Formalized** |
+| — | Candidate theorems A (WR Blocking 1/5), B (Exp Cancel 2/5), C (Dim Collapse 2/5) | `r8_synthesis_formalization.py` | **Stated** |
+| — | Saddle-point: works for large p, fails for p < S (expected) | `r8_synthesis_formalization.py` | **Investigated** |
+| — | Chebotarev: Artin constant 0.370 vs theoretical 0.374 — confirmed | `r8_synthesis_formalization.py` | **Confirmed** |
+| — | CRT independence χ²/df ≈ 1.0 (strong independence across primes) | `r8_synthesis_formalization.py` | **Confirmed** |
+| — | Regime 2 (S≤p≤C): restricted permanent bounds = THE MISSING PIECE (1/5) | `r8_synthesis_formalization.py` | **Identified** |
 
 #### Round 7 — Backward reachability, Parseval bound, innovations, investigation
 
@@ -679,6 +693,32 @@ Research scripts for the blocking mechanism.
    ESSENTIAL INSIGHT: corrSum is too structured for random methods, too random
    for algebraic methods. Three strategies identified: A (dimensional collapse),
    B (phase transition bridging), C (Chebotarev density for 2^S-3^k).
+
+#### Round 8 — Permanent bounds, WR extended, proof architecture
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r8_permanent_bounds.py` | Permanent | Hadamard bound, PCA 1D collapse, van der Waerden, Littlewood-Offord, unified comparison |
+| `r8_wr_extended.py` | Reachability | WR extended k=6..20, exhaustive verification, CRT hybrid blocking |
+| `r8_synthesis_formalization.py` | Synthétiseur | Candidate theorems, saddle-point, Chebotarev, CRT independence, proof architecture |
+
+**Key findings (Round 8):**
+
+1. **k=3..17 ALL CLOSED — N₀(d)=0** (R35/R36):
+   WR-coarse blocks k={3,4,5,7,8,11}. Exhaustive direct verification closes
+   k={6,9,10,12,13,14,15,16,17}. Combined: NO nontrivial cycle for k=3..17.
+   CRT blocking phenomenon: k=6 has N₀(5)=36, N₀(59)=6, but N₀(295)=0.
+
+2. **Dimensional collapse stable at ~1.15** (R35):
+   PC1 captures 84.9-88.4% of variance ∀k=3..10. Effective dimension = 1.13-1.18.
+   Explains WHY α ~ O(1). Hadamard bound asymptotically sufficient (H/C → 0).
+   CRT product < 1 for ALL k=3..12. Van der Waerden inapplicable (complex matrices).
+
+3. **Complete proof architecture formalized** (R37):
+   Block 1 (k≤17): DONE (exhaustive). Block 2 (k≥18, C<d): DONE (Lean4 verified).
+   Block 3 (k≥18, |T_p(t)| bound): THE MISSING PIECE — 3 regimes identified.
+   Regime 2 (S≤p≤C) = restricted permanent bounds needed (readiness 1/5).
+   CRT independence confirmed (χ²/df ≈ 1.0). Artin constant matched (0.370 vs 0.374).
 
 ### Conditional (in the preprint)
 
