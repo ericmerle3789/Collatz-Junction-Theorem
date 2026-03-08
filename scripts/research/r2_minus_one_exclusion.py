@@ -627,9 +627,10 @@ def approach_C(k_max=25):
     print("APPROACH C: CRT SIEVING + BITSET DP")
     print("=" * 72)
 
-    # Bitset limit: each layer uses m/8 bytes. With ~25 layers,
-    # m=3B => 375MB/layer * 25 = ~9GB. Feasible on 16GB machine.
-    BITSET_LIMIT = 3_000_000_000
+    # Bitset limit: each layer uses m/8 bytes. With k-1 layers (up to 24),
+    # m=500M => 62.5MB/layer * 25 = ~1.56 GB total. Safe on 16GB machine.
+    # Larger values risk OOM (3B => 9.4 GB, too much for 16GB machine).
+    BITSET_LIMIT = 500_000_000
 
     results = {}
     for k in range(3, k_max + 1):
@@ -710,6 +711,8 @@ def approach_C(k_max=25):
                 print(f"  >>> -1 EXCLUDED (full bitset DP)")
 
         # Phase 4: CRT pairs with bitset DP
+        # Limit CRT pair modulus to 25M to keep computation time reasonable
+        CRT_PAIR_LIMIT = 25_000_000
         if not obs and C > 300000 and d > BITSET_LIMIT and len(primes) >= 2:
             for ip in range(len(primes)):
                 if obs:
@@ -718,7 +721,7 @@ def approach_C(k_max=25):
                     p1, p2 = primes[ip], primes[jp]
                     m = p1 * p2
                     P_tm = (-3) % m
-                    if m <= BITSET_LIMIT:
+                    if m <= CRT_PAIR_LIMIT:
                         print(f"  Trying CRT pair {p1}*{p2}={m} (bitset)...")
                         im_m, hit_m, el_m = _dp_bitset(S, needed, m, P_tm)
                         print(f"    |Im(P) mod {m}|={im_m}/{m} "
@@ -742,7 +745,7 @@ def approach_C(k_max=25):
                         p1, p2, p3 = primes[ip], primes[jp], primes[kp]
                         m = p1 * p2 * p3
                         P_tm = (-3) % m
-                        if m <= BITSET_LIMIT:
+                        if m <= CRT_PAIR_LIMIT:
                             print(f"  Trying CRT triple {p1}*{p2}*{p3}={m} (bitset)...")
                             im_m, hit_m, el_m = _dp_bitset(S, needed, m, P_tm)
                             print(f"    |Im(P) mod {m}|={im_m}/{m} "

@@ -117,7 +117,7 @@ Published, verified scripts associated with the preprint.
 | `transient_zero_analysis.py` | R | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p |
 | `image_density_analysis.py` | R | Image density: |Im(Ev_d)|/d matches birthday model (negative result) |
 
-### 4.2. Research (`scripts/research/`, 5 files, Transient Zero investigation)
+### 4.2. Research (`scripts/research/`, 14 files, Multi-agent investigation Rounds 1-3)
 
 Research sprint on the Transient Zero Property — multi-agent investigation.
 
@@ -175,6 +175,34 @@ P(0) ≈ 1/p. The obstruction is GLOBAL — the CRT product over all p|d makes
 P(cycle) ≈ ∏(1/p) exponentially small.
 
 → Round 3: Investigating WHY the CRT product works (independence, rigidity, paradigm shift).
+
+#### Round 3 — Mechanism investigation
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r3_crt_independence.py` | Investigateur | CRT inter-prime independence measurement |
+| `r3_rigidity_structure.py` | Chercheur | Fiber rigidity anatomy and origin |
+| `r3_paradigm_shift.py` | Innovateur | 5 paradigm shifts: dynamical, entropic, geometric, graph, functorial |
+
+**Key findings (Round 3):**
+
+1. **CRT Independence CONFIRMED** (chi²/df = 1.026): Joint distribution
+   (corrSum mod p₁, corrSum mod p₂) matches product of marginals.
+   SUPER-EXCLUSION: N₀(d) = 0 always, even when CRT predicts N₀ > 0
+   (invariants corrSum≡odd, ≢0(3), mod4∈{1,3} create additional forbidden cells).
+
+2. **Rigidity is COMBINATORIAL** (PR = 0.94 mod d): Fiber regularity comes
+   from the subset constraint (choosing ordered elements), NOT the constants
+   2 and 3. Random polynomials are overdispersed (PR ~2.6). Coverage exceeds
+   birthday prediction. Rigidity does NOT help exclude 0 beyond arithmetic invariants.
+
+3. **PARADIGM SHIFT — Dynamical orbit** (5/5): The Horner chain as a dynamical
+   orbit in Z/dZ. k/E[return to 0] → 0 exponentially (k linear, E[return] ~ √d
+   exponential). For k=16: ratio = 0.003. Entropic deficit GROWS with k (6.98 bits
+   at k=16). The orbit doesn't have enough TIME to return to 0.
+
+**Unifying structure**: LOCAL(1/p) → CRT(independent) → GLOBAL(1/d) →
+   Invariants(super-exclusion) → Dynamical(k << √d) → N₀(d) = 0.
 
 ### 4.3. Exploration (`scripts/exploration/`, 81 scripts, Phases 20-22 + SP6-SP10 + A-F)
 
@@ -468,6 +496,11 @@ Research scripts for the blocking mechanism.
 | — | Without-replacement effect: REAL but MIXED, TV < 0.003 for k≥10 | `r2_without_replacement.py` | Proved (negative) |
 | — | Ordering constraint: no systematic bias (45.7th percentile) | `r2_ordering_constraint.py` | Proved (negative) |
 | — | Parity argument for -1 exclusion: INVALID | `r2_minus_one_exclusion.py` | Proved (negative) |
+| R15 | **CRT Independence**: chi²_indep/df = 1.026 for all prime pairs | `r3_crt_independence.py` | **Confirmed** |
+| R16 | **Super-exclusion**: N₀(d) = 0 even when CRT predicts > 0 | `r3_crt_independence.py` | Observed |
+| R17 | **Rigidity = combinatorial**: PR ~0.94 mod d, from subset constraint | `r3_rigidity_structure.py` | **Proved** |
+| R18 | **Dynamical orbit**: k/E[return] → 0 exponentially | `r3_paradigm_shift.py` | Observed |
+| — | Entropic deficit grows with k (6.98 bits at k=16) | `r3_paradigm_shift.py` | Observed |
 
 ### Conditional (in the preprint)
 
