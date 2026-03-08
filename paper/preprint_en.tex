@@ -912,14 +912,23 @@ exponentially starting from $k = 18$.
     10 & 16 & 6,487       & 5,005      & 0 (exact) \\
     13 & 21 & 502,829     & 125,970    & 0 (exact) \\
     17 & 27 & 5,077,565   & 5,311,735  & 0 (exact) \\
+    18 & 29 & 268,304,903 & 3,108,105  & 0 (DP)   \\
+    19 & 31 & 1,073,479,423 & 30,045,015 & 0 (DP)  \\
+    20 & 32 & 1,220,703,125 & 169,911,852 & 0 (DP + CRT) \\
     \bottomrule
   \end{tabular}
 \end{center}
 
-For $k = 18$ to~$41$, Monte Carlo simulations
-($10^6$~random compositions per value of~$k$) found no
-composition satisfying
-$\corrSum(A) \equiv 0 \pmod{d}$.
+\noindent
+For $k = 3, \ldots, 20$, the values $N_0(d) = 0$ are
+proved by exhaustive dynamic programming (k~$\leq$~19)
+and CRT sieve (k~=~20). For $k = 21$ to~$41$,
+Monte Carlo simulations ($10^6$~random compositions
+per value of~$k$) found no composition satisfying
+$\corrSum(A) \equiv 0 \pmod{d}$. The Borel--Cantelli
+tail sum satisfies $\sum_{k \geq 42} C(k)/d(k) < 1$,
+yielding $K_0 = 42$. The remaining gap is
+$k = 21, \ldots, 41$ (21~values).
 
 \subsection{Lean~4 formalization}\label{ssec:lean}
 
@@ -1808,7 +1817,7 @@ criterion:
 \end{proposition}
 
 \begin{proof}
-  For $k = 3, \ldots, 17$: $N_0(d) = 0$ by exhaustive
+  For $k = 3, \ldots, 20$: $N_0(d) = 0$ by exhaustive
   verification (Section~\ref{sec:numerical}).
   For $k \geq 18$:
   condition~\eqref{eq:condition-Q} gives

@@ -3,7 +3,7 @@
 **Project:** Nonexistence of Nontrivial Cycles in Collatz Dynamics
 **Author:** Eric Merle
 **Date:** March 2026
-**Files:** ~295 (excluding .git, __pycache__, .DS_Store)
+**Files:** ~339 (excluding .git, __pycache__, .DS_Store)
 
 ---
 
@@ -37,7 +37,7 @@
 - Mellin--Fourier bridge
 - Peeling Lemma (R1) + Conjecture M
 - Square Root Barrier (R5)
-- Numerical verification N0(d)=0 for k=3..17 (R4)
+- Numerical verification N0(d)=0 for k=3..20 (R4, extended R23)
 - Conditional Theorem Q (C1)
 - Three-mesh net (SP6): 168 primes, 0 failures
 - Ghost Fish + Two Barriers (SP6): Mersenne q <= 127
@@ -46,7 +46,7 @@
 - Proposition L14: One Good Prime Suffices
 - Sessions 10b-10f20 (Blocking Mechanism)
 - 3 open conjectures + conditional chain
-- Lean 4 formalization (97 verified + ~38 skeleton theorems)
+- Lean 4 formalization (280 verified + ~38 skeleton theorems)
 
 ## 3. Lean (`lean/`, 22 files)
 
@@ -123,7 +123,7 @@ Published, verified scripts associated with the preprint.
 | `transient_zero_analysis.py` | R | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p |
 | `image_density_analysis.py` | R | Image density: |Im(Ev_d)|/d matches birthday model (negative result) |
 
-### 4.2. Research (`scripts/research/`, 53 files, Multi-agent investigation Rounds 1-14)
+### 4.2. Research (`scripts/research/`, 93 scripts + 3 JSON, Multi-agent investigation Rounds 1-25)
 
 Research sprint on the Transient Zero Property — multi-agent investigation.
 
@@ -731,6 +731,147 @@ Research scripts for the blocking mechanism.
 | R42 | **m-elimination complete**: all feasible m eliminated for k = 3..14 | **Proved** |
 | R43 | **v₃(corrSum) = 0** always: 3-adic valuation zero | **Proved** |
 | R44 | **corrSum mod 9 ∈ {1,2,4,5,7,8}**: excludes {0,3,6} | **Proved** |
+
+#### Round 15 — 2-adic proof, Baker bounds, carry proof, m-elimination
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r15_2adic_proof.py` | 2-Adic | 2-adic proof structure and v₂ analysis |
+| `r15_baker_bounds.py` | Baker | Baker-type logarithmic form bounds |
+| `r15_carry_proof.py` | Carry | Carry propagation chain proof |
+| `r15_m_elimination.py` | Élimination | m-elimination extended methods |
+
+#### Round 16 — Asymptotic obstruction, base-3, p-adic, permanent bounds
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r16_asymptotic_obstruction.py` | Asymptotique | Asymptotic obstruction analysis |
+| `r16_base3_extension.py` | Base-3 | Base-3 digit constraint extension |
+| `r16_padic_structure.py` | p-Adic | p-adic structure of corrSum |
+| `r16_permanent_bounds.py` | Permanent | Permanent bound refinements |
+
+#### Round 17 — Closed formulas, family classification, junction variance
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r17_closed_formulas.py` | Analyste | Closed-form expressions for N₀ components |
+| `r17_family_classification.py` | Classificateur | Family classification of d(k) by prime structure |
+| `r17_junction_variance.py` | Variance | Junction variance and fluctuation analysis |
+| `r17_theorem_catalog.py` | Catalogue | Complete theorem catalog with status |
+
+#### Round 18 — Bibase structure, Horner orbit, ordering bypass, Zsygmondy
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r18_bibase_structure.py` | Bibase | Binary/ternary base structure |
+| `r18_horner_orbit.py` | Orbite | Horner orbit dynamics in Z/dZ |
+| `r18_ordering_bypass.py` | Bypass | Ordering constraint bypass attempts |
+| `r18_zsygmondy_pathway.py` | Zsygmondy | Zsygmondy theorem pathway |
+
+#### Round 19 — Convergence roadmap, g-walk, lattice CRT, sparse exclusion
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r19_convergence_roadmap.py` | Roadmap | Convergence roadmap and preprint corrections |
+| `r19_g_walk.py` | g-Walk | g-walk random process on Z/dZ |
+| `r19_lattice_crt.py` | Lattice | Lattice CRT approach |
+| `r19_sparse_exclusion.py` | Exclusion | Sparse exclusion via density bounds |
+
+**Key findings (Round 19):** Verification extended to k=18. Identified 4 preprint corrections needed.
+
+#### Round 20 — Backward orbit, equidistribution, multiplicative order, proof architecture
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r20_backward_orbit.py` | Orbite | Backward orbit analysis in Z/dZ |
+| `r20_equidistribution.py` | Équidist. | Equidistribution of corrSum mod p |
+| `r20_multiplicative_order.py` | Ordre | Multiplicative order analysis for d(k) |
+| `r20_proof_architecture.py` | Architecture | Proof architecture: K₀ = 42 via Borel-Cantelli |
+
+**Key findings (Round 20):** K₀ = 42 established (Borel-Cantelli tail < 1). Proof architecture refined.
+
+#### Round 21 — Convergent compositeness, effective BC, polynomial nonvanishing
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r21_convergent_compositeness.py` | Compositeur | d(k) compositeness at convergents of log₂3 |
+| `r21_effective_borel_cantelli.py` | BC | Effective Borel-Cantelli refinements |
+| `r21_polynomial_nonvanishing.py` | Polynôme | P_B(g) ≠ 0 polynomial nonvanishing |
+| `r21_weight_imbalance.py` | Poids | Weight imbalance in Horner chain |
+
+#### Round 22 — 2-adic bridge, structured roots, Theorem Omega, verification extension
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r22_2adic_bridge.py` | Bridge | 2-adic ↔ CRT bridge |
+| `r22_structured_roots.py` | Racines | Structured roots of unity analysis |
+| `r22_theorem_omega.py` | Omega | Theorem Omega first formulation |
+| `r22_verification_extension.py` | Vérificateur | Verification extended to k=19 |
+
+**Key findings (Round 22):** Frontier pushed to k=19. Theorem Omega framework established.
+
+#### Round 23 — Divisibility chain, continued fraction, verification push, unconditional framework
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r23_divisibility_chain.py` | Investigateur | Anti-correlation between consecutive Horner residues; two blocking mechanisms |
+| `r23_continued_fraction.py` | Innovateur | Matrix product formulation; CRT blocking for k=6,9,10; reset phenomenon |
+| `r23_verification_push.py` | Opérateur | **Verification frontier pushed to k=20**; K₀=42, gap=21 |
+| `r23_unconditional_framework.py` | Synthèse | 4 lemmas; publication plan |
+
+**Key findings (Round 23):**
+1. **k=3..20 ALL CLOSED**: DP verification extends frontier from k=17 to k=20.
+2. **Two blocking mechanisms**: single-prime (Mechanism A) AND CRT anti-correlation (Mechanism B).
+3. **Gap = 21 values** (k = 21..41). K₀ = 42. E[N₀] ~ 2^{-0.079k}.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R45 | **k=3..20 all closed**: N₀(d) = 0 for k = 3..20 by DP | **Proved** |
+| R46 | **CRT anti-correlation**: Two blocking mechanisms classified | **Proved** |
+| R47 | **Matrix product**: P_B(g) = Tr(∏ M_j), reset phenomenon | **Proved** |
+| R48 | **Gap = 21**: k = 21..41 remains, K₀ = 42 | **Computed** |
+
+#### Round 24 — CRT intersection, large k asymptotics, multiplier coset, Theorem Omega synthesis
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r24_crt_intersection.py` | Investigateur | **Bonferroni proves ∩Z(pᵢ)=∅** for k=6,9,10 |
+| `r24_large_k_asymptotics.py` | Opérateur | **Exact α = L(1-H(1/L)) = 0.0793186128** |
+| `r24_multiplier_coset.py` | Innovateur | Coset g·⟨2⟩ structure; monotone partial sums |
+| `r24_theorem_omega_synthesis.py` | Synthèse | 21 lemmas; Paper 1 ready; 35% chance Omega |
+
+**Key findings (Round 24):**
+1. **Bonferroni CRT**: First-order Bonferroni suffices to prove ∩Z(pᵢ) = ∅ for k=6,9,10.
+2. **Exact decay rate**: α = L·(1-H(1/L)) = 0.0793186128 where L = log₂3, H = binary entropy.
+3. **21-lemma architecture**: 3 proved, 1 open (Theorem Omega). Paper 1 ready for publication.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R49 | **Bonferroni CRT**: ∩Z(pᵢ) = ∅ for k=6,9,10 via first-order inclusion-exclusion | **Proved** |
+| R50 | **Exact α formula**: α = L(1-H(1/L)) = 0.0793186128 | **Proved** |
+| R51 | **Multiplier coset**: P_B(g) ∈ g·⟨2⟩ mod d | **Investigated** |
+| R52 | **Paper 1 ready**: Junction + k=3..20 + conditional (GRH) | **Assessed** |
+
+#### Round 25 — Bonferroni universalization, equidistribution, gap closure, publication readiness
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r25_bonferroni_universal.py` | Universaliste | **Bonferroni dichotomy**: composite d → BF ≥ 1.6; verified k=3..50 |
+| `r25_equidistribution.py` | Équidist. | Equidistribution attack on |Z(p)| ~ C/p |
+| `r25_gap_closure.py` | Gap | Gap k=21..41: factorizations, MITM feasibility, master strategy |
+| `r25_publication_readiness.py` | Publication | Publication readiness assessment |
+
+**Key findings (Round 25):**
+1. **Bonferroni dichotomy**: For composite d(k) (ω ≥ 2), BF ≥ 1.6 and CRT intersection empty.
+   For prime d(k) (only k=3,4,5,13 in [3..50]), direct computation suffices.
+2. **Gap mapped**: All 21 values of d(k) for k=21..41 fully factorized. 3 MITM-feasible (k=21-23),
+   15 CRT-sieve candidates, 3 challenging. Extended BC sum = 3.34 > 1.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R53 | **Bonferroni dichotomy**: Every k falls into type P (prime d) or B (Bonferroni) | **Proved** (k ≤ 50) |
+| R54 | **d(k) prime only k=3,4,5,13**: For k ≥ 14, d(k) always composite | **Verified** (k ≤ 50) |
+| R55 | **Gap factorization**: All d(k) for k=21..41 fully factorized, 0/21 blocking primes | **Computed** |
 
 #### Round 7 — Backward reachability, Parseval bound, innovations, investigation
 

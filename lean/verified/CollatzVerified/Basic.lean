@@ -375,12 +375,16 @@ theorem T0_squared_q3 : 35 * 35 = 1225 := by native_decide
 /-- Non-principal Fourier energy: Σ_{t≠0}|T(t)|² = 1521 - 1225 = 296. -/
 theorem fourier_energy_q3 : 1521 - 1225 = 296 := by native_decide
 
-/-- Parseval cost check (Theorem 16.1): if N₀ ≥ 1 for q₃,
-    then Σ_{t≠0}|T(t)|² ≥ (p-C)²/(p-1) = (13-35)²/12 = 484/12 = 40.
-    Here 296 ≥ 40, so the bound is satisfied (trivially in residual regime).
+/-- Parseval cost check (Theorem 16.1): if N₀ ≥ 1 for q₃ (k=5, p=13, C=35),
+    then Σ_{t≠0}|T(t)|² ≥ (p-C)²/(p-1).
 
-    Note: we write (C - p) instead of (p - C) to avoid Nat underflow
-    (since C = 35 > p = 13). The square is symmetric: (p-C)² = (C-p)². -/
+    CAVEAT: For q₃, C = 35 > p = 13, so the Parseval lower bound
+    (p-C)²/(p-1) = 484/12 ≈ 40 is VACUOUSLY satisfied (any non-negative
+    energy exceeds it). The meaningful bound here is NOT the Parseval cost
+    but rather the direct verification N₀(13) = 0 (proved in fourier_q3).
+    This theorem is retained for completeness but is not load-bearing.
+
+    Note: (C - p) is used instead of (p - C) to avoid Nat underflow. -/
 theorem parseval_cost_q3 : 296 ≥ (35 - 13) * (35 - 13) / 12 := by native_decide
 
 /-- The sum of all N_r equals C = 35 (conservation). -/
