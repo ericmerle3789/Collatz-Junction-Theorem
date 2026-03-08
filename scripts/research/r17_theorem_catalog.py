@@ -713,48 +713,44 @@ def catalog_cat6():
     }
 
     # F3: Coverage analysis for k=69..200
+    # For k >= 69, C(k) ~ 10^30+, so we need p > 10^30 as blocker.
+    # Trial division only finds primes < 10^6, which are all << C.
+    # The LARGE cofactor of d(k) almost certainly contains a prime > C
+    # with 2 as primitive root, but we CANNOT verify this computationally.
     coverage = {}
     uncovered_ks = []
+    has_large_cofactor = 0
 
-    for k in range(3, 201):
+    for k in range(69, 201):
         check_budget(f"cat6 k={k}")
         d = compute_d(k)
         C = compute_C(k)
 
         primes, cof = prime_factors_limited(d, limit=10**6)
-        if cof > 1 and is_prime_miller(cof):
-            primes.append(cof)
-            cof = 1
+        # cof is the unfactored part; for k >= 69 it has > 70 bits
+        has_large_cof = (cof > 1 and cof > C)
+        if has_large_cof:
+            has_large_cofactor += 1
 
-        has_blocker = False
-        for p in primes:
-            if p < 5 or p <= C:
-                continue
-            # Check primitive root only for manageable p
-            if p < 10**6:
-                ord_2 = multiplicative_order(2, p)
-                if ord_2 == p - 1:
-                    has_blocker = True
-                    break
-            # For large p that are prime: if p > C, check if p is primitive root
-            # We can only check for p < 10^6 by order computation
-            # For larger primes, we note them but cannot verify
+        # No small prime can exceed C for k >= 69 (C ~ 10^30+)
+        coverage[k] = False
+        uncovered_ks.append(k)
 
-        coverage[k] = has_blocker
-        if not has_blocker and k > 68:
-            uncovered_ks.append(k)
-
-    n_covered = sum(1 for k in range(69, 201) if coverage.get(k, False))
     n_total = 201 - 69
 
     theorems['F3'] = {
         'id': 'F3',
-        'statement': f'Primitive root blocker found for {n_covered}/{n_total} values k=69..200',
-        'detail': f'Uncovered (trial div <= 10^6): {len(uncovered_ks)} values',
-        'method': 'trial factorization + primitive root check',
+        'statement': f'For k=69..200: all {n_total} values have d(k) with large '
+                     f'unfactored cofactor (> C) in {has_large_cofactor}/{n_total} cases',
+        'detail': 'Trial div up to 10^6 finds only small primes << C. '
+                  'The cofactor likely contains a prime > C with 2 as primitive root, '
+                  'but this cannot be verified computationally without full factorization. '
+                  'This is precisely the Artin gap: we need a THEORETICAL guarantee.',
+        'method': 'trial factorization analysis',
         'k_range': 'k = 69..200',
-        'status': f'PARTIAL: {n_covered}/{n_total}',
-        'limitation': 'Limited by trial division to 10^6.',
+        'status': f'OBSERVATION: {has_large_cofactor}/{n_total} have cofactor > C',
+        'limitation': 'Cannot factor d(k) beyond 10^6. '
+                      'Full factorization is infeasible for d ~ 10^{50+}.',
     }
 
     for tid, thm in theorems.items():
@@ -764,8 +760,8 @@ def catalog_cat6():
     CATALOG.update(theorems)
     FINDINGS['cat6'] = {
         'artin_constant': ARTIN_CONSTANT,
-        'n_covered': n_covered,
         'n_total': n_total,
+        'has_large_cofactor': has_large_cofactor,
         'uncovered_ks': uncovered_ks,
         'theorems': theorems,
     }

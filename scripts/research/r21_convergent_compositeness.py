@@ -161,8 +161,28 @@ def factorize_small(n, limit=10**6):
     return factors, n
 
 
-def factorize_full(n, limit=10**7):
-    """Factor n using trial division + Miller-Rabin for cofactor."""
+def pollard_rho(n, max_iter=500000):
+    """Pollard's rho factorization. Returns a non-trivial factor or None."""
+    if n % 2 == 0:
+        return 2
+    for c in range(1, 20):
+        x = 2
+        y = 2
+        d = 1
+        f = lambda x, c=c: (x * x + c) % n
+        count = 0
+        while d == 1 and count < max_iter:
+            x = f(x)
+            y = f(f(y))
+            d = gcd(abs(x - y), n)
+            count += 1
+        if 1 < d < n:
+            return d
+    return None
+
+
+def factorize_full(n, limit=10**7, use_rho=True):
+    """Factor n using trial division + Pollard rho + Miller-Rabin."""
     if n <= 1:
         return [], 1, "trivial"
     factors, cofactor = factorize_small(n, limit)
@@ -171,6 +191,31 @@ def factorize_full(n, limit=10**7):
     elif is_prime_miller_rabin(cofactor):
         factors.append((cofactor, 1))
         return factors, 1, "fully_factored"
+    elif use_rho and cofactor.bit_length() <= 120:
+        # Try Pollard's rho for medium-sized composites
+        remaining = cofactor
+        rho_rounds = 0
+        while remaining > 1 and not is_prime_miller_rabin(remaining) and rho_rounds < 5:
+            if time_remaining() < 3:
+                break
+            f = pollard_rho(remaining, max_iter=200000)
+            if f is None:
+                break
+            e = 0
+            while remaining % f == 0:
+                e += 1
+                remaining //= f
+            factors.append((f, e))
+            rho_rounds += 1
+        if remaining > 1:
+            if is_prime_miller_rabin(remaining):
+                factors.append((remaining, 1))
+                remaining = 1
+        factors.sort()
+        if remaining == 1:
+            return factors, 1, "fully_factored"
+        else:
+            return factors, remaining, "composite_cofactor"
     else:
         return factors, cofactor, "composite_cofactor"
 
@@ -541,7 +586,13 @@ def non_convergent_analysis():
             continue
 
         factors, cofactor, fst = factorize_full(d_val, limit=10**6)
+        # omega = number of KNOWN distinct prime factors
         omega = len(factors)
+        # If cofactor is composite (not prime, not 1), it has >= 2 more factors
+        if cofactor > 1 and fst == "composite_cofactor":
+            omega += 2  # at least 2 unknown prime factors in cofactor
+        elif cofactor > 1:
+            omega += 1  # cofactor is prime
 
         omega_values.append(omega)
         factor_str = " * ".join(f"{p}^{e}" for p, e in factors[:4])
@@ -549,7 +600,7 @@ def non_convergent_analysis():
             factor_str += f" * C({cofactor.bit_length()}b)"
 
         if k <= 50 or omega <= 2:
-            print(f"  {k:>5} | {delta:>10.6f} | {d_val.bit_length():>8} | {omega:>5} | {factor_str[:45]}")
+            print(f"  {k:>5} | {delta:>10.6f} | {d_val.bit_length():>8} | {'>='+str(omega):>5} | {factor_str[:45]}")
 
         non_conv_data.append({'k': k, 'delta': delta, 'omega': omega})
 
