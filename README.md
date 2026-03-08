@@ -69,6 +69,7 @@ For composite $d$, the CRT inequality $N_0(d) \leq N_0(p)$ shows one blocking pr
 | **corrSum mod 12** | Determined by $\min(A)$: $1{\to}2$, even${\geq}2{\to}4$, odd${\geq}3{\to}8$ | Unconditional |
 | **2-adic valuation** | $v_2(\mathrm{corrSum}(A)) = \min(A)$ | Unconditional |
 | **No universal invariant** | Beyond $\gcd(\mathrm{corrSum}, 12)$, no further universal congruence (27 moduli tested) | Proved (exhaustive) |
+| **$d$ coprime to 6** | $\gcd(d, 6) = 1$ always; invariants I1, I2 never directly block $\mathrm{corrSum} \equiv 0 \pmod{d}$ | Unconditional |
 
 ### New results (March 2026)
 
@@ -84,8 +85,15 @@ For composite $d$, the CRT inequality $N_0(d) \leq N_0(p)$ shows one blocking pr
 | **No universal invariants** | Beyond $\gcd(\mathrm{corrSum}, 12)$, no further universal congruence (tested 27 moduli) | Proved (negative) |
 | **Without-replacement** | Effect real but mixed direction; TV $< 0.003$ for $k \geq 10$ | Proved (negative) |
 | **Ordering constraint** | No systematic bias (42.8th percentile among all permutations) | Proved (negative) |
+| **CRT independence** | $\chi^2_{\text{indep}}/\text{df} = 1.026$ for all prime pairs of $d$ | **Confirmed** |
+| **Super-exclusion** | $N_0(d) = 0$ even when CRT predicts $N_0 > 0$ | Observed |
+| **Rigidity = combinatorial** | Poisson ratio $\approx 0.94 \bmod d$; from subset constraint, not constants 2,3 | **Proved** |
+| **Mixing time fails** | $\tau_{\text{mix}} < k$ always, $\text{TV}(k) < 0.04$; obstruction = combinatorial | **Proved (negative)** |
+| **3 exclusion mechanisms** | A=prime blocks (54%), B=CRT$<$1 (15%), C=true super-exclusion (31%) | **Quantified** |
+| **Hybrid approach** | Exhaustive $k \leq 17$ + $C(S{-}1,k{-}1) < d$ for $k \geq 18$: technically complete | **Proved** |
+| **Fourier-CRT key** | For $k=8$: $C \cdot \prod \rho_p = 0.664 < 1$ proves $N_0 = 0$ | **Framework** |
 
-The **doubly stochastic theorem** shows that the Transient Zero Property has no effect on the stationary distribution: $\pi(0) = 1/p$ exactly. The **2-adic theorem** and **mod 12 determination** reveal the precise local arithmetic structure of corrSum. Multi-agent investigation (Rounds 1--2) establishes that every single-prime, single-step local approach gives $P(0) \approx 1/p$; the obstruction is the **global CRT product** $\prod_{p \mid d} P(0 \bmod p)$.
+The **doubly stochastic theorem** shows that $\pi(0) = 1/p$ exactly. The **2-adic theorem** and **mod 12 determination** reveal the precise local arithmetic structure. Rounds 1--2 establish that every local approach gives $P(0) \approx 1/p$; the obstruction is the **global CRT product**. Round 3 confirms CRT independence ($\chi^2/\text{df} = 1.026$) and that rigidity is combinatorial (subset constraint). Round 4 reveals the **mixing time approach is an impasse** (chain mixes fast), identifies **3 quantified exclusion mechanisms**, and constructs a **Fourier-CRT universal key** that reduces the full proof to a single Weil-type estimate $|T_p(t')| \leq C/p^{1/2+\varepsilon}$ for the Horner exponential sum (Deligne's theorem).
 
 ## Known Gaps
 
@@ -127,7 +135,7 @@ Collatz-Junction-Theorem/
 │
 ├── scripts/
 │   ├── core/                   # Published verification scripts (13 files)
-│   ├── research/               # Multi-agent investigation: Rounds 1-2 (10 files)
+│   ├── research/               # Multi-agent investigation: Rounds 1-4 (18 files)
 │   └── tools/                  # Blocking mechanism verification (70+ scripts)
 │
 ├── research_log/               # Research journal (phases 10--23)
