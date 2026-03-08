@@ -66,7 +66,9 @@ For composite $d$, the CRT inequality $N_0(d) \leq N_0(p)$ shows one blocking pr
 | **corrSum parity** | $\mathrm{corrSum}(A)$ is always odd | Unconditional |
 | **corrSum mod 3** | $\mathrm{corrSum}(A) \not\equiv 0 \pmod{3}$ | Unconditional |
 | **corrSum mod 4** | $\mathrm{corrSum}(A) \in \{1, 3\} \pmod{4}$ | Unconditional |
-| **No universal invariant** | Beyond $\gcd(\mathrm{corrSum}, 6) = 1$, no further universal congruence exists | Proved (exhaustive) |
+| **corrSum mod 12** | Determined by $\min(A)$: $1{\to}2$, even${\geq}2{\to}4$, odd${\geq}3{\to}8$ | Unconditional |
+| **2-adic valuation** | $v_2(\mathrm{corrSum}(A)) = \min(A)$ | Unconditional |
+| **No universal invariant** | Beyond $\gcd(\mathrm{corrSum}, 12)$, no further universal congruence (27 moduli tested) | Proved (exhaustive) |
 
 ### New results (March 2026)
 
@@ -76,8 +78,14 @@ For composite $d$, the CRT inequality $N_0(d) \leq N_0(p)$ shows one blocking pr
 | **Transient Zero** | $c_j \equiv 0 \pmod{p} \Rightarrow c_{j+1} \not\equiv 0 \pmod{p}$ | Unconditional |
 | **Doubly stochastic** | Horner transition matrix $T$ on $\mathbb{Z}/p\mathbb{Z}$ is doubly stochastic | **Proved** |
 | **Image density** | $\lvert\mathrm{Im}(\mathrm{Ev}_d)\rvert/d$ matches birthday model (no extra thinning) | Negative result |
+| **2-Adic theorem** | $v_2(\mathrm{corrSum}(A)) = \min(A)$ exactly | **Proved** |
+| **Mod 12 determination** | $\mathrm{corrSum} \bmod 12$ determined by $\min(A)$: $\{1{\to}2, \text{even}{\geq}2{\to}4, \text{odd}{\geq}3{\to}8\}$ | **Proved** |
+| **Fiber underdispersion** | Poisson ratio $\mathrm{Var}/\mathrm{Mean} \approx 0.1$ for fiber sizes of $\mathrm{Ev}_d$ | Observed |
+| **No universal invariants** | Beyond $\gcd(\mathrm{corrSum}, 12)$, no further universal congruence (tested 27 moduli) | Proved (negative) |
+| **Without-replacement** | Effect real but mixed direction; TV $< 0.003$ for $k \geq 10$ | Proved (negative) |
+| **Ordering constraint** | No systematic bias (42.8th percentile among all permutations) | Proved (negative) |
 
-The **doubly stochastic theorem** shows that the Transient Zero Property has no effect on the stationary distribution: $\pi(0) = 1/p$ exactly. This closes the "single-prime Markov" approach and redirects research toward multi-prime CRT correlations.
+The **doubly stochastic theorem** shows that the Transient Zero Property has no effect on the stationary distribution: $\pi(0) = 1/p$ exactly. The **2-adic theorem** and **mod 12 determination** reveal the precise local arithmetic structure of corrSum. Multi-agent investigation (Rounds 1--2) establishes that every single-prime, single-step local approach gives $P(0) \approx 1/p$; the obstruction is the **global CRT product** $\prod_{p \mid d} P(0 \bmod p)$.
 
 ## Known Gaps
 
@@ -119,7 +127,7 @@ Collatz-Junction-Theorem/
 │
 ├── scripts/
 │   ├── core/                   # Published verification scripts (13 files)
-│   ├── research/               # Research sprint: Transient Zero investigation (5 files)
+│   ├── research/               # Multi-agent investigation: Rounds 1-2 (10 files)
 │   └── tools/                  # Blocking mechanism verification (70+ scripts)
 │
 ├── research_log/               # Research journal (phases 10--23)

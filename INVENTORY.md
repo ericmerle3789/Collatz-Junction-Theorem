@@ -135,11 +135,46 @@ Research sprint on the Transient Zero Property — multi-agent investigation.
 requires GLOBAL properties. The arc decomposition provides no multiplicative
 improvement beyond 1/p. Cross-prime CRT correlations are undetectable.
 
-**Pistes de rebond identifiées** → Round 2 (scripts/research/r2_*.py):
-- Sans remplacement (non-Markov correlations)
-- Ordonnancement (structure géométrique de 2^a)
-- Attaque alternative de la Conjecture 7.4 (-1 ∉ Im(g))
-- Innovation computationnelle (motifs cachés dans corrSum)
+**Pistes de rebond identifiées** → Round 2 (see below).
+
+#### Round 2 — Multi-agent rebound investigation
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r2_without_replacement.py` | Sans-Remplacement | Non-Markov correlations from finite sampling |
+| `r2_ordering_constraint.py` | Ordonnancement | Geometric ordering structure analysis |
+| `r2_minus_one_exclusion.py` | Conjecture 7.4 | Attack on -1 ∉ Im(g) via parity/CRT |
+| `r2_minus_one_exclusion_results.json` | Conjecture 7.4 | CRT sieving results for k=3..25 |
+| `r2_innovation_explorer.py` | Innovateur | Discovery toolbox: 2-adic, modular, spectral |
+
+**Key findings (Round 2 — 4 pistes CLOSED, 3 theorems PROVED):**
+
+1. **Without-Replacement Effect** — CLOSED: Effect is REAL (~63% sampling fraction)
+   but MIXED direction (11/16 help, 5/16 hurt). For k≥10, TV distance < 0.003.
+   The claimed theorem P_exact ≤ (1-δ)/p is FALSE (5 counterexamples).
+   Birthday collision surplus always positive. Markov model accurate for large k.
+
+2. **Ordering Constraint** — CLOSED: Standard decreasing ordering ranks at 42.8th
+   percentile among all permutations. P(corrSum=0)/(1/p) = 0.968 (25 well-sampled cases).
+   No systematic bias. The 1/p heuristic REMAINS VALID.
+
+3. **Conjecture 7.4 attack (-1 ∉ Im(g))** — CLOSED (no universal proof):
+   - Parity argument INVALID (odd number CAN be multiple of odd d)
+   - CRT sieving verifies exclusion per k (k=3..14) but not universal
+   - Some k have no single-prime obstruction
+
+4. **Innovation discoveries** — 3 NEW THEOREMS:
+   - **2-Adic Theorem**: v₂(corrSum(A)) = min(A) exactly — PROVED
+   - **Mod 12 Determination**: corrSum mod 12 determined by min(A) — PROVED
+   - **Fiber Underdispersion**: Poisson ratio ~0.1 (variance/mean of fiber sizes)
+   - No universal invariants beyond mod 12 (tested 27 moduli up to m=64)
+   - Im(Ev_d) + Im(Ev_d) = Z/dZ (full sumset) — PROVED
+
+**META-PATTERN**: Every LOCAL approach (single prime, single step, single order) gives
+P(0) ≈ 1/p. The obstruction is GLOBAL — the CRT product over all p|d makes
+P(cycle) ≈ ∏(1/p) exponentially small.
+
+→ Round 3: Investigating WHY the CRT product works (independence, rigidity, paradigm shift).
 
 ### 4.3. Exploration (`scripts/exploration/`, 81 scripts, Phases 20-22 + SP6-SP10 + A-F)
 
@@ -426,6 +461,13 @@ Research scripts for the blocking mechanism.
 | R10 | Image density matches birthday model (no extra thinning) | `image_density_analysis.py` | Negative result |
 | R11 | **Doubly stochastic theorem**: Horner transition matrix T is doubly stochastic | `tz_markov_analysis.py` | **Proved** |
 | — | TZ constraint invisible at single-prime level (π(0) = 1/p exactly) | `tz_markov_analysis.py` | Proved (negative) |
+| R12 | **2-Adic Theorem**: v₂(corrSum(A)) = min(A) exactly | `r2_innovation_explorer.py` | **Proved** |
+| R13 | **Mod 12 Determination**: corrSum mod 12 determined by min(A) | `r2_innovation_explorer.py` | **Proved** |
+| R14 | **Fiber underdispersion**: Poisson ratio ~0.1 | `r2_innovation_explorer.py` | Observed |
+| — | No universal invariants beyond mod 12 | `r2_innovation_explorer.py` | Proved (negative) |
+| — | Without-replacement effect: REAL but MIXED, TV < 0.003 for k≥10 | `r2_without_replacement.py` | Proved (negative) |
+| — | Ordering constraint: no systematic bias (45.7th percentile) | `r2_ordering_constraint.py` | Proved (negative) |
+| — | Parity argument for -1 exclusion: INVALID | `r2_minus_one_exclusion.py` | Proved (negative) |
 
 ### Conditional (in the preprint)
 
