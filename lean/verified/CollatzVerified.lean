@@ -6,3 +6,4 @@ import CollatzVerified.NewResults
 import CollatzVerified.TransferMatrix
 import CollatzVerified.ExtendedCases
 import CollatzVerified.HigherCases
+import CollatzVerified.StructuralFacts
