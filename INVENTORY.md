@@ -129,10 +129,17 @@ Research sprint on the Transient Zero Property — multi-agent investigation.
 | `tz_bridge_connections.py` | Connecteur | Cross-prime correlations via CRT |
 | `tz_exhaustive_results.json` | Calculateur | Raw enumeration data |
 
-**Key finding**: The Horner transition matrix is doubly stochastic (proved), so the
-Transient Zero Property has NO effect on the stationary probability π(0) = 1/p.
-The constraint is "invisible" at the single-prime level. Multi-prime correlations
-via CRT remain under investigation.
+**Key finding (Round 1 — CLOSED)**: The Horner transition matrix is doubly stochastic
+(proved), so the Transient Zero Property has NO effect on the stationary probability
+π(0) = 1/p. All 4 agents converge: TZ is a LOCAL constraint, while cycle exclusion
+requires GLOBAL properties. The arc decomposition provides no multiplicative
+improvement beyond 1/p. Cross-prime CRT correlations are undetectable.
+
+**Pistes de rebond identifiées** → Round 2 (scripts/research/r2_*.py):
+- Sans remplacement (non-Markov correlations)
+- Ordonnancement (structure géométrique de 2^a)
+- Attaque alternative de la Conjecture 7.4 (-1 ∉ Im(g))
+- Innovation computationnelle (motifs cachés dans corrSum)
 
 ### 4.3. Exploration (`scripts/exploration/`, 81 scripts, Phases 20-22 + SP6-SP10 + A-F)
 
