@@ -16,8 +16,8 @@
 | `LICENSE` | MIT (code) |
 | `LICENSE-PAPER` | CC-BY 4.0 (paper) |
 | `.gitignore` | Git exclusions |
-| `META_PROMPT_SESSION.md` | Initial session meta-prompt |
-| `META_PROMPT_SESSION_NEXT.md` | Continuation meta-prompt (March 2026) |
+| `META_PROMPT_SESSION.md` | Initial session meta-prompt (internal) |
+| `META_PROMPT_SESSION_NEXT.md` | Continuation meta-prompt (internal) |
 
 ## 2. Paper (`paper/`, 9 files)
 
@@ -78,8 +78,8 @@ Coverage: nonsurjectivity k=18-25, zero-exclusion q3, Gersonides, parity, cosets
 | `ConcaveTangent.lean` | Tangent inequality | 0 | 0 |
 | `LegendreApprox.lean` | Legendre contrapositive | 0 | 0 |
 | `FiniteCases.lean` | k in [18, 200] | 0 | 0 |
-| `FiniteCasesExtended.lean` | k in [201, 400] | 0 | 0 |
-| `FiniteCasesExtended2.lean` | k in [401, 665] | 0 | 0 |
+| `FiniteCasesExtended.lean` | k in [201, 306] | 0 | 0 |
+| `FiniteCasesExtended2.lean` | k in [307, 665] | 0 | 0 |
 | `AsymptoticBound.lean` | k >= 666 (asymptotic) | 0 | 1** |
 
 **Total skeleton: 0 sorry, 2 axioms.**

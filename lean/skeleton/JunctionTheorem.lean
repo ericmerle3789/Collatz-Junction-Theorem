@@ -468,10 +468,10 @@ For k ≥ 18 with S = ⌈k · log₂ 3⌉ and d > 0: C(S−1, k−1) < d.
   (a) k ∈ [18, 200]: proved by `native_decide` on exact integer arithmetic
       (183 cases, see `FiniteCases.lean`). Bridge lemma converts `⌈k·log₂3⌉`
       to decidable conditions `2^(S-1) < 3^k < 2^S`.
-  (b) k ≥ 201: sorry (residual). The tangent line bound `deficit_linear_growth`
-      gives log₂(C) ≤ S·(1−γ) + log₂(S), with margin > 3 bits for all k ≥ 201.
-      Closing this formally requires a lower bound on log₂(d) involving
-      diophantine approximation (Legendre). Numerically verified to k = 10⁶. -/
+  (b) k ∈ [201, 306]: proved by `native_decide` (106 cases, FiniteCasesExtended).
+  (c) k ∈ [307, 665]: proved by `native_decide` (359 cases, FiniteCasesExtended2).
+  (d) k ≥ 666: via `deficit_linear_growth` + `AsymptoticBound` (2 axioms:
+      Simons–de Weger + continued fraction bound). -/
 theorem crystal_nonsurjectivity (k : ℕ) (hk : k ≥ 18)
     (S : ℕ) (hS : S = Nat.ceil (k * (Real.log 3 / Real.log 2)))
     (hd : crystalModule S k > 0) :
