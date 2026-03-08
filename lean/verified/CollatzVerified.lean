@@ -4,3 +4,4 @@ import CollatzVerified.Basic
 import CollatzVerified.G2c
 import CollatzVerified.NewResults
 import CollatzVerified.TransferMatrix
+import CollatzVerified.ExtendedCases
