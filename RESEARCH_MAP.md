@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 9 mars 2026 | **Rounds:** R1–R35 (35 rounds, 140 scripts, 5600 auto-tests)
+**Date:** 9 mars 2026 | **Rounds:** R1–R36 (36 rounds, 144 scripts, 5680 auto-tests)
 
 ---
 
@@ -88,6 +88,8 @@
 | **Existentiel (R33-D)** | Logiquement insuffisant : P_B≠0 ne prouve pas Z(0)=0 | R34 |
 | **CRT premier unique** | 71/71 paires (k,p) non-bloquantes pour k=21..41 | R34 |
 | **CRT Product (prédiction)** | Produit CRT FAUX dans 6/9 cas testés (N₀(d) toujours ≤ prédit) | R35 |
+| **CCD (Cross-Constraint Density)** | Tautologie : CCD=1 identiquement quand N₀(d)=0, zéro contenu informationnel | R36 |
+| **OEntropy (Obstruction Entropy)** | Aveugle : δ(d)≈1 car absence d'1 résidu sur 500K est invisible à Shannon | R36 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -121,6 +123,7 @@
 | **Bad Prime Gateway** | p | G(k) ⟹ N₀(p) > 0 toujours [PROUVÉ] | R34 |
 | **Composite Exclusion Certificate** (CEC) | Protocole 4 types : A(premier)/B(composite)/C(Bonferroni)/D(variance) | R35 |
 | **CQIP** | Quasi-indépendance contrainte : N₀(d)=Π(N₀(pᵢ))/C^{r-1}+ε, ε anticorrélé | R35 |
+| **CDI** (Composite Defect of Independence) | N₀^{prod}(d)-N₀(d) ; seul concept survivant de R36, CDI_norm~3.7-4.4 | R36 |
 
 ---
 
@@ -137,6 +140,9 @@
 | **Anticorrélation composite** | ratio N₀(d)/(Π N₀(pᵢ)/C^{r-1}) = 0 toujours pour k=3..15 | R35 |
 | **Deux régimes CRT** | Grand C/p : Ratio Law ~1.008 ; petit C/p : wildly variable | R35 |
 | **3 tiers de faisabilité** | Tier 1 (k=21-27, DP direct C), Tier 2 (k=28-31, MITM), Tier 3 (k=32-41, intractable) | R35 |
+| **Défaut TOTAL** | N₀(d)=0 pour TOUS les 13 k testés par DP exact (pas partiel, TOTAL) | R36 |
+| **Défaut structurel** | Ce n'est pas statistique mais algébrique : la monotonie de B interdit les solutions | R36 |
+| **Taxonomie k=3..25** | Type A:4, Type B:9, Type C:6, Ouvert:4 | R36 |
 
 ---
 
@@ -189,6 +195,7 @@ R32     : Transfer spectral → MPC + STB [PROUVÉS], 4 murs classiques
 R33     : Contraction RÉFUTÉE → diffusion + PIVOT identifié
 R34     : Existentiel ÉCHEC → 0/21 prouvés, DP optimisé = prochaine étape
 R35     : CEC + CQIP → cadre certifiant, CRT product RÉFUTÉ, 3 tiers faisabilité
+R36     : CDI survit (CCD/OEntropy éliminés), défaut TOTAL, taxonomie k=3..25
 ```
 
 ---
@@ -216,12 +223,12 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 35
-- **Scripts** : 140 (4 par round)
-- **Auto-tests** : 5600 (40 par script, 100% PASS)
+- **Rounds** : 36
+- **Scripts** : 144 (4 par round sauf R36 = 2 axes)
+- **Auto-tests** : 5680 (100% PASS)
 - **Théorèmes prouvés** : 23 (originaux)
-- **Conjectures ouvertes** : 5 (OD Bound, CQIP, Ratio Law, Projection, Gap Spectral)
-- **Pistes fermées** : 18 (documentées avec raison)
-- **Concepts inventés** : 13 (nommés)
+- **Conjectures ouvertes** : 4 (OD Bound, Ratio Law, Projection, Gap Spectral)
+- **Pistes fermées** : 20 (documentées avec raison)
+- **Concepts inventés** : 14 (nommés, dont CDI = survivant R36)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
