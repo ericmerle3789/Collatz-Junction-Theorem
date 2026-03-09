@@ -894,6 +894,28 @@ Research scripts for the blocking mechanism.
 | R57 | **Gap k=21-23**: All OPEN — no blocking primes among small factors | **Computed** |
 | R58 | **Lean stub coverage**: 9 stubs covering spectral, MITM, verification | **Generated** |
 
+#### Round 27 — Equidistribution diagnosis, monotone compression, algebraic k=21, proof architecture
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r27_weyl_bound.py` | Investigator | **WHY equidistribution resists**: collision anatomy, dimension collapse (d_eff<0.98), Steiner pinning effect, structural diagnosis |
+| `r27_large_sieve.py` | Innovator | **Monotone Compression Principle**: frequency hierarchy, early-step dominance, compression ratio ρ, NAMED concept |
+| `r27_algebraic_k21.py` | Operator | **Direct DP attack** k=21 (p=33587: N₀>0), k=22 (p=7: N₀>0), all 16 k=26..41 DP-feasible |
+| `r27_proof_architecture.py` | Synthesis | **Proof architecture assessment**: Direct DP closest (7/10), hybrid strategy viable, gamma analysis |
+
+**Key findings (Round 27):**
+1. **Root cause identified**: DIMENSION COLLAPSE — the map B→P_B(g) mod p loses rank for small (k,p).
+   Steiner pinning does NOT help equidistribution. Min entropy = 0.74 (far from uniform).
+2. **Innovation named**: "Monotone Compression Principle" — nondecreasing constraint creates frequency
+   hierarchy; early steps (j<k/2) dominate residue class, late steps are redundant DOF.
+3. **k=21 OPEN**: N₀(33587) > 0, need CRT over both factors or larger strategy.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R59 | **Dimension collapse**: equidistribution fails because B→P_B(g) is not surjective for small (k,p) | **Diagnosed** |
+| R60 | **Monotone Compression**: frequency hierarchy — early steps dominate, late steps redundant | **Named** |
+| R61 | **k=21 direct DP**: N₀(33587)>0, N₀(200063) untested, k=22 N₀(7)>0 | **Computed** |
+
 #### Round 7 — Backward reachability, Parseval bound, innovations, investigation
 
 | Script | Agent | Contents |
