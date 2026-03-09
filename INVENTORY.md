@@ -961,6 +961,28 @@ Research scripts for the blocking mechanism.
 | R66 | **IBM**: 5 concepts named. Gap = "arithmetic shield" by large factors | **Named** |
 | R67 | **k=21 both factors**: N₀(33587)=16065, N₀(200063)=2814, CRT projection 0.05 | **Computed** |
 
+#### Round 30 — CRT map + CRT Product Theorem + exact computation + A↔B protocol
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r30_crt_map.py` | Investigator | **CRT Map**: independence ratio R for k=3..15. R=0 for k=6,9,10 (extreme anticorrelation). Nondecreasing constraint couples CRT projections. |
+| `r30_crt_product.py` | Innovator | **5 concepts ON A's map**: CRT Anticorrelation, CRT Product Theorem [CONJECTURED], Effective CRT Blocking, Exclusion Amplification. k=21 bound=0.079<1. |
+| `r30_crt_exact.py` | Operator | 9 proved (k=3..11), k=14 CRT_pred=0.357. k=24 has 4 factors, k=25 has 5 factors. R≤1 all tested. |
+| `r30_protocol_assessment.py` | Synthesis | A→B protocol 8.0/10 vs parallel 6.0/10. Publication 7.1/10. CRT approach ranked 6.6/10. |
+
+**Key findings (Round 30) — FIRST A↔B COMMUNICATION ROUND:**
+1. **CRT Anticorrelation**: R = N₀(d)·C/(N₀(p₁)·N₀(p₂)) = 0 for k=6,9,10 → extreme anticorrelation.
+   Nondecreasing constraint structurally couples residues mod p₁ and mod p₂.
+2. **CRT Product Theorem** [CONJECTURED]: N₀(d) ≤ Π N₀(pᵢ)/C. For k=21: bound = 0.079 < 1.
+   IF PROVED → k=21 is CLOSED.
+3. **Protocol verdict**: A→B communication produced EMERGENT value (Product Theorem = A's data + B's formalization).
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R68 | **CRT Anticorrelation**: R ≤ 1 for all tested k; R=0 when d directly proved | **Observed** |
+| R69 | **CRT Product Theorem**: N₀(d) ≤ Π N₀(pᵢ)/C [would close k=21 if proved] | **Conjectured** |
+| R70 | **A↔B Protocol**: emergent value confirmed, +2.0 over parallel work | **Assessed** |
+
 #### Round 7 — Backward reachability, Parseval bound, innovations, investigation
 
 | Script | Agent | Contents |
