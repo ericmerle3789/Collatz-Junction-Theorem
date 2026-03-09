@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 9 mars 2026 | **Rounds:** R1–R34 (34 rounds, 136 scripts, 5440 auto-tests)
+**Date:** 9 mars 2026 | **Rounds:** R1–R35 (35 rounds, 140 scripts, 5600 auto-tests)
 
 ---
 
@@ -60,10 +60,10 @@
 
 | Piste | Description | Faisabilité | Impact | Round |
 |-------|-------------|:-----------:|:------:|:-----:|
-| **DP composite** | DP mod p₁·p₂ pour k=21..41 | 7/10 | 10/10 | → R35 |
-| **DP optimisé C/Cython** | Primes p > 50000 | 8/10 | 8/10 | → R35 |
+| **DP direct sur d(k)** | DP complet mod d pour petits d(k) en C | 9/10 | 10/10 | → R36 |
+| **MITM sur d(k)** | Meet-in-the-middle pour d moyens | 7/10 | 7/10 | → R36 |
+| **CEC Type B composite** | DP mod p₁·p₂ (produit 2 primes) | 5/10 | 8/10 | R35 |
 | **Borne analytique universelle** | Prouver |Z(0)-C/p| < C/p | 2/10 | 10/10 | Open |
-| **MITM k=21-23** | Meet-in-the-middle | 6/10 | 3/10 | R26 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
@@ -87,13 +87,14 @@
 | **Contraction par étape** | RÉFUTÉ : les normes CROISSENT (ratio moyen 1.578) | R33 |
 | **Existentiel (R33-D)** | Logiquement insuffisant : P_B≠0 ne prouve pas Z(0)=0 | R34 |
 | **CRT premier unique** | 71/71 paires (k,p) non-bloquantes pour k=21..41 | R34 |
+| **CRT Product (prédiction)** | Produit CRT FAUX dans 6/9 cas testés (N₀(d) toujours ≤ prédit) | R35 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
 | Piste | État | Prochain pas | Round |
 |-------|------|-------------|:-----:|
 | **Gap spectral MTM** | Observé mais non prouvé | Prouver gap > 0 pour CPO | R32 |
-| **CRT Product Theorem** | Conjecturé (k=21 bound=0.079<1) | Prouver la borne | R30 |
+| **CRT Product Theorem** | RÉFUTÉ comme prédiction exacte (6/9 faux), mais N₀(d) ≤ CRT toujours | Reformuler en borne | R30/R35 |
 | **Order-Diversity Bound** | Conjecturé (18/18 vérifié) | Prouver la somme exp. | R31 |
 | **Bonferroni dichotomy** | Prouvé k≤50, pas universel | Étendre analytiquement | R25 |
 | **Restricted permanent** | T_p(t) = permanent restreint | Appliquer Barvinok/Gurvits | R7 |
@@ -118,6 +119,8 @@
 | **Discrete Oscillation Frequency** (DOF) | Mesure de fréquence d'oscillation d'un vecteur | R33 |
 | **Algebraic Blocking Criterion** (ABC) | 3 tiers : bad/good+NVS=1/good+NVS<1 [PROUVÉ] | R34 |
 | **Bad Prime Gateway** | p | G(k) ⟹ N₀(p) > 0 toujours [PROUVÉ] | R34 |
+| **Composite Exclusion Certificate** (CEC) | Protocole 4 types : A(premier)/B(composite)/C(Bonferroni)/D(variance) | R35 |
+| **CQIP** | Quasi-indépendance contrainte : N₀(d)=Π(N₀(pᵢ))/C^{r-1}+ε, ε anticorrélé | R35 |
 
 ---
 
@@ -131,6 +134,9 @@
 | **4 murs classiques** | Weyl/Weil/LS/ET tous inapplicables (simplexe + phase exp.) | R32 |
 | **Amplitude diffusion** | Normes croissent mais énergie se répartit → annulation | R33 |
 | **CRT single-prime dead end** | C/p >> 1 rend N₀(p)=0 exponentiellement improbable | R34 |
+| **Anticorrélation composite** | ratio N₀(d)/(Π N₀(pᵢ)/C^{r-1}) = 0 toujours pour k=3..15 | R35 |
+| **Deux régimes CRT** | Grand C/p : Ratio Law ~1.008 ; petit C/p : wildly variable | R35 |
+| **3 tiers de faisabilité** | Tier 1 (k=21-27, DP direct C), Tier 2 (k=28-31, MITM), Tier 3 (k=32-41, intractable) | R35 |
 
 ---
 
@@ -159,6 +165,8 @@
 | T19 | Monotone Phase Cascade (factorisation) | R32 |
 | T20 | Spectral Transfer Bound | R32 |
 | T21 | Bad Prime Gateway : p|G(k) ⟹ N₀(p)>0 | R34 |
+| T22 | N₀(d) = 0 pour TOUT k = 3..15 (DP exact) | R35 |
+| T23 | CEC protocole : 10/13 valeurs k=3..15 certifiées (Type A/B) | R35 |
 
 ---
 
@@ -180,6 +188,7 @@ R31     : Order-Diversity → g^k identity + Bad Prime Bound [PROUVÉ]
 R32     : Transfer spectral → MPC + STB [PROUVÉS], 4 murs classiques
 R33     : Contraction RÉFUTÉE → diffusion + PIVOT identifié
 R34     : Existentiel ÉCHEC → 0/21 prouvés, DP optimisé = prochaine étape
+R35     : CEC + CQIP → cadre certifiant, CRT product RÉFUTÉ, 3 tiers faisabilité
 ```
 
 ---
@@ -187,26 +196,32 @@ R34     : Existentiel ÉCHEC → 0/21 prouvés, DP optimisé = prochaine étape
 ## PROCHAINES ÉTAPES (R35+)
 
 ```
-PRIORITÉ 1 : DP composite/optimisé (C/Cython) pour k=21..41
-             Faisabilité 8/10, Impact 10/10
+PRIORITÉ 1 : DP direct sur d(k) en C compilé
+             Tier 1 : k=21-27 (d petit, faisable en heures)
+             Faisabilité 9/10, Impact 10/10
 
-PRIORITÉ 2 : Borne analytique universelle (|Z(0)-C/p| < C/p)
-             Faisabilité 2/10, Impact 10/10
+PRIORITÉ 2 : MITM (meet-in-the-middle) pour k=28-31
+             d moyen, split B en deux moitiés
+             Faisabilité 7/10, Impact 7/10
 
 PRIORITÉ 3 : Rédaction papier avec résultats actuels
-             (Junction + k≤20 + conditional GRH)
+             (Junction + k≤20 + partial gap closure)
+             Target : Experimental Mathematics
+
+PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
+             Faisabilité 2/10, Impact 10/10
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 34
-- **Scripts** : 136 (4 par round)
-- **Auto-tests** : 5440 (40 par script, 100% PASS)
-- **Théorèmes prouvés** : 21 (originaux)
-- **Conjectures ouvertes** : 5 (OD Bound, CRT Product, Ratio Law, Projection, Gap Spectral)
-- **Pistes fermées** : 17 (documentées avec raison)
-- **Concepts inventés** : 11 (nommés)
+- **Rounds** : 35
+- **Scripts** : 140 (4 par round)
+- **Auto-tests** : 5600 (40 par script, 100% PASS)
+- **Théorèmes prouvés** : 23 (originaux)
+- **Conjectures ouvertes** : 5 (OD Bound, CQIP, Ratio Law, Projection, Gap Spectral)
+- **Pistes fermées** : 18 (documentées avec raison)
+- **Concepts inventés** : 13 (nommés)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
