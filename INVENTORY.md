@@ -939,6 +939,28 @@ Research scripts for the blocking mechanism.
 | R63 | **Projection Theorem**: compression_depth ≤ k/2 for C/p sufficiently large | **Conjectured** |
 | R64 | **k=21 p=200063**: DP timeout (2.8M states/step), requires optimized implementation | **Computed** |
 
+#### Round 29 — Ratio Law, Independent Blocking Model, optimized DP k=21, roadmap
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r29_ratio_law.py` | Investigator | **Ratio Law**: N₀(p)·p/C → 1 as C/p → ∞. Power law |ratio-1| ~ (C/p)^{-0.52}. ORDER-INDEPENDENT. |
+| `r29_blocking_probability.py` | Innovator | **5 new concepts**: Blocking Probability, IBM, Arithmetic Shield, SPT, Shield Strength. Gap = "shielded" by large factors. |
+| `r29_optimized_dp.py` | Operator | **N₀(200063)=2814** for k=21 (dense 2D array DP). Neither factor blocks → k=21 needs CRT. CRT projection: N₀(d) ~ 0.05. |
+| `r29_roadmap.py` | Synthesis | Hybrid path RECOMMENDED (5.2/10). 5-round roadmap R30-R34. Publication 6.1/10. |
+
+**Key findings (Round 29):**
+1. **Ratio Law**: N₀(p)·p/C converges to 1 as C/p grows, with power law error ~ (C/p)^{-0.52}.
+   Independent of multiplicative order of g. The algebraic root is approximate independence of B-coordinates.
+2. **k=21 COMPLETE**: N₀(33587)=16065, N₀(200063)=2814. NEITHER blocks. CRT: expected N₀(d) ~ 0.05 < 1.
+   k=21 is **plausibly provable** via CRT but not yet definitively proved.
+3. **IBM model**: Gap k=21..41 predicted by arithmetic structure — large prime factors create "shields".
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R65 | **Ratio Law**: N₀(p)·p/C → 1, error ~ (C/p)^{-0.52}, R²=0.74 | **Observed** |
+| R66 | **IBM**: 5 concepts named. Gap = "arithmetic shield" by large factors | **Named** |
+| R67 | **k=21 both factors**: N₀(33587)=16065, N₀(200063)=2814, CRT projection 0.05 | **Computed** |
+
 #### Round 7 — Backward reachability, Parseval bound, innovations, investigation
 
 | Script | Agent | Contents |
