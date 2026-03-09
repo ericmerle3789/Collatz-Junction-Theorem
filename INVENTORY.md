@@ -916,6 +916,29 @@ Research scripts for the blocking mechanism.
 | R60 | **Monotone Compression**: frequency hierarchy — early steps dominate, late steps redundant | **Named** |
 | R61 | **k=21 direct DP**: N₀(33587)>0, N₀(200063) untested, k=22 N₀(7)>0 | **Computed** |
 
+#### Round 28 — Surjectivity threshold, projection theorem, k=21 complete, publication assessment
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r28_surjectivity_threshold.py` | Investigator | **Phase transition**: d_eff=1.0 when C/p>25. Dimension collapse = artifact of small k (5/0 evidence). Steiner pinning hurts. |
+| `r28_projection_theorem.py` | Innovator | **Projection Theorem** [CONJECTURED]: compression_depth ≤ k/2 for C/p large. "Effective Span" concept. Depth-log(p) correlation = 0.96. |
+| `r28_k21_complete.py` | Operator | k=21: p=33587 N₀=16065 (ratio 0.94), p=200063 TIMEOUT (state space too large for Python). k=22-25 all OPEN. |
+| `r28_publication_assessment.py` | Synthesis | Discovery grades: Dim Collapse 5.8/10, Monotone Compression 5.8/10, Computational 6.0/10. Publication: 5.8/10. |
+
+**Key findings (Round 28):**
+1. **Phase transition confirmed**: d_eff → 1.0 (surjectivity) when C/p > 25. Dimension collapse is
+   an artifact of small k — NOT a fundamental obstruction.
+2. **Projection Theorem** [CONJECTURED]: first k/2 steps already span ≈90% of Z/pZ when C/p is large.
+   Compression depth/k ≈ 0.42. Correlation with log(p) = 0.96.
+3. **k=21 bottleneck**: p=200063 DP too large for Python (~2.8M states/step × 20 steps).
+   Needs C/Rust implementation or MITM.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R62 | **Phase transition**: d_eff=1.0 when C/p > 25; collapse = small-k artifact | **Observed** |
+| R63 | **Projection Theorem**: compression_depth ≤ k/2 for C/p sufficiently large | **Conjectured** |
+| R64 | **k=21 p=200063**: DP timeout (2.8M states/step), requires optimized implementation | **Computed** |
+
 #### Round 7 — Backward reachability, Parseval bound, innovations, investigation
 
 | Script | Agent | Contents |
