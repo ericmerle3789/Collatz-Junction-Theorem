@@ -123,7 +123,7 @@ Published, verified scripts associated with the preprint.
 | `transient_zero_analysis.py` | R | **Transient Zero Property**: c_j=0 ⟹ c_{j+1}≠0 mod p |
 | `image_density_analysis.py` | R | Image density: |Im(Ev_d)|/d matches birthday model (negative result) |
 
-### 4.2. Research (`scripts/research/`, 93 scripts + 3 JSON, Multi-agent investigation Rounds 1-25)
+### 4.2. Research (`scripts/research/`, 109 scripts + 3 JSON, Multi-agent investigation Rounds 1-34)
 
 Research sprint on the Transient Zero Property — multi-agent investigation.
 
@@ -982,6 +982,89 @@ Research scripts for the blocking mechanism.
 | R68 | **CRT Anticorrelation**: R ≤ 1 for all tested k; R=0 when d directly proved | **Observed** |
 | R69 | **CRT Product Theorem**: N₀(d) ≤ Π N₀(pᵢ)/C [would close k=21 if proved] | **Conjectured** |
 | R70 | **A↔B Protocol**: emergent value confirmed, +2.0 over parallel work | **Assessed** |
+
+#### Round 31 — Order-Diversity framework (universal proof direction)
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r31_why_equidistrib.py` | Investigator | **WHY equidistribution holds**: 3 pillars (multiplicative order, collision count, equidist. error). g^k = 2^{k-S} mod p PROVED. Bad primes divide G(k) = gcd(2^{S-k}-1, d(k)). |
+| `r31_order_diversity.py` | Innovator | **4 concepts**: Phase Diversity Index (PDI), Bad Prime Bound [PROVED], Order-Diversity Bound [CONJECTURED 18/18], Bonferroni+OD. |
+| `r31_order_statistics.py` | Operator | 54 (k,p) pairs, 61.1% good primes. OD bound holds universally. G(k) mean 10.2% of d bits. |
+| `r31_path_to_infinity.py` | Synthesis | Score 5.5/10. Bottleneck = proving OD exponential sum bound over nondecreasing B-vectors. |
+
+**Key findings (Round 31):**
+1. **g^k = 2^{k-S} mod p** [PROVED algebraically] for all p | d(k).
+2. **Bad Prime Bound**: ord_p(g) < k iff p | G(k) = gcd(2^{S-k}-1, d(k)) [PROVED].
+3. **Order-Diversity Bound**: |Z(0) - C/p| ≤ C·√(k·ln(p))/p when ord_p(g) ≥ k [CONJECTURED, verified 18/18].
+4. **Gap**: 39 k-values not yet covered by Bonferroni+OD.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R71 | **g^k = 2^{k-S} mod p**: algebraic identity for all p \| d(k) | **Proved** |
+| R72 | **Bad Prime Bound**: bad primes divide G(k) | **Proved** |
+| R73 | **Order-Diversity Bound**: equidist. error ≤ C·√(k·ln(p))/p | **Conjectured** |
+
+#### Round 32 — Spectral transfer matrix approach
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r32_why_bounds_fail.py` | Investigator | **4 walls**: Weyl (simplex ≠ interval), Weil (not over F_p), Large Sieve (k! waste), Erdős-Turán (circular). **5 openings** identified. |
+| `r32_monotone_transfer.py` | Innovator | **6 concepts**: MTM, Monotone Phase Cascade [PROVED], Phase Spread, Spectral Transfer Bound [PROVED], Cascade Spectral Bound, Spectral Gap Principle [OBSERVED]. |
+| `r32_spectral_census.py` | Operator | 13 (k,p) pairs, 212 character sums, 0 failures. max\|S(r)\|/C = 0.478. Power law decay α = -0.350. Weil-like |S| ~ C/√p confirmed. |
+| `r32_spectral_synthesis.py` | Synthesis | Score 5.0/10. Hybrid path H recommended. 10-component proof chain, 50% complete by weight. |
+
+**Key findings (Round 32):**
+1. **Monotone Phase Cascade** [PROVED]: S(r,p) = v₀ᵀ · T₁ · ... · T_{k-1} at index max_B. Upper-triangular transfer matrices.
+2. **Spectral Transfer Bound** [PROVED]: |S_r| ≤ √dim · ‖CPO‖₂.
+3. **Classical bounds all fail** on our specific problem (simplex domain + exponential phase).
+4. **Weil-like behavior**: |S(r)|/C ~ 1/√p observed across all 212 character sums.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R74 | **Monotone Phase Cascade**: transfer matrix factorization of S(r,p) | **Proved** |
+| R75 | **Spectral Transfer Bound**: |S_r| ≤ √dim · ‖CPO‖₂ | **Proved** |
+| R76 | **Spectral Gap Principle**: CPO has gap > 0 for r ≠ 0 | **Observed** |
+
+#### Round 33 — Cascade contraction (hypothesis REFUTED, pivot identified)
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r33_geometric_cancellation.py` | Investigator | Per-step contraction is **FALSE**: norms GROW (mean 1.578). Equidist. via amplitude DIFFUSION (spreading, not contraction). |
+| `r33_cascade_contraction.py` | Innovator | **6 concepts**: DOF, SRCP [PROVED for sinusoids], ODC, PFP, Cascade Contraction Bound [PROVED], ODC-Good. |
+| `r33_contraction_census.py` | Operator | 13 (k,p) census. 12.7% steps contract. No power-law fit (R²=0.0001). Equidist. holds despite norm growth. |
+| `r33_cascade_synthesis.py` | Synthesis | **BRUTAL**: R33 = 3.5/10, going in circles since R27. **PIVOT**: existential/polynomial approach (89% success rate). First new angle since R31. |
+
+**Key findings (Round 33):**
+1. **Norm contraction REFUTED**: norms GROW at each step. Cancellation via amplitude DIFFUSION.
+2. **R27-R33 assessment**: 7 rounds of reformulations, only 3 genuine theorems (R71-R72-R73). Diminishing returns.
+3. **PIVOT identified**: existential approach (test explicit B-vectors) or direct DP for finite gap.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R77 | **Norm growth**: per-step ratio > 1, cancellation via spreading | **Proved (negative)** |
+| R78 | **Cascade Contraction Bound**: |S_r| ≤ √dim · Π(per-step ratios) | **Proved** |
+| R79 | **Existential approach identified**: avoid exponential sums, attack gap directly | **Pivoted** |
+
+#### Round 34 — Existential approach PIVOT: 0/21 gap proved, structural insights
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r34_existential_approach.py` | Investigator | CRT single-prime blocking **FAILS** for all k=21..41. 71 (k,p) pairs tested, ALL have N₀(p) > 0. R33-D existential approach logically insufficient (corrected). |
+| `r34_polynomial_coverage.py` | Innovator | **Algebraic Blocking Criterion (ABC)**: 3 tiers. Bad primes (p \| G(k)) ALWAYS have N₀>0 [PROVED]. Test polynomials cover 88% of (k,p). |
+| `r34_gap_verification.py` | Operator | 71 DP verifications for k=21..41. 0 blocking primes. Equidist. deviation = 0.14% from 1/p. CRT joint probs < 10⁻⁸. |
+| `r34_gap_synthesis.py` | Synthesis | Score 3.9/10. Existential was red herring (logically wrong). Finite gap closure by optimized DP = tractable path. |
+
+**Key findings (Round 34):**
+1. **Single-prime CRT DEAD END** for k=21..41: C/p >> 1 makes N₀(p) = 0 exponentially unlikely.
+2. **Algebraic Blocking Criterion** [PROVED]: bad primes ALWAYS have N₀ > 0 (trivial B-vector gives P_B ≡ 0).
+3. **C/d < 1 for ALL gap values**: expected N₀(d) < 1 under equidistribution → N₀(d) = 0 is EXPECTED but UNPROVED.
+4. **Next step**: optimized DP (C/Cython) for larger primes or composite moduli, or analytic equidistribution proof.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R80 | **Single-prime blocking fails k=21..41**: 71/71 pairs non-blocking | **Proved (negative)** |
+| R81 | **Bad Prime Gateway**: p \| G(k) ⟹ N₀(p) > 0 always | **Proved** |
+| R82 | **C/d < 1 for all gap k**: equidist. would suffice but unproved | **Observed** |
 
 #### Round 7 — Backward reachability, Parseval bound, innovations, investigation
 
