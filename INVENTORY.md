@@ -873,6 +873,27 @@ Research scripts for the blocking mechanism.
 | R54 | **d(k) prime only k=3,4,5,13**: For k ≥ 14, d(k) always composite | **Verified** (k ≤ 50) |
 | R55 | **Gap factorization**: All d(k) for k=21..41 fully factorized, 0/21 blocking primes | **Computed** |
 
+#### Round 26 — Equidistribution proof, MITM gap, verification push, Lean formalization
+
+| Script | Agent | Contents |
+|--------|:-----:|---------|
+| `r26_equidistrib_proof.py` | Investigator | **Transfer matrix spectral analysis** for equidistribution proof: exact Z(p) via DP, deviation analysis, Cauchy-Davenport bounds |
+| `r26_mitm_gap.py` | Innovator | **MITM attack** on gap k=21,22,23: meet-in-the-middle with midpoint enumeration, CRT consistency |
+| `r26_verification_k21.py` | Operator | **Frontier push** k=21..25: sparse DP verification, certificate generation |
+| `r26_lean_formalization.py` | Synthesis | **Lean 4 stub generation**, native_decide feasibility, coverage table, publication score |
+
+**Key findings (Round 26):**
+1. **Equidistribution observed**: max |ρ(k,p)| = 1.81, max ε = 0.200, Bonferroni sums < 1 for 10/10 k-values.
+   Transfer matrix spectral radius computed. Cauchy-Davenport: cd_free ≥ min(k, p) for all tested.
+2. **Gap k=21-23**: All OPEN. d(21)=6719515981 (factors: 33587, 200063), no blocking prime found in time budget.
+3. **Lean stubs**: 9 new stubs generated. Paper 1 score: 3.9/5. Blocker = equidistribution proof.
+
+| Result | Statement | Status |
+|--------|-----------|--------|
+| R56 | **Spectral equidistribution**: ρ(k,p) ≤ 1.81, ε ≤ 0.200 for all tested (k,p) | **Observed** |
+| R57 | **Gap k=21-23**: All OPEN — no blocking primes among small factors | **Computed** |
+| R58 | **Lean stub coverage**: 9 stubs covering spectral, MITM, verification | **Generated** |
+
 #### Round 7 — Backward reachability, Parseval bound, innovations, investigation
 
 | Script | Agent | Contents |
