@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 10 mars 2026 | **Rounds:** R1–R43 (43 rounds, 172 scripts, 6240 auto-tests)
+**Date:** 10 mars 2026 | **Rounds:** R1–R44 (44 rounds, 176 scripts, 6341 auto-tests)
 
 ---
 
@@ -98,6 +98,8 @@
 | **OCC-ALG (C3' algébrique)** | ord_p(2)≥ceil(log₂(k)) redondant avec IE seul, échoue k=17 (ord₅(2)=4<5) | R41 |
 | **Sub-Independence** | N₀(∏I) ≤ IE(I) FAUX : 0/8 cas non-triviaux, max ratio N₀/IE=6.38 (k=17) | R42 |
 | **Boundary Majorization** | M<k toujours (log₂3<2), zéro points intérieurs, borne dégénère f_p≤2/p, VIOLÉE | R43 |
+| **Parseval naïf Σ\|S(r)\|²=p·C(k)** | FAUX : correct = p·ΣN_r², l'ancien supposait injection P_B→Z/pZ | R44 |
+| **WQE (Quasi-Equidist. Affaiblie)** | Chebyshev borne la fraction de "mauvais" résidus mais ne contrôle PAS r=0 | R44 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -116,7 +118,8 @@
 | **OCC-LITE** | IE seule suffit, gap [4.13, 6.0] | Prouver borne f_p, bridge asymptotique | R41-R42 |
 | **Borne f_p ≤ 12/p** | A_max=11.43, 29 paires k=3..17 vérifiées | Prouver via Ehrhart / lattice counting | R42 |
 | **Bridge C3→OCC-LITE** | f_p≤A/p ⟹ IE<θ quand ∏p>C·Aᵐ/θ, 1/10 SPC satisfait | Améliorer ou prouver asymptotique | R42 |
-| **QEL (Quasi-Equidistrib.)** | D=max|N_r-C/p|/(C/p)≤1.81, décroît avec k | Prouver |ΣS(r)|≤α·C(k) | R43 |
+| **QEL (Quasi-Equidistrib.)** | D≤1.81, décroît. ACL réduit QEL à borner M₂=ΣN_r² | Prouver M₂≤C²/p+A·C | R43-R44 |
+| **ACL (Aggregate Control)** | f_p ≤ 1/p + √((p-1)(p·M₂-C²))/(p·C) [PROUVÉ] | Montrer ACL serré via M₂ | R44 |
 
 ---
 
@@ -156,6 +159,9 @@
 | **Horner factorization** | P_c=u₀·H₀, u₀=2^{c₀} inversible mod p → compter H₀≡0 [PROUVÉ] | R43 |
 | **QEL** (Quasi-Equidist. Lemma) | max|N_r-C/p|/(C/p)≤α, α≤1.81 empirique, décroît avec k [CONJECTURAL] | R43 |
 | **M<k toujours** | max_B=S-k<k car log₂3<2, tue la décomp. intérieur/bord d'Ehrhart | R43 |
+| **ACL** (Aggregate Control Lemma) | f_p ≤ 1/p + √((p-1)(p·M₂-C²))/(p·C), première borne analytique sur f_p [PROUVÉ] | R44 |
+| **M₂** (Second Moment) | M₂=Σ_{r=0}^{p-1} N_r², quantité clé : QEL ⇔ M₂≈C²/p [PROUVÉ = identité] | R44 |
+| **Parseval corrigé** | Σ\|S(r)\|²=p·M₂ (pas p·C) ; l'ancien supposait injection P_B→Z/pZ [PROUVÉ] | R44 |
 
 ---
 
@@ -213,6 +219,12 @@
 | **QEL empirique** | Discrepancy D≤1.81, D(k=17)=0.018 pour p=5 → quasi-equidistribution croissante | R43 |
 | **7 obstacles catalogués** | Brion-Vergne = route la plus prometteuse pour borner S(r) sur simplexe | R43 |
 | **Congruence multiplicative** | P_c(g) mod p est NONLINÉAIRE en coords c → pas d'hyperplan, pas Ehrhart direct | R43 |
+| **Parseval CORRIGÉ** | Σ\|S(r)\|²=p·ΣN_r²=p·M₂ (PAS p·C). Ancien = injection P_B fausse (collisions) [PROUVÉ] | R44 |
+| **C-S bound** | \|ΣS(r)\|≤√((p-1)(p·M₂-C²)), typiquement lâche (ratio 0.01-0.3) [PROUVÉ] | R44 |
+| **ACL = première borne** | f_p ≤ 1/p + erreur, erreur=O(1/√C) pour M₂≈C²/p+O(C), suffisant grands k [PROUVÉ] | R44 |
+| **M₂ = clé de QEL** | Tout le programme QEL se réduit à borner M₂ ; M₂/(C²/p)→1 empiriquement [OBSERVÉ] | R44 |
+| **k=3 Horner partial** | S(r) factorise partiellement via Horner à k=3 ; k≥4 couplage simplexe bloque | R44 |
+| **WQE ne contrôle pas r=0** | Chebyshev borne #mauvais résidus mais le résidu 0 peut être mauvais [PROUVÉ] | R44 |
 
 ---
 
@@ -263,6 +275,9 @@
 | T41 | Horner factorization : P_c=u₀·H₀, u₀ inversible, réduit à compter H₀≡0 [PROUVÉ] | R43 |
 | T42 | M<k universel : max_B=S-k<k pour tout k≥3, zéro points intérieurs [PROUVÉ] | R43 |
 | T43 | Boundary Majorization RÉFUTÉ : borne f_p≤2/p violée empiriquement (k=6,p=59) | R43 |
+| T44 | Parseval corrigé : Σ\|S(r)\|²=p·M₂ (pas p·C), injection P_B fausse [PROUVÉ] | R44 |
+| T45 | ACL : f_p ≤ 1/p + √((p-1)(p·M₂-C²))/(p·C), première borne analytique [PROUVÉ] | R44 |
+| T46 | WQE insuffisant : Chebyshev borne #mauvais résidus mais ne contrôle pas r=0 [PROUVÉ] | R44 |
 
 ---
 
@@ -293,6 +308,7 @@ R40     : SPC autopsy → κ=1 universel, SI éliminé (0 pouvoir), OCC/CSSPC su
 R41     : C3 priorité rigidif., OCC-LITE (IE seule) survit, OCC-ALG éliminé, k=17 confirme
 R42     : f_p ≤ 12/p (SEMI-PROVABLE, Ehrhart route), Sub-Independence RÉFUTÉ, Bridge survit
 R43     : Simplex reformulation [PROUVÉ], Horner nesting [PROUVÉ], QEL survit, Boundary tué (M<k)
+R44     : ACL [PROUVÉ], Parseval corrigé (Σ|S|²=p·M₂), WQE éliminé, M₂ = clé de QEL
 ```
 
 ---
@@ -320,12 +336,12 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 43
-- **Scripts** : 172
-- **Auto-tests** : 6240 (100% PASS)
-- **Théorèmes prouvés** : 43 (originaux)
+- **Rounds** : 44
+- **Scripts** : 176
+- **Auto-tests** : 6341 (100% PASS)
+- **Théorèmes prouvés** : 46 (originaux)
 - **Conjectures ouvertes** : 8 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, borne f_p≤A/p, QEL)
-- **Pistes fermées** : 28 (documentées avec raison)
-- **Concepts inventés** : 33 (nommés, dont QEL = survivant R43)
+- **Pistes fermées** : 30 (documentées avec raison)
+- **Concepts inventés** : 36 (nommés, dont ACL/M₂ = survivants R44)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
