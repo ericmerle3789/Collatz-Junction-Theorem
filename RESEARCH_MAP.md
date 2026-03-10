@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 10 mars 2026 | **Rounds:** R1–R42 (42 rounds, 168 scripts, 6160 auto-tests)
+**Date:** 10 mars 2026 | **Rounds:** R1–R43 (43 rounds, 172 scripts, 6240 auto-tests)
 
 ---
 
@@ -97,6 +97,7 @@
 | **SI (Synchronization Impossibility)** | Puissance discriminative NULLE : mêmes ordres pour SPC et non-SPC, 0/11 prédictions | R40 |
 | **OCC-ALG (C3' algébrique)** | ord_p(2)≥ceil(log₂(k)) redondant avec IE seul, échoue k=17 (ord₅(2)=4<5) | R41 |
 | **Sub-Independence** | N₀(∏I) ≤ IE(I) FAUX : 0/8 cas non-triviaux, max ratio N₀/IE=6.38 (k=17) | R42 |
+| **Boundary Majorization** | M<k toujours (log₂3<2), zéro points intérieurs, borne dégénère f_p≤2/p, VIOLÉE | R43 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -115,6 +116,7 @@
 | **OCC-LITE** | IE seule suffit, gap [4.13, 6.0] | Prouver borne f_p, bridge asymptotique | R41-R42 |
 | **Borne f_p ≤ 12/p** | A_max=11.43, 29 paires k=3..17 vérifiées | Prouver via Ehrhart / lattice counting | R42 |
 | **Bridge C3→OCC-LITE** | f_p≤A/p ⟹ IE<θ quand ∏p>C·Aᵐ/θ, 1/10 SPC satisfait | Améliorer ou prouver asymptotique | R42 |
+| **QEL (Quasi-Equidistrib.)** | D=max|N_r-C/p|/(C/p)≤1.81, décroît avec k | Prouver |ΣS(r)|≤α·C(k) | R43 |
 
 ---
 
@@ -150,6 +152,10 @@
 | **Error term E(k,p)** | E=p·f_p-1 ; |E|≤10.43 pour non-blocking, E=-1 pour Type A [CALCULÉ] | R42 |
 | **Bridge inequality** | f_p≤A/p ⟹ IE≤C·Aᵐ/∏p ; C3 auto pour p>A·(|I|+1) [SEMI-FORMEL] | R42 |
 | **Super-indépendance monotone** | N₀(∏I)>IE(I) systématiquement : couplage AMPLIFIE, pas contracte | R42 |
+| **Simplex reformulation** | c_i=B_i-B_{i-1} bijecte B monotones ↔ Δ_{k-1}(max_B) [PROUVÉ] | R43 |
+| **Horner factorization** | P_c=u₀·H₀, u₀=2^{c₀} inversible mod p → compter H₀≡0 [PROUVÉ] | R43 |
+| **QEL** (Quasi-Equidist. Lemma) | max|N_r-C/p|/(C/p)≤α, α≤1.81 empirique, décroît avec k [CONJECTURAL] | R43 |
+| **M<k toujours** | max_B=S-k<k car log₂3<2, tue la décomp. intérieur/bord d'Ehrhart | R43 |
 
 ---
 
@@ -201,6 +207,12 @@
 | **Sub-Independence FAILS** | N₀(∏I)>IE(I) pour 8/8 paires non-triviales, max ratio 6.38 [RÉSULTAT NÉGATIF] | R42 |
 | **Super-indépendance** | Couplage monotone AMPLIFIE N₀ au-delà de IE, pas contractif | R42 |
 | **Bridge partiel** | Bridge satisfait dans 1/10 cas SPC, k=14 seul ; asymptotiquement croissant | R42 |
+| **Simplex = monotonie** | c_i=B_i-B_{i-1} bijecte exactement B monotones ↔ Δ_{k-1}(S-k) [PROUVÉ] | R43 |
+| **Horner nesting** | P_c=u₀·(1+u₁·(g+u₂·(g²+...))) structure multiplicative nested [PROUVÉ] | R43 |
+| **M<k universel** | S-k<k pour tout k≥3 (log₂3<2) → 0 points intérieurs → Ehrhart bord inutile | R43 |
+| **QEL empirique** | Discrepancy D≤1.81, D(k=17)=0.018 pour p=5 → quasi-equidistribution croissante | R43 |
+| **7 obstacles catalogués** | Brion-Vergne = route la plus prometteuse pour borner S(r) sur simplexe | R43 |
+| **Congruence multiplicative** | P_c(g) mod p est NONLINÉAIRE en coords c → pas d'hyperplan, pas Ehrhart direct | R43 |
 
 ---
 
@@ -247,6 +259,10 @@
 | T37 | Sub-Independence Conjecture RÉFUTÉE : N₀(∏I)>IE pour 8/8 paires non-triviales | R42 |
 | T38 | Borne f_p ≤ 12/p vérifiée sur 29 paires k=3..17 (A_max=11.43) [CALCULÉ] | R42 |
 | T39 | Type A : ΣS(r)=−C(k) exactement, blocking TOTAL par annulation [PROUVÉ] | R42 |
+| T40 | Simplex reformulation : c_i=B_i-B_{i-1} bijecte Δ_{k-1}(max_B) ↔ monotone B [PROUVÉ] | R43 |
+| T41 | Horner factorization : P_c=u₀·H₀, u₀ inversible, réduit à compter H₀≡0 [PROUVÉ] | R43 |
+| T42 | M<k universel : max_B=S-k<k pour tout k≥3, zéro points intérieurs [PROUVÉ] | R43 |
+| T43 | Boundary Majorization RÉFUTÉ : borne f_p≤2/p violée empiriquement (k=6,p=59) | R43 |
 
 ---
 
@@ -276,6 +292,7 @@ R39     : Ordres = prédicteur PARTIEL, SPC survit (IA éliminé), k=17 teste P1
 R40     : SPC autopsy → κ=1 universel, SI éliminé (0 pouvoir), OCC/CSSPC survit
 R41     : C3 priorité rigidif., OCC-LITE (IE seule) survit, OCC-ALG éliminé, k=17 confirme
 R42     : f_p ≤ 12/p (SEMI-PROVABLE, Ehrhart route), Sub-Independence RÉFUTÉ, Bridge survit
+R43     : Simplex reformulation [PROUVÉ], Horner nesting [PROUVÉ], QEL survit, Boundary tué (M<k)
 ```
 
 ---
@@ -303,12 +320,12 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 42
-- **Scripts** : 168
-- **Auto-tests** : 6160 (100% PASS)
-- **Théorèmes prouvés** : 39 (originaux)
-- **Conjectures ouvertes** : 7 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1 universel, borne f_p≤A/p)
-- **Pistes fermées** : 27 (documentées avec raison)
-- **Concepts inventés** : 29 (nommés, dont Bridge C3→OCC-LITE = survivant R42)
+- **Rounds** : 43
+- **Scripts** : 172
+- **Auto-tests** : 6240 (100% PASS)
+- **Théorèmes prouvés** : 43 (originaux)
+- **Conjectures ouvertes** : 8 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, borne f_p≤A/p, QEL)
+- **Pistes fermées** : 28 (documentées avec raison)
+- **Concepts inventés** : 33 (nommés, dont QEL = survivant R43)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
