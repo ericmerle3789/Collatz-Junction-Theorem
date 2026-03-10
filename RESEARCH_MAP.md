@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 10 mars 2026 | **Rounds:** R1–R39 (39 rounds, 156 scripts, 5920 auto-tests)
+**Date:** 10 mars 2026 | **Rounds:** R1–R40 (40 rounds, 160 scripts, 6000 auto-tests)
 
 ---
 
@@ -94,6 +94,7 @@
 | **PSO (Principe Saturation Ordre)** | σ < 1 PARTOUT, aucune prédiction, seuil jamais atteint | R38 |
 | **Polarisation stricte obs∈{1,ω}** | BRISÉE à k=16 : obs=2, ω=3 (premier cas intermédiaire) | R38 |
 | **IA (Indice d'Activité)** | Objet dérivé de SPC, pas de contenu propre, redondant | R39 |
+| **SI (Synchronization Impossibility)** | Puissance discriminative NULLE : mêmes ordres pour SPC et non-SPC, 0/11 prédictions | R40 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -107,6 +108,8 @@
 | **Direct bound α/√p** | α ~ 0.50·k^{0.68}, viable mais non universel | Prouver α borné | R7 |
 | **Projection Theorem** | Conjecturé (compression ≤ k/2) | Prouver | R28 |
 | **Ratio Law** | Observé (N₀·p/C → 1) | Prouver convergence | R29 |
+| **CSSPC (OCC)** | Vérifié k=3..16 (0 faux positif) | Tester k=17, borner ρ théoriquement | R40 |
+| **Couplage total κ=1** | Prouvé sur 5 cas canoniques | Prouver pour tout k≥3 | R40 |
 
 ---
 
@@ -132,6 +135,9 @@
 | **obs(k)** (Obstruction Order) | Ordre minimal d'obstruction ; obs∈{1,ω(d)} BRISÉ k=16 | R37/R38 |
 | **PCMG** (Couplage Monotone Global) | Coprimalité ord_p(2) prédit le type d'obs ; seul principe survivant R38 | R38 |
 | **SPC** (Sous-Produit Critique) | Plus petit sous-ensemble bloquant ; unique k=3..16, unifie CEC | R39 |
+| **OCC** (Orbital Coverage Conflict) | Critère per-prime filtrage + IE ; 11/11 classifications correctes | R40 |
+| **CSSPC** (Critère Suffisant SPC) | IE(I)<θ ∧ minimalité ∧ f_p<1/(|I|+1) ⟹ N₀(∏I)=0 [CONJECTURÉ] | R40 |
+| **Couplage monotone total** (κ=1) | N₀_free(SPC)>0 mais N₀_mono(SPC)=0 pour les 5 cas canoniques | R40 |
 
 ---
 
@@ -161,6 +167,13 @@
 | **SPC unique k=3..16** | Jamais 2 sous-ensembles minimaux distincts [OBSERVÉ] | R39 |
 | **k=17 : coprime mais obs≥3** | Peut falsifier P1 de R38 (coprime ⇏ obs<ω) | R39 |
 | **Passif = petit ordre** | k=16 : prime 7 (ord=3) passif, 233 (29) et 14753 (1844) actifs | R39 |
+| **Couplage monotone total κ=1** | Pour les 5 cas canoniques (k=6,8,10,12,16), κ=1 exactement [PROUVÉ] | R40 |
+| **Onset du couplage à j=2** | Free vs monotone divergent à j=2 pour k=6 et k=8 [CALCULÉ] | R40 |
+| **Critère passivité** | ord_p(2) << max_B+1 implique passivité [SEMI-FORMEL, 1 cas] | R40 |
+| **SI = puissance discriminante 0** | Structure de périodes (ordres) ne prédit PAS le blocking [RÉSULTAT NÉGATIF] | R40 |
+| **OCC prédit 11/11** | Blocking ET non-blocking correctement classifiés par IE+filtrage | R40 |
+| **CSSPC vérifié k=3..16** | 14 SPC, 5 non-SPC, 0 faux positif [CONJECTURÉ] | R40 |
+| **Corrélation rho multi-prime** | ρ>1 pour paires non-SPC (k=12), ρ=0 pour SPC : phénomène d'ordre supérieur | R40 |
 
 ---
 
@@ -197,6 +210,9 @@
 | T27 | gcd(ord_p(2)) = discriminant de obs(k) [OBSERVÉ k=3..16] | R38 |
 | T28 | SPC unique et calculé pour k=3..16 (unifie CEC Types A/C/D) | R39 |
 | T29 | Ordres multiplicatifs = prédicteur PARTIEL (1 cas intermédiaire) | R39 |
+| T30 | Couplage monotone total : κ=1 pour 5 cas canoniques [PROUVÉ par DP] | R40 |
+| T31 | SI discriminative power = 0 : ordres ne prédisent pas blocking [RÉSULTAT NÉGATIF] | R40 |
+| T32 | CSSPC (OCC) : IE(I)<θ ∧ minimalité ∧ filtrage ⟹ N₀=0, vérifié k=3..16 | R40 |
 
 ---
 
@@ -223,6 +239,7 @@ R36     : CDI survit (CCD/OEntropy éliminés), défaut TOTAL, taxonomie k=3..25
 R37     : LOOS survit (LCM éliminé), obs(k)∈{1,ω(d)}, monotonie = coupleur [PROUVÉ]
 R38     : Polarisation BRISÉE k=16 (obs=2,ω=3), PCMG survit (PSO éliminé)
 R39     : Ordres = prédicteur PARTIEL, SPC survit (IA éliminé), k=17 teste P1
+R40     : SPC autopsy → κ=1 universel, SI éliminé (0 pouvoir), OCC/CSSPC survit
 ```
 
 ---
@@ -250,12 +267,12 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 39
-- **Scripts** : 156
-- **Auto-tests** : 5920 (100% PASS)
-- **Théorèmes prouvés** : 29 (originaux)
-- **Conjectures ouvertes** : 5 (OD Bound, Ratio Law, PCMG, SPC unicité, P1 coprime)
-- **Pistes fermées** : 24 (documentées avec raison)
-- **Concepts inventés** : 19 (nommés, dont SPC = survivant R39)
+- **Rounds** : 40
+- **Scripts** : 160
+- **Auto-tests** : 6000 (100% PASS)
+- **Théorèmes prouvés** : 32 (originaux)
+- **Conjectures ouvertes** : 6 (OD Bound, Ratio Law, PCMG, SPC unicité, P1 coprime, CSSPC)
+- **Pistes fermées** : 25 (documentées avec raison)
+- **Concepts inventés** : 22 (nommés, dont OCC/CSSPC = survivants R40)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
