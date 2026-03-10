@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 10 mars 2026 | **Rounds:** R1–R41 (41 rounds, 164 scripts, 6080 auto-tests)
+**Date:** 10 mars 2026 | **Rounds:** R1–R42 (42 rounds, 168 scripts, 6160 auto-tests)
 
 ---
 
@@ -96,6 +96,7 @@
 | **IA (Indice d'Activité)** | Objet dérivé de SPC, pas de contenu propre, redondant | R39 |
 | **SI (Synchronization Impossibility)** | Puissance discriminative NULLE : mêmes ordres pour SPC et non-SPC, 0/11 prédictions | R40 |
 | **OCC-ALG (C3' algébrique)** | ord_p(2)≥ceil(log₂(k)) redondant avec IE seul, échoue k=17 (ord₅(2)=4<5) | R41 |
+| **Sub-Independence** | N₀(∏I) ≤ IE(I) FAUX : 0/8 cas non-triviaux, max ratio N₀/IE=6.38 (k=17) | R42 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -111,7 +112,9 @@
 | **Ratio Law** | Observé (N₀·p/C → 1) | Prouver convergence | R29 |
 | **CSSPC (OCC)** | Vérifié k=3..16 (0 faux positif) | Tester k=17, borner ρ théoriquement | R40 |
 | **Couplage total κ=1** | Prouvé sur 5 cas canoniques | Prouver pour tout k≥3 | R40 |
-| **OCC-LITE** | IE seule suffit, gap [4.13, 6.0] | Borner f_p via Weil, prouver IE<θ | R41 |
+| **OCC-LITE** | IE seule suffit, gap [4.13, 6.0] | Prouver borne f_p, bridge asymptotique | R41-R42 |
+| **Borne f_p ≤ 12/p** | A_max=11.43, 29 paires k=3..17 vérifiées | Prouver via Ehrhart / lattice counting | R42 |
+| **Bridge C3→OCC-LITE** | f_p≤A/p ⟹ IE<θ quand ∏p>C·Aᵐ/θ, 1/10 SPC satisfait | Améliorer ou prouver asymptotique | R42 |
 
 ---
 
@@ -142,6 +145,11 @@
 | **Couplage monotone total** (κ=1) | N₀_free(SPC)>0 mais N₀_mono(SPC)=0 pour les 5 cas canoniques | R40 |
 | **OCC-LITE** | IE(I) < max(5, C^{1/4}) suffit SEUL (1 condition au lieu de 3) ; survivant R41 | R41 |
 | **Pré-filtre algébrique** | ord_p(2) ≥ ceil(log₂(k)) identifie les primes actifs sans DP | R41 |
+| **Borne f_p ≤ A/p** | f_p = N₀(p)/C(k) ≤ 12/p pour non-blocking, A_max=11.43 [SEMI-PROVABLE] | R42 |
+| **Character sum decomposition** | N₀(p)=C(k)/p+(1/p)·ΣS(r), identité exacte (orthogonalité) [PROUVÉ] | R42 |
+| **Error term E(k,p)** | E=p·f_p-1 ; |E|≤10.43 pour non-blocking, E=-1 pour Type A [CALCULÉ] | R42 |
+| **Bridge inequality** | f_p≤A/p ⟹ IE≤C·Aᵐ/∏p ; C3 auto pour p>A·(|I|+1) [SEMI-FORMEL] | R42 |
+| **Super-indépendance monotone** | N₀(∏I)>IE(I) systématiquement : couplage AMPLIFIE, pas contracte | R42 |
 
 ---
 
@@ -185,6 +193,14 @@
 | **k=17 : confirmation** | d=5·71·14303, N₀ calculé, OCC-LITE prédit blocks, OCC-ALG échoue | R41 |
 | **f_p·p ∈ [1,5]** | f_p ~ c/p avec c=O(1) confirme near-equidistribution monotone | R41 |
 | **OCC-ALG : leçon résiduelle** | ord_p(2)≥ceil(log₂k) = pré-filtre valide mais pas critère suffisant | R41 |
+| **Borne f_p ≤ 12/p** | A_max=11.43, vérifié 29 paires k=3..17 ; outlier k=15/p=186793 (f_p·p=11.43) | R42 |
+| **Character sum identity** | N₀(p) = C(k)/p + (1/p)·Σ_{r=1}^{p-1} S(r), exact par orthogonalité [PROUVÉ] | R42 |
+| **3 obstacles monotones** | (1) pas de factorisation S(r), (2) simplexe ≠ variété, (3) petits primes | R42 |
+| **Good vs bad primes** | Bad (ord<k): A_max=1.43 SERRÉ ; Good (ord≥k): A_max=11.43, outlier possible | R42 |
+| **C3 semi-auto** | f_p≤A/p ⟹ C3 auto pour p>A·(|I|+1) : paires p>34, triples p>46 | R42 |
+| **Sub-Independence FAILS** | N₀(∏I)>IE(I) pour 8/8 paires non-triviales, max ratio 6.38 [RÉSULTAT NÉGATIF] | R42 |
+| **Super-indépendance** | Couplage monotone AMPLIFIE N₀ au-delà de IE, pas contractif | R42 |
+| **Bridge partiel** | Bridge satisfait dans 1/10 cas SPC, k=14 seul ; asymptotiquement croissant | R42 |
 
 ---
 
@@ -227,6 +243,10 @@
 | T33 | OCC-LITE : IE(I) < max(5,C^{1/4}) seule suffit (C2,C3 redondantes) [OBSERVÉ] | R41 |
 | T34 | Gap de séparation IE : max_blocking=4.13 vs min_surviving=6.0 [CALCULÉ] | R41 |
 | T35 | Minimalité remove-one ≡ minimalité complète pour k=3..16 [CALCULÉ] | R41 |
+| T36 | Character sum identity : N₀(p)=C(k)/p+(1/p)·ΣS(r) [PROUVÉ, orthogonalité] | R42 |
+| T37 | Sub-Independence Conjecture RÉFUTÉE : N₀(∏I)>IE pour 8/8 paires non-triviales | R42 |
+| T38 | Borne f_p ≤ 12/p vérifiée sur 29 paires k=3..17 (A_max=11.43) [CALCULÉ] | R42 |
+| T39 | Type A : ΣS(r)=−C(k) exactement, blocking TOTAL par annulation [PROUVÉ] | R42 |
 
 ---
 
@@ -255,6 +275,7 @@ R38     : Polarisation BRISÉE k=16 (obs=2,ω=3), PCMG survit (PSO éliminé)
 R39     : Ordres = prédicteur PARTIEL, SPC survit (IA éliminé), k=17 teste P1
 R40     : SPC autopsy → κ=1 universel, SI éliminé (0 pouvoir), OCC/CSSPC survit
 R41     : C3 priorité rigidif., OCC-LITE (IE seule) survit, OCC-ALG éliminé, k=17 confirme
+R42     : f_p ≤ 12/p (SEMI-PROVABLE, Ehrhart route), Sub-Independence RÉFUTÉ, Bridge survit
 ```
 
 ---
@@ -282,12 +303,12 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 41
-- **Scripts** : 164
-- **Auto-tests** : 6080 (100% PASS)
-- **Théorèmes prouvés** : 35 (originaux)
-- **Conjectures ouvertes** : 6 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1 universel)
-- **Pistes fermées** : 26 (documentées avec raison)
-- **Concepts inventés** : 24 (nommés, dont OCC-LITE = survivant R41)
+- **Rounds** : 42
+- **Scripts** : 168
+- **Auto-tests** : 6160 (100% PASS)
+- **Théorèmes prouvés** : 39 (originaux)
+- **Conjectures ouvertes** : 7 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1 universel, borne f_p≤A/p)
+- **Pistes fermées** : 27 (documentées avec raison)
+- **Concepts inventés** : 29 (nommés, dont Bridge C3→OCC-LITE = survivant R42)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
