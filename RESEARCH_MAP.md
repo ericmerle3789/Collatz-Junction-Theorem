@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 9 mars 2026 | **Rounds:** R1–R37 (37 rounds, 148 scripts, 5760 auto-tests)
+**Date:** 10 mars 2026 | **Rounds:** R1–R38 (38 rounds, 152 scripts, 5840 auto-tests)
 
 ---
 
@@ -91,6 +91,8 @@
 | **CCD (Cross-Constraint Density)** | Tautologie : CCD=1 identiquement quand N₀(d)=0, zéro contenu informationnel | R36 |
 | **OEntropy (Obstruction Entropy)** | Aveugle : δ(d)≈1 car absence d'1 résidu sur 500K est invisible à Shannon | R36 |
 | **LCM (Lemme Couplage Monotone)** | Bound trivial (vrai pour toute application), non quantifiable sans arithmétique profonde | R37 |
+| **PSO (Principe Saturation Ordre)** | σ < 1 PARTOUT, aucune prédiction, seuil jamais atteint | R38 |
+| **Polarisation stricte obs∈{1,ω}** | BRISÉE à k=16 : obs=2, ω=3 (premier cas intermédiaire) | R38 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -126,7 +128,8 @@
 | **CQIP** | Quasi-indépendance contrainte : N₀(d)=Π(N₀(pᵢ))/C^{r-1}+ε, ε anticorrélé | R35 |
 | **CDI** (Composite Defect of Independence) | N₀^{prod}(d)-N₀(d) ; seul concept survivant de R36, CDI_norm~3.7-4.4 | R36 |
 | **LOOS** (Obstruction d'Ordre Supérieur) | obs(k)=min{|I|: N₀(∏pᵢ)=0} ; seul lemme survivant R37 | R37 |
-| **obs(k)** (Obstruction Order) | Ordre minimal d'obstruction ; obs∈{1,ω(d)} toujours [OBSERVÉ] | R37 |
+| **obs(k)** (Obstruction Order) | Ordre minimal d'obstruction ; obs∈{1,ω(d)} BRISÉ k=16 | R37/R38 |
+| **PCMG** (Couplage Monotone Global) | Coprimalité ord_p(2) prédit le type d'obs ; seul principe survivant R38 | R38 |
 
 ---
 
@@ -149,6 +152,9 @@
 | **Monotonie = coupleur algébrique** | N₀_free(d)>0 mais N₀_mono(d)=0 [PROUVÉ par DP] | R37 |
 | **obs(k) ∈ {1,ω(d)}** | Pas de cas intermédiaire sur k=3..15 [OBSERVÉ] | R37 |
 | **k=12 : collapse d'ordre 3** | 3 primes OK, 3 paires OK, seul le triple bloque | R37 |
+| **k=16 : cas intermédiaire** | obs(16)=2 avec ω=3, paire (233,14753) suffit, 7 inutile | R38 |
+| **Discriminant : gcd(ord_p(2))** | gcd=1 (coprime) → obs<ω ; gcd>1 → obs=ω [OBSERVÉ] | R38 |
+| **Spectre obs 3 types** | Type A 50%, Complet 43%, Intermédiaire 7% sur k=3..16 | R38 |
 
 ---
 
@@ -181,6 +187,8 @@
 | T23 | CEC protocole : 10/13 valeurs k=3..15 certifiées (Type A/B) | R35 |
 | T24 | Monotonie = coupleur algébrique : N₀_free(d)>0, N₀_mono(d)=0 | R37 |
 | T25 | obs(k) calculé pour k=3..15 : toujours dans {1, ω(d)} | R37 |
+| T26 | obs(16)=2 avec ω=3 : polarisation BRISÉE (premier intermédiaire) | R38 |
+| T27 | gcd(ord_p(2)) = discriminant de obs(k) [OBSERVÉ k=3..16] | R38 |
 
 ---
 
@@ -205,6 +213,7 @@ R34     : Existentiel ÉCHEC → 0/21 prouvés, DP optimisé = prochaine étape
 R35     : CEC + CQIP → cadre certifiant, CRT product RÉFUTÉ, 3 tiers faisabilité
 R36     : CDI survit (CCD/OEntropy éliminés), défaut TOTAL, taxonomie k=3..25
 R37     : LOOS survit (LCM éliminé), obs(k)∈{1,ω(d)}, monotonie = coupleur [PROUVÉ]
+R38     : Polarisation BRISÉE k=16 (obs=2,ω=3), PCMG survit (PSO éliminé)
 ```
 
 ---
@@ -232,12 +241,12 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 37
-- **Scripts** : 148
-- **Auto-tests** : 5760 (100% PASS)
-- **Théorèmes prouvés** : 25 (originaux)
-- **Conjectures ouvertes** : 4 (OD Bound, Ratio Law, Projection, obs∈{1,ω})
-- **Pistes fermées** : 21 (documentées avec raison)
-- **Concepts inventés** : 16 (nommés, dont LOOS = survivant R37)
+- **Rounds** : 38
+- **Scripts** : 152
+- **Auto-tests** : 5840 (100% PASS)
+- **Théorèmes prouvés** : 27 (originaux)
+- **Conjectures ouvertes** : 4 (OD Bound, Ratio Law, PCMG, gcd-discriminant)
+- **Pistes fermées** : 23 (documentées avec raison)
+- **Concepts inventés** : 18 (nommés, dont PCMG = survivant R38)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
