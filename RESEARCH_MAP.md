@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 10 mars 2026 | **Rounds:** R1–R38 (38 rounds, 152 scripts, 5840 auto-tests)
+**Date:** 10 mars 2026 | **Rounds:** R1–R39 (39 rounds, 156 scripts, 5920 auto-tests)
 
 ---
 
@@ -93,6 +93,7 @@
 | **LCM (Lemme Couplage Monotone)** | Bound trivial (vrai pour toute application), non quantifiable sans arithmétique profonde | R37 |
 | **PSO (Principe Saturation Ordre)** | σ < 1 PARTOUT, aucune prédiction, seuil jamais atteint | R38 |
 | **Polarisation stricte obs∈{1,ω}** | BRISÉE à k=16 : obs=2, ω=3 (premier cas intermédiaire) | R38 |
+| **IA (Indice d'Activité)** | Objet dérivé de SPC, pas de contenu propre, redondant | R39 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -130,6 +131,7 @@
 | **LOOS** (Obstruction d'Ordre Supérieur) | obs(k)=min{|I|: N₀(∏pᵢ)=0} ; seul lemme survivant R37 | R37 |
 | **obs(k)** (Obstruction Order) | Ordre minimal d'obstruction ; obs∈{1,ω(d)} BRISÉ k=16 | R37/R38 |
 | **PCMG** (Couplage Monotone Global) | Coprimalité ord_p(2) prédit le type d'obs ; seul principe survivant R38 | R38 |
+| **SPC** (Sous-Produit Critique) | Plus petit sous-ensemble bloquant ; unique k=3..16, unifie CEC | R39 |
 
 ---
 
@@ -155,6 +157,10 @@
 | **k=16 : cas intermédiaire** | obs(16)=2 avec ω=3, paire (233,14753) suffit, 7 inutile | R38 |
 | **Discriminant : gcd(ord_p(2))** | gcd=1 (coprime) → obs<ω ; gcd>1 → obs=ω [OBSERVÉ] | R38 |
 | **Spectre obs 3 types** | Type A 50%, Complet 43%, Intermédiaire 7% sur k=3..16 | R38 |
+| **Ordres = prédicteur PARTIEL** | min_gcd sépare types pour ω≥3, mais 1 seul cas intermédiaire | R39 |
+| **SPC unique k=3..16** | Jamais 2 sous-ensembles minimaux distincts [OBSERVÉ] | R39 |
+| **k=17 : coprime mais obs≥3** | Peut falsifier P1 de R38 (coprime ⇏ obs<ω) | R39 |
+| **Passif = petit ordre** | k=16 : prime 7 (ord=3) passif, 233 (29) et 14753 (1844) actifs | R39 |
 
 ---
 
@@ -189,6 +195,8 @@
 | T25 | obs(k) calculé pour k=3..15 : toujours dans {1, ω(d)} | R37 |
 | T26 | obs(16)=2 avec ω=3 : polarisation BRISÉE (premier intermédiaire) | R38 |
 | T27 | gcd(ord_p(2)) = discriminant de obs(k) [OBSERVÉ k=3..16] | R38 |
+| T28 | SPC unique et calculé pour k=3..16 (unifie CEC Types A/C/D) | R39 |
+| T29 | Ordres multiplicatifs = prédicteur PARTIEL (1 cas intermédiaire) | R39 |
 
 ---
 
@@ -214,6 +222,7 @@ R35     : CEC + CQIP → cadre certifiant, CRT product RÉFUTÉ, 3 tiers faisabi
 R36     : CDI survit (CCD/OEntropy éliminés), défaut TOTAL, taxonomie k=3..25
 R37     : LOOS survit (LCM éliminé), obs(k)∈{1,ω(d)}, monotonie = coupleur [PROUVÉ]
 R38     : Polarisation BRISÉE k=16 (obs=2,ω=3), PCMG survit (PSO éliminé)
+R39     : Ordres = prédicteur PARTIEL, SPC survit (IA éliminé), k=17 teste P1
 ```
 
 ---
@@ -241,12 +250,12 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 38
-- **Scripts** : 152
-- **Auto-tests** : 5840 (100% PASS)
-- **Théorèmes prouvés** : 27 (originaux)
-- **Conjectures ouvertes** : 4 (OD Bound, Ratio Law, PCMG, gcd-discriminant)
-- **Pistes fermées** : 23 (documentées avec raison)
-- **Concepts inventés** : 18 (nommés, dont PCMG = survivant R38)
+- **Rounds** : 39
+- **Scripts** : 156
+- **Auto-tests** : 5920 (100% PASS)
+- **Théorèmes prouvés** : 29 (originaux)
+- **Conjectures ouvertes** : 5 (OD Bound, Ratio Law, PCMG, SPC unicité, P1 coprime)
+- **Pistes fermées** : 24 (documentées avec raison)
+- **Concepts inventés** : 19 (nommés, dont SPC = survivant R39)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
