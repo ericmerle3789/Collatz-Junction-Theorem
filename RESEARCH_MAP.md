@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 10 mars 2026 | **Rounds:** R1–R40 (40 rounds, 160 scripts, 6000 auto-tests)
+**Date:** 10 mars 2026 | **Rounds:** R1–R41 (41 rounds, 164 scripts, 6080 auto-tests)
 
 ---
 
@@ -95,6 +95,7 @@
 | **Polarisation stricte obs∈{1,ω}** | BRISÉE à k=16 : obs=2, ω=3 (premier cas intermédiaire) | R38 |
 | **IA (Indice d'Activité)** | Objet dérivé de SPC, pas de contenu propre, redondant | R39 |
 | **SI (Synchronization Impossibility)** | Puissance discriminative NULLE : mêmes ordres pour SPC et non-SPC, 0/11 prédictions | R40 |
+| **OCC-ALG (C3' algébrique)** | ord_p(2)≥ceil(log₂(k)) redondant avec IE seul, échoue k=17 (ord₅(2)=4<5) | R41 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -110,6 +111,7 @@
 | **Ratio Law** | Observé (N₀·p/C → 1) | Prouver convergence | R29 |
 | **CSSPC (OCC)** | Vérifié k=3..16 (0 faux positif) | Tester k=17, borner ρ théoriquement | R40 |
 | **Couplage total κ=1** | Prouvé sur 5 cas canoniques | Prouver pour tout k≥3 | R40 |
+| **OCC-LITE** | IE seule suffit, gap [4.13, 6.0] | Borner f_p via Weil, prouver IE<θ | R41 |
 
 ---
 
@@ -138,6 +140,8 @@
 | **OCC** (Orbital Coverage Conflict) | Critère per-prime filtrage + IE ; 11/11 classifications correctes | R40 |
 | **CSSPC** (Critère Suffisant SPC) | IE(I)<θ ∧ minimalité ∧ f_p<1/(|I|+1) ⟹ N₀(∏I)=0 [CONJECTURÉ] | R40 |
 | **Couplage monotone total** (κ=1) | N₀_free(SPC)>0 mais N₀_mono(SPC)=0 pour les 5 cas canoniques | R40 |
+| **OCC-LITE** | IE(I) < max(5, C^{1/4}) suffit SEUL (1 condition au lieu de 3) ; survivant R41 | R41 |
+| **Pré-filtre algébrique** | ord_p(2) ≥ ceil(log₂(k)) identifie les primes actifs sans DP | R41 |
 
 ---
 
@@ -174,6 +178,13 @@
 | **OCC prédit 11/11** | Blocking ET non-blocking correctement classifiés par IE+filtrage | R40 |
 | **CSSPC vérifié k=3..16** | 14 SPC, 5 non-SPC, 0 faux positif [CONJECTURÉ] | R40 |
 | **Corrélation rho multi-prime** | ρ>1 pour paires non-SPC (k=12), ρ=0 pour SPC : phénomène d'ordre supérieur | R40 |
+| **C3 = priorité rigidification** | Score 4/5, seule condition exprimable algébriquement sans DP | R41 |
+| **C2 remove-one = full** | Minimalité remove-one ≡ minimalité complète pour k=3..16 [CALCULÉ] | R41 |
+| **OCC-LITE = IE seule suffit** | IE sépare parfaitement blocking (max 4.13) / non-blocking (min 6.0) | R41 |
+| **Gap de séparation IE** | Aucun cas dans [4.13, 6.0] : gap structurel, pas un artefact [OBSERVÉ] | R41 |
+| **k=17 : confirmation** | d=5·71·14303, N₀ calculé, OCC-LITE prédit blocks, OCC-ALG échoue | R41 |
+| **f_p·p ∈ [1,5]** | f_p ~ c/p avec c=O(1) confirme near-equidistribution monotone | R41 |
+| **OCC-ALG : leçon résiduelle** | ord_p(2)≥ceil(log₂k) = pré-filtre valide mais pas critère suffisant | R41 |
 
 ---
 
@@ -213,6 +224,9 @@
 | T30 | Couplage monotone total : κ=1 pour 5 cas canoniques [PROUVÉ par DP] | R40 |
 | T31 | SI discriminative power = 0 : ordres ne prédisent pas blocking [RÉSULTAT NÉGATIF] | R40 |
 | T32 | CSSPC (OCC) : IE(I)<θ ∧ minimalité ∧ filtrage ⟹ N₀=0, vérifié k=3..16 | R40 |
+| T33 | OCC-LITE : IE(I) < max(5,C^{1/4}) seule suffit (C2,C3 redondantes) [OBSERVÉ] | R41 |
+| T34 | Gap de séparation IE : max_blocking=4.13 vs min_surviving=6.0 [CALCULÉ] | R41 |
+| T35 | Minimalité remove-one ≡ minimalité complète pour k=3..16 [CALCULÉ] | R41 |
 
 ---
 
@@ -240,6 +254,7 @@ R37     : LOOS survit (LCM éliminé), obs(k)∈{1,ω(d)}, monotonie = coupleur 
 R38     : Polarisation BRISÉE k=16 (obs=2,ω=3), PCMG survit (PSO éliminé)
 R39     : Ordres = prédicteur PARTIEL, SPC survit (IA éliminé), k=17 teste P1
 R40     : SPC autopsy → κ=1 universel, SI éliminé (0 pouvoir), OCC/CSSPC survit
+R41     : C3 priorité rigidif., OCC-LITE (IE seule) survit, OCC-ALG éliminé, k=17 confirme
 ```
 
 ---
@@ -267,12 +282,12 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 40
-- **Scripts** : 160
-- **Auto-tests** : 6000 (100% PASS)
-- **Théorèmes prouvés** : 32 (originaux)
-- **Conjectures ouvertes** : 6 (OD Bound, Ratio Law, PCMG, SPC unicité, P1 coprime, CSSPC)
-- **Pistes fermées** : 25 (documentées avec raison)
-- **Concepts inventés** : 22 (nommés, dont OCC/CSSPC = survivants R40)
+- **Rounds** : 41
+- **Scripts** : 164
+- **Auto-tests** : 6080 (100% PASS)
+- **Théorèmes prouvés** : 35 (originaux)
+- **Conjectures ouvertes** : 6 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1 universel)
+- **Pistes fermées** : 26 (documentées avec raison)
+- **Concepts inventés** : 24 (nommés, dont OCC-LITE = survivant R41)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
