@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 10 mars 2026 | **Rounds:** R1–R46 (46 rounds, 180 scripts, 6664 auto-tests)
+**Date:** 10 mars 2026 | **Rounds:** R1–R47 (47 rounds, 182 scripts, 6848 auto-tests)
 
 ---
 
@@ -105,6 +105,8 @@
 | **Weyl differencing k≥4** | Simplexe monotone NON invariant par translation, shift B→B+eᵢ viole monotonie | R46 |
 | **MSL-lite (Convolution Mixing)** | Indépendance des Xⱼ=gʲ·2^{Bⱼ} FAUSSE sous monotonie, paliers déterministes | R46 |
 | **Erdős-Turán pour MSL** | Strictement plus faible que ACL, circulaire pour borner μ−1 | R46 |
+| **Near-pairs (T56)** | Absorbé par T55 (h=2 restreint) : distance L¹ ne produit pas d'équation structurée, Hamming = bon paramètre | R47 |
+| **WEL-lite** | Non ciblant : c'est un objectif (μ→1) pas une méthode. SDL décompose le problème en sous-problèmes concrets | R47 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -126,8 +128,9 @@
 | **QEL (Quasi-Equidistrib.)** | D≤1.81, décroît. ACL réduit QEL à borner M₂=ΣN_r² | Prouver M₂≤C²/p+A·C | R43-R44 |
 | **ACL (Aggregate Control)** | f_p ≤ 1/p + √((p-1)(p·M₂-C²))/(p·C) [PROUVÉ] | Montrer ACL serré via M₂ | R44 |
 | **MSL (Monotone Spreading)** | μ=M₂p/C²→1 monotone, M₂≤C²/p+A(p)·C [OBSERVÉ] | Prouver via LSD ou Horner | R45-R46 |
-| **LSD (Spreading Différences)** | h=1 PROUVÉ, far-pair≈1/p OBSERVÉ, near-pair excess borné | Prouver h≥2 via Weil, assembler | R46 |
-| **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via Horner induction ou LSD | R46 |
+| **LSD (Spreading Différences)** | h=1 PROUVÉ, h=2 forme canonique PROUVÉE, 3 sous-cas prouvés (T53-T55) | Borner congruence exp. générique h=2 (route secondaire) | R46-R47 |
+| **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
+| **SDL (Slice Decorrelation)** | ρ=cross/diag formulé, ρ→0 quand ord_p(2) grand [CONJECTURAL] | Prouver ρ→0 pour ord_p(2)≥max_B+1, borner ΣV_{b₀} | R47 |
 
 ---
 
@@ -179,6 +182,13 @@
 | **LSD** (Spreading des Différences) | Collision h=1 ssi ord_p(2)\||Δ|, far-pair rate≈1/p ; survivant R46 [SEMI-FORMEL] | R46 |
 | **Horner Telescoping** | Route prioritaire : induction sur k via condition sur B₀, base k=2 Weyl [SEMI-FORMEL] | R46 |
 | **ord_p(2) collision criterion** | 2 B-vecteurs à distance h=1 collisionnent ssi ord_p(2) divise \|Δ\| [PROUVÉ] | R46 |
+| **h=2 canonical form** | D≡0 mod p ⟺ 2^{a₁}≡α+β·2^{a₂} mod p (somme de 2 exponentielles) [PROUVÉ] | R47 |
+| **Annulation h=2 (T53)** | Si ord_p(2)\|aᵢ, le terme i s'annule → retombe en h=1 [PROUVÉ] | R47 |
+| **Solutions h=2 bound (T54)** | #solutions par valeur de a₂ ≤ ord_p(2) = M [PROUVÉ] | R47 |
+| **Slice decomposition** | S(r)=Σ ω^{r·2^{b₀}}·S_{b₀}^{(k-1)}(r), identité exacte de décomposition [PROUVÉ] | R47 |
+| **SDL** (Slice Decorrelation) | ρ(k,p)=cross/diag → 0 pour k→∞, p fixé [CONJECTURAL mais mesurable] | R47 |
+| **Phase diversity** | #{2^{b₀} mod p : 0≤b₀≤max_B} = min(max_B+1, ord_p(2)) [PROUVÉ] | R47 |
+| **Base k=2 identity** | Pour k=2 : \|S(r)\|=\|T(r)\| avec T(r)=Σ ω^{r·2^b}, factorisation exacte [PROUVÉ] | R47 |
 
 ---
 
@@ -255,6 +265,13 @@
 | **LSD h=1 exact** | Collision à distance Hamming 1 ssi ord_p(2)\||Δ|, vérifié exhaustivement k=3..7 [PROUVÉ] | R46 |
 | **Far-pair rate ≈ 1/p** | Pour h≥k/2, taux de collision ≈ 1/p (quasi-random), ratio 0.97-1.02 [OBSERVÉ] | R46 |
 | **Near-pair excess borné** | Excès near-pair/C ≤ 1.10, collisions structurées concentrées aux petits h [OBSERVÉ] | R46 |
+| **h=2 taux ≈ 1/p** | Contrairement à h=1 (sur-taux), h=2 quasi-aléatoire : taux 0.02-0.20 vs 1/p [OBSERVÉ] | R47 |
+| **h=2 sous-cas classification** | 4 sous-cas : annulation, amplitude égale, adjacent, générique. Les 2 premiers prouvés [PROUVÉ] | R47 |
+| **Equation fondamentale h=2** | 2^{a₁}≡α+β·2^{a₂} mod p, congruence exp. reconnue en théorie des nombres [PROUVÉ] | R47 |
+| **Slice decomposition exacte** | Erreur reconstruction ≤ 1e-12 sur 4 paires (k,p), identité exacte [PROUVÉ] | R47 |
+| **Cross-term ratio ρ** | ρ=0.50 (p=5,k=3) à ρ=0.01 (p=59,k=6), corrélé à ord_p(2) [OBSERVÉ] | R47 |
+| **ord_p(2) gouverne ρ** | ord grand → ρ petit (cancellation), ord petit → ρ grand (interférence) [OBSERVÉ] | R47 |
+| **Arbitrage LSD vs Horner** | LSD = bottom-up (couche par couche), Horner = top-down (1 lemme suffit). Horner prioritaire [SEMI-FORMEL] | R47 |
 
 ---
 
@@ -314,6 +331,12 @@
 | T50 | μ−1 = (p-1)/C + p·E_excess/C² : décomposition structurel/dynamique [PROUVÉ] | R46 |
 | T51 | Weyl differencing BLOQUÉ pour k≥4 : simplexe monotone non invariant par shift [SEMI-FORMEL] | R46 |
 | T52 | LSD h=1 : collision à distance 1 ssi ord_p(2) divise \|Δ\| [PROUVÉ] | R46 |
+| T53 | Annulation h=2 : si ord_p(2)\|aᵢ, le terme i s'annule → réduit à h=1 [PROUVÉ] | R47 |
+| T54 | Solutions h=2 bornées : #solutions par valeur a₂ ≤ ord_p(2) [PROUVÉ] | R47 |
+| T55 | h=2 restreint : E₂/C ≤ A₂(p), sous-cas prouvés, cas général semi-formel [SEMI-FORMEL] | R47 |
+| T56 | Slice decomposition : S(r) = Σ ω^{r·2^{b₀}} · S_{b₀}^{(k-1)}(r) [PROUVÉ] | R47 |
+| T57 | Phase diversity = min(max_B+1, ord_p(2)) [PROUVÉ] | R47 |
+| T58 | Base k=2 : \|S(r)\| = \|T(r)\| avec T(r) = Σ ω^{r·2^b} [PROUVÉ] | R47 |
 
 ---
 
@@ -347,6 +370,7 @@ R43     : Simplex reformulation [PROUVÉ], Horner nesting [PROUVÉ], QEL survit,
 R44     : ACL [PROUVÉ], Parseval corrigé (Σ|S|²=p·M₂), WQE éliminé, M₂ = clé de QEL
 R45     : V≤A·C RÉFUTÉ, M₂=collision count [PROUVÉ], MSL survit (CRL éliminé), taux μ→1 = clé
 R46     : Weyl ÉLIMINÉ k≥4, Horner Telescoping = route prioritaire, LSD h=1 PROUVÉ (ord_p(2)|Δ), MSL-lite ÉLIMINÉ
+R47     : LSD h=2 forme canonique PROUVÉE (T53-T55), Horner slice decomposition PROUVÉE (T56-T58), SDL formulé, ARBITRAGE : Horner = prioritaire R48
 ```
 
 ---
@@ -374,12 +398,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 46
-- **Scripts** : 180
-- **Auto-tests** : 6664 (100% PASS)
-- **Théorèmes prouvés** : 52 (originaux)
-- **Conjectures ouvertes** : 10 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL)
-- **Pistes fermées** : 35 (documentées avec raison)
-- **Concepts inventés** : 46 (nommés, dont LSD/WEL/Horner Telescoping = survivants R46)
+- **Rounds** : 47
+- **Scripts** : 182
+- **Auto-tests** : 6848 (100% PASS)
+- **Théorèmes prouvés** : 58 (originaux)
+- **Conjectures ouvertes** : 11 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, SDL)
+- **Pistes fermées** : 37 (documentées avec raison)
+- **Concepts inventés** : 54 (nommés, dont SDL/Horner/LSD = survivants R47)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
+- **Route prioritaire** : Horner/SDL (R48)
