@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 10 mars 2026 | **Rounds:** R1–R44 (44 rounds, 176 scripts, 6341 auto-tests)
+**Date:** 10 mars 2026 | **Rounds:** R1–R45 (45 rounds, 178 scripts, 6504 auto-tests)
 
 ---
 
@@ -100,6 +100,8 @@
 | **Boundary Majorization** | M<k toujours (log₂3<2), zéro points intérieurs, borne dégénère f_p≤2/p, VIOLÉE | R43 |
 | **Parseval naïf Σ\|S(r)\|²=p·C(k)** | FAUX : correct = p·ΣN_r², l'ancien supposait injection P_B→Z/pZ | R44 |
 | **WQE (Quasi-Equidist. Affaiblie)** | Chebyshev borne la fraction de "mauvais" résidus mais ne contrôle PAS r=0 | R44 |
+| **V ≤ A·C universel** | RÉFUTÉ : V/C=20.4 à k=12,p=5 et croît. V = O(C²/p), pas O(C) | R45 |
+| **CRL (Collision Rarity Lemma)** | Même claim que MSL mais formulation moins propre, éliminé au profit de MSL | R45 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -120,6 +122,7 @@
 | **Bridge C3→OCC-LITE** | f_p≤A/p ⟹ IE<θ quand ∏p>C·Aᵐ/θ, 1/10 SPC satisfait | Améliorer ou prouver asymptotique | R42 |
 | **QEL (Quasi-Equidistrib.)** | D≤1.81, décroît. ACL réduit QEL à borner M₂=ΣN_r² | Prouver M₂≤C²/p+A·C | R43-R44 |
 | **ACL (Aggregate Control)** | f_p ≤ 1/p + √((p-1)(p·M₂-C²))/(p·C) [PROUVÉ] | Montrer ACL serré via M₂ | R44 |
+| **MSL (Monotone Spreading)** | μ=M₂p/C²→1 monotone, M₂≤C²/p+A(p)·C [OBSERVÉ] | Prouver taux μ-1=O(p/C) | R45 |
 
 ---
 
@@ -162,6 +165,10 @@
 | **ACL** (Aggregate Control Lemma) | f_p ≤ 1/p + √((p-1)(p·M₂-C²))/(p·C), première borne analytique sur f_p [PROUVÉ] | R44 |
 | **M₂** (Second Moment) | M₂=Σ_{r=0}^{p-1} N_r², quantité clé : QEL ⇔ M₂≈C²/p [PROUVÉ = identité] | R44 |
 | **Parseval corrigé** | Σ\|S(r)\|²=p·M₂ (pas p·C) ; l'ancien supposait injection P_B→Z/pZ [PROUVÉ] | R44 |
+| **M₂ collision count** | M₂ = #{(B,B') monotones : P_B≡P_{B'} mod p}, reformulation canonique [PROUVÉ] | R45 |
+| **V = L² discrepancy** | V = M₂ - C²/p = Σ(N_r-C/p)², erreur au-dessus de l'uniforme [PROUVÉ] | R45 |
+| **μ = M₂·p/C²** | Multiplicité de collision, μ=1 = parfait, μ→1 quand k→∞ [OBSERVÉ] | R45 |
+| **MSL** (Monotone Spreading Lemma) | M₂ ≤ C²/p + A(p)·C, A dépend de p ; survivant R45 [CONJECTURAL] | R45 |
 
 ---
 
@@ -225,6 +232,11 @@
 | **M₂ = clé de QEL** | Tout le programme QEL se réduit à borner M₂ ; M₂/(C²/p)→1 empiriquement [OBSERVÉ] | R44 |
 | **k=3 Horner partial** | S(r) factorise partiellement via Horner à k=3 ; k≥4 couplage simplexe bloque | R44 |
 | **WQE ne contrôle pas r=0** | Chebyshev borne #mauvais résidus mais le résidu 0 peut être mauvais [PROUVÉ] | R44 |
+| **M₂ = collision count** | M₂=#{(B,B'):P_B≡P_{B'} mod p}, validé par brute-force sur 4 paires [PROUVÉ] | R45 |
+| **V/C non borné** | V/C=20.4 (k=12,p=5), croît : variance naturelle quand C/p grand. Pas un défaut [CALCULÉ] | R45 |
+| **μ→1 monotone** | μ=M₂p/C² décroît vers 1 : 1.667→1.010→1.001 (p=5, k=3→9→12) [OBSERVÉ] | R45 |
+| **Taux de convergence = clé** | Si μ-1=O(p/C) → f_p=O(1/p). Si μ-1=O(1) → f_p=O(1/√p) seulement [SEMI-FORMEL] | R45 |
+| **Collisions non géométriques** | L1_coll/L1_random ≈ 1.04, collisions par annulation arithmétique, pas proximité [OBSERVÉ] | R45 |
 
 ---
 
@@ -278,6 +290,9 @@
 | T44 | Parseval corrigé : Σ\|S(r)\|²=p·M₂ (pas p·C), injection P_B fausse [PROUVÉ] | R44 |
 | T45 | ACL : f_p ≤ 1/p + √((p-1)(p·M₂-C²))/(p·C), première borne analytique [PROUVÉ] | R44 |
 | T46 | WQE insuffisant : Chebyshev borne #mauvais résidus mais ne contrôle pas r=0 [PROUVÉ] | R44 |
+| T47 | M₂ = #{(B,B') : P_B≡P_{B'} mod p} : collision count reformulation [PROUVÉ] | R45 |
+| T48 | V ≤ A·C universel RÉFUTÉ : V/C=20.4 (k=12,p=5), V = O(C²/p) pas O(C) [RÉFUTÉ] | R45 |
+| T49 | MSL modéré : M₂ ≤ C²/p + A(p)·C, vérifié k=3..12, μ→1 monotone [OBSERVÉ] | R45 |
 
 ---
 
@@ -309,6 +324,7 @@ R41     : C3 priorité rigidif., OCC-LITE (IE seule) survit, OCC-ALG éliminé, 
 R42     : f_p ≤ 12/p (SEMI-PROVABLE, Ehrhart route), Sub-Independence RÉFUTÉ, Bridge survit
 R43     : Simplex reformulation [PROUVÉ], Horner nesting [PROUVÉ], QEL survit, Boundary tué (M<k)
 R44     : ACL [PROUVÉ], Parseval corrigé (Σ|S|²=p·M₂), WQE éliminé, M₂ = clé de QEL
+R45     : V≤A·C RÉFUTÉ, M₂=collision count [PROUVÉ], MSL survit (CRL éliminé), taux μ→1 = clé
 ```
 
 ---
@@ -336,12 +352,12 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 44
-- **Scripts** : 176
-- **Auto-tests** : 6341 (100% PASS)
-- **Théorèmes prouvés** : 46 (originaux)
-- **Conjectures ouvertes** : 8 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, borne f_p≤A/p, QEL)
-- **Pistes fermées** : 30 (documentées avec raison)
-- **Concepts inventés** : 36 (nommés, dont ACL/M₂ = survivants R44)
+- **Rounds** : 45
+- **Scripts** : 178
+- **Auto-tests** : 6504 (100% PASS)
+- **Théorèmes prouvés** : 49 (originaux)
+- **Conjectures ouvertes** : 8 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL)
+- **Pistes fermées** : 32 (documentées avec raison)
+- **Concepts inventés** : 40 (nommés, dont MSL/μ = survivants R45)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
