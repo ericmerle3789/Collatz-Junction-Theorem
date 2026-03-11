@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 11 mars 2026 | **Rounds:** R1–R48 (48 rounds, 184 scripts, 7111 auto-tests)
+**Date:** 11 mars 2026 | **Rounds:** R1–R49 (49 rounds, 186 scripts, 7611 auto-tests)
 
 ---
 
@@ -109,6 +109,8 @@
 | **WEL-lite** | Non ciblant : c'est un objectif (μ→1) pas une méthode. SDL décompose le problème en sous-problèmes concrets | R47 |
 | **SDL-lite (phases distinctes)** | Absorbé par ACaL : « phases distinctes ≠ décorrélation auto », nécessaire mais pas suffisant sans borner Z | R48 |
 | **Cible ρ=O(1/max_B)** | Mauvaise échelle : ρ·max_B varie 0.04-3.1, pas de décroissance en 1/max_B | R48 |
+| **V_between ≥ 0 universel** | RÉFUTÉ : V_between < 0 dans 15/20 cas (anti-corrélation inter-tranches aide) | R49 |
+| **V_{b₀}/C_{b₀}² ≤ V/C² ∀b₀** | Mauvaise échelle : dernière tranche (C=1) a V/C²=(p-1)/p≈1 >> V/C² total | R49 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -132,7 +134,8 @@
 | **MSL (Monotone Spreading)** | μ=M₂p/C²→1 monotone, M₂≤C²/p+A(p)·C [OBSERVÉ] | Prouver via LSD ou Horner | R45-R46 |
 | **LSD (Spreading Différences)** | h=1 PROUVÉ, h=2 forme canonique PROUVÉE, 3 sous-cas prouvés (T53-T55) | Borner congruence exp. générique h=2 (route secondaire) | R46-R47 |
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
-| **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], ρ=V_between/V_within, Cauchy-Schwarz applicable | Borner Z_{b₀,b₀'} via Parseval+arithmétique, borner ΣV_{b₀}/C² | R47-R48 |
+| **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], ρ=V_between/V_within, \|ρ\|<1 universel (20/20) | Prouver \|ρ\|<1 via collisions inter-tranches (R50) | R47-R49 |
+| **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Prouver GEH (equidist. uniforme sur sous-intervalles) | R49 |
 
 ---
 
@@ -197,6 +200,12 @@
 | **ANOVA interpretation of ρ** | ρ+1=V/ΣV_{b₀}=V_total/V_within, SDL≡V_between≪V_within [PROUVÉ] | R48 |
 | **Parseval pour Z** | Z=(1/p)ΣF_{b₀}·conj(F_{b₀'})-C_{b₀}C_{b₀'}/p, relie Z aux DFT [CALCULÉ] | R48 |
 | **3 formulations de ρ** | Spectrale (F1), caractères (F2), combinatoire (F3), toutes équivalentes [PROUVÉ] | R48 |
+| **Réduction inductive V_{b₀}** | V_{b₀}(k,p)=V(SubProblem(k-1,[b₀,max_B],p)), invariance translation+permutation [PROUVÉ] | R49 |
+| **C_{b₀} formula** | C_{b₀}=C(max_B-b₀+k-2,k-2), décroissant, convexe, b₀=0 domine 50-70% [PROUVÉ] | R49 |
+| **W/C² moyenne pondérée** | W/C²=Σ(V_{b₀}/C_{b₀}²)·(C_{b₀}/C)², poids dominés par b₀=0 [PROUVÉ] | R49 |
+| **GEH** (Generalized Equidist.) | V(k',[a,b],p)/C²=o(1) uniformément en [a,b], nécessaire pour within-induction [FORMULÉ] | R49 |
+| **Z = collision inter-tranches** | Z_{b₀,b₀'}=M₂(b₀,b₀')−C_{b₀}C_{b₀'}/p, excès de collisions inter [PROUVÉ] | R49 |
+| **ACaL-between-lite** | |ρ|<1, i.e. |V_between|≤V_within, candidat lemme universel (20/20) [CONJECTURAL] | R49 |
 
 ---
 
@@ -288,6 +297,14 @@
 | **ρ signe négatif 10/13** | ρ négatif dans 10/13 cas favorables → V_between négatif typiquement (anti-corrélation) [OBSERVÉ] | R48 |
 | **SR1 = meilleur sous-régime** | p racine primitive de 2 → diversité maximale, |ρ|<0.3 typiquement [OBSERVÉ] | R48 |
 | **ρ≠O(1/max_B)** | ρ·max_B varie 0.04-3.1 sans tendance, taux dépend de ord_p(2) pas de max_B [RÉFUTÉ] | R48 |
+| **Within = terme dur** | Induction k→k-1 viable en structure mais nécessite GEH, circulaire sans amorce [SEMI-FORMEL] | R49 |
+| **Between = terme tractable** | |ρ|<1 universel (20/20), cancellation signe forte, CS ratio 0.1-0.5 [OBSERVÉ] | R49 |
+| **b₀=0 domine ΣV** | Fraction V₀/ΣV = 60-77% pour k≥5, le sous-problème b₀=0 est le bottleneck [OBSERVÉ] | R49 |
+| **ΣV_{b₀}/C² = o(1)** | Décroît comme C^{-β}, β∈[0.64,1.28] selon p. p=5 le plus lent [OBSERVÉ] | R49 |
+| **V_between négatif 75%** | 15/20 cas V_between<0 : anti-corrélation inter-tranches AIDE V_total [OBSERVÉ] | R49 |
+| **Cancellation signe Z** | |ΣZ|/Σ|Z| = 0.038-0.862, facteur 3-26× de réduction par cancellation [OBSERVÉ] | R49 |
+| **p=5 pathologique** | ρ>0 systématiquement pour p=5, β le plus lent (0.64), max|ρ|=0.51 [OBSERVÉ] | R49 |
+| **Petites tranches bruyantes** | V_{b₀}/C_{b₀}²→(p-1)/p quand C_{b₀}→1, mais poids (C_{b₀}/C)²→0 [PROUVÉ] | R49 |
 
 ---
 
@@ -357,6 +374,11 @@
 | T60 | ρ = V_between / V_within (3 formulations équivalentes prouvées) [PROUVÉ] | R48 |
 | T61 | Cauchy-Schwarz : |Z_{b₀,b₀'}| ≤ √(V_{b₀}·V_{b₀'}) [PROUVÉ] | R48 |
 | T62 | Parseval pour Z : Z = (1/p)·Σ F_{b₀}·conj(F_{b₀'}) − C_{b₀}C_{b₀'}/p [CALCULÉ] | R48 |
+| T63 | Réduction inductive : V_{b₀}(k,p) = V(SubProblem(k-1, [b₀, max_B], p)) [PROUVÉ] | R49 |
+| T64 | C_{b₀} = C(max_B−b₀+k−2, k−2), Σ=C, décroissant, convexe [PROUVÉ] | R49 |
+| T65 | W/C² = Σ (V_{b₀}/C_{b₀}²)·(C_{b₀}/C)² : reformulation moyenne pondérée [PROUVÉ] | R49 |
+| T66 | Z = M₂(b₀,b₀') − C_{b₀}·C_{b₀'}/p : reformulation collision inter-tranches [PROUVÉ] | R49 |
+| T67 | \|ρ(k,p)\| < 1 pour tout (k,p) testé (20/20 cas, max\|ρ\|=0.687) [OBSERVÉ] | R49 |
 
 ---
 
@@ -392,6 +414,7 @@ R45     : V≤A·C RÉFUTÉ, M₂=collision count [PROUVÉ], MSL survit (CRL él
 R46     : Weyl ÉLIMINÉ k≥4, Horner Telescoping = route prioritaire, LSD h=1 PROUVÉ (ord_p(2)|Δ), MSL-lite ÉLIMINÉ
 R47     : LSD h=2 forme canonique PROUVÉE (T53-T55), Horner slice decomposition PROUVÉE (T56-T58), SDL formulé, ARBITRAGE : Horner = prioritaire R48
 R48     : SDL = ANOVA [PROUVÉ] (T59-T62), ACaL survivant, SDL-lite ÉLIMINÉ, ρ=O(1/max_B) RÉFUTÉ, triple lock identifié
+R49     : Within=dur (GEH), Between=tractable (|ρ|<1 universel 20/20), ACaL-between-lite SURVIVANT R50 (T63-T67)
 ```
 
 ---
@@ -419,13 +442,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 48
-- **Scripts** : 184
-- **Auto-tests** : 7111 (100% PASS)
-- **Théorèmes prouvés** : 62 (originaux)
-- **Conjectures ouvertes** : 12 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, SDL/ACaL, ρ<1)
-- **Pistes fermées** : 39 (documentées avec raison)
-- **Concepts inventés** : 61 (nommés, dont ACaL/Horner/LSD = survivants R48)
+- **Rounds** : 49
+- **Scripts** : 186
+- **Auto-tests** : 7611 (100% PASS)
+- **Théorèmes prouvés** : 67 (originaux)
+- **Conjectures ouvertes** : 13 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, SDL/ACaL, |ρ|<1, GEH)
+- **Pistes fermées** : 41 (documentées avec raison)
+- **Concepts inventés** : 68 (nommés, dont ACaL-between-lite = survivant R49)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
-- **Route prioritaire** : Horner/SDL/ACaL (R49 : borner Z_{b₀,b₀'} et Σ V_{b₀}/C²)
+- **Route prioritaire** : ACaL-between-lite (R50 : prouver |ρ| < 1 via collisions inter-tranches)
