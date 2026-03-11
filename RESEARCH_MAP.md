@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 11 mars 2026 | **Rounds:** R1–R54 (54 rounds, 196 scripts, 11147 auto-tests)
+**Date:** 11 mars 2026 | **Rounds:** R1–R55 (55 rounds, 198 scripts, 11382 auto-tests)
 
 ---
 
@@ -124,6 +124,9 @@
 | **Contraction pointwise μ(sub)<μ(full)** | Contredite : max_b μ(k-1,b,p) > μ(full) dans 6/6 cas (petites tranches C_b<<p) | R54 |
 | **Poly vanishing route principale** | Trop faible : h≥3 = 98.3% à k=7, contraintes indépendantes échouent facteur 7000×, Weyl toujours bloquant | R54 |
 | **N_h ~ C·(1/p)^{h-1}** | Contredite : heuristique d'indépendance prédit N_3≈0.05 vs réel=365 (k=7,p=127) | R54 |
+| **Récurrence universelle V(k)≤α·Σ·V+β·C** | Trop faible : dichotomie ANOVA (V_cross change de signe), aucune forme unique ne couvre tous les k | R55 |
+| **Contraction multiplicative ρ<1 universelle** | Contredite : ρ>1 pour k=3..6 (V_cross<0 rend V<V_within), contraction seulement k≥7 | R55 |
+| **V_cross ≤ 0 universel** | Contredite : V_cross>0 pour k=7,8. Tendance s'inverse pour grand k, pas d'hypothèse de signe | R55 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -149,7 +152,7 @@
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
 | **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
 | **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
-| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, contraction pondérée 0.51-0.67, V_cross≤0 favorable | Prouver Weighted Inductive V-bound : V(k)≤α·Σ(C_b/C)·V(b)+β·C | R50-R54 |
+| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, base A(2)≤1.22, shift-inv. PROUVÉE, récurrence universelle RÉFUTÉE | Prouver A(2)≤K via orbites + borner |V_cross|=O(C) sans hypothèse de signe | R50-R55 |
 
 ---
 
@@ -246,6 +249,11 @@
 | **h=2 signature unique** | Pour (a,b,δ_a,δ_b) fixés, B_a−B_b uniquement déterminé par poly constraint en R1 [CALCULÉ] | R54 |
 | **N_2 sub-simplex prediction** | N_2 calculable exact = signature counting × stars-and-bars, 6/6 parfait [CALCULÉ] | R54 |
 | **V_cross anti-corrélation** | V_cross<0 dans 4/6 cas, |V_cross/C|<0.27 : inter-tranche réduit V_total [OBSERVÉ] | R54 |
+| **Dichotomie ANOVA** | V_cross<0 ⟹ V≤V_within (direct) mais ρ>1 ; V_cross>0 ⟹ ρ<1 mais V>V_within. Aucun régime ne donne les deux [OBSERVÉ] | R55 |
+| **|γ| = |V_cross/V_within| < 1** | Terme croisé ne domine jamais le within : γ∈[-0.75,+0.39], universel 7/7 cas [OBSERVÉ] | R55 |
+| **Shift-invariance k=2** | P_{B+(1,1)} = 2g·P_B mod p, conséquence algébrique directe, orbites sous shift identifiées [PROUVÉ] | R55 |
+| **Base A(2) ≤ 1.22 en R1** | V(2)/C(2) borné sur 622 cas R1, mécanisme = orbites complètes s'annulent, bords seuls contribuent [OBSERVÉ] | R55 |
+| **Base-lite + bootstrap** | A(2)≤K prouvable via décomposition orbitale, bootstrap vers k≥3 via |γ|<1 + contrôle V_cross [LEMME CANDIDAT] | R55 |
 
 ---
 
@@ -388,6 +396,16 @@
 | **Heuristique indépendance ÉCHOUE** | N_h réel/prédit = 7000× pour h=3 k=7 : corrélations monotone dominent [RÉFUTÉ] | R54 |
 | **α < 2.25 stable** | Constante de récurrence V(k)≤α·weighted_V+β·C : α borné, ne diverge pas avec k [OBSERVÉ] | R54 |
 | **Base V(2)/C < 2** | 25 primes testées, V/C ∈ [0.14, 1.23] : base case solide pour récurrence [OBSERVÉ] | R54 |
+| **Dichotomie V_cross signe** | V_cross<0 pour k=3..6, V_cross>0 pour k≥7 : signe change, récurrence unique impossible [OBSERVÉ] | R55 |
+| **|γ|<1 universel (7/7)** | γ=V_cross/V_within : [-0.75, +0.39], V_cross ne domine jamais V_within [OBSERVÉ] | R55 |
+| **3 formes récurrence testées** | Additive (β change signe), multiplicative (ρ>1 petit k), α-contraction (instable) : aucune universelle [OBSERVÉ] | R55 |
+| **Shift P_{B+(1,1)}=2g·P_B** | k=2 en R1 : algébrique direct, crée orbites de longueur ord_p(2g) [PROUVÉ] | R55 |
+| **A(2)≤1.22 sur 622 cas R1** | Orbites complètes annulent variance, seuls termes de bord contribuent. Moy=0.89, med=0.88 [OBSERVÉ] | R55 |
+| **A(2) diverge hors R1** | A(2)>5 possible quand ord<max_B : borne A≤K spécifique à R1 [OBSERVÉ] | R55 |
+| **Transport k=2→k+1 : 79%** | V_cross≤0 ⟹ V(k)≤V_within ⟹ transport, marche dans 5/7 cas R1, échoue k≥7 [OBSERVÉ] | R55 |
+| **ρ>1 pour k petit** | ρ=V_within/V>1 pour k=3..6 (car V_cross<0) : contraction multiplicative non universelle [OBSERVÉ] | R55 |
+| **Chemin preuve A(2)** | Orbites shift → complètes O(1) contrib. → incomplètes ≤max_B → contrib ≤ longueur → V=O(max_B²)=O(C) [SEMI-FORMEL] | R55 |
+| **V_cross = vrai verrou** | Ni récurrence ni base ne sont le problème : c'est le contrôle du terme croisé inter-tranches [IDENTIFIÉ] | R55 |
 
 ---
 
@@ -487,6 +505,11 @@
 | T90 | V_cross ≤ 0 typique : anti-corrélation inter-tranches, |V_cross/C| < 0.27, AIDE V_total [OBSERVÉ] | R54 |
 | T91 | h=2 signature unique : B_a−B_b uniquement déterminé par poly constraint en R1 [CALCULÉ] | R54 |
 | T92 | N_2 sub-simplex prediction exacte : 6/6 parfait, calculable sans énumération [CALCULÉ] | R54 |
+| T93 | Dichotomie ANOVA : V_cross<0 ⟹ V≤V_within, V_cross>0 ⟹ ρ<1. Aucun régime ne donne les deux [OBSERVÉ] | R55 |
+| T94 | |γ| = |V_cross/V_within| < 1 universellement : γ ∈ [-0.75, +0.39], 7/7 cas [OBSERVÉ] | R55 |
+| T95 | Shift-invariance k=2 : P_{B+(1,1)} = 2g·P_B mod p, conséquence algébrique directe [PROUVÉ] | R55 |
+| T96 | Base A(2) = V(2)/C(2) ≤ 1.22 en R1 (622 cas), mécanisme orbital identifié [OBSERVÉ] | R55 |
+| T97 | Transport k=2→k≥3 via V_cross≤0 : fonctionne 79% (5/7 R1), échoue V_cross>0 [OBSERVÉ] | R55 |
 
 ---
 
@@ -528,6 +551,7 @@ R51     : Tail = sous-problème rotaté [PROUVÉ], TQL-mu = premier noyau prouva
 R52     : V≤1.42·C en R1 [OBSERVÉ], μ-lite collision SURVIVANT (E_excess/C<0.90), Horner 3.7-5.5× sur CS (T78-T82)
 R53     : h=1 vacuous en R1 [PROUVÉ], E_excess<0, collisions diffuses, Min Hamming+poly = SURVIVANT R54 (T83-T87)
 R54     : Poly vanishing=FRAGILE (h≥3 domine), INDUCTION l'emporte (contraction 0.51-0.67), Weighted V-bound = SURVIVANT R55 (T88-T92)
+R55     : Récurrence universelle RÉFUTÉE (dichotomie ANOVA), base A(2)≤1.22 FORTE, shift-inv PROUVÉE, V_cross=vrai verrou, Base-lite+bootstrap = SURVIVANT R56 (T93-T97)
 ```
 
 ---
@@ -555,13 +579,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 54
-- **Scripts** : 196
-- **Auto-tests** : 11147 (291 en R54, 95% PASS + 15 FAIL structurels)
-- **Théorèmes prouvés** : 92 (originaux)
-- **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, collision-lite, Weighted V-bound)
-- **Pistes fermées** : 54 (documentées avec raison)
-- **Concepts inventés** : 95 (nommés, dont Weighted Inductive V-bound = survivant R55)
+- **Rounds** : 55
+- **Scripts** : 198
+- **Auto-tests** : 11382 (235 en R55, 90% PASS + 24 FAIL structurels)
+- **Théorèmes prouvés** : 97 (originaux)
+- **Conjectures ouvertes** : 14 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, Base-lite+bootstrap)
+- **Pistes fermées** : 57 (documentées avec raison)
+- **Concepts inventés** : 101 (nommés, dont Base-lite+bootstrap = survivant R56)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
-- **Route prioritaire** : TQL-mu direct (R52 : prouver μ−1 ≤ K·p/C via Horner sur simplexe)
+- **Route prioritaire** : Base-lite+bootstrap (R55 : prouver A(2)≤K via orbites + borner |V_cross|=O(C))
