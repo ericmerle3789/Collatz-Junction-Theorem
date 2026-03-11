@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 11 mars 2026 | **Rounds:** R1–R56 (56 rounds, 200 scripts, 11587 auto-tests)
+**Date:** 11 mars 2026 | **Rounds:** R1–R57 (57 rounds, 202 scripts, 11677 auto-tests)
 
 ---
 
@@ -130,6 +130,9 @@
 | **A(2) ≤ 1.22 universel** | Corrigée par R56 : A(2)≤2.28 sur 2931 cas R1. Cas dégénéré g≡-1 mod p (A=2.28) manquait dans R55 (622 cas) | R56 |
 | **Cauchy-Schwarz pour |γ|<1** | PROUVÉ INSUFFISANT : Jensen ⟹ θ_CS = CS/V_within ≥ n-1 ≥ 1, CS ne peut structurellement prouver |γ|<1 | R56 |
 | **Cross-first strategy** | Éliminée : V_cross contrôle = OBSERVÉ SEULEMENT, aucun outil de preuve disponible. Base k=2 plus prouvable | R56 |
+| **Orbites complètes comme levier base** | Trop faible : en R1 TOUTES orbites sont incomplètes (prouvé R56), lemme V=0 orbites complètes est vacueux | R57 |
+| **max N_r ≈ C/p (équidist. naïve)** | Mauvaise échelle : ratio multiplicatif max N_r/(C/p) atteint 25.7, bonne borne = additive pas multiplicative | R57 |
+| **Base-first séquentiel strict** | Non ciblante : base déjà semi-formalisée (6 faits prouvés), cross utilise outils DIFFÉRENTS, parallèle > séquentiel | R57 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -155,7 +158,7 @@
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
 | **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
 | **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
-| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, base A(2)≤2.28 (corrigé R56), shift-inv. PROUVÉE, CS INSUFFISANT [PROUVÉ R56], cancellation phases 89% | Prouver A(2)≤K via max N_r (gap = discrete log) + borner |V_cross|/C→0 (observé C^{-0.25}) | R50-R56 |
+| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, δ-reformulation PROUVÉE (6 faits), gap = dlogs suite affine c_δ=1+g·2^δ, identité bilinéaire Z PROUVÉE | Prouver borne dlogs suites affines + bound |Z|≤K·√p individuel | R50-R57 |
 
 ---
 
@@ -263,6 +266,14 @@
 | **Phase cancellation 89%** | |V_cross| utilise 11% du bound CS, 89% annulé par rotations ω^{r·Δ(b,b')} : vrai mécanisme [OBSERVÉ] | R56 |
 | **Décroissance |V_cross|/C ~ C^{-0.25}** | V_cross = o(C) observé asymptotiquement, plus fort que V_cross=O(C), fit power-law [OBSERVÉ] | R56 |
 | **Gap max N_r** | Prouver A(2)≤K se réduit à borner max_r N_r = #{(a,b): 2^a+g·2^b≡r mod p} via structure log discret [IDENTIFIÉ] | R56 |
+| **δ-reformulation** | N_r = #{δ ∈ [0,M] : dlog(r/c_δ) ∈ [0,M-δ]}, c_δ=(1+g·2^δ) mod p, factorisation P=2^a·c_δ [PROUVÉ] | R57 |
+| **Suite affine c_δ** | c_{δ+1} = 2c_δ − 1 mod p, suite AFFINE (pas géométrique), tous c_δ distincts en R1 [PROUVÉ] | R57 |
+| **Borne triviale N_r ≤ M+1 en R1** | Chaque δ contribue au plus 1 solution (car ord > M+1), borne exacte atteinte par N_0 si g≡-1 [PROUVÉ] | R57 |
+| **Borne sub-triviale K_lin < 1** | max N_r ≤ C/p + 0.76·(M+1) en R1 générique : distribution PAS concentrée [OBSERVÉ] | R57 |
+| **Identité bilinéaire Z** | Z_{b,b'} = #{(a,a'): a+b≡a'+b' mod ord, a∈[0,b], a'∈[0,b']} − C_b·C_{b'}/p, forme bilinéaire exacte [PROUVÉ] | R57 |
+| **Cancellation agrégée 50%** | |Σ Z_{b,b'}|/Σ|Z_{b,b'}| ≈ 0.50, signes mixtes (44%/56%), cancellation structurelle [OBSERVÉ] | R57 |
+| **Cross-lite Candidat B** | |V_cross|/C → 0 (pente -0.246 en log-log), target le plus robuste et le plus prouvable [OBSERVÉ] | R57 |
+| **K' Kloosterman normalisé** | |Z|/(baseline·√p) < 1 dans tous les cas testés, connexion Weil non rigoureuse [OBSERVÉ] | R57 |
 
 ---
 
@@ -426,6 +437,17 @@
 | **|γ|<1 confirmé 28/28** | Extension de 7/7 (R55) à 28/28 (R56, k=3..9), max|γ|=0.87 (k=3,p=5), robuste [OBSERVÉ] | R56 |
 | **V_cross signe non prédictible** | V_cross change de signe selon (k,p), pas juste selon k. Pas de pattern simple [OBSERVÉ] | R56 |
 | **Spectral reformulation V_cross** | V_cross = (1/p)Σ_{r≥1}Σ_{b≠b'} S_b(r)·conj(S_{b'}(r)), identité exacte vérifiée (120 sous-tests) [PROUVÉ] | R56 |
+| **δ-reformulation = bonne vue** | P_{(a,b)}=2^a·c_{b-a}, N_r=#{δ:dlog(r/c_δ)∈[0,M-δ]}, réduit tout à comptage de hits dans fenêtres | R57 |
+| **c_δ affine, pas géométrique** | c_{δ+1}=2c_δ−1 : pseudo-orbite plus complexe qu'orbite multiplicative. log(somme)≠somme(log) = difficulté | R57 |
+| **max N_r / (M+1) ≤ 0.91 générique** | Distribution PAS concentrée : aucun résidu ne capture >91% des couches δ [OBSERVÉ, 300+ cas] | R57 |
+| **Borne sqrt : K=6.48** | max N_r ≤ C/p + 6.48·√(M+1), tight, donnerait A(2)=O(p/M)→0 si prouvable [OBSERVÉ] | R57 |
+| **N_0 pas spécial en générique** | N_0 < max_{r>0} N_r dans 95% des cas : r=0 n'est pas le résidu le plus chargé [OBSERVÉ] | R57 |
+| **Z = congruence bilinéaire** | Z_{b,b'} = #{a+b≡a'+b' mod ord} − C_b·C_{b'}/p : réduit le cross à un lattice counting [PROUVÉ] | R57 |
+| **CS ratio 0.115** | |V_cross|/CS_bound = 11.5% en moyenne : CS perd 88.5% de l'énergie par design [CONFIRMÉ] | R57 |
+| **Signes Z mixtes 44/56%** | Z_{b,b'} positifs 44%, négatifs 56% : cancellation agrégée structurelle, pas artefact [OBSERVÉ] | R57 |
+| **K' Kloosterman < 1 normalisé** | |Z|/(C_b·C_{b'}/p·√p) borné < 1 : borne type Weil plausible mais non rigoureuse [OBSERVÉ] | R57 |
+| **Maturité cross 3/5** | ✅ Identité bilinéaire ✅ CS compris ✅ Cancellation quantifiée ❌ |Z| bound ❌ Weil connection [ÉVALUÉ] | R57 |
+| **5 outils morts cross** | CS, QO seule, récurrence univ., V_cross≤0 univ., ρ<1 univ. — ne PAS ressusciter [INVENTORIÉ] | R57 |
 
 ---
 
@@ -535,6 +557,11 @@
 | T100 | Décomposition orbitale : N_r = N_r^{complet} + N_r^{incomplet}, complètes→V=0, R1→toutes incomplètes [PROUVÉ] | R56 |
 | T101 | CS INSUFFISANT pour |γ|<1 : Jensen ⟹ θ_CS ≥ n-1 ≥ 1, CS ne peut prouver |γ|<1 [PROUVÉ] | R56 |
 | T102 | Phase cancellation = 89% : |V_cross| utilise 11% du bound CS, rotation ω^{r·Δ} annule le reste [OBSERVÉ] | R56 |
+| T103 | δ-reformulation : N_r = #{δ : dlog(r/c_δ) ∈ [0,M-δ]}, c_δ=(1+g·2^δ), identité algébrique exacte [PROUVÉ] | R57 |
+| T104 | En R1, chaque δ contribue ≤1 solution, c_δ tous distincts, borne triviale N_r ≤ M+1 [PROUVÉ] | R57 |
+| T105 | Récurrence c_{δ+1} = 2c_δ − 1 mod p : suite AFFINE, tous termes distincts en R1 [PROUVÉ] | R57 |
+| T106 | Borne sub-triviale : max N_r ≤ C/p + 0.76·(M+1) en R1 générique, K < 1 strict [OBSERVÉ] | R57 |
+| T107 | Identité bilinéaire : Z_{b,b'} = #{a+b≡a'+b' mod ord} − C_b·C_{b'}/p, forme bilinéaire exacte [PROUVÉ] | R57 |
 
 ---
 
@@ -578,6 +605,7 @@ R53     : h=1 vacuous en R1 [PROUVÉ], E_excess<0, collisions diffuses, Min Hamm
 R54     : Poly vanishing=FRAGILE (h≥3 domine), INDUCTION l'emporte (contraction 0.51-0.67), Weighted V-bound = SURVIVANT R55 (T88-T92)
 R55     : Récurrence universelle RÉFUTÉE (dichotomie ANOVA), base A(2)≤1.22 FORTE, shift-inv PROUVÉE, V_cross=vrai verrou, Base-lite+bootstrap = SURVIVANT R56 (T93-T97)
 R56     : A(2) corrigé ≤2.28 (dégénéré g≡-1 PROUVÉ), CS INSUFFISANT [PROUVÉ Jensen], cancellation phases 89%, gap=max N_r, Base-lite+cross-lite = SURVIVANT R57 (T98-T102)
+R57     : δ-reformulation PROUVÉE (6 faits), suite affine c_δ, borne sub-triviale K<1, identité bilinéaire Z PROUVÉE, cross-lite B cadré, Base+cross parallèles = SURVIVANT R58 (T103-T107)
 ```
 
 ---
@@ -605,13 +633,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 56
-- **Scripts** : 200
-- **Auto-tests** : 11587 (205 en R56 : 44 base + 161 V_cross, 100% PASS)
-- **Théorèmes prouvés** : 102 (originaux, dont T100 = milestone #100)
-- **Conjectures ouvertes** : 14 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, Base-lite+cross-lite)
-- **Pistes fermées** : 60 (documentées avec raison, +3 en R56)
-- **Concepts inventés** : 107 (nommés, dont Base-lite+cross-lite = survivant R57)
+- **Rounds** : 57
+- **Scripts** : 202
+- **Auto-tests** : 11677 (90 en R57 : 48 base + 42 cross, 100% PASS)
+- **Théorèmes prouvés** : 107 (originaux)
+- **Conjectures ouvertes** : 14 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, Base+cross)
+- **Pistes fermées** : 63 (documentées avec raison, +3 en R57)
+- **Concepts inventés** : 115 (nommés, dont Base+cross parallèles = survivant R58)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
-- **Route prioritaire** : Base-lite+cross-lite (R56 : prouver A(2)≤K via max N_r [gap=discrete log] + borner |V_cross|/C→0 [observé C^{-0.25}])
+- **Route prioritaire** : Base+cross parallèles (R57 : borne dlogs suites affines [gap base] + bound |Z|≤K·√p [gap cross])
