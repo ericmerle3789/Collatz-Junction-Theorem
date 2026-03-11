@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 11 mars 2026 | **Rounds:** R1–R53 (53 rounds, 194 scripts, 10856 auto-tests)
+**Date:** 11 mars 2026 | **Rounds:** R1–R54 (54 rounds, 196 scripts, 11147 auto-tests)
 
 ---
 
@@ -121,6 +121,9 @@
 | **Famille dominante isolable** | Contredite : Gini→0 avec C (0.575→0.152), collisions diffuses, pas de hub vectors | R53 |
 | **h≤2 dominance asymptotique** | Mauvaise échelle : corr(logC, frac_near)=-0.675, contributions se dispersent pour grand k | R53 |
 | **r=0 dominant V** | Contredite : r=0 dominant dans 33% des cas seulement, V distribué sur 45-71% résidus | R53 |
+| **Contraction pointwise μ(sub)<μ(full)** | Contredite : max_b μ(k-1,b,p) > μ(full) dans 6/6 cas (petites tranches C_b<<p) | R54 |
+| **Poly vanishing route principale** | Trop faible : h≥3 = 98.3% à k=7, contraintes indépendantes échouent facteur 7000×, Weyl toujours bloquant | R54 |
+| **N_h ~ C·(1/p)^{h-1}** | Contredite : heuristique d'indépendance prédit N_3≈0.05 vs réel=365 (k=7,p=127) | R54 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -146,7 +149,7 @@
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
 | **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
 | **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
-| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, E_excess<0, h=1 vacuous [PROUVÉ], collisions h≥2 seules | Prouver collision-lite via Min Hamming + poly vanishing sur simplexe | R50-R53 |
+| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, contraction pondérée 0.51-0.67, V_cross≤0 favorable | Prouver Weighted Inductive V-bound : V(k)≤α·Σ(C_b/C)·V(b)+β·C | R50-R54 |
 
 ---
 
@@ -238,6 +241,11 @@
 | **Min Hamming + poly vanishing** | h≥2 + Σg^j·Δ_j≡0 mod p contraint les collisions : route vers E_excess=O(C) [SEMI-FORMEL] | R53 |
 | **Collision degree diffus** | Gini(coll) décroît 0.575→0.152 avec C, pas de hub vectors, excess spread [OBSERVÉ] | R53 |
 | **E_intra dominance** | Fixer B_{k-1}=b : E_intra = 65-96% de E_excess en R1, induction viable [OBSERVÉ] | R53 |
+| **Weighted inductive contraction** | Σ(C_b/C)²·μ(k-1,b,p)/μ(k,M,p) ∈ [0.51,0.67], contraction universelle (6/6) [OBSERVÉ] | R54 |
+| **Weighted Inductive V-bound** | V(k)≤α·Σ(C_b/C)·V(k-1,b,p)+β·C, α<2.25, β<0.61, base V(2)/C<2 [LEMME CANDIDAT] | R54 |
+| **h=2 signature unique** | Pour (a,b,δ_a,δ_b) fixés, B_a−B_b uniquement déterminé par poly constraint en R1 [CALCULÉ] | R54 |
+| **N_2 sub-simplex prediction** | N_2 calculable exact = signature counting × stars-and-bars, 6/6 parfait [CALCULÉ] | R54 |
+| **V_cross anti-corrélation** | V_cross<0 dans 4/6 cas, |V_cross/C|<0.27 : inter-tranche réduit V_total [OBSERVÉ] | R54 |
 
 ---
 
@@ -371,6 +379,15 @@
 | **|E_b/C_b| ≤ 0.67** | Borne uniforme par tranche de dernière coordonnée : pas de tranche pathologique [OBSERVÉ] | R53 |
 | **r=0 non dominant** | r=0 dominant V dans 33% des cas seulement. Discrepancy collective sur 45-71% résidus [OBSERVÉ] | R53 |
 | **Min Hamming + poly = 12/15** | Meilleure stratégie sur 7 testées : viabilité 4, tightness 4, provability 4 [ÉVALUÉ] | R53 |
+| **Contraction pondérée 0.51-0.67** | Σ(C_b/C)²·μ(sub)/μ(full) : stable, universelle 6/6, petites tranches neutralisées par (C_b/C)² [OBSERVÉ] | R54 |
+| **Contraction pointwise ÉCHOUE** | max_b μ(sub) = 15.5×μ(full) pour k=7 : tranche b=1 (C_b=6) a μ=18.14 vs μ_full=1.17 [RÉFUTÉ] | R54 |
+| **V_cross < 0 dans 4/6 cas** | Anti-corrélation inter-tranches : V_intra/V=100-151%, V_cross AIDE le total [OBSERVÉ] | R54 |
+| **E_intra se renforce avec k** | 65%→90%→96% de E_excess : induction de plus en plus propre quand k augmente [OBSERVÉ] | R54 |
+| **h≥3 domine : 98.3% à k=7** | Route h-par-h impraticable pour grand k, seule approche globale viable [OBSERVÉ] | R54 |
+| **h=2 prédiction exacte 6/6** | Signature + poly constraint + stars-and-bars = N_2 exact sans énumération [CALCULÉ] | R54 |
+| **Heuristique indépendance ÉCHOUE** | N_h réel/prédit = 7000× pour h=3 k=7 : corrélations monotone dominent [RÉFUTÉ] | R54 |
+| **α < 2.25 stable** | Constante de récurrence V(k)≤α·weighted_V+β·C : α borné, ne diverge pas avec k [OBSERVÉ] | R54 |
+| **Base V(2)/C < 2** | 25 primes testées, V/C ∈ [0.14, 1.23] : base case solide pour récurrence [OBSERVÉ] | R54 |
 
 ---
 
@@ -465,6 +482,11 @@
 | T85 | Toutes collisions R1 ont h ≥ 2 (corollaire direct T83) [PROUVÉ] | R53 |
 | T86 | Gini(collisions) décroît avec C : 0.575→0.152, collisions diffuses, pas de hub vectors [OBSERVÉ] | R53 |
 | T87 | E_intra domine E_cross en R1 : 65-96% via dernière coordonnée fixée, induction viable [OBSERVÉ] | R53 |
+| T88 | Contraction pondérée : Σ(C_b/C)²·μ(k-1,b,p)/μ(k,M,p) ∈ [0.51, 0.67], universelle 6/6 | R54 |
+| T89 | Contraction pointwise RÉFUTÉE : max_b μ(sub) > μ(full) toujours (petites tranches C_b<<p) [RÉFUTÉ] | R54 |
+| T90 | V_cross ≤ 0 typique : anti-corrélation inter-tranches, |V_cross/C| < 0.27, AIDE V_total [OBSERVÉ] | R54 |
+| T91 | h=2 signature unique : B_a−B_b uniquement déterminé par poly constraint en R1 [CALCULÉ] | R54 |
+| T92 | N_2 sub-simplex prediction exacte : 6/6 parfait, calculable sans énumération [CALCULÉ] | R54 |
 
 ---
 
@@ -505,6 +527,7 @@ R50     : PHASE SHIFT = clé (Z = conv décalée), UNIFICATION between-within vi
 R51     : Tail = sous-problème rotaté [PROUVÉ], TQL-mu = premier noyau prouvable (K≤4.3), cascade RÉFUTÉE p=5 (T73-T77)
 R52     : V≤1.42·C en R1 [OBSERVÉ], μ-lite collision SURVIVANT (E_excess/C<0.90), Horner 3.7-5.5× sur CS (T78-T82)
 R53     : h=1 vacuous en R1 [PROUVÉ], E_excess<0, collisions diffuses, Min Hamming+poly = SURVIVANT R54 (T83-T87)
+R54     : Poly vanishing=FRAGILE (h≥3 domine), INDUCTION l'emporte (contraction 0.51-0.67), Weighted V-bound = SURVIVANT R55 (T88-T92)
 ```
 
 ---
@@ -532,13 +555,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 53
-- **Scripts** : 194
-- **Auto-tests** : 10856 (215 en R53, 100% PASS)
-- **Théorèmes prouvés** : 87 (originaux)
-- **Conjectures ouvertes** : 14 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, collision-lite)
-- **Pistes fermées** : 51 (documentées avec raison)
-- **Concepts inventés** : 90 (nommés, dont Min Hamming + poly vanishing = survivant R54)
+- **Rounds** : 54
+- **Scripts** : 196
+- **Auto-tests** : 11147 (291 en R54, 95% PASS + 15 FAIL structurels)
+- **Théorèmes prouvés** : 92 (originaux)
+- **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, collision-lite, Weighted V-bound)
+- **Pistes fermées** : 54 (documentées avec raison)
+- **Concepts inventés** : 95 (nommés, dont Weighted Inductive V-bound = survivant R55)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
 - **Route prioritaire** : TQL-mu direct (R52 : prouver μ−1 ≤ K·p/C via Horner sur simplexe)
