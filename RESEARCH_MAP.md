@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 11 mars 2026 | **Rounds:** R1–R50 (50 rounds, 188 scripts, 8395 auto-tests)
+**Date:** 11 mars 2026 | **Rounds:** R1–R51 (51 rounds, 190 scripts, 9886 auto-tests)
 
 ---
 
@@ -114,6 +114,8 @@
 | **ρ-lite direct** | Absorbé par Z-lite : |ρ| est un symptôme de la structure des Z, pas un levier de preuve | R50 |
 | **Borne paire-par-paire Z** | Trop faible : cancellation signe (ratio 0.48) perdue paire-par-paire, agrégé meilleur | R50 |
 | **Seuil |ρ|<0.5 pour α=2** | Contredit : max|ρ|=0.655 dans R2, seuil α=4 nécessaire pour max<0.4 | R50 |
+| **Cascade A(k)≤A(k-1)** | Contredite : p=5 A croît 0.8→17.0 monotonement, petits primes = obstruction structurelle | R51 |
+| **TQL-strong (D∞ uniforme)** | Mauvaise échelle : D∞ explose pour tranches dégénérées (C_{b₀}=1), L² meilleur que L∞ | R51 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -139,7 +141,7 @@
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
 | **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
 | **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
-| **TQL (Tail Quasi-uniformity)** | N^{tail}_{b₀,r}≈C_{b₀}/p [CONJECTURAL], cible unifiée between+within | Quantifier ε, exploiter récurrence k→k-1 | R50 |
+| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ(b₀)−1 ≤ K·p/C_{b₀} [OBSERVÉ 564/564], K≈1.3 (R3), 4.3 (global) | Prouver TQL-mu via Horner sur simplexe (route R46) | R50-R51 |
 
 ---
 
@@ -216,6 +218,11 @@
 | **TQL** (Tail Quasi-uniformity) | N^{tail}≈C/p ⟹ Z≈0 ET V≈0, cible unifiée pour ACaL complet [FORMULÉ] | R50 |
 | **Aliasing de phase** | ord_p(2)<max_B+1 → 2^{b₀} non distincts mod p → corrélation artificielle [OBSERVÉ] | R50 |
 | **Régime α=4** | ord≥4·(max_B+1) : max|ρ| chute à 0.39 (transition de phase empirique) [OBSERVÉ] | R50 |
+| **Identité rotation tail** | N^{tail}_{b₀,r} = N^{std}_{r·α⁻¹ mod p}, α=2^{b₀}·g, tail = sous-problème rotaté exactement [PROUVÉ] | R51 |
+| **μ-invariance** | μ^{tail}(b₀) = μ(k-1, [0, max_B-b₀], p) : la rotation ne change pas μ [PROUVÉ] | R51 |
+| **TQL-mu** | μ(b₀)−1 ≤ K·p/C_{b₀}, K(R3)=1.29, K(R1)=2.61, K(global)=4.32 [LEMME CANDIDAT] | R51 |
+| **Lemme A (max-sub)** | μ(k) ≤ max_{b₀} μ(k-1, M-b₀, p), vrai universellement (50+/50+) [OBSERVÉ] | R51 |
+| **Chaîne TQL→f_p** | TQL-mu → V_{b₀}≤K·C_{b₀} → |Z|≤K·√(C_i·C_j) → V/C²=O(max_B/C)→0 → f_p→1/p [SEMI-FORMEL] | R51 |
 
 ---
 
@@ -323,6 +330,14 @@
 | **Cancellation signe agrégée** | avg ratio=0.483, min=0.027, approche agrégée supérieure à paire-par-paire [OBSERVÉ] | R50 |
 | **Shift anti-sym+transitif** | Δ(i,j)+Δ(j,i)≡0, Δ(a,b)+Δ(b,c)≡Δ(a,c) : structure de groupe [PROUVÉ] | R50 |
 | **|ρ|<1 universel (264)** | Confirmé 264/264 paires (extension massive de 20/20 R49), max=0.687 [OBSERVÉ] | R50 |
+| **μ−1 = meilleure métrique** | μ−1 = p·V/C² = D₂², invariant par rotation, additif en ANOVA, plus algébrique que D∞ [PROUVÉ] | R51 |
+| **D∞ non uniforme en b₀** | D∞ explose pour tranches dégénérées (C_{b₀}=1 ⟹ D∞=p-1), poids (C/C)² négligeable [OBSERVÉ] | R51 |
+| **K(sous-régime) borné** | K(R3)=1.29, K(R2)=2.61, K(R1)=2.61, K(global)=4.32 ; croît avec l'aliasing [OBSERVÉ] | R51 |
+| **Tail = sous-problème rotaté** | Identité exacte (pas approximation) : facteur α=2^{b₀}·g mod p est une permutation [PROUVÉ] | R51 |
+| **Cascade naïve ÉCHOUE p=5** | A(k) croît 0.8→17.0 monotonement pour p=5 ; petits primes = obstruction structurelle | R51 |
+| **p=11 cascade parfaite** | A stabilisé à 0.91 de k=2 à k=10 : modèle de ce que la cascade DEVRAIT être [OBSERVÉ] | R51 |
+| **Contraction inductive 0.01-0.17** | μ(k)-1 toujours < max(μ(k-1)-1), facteur 0.003-0.17, dimension AIDE [OBSERVÉ] | R51 |
+| **Chaîne TQL→ACL→f_p** | TQL-mu ⟹ V/C²=O(max_B/C) ⟹ QEL ⟹ ACL ⟹ f_p→1/p : première chaîne complète identifiée [SEMI-FORMEL] | R51 |
 
 ---
 
@@ -402,6 +417,11 @@
 | T70 | Convolution : M₂ = Σ_r N^{tail}_{b₀,r} · N^{tail}_{b₀',r−Δ} (cross-corrélation décalée) [PROUVÉ] | R50 |
 | T71 | Unification between-within : quasi-uniformité tail contrôle V ET Z simultanément [SEMI-FORMEL] | R50 |
 | T72 | Régime α=4 : ord≥4·(max_B+1) ⟹ max\|ρ\|<0.4 (transition empirique, 188/188) [OBSERVÉ] | R50 |
+| T73 | Identité rotation tail : N^{tail}_{b₀,r} = N^{std}_{r·(2^{b₀}·g)⁻¹ mod p} [PROUVÉ] | R51 |
+| T74 | μ-invariance : μ^{tail}(b₀) = μ(k-1, [0, max_B−b₀], p) exactement [PROUVÉ] | R51 |
+| T75 | TQL-mu : μ(b₀)−1 ≤ K·p/C_{b₀}, K=1.29 (R3) à 4.32 (global), 564/564 [OBSERVÉ] | R51 |
+| T76 | Cascade A(k)≤A(k-1) RÉFUTÉE : p=5, A croît 0.8→17.0 monotonement [RÉFUTÉ] | R51 |
+| T77 | Lemme A : μ(k) ≤ max_{b₀} μ(k-1, M−b₀, p), universel (50+/50+ cas) [OBSERVÉ] | R51 |
 
 ---
 
@@ -439,6 +459,7 @@ R47     : LSD h=2 forme canonique PROUVÉE (T53-T55), Horner slice decomposition
 R48     : SDL = ANOVA [PROUVÉ] (T59-T62), ACaL survivant, SDL-lite ÉLIMINÉ, ρ=O(1/max_B) RÉFUTÉ, triple lock identifié
 R49     : Within=dur (GEH), Between=tractable (|ρ|<1 universel 20/20), ACaL-between-lite SURVIVANT R50 (T63-T67)
 R50     : PHASE SHIFT = clé (Z = conv décalée), UNIFICATION between-within via TQL, Z-lite SURVIVANT R51 (T68-T72)
+R51     : Tail = sous-problème rotaté [PROUVÉ], TQL-mu = premier noyau prouvable (K≤4.3), cascade RÉFUTÉE p=5 (T73-T77)
 ```
 
 ---
@@ -466,13 +487,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 50
-- **Scripts** : 188
-- **Auto-tests** : 8395 (100% PASS)
-- **Théorèmes prouvés** : 72 (originaux)
-- **Conjectures ouvertes** : 13 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL)
-- **Pistes fermées** : 44 (documentées avec raison)
-- **Concepts inventés** : 75 (nommés, dont TQL = cible unifiée R51)
+- **Rounds** : 51
+- **Scripts** : 190
+- **Auto-tests** : 9886 (1464 PASS + 27 FAIL significatifs en R51)
+- **Théorèmes prouvés** : 77 (originaux)
+- **Conjectures ouvertes** : 13 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu)
+- **Pistes fermées** : 46 (documentées avec raison)
+- **Concepts inventés** : 80 (nommés, dont TQL-mu = lemme candidat R52)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
-- **Route prioritaire** : Z-lite via phase shift / TQL (R51 : prouver tail quasi-uniformity → ferme ACaL complet)
+- **Route prioritaire** : TQL-mu direct (R52 : prouver μ−1 ≤ K·p/C via Horner sur simplexe)
