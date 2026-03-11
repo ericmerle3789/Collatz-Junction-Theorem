@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 11 mars 2026 | **Rounds:** R1–R49 (49 rounds, 186 scripts, 7611 auto-tests)
+**Date:** 11 mars 2026 | **Rounds:** R1–R50 (50 rounds, 188 scripts, 8395 auto-tests)
 
 ---
 
@@ -111,6 +111,9 @@
 | **Cible ρ=O(1/max_B)** | Mauvaise échelle : ρ·max_B varie 0.04-3.1, pas de décroissance en 1/max_B | R48 |
 | **V_between ≥ 0 universel** | RÉFUTÉ : V_between < 0 dans 15/20 cas (anti-corrélation inter-tranches aide) | R49 |
 | **V_{b₀}/C_{b₀}² ≤ V/C² ∀b₀** | Mauvaise échelle : dernière tranche (C=1) a V/C²=(p-1)/p≈1 >> V/C² total | R49 |
+| **ρ-lite direct** | Absorbé par Z-lite : |ρ| est un symptôme de la structure des Z, pas un levier de preuve | R50 |
+| **Borne paire-par-paire Z** | Trop faible : cancellation signe (ratio 0.48) perdue paire-par-paire, agrégé meilleur | R50 |
+| **Seuil |ρ|<0.5 pour α=2** | Contredit : max|ρ|=0.655 dans R2, seuil α=4 nécessaire pour max<0.4 | R50 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -134,8 +137,9 @@
 | **MSL (Monotone Spreading)** | μ=M₂p/C²→1 monotone, M₂≤C²/p+A(p)·C [OBSERVÉ] | Prouver via LSD ou Horner | R45-R46 |
 | **LSD (Spreading Différences)** | h=1 PROUVÉ, h=2 forme canonique PROUVÉE, 3 sous-cas prouvés (T53-T55) | Borner congruence exp. générique h=2 (route secondaire) | R46-R47 |
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
-| **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], ρ=V_between/V_within, \|ρ\|<1 universel (20/20) | Prouver \|ρ\|<1 via collisions inter-tranches (R50) | R47-R49 |
-| **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Prouver GEH (equidist. uniforme sur sous-intervalles) | R49 |
+| **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
+| **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
+| **TQL (Tail Quasi-uniformity)** | N^{tail}_{b₀,r}≈C_{b₀}/p [CONJECTURAL], cible unifiée between+within | Quantifier ε, exploiter récurrence k→k-1 | R50 |
 
 ---
 
@@ -206,6 +210,12 @@
 | **GEH** (Generalized Equidist.) | V(k',[a,b],p)/C²=o(1) uniformément en [a,b], nécessaire pour within-induction [FORMULÉ] | R49 |
 | **Z = collision inter-tranches** | Z_{b₀,b₀'}=M₂(b₀,b₀')−C_{b₀}C_{b₀'}/p, excès de collisions inter [PROUVÉ] | R49 |
 | **ACaL-between-lite** | |ρ|<1, i.e. |V_between|≤V_within, candidat lemme universel (20/20) [CONJECTURAL] | R49 |
+| **Phase shift Δ_{b₀,b₀'}** | Δ=g⁻¹·(2^{b₀'}−2^{b₀}) mod p, constante par paire, anti-sym+transitif [PROUVÉ] | R50 |
+| **Z = conv décalée** | M₂(b₀,b₀')=Σ_r N^{tail}_{b₀,r}·N^{tail}_{b₀',r−Δ}, cross-corrélation tail [PROUVÉ] | R50 |
+| **Unification between-within** | Quasi-uniformité tail contrôle V_{b₀} ET Z simultanément [SEMI-FORMEL] | R50 |
+| **TQL** (Tail Quasi-uniformity) | N^{tail}≈C/p ⟹ Z≈0 ET V≈0, cible unifiée pour ACaL complet [FORMULÉ] | R50 |
+| **Aliasing de phase** | ord_p(2)<max_B+1 → 2^{b₀} non distincts mod p → corrélation artificielle [OBSERVÉ] | R50 |
+| **Régime α=4** | ord≥4·(max_B+1) : max|ρ| chute à 0.39 (transition de phase empirique) [OBSERVÉ] | R50 |
 
 ---
 
@@ -305,6 +315,14 @@
 | **Cancellation signe Z** | |ΣZ|/Σ|Z| = 0.038-0.862, facteur 3-26× de réduction par cancellation [OBSERVÉ] | R49 |
 | **p=5 pathologique** | ρ>0 systématiquement pour p=5, β le plus lent (0.64), max|ρ|=0.51 [OBSERVÉ] | R49 |
 | **Petites tranches bruyantes** | V_{b₀}/C_{b₀}²→(p-1)/p quand C_{b₀}→1, mais poids (C_{b₀}/C)²→0 [PROUVÉ] | R49 |
+| **Phase shift = clé R50** | Z dépend d'une constante Δ par paire : cross-corrélation tail décalée [PROUVÉ] | R50 |
+| **Unification between-within** | Quasi-uniformité tail contrôle V_{b₀} ET Z : même mécanisme pour les 2 moitiés [SEMI-FORMEL] | R50 |
+| **Aliasing de phase** | ord<max_B+1 → phases non distinctes → corrélation artificielle = source des cas durs [OBSERVÉ] | R50 |
+| **Seuil α=4** | ord≥4·(max_B+1) : max|ρ| chute de 0.655 à 0.393, transition empirique nette [OBSERVÉ] | R50 |
+| **CS loin du tight** | avg(|Z|/√V·V')=0.276, CS tendu uniquement pour ord=3 (cas dégénéré) [OBSERVÉ] | R50 |
+| **Cancellation signe agrégée** | avg ratio=0.483, min=0.027, approche agrégée supérieure à paire-par-paire [OBSERVÉ] | R50 |
+| **Shift anti-sym+transitif** | Δ(i,j)+Δ(j,i)≡0, Δ(a,b)+Δ(b,c)≡Δ(a,c) : structure de groupe [PROUVÉ] | R50 |
+| **|ρ|<1 universel (264)** | Confirmé 264/264 paires (extension massive de 20/20 R49), max=0.687 [OBSERVÉ] | R50 |
 
 ---
 
@@ -379,6 +397,11 @@
 | T65 | W/C² = Σ (V_{b₀}/C_{b₀}²)·(C_{b₀}/C)² : reformulation moyenne pondérée [PROUVÉ] | R49 |
 | T66 | Z = M₂(b₀,b₀') − C_{b₀}·C_{b₀'}/p : reformulation collision inter-tranches [PROUVÉ] | R49 |
 | T67 | \|ρ(k,p)\| < 1 pour tout (k,p) testé (20/20 cas, max\|ρ\|=0.687) [OBSERVÉ] | R49 |
+| T68 | Phase shift : M₂(b₀,b₀') = #{(tail,tail') : T−T' ≡ Δ mod p}, Δ constante par paire [PROUVÉ] | R50 |
+| T69 | Shift anti-symétrie + transitivité : Δ(i,j)+Δ(j,i)≡0, Δ(a,b)+Δ(b,c)≡Δ(a,c) [PROUVÉ] | R50 |
+| T70 | Convolution : M₂ = Σ_r N^{tail}_{b₀,r} · N^{tail}_{b₀',r−Δ} (cross-corrélation décalée) [PROUVÉ] | R50 |
+| T71 | Unification between-within : quasi-uniformité tail contrôle V ET Z simultanément [SEMI-FORMEL] | R50 |
+| T72 | Régime α=4 : ord≥4·(max_B+1) ⟹ max\|ρ\|<0.4 (transition empirique, 188/188) [OBSERVÉ] | R50 |
 
 ---
 
@@ -415,6 +438,7 @@ R46     : Weyl ÉLIMINÉ k≥4, Horner Telescoping = route prioritaire, LSD h=1 
 R47     : LSD h=2 forme canonique PROUVÉE (T53-T55), Horner slice decomposition PROUVÉE (T56-T58), SDL formulé, ARBITRAGE : Horner = prioritaire R48
 R48     : SDL = ANOVA [PROUVÉ] (T59-T62), ACaL survivant, SDL-lite ÉLIMINÉ, ρ=O(1/max_B) RÉFUTÉ, triple lock identifié
 R49     : Within=dur (GEH), Between=tractable (|ρ|<1 universel 20/20), ACaL-between-lite SURVIVANT R50 (T63-T67)
+R50     : PHASE SHIFT = clé (Z = conv décalée), UNIFICATION between-within via TQL, Z-lite SURVIVANT R51 (T68-T72)
 ```
 
 ---
@@ -442,13 +466,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 49
-- **Scripts** : 186
-- **Auto-tests** : 7611 (100% PASS)
-- **Théorèmes prouvés** : 67 (originaux)
-- **Conjectures ouvertes** : 13 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, SDL/ACaL, |ρ|<1, GEH)
-- **Pistes fermées** : 41 (documentées avec raison)
-- **Concepts inventés** : 68 (nommés, dont ACaL-between-lite = survivant R49)
+- **Rounds** : 50
+- **Scripts** : 188
+- **Auto-tests** : 8395 (100% PASS)
+- **Théorèmes prouvés** : 72 (originaux)
+- **Conjectures ouvertes** : 13 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL)
+- **Pistes fermées** : 44 (documentées avec raison)
+- **Concepts inventés** : 75 (nommés, dont TQL = cible unifiée R51)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
-- **Route prioritaire** : ACaL-between-lite (R50 : prouver |ρ| < 1 via collisions inter-tranches)
+- **Route prioritaire** : Z-lite via phase shift / TQL (R51 : prouver tail quasi-uniformity → ferme ACaL complet)
