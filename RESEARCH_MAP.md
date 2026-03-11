@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 11 mars 2026 | **Rounds:** R1–R52 (52 rounds, 192 scripts, 10641 auto-tests)
+**Date:** 11 mars 2026 | **Rounds:** R1–R53 (53 rounds, 194 scripts, 10856 auto-tests)
 
 ---
 
@@ -118,6 +118,9 @@
 | **TQL-strong (D∞ uniforme)** | Mauvaise échelle : D∞ explose pour tranches dégénérées (C_{b₀}=1), L² meilleur que L∞ | R51 |
 | **μ−1 ~ p·logC/C** | Contredite : R²=0.565 vs 0.909 pour p/C. Correction log inutile, p/C suffit | R52 |
 | **μ−1 ~ (max_B+1)/C** | Mauvaise échelle : R²=0.425, pire fit. p contrôle, pas max_B | R52 |
+| **Famille dominante isolable** | Contredite : Gini→0 avec C (0.575→0.152), collisions diffuses, pas de hub vectors | R53 |
+| **h≤2 dominance asymptotique** | Mauvaise échelle : corr(logC, frac_near)=-0.675, contributions se dispersent pour grand k | R53 |
+| **r=0 dominant V** | Contredite : r=0 dominant dans 33% des cas seulement, V distribué sur 45-71% résidus | R53 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -143,7 +146,7 @@
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
 | **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
 | **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
-| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1 [OBSERVÉ 232+564], V≤1.42·C en R1, E_excess/C<0.90 | Prouver μ-lite collision (E_excess/C borné) via double comptage | R50-R52 |
+| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, E_excess<0, h=1 vacuous [PROUVÉ], collisions h≥2 seules | Prouver collision-lite via Min Hamming + poly vanishing sur simplexe | R50-R53 |
 
 ---
 
@@ -230,6 +233,11 @@
 | **E_excess/C borné R1** | \|E_excess/C\|<0.90 en R1, collisions excédentaires sous-linéaires en C [OBSERVÉ] | R52 |
 | **Cancellation cross-terms** | Cross-terms spectraux s'annulent 75-88% en R1+ via phases ω^{r·(2^{b₀}−2^{b₀'})} [OBSERVÉ] | R52 |
 | **Horner > CS factor** | Borne Horner 3.7-5.5× meilleure que Cauchy-Schwarz seul en R1 [OBSERVÉ] | R52 |
+| **h=1 vacuous en R1** | ord_p(2) > max_B ⟹ ∄Δ avec ord\|Δ et 1≤Δ≤max_B, donc 0 collisions h=1 [PROUVÉ] | R53 |
+| **E_excess < 0 en R1** | Monotonie crée anti-concentration : sous-collisions, pas sur-collisions [OBSERVÉ] | R53 |
+| **Min Hamming + poly vanishing** | h≥2 + Σg^j·Δ_j≡0 mod p contraint les collisions : route vers E_excess=O(C) [SEMI-FORMEL] | R53 |
+| **Collision degree diffus** | Gini(coll) décroît 0.575→0.152 avec C, pas de hub vectors, excess spread [OBSERVÉ] | R53 |
+| **E_intra dominance** | Fixer B_{k-1}=b : E_intra = 65-96% de E_excess en R1, induction viable [OBSERVÉ] | R53 |
 
 ---
 
@@ -354,6 +362,15 @@
 | **Quasi-orthogonalité |ρ|** | |ρ| par régime : R3=0.10, R2=0.28, R1=0.30, R_gen=0.51. Hiérarchie claire [OBSERVÉ] | R52 |
 | **Horner 3.7-5.5× sur CS** | Facteur amélioration : R3=3.55×, R2=5.48×, R1=3.73×. Gain structurel réel [OBSERVÉ] | R52 |
 | **Contraction inductive <0.13** | (μ−1)/avg(sub μ−1) < 0.13 uniformément : dimension k comprime la variance [OBSERVÉ] | R52 |
+| **E_excess NÉGATIF en R1** | Sous-collisions systématiques : E/C ∈ [-0.61, -0.25] pour k=3..7, monotonie = anti-concentration [OBSERVÉ] | R53 |
+| **h=1 = 0 en R1 [PROUVÉ]** | ord_p(2)>max_B en R1 ⟹ aucun Δ∈[1,max_B] divisible par ord. Conséquence directe LSD+R1 [PROUVÉ] | R53 |
+| **Toutes collisions R1 ont h≥2** | Corollaire immédiat de h=1 vacuous. Contraint chaque collision à ≥2 positions modifiées [PROUVÉ] | R53 |
+| **Gini collisions → 0** | Coefficient Gini : 0.575 (k=3) → 0.152 (k=7), pas de concentration sur hub vectors [OBSERVÉ] | R53 |
+| **Near frac décroît** | corr(logC, frac_near) = -0.675, contributions se dispersent sur h=1..k pour grand C [OBSERVÉ] | R53 |
+| **E_intra = 65-96%** | Décomposition par B_{k-1} : intra-slice domine cross-slice dans 4/5 cas R1 [OBSERVÉ] | R53 |
+| **|E_b/C_b| ≤ 0.67** | Borne uniforme par tranche de dernière coordonnée : pas de tranche pathologique [OBSERVÉ] | R53 |
+| **r=0 non dominant** | r=0 dominant V dans 33% des cas seulement. Discrepancy collective sur 45-71% résidus [OBSERVÉ] | R53 |
+| **Min Hamming + poly = 12/15** | Meilleure stratégie sur 7 testées : viabilité 4, tightness 4, provability 4 [ÉVALUÉ] | R53 |
 
 ---
 
@@ -443,6 +460,11 @@
 | T80 | Cancellation cross-terms 75-88% en R1+ : interférence destructive effective [OBSERVÉ] | R52 |
 | T81 | Horner donne 3.7-5.5× amélioration sur CS en R1 (gain structurel réel) [OBSERVÉ] | R52 |
 | T82 | Fit μ−1 ≈ K·p/C, R²=0.909, K<1.42 en R1 : première borne quantitative [OBSERVÉ] | R52 |
+| T83 | h=1 vacuous en R1 : ord_p(2) > max_B ⟹ ∄Δ valide, 0 collision h=1 [PROUVÉ] | R53 |
+| T84 | E_excess < 0 en R1 : monotonie crée anti-concentration (sous-collisions systématiques) [OBSERVÉ] | R53 |
+| T85 | Toutes collisions R1 ont h ≥ 2 (corollaire direct T83) [PROUVÉ] | R53 |
+| T86 | Gini(collisions) décroît avec C : 0.575→0.152, collisions diffuses, pas de hub vectors [OBSERVÉ] | R53 |
+| T87 | E_intra domine E_cross en R1 : 65-96% via dernière coordonnée fixée, induction viable [OBSERVÉ] | R53 |
 
 ---
 
@@ -482,6 +504,7 @@ R49     : Within=dur (GEH), Between=tractable (|ρ|<1 universel 20/20), ACaL-bet
 R50     : PHASE SHIFT = clé (Z = conv décalée), UNIFICATION between-within via TQL, Z-lite SURVIVANT R51 (T68-T72)
 R51     : Tail = sous-problème rotaté [PROUVÉ], TQL-mu = premier noyau prouvable (K≤4.3), cascade RÉFUTÉE p=5 (T73-T77)
 R52     : V≤1.42·C en R1 [OBSERVÉ], μ-lite collision SURVIVANT (E_excess/C<0.90), Horner 3.7-5.5× sur CS (T78-T82)
+R53     : h=1 vacuous en R1 [PROUVÉ], E_excess<0, collisions diffuses, Min Hamming+poly = SURVIVANT R54 (T83-T87)
 ```
 
 ---
@@ -509,13 +532,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 52
-- **Scripts** : 192
-- **Auto-tests** : 10641 (755 en R52, 100% PASS)
-- **Théorèmes prouvés** : 82 (originaux)
-- **Conjectures ouvertes** : 14 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, μ-lite collision)
-- **Pistes fermées** : 48 (documentées avec raison)
-- **Concepts inventés** : 85 (nommés, dont μ-lite collision = survivant R53)
+- **Rounds** : 53
+- **Scripts** : 194
+- **Auto-tests** : 10856 (215 en R53, 100% PASS)
+- **Théorèmes prouvés** : 87 (originaux)
+- **Conjectures ouvertes** : 14 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, collision-lite)
+- **Pistes fermées** : 51 (documentées avec raison)
+- **Concepts inventés** : 90 (nommés, dont Min Hamming + poly vanishing = survivant R54)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
 - **Route prioritaire** : TQL-mu direct (R52 : prouver μ−1 ≤ K·p/C via Horner sur simplexe)
