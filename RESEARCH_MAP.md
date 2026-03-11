@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 11 mars 2026 | **Rounds:** R1–R57 (57 rounds, 202 scripts, 11677 auto-tests)
+**Date:** 11 mars 2026 | **Rounds:** R1–R58 (58 rounds, 204 scripts, 11786 auto-tests)
 
 ---
 
@@ -133,6 +133,10 @@
 | **Orbites complètes comme levier base** | Trop faible : en R1 TOUTES orbites sont incomplètes (prouvé R56), lemme V=0 orbites complètes est vacueux | R57 |
 | **max N_r ≈ C/p (équidist. naïve)** | Mauvaise échelle : ratio multiplicatif max N_r/(C/p) atteint 25.7, bonne borne = additive pas multiplicative | R57 |
 | **Base-first séquentiel strict** | Non ciblante : base déjà semi-formalisée (6 faits prouvés), cross utilise outils DIFFÉRENTS, parallèle > séquentiel | R57 |
+| **Second moment comme noyau base-lite** | Trop faible : passage L²→L∞ perd √p (facteur 448×), contrôle pas pointwise, Candidat 1 additive strictement plus fort | R58 |
+| **Pseudo-aléa dlogs c_δ** | Contredite : c_δ couvre 12-31% de (Z/pZ)* seulement, suite très structurée, pas uniforme dans le multiplicatif | R58 |
+| **Borne Weil directe sur dlogs affines** | Non ciblante : sommes sur dlogs de suites affines hors cadre standard Weil, pas de théorème applicable | R58 |
+| **Critère Weyl seul pour max N_r** | Trop faible : vérifie S(h)→0 mais sans vitesse quantitative, ne donne pas de borne exploitable | R58 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -158,7 +162,7 @@
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
 | **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
 | **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
-| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, δ-reformulation PROUVÉE (6 faits), gap = dlogs suite affine c_δ=1+g·2^δ, identité bilinéaire Z PROUVÉE | Prouver borne dlogs suites affines + bound |Z|≤K·√p individuel | R50-R57 |
+| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, δ-reformulation PROUVÉE (6 faits), gap = dlogs suite affine c_δ=1+g·2^δ, borne additive SURVIVANT (K_lin<1, 92 cas), Route 2 fenêtres variables prioritaire | Prouver K_linear borné universellement via large sieve + borne dlogs fenêtres rétrécissantes | R50-R58 |
 
 ---
 
@@ -274,6 +278,15 @@
 | **Cancellation agrégée 50%** | |Σ Z_{b,b'}|/Σ|Z_{b,b'}| ≈ 0.50, signes mixtes (44%/56%), cancellation structurelle [OBSERVÉ] | R57 |
 | **Cross-lite Candidat B** | |V_cross|/C → 0 (pente -0.246 en log-log), target le plus robuste et le plus prouvable [OBSERVÉ] | R57 |
 | **K' Kloosterman normalisé** | |Z|/(baseline·√p) < 1 dans tous les cas testés, connexion Weil non rigoureuse [OBSERVÉ] | R57 |
+| **Formulation canonique gap dlog** | Prouver max_r N_r ≤ α·(M+1) pour α<1, avec fenêtres [0,M-δ] rétrécissantes + récurrence affine c_{δ+1}=2c_δ−1 [SEMI-FORMALISÉ] | R58 |
+| **K_linear** | (max N_r − C/p)/(M+1), métrique cible : K_lin<1 pour TOUS les 92 cas testés, moyen 0.18, max 0.76 [OBSERVÉ] | R58 |
+| **Route 2 (fenêtres variables)** | Compter les δ dans fenêtres [0,M-δ] rétrécissantes : la plus crédible des 3 routes (vs sommes exp, vs collisions) [SÉLECTIONNÉE] | R58 |
+| **Discrepancy dlogs c_δ** | D∞/(1/√n) ∈ [0.39, 0.97] : comparable à pseudo-aléatoire mais non uniforme dans (Z/pZ)* [OBSERVÉ] | R58 |
+| **Incréments Δ_δ** | dlog(c_{δ+1})−dlog(c_δ) : tous uniques, variance sub-uniforme pour certains p (0.23 pour p=1021) [OBSERVÉ] | R58 |
+| **Sommes exponentielles S(h) sur dlogs** | Cancellation >50% pour la plupart des primes, mais partielle (24% min pour p=1021) [OBSERVÉ] | R58 |
+| **Clustering des contributeurs max N_r** | Les δ maximisant N_r sont GROUPÉS en espace dlog : ratio distance 0.02-0.27 [OBSERVÉ] | R58 |
+| **Implication additive ⟹ cross** | max N_r borné ⟹ Σ N_r² borné ⟹ V_cross borné : Candidat 1 contrôle base ET cross simultanément [PROUVÉ] | R58 |
+| **Surmultiplicité bornée** | Σ N_r² / (C²/p) ≤ 2.72 (cas significatifs), explose pour petits M [OBSERVÉ] | R58 |
 
 ---
 
@@ -448,6 +461,17 @@
 | **K' Kloosterman < 1 normalisé** | |Z|/(C_b·C_{b'}/p·√p) borné < 1 : borne type Weil plausible mais non rigoureuse [OBSERVÉ] | R57 |
 | **Maturité cross 3/5** | ✅ Identité bilinéaire ✅ CS compris ✅ Cancellation quantifiée ❌ |Z| bound ❌ Weil connection [ÉVALUÉ] | R57 |
 | **5 outils morts cross** | CS, QO seule, récurrence univ., V_cross≤0 univ., ρ<1 univ. — ne PAS ressusciter [INVENTORIÉ] | R57 |
+| **Discrepancy L∞ comparable pseudo-random** | D∞/(1/√n) ∈ [0.39, 0.97] sur 6 primes : dlogs c_δ pas uniformes mais discrepancy du bon ordre [OBSERVÉ] | R58 |
+| **Incréments dlog sub-uniforme** | Variance(Δ_δ)/Var(uniform) descend à 0.23 (p=1021) : structure affine crée corrélations subtiles [OBSERVÉ] | R58 |
+| **Cancellation exp. sums partielle** | Min cancellation 24% (p=1021 h=9) : pas de garantie >50% universelle, route 1 fragile [OBSERVÉ] | R58 |
+| **K_lin < 1 universel (92/92)** | Jamais de cas K≥1 dans les 92 tests (p,n) : borne sub-triviale très robuste empiriquement [OBSERVÉ] | R58 |
+| **√(M+1) vs (M+1) scaling** | K_sqrt max=8 mais K_linear max=0.76 : le scaling linéaire en M+1 est plus propre que √(M+1) [OBSERVÉ] | R58 |
+| **Candidat 2 perte √p** | √(Σ N_r²)/max N_r ≈ 6.2 en moyenne : passage L²→L∞ trop lâche, facteur 448× [CALCULÉ] | R58 |
+| **V_cross = Σ N_r² − C** | Identité exacte V_cross = Σ N_r(N_r−1), vérifié exhaustivement [PROUVÉ] | R58 |
+| **Candidat 1 score 14 vs 7** | Arbitrage systématique : additive bat second moment en serrage, utilité, démontrabilité, et contrôle cross [CALCULÉ] | R58 |
+| **c_δ couvre 12-31% de (Z/pZ)**** | Suite affine TRÈS structurée : loin de l'uniformité multiplicative, approche probabiliste non justifiée [PROUVÉ] | R58 |
+| **Contributeurs max N_r GROUPÉS** | Distance médiane dlogs des contributeurs = 2-27% de ord : collisions structurées, pas aléatoires [OBSERVÉ] | R58 |
+| **|V_cross|/(C²/p) < 1.14** | Préparation cross R57 reste viable après nouvelle lecture δ de la base : cross toujours intact [OBSERVÉ] | R58 |
 
 ---
 
@@ -562,6 +586,11 @@
 | T105 | Récurrence c_{δ+1} = 2c_δ − 1 mod p : suite AFFINE, tous termes distincts en R1 [PROUVÉ] | R57 |
 | T106 | Borne sub-triviale : max N_r ≤ C/p + 0.76·(M+1) en R1 générique, K < 1 strict [OBSERVÉ] | R57 |
 | T107 | Identité bilinéaire : Z_{b,b'} = #{a+b≡a'+b' mod ord} − C_b·C_{b'}/p, forme bilinéaire exacte [PROUVÉ] | R57 |
+| T108 | Σ_r N_r² ≤ max_r(N_r) · Σ_r N_r : inégalité algébrique directe (lien max → second moment) [PROUVÉ] | R58 |
+| T109 | V_cross ≤ (max_r(N_r) − 1) · C : borne additive ⟹ contrôle cross automatique [PROUVÉ] | R58 |
+| T110 | Candidat 1 (additive) contrôle base ET cross simultanément via T108-T109 [PROUVÉ] | R58 |
+| T111 | Les dlogs de c_δ ne sont pas uniformes dans (Z/pZ)* : couverture 12-31% seulement [PROUVÉ] | R58 |
+| T112 | Second moment ⟹ perte √p dans passage L²→L∞ : facteur 448× trop lâche, éliminé [PROUVÉ] | R58 |
 
 ---
 
@@ -606,6 +635,7 @@ R54     : Poly vanishing=FRAGILE (h≥3 domine), INDUCTION l'emporte (contractio
 R55     : Récurrence universelle RÉFUTÉE (dichotomie ANOVA), base A(2)≤1.22 FORTE, shift-inv PROUVÉE, V_cross=vrai verrou, Base-lite+bootstrap = SURVIVANT R56 (T93-T97)
 R56     : A(2) corrigé ≤2.28 (dégénéré g≡-1 PROUVÉ), CS INSUFFISANT [PROUVÉ Jensen], cancellation phases 89%, gap=max N_r, Base-lite+cross-lite = SURVIVANT R57 (T98-T102)
 R57     : δ-reformulation PROUVÉE (6 faits), suite affine c_δ, borne sub-triviale K<1, identité bilinéaire Z PROUVÉE, cross-lite B cadré, Base+cross parallèles = SURVIVANT R58 (T103-T107)
+R58     : Gap dlog FORMULÉ (canonique), 3 routes comparées (Route 2 fenêtres PRIORITAIRE), Candidat 1 additive SURVIVANT (K_lin<1 universel 92 cas), Candidat 2 second moment ÉLIMINÉ (perte √p), T108-T112 (additive⟹cross), Borne additive via large sieve = SURVIVANT R59
 ```
 
 ---
@@ -633,13 +663,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 57
-- **Scripts** : 202
-- **Auto-tests** : 11677 (90 en R57 : 48 base + 42 cross, 100% PASS)
-- **Théorèmes prouvés** : 107 (originaux)
-- **Conjectures ouvertes** : 14 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, Base+cross)
-- **Pistes fermées** : 63 (documentées avec raison, +3 en R57)
-- **Concepts inventés** : 115 (nommés, dont Base+cross parallèles = survivant R58)
+- **Rounds** : 58
+- **Scripts** : 204
+- **Auto-tests** : 11786 (109 en R58 : 82 dlog_theory + 27 base_lite, 100% PASS)
+- **Théorèmes prouvés** : 112 (originaux)
+- **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, K_linear borné, Base+cross)
+- **Pistes fermées** : 67 (documentées avec raison, +4 en R58)
+- **Concepts inventés** : 125 (nommés, dont Borne additive via large sieve = survivant R59)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
-- **Route prioritaire** : Base+cross parallèles (R57 : borne dlogs suites affines [gap base] + bound |Z|≤K·√p [gap cross])
+- **Route prioritaire** : Borne additive pointwise via Route 2 (fenêtres variables / large sieve) pour K_linear < 1 universel [gap base], contrôle cross automatique via T108-T109
