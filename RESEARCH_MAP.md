@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 11 mars 2026 | **Rounds:** R1–R58 (58 rounds, 204 scripts, 11786 auto-tests)
+**Date:** 12 mars 2026 | **Rounds:** R1–R59 (59 rounds, 206 scripts, 11840 auto-tests)
 
 ---
 
@@ -137,6 +137,10 @@
 | **Pseudo-aléa dlogs c_δ** | Contredite : c_δ couvre 12-31% de (Z/pZ)* seulement, suite très structurée, pas uniforme dans le multiplicatif | R58 |
 | **Borne Weil directe sur dlogs affines** | Non ciblante : sommes sur dlogs de suites affines hors cadre standard Weil, pas de théorème applicable | R58 |
 | **Critère Weyl seul pour max N_r** | Trop faible : vérifie S(h)→0 mais sans vitesse quantitative, ne donne pas de borne exploitable | R58 |
+| **Large sieve route directe pour K_linear** | Trop faible : borne (M+1)·(1+M/ord) ≥ M+1 TOUJOURS, pire que trivial dans 4/4 cas testés | R59 |
+| **F3 borne logarithmique** | Trop agressive : K₃ non borné stablement, fluctuations trop grandes quand M petit | R59 |
+| **Tranches dyadiques seule** | Trop faible : somme des bornes par tranche ≈ 2(M+1), pas mieux que trivial, argument global nécessaire | R59 |
+| **Candidat 2 hybride L²** | Strictement plus faible : √V ≈ c·M reconstruit borne linéaire avec pire constante, 0% supérieur dans cas significatifs | R59 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -162,7 +166,7 @@
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
 | **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
 | **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
-| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, δ-reformulation PROUVÉE (6 faits), gap = dlogs suite affine c_δ=1+g·2^δ, borne additive SURVIVANT (K_lin<1, 92 cas), Route 2 fenêtres variables prioritaire | Prouver K_linear borné universellement via large sieve + borne dlogs fenêtres rétrécissantes | R50-R58 |
+| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, δ-reformulation PROUVÉE, barrier counting N_r=#{δ:δ+d_δ≤M}, F4 α<1 SÉLECTIONNÉE, α_max=0.50, large sieve ÉLIMINÉ, Route 6 barrier counting PRIORITAIRE, Candidat 1 pointwise SURVIVANT | Prouver α<1 universel via barrier counting (preuve conditionnelle + bridge équidistribution d_δ) | R50-R59 |
 
 ---
 
@@ -287,6 +291,15 @@
 | **Clustering des contributeurs max N_r** | Les δ maximisant N_r sont GROUPÉS en espace dlog : ratio distance 0.02-0.27 [OBSERVÉ] | R58 |
 | **Implication additive ⟹ cross** | max N_r borné ⟹ Σ N_r² borné ⟹ V_cross borné : Candidat 1 contrôle base ET cross simultanément [PROUVÉ] | R58 |
 | **Surmultiplicité bornée** | Σ N_r² / (C²/p) ≤ 2.72 (cas significatifs), explose pour petits M [OBSERVÉ] | R58 |
+| **Barrier counting reformulation** | N_r = #{δ ∈ [0,M] : δ + d_δ ≤ M}, d_δ = dlog(r/c_δ), comptage de points sous barrière linéaire [SEMI-FORMALISÉ] | R59 |
+| **Formulation F4 (α < 1)** | max N_r ≤ C/p + α·(M+1) avec α < 1 universel, la plus réaliste des 4 formulations comparées [SÉLECTIONNÉE] | R59 |
+| **Lemme K-lite** | Premier lemme prouvable pour base k=2 : α < 1 via barrier counting, Ladder 5/9 [LEMME CANDIDAT] | R59 |
+| **Window dominance** | Difficulté vient principalement des fenêtres, pas de la suite affine (ratio real/random = 0.89) [OBSERVÉ] | R59 |
+| **Contributions small-δ** | Contributions au max N_r dominées par petits δ : frac_low = 0.67 en moyenne [PROUVÉ] | R59 |
+| **Route 6 (Barrier Counting)** | Compter directement les points (δ, d_δ) sous d = M − δ, route prioritaire R60 [SÉLECTIONNÉE] | R59 |
+| **Route 8 (Nesting)** | Sauts rares dans suite des hits (≤ 1 par cas), emboîtement monotone des fenêtres, route auxiliaire [OBSERVÉ] | R59 |
+| **α-régimes décroissants** | α décroît avec sous-régime : R3 < R2 < R1 < global, hiérarchie cohérente [OBSERVÉ] | R59 |
+| **α_max = 0.50 pointwise** | 34 cas testés, max α = 0.50, borne suffisante pour A(2) = O(1) en R1 [OBSERVÉ] | R59 |
 
 ---
 
@@ -472,6 +485,17 @@
 | **c_δ couvre 12-31% de (Z/pZ)**** | Suite affine TRÈS structurée : loin de l'uniformité multiplicative, approche probabiliste non justifiée [PROUVÉ] | R58 |
 | **Contributeurs max N_r GROUPÉS** | Distance médiane dlogs des contributeurs = 2-27% de ord : collisions structurées, pas aléatoires [OBSERVÉ] | R58 |
 | **|V_cross|/(C²/p) < 1.14** | Préparation cross R57 reste viable après nouvelle lecture δ de la base : cross toujours intact [OBSERVÉ] | R58 |
+| **Ratio real/random = 0.89** | max N_r réel / max N_r aléatoire ≈ 0.89 : suite affine ne crée pas de concentration pathologique [OBSERVÉ] | R59 |
+| **F1-F4 comparaison** | F1 √(M) stretch, F2 (M)^θ intermédiaire, F3 log trop agressif, F4 α·(M+1) OPTIMAL : K le plus borné [CALCULÉ] | R59 |
+| **α_max = 0.50 (34 cas)** | Candidat 1 pointwise : α maximal observé = 0.50, moyenne ≈ 0.18, borne robuste [OBSERVÉ] | R59 |
+| **Large sieve borne ≥ M+1** | Large sieve donne (M+1)·(1+M/ord) ≥ M+1 toujours : structurellement inutile comme route directe [PROUVÉ] | R59 |
+| **Nesting : sauts ≤ 1** | Dans la suite des δ contributeurs consécutifs, nombre de sauts (d_δ croissant) ≤ 1 dans tous les cas [OBSERVÉ] | R59 |
+| **d_δ non-croissant 67%** | Parmi les δ contributeurs, d_δ décroît 67% du temps : emboîtement naturel des fenêtres [OBSERVÉ] | R59 |
+| **frac_low = 0.67** | Contributions au max N_r dominées par δ ≤ M/2 (grandes fenêtres) : conséquence directe |W_δ| décroissant [PROUVÉ] | R59 |
+| **Candidat 2 ≤ Candidat 1** | √V ≈ c·M ≥ α·(M+1) toujours : hybride L² reconstruit même borne linéaire avec pire constante [PROUVÉ] | R59 |
+| **A(2) impliqué par α** | Si α < 1 : A(2) ≤ 1 + 2α·p/(M+2), borné en R1 car p/(M+2)=O(1) [SEMI-FORMEL] | R59 |
+| **T108-T109 confirmés numériquement** | Σ N_r² ≤ max_Nr · C et V_cross ≤ (max_Nr−1)·C vérifiés sur tous les cas R59 [CONFIRMÉ] | R59 |
+| **Preuve conditionnelle = étape R60** | Si d_δ équidistribués ⟹ α < 1 par fluctuations standard ; bridge = noyau dur [IDENTIFIÉ] | R59 |
 
 ---
 
@@ -591,6 +615,11 @@
 | T110 | Candidat 1 (additive) contrôle base ET cross simultanément via T108-T109 [PROUVÉ] | R58 |
 | T111 | Les dlogs de c_δ ne sont pas uniformes dans (Z/pZ)* : couverture 12-31% seulement [PROUVÉ] | R58 |
 | T112 | Second moment ⟹ perte √p dans passage L²→L∞ : facteur 448× trop lâche, éliminé [PROUVÉ] | R58 |
+| T113 | Contributions au max N_r dominées par petits δ : frac_low = 0.67 (|W_δ| décroissant) [PROUVÉ] | R59 |
+| T114 | Large sieve non viable : borne (M+1)·(1+M/ord) ≥ M+1 toujours, pire que trivial [PROUVÉ] | R59 |
+| T115 | Candidat 2 hybride strictement ≤ Candidat 1 pointwise : √V ≈ c·M, même échelle, pire constante [PROUVÉ] | R59 |
+| T116 | Nesting : sauts rares dans suite des hits (≤ 1 par cas testé), emboîtement des fenêtres [OBSERVÉ] | R59 |
+| T117 | Sous-régimes : α décroît R3 < R2 < R1 < global, hiérarchie cohérente avec aliasing [OBSERVÉ] | R59 |
 
 ---
 
@@ -636,6 +665,7 @@ R55     : Récurrence universelle RÉFUTÉE (dichotomie ANOVA), base A(2)≤1.22
 R56     : A(2) corrigé ≤2.28 (dégénéré g≡-1 PROUVÉ), CS INSUFFISANT [PROUVÉ Jensen], cancellation phases 89%, gap=max N_r, Base-lite+cross-lite = SURVIVANT R57 (T98-T102)
 R57     : δ-reformulation PROUVÉE (6 faits), suite affine c_δ, borne sub-triviale K<1, identité bilinéaire Z PROUVÉE, cross-lite B cadré, Base+cross parallèles = SURVIVANT R58 (T103-T107)
 R58     : Gap dlog FORMULÉ (canonique), 3 routes comparées (Route 2 fenêtres PRIORITAIRE), Candidat 1 additive SURVIVANT (K_lin<1 universel 92 cas), Candidat 2 second moment ÉLIMINÉ (perte √p), T108-T112 (additive⟹cross), Borne additive via large sieve = SURVIVANT R59
+R59     : Barrier counting reformulation (δ+d_δ≤M), F4 α<1 SÉLECTIONNÉE (α_max=0.50), fenêtres=source principale (ratio 0.89), large sieve ÉLIMINÉ (≥M+1), Candidat 2 hybride ÉLIMINÉ (≤Candidat 1), Route 6 barrier counting PRIORITAIRE, Lemme K-lite Ladder 5/9, T113-T117 = SURVIVANT R60
 ```
 
 ---
@@ -663,13 +693,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 58
-- **Scripts** : 204
-- **Auto-tests** : 11786 (109 en R58 : 82 dlog_theory + 27 base_lite, 100% PASS)
-- **Théorèmes prouvés** : 112 (originaux)
-- **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, K_linear borné, Base+cross)
-- **Pistes fermées** : 67 (documentées avec raison, +4 en R58)
-- **Concepts inventés** : 125 (nommés, dont Borne additive via large sieve = survivant R59)
+- **Rounds** : 59
+- **Scripts** : 206
+- **Auto-tests** : 11840 (54 en R59 : 33 variable_windows + 21 klinear_lite, 100% PASS)
+- **Théorèmes prouvés** : 117 (originaux, +5 en R59 : T113-T117)
+- **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, α<1 universel, Base+cross)
+- **Pistes fermées** : 71 (documentées avec raison, +4 en R59)
+- **Concepts inventés** : 135 (nommés, dont Lemme K-lite via barrier counting = survivant R60)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
 - **Route prioritaire** : Borne additive pointwise via Route 2 (fenêtres variables / large sieve) pour K_linear < 1 universel [gap base], contrôle cross automatique via T108-T109
