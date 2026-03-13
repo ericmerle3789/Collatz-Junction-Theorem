@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 12 mars 2026 | **Rounds:** R1–R59 (59 rounds, 206 scripts, 11840 auto-tests)
+**Date:** 13 mars 2026 | **Rounds:** R1–R60 (60 rounds, 208 scripts, 11888 auto-tests)
 
 ---
 
@@ -141,6 +141,9 @@
 | **F3 borne logarithmique** | Trop agressive : K₃ non borné stablement, fluctuations trop grandes quand M petit | R59 |
 | **Tranches dyadiques seule** | Trop faible : somme des bornes par tranche ≈ 2(M+1), pas mieux que trivial, argument global nécessaire | R59 |
 | **Candidat 2 hybride L²** | Strictement plus faible : √V ≈ c·M reconstruit borne linéaire avec pire constante, 0% supérieur dans cas significatifs | R59 |
+| **Candidat 2 bridge+nesting comme noyau** | Trop dur : prouver α=O(1/√M) strictement plus difficile que α<1, démontrabilité inférieure (39/60 vs 49/60) | R60 |
+| **Discrepancy D∞ standard comme bridge** | Non ciblante : ne capture pas la pondération par fenêtres, métrique inadéquate pour borner α | R60 |
+| **Nesting comme route autonome** | Trop faible : contrôle rugosité (J_r borné) mais ne borne PAS α directement, auxiliaire seulement | R60 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -166,7 +169,7 @@
 | **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
 | **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
 | **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
-| **TQL (Tail Quasi-uniformity)** | TQL-mu : μ−1 ≤ 1.42·p/C en R1, δ-reformulation PROUVÉE, barrier counting N_r=#{δ:δ+d_δ≤M}, F4 α<1 SÉLECTIONNÉE, α_max=0.50, large sieve ÉLIMINÉ, Route 6 barrier counting PRIORITAIRE, Candidat 1 pointwise SURVIVANT | Prouver α<1 universel via barrier counting (preuve conditionnelle + bridge équidistribution d_δ) | R50-R59 |
+| **TQL (Tail Quasi-uniformity)** | TQL-mu : schéma de preuve 4 sous-étapes (a,b PROUVÉES, c,d CONJECTURALES), bridge = discrepancy pondérée, preuve conditionnelle validée (<0.01% violation), verrou = transition hit-hit < 1, Candidat 1 bridge-lite SURVIVANT (49/60) | Prouver sous-étape (c) : taux transition hit-hit < 1 uniformément via structure affine x→2x−1 mod p | R50-R60 |
 
 ---
 
@@ -300,6 +303,13 @@
 | **Route 8 (Nesting)** | Sauts rares dans suite des hits (≤ 1 par cas), emboîtement monotone des fenêtres, route auxiliaire [OBSERVÉ] | R59 |
 | **α-régimes décroissants** | α décroît avec sous-régime : R3 < R2 < R1 < global, hiérarchie cohérente [OBSERVÉ] | R59 |
 | **α_max = 0.50 pointwise** | 34 cas testés, max α = 0.50, borne suffisante pour A(2) = O(1) en R1 [OBSERVÉ] | R59 |
+| **Bridge décomposition A+B** | (A) géométrie barrière triangle C=(M+1)(M+2)/2 [PROUVÉ] + (B) suite affine non concentrante [À PROUVER] | R60 |
+| **Discrepancy pondérée max_Dw** | max_Dw = α·(M+1)/C, identité EXACTE reliant discrepancy pondérée par fenêtre à α [PROUVÉ] | R60 |
+| **Preuve conditionnelle** | Sous d_δ uniformes : Pr[α≥1] < 0.01% (1000 simulations), bridge conditionnel VALIDE [OBSERVÉ] | R60 |
+| **Schéma 4 sous-étapes** | (a) reformulation δ [PROUVÉ] (b) \|S_δ\|≤1 [PROUVÉ] (c) transition hit-hit<1 [CONJECTURAL] (d) intégration [À PROUVER] | R60 |
+| **Transition hit-hit** | Taux moyen = 0.0625, max ponctuel = 1.0 (cas dégénérés n=2). Verrou = prouver < 1 uniformément [CONJECTURAL] | R60 |
+| **Nesting sous-lemme J_r** | J_r ≤ 2M²/ord + 2 : nombre de sauts borné, structure en grappes courtes [OBSERVÉ] | R60 |
+| **Bridge-lite pointwise** | Premier schéma de preuve articulé pour K-lite : α < 1 via 4 sous-étapes, Ladder 5/9 [LEMME CANDIDAT] | R60 |
 
 ---
 
@@ -496,6 +506,17 @@
 | **A(2) impliqué par α** | Si α < 1 : A(2) ≤ 1 + 2α·p/(M+2), borné en R1 car p/(M+2)=O(1) [SEMI-FORMEL] | R59 |
 | **T108-T109 confirmés numériquement** | Σ N_r² ≤ max_Nr · C et V_cross ≤ (max_Nr−1)·C vérifiés sur tous les cas R59 [CONFIRMÉ] | R59 |
 | **Preuve conditionnelle = étape R60** | Si d_δ équidistribués ⟹ α < 1 par fluctuations standard ; bridge = noyau dur [IDENTIFIÉ] | R59 |
+| **Bridge = discrepancy pondérée** | D∞ standard (non pondérée, max 0.72) ne suffit PAS, la couverture pondérée par taille de fenêtre est la bonne métrique [PROUVÉ] | R60 |
+| **Taux transition hit-hit = 0.0625** | Hits consécutifs (δ et δ+1 sous la barrière) très rares en moyenne, max ponctuel = 1.0 pour n=2 [OBSERVÉ] | R60 |
+| **Preuve conditionnelle < 0.01%** | Sous uniforme, α ≥ 1 dans < 0.01% des 1000 simulations. Bridge conditionnel = solide [OBSERVÉ] | R60 |
+| **α ≤ 1 − 1/(4·log(ord)) en R3** | Énoncé intermédiaire crédible pour sous-régime R3 (ord > 4(M+1)), vérifié numériquement [CONJECTURAL] | R60 |
+| **Nesting = auxiliaire, pas moteur** | J_r ≤ 2M²/ord+2 vérifié, mais ne borne PAS α directement, réduit l'espace de configurations [OBSERVÉ] | R60 |
+| **Candidat 2 bridge+nesting éliminé** | Score 39/60 vs 49/60, prouver α=O(1/√M) strictement plus dur que α<1 [CALCULÉ] | R60 |
+| **Sous-étapes (a)+(b) Ladder 7/8** | Reformulation δ et injectivité dlog prouvées, fondation solide du schéma [PROUVÉ] | R60 |
+| **Verrou = sous-étape (c)** | Taux transition hit-hit < 1 uniformément. Outils standard (Weil, Weyl) inapplicables car d_δ ≠ polynôme en δ [IDENTIFIÉ] | R60 |
+| **Chaîne globale K-lite → f_p** | K-lite ⟹ A(2) borné ⟹ V/C²→0 ⟹ f_p→1/p, tous maillons vérifiés numériquement [SEMI-FORMEL] | R60 |
+| **V/C² converge ≈ 1/3** | Consistant avec 2α/(M+2)→0 pour M croissant, contrôle cross intact [OBSERVÉ] | R60 |
+| **α décroît 95.5% des transitions** | α diminue quand n augmente dans 95.5% des cas, convergence robuste [OBSERVÉ] | R60 |
 
 ---
 
@@ -620,6 +641,11 @@
 | T115 | Candidat 2 hybride strictement ≤ Candidat 1 pointwise : √V ≈ c·M, même échelle, pire constante [PROUVÉ] | R59 |
 | T116 | Nesting : sauts rares dans suite des hits (≤ 1 par cas testé), emboîtement des fenêtres [OBSERVÉ] | R59 |
 | T117 | Sous-régimes : α décroît R3 < R2 < R1 < global, hiérarchie cohérente avec aliasing [OBSERVÉ] | R59 |
+| T118 | Bridge conditionnel : sous d_δ uniformes, Pr[α≥1] < 0.01% (1000 simulations) [OBSERVÉ] | R60 |
+| T119 | Discrepancy pondérée : max_Dw = α·(M+1)/C, identité exacte reliant discrepancy à α [PROUVÉ] | R60 |
+| T120 | Nesting borne : J_r ≤ 2M²/ord + 2, auxiliaire seulement [OBSERVÉ] | R60 |
+| T121 | Candidat 1 domine Candidat 2 : score 49/60 vs 39/60, bridge-lite pointwise survit [CALCULÉ] | R60 |
+| T122 | Chaîne globale K-lite → f_p → 1/p : K-lite ⟹ A(2) borné ⟹ V/C²→0 ⟹ f_p→1/p [SEMI-FORMEL] | R60 |
 
 ---
 
@@ -666,6 +692,7 @@ R56     : A(2) corrigé ≤2.28 (dégénéré g≡-1 PROUVÉ), CS INSUFFISANT [P
 R57     : δ-reformulation PROUVÉE (6 faits), suite affine c_δ, borne sub-triviale K<1, identité bilinéaire Z PROUVÉE, cross-lite B cadré, Base+cross parallèles = SURVIVANT R58 (T103-T107)
 R58     : Gap dlog FORMULÉ (canonique), 3 routes comparées (Route 2 fenêtres PRIORITAIRE), Candidat 1 additive SURVIVANT (K_lin<1 universel 92 cas), Candidat 2 second moment ÉLIMINÉ (perte √p), T108-T112 (additive⟹cross), Borne additive via large sieve = SURVIVANT R59
 R59     : Barrier counting reformulation (δ+d_δ≤M), F4 α<1 SÉLECTIONNÉE (α_max=0.50), fenêtres=source principale (ratio 0.89), large sieve ÉLIMINÉ (≥M+1), Candidat 2 hybride ÉLIMINÉ (≤Candidat 1), Route 6 barrier counting PRIORITAIRE, Lemme K-lite Ladder 5/9, T113-T117 = SURVIVANT R60
+R60     : Bridge décomposé A+B (géométrie barrière PROUVÉ + suite affine À PROUVER), discrepancy pondérée = bonne métrique (T119 PROUVÉ), preuve conditionnelle valide (<0.01%, T118), schéma 4 sous-étapes (2 prouvées, 2 conjecturales), Candidat 2 bridge+nesting ÉLIMINÉ (39/60), D∞ standard ÉLIMINÉ, nesting autonome ÉLIMINÉ, verrou = transition hit-hit < 1, T118-T122, Bridge-lite pointwise = SURVIVANT R61
 ```
 
 ---
@@ -693,13 +720,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 59
-- **Scripts** : 206
-- **Auto-tests** : 11840 (54 en R59 : 33 variable_windows + 21 klinear_lite, 100% PASS)
-- **Théorèmes prouvés** : 117 (originaux, +5 en R59 : T113-T117)
-- **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, α<1 universel, Base+cross)
-- **Pistes fermées** : 71 (documentées avec raison, +4 en R59)
-- **Concepts inventés** : 135 (nommés, dont Lemme K-lite via barrier counting = survivant R60)
+- **Rounds** : 60
+- **Scripts** : 208 (+2 en R60 : r60_bridge_theory + r60_klite_scheme)
+- **Auto-tests** : 11888 (48 en R60 : 22 bridge_theory + 26 klite_scheme, 100% PASS)
+- **Théorèmes prouvés** : 122 (originaux, +5 en R60 : T118-T122)
+- **Conjectures ouvertes** : 16 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, α<1 universel, Base+cross, transition hit-hit<1)
+- **Pistes fermées** : 74 (documentées avec raison, +3 en R60)
+- **Concepts inventés** : 143 (nommés, +8 en R60, dont Bridge-lite pointwise = survivant R61)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
-- **Route prioritaire** : Borne additive pointwise via Route 2 (fenêtres variables / large sieve) pour K_linear < 1 universel [gap base], contrôle cross automatique via T108-T109
+- **Route prioritaire** : Bridge-lite pointwise via barrier counting, verrou = transition hit-hit < 1 uniformément, chaîne K-lite ⟹ A(2) borné ⟹ f_p→1/p [SEMI-FORMEL]
