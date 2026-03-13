@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 13 mars 2026 | **Rounds:** R1–R60 (60 rounds, 208 scripts, 11888 auto-tests)
+**Date:** 13 mars 2026 | **Rounds:** R1–R61 (61 rounds, 210 scripts, 11928 auto-tests)
 
 ---
 
@@ -144,6 +144,10 @@
 | **Candidat 2 bridge+nesting comme noyau** | Trop dur : prouver α=O(1/√M) strictement plus difficile que α<1, démontrabilité inférieure (39/60 vs 49/60) | R60 |
 | **Discrepancy D∞ standard comme bridge** | Non ciblante : ne capture pas la pondération par fenêtres, métrique inadéquate pour borner α | R60 |
 | **Nesting comme route autonome** | Trop faible : contrôle rugosité (J_r borné) mais ne borne PAS α directement, auxiliaire seulement | R60 |
+| **Route 2 espacement multiplicatif** | Non ciblante : dlog des ratios c_{δ+1}/c_δ quasi-uniformes, pas de structure exploitable pour hit-hit | R61 |
+| **Candidat 2 chaînes courtes comme route principale** | Absorbée : score 68/100 vs 71/100 pour Candidat 1 pointwise, complexité supplémentaire sans avantage net | R61 |
+| **τ < 1 universel tous régimes sans restriction** | Trop ambitieuse : cas dégénérés (n=2) potentiellement τ=1, commencer par R3 puis étendre | R61 |
+| **Nesting seul comme preuve de (c)** | Trop faible : J_r borné aide mais ne contrôle pas τ directement (confirmé R60+R61) | R61 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -310,6 +314,11 @@
 | **Transition hit-hit** | Taux moyen = 0.0625, max ponctuel = 1.0 (cas dégénérés n=2). Verrou = prouver < 1 uniformément [CONJECTURAL] | R60 |
 | **Nesting sous-lemme J_r** | J_r ≤ 2M²/ord + 2 : nombre de sauts borné, structure en grappes courtes [OBSERVÉ] | R60 |
 | **Bridge-lite pointwise** | Premier schéma de preuve articulé pour K-lite : α < 1 via 4 sous-étapes, Ladder 5/9 [LEMME CANDIDAT] | R60 |
+| **Taux de transition hit-hit τ(r)** | #{hit→hit parmi hits éligibles} / #{hits éligibles}, formulation canonique du verrou (c) [SEMI-FORMALISÉ] | R61 |
+| **ε = 1 − τ_max** | Gap explicite, cible ε ≥ c/log(ord), c ∈ [2.6, 4.2], forme fonctionnelle stable [OBSERVÉ] | R61 |
+| **Route 3 rareté** | Décroissance géométrique des chaînes de hits (ρ ≈ 0.04), 96.5% longueur 1, route prioritaire [OBSERVÉ] | R61 |
+| **Hit-hit-lite pointwise** | Survivant R62 : τ(r) < 1−ε en R3, une pièce manquante = quasi-uniformité d_δ [SEMI-FORMALISÉ] | R61 |
+| **Séparation fenêtre/dynamique** | Ratio τ_real/τ_random ≈ 0.96, géométrie fenêtres = facteur dominant, structure multiplicative neutre [PROUVÉ] | R61 |
 
 ---
 
@@ -517,6 +526,15 @@
 | **Chaîne globale K-lite → f_p** | K-lite ⟹ A(2) borné ⟹ V/C²→0 ⟹ f_p→1/p, tous maillons vérifiés numériquement [SEMI-FORMEL] | R60 |
 | **V/C² converge ≈ 1/3** | Consistant avec 2α/(M+2)→0 pour M croissant, contrôle cross intact [OBSERVÉ] | R60 |
 | **α décroît 95.5% des transitions** | α diminue quand n augmente dans 95.5% des cas, convergence robuste [OBSERVÉ] | R60 |
+| **τ_moyen = 0.317** | Taux transition hit-hit fortement sous 1, τ_max = 0.529, ε ≥ 0.47 sur 4 primes [OBSERVÉ] | R61 |
+| **ε ≈ c/log(ord)** | Forme fonctionnelle stable, c ∈ [2.6, 4.2], cible prouvable [OBSERVÉ] | R61 |
+| **Ratio τ_real/τ_random = 0.96** | Géométrie fenêtres (|W_{δ+1}|=|W_δ|−1) = facteur dominant, multiplicativité neutre [PROUVÉ] | R61 |
+| **Décroissance géométrique chaînes** | ρ ≈ 0.04, 96.5% longueur 1, 3.5% longueur 2, aucune plus longue [OBSERVÉ] | R61 |
+| **Route 3 rareté score 8/10** | Meilleure route parmi 4 comparées, décroissance géométrique nette [CALCULÉ] | R61 |
+| **Candidat 1 > Candidat 2 : 71 vs 68** | Hit-hit-lite pointwise plus simple et mieux intégrable dans (d) que chaînes courtes [CALCULÉ] | R61 |
+| **0 cas dégénérés sur 1086** | Aucun τ=1 observé hors cas triviaux, mais non exclu théoriquement [OBSERVÉ] | R61 |
+| **Chaîne (c)→(d)→K-lite→f_p valide R3** | 20 cas R3 testés, chaîne complète valide, sous-régime ne brise rien [SEMI-FORMEL] | R61 |
+| **Verrou = quasi-uniformité d_δ** | Pièce manquante : P(d_{δ+1} ∈ [0,M−δ−1] | d_δ ∈ [0,M−δ]) < 1 pour ord suffisant [IDENTIFIÉ] | R61 |
 
 ---
 
@@ -646,6 +664,11 @@
 | T120 | Nesting borne : J_r ≤ 2M²/ord + 2, auxiliaire seulement [OBSERVÉ] | R60 |
 | T121 | Candidat 1 domine Candidat 2 : score 49/60 vs 39/60, bridge-lite pointwise survit [CALCULÉ] | R60 |
 | T122 | Chaîne globale K-lite → f_p → 1/p : K-lite ⟹ A(2) borné ⟹ V/C²→0 ⟹ f_p→1/p [SEMI-FORMEL] | R60 |
+| T123 | Taux transition hit-hit : τ_moyen = 0.317, τ_max ≤ 0.53, ε ≥ 0.47 sur 4 primes [OBSERVÉ] | R61 |
+| T124 | Décroissance géométrique des chaînes de hits : ρ ≈ 0.04, 96.5% longueur 1 [OBSERVÉ] | R61 |
+| T125 | Géométrie fenêtres = facteur dominant : ratio τ_real/τ_random ≈ 0.96 [PROUVÉ] | R61 |
+| T126 | Candidat 1 pointwise domine Candidat 2 chaînes courtes : 71 vs 68 /100 [CALCULÉ] | R61 |
+| T127 | Chaîne globale (c)→(d)→K-lite→A(2)→f_p valide en R3 (20 cas) [SEMI-FORMEL] | R61 |
 
 ---
 
@@ -693,6 +716,7 @@ R57     : δ-reformulation PROUVÉE (6 faits), suite affine c_δ, borne sub-triv
 R58     : Gap dlog FORMULÉ (canonique), 3 routes comparées (Route 2 fenêtres PRIORITAIRE), Candidat 1 additive SURVIVANT (K_lin<1 universel 92 cas), Candidat 2 second moment ÉLIMINÉ (perte √p), T108-T112 (additive⟹cross), Borne additive via large sieve = SURVIVANT R59
 R59     : Barrier counting reformulation (δ+d_δ≤M), F4 α<1 SÉLECTIONNÉE (α_max=0.50), fenêtres=source principale (ratio 0.89), large sieve ÉLIMINÉ (≥M+1), Candidat 2 hybride ÉLIMINÉ (≤Candidat 1), Route 6 barrier counting PRIORITAIRE, Lemme K-lite Ladder 5/9, T113-T117 = SURVIVANT R60
 R60     : Bridge décomposé A+B (géométrie barrière PROUVÉ + suite affine À PROUVER), discrepancy pondérée = bonne métrique (T119 PROUVÉ), preuve conditionnelle valide (<0.01%, T118), schéma 4 sous-étapes (2 prouvées, 2 conjecturales), Candidat 2 bridge+nesting ÉLIMINÉ (39/60), D∞ standard ÉLIMINÉ, nesting autonome ÉLIMINÉ, verrou = transition hit-hit < 1, T118-T122, Bridge-lite pointwise = SURVIVANT R61
+R61     : Contrôle hit-hit FORMULÉ (τ<1−ε, ε≈c/log(ord)), Route 3 rareté SÉLECTIONNÉE (8/10), décroissance géométrique chaînes (ρ≈0.04), Candidat 1 pointwise SURVIVANT (71 vs 68), Route 2 multiplicatif ÉLIMINÉE, Candidat 2 chaînes ABSORBÉ, fenêtres=facteur dominant (0.96), verrou = quasi-uniformité d_δ, T123-T127, Hit-hit-lite pointwise = SURVIVANT R62
 ```
 
 ---
@@ -720,13 +744,13 @@ PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
 
 ## STATISTIQUES
 
-- **Rounds** : 60
-- **Scripts** : 208 (+2 en R60 : r60_bridge_theory + r60_klite_scheme)
-- **Auto-tests** : 11888 (48 en R60 : 22 bridge_theory + 26 klite_scheme, 100% PASS)
-- **Théorèmes prouvés** : 122 (originaux, +5 en R60 : T118-T122)
-- **Conjectures ouvertes** : 16 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, α<1 universel, Base+cross, transition hit-hit<1)
-- **Pistes fermées** : 74 (documentées avec raison, +3 en R60)
-- **Concepts inventés** : 143 (nommés, +8 en R60, dont Bridge-lite pointwise = survivant R61)
+- **Rounds** : 61
+- **Scripts** : 210 (+2 en R61 : r61_hithit_formulation + r61_hithit_lite)
+- **Auto-tests** : 11928 (40 en R61 : 18 hithit_formulation + 22 hithit_lite, 100% PASS)
+- **Théorèmes prouvés** : 127 (originaux, +5 en R61 : T123-T127)
+- **Conjectures ouvertes** : 16 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, α<1 universel, Base+cross, quasi-uniformité d_δ)
+- **Pistes fermées** : 78 (documentées avec raison, +4 en R61)
+- **Concepts inventés** : 149 (nommés, +6 en R61, dont Hit-hit-lite pointwise = survivant R62)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
-- **Route prioritaire** : Bridge-lite pointwise via barrier counting, verrou = transition hit-hit < 1 uniformément, chaîne K-lite ⟹ A(2) borné ⟹ f_p→1/p [SEMI-FORMEL]
+- **Route prioritaire** : Hit-hit-lite pointwise τ<1−ε en R3, verrou = quasi-uniformité d_δ dans fenêtre, chaîne (c)→(d)→K-lite→A(2)→f_p [SEMI-FORMEL]
