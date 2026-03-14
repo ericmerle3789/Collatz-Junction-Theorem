@@ -970,6 +970,11 @@ R107    : **POUSSÉE DEUX CANDIDATS** — ε(δ) explicite N'EXISTE PAS δ<1/2. 
 R108    : **T166 PROUVÉ** — E_γ(H)=r^4/p+O(r^{3-η}) par Fourier+CS+BKT. Propagation T166→(H_k) par Hölder ÉCHOUE (structurel). Gap 2-point→k-point identifié. Aucun script
 R109    : **GAP 2-POINT→K-POINT** — H-invariance=T163 (redécouverte détectée). Reformulation (H_k) sur quotient Z_g : PA de |f̂|² de pas ⟨3⟩. Connexion normes de Gowers. Aucun script
 R110    : **CONSOLIDATION** — Calcul ||ψ||_{U²} explicite (faisable sous Katz-Sarnak). 3 routes survivantes. V_GOWERS=nouveau sous-verrou. IVS=6.5/10. Aucun script
+R111    : **CORRÉLATIONS GAUSS** — C(s)=g·τ(χ^{-sr})·S_H(s) [PROUVÉ]. S_H(s)=Σχ^{sr}(1-h) somme hybride additif/multiplicatif. Borne triviale √p insuffisante. Aucun script
+R112    : **ANNULATION √g** — Circularité S_H√r⟺|Σωω̄|√g détectée. Second moment (Parseval+BKT) INSUFFISANT (RMS=√p·r^{5/6}). V_SQRT_CANCEL reste ouvert. Aucun script
+R113    : **SUM-PRODUCT SUR 1-H** — Chang+BKT→T168 candidat (majorité ψ̂(s) petits). Borne non uniforme. Sum-product non explicite pour δ<1/2. Aucun script
+R114    : **IMPASSE** — Décomposition good/bad insuffisante. L^{2k}→retombe max|f̂|. V_GOWERS=V_BGK=V_SQRT=MÊME MUR. Aucun script
+R115    : **CONSOLIDATION FINALE** — Réduction complète à S_H(s)=Σχ^{sr}(1-h)≤√r. Problème ouvert de TAN. IVS=6.0/10. Aucun script
 ```
 
 ---
@@ -1017,6 +1022,10 @@ NE PAS FAIRE : VdC sur W_ℓ (dual à E_k, R106)
 NE PAS FAIRE : Induction E_k→E_{k-1} (circulaire, R106)
 NE PAS FAIRE : Propagation T166→(H_k) par Hölder (structurel, R108)
 NE PAS FAIRE : H-invariance pour 3∉H (=T163, ne s'applique pas, R109)
+NE PAS FAIRE : Parseval+BKT sur C(s) (RMS trop gros √p·r^{5/6}, R112)
+NE PAS FAIRE : Décomposition good/bad spectrale (ψ_bad trop gros, R114)
+NE PAS FAIRE : L^{2k} direct sur Z_g (retombe sur max ψ → BGK, R114)
+NE PAS FAIRE : Chercher d'autres routes au verrou S_H(s) (3 voies = même mur, R114-R115)
 
 ÉTAT DU FRONT THÉORIQUE (R110) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
@@ -1042,16 +1051,16 @@ NE PAS FAIRE : H-invariance pour 3∉H (=T163, ne s'applique pas, R109)
 
 ## STATISTIQUES
 
-- **Rounds** : 110 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k))
+- **Rounds** : 115 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS)
 - **Scripts** : 228
 - **Auto-tests** : 12166
-- **Théorèmes prouvés** : 165 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110)
-- **Conjectures ouvertes** : 13 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k)**)
-- **Pistes fermées** : 135 (+4 en R106-R110 : VdC/dual E_k, Induction E_k→E_{k-1}/circulaire, Hölder propagation T166→(H_k)/structurel, H-invariance 3∉H/=T163)
-- **Concepts inventés** : 234 (+6 en R106-R110 : T166 décorrélation croisée, E_γ(H) énergie cross-coset, V_BGK_eff sous-verrou, ψ=|f̂|² sur quotient Z_g, PA de ψ = (H_k), V_GOWERS normes uniformité)
+- **Théorèmes prouvés** : 166 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115)
+- **Conjectures ouvertes** : 14 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k)**, **V_SQRT_CANCEL**)
+- **Pistes fermées** : 139 (+4 en R111-R115 : Parseval+BKT sur C(s)/RMS trop gros, Décomposition good/bad/ψ_bad trop gros, L^{2k} direct/retombe BGK, Hölder dans Z_g/=R106)
+- **Concepts inventés** : 240 (+6 en R111-R115 : C(s)=g·τ·S_H formule exacte, S_H(s)=Σχ(1-h) somme hybride, V_SQRT_CANCEL annulation √g, T168 spectre partiel, convergence 3 verrous=1, réduction à problème ouvert TAN)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163+T166 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. Verrou = (H_k) = uniformité Gowers de |f̂|² sur Z_g (sous-problème de PO-R87). Sous-verrou V_GOWERS identifié R110.
+- **Front théorique** : T159+T162+T163+T166 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|=|Σχ^{sr}(1-h)|≤√r (somme hybride additif/multiplicatif). V_GOWERS=V_BGK=V_SQRT_CANCEL=même problème (R114). Problème ouvert de TAN.
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
