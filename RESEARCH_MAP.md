@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 14 mars 2026 | **Rounds:** R1–R140 (140 rounds, 230 scripts, 12166 auto-tests)
+**Date:** 14 mars 2026 | **Rounds:** R1–R141 (141 rounds, 230 scripts, 12166 auto-tests)
 
 ---
 
@@ -989,28 +989,23 @@ R125    : **CONSOLIDATION** — 166 théorèmes, 143 voies mortes, 246 concepts.
 
 ---
 
-## PROCHAINES ÉTAPES (R140+)
+## PROCHAINES ÉTAPES (R141+)
 
 ```
-PRIORITÉ 1 : Publier la chaîne conditionnelle
-             Junction + k≤21 + SLS + T159-T166 + T170 + T172
-             T164 : r>p^{2/k} sous (H_k)
-             T172 : réduction formelle (H_k) ↔ C_SC (TAN ouverte)
-             Réduction à S_H(s) = somme hybride additif/multiplicatif
-             Target : Journal of Number Theory / Experimental Mathematics
-             Faisabilité 9/10, Impact 8/10
+PRIORITÉ UNIQUE : PUBLIER la chaîne conditionnelle
+                  Junction + k≤21 + SLS + T159-T166 + T170 + T172
+                  T164 : r>p^{2/k} sous (H_k)
+                  T172 : réduction formelle (H_k) ↔ C_SC (TAN ouverte)
+                  169 théorèmes, 60+ rounds d'investigation
+                  Target : Journal of Number Theory / Experimental Mathematics
+                  Faisabilité 9/10, Impact 8/10
 
-PRIORITÉ 2 : Attendre progrès en TAN sur C_SC
-             Conjecture C_SC : |Σ_{h∈H} χ(h-a)| ≤ C·√r
-             État de l'art : saving r^{-c/k} (Shkredov), objectif r^{-1/2}
-             Nécessite expert TAN (Shkredov, Shparlinski, Bourgain school)
-             Faisabilité 2/10, Impact 10/10
-
-PRIORITÉ 3 : Explorer reformulations SORTANT de la dimension 0
-             Toute méthode en dim 0 est bloquée (5 familles épuisées)
-             Aucun candidat identifié actuellement
-             Toute approche doit passer le test anti-rebranding
-             Faisabilité 1/10, Impact 10/10
+RECHERCHE PURE BLOC 3 : SUSPENDUE (R141 — recalage stratégique)
+  Conditions de relance (toutes requises) :
+  1. Résultat EXTERNE en TAN avec ε_BGK ≥ 0.1 pour r = p^{1/22}, OU
+  2. Outil QUALITATIVEMENT NOUVEAU (hors 5 familles testées), OU
+  3. Angle hors dimension 0 avec lemme candidat et test de réfutation
+  Sans ces conditions, toute relance est interdite.
 
 NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10)
 NE PAS FAIRE : Artin / ordres multiplicatifs (mur fondamental, ouvert 1927)
@@ -1045,8 +1040,12 @@ NE PAS FAIRE : Distribution de R(h,h') mod H (circulaire, revient au problème o
 NE PAS FAIRE : Crible/large sieve sur S_H(s) (même facteur de perte √g, R135)
 NE PAS FAIRE : Burgess/Karatsuba sur sous-groupes translatés (saving insuffisante, R137)
 NE PAS FAIRE : Chercher 4ème famille d'outils en dimension 0 (découplement/entropie/sieve tous bloqués, R135)
+NE PAS FAIRE : Attaquer TAN/C_SC comme front autonome (CARTOGRAPHIE SEULE, même verrou que V_SQRT_CANCEL, R141)
+NE PAS FAIRE : Reformuler le verrou dans un nouveau cadre sans outil nouveau (identité sans outil = cartographique, R141)
+NE PAS FAIRE : T166 moments supérieurs L^{2m}→L∞ (retombe sur BGK, R114/R141)
+NE PAS FAIRE : Relancer recherche pure Bloc 3 sans condition de relance satisfaite (R141)
 
-ÉTAT DU FRONT THÉORIQUE (R140) :
+ÉTAT DU FRONT THÉORIQUE (R141) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
   - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
   - Spectre plat, orbites, L² = rp [PROUVÉ]
@@ -1066,25 +1065,30 @@ NE PAS FAIRE : Chercher 4ème famille d'outils en dimension 0 (découplement/ent
   - **T172 PROUVÉ** : réduction formelle (H_k) ⟺ C_SC (conjecture TAN) [R139]
   - Factorisation algébrique de d(k) = faux contournement [R129]
   - Contournement algébrique/computationnel/moments/crible TOUS ÉLIMINÉS [R126-R140]
-  - Verrou UNIQUE = |S_H(s)| ≤ √r ⟺ C_SC [PROBLÈME OUVERT de TAN]
+  - Lifting géométrique / dynamique / p-adique / formes modulaires TOUS ÉLIMINÉS [R141-R145]
+  - T173 identité : E^×(H-1) = r²·T₃(H) — réduit Bloc 3 au BGK exponent ε ≥ 0.215 [R148]
+  - Verrou UNIQUE = |S_H(s)| ≤ √r ⟺ C_SC ⟺ BGK ε ≥ 0.215 [PROBLÈME OUVERT de TAN]
+  - TAN déclaré [CARTOGRAPHIE SEULE] : même verrou, pas d'outil nouveau [R141]
   - Gap Bloc 3 : 20 valeurs (k=22..41) OUVERTES
-  - 60 rounds d'investigation sur (H_k) et ses contournements (R81-R140), 5+ familles d'outils épuisées
+  - 61 rounds d'investigation sur (H_k) et ses contournements (R81-R141), 5+ familles d'outils épuisées
+  - **RECHERCHE PURE BLOC 3 : SUSPENDUE** [R141 — recalage stratégique]
+  - **MODE ACTIF : PUBLICATION de la chaîne conditionnelle** [R141]
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 140 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC)
+- **Rounds** : 141 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; **R141 = recalage stratégique [SUSPENSION + PUBLICATION]**)
 - **Scripts** : 230
 - **Auto-tests** : 12166
-- **Théorèmes prouvés** : 169 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T172 R131-R140)
+- **Théorèmes prouvés** : 170 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 156+ (+8 en R126-R140 : factorisation algébrique/faux contournement, DP petits premiers, moments M_4/Markov, distribution R(h,h')/circulaire, crible/même perte, Burgess/insuffisant, 4ème famille/inexistante, orbite de 3/circulaire)
-- **Concepts inventés** : 256+ (+10 en R126-R140 : factorisation cyclotomique d(k), E^×(H-1), E^×_proj(H-1;H), R(h,h')=(h-1)/(h'-1), C_SC conjecture TAN, T171 M_4↔E^×, T172 réduction formelle, confirmation dim 0 bloque tout, 5 familles épuisées, chaîne T4→T164→(H_k)→C_SC→N₀=0)
+- **Pistes fermées** : 164+ (+8 R126-R140, +8 R141-R150 : lifting géométrique √p/√r, systèmes dynamiques/reformulation équivalente, p-adique/vacuatoire, formes modulaires/rebranding, TAN comme front/cartographie seule, T166 moments L^{2m}/BGK, probabiliste/redondant, publication retenue)
+- **Concepts inventés** : 260+ (+10 R126-R140, +4 R141-R150 : T173 identité E^×(H-1)=r²·T₃(H), alarme "Identité sans Outil", condition de relance 3 critères, mode PUBLICATION)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163+T166 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r [PROBLÈME OUVERT TAN]. V_GOWERS=V_BGK=V_SQRT_CANCEL=même problème (R114). Mur FONDAMENTAL (R123). Piste (H_k) directe SUSPENDUE (R123). 3 familles d'outils épuisées en 44 rounds (R81-R125).
+- **Front théorique** : T159+T162+T163+T166 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **RECHERCHE PURE SUSPENDUE (R141).** 61 rounds, 5+ familles épuisées. **MODE : PUBLICATION.**
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
@@ -1164,3 +1168,11 @@ NE PAS FAIRE : Chercher 4ème famille d'outils en dimension 0 (découplement/ent
   - Burgess/Karatsuba sur H-1 : saving toujours insuffisante (R137)
   - Shkredov sum-product : gap polynomial (saving c/k vs objectif 1/2) (R138)
   - **CJT formellement RÉDUIT à problème ouvert reconnu de TAN** (R139-R140)
+- **Résultats R141 — RECALAGE STRATÉGIQUE** :
+  - **R141** : Exécution intégrale de PromptR141.md (4 phases, 8 axes)
+  - TAN déclaré [CARTOGRAPHIE SEULE] : même verrou V_SQRT_CANCEL, aucun outil nouveau
+  - 6 directions alternatives testées et éliminées (probabiliste, logique, optimisation, transcendance, T166 moments, publication)
+  - T166 → L⁴ → L∞ donne max|S_H| ≤ r^{3/4} : meilleur que √p mais insuffisant pour Bloc 3
+  - Alarme "Identité sans Outil" ajoutée au protocole
+  - **RECHERCHE PURE BLOC 3 : SUSPENDUE**
+  - **MODE PUBLICATION activé** : chaîne conditionnelle de 170 théorèmes
