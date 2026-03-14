@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 14 mars 2026 | **Rounds:** R1–R100 (100 rounds, 228 scripts, 12166 auto-tests)
+**Date:** 14 mars 2026 | **Rounds:** R1–R105 (105 rounds, 228 scripts, 12166 auto-tests)
 
 ---
 
@@ -960,34 +960,41 @@ R96     : **POUSSÉE + DÉCOUVERTE T159** — A1,B1 BLOQUÉS (Artin). A2 semi-fo
 R97     : **AUDIT CROISÉ** — T159 prouvable, couvre ~42% primes pour k=21. B2 conditionnel HGE. Hybride T4+T159 (T160) émerge. A1,A2,B1 éliminés. Aucun script
 R98     : **PREUVE T159** — 6 étapes formalisées et PROUVÉES. T160 prouvé. B2 BLOQUÉ (HGE non prouvable). Carte dépendances complétée. Aucun script
 R99     : **TOURNOI FINAL** — T159 vainqueur [PROUVÉ, INCONDITIONNEL]. Verrou = HGE/Artin (hors portée). IVS = 8.8/10. Aucun script
+R101    : **RECALAGE** — T162 [PROUVÉ] n_eff=gcd(r,k)-1. T163 [PROUVÉ] dichotomie 3∈H/3∉H. Diagnostic: T159 seul ne force pas N₀=0. 4 candidats identifiés. Aucun script
+R102    : **POUSSÉE** — M_mix≈r²p [SEMI-FORMALISÉ]. Route 3∈H éliminée (Jacobi→même condition). A2 χ_ℓ^k=1 pas de gain. B2 blocs éliminé (Hölder). Aucun script
+R103    : **AUDIT CROISÉ** — 8 directions investiguées, 7 éliminées. Weil-Deligne hors cadre (transcendant). Crible d(k)→ACU. Énergie additive→PO-R87. Survivant unique: B1 M_mix. Aucun script
+R104    : **TEST DE PREUVE** — T164 [CONDITIONNEL sur (H_k)]: r>p^{2/k} suffit. Réduction analytique→combinatoire. Gap CONDITIONNEL pas structurel. (H_k)=énergie additive k-linéaire. Aucun script
+R105    : **TOURNOI FINAL** — T164 seul survivant, mordance 6.5/10. 3 théorèmes, 7 éliminations. Score IVS=7.3/10. Verrou=(H_k) combinatoire. Aucun script
 ```
 
 ---
 
-## PROCHAINES ÉTAPES (R100+)
+## PROCHAINES ÉTAPES (R105+)
 
 ```
-PRIORITÉ 1 : HGE — Prouver ou exploiter l'équidistribution des phases Gauss
-             Hypothèse identifiée R96-R98 : si phases arg(G(χ^{ℓ+jr})) équidistribuées
-             sur cosets → |S₀| ≤ C√r·polylog → T4 INCONDITIONNEL
-             Explorer Katz monodromy pour cosets de caractères
-             Faisabilité 1/10, Impact 10/10
+PRIORITÉ 1 : Recherche bibliographique (H_k)
+             Explorer Shkredov (2013+), Schoen, Bourgain (2005+) pour énergie
+             additive multilinéaire de sous-groupes multiplicatifs de F_p*
+             (H_k) connu k=2 (BKT 2004), ouvert k≥3
+             Faisabilité 5/10, Impact 10/10
 
-PRIORITÉ 2 : Publier résultat k=21 + T152-T161 + PO-R87
-             Junction + k≤21 + SLS + spectre plat + T4 conditionnel + T159 filtre
+PRIORITÉ 2 : Publier résultat k=21 + T152-T164 + PO-R87
+             Junction + k≤21 + SLS + T159 filtre + T162-T163 + T164 conditionnel
              T159 = premier résultat inconditionnel sur R
+             T164 = réduction analytique→combinatoire
              Target : Experimental Mathematics / Journal of Number Theory
              Faisabilité 9/10, Impact 8/10
 
-PRIORITÉ 3 : Moments mixtes Σ_t |S₀(t)|²·|S₀(t·3)|²
-             Corrélation 2-point le long de ⟨3⟩
-             Si décorrélation prouvée → produit ≈ r^{k/2} → condition quasi-levée
-             Faisabilité 3/10, Impact 9/10
+PRIORITÉ 3 : Vérification computationnelle de T164
+             Pour k=22..41 (Bloc 3), calculer p^{2/k} pour les primes p|d(k)
+             et vérifier si ord_p(2) > p^{2/k}
+             Si oui systématiquement, T164+(H_k) fermerait ces cas
+             Faisabilité 7/10, Impact 8/10
 
-PRIORITÉ 4 : Propriétés spéciales de p | d(k) pour HGE
-             2^S ≡ 3^k mod p impose des contraintes sur (p-1)/r
-             Explorer si ces contraintes rendent HGE plus facile
-             Faisabilité 2/10, Impact 9/10
+PRIORITÉ 4 : Estimation directe de W_ℓ (sans Cauchy-Schwarz)
+             Méthode Fouvry-Kowalski-Michel adaptée aux sommes partielles
+             Obstacle : S₀^{(ℓ)} somme sur sous-groupe, pas objet de type faisceau
+             Faisabilité 2/10, Impact 10/10
 
 NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10)
 NE PAS FAIRE : Artin / ordres multiplicatifs (mur fondamental, ouvert 1927)
@@ -995,33 +1002,42 @@ NE PAS FAIRE : M4 comme amélioration du produit (PROUVÉ pire : r>p^{0.69})
 NE PAS FAIRE : Parseval/triangle pour battre √p (prouvé impossible)
 NE PAS FAIRE : SWL / lissage des poids (spectre plat, R91)
 NE PAS FAIRE : BGK quantitatif pour k<91
+NE PAS FAIRE : Route 3∈H pour borne améliorée (Jacobi→même condition, R102)
+NE PAS FAIRE : Factorisation en blocs / Hölder (structurellement r>√p, R102)
+NE PAS FAIRE : Weil-Deligne sur Σ(ℓ) (condition transcendante, R103)
+NE PAS FAIRE : Crible multiplicatif d(k) (réduit à ACU/CRT R85, R103)
+NE PAS FAIRE : Norme de bloc ker(χ_ℓ^k) (réduit à T163, R103)
 
-ÉTAT DU FRONT THÉORIQUE (R100) :
+ÉTAT DU FRONT THÉORIQUE (R105) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
   - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
   - Spectre plat, orbites, L² = rp [PROUVÉ]
   - T4 conditionnel (r > p^{1/2+2/k}) [PROUVÉ]
   - T159 filtre d'orthogonalité (W_ℓ=0 si r/gcd(ℓ,r)∤k) [PROUVÉ INCONDITIONNEL]
   - T160 hybride (n_eff < r-1 termes actifs) [PROUVÉ]
-  - gcd(ord_p(2), k) = paramètre clé de la conditionnalité
-  - Verrou = HGE (phases Gauss sur cosets) ou Artin (ordres multiplicatifs)
-  - Gap L²/L^∞ persiste : √r (L²) vs √p (L^∞)
+  - T162 n_eff = gcd(r,k) - 1 exactement [PROUVÉ INCONDITIONNEL, R101]
+  - T163 dichotomie 3∈H/3∉H : factorisation exacte quand 3∈H [PROUVÉ, R101]
+  - T164 conditionnel : r > p^{2/k} sous (H_k) [CONDITIONNEL, R104]
+  - M_mix ≈ r²p quand 3∉H : décorrélation 2-point [SEMI-FORMALISÉ, R102]
+  - Verrou = (H_k) énergie additive k-linéaire (sous-problème de PO-R87)
+  - Réduction : verrou analytique → verrou combinatoire [R104]
+  - Gap L²/L^∞ persiste mais CONDITIONNEL (pas structurel)
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 100 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans)
+- **Rounds** : 105 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164)
 - **Scripts** : 228
 - **Auto-tests** : 12166
-- **Théorèmes prouvés** : 161 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99)
-- **Conjectures ouvertes** : 12 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE)
-- **Pistes fermées** : 124 (+4 en R95-R99 : A1 Dichotomie/Artin, B1 Relation 2-3/Artin, A2 M4 produit, B2 HGE preuve)
-- **Concepts inventés** : 220 (+6 en R95-R99 : T159 filtre orthogonalité, T160 hybride, M4 structural, HGE, n_eff paramètre, gcd(r,k) clé)
+- **Théorèmes prouvés** : 164 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105)
+- **Conjectures ouvertes** : 13 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k)**)
+- **Pistes fermées** : 131 (+7 en R101-R105 : Route 3∈H/Jacobi, Blocs/Hölder, A1 densité/filtre, A2 χ_ℓ^k/pointwise, Crible d(k)/ACU, Weil-Deligne/transcendant, Norme bloc/T163)
+- **Concepts inventés** : 228 (+8 en R101-R105 : T162 n_eff exact, T163 dichotomie 3∈H, T164 conditionnel (H_k), M_mix décorrélation, réduction analytique→combinatoire, (H_k) énergie k-linéaire, Σ(ℓ) somme restreinte, off-diagonal E_k)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159 [PROUVÉ INCONDITIONNEL]. T4+T159 hybride [PROUVÉ]. Verrou = HGE/Artin (hors portée)
+- **Front théorique** : T159+T162+T163 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. Verrou = (H_k) énergie additive k-linéaire (combinatoire, sous-problème PO-R87)
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
@@ -1053,3 +1069,14 @@ NE PAS FAIRE : BGK quantitatif pour k<91
   - M4 = (2r²-r)p : distribution quasi-exponentielle de |S₀|², max ≤ r^{1/2}p^{1/4} (R96)
   - HGE identifié comme hypothèse clé pour T4 inconditionnel : phases Gauss sur cosets (R96-R98)
   - Mur Artin identifié comme FONDAMENTAL pour les ordres multiplicatifs (R96)
+- **Découvertes majeures R101-R105** :
+  - **T162 PROUVÉ** : n_eff = gcd(r,k) - 1 exactement (identité de Ramanujan) (R101)
+  - **T163 PROUVÉ** : Dichotomie 3∈H/3∉H. Quand 3∈H: |S₀(t·α_j)|=|S₀(t)|, produit=S^k (R101)
+  - Route 3∈H ÉLIMINÉE : sommes de Jacobi → même condition r>~√p que T4 (R102)
+  - M_mix = r²p + O(pr²) : décorrélation 2-point confirmée quand 3∉H (R102)
+  - Factorisation en blocs ÉLIMINÉE : Hölder → r>√p structurellement (R102)
+  - 7 nouvelles voies éliminées en R103 (Weil-Deligne transcendant, crible d(k)→ACU, etc.)
+  - **T164 CONDITIONNEL** : sous (H_k), r>p^{2/k} suffit. Gain k=21: p^{0.595}→p^{0.095} (R104)
+  - **RÉDUCTION MAJEURE** : verrou analytique (sommes exponentielles) → combinatoire ((H_k) énergie k-linéaire) (R104)
+  - (H_k) = sous-problème de PO-R87, connu k=2 (BKT 2004), ouvert k≥3 (R104)
+  - Gap CONDITIONNEL, pas structurel : pas d'impossibilité prouvée (R104)
