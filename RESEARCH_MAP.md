@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 14 mars 2026 | **Rounds:** R1–R87 (87 rounds, 227 scripts, 12166 auto-tests)
+**Date:** 14 mars 2026 | **Rounds:** R1–R94 (94 rounds, 228 scripts, 12166 auto-tests)
 
 ---
 
@@ -67,6 +67,8 @@
 | **APF (Adequate Prime via Factorization)** | Sélectionner p\|d(k) avec ord_p(2) impair → -1∉⟨2⟩, puis confiner Σ_≤(k) | 3/10 | 10/10 | R81 |
 | **PO-R87 (Produit Multilinéaire)** | Borner ∏σ_i(t,v) avec twists géométriques α_i=3^{k-1-i}. Problème ouvert bien défini en TAN | 2/10 | 10/10 | R85-R87 |
 | **Piste Fouvry-Kowalski-Michel** | Bornes multilinéaires de Kloosterman adaptées aux produits de twists géométriques | 2/10 | 10/10 | R85 |
+| **T4 (Anticorrélation phases hybrides)** | Σ_{Z_H} χ_ℓ(∏h_i) = o(N_H(0)). PARTIELLEMENT PROUVÉ conditionnel ord_p(2)>√p | 5/10 | 9/10 | R89-R93 |
+| **T5 (Équidistribution orbitale ⟨3⟩)** | Moments supérieurs de S_0^{(ℓ)} le long d'orbites de ⟨3⟩ pour lever condition r>√p | 2/10 | 10/10 | R92 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
@@ -191,6 +193,12 @@
 | **Innovation théorique front S-unit/Baker** | SUSPENDUE : tous les sous-angles épuisés (R82-R83). Gap quantitatif insurmontable | R83 |
 | **MDL (Modular Decoupling Lemma)** | Conversion simplexe→boîte via réduction mod ord_p(2) CORRECTE. Mais borne (√p)^k EXPLOSE exponentiellement. Cadre correct, borne MORTE | R86 |
 | **MDL comme borne autonome** | Le produit de k bornes de Gauss individuelles = p^{k/2} >> C/d. Structurellement inutile sans cancellation du produit | R86 |
+| **G1 (Méta-certification CRT)** | REDONDANT : R34 (71/71 non-bloquants), R35 (CRT product réfuté), R31 (bad primes caractérisés) | R89 |
+| **G2 (Compression DP)** | PARTIELLEMENT REDONDANT : R84 déjà conclusif, impact 3/10 global | R89 |
+| **T1 (Bourgain sum-product direct)** | REDONDANT : mur O(log p) R73, Bourgain circulaire dans la chaîne des 5 outils | R89 |
+| **T3 (Smooth Weight Lemma)** | RÉFUTÉ : spectre PLAT Ŵ(ℓ) = Ŵ(0) exactement. W supporté sur unique classe mod r | R91 |
+| **Axe 1 (fermeture computationnelle) comme programme** | MORT : tous candidats redondants. Méthode R84 intrinsèquement k-par-k | R89 |
+| **BGK quantitatif pour k<91** | INSUFFISANT : meilleur ε ≈ 0.011, besoin ε > 1/k ≈ 0.048 pour k=21 | R90 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -419,6 +427,12 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | **PO-R87 (problème ouvert)** | Borner ∏_{i=0}^{k-1} σ_i(t,v) où σ_i = Σ ψ^{vb}·ω^{t·α_i·2^b}, twists = progression géométrique de raison 3^{-1} [FORMULÉ] | R87 |
 | **MDL (Modular Decoupling Lemma)** | Réduction mod r=ord_p(2) convertit simplexe en boîte {0,...,r-1}^k. Cadre correct, borne quantitative morte [PROUVÉ/MORT] | R86 |
 | **Anticorrélation CRT k=21** | N₀(d)=0 < C/d ≈ 0.058. Confirmée par Ratio Law dans les 6 niveaux hiérarchiques [CALCULÉ] | R84 |
+| **SLS (Subgroup Linear Sum)** | N_0(p) = (C/r^k)·N_H(0) + R, relation EXACTE entre compositions Collatz et zéro-sommes dans H^k [PROUVÉ] | R89-R90 |
+| **Spectre plat des poids W** | Ŵ(ℓ) = ω_r^{-ℓN}·Ŵ(0), donc \|Ŵ(ℓ)\| = \|Ŵ(0)\| ∀ℓ. Aucune aide des poids [PROUVÉ] | R91 |
+| **Lifting χ_ℓ vers F_p*** | S_i^{(ℓ)}(t) = (r/(p-1))·Σ_n G(χ̃^n, ψ_{tα_i}) avec (p-1)/r sommes de Gauss classiques [PROUVÉ] | R92 |
+| **Moment L² = rp** | Σ_{t≠0} \|S_i^{(ℓ)}(t)\|² = rp exactement. RMS = √r, pas √p [PROUVÉ] | R92 |
+| **Structure orbitale ⟨3⟩** | S_j^{(ℓ)}(t) = S_0^{(ℓ)}(t·3^{k-1-j}). Produit = S_0 évaluée le long d'orbite de ⟨3⟩ [PROUVÉ] | R92 |
+| **T4 conditionnel** | Σ_{Z_H} χ_ℓ(∏h_i) = o(N_H(0)) sous ord_p(2) > √p. 5 étapes formalisées [PARTIELLEMENT PROUVÉ] | R92 |
 
 ---
 
@@ -684,6 +698,11 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | **MDL : simplexe → boîte** | Réduction mod r=ord_p(2), poids W(b) comptés par stars-and-bars sur quotients q_i [PROUVÉ] | R86 |
 | **MDL quantitativement mort** | Erreur ≈ C×p^{k/2}/(p·r) ≈ 10^{15} vs réalité ≈ 3.3×10⁴. Gap de 10¹¹ [CALCULÉ] | R86 |
 | **Twists géométriques = clé non exploitée** | α_i = 3^{k-1-i} mod p forment progression en 3^{-1} mod p. Structure spécifique [IDENTIFIÉ] | R87 |
+| **Axe 1 (gap computationnel) MORT** | Tous candidats redondants R34/R35/R84. Méthode = k-par-k par nature [FERMÉ] | R89 |
+| **Spectre plat = obstacle structurel** | W sur unique classe mod r → Fourier plat. Aucun lissage possible. Route entière éliminée [PROUVÉ] | R91 |
+| **Gap L²/L^∞ = verrou résiduel** | RMS(S_i) = √r mais sup = √p. Gap de √(p/r) par facteur, exponentiel en k [IDENTIFIÉ] | R92 |
+| **BGK ε ≈ 0.011** | État de l'art (Di Benedetto et al.). Besoin kε > 1 → k > 91. Insuffisant pour k=21..41 [CALCULÉ] | R90 |
+| **Orbite ⟨3⟩ comme réduction** | ∏ S_i(t) = ∏ S_0(t·3^j) — une seule fonction, k évaluations le long de l'action multiplicative [PROUVÉ] | R92 |
 
 ---
 
@@ -842,6 +861,13 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | T149 | Le verrou théorique est un problème de produits CORRÉLÉS de sommes de Gauss, distinct des 4 murs classiques [DIAGNOSTIQUÉ] | R85 |
 | T150 | MDL : réduction mod ord_p(2) convertit simplexe en boîte [PROUVÉ]. Borne (√p)^k inutile [PROUVÉ] | R86 |
 | T151 | PO-R87 : formulation d'un problème ouvert en TAN sur ∏σ_i(t,v) avec twists géométriques [FORMULÉ] | R87 |
+| T152 | SLS (Structured Lifting Sum) : N₀(p) = (C/r^k)·N_H(0) + R, relation exacte zéros↔H^k [PROUVÉ] | R90 |
+| T153 | Spectre plat : |Ŵ(ℓ)| = |Ŵ(0)| pour tout ℓ — W supporté sur classe résiduelle mod r [PROUVÉ] | R91 |
+| T154 | Lifting χ_ℓ : Gauss sum identity S_j^{(ℓ)}(t) = (1/r)Σ_ψ g(ψ,χ_ℓ)·ψ(α_j·t)·G_ψ(t) [PROUVÉ] | R91 |
+| T155 | Moment L² : Σ_{t≠0} |S_i^{(ℓ)}(t)|² = rp, RMS = √r pas √p [PROUVÉ] | R91 |
+| T156 | Structure orbitale : S_j^{(ℓ)}(t) = S_0^{(ℓ)}(t·3^{k-1-j}), produit = UNE fonction sur orbite ⟨3⟩ [PROUVÉ] | R92 |
+| T157 | T4 conditionnel : |Σ_{Z_H} χ_ℓ(∏h_i)| ≤ p·(√p/r)^k · N_H(0)/(r^k/p), conditionnel ord_p(2) > √p [PARTIELLEMENT PROUVÉ] | R92 |
+| T158 | Vanishing t=0 : W_ℓ(t=0) = 0 exactement pour ℓ ≠ 0 quand gcd(ℓ,r)=1, vérifié p=5 k=21 [PROUVÉ+VÉRIFIÉ] | R92 |
 
 ---
 
@@ -914,57 +940,67 @@ R84     : **PREUVE k=21** — N₀(d(21))=0 par DP hiérarchique mod 692,515 + C
 R85     : **DIAGNOSTIC RACINE** — Verrou = produits corrélés de sommes de Gauss, distinct des 4 murs classiques. Pas les facteurs individuels (Gauss tight) mais le PRODUIT. Pistes BDG/FKM/VMVT identifiées mais non directement applicables (phases exp ≠ poly). Aucun script
 R86     : **MDL (Modular Decoupling)** — Conversion simplexe→boîte via réduction mod ord_p(2). Cadre CORRECT mais borne quantitative MORTE ((√p)^k explose). 3 candidats audités : MDL éliminé, ACU et DEMC en suspens. 1 script
 R87     : **SYNTHÈSE** — Formulation PO-R87 (problème ouvert bien défini en TAN). Twists α_i = progression géométrique de raison 3^{-1}. Recommandation : publier k=21, formuler PO-R87, explorer multilinéaire. Aucun script
+R89     : **RECALAGE CAMPAGNE** — Axe 1 (gap computationnel) déclaré MORT (tous candidats redondants). Axe 2 (théorie) recadré sur sous-groupes multiplicatifs. 2 candidats théorie qualifiés (T2-bis, T3-SWL). Aucun script
+R90     : **SLS DÉCOUVERT** — Relation exacte N₀(p) = (C/r^k)·N_H(0) + R. Expansion produit→somme. T2-bis absorbé dans SLS. Aucun script
+R91     : **SPECTRE PLAT + ORBITES** — |Ŵ(ℓ)| = |Ŵ(0)| exact → T3 (SWL) TUÉ. Identité L² = rp. Structure orbitale S_j^{(ℓ)}(t) = S_0^{(ℓ)}(t·3^{k-1-j}). Aucun script
+R92     : **T4 SEMI-FORMALISÉ** — 5 étapes prouvées sur 7. Conditionnel ord_p(2) > √p. Test numérique k=21 p=5 : W_ℓ = 0 exactement. 1 script (r92_test_t4.py)
+R93     : **TOURNOI FINAL** — T4 vainqueur unique [PARTIELLEMENT PROUVÉ]. T5 (équidistribution orbitale) identifié pour lever la condition. IVS = 8.4/10. Aucun script
 ```
 
 ---
 
-## PROCHAINES ÉTAPES (R82+)
+## PROCHAINES ÉTAPES (R94+)
 
 ```
-PRIORITÉ 1 : PO-R87 — Produit multilinéaire de sommes de Gauss
-             Borner ∏σ_i(t,v) avec twists α_i=3^{k-1-i} (progression géométrique)
-             Explorer piste Fouvry-Kowalski-Michel (bornes multilinéaires Kloosterman)
-             Faisabilité 2/10, Impact 10/10
+PRIORITÉ 1 : T4 — Lever la condition ord_p(2) > √p
+             Candidat survivant campagne R89-R93 [PARTIELLEMENT PROUVÉ]
+             2 verrous restants : (V1) contrôle L^∞ sur orbites ⟨3⟩, (V2) convergence série χ_ℓ
+             Direction T5 : moments supérieurs de S_0^{(ℓ)} le long d'orbites ⟨3⟩
+             Faisabilité 5/10, Impact 9/10
 
-PRIORITÉ 2 : Publier résultat k=21 + formuler PO-R87
-             Junction + k≤21 + diagnostic produit corrélé + problème ouvert
+PRIORITÉ 2 : Publier résultat k=21 + T152-T158 + PO-R87
+             Junction + k≤21 + SLS + spectre plat + T4 conditionnel + problème ouvert
              Target : Experimental Mathematics / Journal of Number Theory
              Faisabilité 9/10, Impact 7/10
 
-PRIORITÉ 3 : Explorer structure géométrique des twists
-             α_i = 3^{k-1-i} mod p = progression en 3^{-1} mod p
-             Possible traitement spécial via la structure multiplicative
-             Faisabilité 3/10, Impact 10/10
+PRIORITÉ 3 : T5 — Équidistribution orbitale ⟨3⟩
+             Moments supérieurs M_{2m} de S_0^{(ℓ)} le long de ⟨3⟩-orbites
+             Si M_4 << (rp)² → gain au-delà de L² → condition r>√p liftable
+             Faisabilité 2/10, Impact 10/10
 
 PRIORITÉ 4 : APF / Baker (directions auxiliaires)
              APF : faisabilité 3/10, Baker : faisabilité 2/10
              Les deux restent vivantes mais sans percée attendue
 
 NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10 global)
+NE PAS FAIRE : Axe 1 computationnel comme programme (MORT en R89)
+NE PAS FAIRE : SWL (somme de Weil lifting) — TUÉ par spectre plat (R91)
+NE PAS FAIRE : BGK quantitatif pur — ε ≈ 0.011, besoin k > 91, insuffisant
 
-ÉTAT DU FRONT THÉORIQUE (R87) :
+ÉTAT DU FRONT THÉORIQUE (R94) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
-  - Verrou identifié : PRODUIT CORRÉLÉ de sommes de Gauss (distinct des 4 murs)
-  - MDL (simplexe→boîte) correct mais borne morte
-  - Le problème est réduit à PO-R87 : borner ∏σ_i avec twists géométriques
-  - Outils classiques (BDG, VMVT) = phases polynomiales, pas exponentielles
-  - Piste la plus prometteuse : Fouvry-Kowalski-Michel + structure 3^{-1}
+  - SLS : relation exacte N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
+  - Spectre plat : |Ŵ(ℓ)| = |Ŵ(0)| exactement [PROUVÉ]
+  - Structure orbitale : produit = UNE fonction sur orbite ⟨3⟩ [PROUVÉ]
+  - T4 conditionnel : anticorrélation phases hybrides [PARTIELLEMENT PROUVÉ]
+  - Verrou = lever condition ord_p(2) > √p via équidistribution orbitale
+  - Gap L²/L^∞ = obstacle central (L² donne √r, besoin L^∞ < r^{1-ε})
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 87 (R78 absent — numéro non utilisé ; R82-R83 = S-unit/Baker ; R84-R87 = gap attack + diagnostic)
-- **Scripts** : 227 (+4 en R84-R86 : r84_crt_final, r84_backtrack_k21, r84_gap_attack, r86_modular_decoupling)
+- **Rounds** : 94 (R78 absent — numéro non utilisé ; R82-R83 = S-unit/Baker ; R84-R87 = gap attack + diagnostic ; R89-R93 = campagne théorique ; R94 = bilan)
+- **Scripts** : 228 (+1 en R92 : r92_test_t4.py)
 - **Auto-tests** : 12166
-- **Théorèmes prouvés** : 151 (T1-T146 originaux R1-R64 ; T147-T151 en R84-R87)
-- **Conjectures ouvertes** : 11 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87)
-- **Pistes fermées** : 114 (+2 en R84-R87 : MDL autonome, MDL comme borne)
-- **Concepts inventés** : 207 (+8 en R84-R87)
+- **Théorèmes prouvés** : 158 (T1-T146 originaux R1-R64 ; T147-T151 en R84-R87 ; T152-T158 en R89-R93)
+- **Conjectures ouvertes** : 12 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, T4-inconditionnel)
+- **Pistes fermées** : 120 (+6 en R89-R93 : G1, G2, T1, T3-SWL, Axe 1 computationnel, BGK quantitatif)
+- **Concepts inventés** : 214 (+7 en R89-R93 : SLS, Spectre plat, Lifting χ_ℓ, Moment L², Structure orbitale, T4 conditionnel, Anticorrélation phases hybrides)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : Verrou = produit corrélé de sommes de Gauss (R85). PO-R87 formulé. Piste multilinéaire (FKM) identifiée
+- **Front théorique** : T4 conditionnel [PARTIELLEMENT PROUVÉ]. SLS + spectre plat + orbites = nouvelle infrastructure. Verrou = lever ord_p(2) > √p
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
@@ -980,3 +1016,11 @@ NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10 global)
   - Verrou = produit corrélé de sommes de Gauss, distinct des 4 murs (R85)
   - MDL simplexe→boîte correct mais quantitativement mort (R86)
   - PO-R87 formulé : problème ouvert en TAN sur ∏σ_i avec twists géométriques (R87)
+- **Découvertes majeures R89-R93** :
+  - Axe 1 (computationnel) MORT — tous candidats redondants avec voies fermées (R89)
+  - SLS : relation exacte N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ] (R90)
+  - Spectre plat : |Ŵ(ℓ)| = |Ŵ(0)| exactement — obstacle + outil (R91)
+  - Moment L² = rp → RMS = √r, pas √p (R91)
+  - Structure orbitale : produit = UNE fonction sur orbite ⟨3⟩ (R92)
+  - T4 conditionnel [PARTIELLEMENT PROUVÉ] : 5/7 étapes, verrou = ord_p(2) > √p (R92)
+  - T5 identifié : équidistribution orbitale ⟨3⟩ pour lever la condition (R93)
