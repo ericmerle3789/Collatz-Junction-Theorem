@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 14 mars 2026 | **Rounds:** R1–R81 (81 rounds, 223 scripts, 12166 auto-tests)
+**Date:** 14 mars 2026 | **Rounds:** R1–R83 (83 rounds, 223 scripts, 12166 auto-tests)
 
 ---
 
@@ -62,8 +62,9 @@
 |-------|-------------|:-----------:|:------:|:-----:|
 | **DP direct sur d(k)** | DP complet mod d pour petits d(k) en C | 9/10 | 10/10 | → R36 |
 | **MITM sur d(k)** | Meet-in-the-middle pour d moyens | 7/10 | 7/10 | → R36 |
+| **DP direct sur d(k)** | DP complet mod d pour k=21-41 (factoriser d(k), puis DP mod chaque p\|d) | 8/10 | 10/10 | → R84 |
+| **MITM sur d(k)** | Meet-in-the-middle pour d moyens (k=28-31) | 6/10 | 7/10 | → R84 |
 | **APF (Adequate Prime via Factorization)** | Sélectionner p\|d(k) avec ord_p(2) impair → -1∉⟨2⟩, puis confiner Σ_≤(k) | 3/10 | 10/10 | R81 |
-| **Baker / formes linéaires en logarithmes** | Seul outil connu exploitant quantitativement l'indépendance multiplicative de 2 et 3 | 2/10 | 10/10 | R76/R80 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
@@ -179,6 +180,13 @@
 | **Rigidité parabolique M=1** | AUTOMATIQUE : M=3^k/2^S≡1 mod p est conséquence de 2^S≡3^k mod p, pas une contrainte exploitable | R80 |
 | **GZD (zeroing par diviseurs)** | FAUX EXTÉRIEUR : v₂(d)=v₃(d)=0, ne sort pas de F_p | R81 |
 | **APF-L1 (sumset ⊂ ⟨2⟩)** | RÉFUTÉ : ⟨2⟩ est multiplicatif, pas stable sous addition. Σ(éléments de ⟨2⟩) ∉ ⟨2⟩ en général | R81 |
+| **CST (Coset Sum Tracking)** | RÉFUTÉ : π(a+b) ≠ f(π(a),π(b)) pour homomorphisme multiplicatif π. Addition incompatible avec quotient multiplicatif | R82 |
+| **SRF (Sparse Rigidity via Filtration)** | ÉLIMINÉ : |Σ_≤(k)| ≪ p est vrai mais ne cible pas -1. Redondant avec Ratio Law (R29) | R82 |
+| **BTL pour le gap k=21-41** | ENTERRÉ quantitativement : borne ESS exp(10^{148}) >> \|Comp_mono\| ≈ 5.7×10^8. Gap de ~10^{148} ordres de grandeur | R82-R83 |
+| **SCR (coefficients géométriques)** | CUL-DE-SAC : ESS uniforme sur les coefficients, progression géométrique invisible dans la borne | R83 |
+| **HSB (décomposition Horner Z)** | ÉLIMINÉ : couplage séquentiel total des H_j, la décomposition ne découple pas l'équation | R83 |
+| **BIF (Baker filtrage primes)** | MAL CIBLÉ : Baker borne les valuations v_p(d), pas la factorisation de d. Deux problèmes distincts | R83 |
+| **Innovation théorique front S-unit/Baker** | SUSPENDUE : tous les sous-angles épuisés (R82-R83). Gap quantitatif insurmontable | R83 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -193,7 +201,8 @@
 | **Borne f_p ≤ 12/p** | A_max=11.43, 29 paires k=3..17 vérifiées | Prouver via Ehrhart / lattice counting | R42 |
 | **SAMC** | N_0(p)=0 ⟺ -1∉Σ_≤(k), formulation canonique CORRECTE mais aucune compression démontrée | Outil exploitant indépendance 2,3 | R74-R75 |
 | **APF-L1c (sparsité affaiblie)** | Corrigé : Σ_≤(k) PAS confinée dans ⟨2⟩, mais argument de sparsité O(log p) vs p reste | Quantifier → preuve -1 évité | R81 |
-| **SOH (Somme Ordonnée de Horner)** | H_k = objet canonique k≥3, forme multilinéaire ordonnée EXACTE | Abandonner spectral, explorer Baker | R71-R72 |
+| **SOH (Somme Ordonnée de Horner)** | H_k = objet canonique k≥3, forme multilinéaire ordonnée EXACTE | Baker/S-unit ENTERRÉ (R83). Objet valide, méthode manquante | R71-R83 |
+| **Connexion S-unit (structurelle)** | corrSum = m·d est S-unit eq., non-dégénérescence prouvée. QUANTITATIVEMENT INUTILE mais pont permanent | Attendre amélioration ESS ou outil qualitativement nouveau | R82-R83 |
 
 #### Pistes en suspens HÉRITÉES (k=2, programme K-lite — requalifiées R69)
 
@@ -390,6 +399,12 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | **Faille additive/multiplicative** | ⟨2⟩ ⊂ F_p* multiplicatif mais Σ_≤(k) = somme additive → Σ∉⟨2⟩ en général [DÉCOUVERT] | R81 |
 | **APF (Adequate Prime via Factorization)** | Choisir p\|d(k) avec ord_p(2) impair → -1∉⟨2⟩, SURVIVANT avec réserve | R81 |
 | **Frontière opérationnelle du noyau F_p** | Limite précise de ce qui est réalisable dans F_p sans outil extérieur [DÉFINIE] | R81 |
+| **Gap somme↔produit** | corrSum est une SOMME, Baker/Evertse s'appliquent aux PRODUITS. Verrou irréductible identifié [OBJET RÉEL] | R82 |
+| **Connexion S-unit** | corrSum = m·d est une S-unit equation dans Z[1/6] avec S={2,3}. Non-dégénérescence automatique (termes positifs) [PROUVÉ] | R82 |
+| **BTL (Baker-Transcendence Lift)** | Factorisation Horner de corrSum dans Z + réduction vers formes linéaires en logarithmes. Pont théorique valide mais quantitativement insuffisant [SEMI-FORMALISÉ] | R82 |
+| **Borne ESS pour k=21** | exp((6·23)^{69}·3) ≈ exp(10^{148}) solutions autorisées vs C(33,20) ≈ 5.73×10^8 compositions. Ratio astronomique [CALCULÉ] | R83 |
+| **Uniformité ESS sur coefficients** | La borne Evertse-Schlickewei-Schmidt ne dépend PAS des coefficients a_i. Structure géométrique de corrSum invisible [PROUVÉ] | R83 |
+| **Couplage total Horner dans Z** | La récurrence H_j = 3^{k-1-j} + 2^{c_j}·H_{j+1} est totalement couplée. Décomposition en sous-équations illusoire [PROUVÉ] | R83 |
 
 ---
 
