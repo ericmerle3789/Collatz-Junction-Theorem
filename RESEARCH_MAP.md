@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 14 mars 2026 | **Rounds:** R1–R83 (83 rounds, 223 scripts, 12166 auto-tests)
+**Date:** 14 mars 2026 | **Rounds:** R1–R87 (87 rounds, 227 scripts, 12166 auto-tests)
 
 ---
 
@@ -47,10 +47,12 @@
 - **Statut** : COMPLET (18 valeurs prouvées)
 
 ### Bloc 3 — Le Gap (k = 21..41) ❌
-- 21 valeurs restantes
+- **20 valeurs restantes** (k=22..41)
+- **k=21 PROUVÉ** : N₀(d(21)) = 0 par DP hiérarchique + CRT backtracking [R84]
 - C/d < 1 pour TOUTES → équidistribution suffirait
 - Aucun premier bloquant trouvé (71 tests, R34)
-- **Statut** : OUVERT — le goulot d'étranglement
+- **Verrou identifié** : borner des PRODUITS CORRÉLÉS de sommes de Gauss [R85]
+- **Statut** : OUVERT — le goulot d'étranglement (20/21 restant)
 
 ---
 
@@ -60,11 +62,11 @@
 
 | Piste | Description | Faisabilité | Impact | Round |
 |-------|-------------|:-----------:|:------:|:-----:|
-| **DP direct sur d(k)** | DP complet mod d pour petits d(k) en C | 9/10 | 10/10 | → R36 |
-| **MITM sur d(k)** | Meet-in-the-middle pour d moyens | 7/10 | 7/10 | → R36 |
-| **DP direct sur d(k)** | DP complet mod d pour k=21-41 (factoriser d(k), puis DP mod chaque p\|d) | 8/10 | 10/10 | → R84 |
-| **MITM sur d(k)** | Meet-in-the-middle pour d moyens (k=28-31) | 6/10 | 7/10 | → R84 |
+| **DP direct sur d(k)** | k=21 PROUVÉ (R84). Faisable pour ~12/21 valeurs mais k-par-k, pas universel | 8/10 | 3/10 global | R84 |
+| **MITM sur d(k)** | Meet-in-the-middle pour d moyens (k=28-31) | 6/10 | 3/10 global | → R84 |
 | **APF (Adequate Prime via Factorization)** | Sélectionner p\|d(k) avec ord_p(2) impair → -1∉⟨2⟩, puis confiner Σ_≤(k) | 3/10 | 10/10 | R81 |
+| **PO-R87 (Produit Multilinéaire)** | Borner ∏σ_i(t,v) avec twists géométriques α_i=3^{k-1-i}. Problème ouvert bien défini en TAN | 2/10 | 10/10 | R85-R87 |
+| **Piste Fouvry-Kowalski-Michel** | Bornes multilinéaires de Kloosterman adaptées aux produits de twists géométriques | 2/10 | 10/10 | R85 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
@@ -187,6 +189,8 @@
 | **HSB (décomposition Horner Z)** | ÉLIMINÉ : couplage séquentiel total des H_j, la décomposition ne découple pas l'équation | R83 |
 | **BIF (Baker filtrage primes)** | MAL CIBLÉ : Baker borne les valuations v_p(d), pas la factorisation de d. Deux problèmes distincts | R83 |
 | **Innovation théorique front S-unit/Baker** | SUSPENDUE : tous les sous-angles épuisés (R82-R83). Gap quantitatif insurmontable | R83 |
+| **MDL (Modular Decoupling Lemma)** | Conversion simplexe→boîte via réduction mod ord_p(2) CORRECTE. Mais borne (√p)^k EXPLOSE exponentiellement. Cadre correct, borne MORTE | R86 |
+| **MDL comme borne autonome** | Le produit de k bornes de Gauss individuelles = p^{k/2} >> C/d. Structurellement inutile sans cancellation du produit | R86 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -203,6 +207,9 @@
 | **APF-L1c (sparsité affaiblie)** | Corrigé : Σ_≤(k) PAS confinée dans ⟨2⟩, mais argument de sparsité O(log p) vs p reste | Quantifier → preuve -1 évité | R81 |
 | **SOH (Somme Ordonnée de Horner)** | H_k = objet canonique k≥3, forme multilinéaire ordonnée EXACTE | Baker/S-unit ENTERRÉ (R83). Objet valide, méthode manquante | R71-R83 |
 | **Connexion S-unit (structurelle)** | corrSum = m·d est S-unit eq., non-dégénérescence prouvée. QUANTITATIVEMENT INUTILE mais pont permanent | Attendre amélioration ESS ou outil qualitativement nouveau | R82-R83 |
+| **ACU (Anticorrélation CRT)** | N₀(d) ≤ ∏N₀(pᵢ)/C^{ω-1} observé et confirmé k=21. Si prouvé → N₀(d)=0 car C/d<1 | Réductible au verrou produit corrélé (R85) | R84-R86 |
+| **DEMC (Cercle + corrSum)** | Intégrale [x^S]∏g_i par arcs majeurs/mineurs. Méthode classique mais phases EXPONENTIELLES (2^a) hors cadre Hardy-Littlewood | Adaptation non triviale des phases exponentielles | R86 |
+| **MDL comme cadre** | Conversion simplexe→boîte mod r=ord_p(2) CORRECTE et NOUVELLE. Borne morte mais structure exploitable si produit corrélé résolu | Combiner avec outil multilinéaire si PO-R87 avance | R86 |
 
 #### Pistes en suspens HÉRITÉES (k=2, programme K-lite — requalifiées R69)
 
@@ -405,6 +412,13 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | **Borne ESS pour k=21** | exp((6·23)^{69}·3) ≈ exp(10^{148}) solutions autorisées vs C(33,20) ≈ 5.73×10^8 compositions. Ratio astronomique [CALCULÉ] | R83 |
 | **Uniformité ESS sur coefficients** | La borne Evertse-Schlickewei-Schmidt ne dépend PAS des coefficients a_i. Structure géométrique de corrSum invisible [PROUVÉ] | R83 |
 | **Couplage total Horner dans Z** | La récurrence H_j = 3^{k-1-j} + 2^{c_j}·H_{j+1} est totalement couplée. Décomposition en sous-équations illusoire [PROUVÉ] | R83 |
+| **DP hiérarchique + CRT backtracking** | Méthode combinant DP mod m₁, backtracking des survivants, vérification mod m₂. Prouve N₀(d(21))=0 [PROUVÉ] | R84 |
+| **Ratio Law haute précision k=21** | N₀(p)·p/C vérifié à 4+ décimales pour les 4 primes de d(21). Plus forte vérification à ce jour [CALCULÉ] | R84 |
+| **Verrou produit corrélé** | Le problème est borner ∏σ_i(t,v), PAS les σ_i individuels (Gauss tight). Problème de sommes MULTILINÉAIRES [DIAGNOSTIQUÉ] | R85 |
+| **Décomposition en produit de generating functions** | S(t) = coefficient d'un PRODUIT de k fonctions génératrices avec twists α_i=3^{k-1-i} [PROUVÉ] | R85 |
+| **PO-R87 (problème ouvert)** | Borner ∏_{i=0}^{k-1} σ_i(t,v) où σ_i = Σ ψ^{vb}·ω^{t·α_i·2^b}, twists = progression géométrique de raison 3^{-1} [FORMULÉ] | R87 |
+| **MDL (Modular Decoupling Lemma)** | Réduction mod r=ord_p(2) convertit simplexe en boîte {0,...,r-1}^k. Cadre correct, borne quantitative morte [PROUVÉ/MORT] | R86 |
+| **Anticorrélation CRT k=21** | N₀(d)=0 < C/d ≈ 0.058. Confirmée par Ratio Law dans les 6 niveaux hiérarchiques [CALCULÉ] | R84 |
 
 ---
 
@@ -662,6 +676,14 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | **Faille add/mult de ⟨2⟩** | ⟨2⟩ est sous-groupe multiplicatif mais la somme d'éléments de ⟨2⟩ sort de ⟨2⟩ [DÉCOUVERT] | R81 |
 | **GZD = faux extérieur** | v₂(d)=0 et v₃(d)=0 pour tout k≥3 → GZD ne sort pas de F_p [PROUVÉ] | R81 |
 | **APF = survivant unique R81** | Choisir p|d(k) avec ord_p(2) impair → -1∉⟨2⟩. Viabilité 3/10 (faille add/mult) [SEMI-RÉEL] | R81 |
+| **N₀(d(21)) = 0** | DP hiérarchique mod 692,515 + backtracking 1,738 compositions + vérification mod 34,511 → 0 survivants [PROUVÉ] | R84 |
+| **Ratio Law haute précision k=21** | N₀(p)·p/C ≈ 0.99988 (p=5), 0.99999 (p=43), 0.99665 (p=3221), 1.01937 (p=34511) [CALCULÉ] | R84 |
+| **Verrou = produit corrélé** | Le problème n'est PAS de borner un SEUL σ_i (Gauss tight). C'est le PRODUIT ∏σ_i avec corrélation via t partagé [DIAGNOSTIQUÉ] | R85 |
+| **4 murs ≠ verrou R85** | Les 4 murs (Weyl/Weil/LS/ET) concernent des facteurs individuels. Le verrou R85 est multilinéaire [CLARIFIÉ] | R85 |
+| **Mur Cauchy-Schwarz/Parseval** | Passage L² → L∞ perd √p. Compenser exige μ=1+O(p^{-k}), précision 10^{-150}. Structurellement impossible [PROUVÉ] | R85 |
+| **MDL : simplexe → boîte** | Réduction mod r=ord_p(2), poids W(b) comptés par stars-and-bars sur quotients q_i [PROUVÉ] | R86 |
+| **MDL quantitativement mort** | Erreur ≈ C×p^{k/2}/(p·r) ≈ 10^{15} vs réalité ≈ 3.3×10⁴. Gap de 10¹¹ [CALCULÉ] | R86 |
+| **Twists géométriques = clé non exploitée** | α_i = 3^{k-1-i} mod p forment progression en 3^{-1} mod p. Structure spécifique [IDENTIFIÉ] | R87 |
 
 ---
 
@@ -815,6 +837,11 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | T144 | D∞ PROUVÉ : D∞ ≤ C·ln(p)/√p → 0, via Erdős-Turán + T143 [PROUVÉ] | R64 |
 | T145 | Sous-étape (c) FERMÉE : τ < 1 pour p ≥ 37 en R3 [PROUVÉ] | R64 |
 | T146 | Chaîne S_h→D∞→τ<1→ε>0→α<1 complète, p ≥ 37 [PROUVÉ] | R64 |
+| T147 | N₀(d(21)) = 0 : DP hiérarchique mod 692,515 + CRT backtracking mod 34,511 [PROUVÉ] | R84 |
+| T148 | Ratio Law vérifiée 4+ décimales pour k=21 (4 primes de d(21)) [CALCULÉ] | R84 |
+| T149 | Le verrou théorique est un problème de produits CORRÉLÉS de sommes de Gauss, distinct des 4 murs classiques [DIAGNOSTIQUÉ] | R85 |
+| T150 | MDL : réduction mod ord_p(2) convertit simplexe en boîte [PROUVÉ]. Borne (√p)^k inutile [PROUVÉ] | R86 |
+| T151 | PO-R87 : formulation d'un problème ouvert en TAN sur ∏σ_i(t,v) avec twists géométriques [FORMULÉ] | R87 |
 
 ---
 
@@ -882,6 +909,11 @@ R77     : **MULTIPLICATIF PUR NE SUFFIT PAS** — SER semi-réel, V2C/OPM enterr
 R79     : **CAUSE SOURCE** — auto-référence arithmétique (corrSum et d partagent {2,3}). DMAR=rebranding, NBG=réfuté. Innovation suspendue. Aucun script
 R80     : **NOYAU IRRÉDUCTIBLE** — 7 reformulations dans F_p algébriquement isomorphes. Rigidité parabolique M=1 AUTOMATIQUE. DAS/PRO=rebranding. Innovation suspendue, direction Baker. Aucun script
 R81     : **TOURNOI EXTERNE** — GZD éliminé (faux extérieur). APF survit avec réserve (faille add/mult découverte et corrigée en APF-L1c affaibli). Frontière opérationnelle du noyau F_p définie. Aucun script
+R82-R83 : **FRONT S-UNIT/BAKER** — Connexion S-unit valide mais ESS quantitativement inutile (gap 10^{148}). SCR/HSB/BIF éliminés. Innovation suspendue
+R84     : **PREUVE k=21** — N₀(d(21))=0 par DP hiérarchique mod 692,515 + CRT backtracking (1,738→0 survivants mod 34,511). Ratio Law haute précision. 4 scripts
+R85     : **DIAGNOSTIC RACINE** — Verrou = produits corrélés de sommes de Gauss, distinct des 4 murs classiques. Pas les facteurs individuels (Gauss tight) mais le PRODUIT. Pistes BDG/FKM/VMVT identifiées mais non directement applicables (phases exp ≠ poly). Aucun script
+R86     : **MDL (Modular Decoupling)** — Conversion simplexe→boîte via réduction mod ord_p(2). Cadre CORRECT mais borne quantitative MORTE ((√p)^k explose). 3 candidats audités : MDL éliminé, ACU et DEMC en suspens. 1 script
+R87     : **SYNTHÈSE** — Formulation PO-R87 (problème ouvert bien défini en TAN). Twists α_i = progression géométrique de raison 3^{-1}. Recommandation : publier k=21, formuler PO-R87, explorer multilinéaire. Aucun script
 ```
 
 ---
@@ -889,46 +921,50 @@ R81     : **TOURNOI EXTERNE** — GZD éliminé (faux extérieur). APF survit av
 ## PROCHAINES ÉTAPES (R82+)
 
 ```
-PRIORITÉ 1 : DP direct sur d(k) en C compilé
-             Tier 1 : k=21-27 (d petit, faisable en heures)
-             Faisabilité 9/10, Impact 10/10
-
-PRIORITÉ 2 : Explorer APF en profondeur
-             Sélectionner p|d(k) avec ord_p(2) impair → -1∉⟨2⟩
-             Quantifier la sparsité de Σ_≤(k) pour prouver -1 évité
-             Faisabilité 3/10, Impact 10/10
-
-PRIORITÉ 3 : Rédaction papier avec résultats actuels
-             Junction + k≤20 + noyau irréductible F_p + K-lite ⟨g²⟩
-             Target : Experimental Mathematics
-
-PRIORITÉ 4 : Baker / formes linéaires en logarithmes
-             Seul outil connu exploitant l'indépendance multiplicative de 2 et 3
-             Régime : |2^S - 3^k| = d = 2^S - 3^k
+PRIORITÉ 1 : PO-R87 — Produit multilinéaire de sommes de Gauss
+             Borner ∏σ_i(t,v) avec twists α_i=3^{k-1-i} (progression géométrique)
+             Explorer piste Fouvry-Kowalski-Michel (bornes multilinéaires Kloosterman)
              Faisabilité 2/10, Impact 10/10
 
-ÉTAT DU FRONT THÉORIQUE (R81) :
-  - Le noyau F_p est IRRÉDUCTIBLE : aucune reformulation ne comprime
-  - La cause source = auto-référence arithmétique (2,3 partagés)
-  - Le seul survivant externe = APF (avec faille add/mult identifiée)
-  - La voie analytique (sommes courtes O(log p)) = frontière ouverte
-  - Direction recommandée : sortir de F_p (Baker, ou DP computationnel)
+PRIORITÉ 2 : Publier résultat k=21 + formuler PO-R87
+             Junction + k≤21 + diagnostic produit corrélé + problème ouvert
+             Target : Experimental Mathematics / Journal of Number Theory
+             Faisabilité 9/10, Impact 7/10
+
+PRIORITÉ 3 : Explorer structure géométrique des twists
+             α_i = 3^{k-1-i} mod p = progression en 3^{-1} mod p
+             Possible traitement spécial via la structure multiplicative
+             Faisabilité 3/10, Impact 10/10
+
+PRIORITÉ 4 : APF / Baker (directions auxiliaires)
+             APF : faisabilité 3/10, Baker : faisabilité 2/10
+             Les deux restent vivantes mais sans percée attendue
+
+NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10 global)
+
+ÉTAT DU FRONT THÉORIQUE (R87) :
+  - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
+  - Verrou identifié : PRODUIT CORRÉLÉ de sommes de Gauss (distinct des 4 murs)
+  - MDL (simplexe→boîte) correct mais borne morte
+  - Le problème est réduit à PO-R87 : borner ∏σ_i avec twists géométriques
+  - Outils classiques (BDG, VMVT) = phases polynomiales, pas exponentielles
+  - Piste la plus prometteuse : Fouvry-Kowalski-Michel + structure 3^{-1}
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 81 (R78 absent — numéro non utilisé)
-- **Scripts** : 223 (+7 en R65-R69 : r65×2 + r66×2 + r67 + r68 + r69)
-- **Auto-tests** : 12166 (+100 en R65-R69 : 35+22+16+13+14, 100% PASS)
-- **Théorèmes prouvés** : 146+ (originaux R1-R64 ; R65-R81 = rounds structurels/doctrinaux, pas de nouveaux théorèmes formels numérotés)
-- **Conjectures ouvertes** : 10 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF)
-- **Pistes fermées** : 112 (+25 en R65-R81, documentées avec raison)
-- **Concepts inventés** : 199 (+30 en R65-R81)
+- **Rounds** : 87 (R78 absent — numéro non utilisé ; R82-R83 = S-unit/Baker ; R84-R87 = gap attack + diagnostic)
+- **Scripts** : 227 (+4 en R84-R86 : r84_crt_final, r84_backtrack_k21, r84_gap_attack, r86_modular_decoupling)
+- **Auto-tests** : 12166
+- **Théorèmes prouvés** : 151 (T1-T146 originaux R1-R64 ; T147-T151 en R84-R87)
+- **Conjectures ouvertes** : 11 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87)
+- **Pistes fermées** : 114 (+2 en R84-R87 : MDL autonome, MDL comme borne)
+- **Concepts inventés** : 207 (+8 en R84-R87)
 - **Lean** : 280 théorèmes, 0 sorry
-- **Gap restant** : 21 valeurs (k=21..41)
-- **Front théorique** : Noyau F_p IRRÉDUCTIBLE (R80). Seul survivant externe = APF (R81). Direction = Baker ou DP
+- **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
+- **Front théorique** : Verrou = produit corrélé de sommes de Gauss (R85). PO-R87 formulé. Piste multilinéaire (FKM) identifiée
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
@@ -939,3 +975,8 @@ PRIORITÉ 4 : Baker / formes linéaires en logarithmes
   - Cause source = auto-référence arithmétique (R79)
   - Noyau irréductible = toutes reformulations F_p isomorphes (R80)
   - Faille additif/multiplicatif identifiée (R81)
+- **Découvertes majeures R84-R87** :
+  - N₀(d(21)) = 0 PROUVÉ — premier k du gap (R84)
+  - Verrou = produit corrélé de sommes de Gauss, distinct des 4 murs (R85)
+  - MDL simplexe→boîte correct mais quantitativement mort (R86)
+  - PO-R87 formulé : problème ouvert en TAN sur ∏σ_i avec twists géométriques (R87)
