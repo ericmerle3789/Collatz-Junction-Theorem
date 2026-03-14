@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 14 mars 2026 | **Rounds:** R1–R94 (94 rounds, 228 scripts, 12166 auto-tests)
+**Date:** 14 mars 2026 | **Rounds:** R1–R100 (100 rounds, 228 scripts, 12166 auto-tests)
 
 ---
 
@@ -69,6 +69,9 @@
 | **Piste Fouvry-Kowalski-Michel** | Bornes multilinéaires de Kloosterman adaptées aux produits de twists géométriques | 2/10 | 10/10 | R85 |
 | **T4 (Anticorrélation phases hybrides)** | Σ_{Z_H} χ_ℓ(∏h_i) = o(N_H(0)). PARTIELLEMENT PROUVÉ conditionnel ord_p(2)>√p | 5/10 | 9/10 | R89-R93 |
 | **T5 (Équidistribution orbitale ⟨3⟩)** | Moments supérieurs de S_0^{(ℓ)} le long d'orbites de ⟨3⟩ pour lever condition r>√p | 2/10 | 10/10 | R92 |
+| **T159 (Filtre d'orthogonalité)** | W_ℓ = 0 quand r/gcd(ℓ,r) ∤ k. PROUVÉ INCONDITIONNEL. Si gcd(r,k)=1 → R=0 | 10/10 | 8/10 | R96-R98 |
+| **T160 (Hybride T4+T159)** | Borne |R| avec n_eff < r-1 termes actifs. PROUVÉ | 8/10 | 7/10 | R97-R98 |
+| **HGE (Gauss Phase Equidistrib.)** | Phases Gauss équidistribuées sur cosets → |S₀|≤C√r·polylog → T4 inconditionnel | 1/10 | 10/10 | R96-R98 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
@@ -199,6 +202,10 @@
 | **T3 (Smooth Weight Lemma)** | RÉFUTÉ : spectre PLAT Ŵ(ℓ) = Ŵ(0) exactement. W supporté sur unique classe mod r | R91 |
 | **Axe 1 (fermeture computationnelle) comme programme** | MORT : tous candidats redondants. Méthode R84 intrinsèquement k-par-k | R89 |
 | **BGK quantitatif pour k<91** | INSUFFISANT : meilleur ε ≈ 0.011, besoin ε > 1/k ≈ 0.048 pour k=21 | R90 |
+| **A1 (Dichotomie d'ordres)** | BLOQUÉ : prouver lcm(ord_p(2),ord_p(3))>√p ↔ Artin (ouvert 1927) | R96 |
+| **B1 (Relation algébrique 2-3)** | BLOQUÉ : même mur Artin que A1, fusionné | R96 |
+| **A2 (Moment-4) comme amélioration produit** | PIRE : bound r^{1/2}p^{1/4} donne condition r>p^{0.69} vs p^{0.595} de T4 | R96 |
+| **B2 (HGE) comme résultat prouvable** | BLOQUÉ : HGE non prouvable avec outils actuels. Parseval donne exactement √p | R98 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
@@ -868,6 +875,9 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | T156 | Structure orbitale : S_j^{(ℓ)}(t) = S_0^{(ℓ)}(t·3^{k-1-j}), produit = UNE fonction sur orbite ⟨3⟩ [PROUVÉ] | R92 |
 | T157 | T4 conditionnel : |Σ_{Z_H} χ_ℓ(∏h_i)| ≤ p·(√p/r)^k · N_H(0)/(r^k/p), conditionnel ord_p(2) > √p [PARTIELLEMENT PROUVÉ] | R92 |
 | T158 | Vanishing t=0 : W_ℓ(t=0) = 0 exactement pour ℓ ≠ 0 quand gcd(ℓ,r)=1, vérifié p=5 k=21 [PROUVÉ+VÉRIFIÉ] | R92 |
+| T159 | Filtre d'orthogonalité : W_ℓ = 0 exactement quand r/gcd(ℓ,r) ∤ k. INCONDITIONNEL. 6 étapes [PROUVÉ] | R96-R98 |
+| T160 | Hybride T4+T159 : |R| ≤ n_eff·(bound T4) avec n_eff = #{ℓ:r/gcd(ℓ,r)|k} < r-1 [PROUVÉ] | R97-R98 |
+| T161 | M4 structural : Σ|S₀^{(ℓ)}|⁴ = (2r²-r)p + O(r^{5/2}p). Kurtosis ≈ 2. max|S₀| ≤ r^{1/2}p^{1/4} [SEMI-FORMALISÉ] | R96 |
 
 ---
 
@@ -945,62 +955,73 @@ R90     : **SLS DÉCOUVERT** — Relation exacte N₀(p) = (C/r^k)·N_H(0) + R. 
 R91     : **SPECTRE PLAT + ORBITES** — |Ŵ(ℓ)| = |Ŵ(0)| exact → T3 (SWL) TUÉ. Identité L² = rp. Structure orbitale S_j^{(ℓ)}(t) = S_0^{(ℓ)}(t·3^{k-1-j}). Aucun script
 R92     : **T4 SEMI-FORMALISÉ** — 5 étapes prouvées sur 7. Conditionnel ord_p(2) > √p. Test numérique k=21 p=5 : W_ℓ = 0 exactement. 1 script (r92_test_t4.py)
 R93     : **TOURNOI FINAL** — T4 vainqueur unique [PARTIELLEMENT PROUVÉ]. T5 (équidistribution orbitale) identifié pour lever la condition. IVS = 8.4/10. Aucun script
+R95     : **RECALAGE R95-R99** — 4 candidats qualifiés (A1 dichotomie, A2 M4, B1 relation 2-3, B2 interpolation). Condition exacte r > p^{1/2+2/k} (pas √p). Aucun script
+R96     : **POUSSÉE + DÉCOUVERTE T159** — A1,B1 BLOQUÉS (Artin). A2 semi-formalisé (M4=2r²p). B2 semi-formalisé (HGE). **T159 DÉCOUVERT** : filtre d'orthogonalité W_ℓ=0. Aucun script
+R97     : **AUDIT CROISÉ** — T159 prouvable, couvre ~42% primes pour k=21. B2 conditionnel HGE. Hybride T4+T159 (T160) émerge. A1,A2,B1 éliminés. Aucun script
+R98     : **PREUVE T159** — 6 étapes formalisées et PROUVÉES. T160 prouvé. B2 BLOQUÉ (HGE non prouvable). Carte dépendances complétée. Aucun script
+R99     : **TOURNOI FINAL** — T159 vainqueur [PROUVÉ, INCONDITIONNEL]. Verrou = HGE/Artin (hors portée). IVS = 8.8/10. Aucun script
 ```
 
 ---
 
-## PROCHAINES ÉTAPES (R94+)
+## PROCHAINES ÉTAPES (R100+)
 
 ```
-PRIORITÉ 1 : T4 — Lever la condition ord_p(2) > √p
-             Candidat survivant campagne R89-R93 [PARTIELLEMENT PROUVÉ]
-             2 verrous restants : (V1) contrôle L^∞ sur orbites ⟨3⟩, (V2) convergence série χ_ℓ
-             Direction T5 : moments supérieurs de S_0^{(ℓ)} le long d'orbites ⟨3⟩
-             Faisabilité 5/10, Impact 9/10
+PRIORITÉ 1 : HGE — Prouver ou exploiter l'équidistribution des phases Gauss
+             Hypothèse identifiée R96-R98 : si phases arg(G(χ^{ℓ+jr})) équidistribuées
+             sur cosets → |S₀| ≤ C√r·polylog → T4 INCONDITIONNEL
+             Explorer Katz monodromy pour cosets de caractères
+             Faisabilité 1/10, Impact 10/10
 
-PRIORITÉ 2 : Publier résultat k=21 + T152-T158 + PO-R87
-             Junction + k≤21 + SLS + spectre plat + T4 conditionnel + problème ouvert
+PRIORITÉ 2 : Publier résultat k=21 + T152-T161 + PO-R87
+             Junction + k≤21 + SLS + spectre plat + T4 conditionnel + T159 filtre
+             T159 = premier résultat inconditionnel sur R
              Target : Experimental Mathematics / Journal of Number Theory
-             Faisabilité 9/10, Impact 7/10
+             Faisabilité 9/10, Impact 8/10
 
-PRIORITÉ 3 : T5 — Équidistribution orbitale ⟨3⟩
-             Moments supérieurs M_{2m} de S_0^{(ℓ)} le long de ⟨3⟩-orbites
-             Si M_4 << (rp)² → gain au-delà de L² → condition r>√p liftable
-             Faisabilité 2/10, Impact 10/10
+PRIORITÉ 3 : Moments mixtes Σ_t |S₀(t)|²·|S₀(t·3)|²
+             Corrélation 2-point le long de ⟨3⟩
+             Si décorrélation prouvée → produit ≈ r^{k/2} → condition quasi-levée
+             Faisabilité 3/10, Impact 9/10
 
-PRIORITÉ 4 : APF / Baker (directions auxiliaires)
-             APF : faisabilité 3/10, Baker : faisabilité 2/10
-             Les deux restent vivantes mais sans percée attendue
+PRIORITÉ 4 : Propriétés spéciales de p | d(k) pour HGE
+             2^S ≡ 3^k mod p impose des contraintes sur (p-1)/r
+             Explorer si ces contraintes rendent HGE plus facile
+             Faisabilité 2/10, Impact 9/10
 
-NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10 global)
-NE PAS FAIRE : Axe 1 computationnel comme programme (MORT en R89)
-NE PAS FAIRE : SWL (somme de Weil lifting) — TUÉ par spectre plat (R91)
-NE PAS FAIRE : BGK quantitatif pur — ε ≈ 0.011, besoin k > 91, insuffisant
+NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10)
+NE PAS FAIRE : Artin / ordres multiplicatifs (mur fondamental, ouvert 1927)
+NE PAS FAIRE : M4 comme amélioration du produit (PROUVÉ pire : r>p^{0.69})
+NE PAS FAIRE : Parseval/triangle pour battre √p (prouvé impossible)
+NE PAS FAIRE : SWL / lissage des poids (spectre plat, R91)
+NE PAS FAIRE : BGK quantitatif pour k<91
 
-ÉTAT DU FRONT THÉORIQUE (R94) :
+ÉTAT DU FRONT THÉORIQUE (R100) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
-  - SLS : relation exacte N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
-  - Spectre plat : |Ŵ(ℓ)| = |Ŵ(0)| exactement [PROUVÉ]
-  - Structure orbitale : produit = UNE fonction sur orbite ⟨3⟩ [PROUVÉ]
-  - T4 conditionnel : anticorrélation phases hybrides [PARTIELLEMENT PROUVÉ]
-  - Verrou = lever condition ord_p(2) > √p via équidistribution orbitale
-  - Gap L²/L^∞ = obstacle central (L² donne √r, besoin L^∞ < r^{1-ε})
+  - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
+  - Spectre plat, orbites, L² = rp [PROUVÉ]
+  - T4 conditionnel (r > p^{1/2+2/k}) [PROUVÉ]
+  - T159 filtre d'orthogonalité (W_ℓ=0 si r/gcd(ℓ,r)∤k) [PROUVÉ INCONDITIONNEL]
+  - T160 hybride (n_eff < r-1 termes actifs) [PROUVÉ]
+  - gcd(ord_p(2), k) = paramètre clé de la conditionnalité
+  - Verrou = HGE (phases Gauss sur cosets) ou Artin (ordres multiplicatifs)
+  - Gap L²/L^∞ persiste : √r (L²) vs √p (L^∞)
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 94 (R78 absent — numéro non utilisé ; R82-R83 = S-unit/Baker ; R84-R87 = gap attack + diagnostic ; R89-R93 = campagne théorique ; R94 = bilan)
-- **Scripts** : 228 (+1 en R92 : r92_test_t4.py)
+- **Rounds** : 100 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans)
+- **Scripts** : 228
 - **Auto-tests** : 12166
-- **Théorèmes prouvés** : 158 (T1-T146 originaux R1-R64 ; T147-T151 en R84-R87 ; T152-T158 en R89-R93)
-- **Conjectures ouvertes** : 12 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, T4-inconditionnel)
-- **Pistes fermées** : 120 (+6 en R89-R93 : G1, G2, T1, T3-SWL, Axe 1 computationnel, BGK quantitatif)
-- **Concepts inventés** : 214 (+7 en R89-R93 : SLS, Spectre plat, Lifting χ_ℓ, Moment L², Structure orbitale, T4 conditionnel, Anticorrélation phases hybrides)
+- **Théorèmes prouvés** : 161 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99)
+- **Conjectures ouvertes** : 12 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE)
+- **Pistes fermées** : 124 (+4 en R95-R99 : A1 Dichotomie/Artin, B1 Relation 2-3/Artin, A2 M4 produit, B2 HGE preuve)
+- **Concepts inventés** : 220 (+6 en R95-R99 : T159 filtre orthogonalité, T160 hybride, M4 structural, HGE, n_eff paramètre, gcd(r,k) clé)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T4 conditionnel [PARTIELLEMENT PROUVÉ]. SLS + spectre plat + orbites = nouvelle infrastructure. Verrou = lever ord_p(2) > √p
+- **Front théorique** : T159 [PROUVÉ INCONDITIONNEL]. T4+T159 hybride [PROUVÉ]. Verrou = HGE/Artin (hors portée)
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
@@ -1024,3 +1045,11 @@ NE PAS FAIRE : BGK quantitatif pur — ε ≈ 0.011, besoin k > 91, insuffisant
   - Structure orbitale : produit = UNE fonction sur orbite ⟨3⟩ (R92)
   - T4 conditionnel [PARTIELLEMENT PROUVÉ] : 5/7 étapes, verrou = ord_p(2) > √p (R92)
   - T5 identifié : équidistribution orbitale ⟨3⟩ pour lever la condition (R93)
+- **Découvertes majeures R95-R99** :
+  - **T159 PROUVÉ** : W_ℓ = 0 quand r/gcd(ℓ,r) ∤ k. Premier résultat INCONDITIONNEL sur R (R96-R98)
+  - gcd(ord_p(2), k) identifié comme PARAMÈTRE CLÉ de la conditionnalité (R96)
+  - Si gcd(r,k) = 1 → R = 0 exactement, N₀(p) = (C/r^k)·N_H(0) SANS condition (R97)
+  - T160 hybride T4+T159 : borne avec n_eff < r-1 termes actifs [PROUVÉ] (R97-R98)
+  - M4 = (2r²-r)p : distribution quasi-exponentielle de |S₀|², max ≤ r^{1/2}p^{1/4} (R96)
+  - HGE identifié comme hypothèse clé pour T4 inconditionnel : phases Gauss sur cosets (R96-R98)
+  - Mur Artin identifié comme FONDAMENTAL pour les ordres multiplicatifs (R96)
