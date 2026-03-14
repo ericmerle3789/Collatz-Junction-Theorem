@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 14 mars 2026 | **Rounds:** R1–R110 (110 rounds, 228 scripts, 12166 auto-tests)
+**Date:** 14 mars 2026 | **Rounds:** R1–R140 (140 rounds, 230 scripts, 12166 auto-tests)
 
 ---
 
@@ -989,27 +989,28 @@ R125    : **CONSOLIDATION** — 166 théorèmes, 143 voies mortes, 246 concepts.
 
 ---
 
-## PROCHAINES ÉTAPES (R125+)
+## PROCHAINES ÉTAPES (R140+)
 
 ```
 PRIORITÉ 1 : Publier la chaîne conditionnelle
-             Junction + k≤21 + SLS + T159-T166 + T170
+             Junction + k≤21 + SLS + T159-T166 + T170 + T172
              T164 : r>p^{2/k} sous (H_k)
+             T172 : réduction formelle (H_k) ↔ C_SC (TAN ouverte)
              Réduction à S_H(s) = somme hybride additif/multiplicatif
              Target : Journal of Number Theory / Experimental Mathematics
              Faisabilité 9/10, Impact 8/10
 
-PRIORITÉ 2 : Katz-Sarnak effectif + crible (long terme)
-             Monodromie du faisceau associé à Σ χ(1+ζ) sur μ_r
-             Si le groupe de monodromie est SU(N) → loi semi-cercle
-             Nécessite expert TAN (Katz, Kowalski, Shkredov)
-             Faisabilité 3/10, Impact 10/10
-
-PRIORITÉ 3 : Voie alternative au Bloc 3
-             Explorer des stratégies NON basées sur (H_k)
-             Exemples : approche ergodique, p-adique, combinatoire directe
-             Toute approche doit passer le test anti-rebranding
+PRIORITÉ 2 : Attendre progrès en TAN sur C_SC
+             Conjecture C_SC : |Σ_{h∈H} χ(h-a)| ≤ C·√r
+             État de l'art : saving r^{-c/k} (Shkredov), objectif r^{-1/2}
+             Nécessite expert TAN (Shkredov, Shparlinski, Bourgain school)
              Faisabilité 2/10, Impact 10/10
+
+PRIORITÉ 3 : Explorer reformulations SORTANT de la dimension 0
+             Toute méthode en dim 0 est bloquée (5 familles épuisées)
+             Aucun candidat identifié actuellement
+             Toute approche doit passer le test anti-rebranding
+             Faisabilité 1/10, Impact 10/10
 
 NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10)
 NE PAS FAIRE : Artin / ordres multiplicatifs (mur fondamental, ouvert 1927)
@@ -1036,8 +1037,16 @@ NE PAS FAIRE : L-fonction sur μ_r (dimension 0, R119)
 NE PAS FAIRE : Computationnel sur d(k) (nombres exponentiels, §2.1, R121)
 NE PAS FAIRE : Positivité + L^∞/L^2 pour briser p^{1/2} (seuil infranchissable, R122)
 NE PAS FAIRE : Attaquer (H_k) directement (mur FONDAMENTAL, 3 familles épuisées, R123)
+NE PAS FAIRE : Factorisation algébrique de d(k) pour fermer k (N₀(f₁) > 0 systématique, R127)
+NE PAS FAIRE : DP mod petits premiers de d(k) pour N₀(p) = 0 (terme principal >> 1, R128)
+NE PAS FAIRE : DP mod d(k) brute force (computationnel libre, §2.1, R128)
+NE PAS FAIRE : Moments M_4 de S_H(s) pour borner le max (Markov L²→L∞ perdant, R134)
+NE PAS FAIRE : Distribution de R(h,h') mod H (circulaire, revient au problème original, R133)
+NE PAS FAIRE : Crible/large sieve sur S_H(s) (même facteur de perte √g, R135)
+NE PAS FAIRE : Burgess/Karatsuba sur sous-groupes translatés (saving insuffisante, R137)
+NE PAS FAIRE : Chercher 4ème famille d'outils en dimension 0 (découplement/entropie/sieve tous bloqués, R135)
 
-ÉTAT DU FRONT THÉORIQUE (R125) :
+ÉTAT DU FRONT THÉORIQUE (R140) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
   - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
   - Spectre plat, orbites, L² = rp [PROUVÉ]
@@ -1051,24 +1060,28 @@ NE PAS FAIRE : Attaquer (H_k) directement (mur FONDAMENTAL, 3 familles épuisée
   - C(s)=g·τ(χ^{-sr})·S_H(s) formule exacte [PROUVÉ, R111]
   - V_GOWERS = V_BGK = V_SQRT_CANCEL = même problème [PROUVÉ, R114]
   - T170 borne améliorée si s₃|k petit [PROUVÉ CONDITIONNEL, R120]
-  - **MUR V_SQRT_CANCEL = FONDAMENTAL** (résiste Fourier+BKT, géo. algébrique, positivité) [R123]
+  - **MUR V_SQRT_CANCEL = FONDAMENTAL** (résiste 5+ familles d'outils) [R123, R135]
   - **PISTE (H_k) DIRECTE : SUSPENDUE** (§9.6d protocole) [R123]
-  - Verrou UNIQUE = |S_H(s)| ≤ √r [PROBLÈME OUVERT de TAN]
+  - T171 identité M_4 ↔ E^×(H-1) (énergie multiplicative du translaté) [R132]
+  - **T172 PROUVÉ** : réduction formelle (H_k) ⟺ C_SC (conjecture TAN) [R139]
+  - Factorisation algébrique de d(k) = faux contournement [R129]
+  - Contournement algébrique/computationnel/moments/crible TOUS ÉLIMINÉS [R126-R140]
+  - Verrou UNIQUE = |S_H(s)| ≤ √r ⟺ C_SC [PROBLÈME OUVERT de TAN]
   - Gap Bloc 3 : 20 valeurs (k=22..41) OUVERTES
-  - 44 rounds d'investigation sur (H_k) (R81-R125), 3 familles d'outils épuisées
+  - 60 rounds d'investigation sur (H_k) et ses contournements (R81-R140), 5+ familles d'outils épuisées
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 125 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension)
-- **Scripts** : 228
+- **Rounds** : 140 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC)
+- **Scripts** : 230
 - **Auto-tests** : 12166
-- **Théorèmes prouvés** : 167 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125)
-- **Conjectures ouvertes** : 14 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**)
-- **Pistes fermées** : 143+ (+5 en R116-R125 : Deligne RH somme directe/borne triviale, Weil sur racines/dim 0, L-fonction tore/dim 0, computationnel d(k)/§2.1, positivité L^∞+L^2/seuil p^{1/2})
-- **Concepts inventés** : 246+ (+6 en R116-R125 : T169 candidat géo. algébrique, T170 contrainte Collatz s₃|k, mur FONDAMENTAL 3 familles, suspension §9.6d, H+1 dimension 0, chaîne conditionnelle T4→T164→(H_k)→S_H)
+- **Théorèmes prouvés** : 169 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T172 R131-R140)
+- **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
+- **Pistes fermées** : 156+ (+8 en R126-R140 : factorisation algébrique/faux contournement, DP petits premiers, moments M_4/Markov, distribution R(h,h')/circulaire, crible/même perte, Burgess/insuffisant, 4ème famille/inexistante, orbite de 3/circulaire)
+- **Concepts inventés** : 256+ (+10 en R126-R140 : factorisation cyclotomique d(k), E^×(H-1), E^×_proj(H-1;H), R(h,h')=(h-1)/(h'-1), C_SC conjecture TAN, T171 M_4↔E^×, T172 réduction formelle, confirmation dim 0 bloque tout, 5 familles épuisées, chaîne T4→T164→(H_k)→C_SC→N₀=0)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
 - **Front théorique** : T159+T162+T163+T166 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r [PROBLÈME OUVERT TAN]. V_GOWERS=V_BGK=V_SQRT_CANCEL=même problème (R114). Mur FONDAMENTAL (R123). Piste (H_k) directe SUSPENDUE (R123). 3 familles d'outils épuisées en 44 rounds (R81-R125).
@@ -1136,3 +1149,18 @@ NE PAS FAIRE : Attaquer (H_k) directement (mur FONDAMENTAL, 3 familles épuisée
   - **MUR V_SQRT_CANCEL = FONDAMENTAL** : résiste à 3 familles indépendantes (R123)
   - **SUSPENSION** de (H_k) directe après 44 rounds (R81-R125) (R123)
   - Chaîne conditionnelle complète : T4→T164→(H_k)→S_H(s) (R125)
+- **Découvertes majeures R126-R130** :
+  - Factorisation cyclotomique de d(k) quand gcd(S,k)>1 : forme fermée [PROUVÉ] (R126)
+  - 8/20 valeurs favorables (gcd>1), 12/20 irréductibles (gcd=1) (R126)
+  - N₀(f₁) > 0 SYSTÉMATIQUE pour tous petits facteurs — résultat théorique (R128)
+  - **FAUX CONTOURNEMENT** diagnostiqué : la route algébrique retombe sur SLS → (H_k) (R129)
+  - Dérive computationnelle détectée et corrigée (§2.1 protocole) (R128)
+- **Découvertes majeures R131-R140** :
+  - **T171 IDENTITÉ** : M_4(S_H) ≈ (p-1)·E^×(H-1) — lien moment-4 / énergie multiplicative (R132)
+  - **T172 PROUVÉ** : réduction formelle (H_k) ⟺ C_SC (conjecture TAN) (R139)
+  - Moments M_4 insuffisants : Markov L²→L∞ perd √g systématiquement (R134)
+  - Crible combinatoire : même facteur de perte, inapplicable (R135)
+  - 4ème famille d'outils : AUCUNE identifiée en dimension 0 (R135)
+  - Burgess/Karatsuba sur H-1 : saving toujours insuffisante (R137)
+  - Shkredov sum-product : gap polynomial (saving c/k vs objectif 1/2) (R138)
+  - **CJT formellement RÉDUIT à problème ouvert reconnu de TAN** (R139-R140)
