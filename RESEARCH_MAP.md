@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 14 mars 2026 | **Rounds:** R1–R105 (105 rounds, 228 scripts, 12166 auto-tests)
+**Date:** 14 mars 2026 | **Rounds:** R1–R110 (110 rounds, 228 scripts, 12166 auto-tests)
 
 ---
 
@@ -965,6 +965,11 @@ R102    : **POUSSÉE** — M_mix≈r²p [SEMI-FORMALISÉ]. Route 3∈H éliminé
 R103    : **AUDIT CROISÉ** — 8 directions investiguées, 7 éliminées. Weil-Deligne hors cadre (transcendant). Crible d(k)→ACU. Énergie additive→PO-R87. Survivant unique: B1 M_mix. Aucun script
 R104    : **TEST DE PREUVE** — T164 [CONDITIONNEL sur (H_k)]: r>p^{2/k} suffit. Réduction analytique→combinatoire. Gap CONDITIONNEL pas structurel. (H_k)=énergie additive k-linéaire. Aucun script
 R105    : **TOURNOI FINAL** — T164 seul survivant, mordance 6.5/10. 3 théorèmes, 7 éliminations. Score IVS=7.3/10. Verrou=(H_k) combinatoire. Aucun script
+R106    : **INVESTIGATION (H_k)** — Fourier+BGK (route A, ε≥(k-2)/(2k(k-1))). Cohomologie (route B, r>p^{3/(k-1)}). VdC ÉLIMINÉ (dual E_k). Induction ÉLIMINÉE (circulaire). Aucun script
+R107    : **POUSSÉE DEUX CANDIDATS** — ε(δ) explicite N'EXISTE PAS δ<1/2. V_BGK_eff identifié. Faisceau non-standard (rang naïf g^{k-1}). **E_γ(H) cross-energy identifié** (T166 candidat). Aucun script
+R108    : **T166 PROUVÉ** — E_γ(H)=r^4/p+O(r^{3-η}) par Fourier+CS+BKT. Propagation T166→(H_k) par Hölder ÉCHOUE (structurel). Gap 2-point→k-point identifié. Aucun script
+R109    : **GAP 2-POINT→K-POINT** — H-invariance=T163 (redécouverte détectée). Reformulation (H_k) sur quotient Z_g : PA de |f̂|² de pas ⟨3⟩. Connexion normes de Gowers. Aucun script
+R110    : **CONSOLIDATION** — Calcul ||ψ||_{U²} explicite (faisable sous Katz-Sarnak). 3 routes survivantes. V_GOWERS=nouveau sous-verrou. IVS=6.5/10. Aucun script
 ```
 
 ---
@@ -972,29 +977,30 @@ R105    : **TOURNOI FINAL** — T164 seul survivant, mordance 6.5/10. 3 théorè
 ## PROCHAINES ÉTAPES (R105+)
 
 ```
-PRIORITÉ 1 : Recherche bibliographique (H_k)
-             Explorer Shkredov (2013+), Schoen, Bourgain (2005+) pour énergie
-             additive multilinéaire de sous-groupes multiplicatifs de F_p*
-             (H_k) connu k=2 (BKT 2004), ouvert k≥3
+PRIORITÉ 1 : Attaquer V_GOWERS (corrélation de Gauss décalée)
+             Calculer Σ_j τ_j \overline{τ_{j+s}} explicitement
+             Utiliser monodromie de Katz (Exp. Sums and Diff. Eq.)
+             Cas test : k=3 (norme U², le plus accessible)
              Faisabilité 5/10, Impact 10/10
 
-PRIORITÉ 2 : Publier résultat k=21 + T152-T164 + PO-R87
-             Junction + k≤21 + SLS + T159 filtre + T162-T163 + T164 conditionnel
+PRIORITÉ 2 : Shkredov/Schoen bornes directes T_k(A) croisé
+             T_k(H) standard = cas 3∈H (résolu). Adapter au cas croisé 3∉H
+             Explorer si techniques de Schoen s'étendent aux PA dans F_p*/H
+             Faisabilité 4/10, Impact 9/10
+
+PRIORITÉ 3 : Publier résultat k=21 + T152-T166 + PO-R87
+             Junction + k≤21 + SLS + T159 filtre + T162-T164 + T166
              T159 = premier résultat inconditionnel sur R
              T164 = réduction analytique→combinatoire
+             T166 = décorrélation 2-point prouvée
              Target : Experimental Mathematics / Journal of Number Theory
              Faisabilité 9/10, Impact 8/10
 
-PRIORITÉ 3 : Vérification computationnelle de T164
+PRIORITÉ 4 : Vérification computationnelle de T164
              Pour k=22..41 (Bloc 3), calculer p^{2/k} pour les primes p|d(k)
              et vérifier si ord_p(2) > p^{2/k}
              Si oui systématiquement, T164+(H_k) fermerait ces cas
              Faisabilité 7/10, Impact 8/10
-
-PRIORITÉ 4 : Estimation directe de W_ℓ (sans Cauchy-Schwarz)
-             Méthode Fouvry-Kowalski-Michel adaptée aux sommes partielles
-             Obstacle : S₀^{(ℓ)} somme sur sous-groupe, pas objet de type faisceau
-             Faisabilité 2/10, Impact 10/10
 
 NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10)
 NE PAS FAIRE : Artin / ordres multiplicatifs (mur fondamental, ouvert 1927)
@@ -1007,8 +1013,12 @@ NE PAS FAIRE : Factorisation en blocs / Hölder (structurellement r>√p, R102)
 NE PAS FAIRE : Weil-Deligne sur Σ(ℓ) (condition transcendante, R103)
 NE PAS FAIRE : Crible multiplicatif d(k) (réduit à ACU/CRT R85, R103)
 NE PAS FAIRE : Norme de bloc ker(χ_ℓ^k) (réduit à T163, R103)
+NE PAS FAIRE : VdC sur W_ℓ (dual à E_k, R106)
+NE PAS FAIRE : Induction E_k→E_{k-1} (circulaire, R106)
+NE PAS FAIRE : Propagation T166→(H_k) par Hölder (structurel, R108)
+NE PAS FAIRE : H-invariance pour 3∉H (=T163, ne s'applique pas, R109)
 
-ÉTAT DU FRONT THÉORIQUE (R105) :
+ÉTAT DU FRONT THÉORIQUE (R110) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
   - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
   - Spectre plat, orbites, L² = rp [PROUVÉ]
@@ -1018,7 +1028,11 @@ NE PAS FAIRE : Norme de bloc ker(χ_ℓ^k) (réduit à T163, R103)
   - T162 n_eff = gcd(r,k) - 1 exactement [PROUVÉ INCONDITIONNEL, R101]
   - T163 dichotomie 3∈H/3∉H : factorisation exacte quand 3∈H [PROUVÉ, R101]
   - T164 conditionnel : r > p^{2/k} sous (H_k) [CONDITIONNEL, R104]
+  - **T166 décorrélation 2-point croisée : E_γ(H)=r^4/p+O(r^{3-η}) [PROUVÉ INCONDITIONNEL, R108]**
   - M_mix ≈ r²p quand 3∉H : décorrélation 2-point [SEMI-FORMALISÉ, R102]
+  - **(H_k) pour 3∉H = uniformité de |f̂|² sur PA dans F_p*/H [REFORMULÉ, R109]**
+  - **Connexion normes de Gowers U^{k-1} sur Z_g [IDENTIFIÉ, R109-R110]**
+  - **V_GOWERS = nouveau sous-verrou : ||ψ-Eψ||_{U^{k-1}} petit [R110]**
   - Verrou = (H_k) énergie additive k-linéaire (sous-problème de PO-R87)
   - Réduction : verrou analytique → verrou combinatoire [R104]
   - Gap L²/L^∞ persiste mais CONDITIONNEL (pas structurel)
@@ -1028,16 +1042,16 @@ NE PAS FAIRE : Norme de bloc ker(χ_ℓ^k) (réduit à T163, R103)
 
 ## STATISTIQUES
 
-- **Rounds** : 105 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164)
+- **Rounds** : 110 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k))
 - **Scripts** : 228
 - **Auto-tests** : 12166
-- **Théorèmes prouvés** : 164 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105)
+- **Théorèmes prouvés** : 165 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110)
 - **Conjectures ouvertes** : 13 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k)**)
-- **Pistes fermées** : 131 (+7 en R101-R105 : Route 3∈H/Jacobi, Blocs/Hölder, A1 densité/filtre, A2 χ_ℓ^k/pointwise, Crible d(k)/ACU, Weil-Deligne/transcendant, Norme bloc/T163)
-- **Concepts inventés** : 228 (+8 en R101-R105 : T162 n_eff exact, T163 dichotomie 3∈H, T164 conditionnel (H_k), M_mix décorrélation, réduction analytique→combinatoire, (H_k) énergie k-linéaire, Σ(ℓ) somme restreinte, off-diagonal E_k)
+- **Pistes fermées** : 135 (+4 en R106-R110 : VdC/dual E_k, Induction E_k→E_{k-1}/circulaire, Hölder propagation T166→(H_k)/structurel, H-invariance 3∉H/=T163)
+- **Concepts inventés** : 234 (+6 en R106-R110 : T166 décorrélation croisée, E_γ(H) énergie cross-coset, V_BGK_eff sous-verrou, ψ=|f̂|² sur quotient Z_g, PA de ψ = (H_k), V_GOWERS normes uniformité)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. Verrou = (H_k) énergie additive k-linéaire (combinatoire, sous-problème PO-R87)
+- **Front théorique** : T159+T162+T163+T166 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. Verrou = (H_k) = uniformité Gowers de |f̂|² sur Z_g (sous-problème de PO-R87). Sous-verrou V_GOWERS identifié R110.
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
