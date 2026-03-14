@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 13 mars 2026 | **Rounds:** R1–R64 (64 rounds, 216 scripts, 12066 auto-tests)
+**Date:** 14 mars 2026 | **Rounds:** R1–R81 (81 rounds, 223 scripts, 12166 auto-tests)
 
 ---
 
@@ -62,8 +62,8 @@
 |-------|-------------|:-----------:|:------:|:-----:|
 | **DP direct sur d(k)** | DP complet mod d pour petits d(k) en C | 9/10 | 10/10 | → R36 |
 | **MITM sur d(k)** | Meet-in-the-middle pour d moyens | 7/10 | 7/10 | → R36 |
-| **CEC Type B composite** | DP mod p₁·p₂ (produit 2 primes) | 5/10 | 8/10 | R35 |
-| **Borne analytique universelle** | Prouver |Z(0)-C/p| < C/p | 2/10 | 10/10 | Open |
+| **APF (Adequate Prime via Factorization)** | Sélectionner p\|d(k) avec ord_p(2) impair → -1∉⟨2⟩, puis confiner Σ_≤(k) | 3/10 | 10/10 | R81 |
+| **Baker / formes linéaires en logarithmes** | Seul outil connu exploitant quantitativement l'indépendance multiplicative de 2 et 3 | 2/10 | 10/10 | R76/R80 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
@@ -157,32 +157,53 @@
 | **Bourgain-Konyagin pour ⟨g²⟩** | Absorbée : indice 2 → complétion élémentaire via η, Jacobi suffit, outil sophistiqué inutile | R64 |
 | **Weil directe non décomposée** | Non ciblante : décomposition S_h=(A_h+B_h)/2 puis Jacobi = plus propre et plus fort | R64 |
 | **Candidat 2 S_h avec résidu** | Absorbée : cas spéciaux h=0, h=(p-1)/2 hors plage utile H≈√p | R64 |
+| **K-lite comme outil universel Collatz** | DISCREPANCE DE MODÈLE : preuve R62-R65 vaut pour ⟨g²⟩ (QR_p), PAS pour ⟨2⟩ (Collatz). Multiplicateur g²≠2 | R67 |
+| **Transfert universel QR ⇒ Collatz** | RÉFUTÉ par contre-exemples (p=23,73,97 : α_Collatz > α_QR). Barrière δ-dépendante | R68 |
+| **K-lite triangle Collatz (petit ord)** | ÉCHOUE quand ord_p(2) < M+1 : max N_r dépasse M+1 (p=127, α=1.29 > 1) | R68 |
+| **K-lite comme REQUIS du Junction Theorem** | SANS OBJET : le JT requiert N_0(d)=0, pas max_r N_r borné. N_0^true=0 ⟺ N_0^ind=0 | R69 |
+| **Opérateur de transfert spectral (SOH)** | TAUTOLOGIQUE : opérateurs L_j nilpotents (triangulaires stricts), valeurs propres 0, "spectral gap" vide de sens | R72 |
+| **Voie bilinéaire courte** | NE MORD PAS : 5 outils (CS, Abel, vdC, Weil, Bourgain) tous circulaires en régime O(log p). Obstacle fondamental ouvert | R73 |
+| **GSE (Generalized Sumset Expansion)** | TROP FAIBLE : prouve \|Σ_≤(k)\| < p mais pas que -1 spécifiquement exclu | R75 |
+| **ALO (Anti-concentration Littlewood-Offord)** | TECHNIQUEMENT BLOQUÉ : preuve en F_p ramène aux sommes exponentielles (même mur que R73) | R75 |
+| **RP (Recursive Peeling)** | LOCAL DÉGUISÉ : épluche k-par-k en récursion, pas de généralité | R75 |
+| **Confinement sumset dans F_p** | F_p est corps premier → AUCUN sous-groupe additif non trivial → stratégie "Σ_≤(k)⊂W, -1∉W" impossible | R75 |
+| **Monotonie comme verrou** | FAUX VERROU : le problème sans monotonie est également dur (mêmes causes sources CS1+CS2) | R76 |
+| **V2C (Valuation 2-adique du CorrSum)** | MAL CIBLÉ : invariants 2-adiques orthogonaux à d (impair) | R77 |
+| **OPM (Obstruction Position de -1)** | SEMI-RÉEL mais ne se convertit pas en exclusion de somme, enterré comme objet autonome | R77 |
+| **Multiplicatif pur (⟨2⟩ seul)** | INSUFFISANT : noyau dur = interface additif/multiplicatif, besoin somme-produit O(log p) | R77 |
+| **DMAR (reformulation auto-référence)** | REBRANDING : reformule le problème original sans compression | R79 |
+| **NBG (briques génératrices)** | RÉFUTÉ : tentative de briser l'auto-référence, mais ne produit aucun objet nouveau | R79 |
+| **DAS (reformulation dans espace dual)** | REBRANDING : isomorphe à SAMC dans F_p, aucune compression | R80 |
+| **PRO (reformulation polynomial)** | REBRANDING PARTIEL : clarifie mais pas de prise technique nouvelle | R80 |
+| **Toute reformulation dans F_p** | NOYAU IRRÉDUCTIBLE : 7 reformulations (SAMC, corrSum, Horner, DAS, PRO, SER, polynomial) sont algébriquement isomorphes — aucune ne comprime le verrou | R80 |
+| **Rigidité parabolique M=1** | AUTOMATIQUE : M=3^k/2^S≡1 mod p est conséquence de 2^S≡3^k mod p, pas une contrainte exploitable | R80 |
+| **GZD (zeroing par diviseurs)** | FAUX EXTÉRIEUR : v₂(d)=v₃(d)=0, ne sort pas de F_p | R81 |
+| **APF-L1 (sumset ⊂ ⟨2⟩)** | RÉFUTÉ : ⟨2⟩ est multiplicatif, pas stable sous addition. Σ(éléments de ⟨2⟩) ∉ ⟨2⟩ en général | R81 |
 
 ### 🟡 PISTES EN SUSPENS (avancées partielles)
 
 | Piste | État | Prochain pas | Round |
 |-------|------|-------------|:-----:|
-| **Gap spectral MTM** | Observé mais non prouvé | Prouver gap > 0 pour CPO | R32 |
 | **CRT Product Theorem** | RÉFUTÉ comme prédiction exacte (6/9 faux), mais N₀(d) ≤ CRT toujours | Reformuler en borne | R30/R35 |
 | **Order-Diversity Bound** | Conjecturé (18/18 vérifié) | Prouver la somme exp. | R31 |
 | **Bonferroni dichotomy** | Prouvé k≤50, pas universel | Étendre analytiquement | R25 |
-| **Restricted permanent** | T_p(t) = permanent restreint | Appliquer Barvinok/Gurvits | R7 |
-| **Direct bound α/√p** | α ~ 0.50·k^{0.68}, viable mais non universel | Prouver α borné | R7 |
-| **Projection Theorem** | Conjecturé (compression ≤ k/2) | Prouver | R28 |
 | **Ratio Law** | Observé (N₀·p/C → 1) | Prouver convergence | R29 |
 | **CSSPC (OCC)** | Vérifié k=3..16 (0 faux positif) | Tester k=17, borner ρ théoriquement | R40 |
-| **Couplage total κ=1** | Prouvé sur 5 cas canoniques | Prouver pour tout k≥3 | R40 |
 | **OCC-LITE** | IE seule suffit, gap [4.13, 6.0] | Prouver borne f_p, bridge asymptotique | R41-R42 |
 | **Borne f_p ≤ 12/p** | A_max=11.43, 29 paires k=3..17 vérifiées | Prouver via Ehrhart / lattice counting | R42 |
-| **Bridge C3→OCC-LITE** | f_p≤A/p ⟹ IE<θ quand ∏p>C·Aᵐ/θ, 1/10 SPC satisfait | Améliorer ou prouver asymptotique | R42 |
-| **QEL (Quasi-Equidistrib.)** | D≤1.81, décroît. ACL réduit QEL à borner M₂=ΣN_r² | Prouver M₂≤C²/p+A·C | R43-R44 |
-| **ACL (Aggregate Control)** | f_p ≤ 1/p + √((p-1)(p·M₂-C²))/(p·C) [PROUVÉ] | Montrer ACL serré via M₂ | R44 |
-| **MSL (Monotone Spreading)** | μ=M₂p/C²→1 monotone, M₂≤C²/p+A(p)·C [OBSERVÉ] | Prouver via LSD ou Horner | R45-R46 |
-| **LSD (Spreading Différences)** | h=1 PROUVÉ, h=2 forme canonique PROUVÉE, 3 sous-cas prouvés (T53-T55) | Borner congruence exp. générique h=2 (route secondaire) | R46-R47 |
-| **WEL (Weak Equidist.)** | μ→1 qualitatif, cible minimale pour f_p→1/p | Prouver via SDL (Horner) = route prioritaire | R46-R47 |
-| **SDL / ACaL (ANOVA)** | V=ΣV_{b₀}+V_between [PROUVÉ], phase shift PROUVÉ, between-within UNIFIÉS | Prouver TQL (tail quasi-uniformity) = ferme les deux moitiés | R47-R50 |
-| **ACaL-within (GEH)** | ΣV_{b₀}/C²=o(1) [OBSERVÉ], induction viable via moyenne pondérée [PROUVÉ] | Absorbé par TQL (même mécanisme que between) | R49-R50 |
-| **TQL (Tail Quasi-uniformity)** | TQL-mu : schéma de preuve 4 sous-étapes (a,b PROUVÉES, c,d CONJECTURALES), bridge = discrepancy pondérée, preuve conditionnelle validée (<0.01% violation), verrou = transition hit-hit < 1, Candidat 1 bridge-lite SURVIVANT (49/60) | Prouver sous-étape (c) : taux transition hit-hit < 1 uniformément via structure affine x→2x−1 mod p | R50-R60 |
+| **SAMC** | N_0(p)=0 ⟺ -1∉Σ_≤(k), formulation canonique CORRECTE mais aucune compression démontrée | Outil exploitant indépendance 2,3 | R74-R75 |
+| **APF-L1c (sparsité affaiblie)** | Corrigé : Σ_≤(k) PAS confinée dans ⟨2⟩, mais argument de sparsité O(log p) vs p reste | Quantifier → preuve -1 évité | R81 |
+| **SOH (Somme Ordonnée de Horner)** | H_k = objet canonique k≥3, forme multilinéaire ordonnée EXACTE | Abandonner spectral, explorer Baker | R71-R72 |
+
+#### Pistes en suspens HÉRITÉES (k=2, programme K-lite — requalifiées R69)
+
+Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R66) mais le pont vers Collatz (⟨2⟩) est NON TRIVIAL (R67-R68). Le JT ne REQUIERT PAS K-lite (R69). Requalifié comme **outil auxiliaire**.
+
+| Piste | État | Round |
+|-------|------|:-----:|
+| **K-lite (⟨g²⟩)** | PROUVÉ UNIVERSEL pour tout p ≥ 5, Ladder L8 | R64-R66 |
+| **K-lite (Collatz, ⟨2⟩)** | PROUVABLE ~88% des p ≥ 100. ÉCHOUE sinon | R68 |
+| **TQL/ACaL/SDL/QEL/MSL** | Cadre analytique solide mais AUXILIAIRE après R69 | R43-R56 |
 
 ---
 
@@ -345,6 +366,30 @@
 | **Borne |S_h| ≤ (1+√p)/2** | Conséquence directe de A_h+B_h, ratio max 0.999 [PROUVÉ] | R64 |
 | **Sous-étape (c) FERMÉE** | τ < 1 pour p ≥ 37 en R3, via D∞→0 PROUVÉ + dilution PROUVÉE [PROUVÉ] | R64 |
 | **Seuil p_0 = 37** | ε > 0 garanti dès p ≥ 37, p_comfort = 167 pour D∞ < 0.25 [CALCULÉ] | R64 |
+| **Intégration (d) formalisée** | α = (p+1)/(4(p-1)) + η(p) < 1 pour p ≥ 67 analytique, 5≤p<67 par énumération [PROUVÉ] | R65 |
+| **Seuil p₀ = 67 (corrigé)** | R64 estimait p₀=37, mais D∞ > 0.5 pour 37≤p<67. Énumération directe couvre le gap [CORRIGÉ] | R65 |
+| **K-lite UNIVERSEL (⟨g²⟩)** | K-lite prouvé pour TOUT p ≥ 5 sans restriction R1/R2/R3 : la chaîne dépend de ⟨g²⟩ pas de ⟨2⟩ [PROUVÉ] | R66 |
+| **Régimes R1/R2/R3 = reliquat** | Distinction R1/R2/R3 était un reliquat exploratoire de R57-R59, sans impact sur la preuve [DÉCOUVERT] | R66 |
+| **Discrepance de modèle c_δ** | R62 utilise c_δ=1+g^{2δ} (⟨g²⟩), R57 utilise c_δ=1+g_C·2^δ (Collatz). Multiplicateur g²≠2 [DÉCOUVERT] | R67 |
+| **N_0^true = N_0^ind pour r=0** | 2^a·c_δ≡0 mod p ⟹ c_δ≡0 : la multiplicité de 2^a est sans effet pour r=0 [PROUVÉ] | R69 |
+| **Doctrine cible/outil/labo** | JT requiert N_0=0 (cible), K-lite est technique auxiliaire (outil), k=2 est laboratoire [FIGÉ] | R70 |
+| **H_k forme multilinéaire ordonnée** | Objet canonique k≥3 : Σ Π ψ(nⱼ)^{3^{k-1-j}}, double progression géométrique [FORMULÉ] | R71 |
+| **Nilpotence opérateurs L_j** | Matrices strictement triangulaires sup → λ=0 → "spectral gap" vide de sens [PROUVÉ] | R72 |
+| **Cancellation bilinéaire** | Sous-problème pivot réel extrait de R72 : interférence entre phases imbriquées [IDENTIFIÉ] | R72 |
+| **Circularité des outils standards** | CS, Abel, vdC, Weil, Bourgain tous circulaires sur Σ e(c·2ⁿ/p) en régime O(log p) [PROUVÉ] | R73 |
+| **SAMC reformulation** | N_0(p)=0 ⟺ -1∉Σ_≤(k), paradigme algébrique/combinatoire vs analytique [FORMULÉ] | R74 |
+| **Absence sous-groupes additifs F_p** | F_p corps premier → ∅ sous-groupes additifs non triviaux → confinement sumset impossible [PROUVÉ] | R75 |
+| **CS1 (cause contingente)** | Travail dans F_p simple (choix de réduction mod p) — contingent | R76 |
+| **CS2 (cause intrinsèque)** | Support O(log p) — exponentiellement sous les seuils de Bourgain/Katz-Tao | R76 |
+| **Couplage CS1×CS2** | Les deux causes se renforcent : F_p simple + support court = aucun outil standard | R76 |
+| **SER (Spectre Exponentiel Restreint)** | SAMC dans espace des exposants Z/SZ, contrainte d'espacement Δe_j≥ℓ [SEMI-RÉEL] | R77 |
+| **Interface additif/multiplicatif** | Noyau dur = phénomène somme-produit en régime O(log p), ni additif ni multiplicatif pur | R77 |
+| **Auto-référence arithmétique** | corrSum et d partagent les briques (2,3) → distribution non pseudo-aléatoire = CAUSE SOURCE | R79 |
+| **Noyau irréductible dans F_p** | 7 reformulations isomorphes → aucune reformulation dans F_p ne comprime le verrou [PROUVÉ] | R80 |
+| **Rigidité parabolique M=1** | 3^k/2^S≡1 mod p est AUTOMATIQUE (conséquence de p\|d) [PROUVÉ] | R80 |
+| **Faille additive/multiplicative** | ⟨2⟩ ⊂ F_p* multiplicatif mais Σ_≤(k) = somme additive → Σ∉⟨2⟩ en général [DÉCOUVERT] | R81 |
+| **APF (Adequate Prime via Factorization)** | Choisir p\|d(k) avec ord_p(2) impair → -1∉⟨2⟩, SURVIVANT avec réserve | R81 |
+| **Frontière opérationnelle du noyau F_p** | Limite précise de ce qui est réalisable dans F_p sans outil extérieur [DÉFINIE] | R81 |
 
 ---
 
@@ -582,6 +627,26 @@
 | **(c) FERMÉE** | Sous-étape (c) du schéma K-lite fermée pour p ≥ 37 en R3 [PROUVÉ] | R64 |
 | **Candidat 1 ≫ Candidat 2 : 98 vs 51** | Standardisé vs résidu : preuve complète vs inutile [CALCULÉ] | R64 |
 | **Ladder L8 atteint** | 3 niveaux montés en R64 : S_h, D∞, (c) tous à L8 lemme prouvé [PROUVÉ] | R64 |
+| **Seuil analytique p₀=67** | R64 estimait p₀=37 ; la borne D∞ ET donne D∞>0.5 pour 37≤p<67. Énumération couvre le gap [CORRIGÉ] | R65 |
+| **⟨g²⟩ ≠ ⟨2⟩** | La chaîne K-lite R62-R65 utilise QR_p (index 2), jamais ⟨2⟩ (index variable). R1/R2/R3 = reliquat [PROUVÉ] | R66 |
+| **Discrepance modèle R57→R62** | Multiplicateur passe de 2 à g² entre R60 et R62 sans justification documentée [CRITIQUE] | R67 |
+| **N_r^true peut dépasser M+1** | Quand ord_p(2)<M+1, 2^a se répète → max N_r > M+1. Ex: p=127, α=1.29 [PROUVÉ] | R68 |
+| **JT ≠ K-lite** | JT requiert N_0(d)=0, pas borne sur max_r N_r. K-lite = outil, pas cible [PROUVÉ] | R69 |
+| **N_0^true = N_0^ind pour r=0** | 2^a·c_δ≡0 mod p ⟹ c_δ≡0, car p∤2. Obstacle R68 SANS OBJET pour la cible [PROUVÉ] | R69 |
+| **Outils transférables k=2→k≥3** | 3 outils réutilisables (ET, Weil, δ-schéma), 2 non transférables (Jacobi, K-lite résultat) [CLASSIFIÉ] | R70 |
+| **Nilpotence des opérateurs L_j** | Matrices strictement triangulaires sup → spectre vide → "spectral gap" = TAUTOLOGIE [PROUVÉ] | R72 |
+| **5 outils circulaires en O(log p)** | CS, Abel, vdC, Weil, Bourgain : chacun transforme Σe(c·2ⁿ/p) en somme du MÊME type [PROUVÉ] | R73 |
+| **Mur O(log p)** | L'état de l'art (Bourgain 2005) exige |H|≥p^δ. Le projet a L=O(log p), exponentiellement sous le seuil [IDENTIFIÉ] | R73 |
+| **F_p = corps premier** | Aucun sous-groupe additif non trivial → aucun "mur" additif disponible pour confiner Σ_≤(k) [PROUVÉ] | R75 |
+| **2 causes sources couplées** | CS1 (F_p contingent) × CS2 (O(log p) intrinsèque) = aucun outil standard [IDENTIFIÉ] | R76 |
+| **Monotonie innocentée** | Le problème SANS monotonie est tout aussi dur → monotonie = faux verrou [PROUVÉ] | R76 |
+| **Interface additif/multiplicatif** | Ni additif pur (R73-75) ni multiplicatif pur (R77) : noyau dur = somme-produit O(log p) [IDENTIFIÉ] | R77 |
+| **Auto-référence arithmétique** | corrSum et d construits avec {2,3} → distribution non pseudo-aléatoire = CAUSE SOURCE [IDENTIFIÉ] | R79 |
+| **7 reformulations isomorphes** | SAMC, corrSum, Horner, DAS, PRO, SER, polynomial — toutes algébriquement équivalentes dans F_p [PROUVÉ] | R80 |
+| **Rigidité M=1 automatique** | M = 3^k/2^S ≡ 1 mod p est conséquence de p|d, pas une contrainte supplémentaire [PROUVÉ] | R80 |
+| **Faille add/mult de ⟨2⟩** | ⟨2⟩ est sous-groupe multiplicatif mais la somme d'éléments de ⟨2⟩ sort de ⟨2⟩ [DÉCOUVERT] | R81 |
+| **GZD = faux extérieur** | v₂(d)=0 et v₃(d)=0 pour tout k≥3 → GZD ne sort pas de F_p [PROUVÉ] | R81 |
+| **APF = survivant unique R81** | Choisir p|d(k) avec ord_p(2) impair → -1∉⟨2⟩. Viabilité 3/10 (faille add/mult) [SEMI-RÉEL] | R81 |
 
 ---
 
@@ -786,40 +851,76 @@ R61     : Contrôle hit-hit FORMULÉ (τ<1−ε, ε≈c/log(ord)), Route 3 raret
 R62     : Dilution géométrique ε=1/2 PROUVÉ (formule exacte), quasi-uniformité d_δ OBSERVÉE (KS=0.017, D∞<0.10), sous-lemme ε>0 conditionnel PROUVÉ (τ≤1/2+D∞), Route 2 probabiliste SÉLECTIONNÉE (8/10), Route 1 fenêtres ÉLIMINÉE (ε→0), Weil direct ÉLIMINÉ (sous-groupe), Candidat 1 dilution SURVIVANT (82 vs 61), verrou final = équidistribution d_δ via Erdős-Turán, T128-T132, ε-lite dilution = SURVIVANT R63
 R63     : Réduction Erdős-Turán PROUVÉE (D∞≤1/H+(1/M)Σ|S_h|/h), objet minimal IDENTIFIÉ (S_h=Σχ_h(1+g^{2δ}) sur ⟨g²⟩), |S_h|/√p≈0.50 universel, gain carré-racine OBSERVÉ (<0.11), D∞=O(ln(p)/√p)→0 SEMI-PROUVÉ, arc=sous-groupe complet PROUVÉ, Candidat 2 incidences ÉLIMINÉ (39/100, absorbé via Parseval), pseudo-aléa naïf ÉLIMINÉ, p_seuil≈4538, récurrence affine PROUVÉE, T133-T139, D∞-lite analytique Ladder L6 = SURVIVANT R64
 R64     : **ROUND DÉCISIF** — |S_h|≤(1+√p)/2 **PROUVÉ** (décomposition exacte + orthogonalité + Jacobi), A_h=-1 PROUVÉ, |B_h|=√p PROUVÉ, D∞→0 PROUVÉ, τ<1 PROUVÉ, sous-étape (c) **FERMÉE** (p≥37, R3), Bourgain-Konyagin ÉLIMINÉ (inutile), Weil non décomposée ÉLIMINÉE, chaîne S_h→D∞→τ→ε→α COMPLÈTE, Ladder **L8**, T140-T146, Intégration (d) = SURVIVANT R65
+R65     : **K-lite R3 PROUVÉ** — sous-étape (d) formalisée, α=(p+1)/(4(p-1))+η<1, seuil corrigé p₀=67 (pas 37), 5≤p<67 par énumération. 2 scripts, 35 tests
+R66     : **K-lite UNIVERSEL** — R1/R2/R3=reliquat exploratoire, chaîne dépend de ⟨g²⟩ pas de ⟨2⟩, K-lite vaut pour TOUT p≥5. 2 scripts, 22 tests
+R67     : **DISCREPANCE DE MODÈLE** détectée — R62 utilise c_δ=1+g^{2δ} (⟨g²⟩), R57 utilise c_δ=1+g_C·2^δ (Collatz). K-lite ⟨g²⟩ PROUVÉ, K-lite Collatz NON PROUVÉ. 1 script, 16 tests
+R68     : **PONT PARTIEL** — transfert universel QR⇒Collatz RÉFUTÉ (p=23,73,97). K-lite Collatz PROUVABLE ~88% primes. DÉCOUVERTE CRITIQUE : N_r^true peut dépasser M+1 quand ord<M+1 (p=127, α=1.29). 1 script, 13 tests
+R69     : **AUDIT DÉFINITIONNEL** — JT requiert N_0(d)=0, PAS max N_r borné. N_0^true=0⟺N_0^ind=0 pour r=0. K-lite = outil auxiliaire, pas requis. 1 script, 14 tests
+R70     : **VERROUILLAGE DOCTRINAL** — doctrine cible/outil/labo figée. Transition contrôlée vers k≥3. Aucun script (round doctrinal)
+R71     : **SOH (Somme Ordonnée de Horner)** — objet canonique k≥3 formulé. H_k = forme multilinéaire ordonnée avec double progression géométrique. Stratégie opérateur de transfert sélectionnée. Aucun script
+R72     : **OPÉRATEUR NILPOTENT** — voie spectrale tautologique (nilpotence). REFORMULER : garder SOH, abandonner spectral, viser cancellation bilinéaire. Aucun script
+R73     : **VOIE ANALYTIQUE DÉCLASSÉE** — 5 outils testés (CS, Abel, vdC, Weil, Bourgain), tous circulaires en O(log p). Obstacle fondamental ouvert en théorie analytique des nombres. Aucun script
+R74     : **INNOVATION SAMC** — N_0(p)=0 ⟺ -1∉Σ_≤(k), paradigme algébrique. ACR absorbé, CPO enterré. Premier test k=3 PASSÉ. Aucun script
+R75     : **SAMC NE COMPRIME PAS** — 3 mécanismes testés (GSE trop faible, ALO bloqué, RP local). F_p sans sous-groupes additifs = obstacle structurel. SAMC abaissée au rang de reformulation. Aucun script
+R76     : **INVESTIGATION CAUSALE** — 2 causes sources couplées : CS1 (F_p contingent) + CS2 (O(log p) intrinsèque). Monotonie = FAUX VERROU. "Frontière atteinte" de R75 révisée comme trop terminale. Direction : géométrie multiplicative de ⟨2⟩. Aucun script
+R77     : **MULTIPLICATIF PUR NE SUFFIT PAS** — SER semi-réel, V2C/OPM enterrés. Noyau dur = interface additif/multiplicatif (somme-produit O(log p)). Aucun script
+R79     : **CAUSE SOURCE** — auto-référence arithmétique (corrSum et d partagent {2,3}). DMAR=rebranding, NBG=réfuté. Innovation suspendue. Aucun script
+R80     : **NOYAU IRRÉDUCTIBLE** — 7 reformulations dans F_p algébriquement isomorphes. Rigidité parabolique M=1 AUTOMATIQUE. DAS/PRO=rebranding. Innovation suspendue, direction Baker. Aucun script
+R81     : **TOURNOI EXTERNE** — GZD éliminé (faux extérieur). APF survit avec réserve (faille add/mult découverte et corrigée en APF-L1c affaibli). Frontière opérationnelle du noyau F_p définie. Aucun script
 ```
 
 ---
 
-## PROCHAINES ÉTAPES (R35+)
+## PROCHAINES ÉTAPES (R82+)
 
 ```
 PRIORITÉ 1 : DP direct sur d(k) en C compilé
              Tier 1 : k=21-27 (d petit, faisable en heures)
              Faisabilité 9/10, Impact 10/10
 
-PRIORITÉ 2 : MITM (meet-in-the-middle) pour k=28-31
-             d moyen, split B en deux moitiés
-             Faisabilité 7/10, Impact 7/10
+PRIORITÉ 2 : Explorer APF en profondeur
+             Sélectionner p|d(k) avec ord_p(2) impair → -1∉⟨2⟩
+             Quantifier la sparsité de Σ_≤(k) pour prouver -1 évité
+             Faisabilité 3/10, Impact 10/10
 
 PRIORITÉ 3 : Rédaction papier avec résultats actuels
-             (Junction + k≤20 + partial gap closure)
+             Junction + k≤20 + noyau irréductible F_p + K-lite ⟨g²⟩
              Target : Experimental Mathematics
 
-PRIORITÉ 4 : Borne analytique universelle (CQIP raffiné)
+PRIORITÉ 4 : Baker / formes linéaires en logarithmes
+             Seul outil connu exploitant l'indépendance multiplicative de 2 et 3
+             Régime : |2^S - 3^k| = d = 2^S - 3^k
              Faisabilité 2/10, Impact 10/10
+
+ÉTAT DU FRONT THÉORIQUE (R81) :
+  - Le noyau F_p est IRRÉDUCTIBLE : aucune reformulation ne comprime
+  - La cause source = auto-référence arithmétique (2,3 partagés)
+  - Le seul survivant externe = APF (avec faille add/mult identifiée)
+  - La voie analytique (sommes courtes O(log p)) = frontière ouverte
+  - Direction recommandée : sortir de F_p (Baker, ou DP computationnel)
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 64
-- **Scripts** : 216 (+2 en R64 : r64_sum_decomposition + r64_sh_lite)
-- **Auto-tests** : 12066 (46 en R64 : 18 sum_decomposition + 28 sh_lite, 100% PASS)
-- **Théorèmes prouvés** : 146 (originaux, +7 en R64 : T140-T146)
-- **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, PCMG, SPC unicité, OCC-LITE, κ=1, QEL, MSL, LSD, WEL, ACaL, |ρ|<1, TQL-mu, α<1 universel, Base+cross) — |S_h|≤C√p PROUVÉ et retiré
-- **Pistes fermées** : 87 (documentées avec raison, +3 en R64)
-- **Concepts inventés** : 169 (nommés, +7 en R64, dont |S_h|≤(1+√p)/2 PROUVÉ = Ladder L8)
+- **Rounds** : 81 (R78 absent — numéro non utilisé)
+- **Scripts** : 223 (+7 en R65-R69 : r65×2 + r66×2 + r67 + r68 + r69)
+- **Auto-tests** : 12166 (+100 en R65-R69 : 35+22+16+13+14, 100% PASS)
+- **Théorèmes prouvés** : 146+ (originaux R1-R64 ; R65-R81 = rounds structurels/doctrinaux, pas de nouveaux théorèmes formels numérotés)
+- **Conjectures ouvertes** : 10 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF)
+- **Pistes fermées** : 112 (+25 en R65-R81, documentées avec raison)
+- **Concepts inventés** : 199 (+30 en R65-R81)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 21 valeurs (k=21..41)
-- **Route prioritaire** : Lemme K-lite — sous-étapes (a)(b)(c) PROUVÉES, reste (d) intégration α<1 SEMI-FORMEL + cas p<37 [LEMME CANDIDAT L7]
+- **Front théorique** : Noyau F_p IRRÉDUCTIBLE (R80). Seul survivant externe = APF (R81). Direction = Baker ou DP
+- **Découvertes majeures R65-R81** :
+  - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
+  - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
+  - JT requiert N_0=0, pas K-lite (R69)
+  - SOH = objet canonique k≥3 (R71)
+  - Voie analytique O(log p) = frontière ouverte (R73)
+  - SAMC = formulation canonique sans compression (R74-R75)
+  - Cause source = auto-référence arithmétique (R79)
+  - Noyau irréductible = toutes reformulations F_p isomorphes (R80)
+  - Faille additif/multiplicatif identifiée (R81)
