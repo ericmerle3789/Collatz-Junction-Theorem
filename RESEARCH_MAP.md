@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 15 mars 2026 | **Rounds:** R1–R159 (159 rounds, 240 scripts, 12166 auto-tests)
+**Date:** 15 mars 2026 | **Rounds:** R1–R160 (160 rounds, 246 scripts, 12166 auto-tests)
 
 ---
 
@@ -1087,6 +1087,11 @@ NE PAS FAIRE : DP extension k=22..41 via facteurs premiers — 44 primes testés
 NE PAS FAIRE : Cibler |S_H| ≤ √r strictement — NUMÉRIQUEMENT RÉFUTÉ (max/√r = 4.67 et croissant, 731 premiers) (R159)
 NE PAS FAIRE : Interpréter G_geom = SL(r-1) comme preuve de cancellation pointwise — donne seulement le comportement GÉNÉRIQUE, pas de borne max (R159)
 NE PAS FAIRE : Appliquer Deligne equidistribution pour borne max|S_H| — donne |S_H| ~ √r en moyenne, max ~ √(r·log p) (R159)
+NE PAS FAIRE : Identifier S_H(t) comme trace de Frobenius — somme PARTIELLE sur sous-groupe, pas Frobenius d'un faisceau (R160)
+NE PAS FAIRE : Utiliser Deligne/Weil II pour borner S_H — borne (r-1)·√p, PIRE que triviale (R160)
+NE PAS FAIRE : Monodromie pour éliminer √(log p) du max — maximum de gaussiennes, phénomène probabiliste pas géométrique (R160)
+NE PAS FAIRE : Identité Π(1-2^a)≡r mod p comme levier — triviale (dérivée x^r-1 en x=1), concerne det pas S_H (R160)
+NE PAS FAIRE : Piste monodromie géométrique comme outil de preuve — INFORMATIF MAIS NON EXPLOITABLE, 3 gaps (formel, quantitatif, structurel) (R160)
 
 ÉTAT DU FRONT THÉORIQUE (R159) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
@@ -1156,22 +1161,31 @@ NE PAS FAIRE : Appliquer Deligne equidistribution pour borne max|S_H| — donne 
   - Mode s=0 de B(s,t) DOMINE le spectre quand r≈p-1 → décomposition bilinéaire n'isole pas S_H
   - Leçon : l'obstacle n'est pas l'absence de collisions non triviales mais l'inadéquation structurelle des moments
   - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141-R158, 9ème confirmation]
+  - **R160 AUDIT MONODROMIE** : piste monodromie géométrique = INFORMATIF MAIS NON EXPLOITABLE
+  - S_H(t) ≠ trace de Frobenius (somme partielle sur sous-groupe, pas objet de Katz/Deligne)
+  - Deligne donne |Tr| ≤ (r-1)·√p = PIRE que borne triviale
+  - Monodromie donne moyennes (Plancherel, M4) mais PAS borne pointwise
+  - Maximum √(r·log p) est inhérent (max de gaussiennes), non éliminable par géométrie
+  - Identité Π(1-2^a)≡r mod p PROUVÉE (dérivée x^r-1 en x=1) mais SANS IMPACT sur verrou
+  - **KILL SWITCH TERMINAL** : même √r strict ⟹ (√r)^22 = r^11 ≈ 10^16 >> p ≈ 4×10^8
+  - Dernière braise interne ÉTEINTE. Le programme nécessite un outil QUALITATIVEMENT NOUVEAU
+  - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141-R160, 10ème confirmation — TOUTES BRAISES ÉTEINTES]
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 159 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153-R154 = configurations ; R155 = multi-pistes [T175] ; R156 = investigation autonome [T176] ; R157 = objet couplé [T177] ; R158 = 3 formalisations du "+" ; **R159 = investigation profonde 5 axes + monodromie complète [Furstenberg MORT, 7 non-moment MORTES, monodromie → G_geom=SL(r-1) conjecturé / max/√r=4.67 CROÎT / |S_H|=O(√(r·log p)) / Π(1-2^a)≡r mod p, DP 0/13, incompatibilité 2/3 → 8/8 MORTES, paradoxe central identifié]**)
+- **Rounds** : 159 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153-R154 = configurations ; R155 = multi-pistes [T175] ; R156 = investigation autonome [T176] ; R157 = objet couplé [T177] ; R158 = 3 formalisations du "+" ; **R159 = investigation profonde 5 axes + monodromie complète [G_geom=SL(r-1), max/√r=4.67 CROÎT, DP 0/13, incomp 2/3 8/8 MORTES]* ; **R160 = audit logique monodromie [INFORMATIF MAIS NON EXPLOITABLE — S_H≠Frobenius, Deligne inutile, √r^22>>p, 5 kill switches]**)
 - **Scripts** : 246 (+6 R159 : monodromy_v2, monodromy_final, character_sums, deep_analysis, final, quick_monodromy)
 - **Auto-tests** : 12166
 - **Théorèmes prouvés** : 174 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151 ; T175 R155 ; T176 R156 ; T177 R157)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 225+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158, +27 R159 : Furstenberg×3, non-moment×7, DP×1, incompatibilité2/3×8, |S_H|≤√r réfuté, Deligne/Katz×2, monodromie pointwise×1, grand crible×1, Brauer-Manin×1, G_geom surinterprétation×2)
+- **Pistes fermées** : 232+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158, +27 R159, +7 R160 : S_H≠Frobenius, Deligne inutile, monodromie→max, identité produit sans impact, piste monodromie comme outil FERMÉE, √r^22>>p, bornes moyennées insuffisantes)
 - **Concepts inventés** : 294+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154, +3 R155, +6 R156, +4 R157, +5 R158 : W₁ transport, Δ défaut homomorphisme, E_mixed^{(3)} 6-tuples N_cross>0, dominance mode s=0, inadéquation moments)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163+T166+T174+T175+T176+T177 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141-R159 — 10 confirmations).** 79 rounds, 5+ familles + 59 innovations éliminées. R159 : 5 axes (Furstenberg MORT, 7 non-moment MORTES, monodromie → Gaussien/max CROÎT, DP 0/13, incompatibilité 2/3 → 8/8 MORTES). **RÉSULTAT CRITIQUE R159** : |S_H|≤√r est NUMÉRIQUEMENT FAUX (max/√r=4.67, 731 premiers, croît comme √(2·log(index))). Distribution S_H/√r quasi-Gaussienne (kurtosis 2.43-2.66, queues lourdes). Gap k=22..41 STRUCTUREL (44 primes non-bloquants). Paradoxe central : incompatibilité 2/3 archimédienne, verrou non-archimédien aux places de compatibilité. **MONODROMIE** : G_geom = SL(r-1) conjecturé (M4/M2²→2.0, unitaire). Plancherel exact. |S_H| = O(√(r·log p)). Identité Π(1-2^a) ≡ r mod p découverte. **BRAISE UNIQUE à auditer rigoureusement.** **MODE : PUBLICATION + veille TAN + audit monodromie R160.**
+- **Front théorique** : T159+T162+T163+T166+T174+T175+T176+T177 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141-R159 — 10 confirmations).** 79 rounds, 5+ familles + 59 innovations éliminées. R159 : 5 axes (Furstenberg MORT, 7 non-moment MORTES, monodromie → Gaussien/max CROÎT, DP 0/13, incompatibilité 2/3 → 8/8 MORTES). **RÉSULTAT CRITIQUE R159** : |S_H|≤√r est NUMÉRIQUEMENT FAUX (max/√r=4.67, 731 premiers, croît comme √(2·log(index))). Distribution S_H/√r quasi-Gaussienne (kurtosis 2.43-2.66, queues lourdes). Gap k=22..41 STRUCTUREL (44 primes non-bloquants). Paradoxe central : incompatibilité 2/3 archimédienne, verrou non-archimédien aux places de compatibilité. **MONODROMIE** : G_geom = SL(r-1) conjecturé (M4/M2²→2.0, unitaire). Plancherel exact. |S_H| = O(√(r·log p)). Identité Π(1-2^a) ≡ r mod p découverte. **R160 AUDIT** : monodromie classée **INFORMATIF MAIS NON EXPLOITABLE**. 3 gaps : (1) S_H ≠ Frobenius (formalisme inapplicable), (2) Deligne donne (r-1)·√p pire que trivial, (3) bornes moyennées insuffisantes pour produit corrélé. Kill switch : même √r idéal ⟹ (√r)^22 = r^11 >> p. 5 NE PAS FAIRE ajoutés. **MODE : PUBLICATION + veille TAN. Toutes les braises internes éteintes.**
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
