@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 15 mars 2026 | **Rounds:** R1–R153 (153 rounds, 230 scripts, 12166 auto-tests)
+**Date:** 15 mars 2026 | **Rounds:** R1–R155 (155 rounds, 230 scripts, 12166 auto-tests)
 
 ---
 
@@ -1059,8 +1059,11 @@ NE PAS FAIRE : Attaque collective vs pointwise pour le produit corrélé — éq
 NE PAS FAIRE : Spectre de persistance orbitale P_λ(ℓ) — rebranding A1+(H_k) en vocabulaire probabiliste, requiert propagation T166 2→k impossible (R154)
 NE PAS FAIRE : Défaut de factorisation D_k du moment k-linéaire — IDENTITÉ ALGÉBRIQUE avec (H_k) : D_k=(H_k)/(p-1)-((r-1)/(p-1))^k, zéro contenu nouveau (R154)
 NE PAS FAIRE : Morphologie des configurations contaminantes (toute variante) — se réduit à l'énergie k-linéaire (H_k) ⟺ C_SC, redondant par construction (R154)
+NE PAS FAIRE : Énergie croisée E^{×,+}(Γ) add-mult sur mêmes 4-tuples — trivialité algébrique universelle : double contrainte (h₁/h₂=h₃/h₄ ET h₁+h₄=h₂+h₃) force {h₃,h₄}={h₁,h₂}, aucune information arithmétique (R155)
+NE PAS FAIRE : Double contrainte add+mult sur les MÊMES variables d'un 4-tuple — structurellement dégénéré, résultat universel O(|A|²) (R155)
+NE PAS FAIRE : Compatibilité inter-facteurs orbitaux (toute variante naïve) — pré-disqualifiée par R154+T4, se réduit à (H_k) (R155)
 
-ÉTAT DU FRONT THÉORIQUE (R154) :
+ÉTAT DU FRONT THÉORIQUE (R155) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
   - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
   - Spectre plat, orbites, L² = rp [PROUVÉ]
@@ -1099,23 +1102,27 @@ NE PAS FAIRE : Morphologie des configurations contaminantes (toute variante) —
   - Identité algébrique prouvée [R154] : D_k = (H_k)/(p-1) − ((r-1)/(p-1))^k — reformulation supplémentaire ajoutée aux 7 de R80
   - 74 rounds d'investigation sur (H_k) et ses contournements (R81-R154), 5+ familles d'outils épuisées
   - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141, CONFIRMÉE R151, R152, R153, R154 (5ème confirmation)]
-  - **MODE ACTIF : PUBLICATION de la chaîne conditionnelle + calcul préparatoire monodromie** [R152, confirmé R153, R154]
+  - T175 PROUVÉ : dégénérescence double contrainte add-mult sur mêmes 4-tuples (identité universelle, R155)
+  - 1 candidat conditionnel survivant [R155] : C155 théorème d'impossibilité module-only [EXÉCUTION COURTE AUTORISÉE AVEC RÉSERVE]
+  - Couplage add/mult sur mêmes variables = structurellement dégénéré (R155). Direction future : variables séparées (non testée)
+  - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141, CONFIRMÉE R151, R152, R153, R154, R155 (6ème confirmation)]
+  - **MODE ACTIF : PUBLICATION de la chaîne conditionnelle + calcul préparatoire monodromie** [R152, confirmé R153, R154, R155]
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 154 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153 = pistes orbitales [3 voies mortes, 0 survivant, collectif≡pointwise] ; **R154 = configurations contaminantes [3 voies mortes, 0 survivant, morphologie≡(H_k)]**)
+- **Rounds** : 155 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153 = pistes orbitales [3 voies mortes, 0 survivant, collectif≡pointwise] ; R154 = configurations contaminantes [3 voies mortes, 0 survivant, morphologie≡(H_k)] ; **R155 = multi-pistes [3 voies mortes, 1 conditionnel (C155 impossibilité module-only), T175 dégénérescence]**)
 - **Scripts** : 230
 - **Auto-tests** : 12166
-- **Théorèmes prouvés** : 171 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151)
+- **Théorèmes prouvés** : 172 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151 ; T175 R155)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 180+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154 : persistance orbitale=A1+(H_k), défaut D_k=(H_k), morphologie contaminantes=(H_k))
-- **Concepts inventés** : 276+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154 : spectre persistance orbitale P_λ(ℓ), défaut factorisation D_k, identité D_k=(H_k)/(p-1)−cst)
+- **Pistes fermées** : 183+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155 : E^{×,+} trivialité, B155 pré-disqualifiée, D155 sans candidat)
+- **Concepts inventés** : 279+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154, +3 R155 : E^{×,+}(Γ) énergie croisée, T175 dégénérescence, C155 impossibilité module-only)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163+T166+T174 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141, R151, R152, R153, R154 — 5 confirmations).** 74 rounds, 5+ familles + 16 innovations éliminées. 1 survivant conditionnel : monodromie KMS. Résultat négatif R153 : collectif≡pointwise. Résultat négatif R154 : configurations contaminantes ≡ (H_k). **MODE : PUBLICATION + calcul préparatoire monodromie.**
+- **Front théorique** : T159+T162+T163+T166+T174+T175 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141, R151, R152, R153, R154, R155 — 6 confirmations).** 75 rounds, 5+ familles + 19 innovations éliminées. 1 survivant conditionnel : monodromie KMS. 1 conditionnel R155 : C155 impossibilité module-only. Résultat négatif R153 : collectif≡pointwise. Résultat négatif R154 : configurations contaminantes ≡ (H_k). Résultat négatif R155 : T175 double contrainte add-mult dégénérée. **MODE : PUBLICATION + calcul préparatoire monodromie.**
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
@@ -1247,3 +1254,14 @@ NE PAS FAIRE : Morphologie des configurations contaminantes (toute variante) —
   - 3 nouvelles voies mortes, 0 survivant
   - **SUSPENSION DÉFINITIVE (5ème : R141, R151, R152, R153, R154)**
   - IVS campagne : 1.5/10
+- **Résultats R155 — CAMPAGNE MULTI-PISTES SOUS CONDITIONS** :
+  - Exécution intégrale de PromptR155.md (4 agents parallèles, 4 pistes qualifiées)
+  - **Candidat A155** (énergie croisée E^{×,+}(Γ) add-mult) : [ÉLIMINÉ] — trivialité algébrique : double contrainte add+mult sur mêmes 4-tuples force {h₃,h₄}={h₁,h₂}, E^{×,+}=(r-1)(2r-3) universellement
+  - **Piste B** : [ÉLIMINÉE] — pré-disqualifiée R154+T4, compatibilité inter-facteurs = (H_k)
+  - **Candidat C155** (théorème d'impossibilité module-only) : [QUALIFIÉ AVEC RÉSERVE] — exécution courte autorisée sous 4 conditions strictes
+  - **Piste D** : [SANS CANDIDAT] — faisceau non identifié, théorie de monodromie inapplicable sans objet précis
+  - **T175 PROUVÉ** : dégénérescence de la double contrainte add-mult — E^{×,+}(A) = |A|(2|A|-1) pour tout ensemble A dans tout corps (identité universelle, 5 lignes)
+  - Leçon archivée : couplage add/mult doit opérer sur variables SÉPARÉES (pas mêmes 4-tuples)
+  - 3 nouvelles voies mortes (A155 trivialité, B155 pré-disqualifiée, D155 sans candidat), 1 conditionnel (C155)
+  - **SUSPENSION MAINTENUE (6ème : R141, R151, R152, R153, R154, R155)**
+  - IVS campagne : 2.0/10
