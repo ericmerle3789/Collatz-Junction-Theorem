@@ -1,0 +1,690 @@
+{
+  "axe1": [
+    {
+      "k": 3,
+      "S": 6,
+      "d": 37,
+      "cs_min": 20,
+      "cs_max": 104,
+      "cs_range": 84,
+      "m_min": 1,
+      "m_max": 2,
+      "num_targets": 2,
+      "C_comp": 10,
+      "avg_per_target": 5.0,
+      "ratio_range_d": 2.27027027027027,
+      "log2_C": 3.321928094887362,
+      "log2_targets": 1.0
+    },
+    {
+      "k": 5,
+      "S": 9,
+      "d": 269,
+      "cs_min": 136,
+      "cs_max": 1936,
+      "cs_range": 1800,
+      "m_min": 1,
+      "m_max": 7,
+      "num_targets": 7,
+      "C_comp": 70,
+      "avg_per_target": 10.0,
+      "ratio_range_d": 6.691449814126394,
+      "log2_C": 6.129283016944966,
+      "log2_targets": 2.807354922057604
+    },
+    {
+      "k": 7,
+      "S": 13,
+      "d": 6005,
+      "cs_min": 1156,
+      "cs_max": 69952,
+      "cs_range": 68796,
+      "m_min": 1,
+      "m_max": 11,
+      "num_targets": 11,
+      "C_comp": 924,
+      "avg_per_target": 84.0,
+      "ratio_range_d": 11.456452955870109,
+      "log2_C": 9.851749041416058,
+      "log2_targets": 3.4594316186372973
+    },
+    {
+      "k": 10,
+      "S": 17,
+      "d": 72023,
+      "cs_min": 29651,
+      "cs_max": 3779072,
+      "cs_range": 3749421,
+      "m_min": 1,
+      "m_max": 52,
+      "num_targets": 52,
+      "C_comp": 11440,
+      "avg_per_target": 220.0,
+      "ratio_range_d": 52.058661816364214,
+      "log2_C": 13.481799431665753,
+      "log2_targets": 5.700439718141092
+    },
+    {
+      "k": 15,
+      "S": 25,
+      "d": 19205525,
+      "cs_min": 7175476,
+      "cs_max": 7346639872,
+      "cs_range": 7339464396,
+      "m_min": 1,
+      "m_max": 382,
+      "num_targets": 382,
+      "C_comp": 1961256,
+      "avg_per_target": 5134.178010471204,
+      "ratio_range_d": 382.15380188773804,
+      "log2_C": 20.90334643010939,
+      "log2_targets": 8.57742882803575
+    },
+    {
+      "k": 22,
+      "S": 36,
+      "d": 37338417127,
+      "cs_min": 15690546187,
+      "cs_max": 257073640308736,
+      "cs_range": 257057949762549,
+      "m_min": 1,
+      "m_max": 6884,
+      "num_targets": 6884,
+      "C_comp": 2319959400,
+      "avg_per_target": 337007.46658919234,
+      "ratio_range_d": 6884.543307987909,
+      "log2_C": 31.11145241195498,
+      "log2_targets": 12.749031382040204
+    },
+    {
+      "k": 30,
+      "S": 49,
+      "d": 357058821326663,
+      "cs_min": 102945566571611,
+      "cs_max": 53973124931819405312,
+      "cs_range": 53973021986252833701,
+      "m_min": 1,
+      "m_max": 151160,
+      "num_targets": 151160,
+      "C_comp": 11541847896480,
+      "avg_per_target": 76355172.64143953,
+      "ratio_range_d": 151160.02955959586,
+      "log2_C": 43.391939457316475,
+      "log2_targets": 17.205716898147323
+    },
+    {
+      "k": 41,
+      "S": 66,
+      "d": 37313979917667420061,
+      "cs_min": 18236498188618947632,
+      "cs_max": 611915338387011752356216832,
+      "cs_range": 611915320150513563737269200,
+      "m_min": 1,
+      "m_max": 16399090,
+      "num_targets": 16399090,
+      "C_comp": 651687674221131912,
+      "avg_per_target": 39739258350.37992,
+      "ratio_range_d": 16399090.139960758,
+      "log2_C": 59.176958321698805,
+      "log2_targets": 23.96711242485293
+    }
+  ],
+  "axe2": [
+    {
+      "k": 5,
+      "S": 9,
+      "d": 269,
+      "n_samples": 10000,
+      "hits_zero": 0,
+      "hits_zero_rate": 0.0,
+      "expected_rate": 0.0037174721189591076,
+      "n_distinct_residues": 65,
+      "m_mean": 1.0129,
+      "m_median": 1,
+      "m_min_obs": 0,
+      "m_max_obs": 7,
+      "top_m": [
+        [
+          1,
+          4173
+        ],
+        [
+          0,
+          3671
+        ],
+        [
+          2,
+          1261
+        ],
+        [
+          3,
+          587
+        ],
+        [
+          4,
+          161
+        ]
+      ]
+    },
+    {
+      "k": 7,
+      "S": 13,
+      "d": 6005,
+      "n_samples": 60050,
+      "hits_zero": 0,
+      "hits_zero_rate": 0.0,
+      "expected_rate": 0.00016652789342214822,
+      "n_distinct_residues": 777,
+      "m_mean": 0.3795004163197336,
+      "m_median": 0,
+      "m_min_obs": 0,
+      "m_max_obs": 11,
+      "top_m": [
+        [
+          0,
+          45560
+        ],
+        [
+          1,
+          10081
+        ],
+        [
+          2,
+          2513
+        ],
+        [
+          3,
+          1017
+        ],
+        [
+          4,
+          374
+        ]
+      ]
+    },
+    {
+      "k": 10,
+      "S": 17,
+      "d": 72023,
+      "n_samples": 100000,
+      "hits_zero": 0,
+      "hits_zero_rate": 0.0,
+      "expected_rate": 1.3884453577329465e-05,
+      "n_distinct_residues": 8951,
+      "m_mean": 1.00254,
+      "m_median": 0,
+      "m_min_obs": 0,
+      "m_max_obs": 52,
+      "top_m": [
+        [
+          0,
+          52177
+        ],
+        [
+          1,
+          28402
+        ],
+        [
+          2,
+          8658
+        ],
+        [
+          3,
+          4750
+        ],
+        [
+          4,
+          2058
+        ]
+      ]
+    },
+    {
+      "k": 15,
+      "S": 25,
+      "d": 19205525,
+      "n_samples": 100000,
+      "hits_zero": 0,
+      "hits_zero_rate": 0.0,
+      "expected_rate": 5.206835012320673e-08,
+      "n_distinct_residues": 94548,
+      "m_mean": 1.00045,
+      "m_median": 0,
+      "m_min_obs": 0,
+      "m_max_obs": 198,
+      "top_m": [
+        [
+          0,
+          59121
+        ],
+        [
+          1,
+          23489
+        ],
+        [
+          2,
+          6875
+        ],
+        [
+          3,
+          4217
+        ],
+        [
+          4,
+          1903
+        ]
+      ]
+    }
+  ],
+  "axe3": [
+    {
+      "k": 5,
+      "S": 9,
+      "decile_fractions": [
+        0.47466,
+        0.24242,
+        0.14098,
+        0.05584,
+        0.04244,
+        0.01396,
+        0.01522,
+        0.0,
+        0.0,
+        0.01448
+      ],
+      "cs_min_bound": 136,
+      "cs_max_bound": 1936,
+      "range_log2": 10.813781191217037
+    },
+    {
+      "k": 10,
+      "S": 17,
+      "decile_fractions": [
+        0.96858,
+        0.02478,
+        0.00422,
+        0.00148,
+        0.0005,
+        0.00032,
+        4e-05,
+        0.0,
+        0.0,
+        8e-05
+      ],
+      "cs_min_bound": 29651,
+      "cs_max_bound": 3779072,
+      "range_log2": 21.838236395620147
+    },
+    {
+      "k": 15,
+      "S": 25,
+      "decile_fractions": [
+        0.99932,
+        0.00054,
+        0.00012,
+        0.0,
+        0.0,
+        2e-05,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cs_min_bound": 7175476,
+      "cs_max_bound": 7346639872,
+      "range_log2": 32.77302763893095
+    },
+    {
+      "k": 22,
+      "S": 36,
+      "decile_fractions": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cs_min_bound": 15690546187,
+      "cs_max_bound": 257073640308736,
+      "range_log2": 47.86908695792294
+    }
+  ],
+  "axe4": [
+    {
+      "k": 5,
+      "S": 9,
+      "d": 269,
+      "d_size": "small",
+      "chi2_normalized": 1267.6986023134327,
+      "zero_count": 0,
+      "expected_per_bin": 371.74721189591077,
+      "zero_excess_sigma": -19.280747181992474,
+      "uniform": 0
+    },
+    {
+      "k": 7,
+      "S": 13,
+      "d": 6005,
+      "d_size": "large",
+      "n_bins": 100,
+      "chi2_normalized": 307.6727070707071,
+      "zero_bin_count": 776,
+      "expected_per_bin": 1000.0,
+      "zero_excess_sigma": -7.08350195877717,
+      "uniform": 0
+    },
+    {
+      "k": 10,
+      "S": 17,
+      "d": 72023,
+      "d_size": "large",
+      "n_bins": 100,
+      "chi2_normalized": 260.7140808080808,
+      "zero_bin_count": 825,
+      "expected_per_bin": 1000.0,
+      "zero_excess_sigma": -5.533985905294664,
+      "uniform": 0
+    }
+  ],
+  "axe5": [
+    {
+      "k": 5,
+      "S": 9,
+      "avg_ratio_anti_vs_shuffle": 0.3972129904435648,
+      "min_ratio": 0.17800944138473643,
+      "max_ratio": 1.0,
+      "avg_mod_change_fraction": 0.927,
+      "interpretation": "corrSum_anti \u2248 0.3972 \u00d7 corrSum_shuffle_mean. R\u00e9arrangement change le r\u00e9sidu mod d dans 92.7% des cas."
+    },
+    {
+      "k": 10,
+      "S": 17,
+      "avg_ratio_anti_vs_shuffle": 0.08790278437559608,
+      "min_ratio": 0.019213047302416558,
+      "max_ratio": 1.0,
+      "avg_mod_change_fraction": 0.9993719999999999,
+      "interpretation": "corrSum_anti \u2248 0.0879 \u00d7 corrSum_shuffle_mean. R\u00e9arrangement change le r\u00e9sidu mod d dans 99.9% des cas."
+    },
+    {
+      "k": 15,
+      "S": 25,
+      "avg_ratio_anti_vs_shuffle": 0.0169776555123853,
+      "min_ratio": 0.0023255170931026966,
+      "max_ratio": 0.3358473667821515,
+      "avg_mod_change_fraction": 1.0,
+      "interpretation": "corrSum_anti \u2248 0.0170 \u00d7 corrSum_shuffle_mean. R\u00e9arrangement change le r\u00e9sidu mod d dans 100.0% des cas."
+    }
+  ],
+  "axe6": [
+    {
+      "k": 5,
+      "S": 9,
+      "ratio_min": 0.10179640718562874,
+      "ratio_max": 1.0,
+      "ratio_mean": 0.24195228380136374,
+      "ratio_median": 0.18766066838046272,
+      "ratio_p10": 0.10799438990182328,
+      "ratio_p90": 0.4172736732570239,
+      "interpretation": "corrSum_anti/corrSum_aligned \u2208 [0.101796, 1.000000], m\u00e9diane 0.187661. L'anti-alignement r\u00e9duit corrSum d'un facteur moyen 0.2420."
+    },
+    {
+      "k": 10,
+      "S": 17,
+      "ratio_min": 0.008563946376372464,
+      "ratio_max": 1.0,
+      "ratio_mean": 0.03281962326541129,
+      "ratio_median": 0.021578931070564147,
+      "ratio_p10": 0.010977806325264676,
+      "ratio_p90": 0.06598458340777279,
+      "interpretation": "corrSum_anti/corrSum_aligned \u2208 [0.008564, 1.000000], m\u00e9diane 0.021579. L'anti-alignement r\u00e9duit corrSum d'un facteur moyen 0.0328."
+    },
+    {
+      "k": 15,
+      "S": 25,
+      "ratio_min": 0.000995206087316033,
+      "ratio_max": 0.5185189547374839,
+      "ratio_mean": 0.004463649169192444,
+      "ratio_median": 0.0024920111073293183,
+      "ratio_p10": 0.0012506659495988696,
+      "ratio_p90": 0.00871559575226042,
+      "interpretation": "corrSum_anti/corrSum_aligned \u2208 [0.000995, 0.518519], m\u00e9diane 0.002492. L'anti-alignement r\u00e9duit corrSum d'un facteur moyen 0.0045."
+    },
+    {
+      "k": 22,
+      "S": 36,
+      "ratio_min": 6.118032942343733e-05,
+      "ratio_max": 0.02955623893573499,
+      "ratio_mean": 0.00027938766948900083,
+      "ratio_median": 0.0001463177211636489,
+      "ratio_p10": 7.415803312986551e-05,
+      "ratio_p90": 0.0005388037326751382,
+      "interpretation": "corrSum_anti/corrSum_aligned \u2208 [0.000061, 0.029556], m\u00e9diane 0.000146. L'anti-alignement r\u00e9duit corrSum d'un facteur moyen 0.0003."
+    }
+  ],
+  "axe7": [
+    {
+      "k": 3,
+      "S": 6,
+      "d": 37,
+      "C_comp": 10,
+      "num_targets": 2,
+      "avg_per_target": 5.0,
+      "ratio_range_d": 2.27027027027027,
+      "m_min": 1,
+      "m_max": 2
+    },
+    {
+      "k": 3,
+      "S": 7,
+      "d": 101,
+      "C_comp": 15,
+      "num_targets": 2,
+      "avg_per_target": 7.5,
+      "ratio_range_d": 1.7821782178217822,
+      "m_min": 1,
+      "m_max": 2
+    },
+    {
+      "k": 4,
+      "S": 8,
+      "d": 175,
+      "C_comp": 35,
+      "num_targets": 3,
+      "avg_per_target": 11.666666666666666,
+      "ratio_range_d": 3.342857142857143,
+      "m_min": 1,
+      "m_max": 3
+    },
+    {
+      "k": 4,
+      "S": 9,
+      "d": 431,
+      "C_comp": 56,
+      "num_targets": 2,
+      "avg_per_target": 28.0,
+      "ratio_range_d": 2.805104408352668,
+      "m_min": 1,
+      "m_max": 2
+    },
+    {
+      "k": 5,
+      "S": 9,
+      "d": 269,
+      "C_comp": 70,
+      "num_targets": 7,
+      "avg_per_target": 10.0,
+      "ratio_range_d": 6.691449814126394,
+      "m_min": 1,
+      "m_max": 7
+    },
+    {
+      "k": 5,
+      "S": 10,
+      "d": 781,
+      "C_comp": 126,
+      "num_targets": 4,
+      "avg_per_target": 31.5,
+      "ratio_range_d": 4.763124199743918,
+      "m_min": 1,
+      "m_max": 4
+    },
+    {
+      "k": 6,
+      "S": 11,
+      "d": 1319,
+      "C_comp": 252,
+      "num_targets": 8,
+      "avg_per_target": 31.5,
+      "ratio_range_d": 8.531463229719485,
+      "m_min": 1,
+      "m_max": 8
+    },
+    {
+      "k": 6,
+      "S": 12,
+      "d": 3367,
+      "C_comp": 462,
+      "num_targets": 6,
+      "avg_per_target": 77.0,
+      "ratio_range_d": 6.792099792099792,
+      "m_min": 1,
+      "m_max": 6
+    },
+    {
+      "k": 7,
+      "S": 13,
+      "d": 6005,
+      "C_comp": 924,
+      "num_targets": 11,
+      "avg_per_target": 84.0,
+      "ratio_range_d": 11.456452955870109,
+      "m_min": 1,
+      "m_max": 11
+    },
+    {
+      "k": 7,
+      "S": 14,
+      "d": 14197,
+      "C_comp": 1716,
+      "num_targets": 9,
+      "avg_per_target": 190.66666666666666,
+      "ratio_range_d": 9.768542649855604,
+      "m_min": 1,
+      "m_max": 9
+    },
+    {
+      "k": 8,
+      "S": 14,
+      "d": 9823,
+      "C_comp": 1716,
+      "num_targets": 21,
+      "avg_per_target": 81.71428571428571,
+      "ratio_range_d": 21.029929756693473,
+      "m_min": 1,
+      "m_max": 21
+    },
+    {
+      "k": 8,
+      "S": 15,
+      "d": 26207,
+      "C_comp": 3432,
+      "num_targets": 16,
+      "avg_per_target": 214.5,
+      "ratio_range_d": 15.89014385469531,
+      "m_min": 1,
+      "m_max": 16
+    },
+    {
+      "k": 9,
+      "S": 16,
+      "d": 45853,
+      "C_comp": 6435,
+      "num_targets": 27,
+      "avg_per_target": 238.33333333333334,
+      "ratio_range_d": 27.254050989030162,
+      "m_min": 1,
+      "m_max": 27
+    },
+    {
+      "k": 9,
+      "S": 17,
+      "d": 111389,
+      "C_comp": 12870,
+      "num_targets": 22,
+      "avg_per_target": 585.0,
+      "ratio_range_d": 22.526461320238084,
+      "m_min": 1,
+      "m_max": 22
+    },
+    {
+      "k": 10,
+      "S": 17,
+      "d": 72023,
+      "C_comp": 11440,
+      "num_targets": 52,
+      "avg_per_target": 220.0,
+      "ratio_range_d": 52.058661816364214,
+      "m_min": 1,
+      "m_max": 52
+    },
+    {
+      "k": 10,
+      "S": 18,
+      "d": 203095,
+      "C_comp": 24310,
+      "num_targets": 37,
+      "avg_per_target": 657.027027027027,
+      "ratio_range_d": 37.068194687215346,
+      "m_min": 1,
+      "m_max": 37
+    },
+    {
+      "k": 11,
+      "S": 19,
+      "d": 347141,
+      "C_comp": 43758,
+      "num_targets": 65,
+      "avg_per_target": 673.2,
+      "ratio_range_d": 65.06249621911557,
+      "m_min": 1,
+      "m_max": 65
+    },
+    {
+      "k": 11,
+      "S": 20,
+      "d": 871429,
+      "C_comp": 92378,
+      "num_targets": 52,
+      "avg_per_target": 1776.5,
+      "ratio_range_d": 51.9380144567142,
+      "m_min": 1,
+      "m_max": 52
+    }
+  ],
+  "verdict": [
+    "1. k=22 : 6884 cibles, 2e+09 compositions, ratio C/cibles = 337007",
+    "   \u2192 CONFIRM\u00c9 R156 : trop de cibles pour exclusion directe par taille",
+    "2. Concentration k=22 : 100.0% dans le 1er d\u00e9cile",
+    "   \u2192 FORTE concentration, mais ne cible pas r=0 sp\u00e9cifiquement",
+    "3. BIAIS R\u00c9SIDUEL D\u00c9TECT\u00c9 pour k=[5, 7, 10]",
+    "4. k=5 : r\u00e9arrangement change le r\u00e9sidu dans 93% des cas \u2192 impact R\u00c9EL sur la structure mod d",
+    "4. k=10 : r\u00e9arrangement change le r\u00e9sidu dans 100% des cas \u2192 impact R\u00c9EL sur la structure mod d",
+    "4. k=15 : r\u00e9arrangement change le r\u00e9sidu dans 100% des cas \u2192 impact R\u00c9EL sur la structure mod d",
+    "",
+    "CONCLUSION GLOBALE MPF :",
+    "L'anti-alignement r\u00e9duit corrSum d'un facteur significatif (Axe 5-6),",
+    "et concentre la distribution vers le minimum (Axe 3).",
+    "MAIS : la distribution des r\u00e9sidus mod d reste UNIFORME (Axe 4).",
+    "Le r\u00e9arrangement ne cr\u00e9e PAS de biais syst\u00e9matique vers ou",
+    "loin du r\u00e9sidu 0. L'information structurelle est absorb\u00e9e",
+    "par la r\u00e9duction mod d.",
+    "",
+    "STATUT : L'in\u00e9galit\u00e9 de r\u00e9arrangement est un FAIT MATH\u00c9MATIQUE PROUV\u00c9",
+    "sur corrSum, mais elle NE SE TRADUIT PAS en contrainte exploitable",
+    "sur corrSum mod d. Le r\u00e9sidu est effectivement pseudo-al\u00e9atoire."
+  ]
+}

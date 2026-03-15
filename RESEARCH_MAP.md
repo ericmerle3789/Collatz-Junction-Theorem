@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 15 mars 2026 | **Rounds:** R1–R160 (160 rounds, 246 scripts, 12166 auto-tests)
+**Date:** 15 mars 2026 | **Rounds:** R1–R160 (160 rounds, 249 scripts, 12166 auto-tests)
 
 ---
 
@@ -1087,6 +1087,9 @@ NE PAS FAIRE : DP extension k=22..41 via facteurs premiers — 44 primes testés
 NE PAS FAIRE : Cibler |S_H| ≤ √r strictement — NUMÉRIQUEMENT RÉFUTÉ (max/√r = 4.67 et croissant, 731 premiers) (R159)
 NE PAS FAIRE : Interpréter G_geom = SL(r-1) comme preuve de cancellation pointwise — donne seulement le comportement GÉNÉRIQUE, pas de borne max (R159)
 NE PAS FAIRE : Appliquer Deligne equidistribution pour borne max|S_H| — donne |S_H| ~ √r en moyenne, max ~ √(r·log p) (R159)
+NE PAS FAIRE : Inégalité de réarrangement sur corrSum (anti-alignement 3^{k-1-j}↓ × 2^{B_j}↑) — FAIT PROUVÉ mais résidu mod d uniforme malgré concentration 3300× dans Z. Passage Z→Z/dZ absorbe l'information d'ordre (R160, MPF)
+NE PAS FAIRE : Autres inégalités d'ordre sur corrSum (Jensen, Chebyshev, majorisation) — toutes travaillent dans Z et sont annulées par réduction mod d (R160, MPF)
+NE PAS FAIRE : Arguments de distribution/concentration de corrSum — 100% dans 1er décile pour k≥22, mais résidus mod d non biaisés vers 0 spécifiquement (R160, MPF)
 NE PAS FAIRE : Identifier S_H(t) comme trace de Frobenius — somme PARTIELLE sur sous-groupe, pas Frobenius d'un faisceau (R160)
 NE PAS FAIRE : Utiliser Deligne/Weil II pour borner S_H — borne (r-1)·√p, PIRE que triviale (R160)
 NE PAS FAIRE : Monodromie pour éliminer √(log p) du max — maximum de gaussiennes, phénomène probabiliste pas géométrique (R160)
@@ -1170,6 +1173,16 @@ NE PAS FAIRE : Piste monodromie géométrique comme outil de preuve — INFORMAT
   - **KILL SWITCH TERMINAL** : même √r strict ⟹ (√r)^22 = r^11 ≈ 10^16 >> p ≈ 4×10^8
   - Dernière braise interne ÉTEINTE. Le programme nécessite un outil QUALITATIVEMENT NOUVEAU
   - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141-R160, 10ème confirmation — TOUTES BRAISES ÉTEINTES]
+  - **R160 MPF (Monotone Positioning Framework)** : TAN personnalisé construit de zéro
+  - Anti-alignement PROUVÉ : corrSum = min sur permutations, facteur 3300× pour k=22
+  - Concentration EXTRÊME : 100% des compositions dans le 1er décile de l'intervalle [corrSum_min, corrSum_max]
+  - MAIS résidus mod d NON biaisés vers 0 : χ² élevé (structure de concentration), pas de ciblage spécifique
+  - Le passage Z → Z/dZ absorbe toute information d'ordre et de taille
+  - Nombre effectif de cibles m réduit (~10-50 au lieu de ~6884) mais preuve diophantienne reste ouverte
+  - R160 Direction 1 (littérature Σ e(2^n/p)) : AUCUN outil existant pour |H|~log p. Axe E (global) seul survivant
+  - R160 Direction 2 (S-unit + monotone) : MORT — gcd(d,6)=1, monotonie invisible mod p, ESS aveugle
+  - R160 Direction 3 (cercle + phases exp.) : MORT — séries singulières = CRT exactement, arcs mineurs hors cadre
+  - R160 "+1" dans 3x+1 : corrSum_c = c·corrSum_1 PROUVÉ, le +1 n'est pas spécial (TRANSPARENT)
 ```
 
 ---
@@ -1177,11 +1190,11 @@ NE PAS FAIRE : Piste monodromie géométrique comme outil de preuve — INFORMAT
 ## STATISTIQUES
 
 - **Rounds** : 159 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153-R154 = configurations ; R155 = multi-pistes [T175] ; R156 = investigation autonome [T176] ; R157 = objet couplé [T177] ; R158 = 3 formalisations du "+" ; **R159 = investigation profonde 5 axes + monodromie complète [G_geom=SL(r-1), max/√r=4.67 CROÎT, DP 0/13, incomp 2/3 8/8 MORTES]* ; **R160 = audit logique monodromie [INFORMATIF MAIS NON EXPLOITABLE — S_H≠Frobenius, Deligne inutile, √r^22>>p, 5 kill switches]**)
-- **Scripts** : 246 (+6 R159 : monodromy_v2, monodromy_final, character_sums, deep_analysis, final, quick_monodromy)
+- **Scripts** : 249 (+6 R159 : monodromy_v2, monodromy_final, character_sums, deep_analysis, final, quick_monodromy)
 - **Auto-tests** : 12166
 - **Théorèmes prouvés** : 174 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151 ; T175 R155 ; T176 R156 ; T177 R157)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 232+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158, +27 R159, +7 R160 : S_H≠Frobenius, Deligne inutile, monodromie→max, identité produit sans impact, piste monodromie comme outil FERMÉE, √r^22>>p, bornes moyennées insuffisantes)
+- **Pistes fermées** : 242+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158, +27 R159, +10 R160 : S_H≠Frobenius, Deligne inutile, monodromie FERMÉE, réarrangement NON EXPLOITABLE, +1 TRANSPARENT, S-unit MORT, cercle MORT, littérature = AUCUN OUTIL)
 - **Concepts inventés** : 294+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154, +3 R155, +6 R156, +4 R157, +5 R158 : W₁ transport, Δ défaut homomorphisme, E_mixed^{(3)} 6-tuples N_cross>0, dominance mode s=0, inadéquation moments)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
