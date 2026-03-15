@@ -1050,8 +1050,11 @@ NE PAS FAIRE : Permanent structuré (= Cauchy-Schwarz itéré, R142)
 NE PAS FAIRE : Crible mod 3^m pour N₀(d) (gcd(d,3)=1 rend le crible orthogonal, R142)
 NE PAS FAIRE : Extraction gloutonne comme preuve structurelle (retombe sur sommes exp., R144)
 NE PAS FAIRE : Densité de zéros de corrSum (= reformulation du DP, anti-computationnel, R148)
+NE PAS FAIRE : Norme algébrique dans F_p[X]/(X^p-1) (= PRO R80, décomposition cyclotomique = Fourier, R152)
+NE PAS FAIRE : Automate de report d²×d² / cocycle de ⟨3⟩ (= DP reformulé, Lyapunov/GL inapplicables k fini, R152)
+NE PAS FAIRE : Trou spectral RPF pour ⟨2⟩ mod p (abélianité de ⟨2⟩ tue Bourgain-Gamburd-Sarnak, R152)
 
-ÉTAT DU FRONT THÉORIQUE (R141) :
+ÉTAT DU FRONT THÉORIQUE (R152) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
   - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
   - Spectre plat, orbites, L² = rp [PROUVÉ]
@@ -1079,25 +1082,28 @@ NE PAS FAIRE : Densité de zéros de corrSum (= reformulation du DP, anti-comput
   - T174 PROUVÉ : corrSum(A) ≡ 1 mod 3 pour toute composition [R142] (inopérant : gcd(d,3)=1)
   - Matrice Toeplitz orbitale C(j-i) : structure vérifiée, borne spectrale triviale [R143]
   - 7 directions d'innovation testées et éliminées [R142-R151]
-  - 71 rounds d'investigation sur (H_k) et ses contournements (R81-R151), 5+ familles d'outils épuisées
-  - **RECHERCHE PURE BLOC 3 : SUSPENDUE** [R141, CONFIRMÉE R151]
-  - **MODE ACTIF : PUBLICATION de la chaîne conditionnelle** [R141, confirmé R151]
+  - 3 voies mortes supplémentaires [R152] : norme algébrique (=PRO), cocycle (=DP), trou spectral (abélianité)
+  - 3 informations négatives nouvelles [R152] : isomorphisme analyse↔algèbre sur F_p, Bourgain-Gamburd bloqué, Lyapunov inapplicable k fini
+  - 1 survivant conditionnel [R152] : monodromie géométrique de {S_H(s)}_s [QUALIFIÉ AVEC RÉSERVE]
+  - 72 rounds d'investigation sur (H_k) et ses contournements (R81-R152), 5+ familles d'outils épuisées
+  - **RECHERCHE PURE BLOC 3 : SUSPENDUE** [R141, CONFIRMÉE R151, SUSPENSION CONDITIONNELLE R152]
+  - **MODE ACTIF : PUBLICATION de la chaîne conditionnelle + calcul préparatoire monodromie** [R152]
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 151 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; **R142-R151 = innovation opératoire [7 candidats éliminés, T174, SUSPENSION CONFIRMÉE]**)
+- **Rounds** : 152 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; **R152 = phase méta surprise contrôlée [3 voies mortes, 1 survivant conditionnel monodromie]**)
 - **Scripts** : 230
 - **Auto-tests** : 12166
 - **Théorèmes prouvés** : 171 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 171+ (+8 R126-R140, +8 R141-R150, +7 R142-R151 : Schur-Vandermonde/s_λ fatal, Toeplitz spectral/Gershgorin trivial, permanent structuré/=CS itéré, crible mod 3^m/gcd(d,3)=1, extraction gloutonne/retombe sur sommes exp., CycN₀ relaxation/inopérant, densité de zéros/=DP reformulé)
-- **Concepts inventés** : 266+ (+10 R126-R140, +4 R141-R150, +6 R142-R151 : T174 corrSum≡1 mod 3, matrice Toeplitz orbitale C(j-i), Schur-Vandermonde du corrSum, extraction gloutonne structurée, CycN₀ vs N₀ distinction, crible 3-adique)
+- **Pistes fermées** : 174+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152 : norme algébrique F_p[X]=PRO, automate cocycle=DP, trou spectral RPF bloqué par abélianité)
+- **Concepts inventés** : 270+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152 : monodromie géométrique de {S_H(s)}_s, isomorphisme analyse↔algèbre commutative sur F_p, obstruction abélianité pour trou spectral, cocycle orbitaire déterministe)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163+T166+T174 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **RECHERCHE PURE SUSPENDUE (R141, confirmée R151).** 71 rounds, 5+ familles + 7 innovations éliminées. **MODE : PUBLICATION.**
+- **Front théorique** : T159+T162+T163+T166+T174 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION CONDITIONNELLE (R152).** 72 rounds, 5+ familles + 10 innovations éliminées. 1 survivant conditionnel : monodromie KMS. **MODE : PUBLICATION + calcul préparatoire monodromie.**
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
@@ -1198,3 +1204,13 @@ NE PAS FAIRE : Densité de zéros de corrSum (= reformulation du DP, anti-comput
   - 7 candidats d'innovation éliminés, 0 survivant
   - **SUSPENSION CONFIRMÉE** : 171 théorèmes, 171+ voies mortes, 266+ concepts
   - IVS campagne : 3.5/10
+- **Résultats R152 — PHASE MÉTA SURPRISE CONTRÔLÉE** :
+  - Exécution intégrale de PromptR152.md (4 agents parallèles, audit fail-closed)
+  - 9 propositions examinées : 7 REDONDANTES/PROSE, 1 ÉLIMINÉE, 1 BLOQUÉE, 1 SEMI-RÉELLE, **1 QUALIFIÉE AVEC RÉSERVE**
+  - Norme algébrique F_p[X]/(X^p-1) **ÉLIMINÉE** : = reformulation PRO (R80), isomorphisme analyse↔algèbre
+  - Automate cocycle d²×d² **SEMI-RÉEL** : objet distinct de R72 mais = DP reformulé, outils inapplicables
+  - Trou spectral RPF pour ⟨2⟩ **BLOQUÉ** : abélianité de ⟨2⟩ empêche Bourgain-Gamburd-Sarnak
+  - **Analogie monodromie KMS [QUALIFIÉE AVEC RÉSERVE]** : groupe de monodromie géométrique de {S_H(s)}_s — objet non encore calculé, potentiellement informatif
+  - Nouvelles informations négatives : isomorphisme catégoriel analyse↔algèbre sur F_p, impossibilité trou spectral abélien, Lyapunov inapplicable k fini déterministe
+  - **SUSPENSION CONDITIONNELLE** : calcul préparatoire G_geom avant toute nouvelle campagne
+  - IVS phase : 2.5/10
