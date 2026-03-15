@@ -1056,8 +1056,11 @@ NE PAS FAIRE : Trou spectral RPF pour ⟨2⟩ mod p (abélianité de ⟨2⟩ tue
 NE PAS FAIRE : Évitement orbital des s exceptionnels (piste directe) — circulaire : se réduit à borne pointwise (un mauvais s contamine le produit, R153)
 NE PAS FAIRE : Signature de phase orbitale / désalignement de phase — = T4+T5+HGE (R89-R98), même obstacle (r ≈ log p, R153)
 NE PAS FAIRE : Attaque collective vs pointwise pour le produit corrélé — équivalentes par multiplicativité du produit (R153)
+NE PAS FAIRE : Spectre de persistance orbitale P_λ(ℓ) — rebranding A1+(H_k) en vocabulaire probabiliste, requiert propagation T166 2→k impossible (R154)
+NE PAS FAIRE : Défaut de factorisation D_k du moment k-linéaire — IDENTITÉ ALGÉBRIQUE avec (H_k) : D_k=(H_k)/(p-1)-((r-1)/(p-1))^k, zéro contenu nouveau (R154)
+NE PAS FAIRE : Morphologie des configurations contaminantes (toute variante) — se réduit à l'énergie k-linéaire (H_k) ⟺ C_SC, redondant par construction (R154)
 
-ÉTAT DU FRONT THÉORIQUE (R153) :
+ÉTAT DU FRONT THÉORIQUE (R154) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
   - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
   - Spectre plat, orbites, L² = rp [PROUVÉ]
@@ -1091,25 +1094,28 @@ NE PAS FAIRE : Attaque collective vs pointwise pour le produit corrélé — éq
   - 3 voies mortes supplémentaires [R153] : évitement orbital (circulaire→pointwise), signature de phase (=T4), collectif≡pointwise
   - Résultat négatif principal [R153] : pour le produit corrélé multiplicatif, attaque collective ≡ borne pointwise (ultrasensibilité à chaque facteur)
   - 1 objet archivé [R153] : μ(O) = moyenne orbitale L² par orbite de ⟨3⟩ [SEMI-RÉEL, inexploitable]
-  - 73 rounds d'investigation sur (H_k) et ses contournements (R81-R153), 5+ familles d'outils épuisées
-  - **RECHERCHE PURE BLOC 3 : SUSPENDUE** [R141, CONFIRMÉE R151, R152, R153 (4ème confirmation)]
-  - **MODE ACTIF : PUBLICATION de la chaîne conditionnelle + calcul préparatoire monodromie** [R152, confirmé R153]
+  - 3 voies mortes supplémentaires [R154] : persistance orbitale (=A1+(H_k)), défaut D_k (=(H_k) identité), morphologie contaminantes (=(H_k))
+  - Résultat négatif principal [R154] : toute morphologie de configurations contaminantes dans le produit corrélé se réduit à (H_k) ⟺ C_SC
+  - Identité algébrique prouvée [R154] : D_k = (H_k)/(p-1) − ((r-1)/(p-1))^k — reformulation supplémentaire ajoutée aux 7 de R80
+  - 74 rounds d'investigation sur (H_k) et ses contournements (R81-R154), 5+ familles d'outils épuisées
+  - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141, CONFIRMÉE R151, R152, R153, R154 (5ème confirmation)]
+  - **MODE ACTIF : PUBLICATION de la chaîne conditionnelle + calcul préparatoire monodromie** [R152, confirmé R153, R154]
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 153 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; **R153 = pistes orbitales [3 voies mortes, 0 survivant, collectif≡pointwise]**)
+- **Rounds** : 154 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153 = pistes orbitales [3 voies mortes, 0 survivant, collectif≡pointwise] ; **R154 = configurations contaminantes [3 voies mortes, 0 survivant, morphologie≡(H_k)]**)
 - **Scripts** : 230
 - **Auto-tests** : 12166
 - **Théorèmes prouvés** : 171 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 177+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153 : évitement orbital circulaire, signature de phase=T4, collectif≡pointwise)
-- **Concepts inventés** : 273+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153 : μ(O) moyenne orbitale L², rapport de cohérence δ, équivalence collectif/pointwise pour produit multiplicatif)
+- **Pistes fermées** : 180+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154 : persistance orbitale=A1+(H_k), défaut D_k=(H_k), morphologie contaminantes=(H_k))
+- **Concepts inventés** : 276+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154 : spectre persistance orbitale P_λ(ℓ), défaut factorisation D_k, identité D_k=(H_k)/(p-1)−cst)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163+T166+T174 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION CONFIRMÉE (R152, R153).** 73 rounds, 5+ familles + 13 innovations éliminées. 1 survivant conditionnel : monodromie KMS. Résultat négatif R153 : collectif≡pointwise pour produit multiplicatif. **MODE : PUBLICATION + calcul préparatoire monodromie.**
+- **Front théorique** : T159+T162+T163+T166+T174 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141, R151, R152, R153, R154 — 5 confirmations).** 74 rounds, 5+ familles + 16 innovations éliminées. 1 survivant conditionnel : monodromie KMS. Résultat négatif R153 : collectif≡pointwise. Résultat négatif R154 : configurations contaminantes ≡ (H_k). **MODE : PUBLICATION + calcul préparatoire monodromie.**
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
@@ -1231,3 +1237,13 @@ NE PAS FAIRE : Attaque collective vs pointwise pour le produit corrélé — éq
   - 3 nouvelles voies mortes, 0 survivant
   - **SUSPENSION CONFIRMÉE (4ème : R141, R151, R152, R153)**
   - IVS campagne : 2.0/10
+- **Résultats R154 — CONFIGURATIONS CONTAMINANTES** :
+  - Exécution intégrale de PromptR154.md révisé (4 agents parallèles, piste unique)
+  - **Candidat 1** (spectre persistance orbitale P_λ(ℓ)) : [ÉLIMINÉ] — rebranding A1+(H_k) en vocabulaire probabiliste
+  - **Candidat 2** (défaut factorisation D_k) : [ÉLIMINÉ] — identité algébrique D_k = (H_k)/(p-1) − ((r-1)/(p-1))^k
+  - **Résultat négatif principal** : toute morphologie de configurations contaminantes dans le produit corrélé se réduit à (H_k) ⟺ C_SC
+  - Kill switches : 8/10 déclenchés (réduction à (H_k), BGK, pointwise, vacuité générique)
+  - Seule échappatoire identifiée (Agent 1) : annulations dans Σ_s R(s) — non exploitée par les candidats
+  - 3 nouvelles voies mortes, 0 survivant
+  - **SUSPENSION DÉFINITIVE (5ème : R141, R151, R152, R153, R154)**
+  - IVS campagne : 1.5/10
