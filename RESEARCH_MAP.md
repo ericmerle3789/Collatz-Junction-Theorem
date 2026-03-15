@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 14 mars 2026 | **Rounds:** R1–R141 (141 rounds, 230 scripts, 12166 auto-tests)
+**Date:** 15 mars 2026 | **Rounds:** R1–R153 (153 rounds, 230 scripts, 12166 auto-tests)
 
 ---
 
@@ -1053,8 +1053,11 @@ NE PAS FAIRE : Densité de zéros de corrSum (= reformulation du DP, anti-comput
 NE PAS FAIRE : Norme algébrique dans F_p[X]/(X^p-1) (= PRO R80, décomposition cyclotomique = Fourier, R152)
 NE PAS FAIRE : Automate de report d²×d² / cocycle de ⟨3⟩ (= DP reformulé, Lyapunov/GL inapplicables k fini, R152)
 NE PAS FAIRE : Trou spectral RPF pour ⟨2⟩ mod p (abélianité de ⟨2⟩ tue Bourgain-Gamburd-Sarnak, R152)
+NE PAS FAIRE : Évitement orbital des s exceptionnels (piste directe) — circulaire : se réduit à borne pointwise (un mauvais s contamine le produit, R153)
+NE PAS FAIRE : Signature de phase orbitale / désalignement de phase — = T4+T5+HGE (R89-R98), même obstacle (r ≈ log p, R153)
+NE PAS FAIRE : Attaque collective vs pointwise pour le produit corrélé — équivalentes par multiplicativité du produit (R153)
 
-ÉTAT DU FRONT THÉORIQUE (R152) :
+ÉTAT DU FRONT THÉORIQUE (R153) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
   - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
   - Spectre plat, orbites, L² = rp [PROUVÉ]
@@ -1085,25 +1088,28 @@ NE PAS FAIRE : Trou spectral RPF pour ⟨2⟩ mod p (abélianité de ⟨2⟩ tue
   - 3 voies mortes supplémentaires [R152] : norme algébrique (=PRO), cocycle (=DP), trou spectral (abélianité)
   - 3 informations négatives nouvelles [R152] : isomorphisme analyse↔algèbre sur F_p, Bourgain-Gamburd bloqué, Lyapunov inapplicable k fini
   - 1 survivant conditionnel [R152] : monodromie géométrique de {S_H(s)}_s [QUALIFIÉ AVEC RÉSERVE]
-  - 72 rounds d'investigation sur (H_k) et ses contournements (R81-R152), 5+ familles d'outils épuisées
-  - **RECHERCHE PURE BLOC 3 : SUSPENDUE** [R141, CONFIRMÉE R151, SUSPENSION CONDITIONNELLE R152]
-  - **MODE ACTIF : PUBLICATION de la chaîne conditionnelle + calcul préparatoire monodromie** [R152]
+  - 3 voies mortes supplémentaires [R153] : évitement orbital (circulaire→pointwise), signature de phase (=T4), collectif≡pointwise
+  - Résultat négatif principal [R153] : pour le produit corrélé multiplicatif, attaque collective ≡ borne pointwise (ultrasensibilité à chaque facteur)
+  - 1 objet archivé [R153] : μ(O) = moyenne orbitale L² par orbite de ⟨3⟩ [SEMI-RÉEL, inexploitable]
+  - 73 rounds d'investigation sur (H_k) et ses contournements (R81-R153), 5+ familles d'outils épuisées
+  - **RECHERCHE PURE BLOC 3 : SUSPENDUE** [R141, CONFIRMÉE R151, R152, R153 (4ème confirmation)]
+  - **MODE ACTIF : PUBLICATION de la chaîne conditionnelle + calcul préparatoire monodromie** [R152, confirmé R153]
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 152 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; **R152 = phase méta surprise contrôlée [3 voies mortes, 1 survivant conditionnel monodromie]**)
+- **Rounds** : 153 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; **R153 = pistes orbitales [3 voies mortes, 0 survivant, collectif≡pointwise]**)
 - **Scripts** : 230
 - **Auto-tests** : 12166
 - **Théorèmes prouvés** : 171 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 174+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152 : norme algébrique F_p[X]=PRO, automate cocycle=DP, trou spectral RPF bloqué par abélianité)
-- **Concepts inventés** : 270+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152 : monodromie géométrique de {S_H(s)}_s, isomorphisme analyse↔algèbre commutative sur F_p, obstruction abélianité pour trou spectral, cocycle orbitaire déterministe)
+- **Pistes fermées** : 177+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153 : évitement orbital circulaire, signature de phase=T4, collectif≡pointwise)
+- **Concepts inventés** : 273+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153 : μ(O) moyenne orbitale L², rapport de cohérence δ, équivalence collectif/pointwise pour produit multiplicatif)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163+T166+T174 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION CONDITIONNELLE (R152).** 72 rounds, 5+ familles + 10 innovations éliminées. 1 survivant conditionnel : monodromie KMS. **MODE : PUBLICATION + calcul préparatoire monodromie.**
+- **Front théorique** : T159+T162+T163+T166+T174 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION CONFIRMÉE (R152, R153).** 73 rounds, 5+ familles + 13 innovations éliminées. 1 survivant conditionnel : monodromie KMS. Résultat négatif R153 : collectif≡pointwise pour produit multiplicatif. **MODE : PUBLICATION + calcul préparatoire monodromie.**
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
@@ -1214,3 +1220,14 @@ NE PAS FAIRE : Trou spectral RPF pour ⟨2⟩ mod p (abélianité de ⟨2⟩ tue
   - Nouvelles informations négatives : isomorphisme catégoriel analyse↔algèbre sur F_p, impossibilité trou spectral abélien, Lyapunov inapplicable k fini déterministe
   - **SUSPENSION CONDITIONNELLE** : calcul préparatoire G_geom avant toute nouvelle campagne
   - IVS phase : 2.5/10
+- **Résultats R153 — CAMPAGNE PISTES ORBITALES** :
+  - Exécution intégrale de PromptR153.md (4 agents parallèles, 2 pistes d'attaque collective)
+  - **Piste A (évitement orbital)** : [ÉLIMINÉ — circularité] se réduit à la borne pointwise (un seul mauvais s contamine le produit)
+  - **Piste B (signature de phase)** : [REDONDANT — T4/T5/HGE] = désalignement de phase = T4 (R89-R93) sous autre nom
+  - Candidat A1 (μ(O) concentration orbitale) : [SEMI-RÉEL] — objet techniquement distinct (décomposition orbitale de T166) mais exploitation circulaire
+  - Candidat B1 (rapport de cohérence δ) : [REDONDANT] — = T4 reformulé, même obstacle (régime r ≈ log p)
+  - **Résultat négatif principal** : pour le produit corrélé multiplicatif ∏ S_H(s·3^j), attaque collective ≡ borne pointwise (multiplicativité → ultrasensibilité à chaque facteur)
+  - 1 objet archivé : μ(O) = moyenne orbitale L² par orbite de ⟨3⟩ [SEMI-RÉEL, variance V non calculée, inexploitable]
+  - 3 nouvelles voies mortes, 0 survivant
+  - **SUSPENSION CONFIRMÉE (4ème : R141, R151, R152, R153)**
+  - IVS campagne : 2.0/10
