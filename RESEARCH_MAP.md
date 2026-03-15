@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 15 mars 2026 | **Rounds:** R1–R157 (157 rounds, 232 scripts, 12166 auto-tests)
+**Date:** 15 mars 2026 | **Rounds:** R1–R158 (158 rounds, 235 scripts, 12166 auto-tests)
 
 ---
 
@@ -1072,6 +1072,10 @@ NE PAS FAIRE : Énergie mixte E_mixed (contrainte add dans Z/rZ + mult dans F_p*
 NE PAS FAIRE : Forme bilinéaire B(s,t) = Σ e^{2πisa/r}·χ^{tr}(1-2^a) comme outil de borne — Parseval donne borne triviale, énergie mixte dégénérée (R157)
 NE PAS FAIRE : Séparation des variables Z/rZ ↔ F_p* via l'exponentielle a→2^a — le pont est un homomorphisme de groupes, la séparation est illusoire (R157)
 NE PAS FAIRE : Double contrainte couplant Z/rZ et F_p* via exponentielle — T175+T176+T177 : toute variante de double contrainte sur 4-tuples est dégénérée (R157)
+NE PAS FAIRE : Transport optimal W₁(H, H-1) — constant = r toujours, aucune information (R158)
+NE PAS FAIRE : Défaut d'homomorphisme Δ(a,b) = φ(a+b)/(φ(a)φ(b)) — quasi-uniforme, non exploitable (R158)
+NE PAS FAIRE : Borne par moment 2k pour k≥3 en régime p>>r — facteur p^{1/2k} explose exponentiellement (R158)
+NE PAS FAIRE : Décomposition bilinéaire B(s,t) pour isoler S_H comme petit résidu — mode s=0 DOMINE le spectre quand r≈p-1 (R158)
 
 ÉTAT DU FRONT THÉORIQUE (R155) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
@@ -1132,22 +1136,31 @@ NE PAS FAIRE : Double contrainte couplant Z/rZ et F_p* via exponentielle — T17
   - T175+T176+T177 collectivement : TOUTE double contrainte sur 4-tuples est dégénérée (même espace ou espaces différents via homomorphisme)
   - Front "objet couplé (h,h-1)" : **FERMÉ** — aucun objet bilinéaire/énergie sur ce couplage ne survit
   - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141-R157, 8ème confirmation]
+  - 3 formalisations du "+" (mécanisme de couplage) testées (R158)
+  - Transport optimal W₁(H,H-1) = r constant → MORT (R158)
+  - Défaut d'homomorphisme Δ : quasi-uniforme → MORT (R158)
+  - k-énergie mixte E_mixed^{(3)} 6-tuples : **N_cross > 0 pour 17/20 premiers** → SEMI-RÉEL (R158)
+  - PREMIÈRE formalisation en 157 rounds échappant à la dégénérescence de Vieta (k≥3 : 2 contraintes < 3 sym. élémentaires)
+  - Mais connexion au verrou BLOQUÉE : moment 2k inutile en régime p>>r (facteur p^{1/2k} explose)
+  - Mode s=0 de B(s,t) DOMINE le spectre quand r≈p-1 → décomposition bilinéaire n'isole pas S_H
+  - Leçon : l'obstacle n'est pas l'absence de collisions non triviales mais l'inadéquation structurelle des moments
+  - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141-R158, 9ème confirmation]
 ```
 
 ---
 
 ## STATISTIQUES
 
-- **Rounds** : 157 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153 = pistes orbitales ; R154 = configurations contaminantes ; R155 = multi-pistes [T175] ; R156 = investigation autonome [T176] ; **R157 = objet couplé (h,h-1) [T177 dégénérescence E_mixed via homomorphisme, front FERMÉ]**)
-- **Scripts** : 232
+- **Rounds** : 158 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153-R154 = configurations ; R155 = multi-pistes [T175] ; R156 = investigation autonome [T176] ; R157 = objet couplé [T177] ; **R158 = 3 formalisations du "+" [N_cross>0 pour 6-tuples, mais moment 2k bloqué]**)
+- **Scripts** : 235
 - **Auto-tests** : 12166
 - **Théorèmes prouvés** : 174 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151 ; T175 R155 ; T176 R156 ; T177 R157)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 194+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157 : E_mixed dégénéré, B(s,t) triviale, séparation Z/rZ↔F_p* illusoire, front couplé (h,h-1) fermé)
-- **Concepts inventés** : 289+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154, +3 R155, +6 R156, +4 R157 : T177 dégénérescence via homomorphisme, B(s,t) forme bilinéaire, E_mixed énergie séparée, leçon pont=homomorphisme)
+- **Pistes fermées** : 198+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158 : W₁ constant, Δ uniforme, moment 2k explose, mode s=0 domine)
+- **Concepts inventés** : 294+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154, +3 R155, +6 R156, +4 R157, +5 R158 : W₁ transport, Δ défaut homomorphisme, E_mixed^{(3)} 6-tuples N_cross>0, dominance mode s=0, inadéquation moments)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163+T166+T174+T175+T176+T177 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141-R157 — 8 confirmations).** 77 rounds, 5+ familles + 30 innovations éliminées. 1 survivant conditionnel : monodromie KMS. 1 conditionnel R155 : C155 impossibilité module-only. T175+T176+T177 : toute double contrainte sur 4-tuples dégénérée (même espace ou espaces différents via homomorphisme). R157 : front couplé (h,h-1) FERMÉ — séparation Z/rZ↔F_p* illusoire quand pont=homomorphisme. **MODE : PUBLICATION + calcul préparatoire monodromie.**
+- **Front théorique** : T159+T162+T163+T166+T174+T175+T176+T177 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141-R158 — 9 confirmations).** 78 rounds, 5+ familles + 34 innovations éliminées. 1 survivant conditionnel : monodromie KMS. 1 conditionnel R155 : C155. T175-T177 : 4-tuples dégénérés. R158 : E_mixed^{(3)} 6-tuples N_cross>0 [SEMI-RÉEL] mais moment 2k bloqué (p^{1/2k} explose). Leçon R158 : obstacle = inadéquation des moments, pas absence de collisions. **MODE : PUBLICATION + calcul préparatoire monodromie.**
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
