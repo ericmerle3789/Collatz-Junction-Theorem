@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 15 mars 2026 | **Rounds:** R1–R160 (160 rounds, 249 scripts, 12166 auto-tests)
+**Date:** 15 mars 2026 | **Rounds:** R1–R161 (161 rounds, 250 scripts, 12166 auto-tests)
 
 ---
 
@@ -1095,6 +1095,11 @@ NE PAS FAIRE : Utiliser Deligne/Weil II pour borner S_H — borne (r-1)·√p, P
 NE PAS FAIRE : Monodromie pour éliminer √(log p) du max — maximum de gaussiennes, phénomène probabiliste pas géométrique (R160)
 NE PAS FAIRE : Identité Π(1-2^a)≡r mod p comme levier — triviale (dérivée x^r-1 en x=1), concerne det pas S_H (R160)
 NE PAS FAIRE : Piste monodromie géométrique comme outil de preuve — INFORMATIF MAIS NON EXPLOITABLE, 3 gaps (formel, quantitatif, structurel) (R160)
+NE PAS FAIRE : Géométrie d'Arakelov combinatoire pour corrSum — formule du produit pour Z = arithmétique fondamentale, pas d'invariant non trivial. CIRCULAIRE : encode divisibilité par d sans la prédire (R161)
+NE PAS FAIRE : Distorsion de pente (Slope Distortion) de la trajectoire B_j — observable de Z détruite par réduction mod d. Ratio near/far = 1.01 (aucune corrélation déviation ↔ résidu) (R161)
+NE PAS FAIRE : Mots sturmiens / automates (Cobham) pour séquence de gaps — erreur de catégorie : Cobham = séquences INFINIES, B_j = séquence FINIE k≤41. Ratio complexité near/far = 1.015 (R161)
+NE PAS FAIRE : Tout "IRT" (Indice de Rigidité Transversale) ou "Diophantine-Modular Gap" — les 3 angles proposés restent du côté Z, aucun ne franchit le pont vers Z/dZ (R161)
+NE PAS FAIRE : Toute observable vivant dans Z (taille, ordre, complexité, courbure, pente) comme prédicteur de corrSum mod d — UNIVERSELLEMENT DESTRUCTEUR : réduction mod d efface toute structure d'ordre. Test transversal sur 4 observables : tous ratios ≈ 1.0 (R161)
 
 ÉTAT DU FRONT THÉORIQUE (R159) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
@@ -1183,6 +1188,14 @@ NE PAS FAIRE : Piste monodromie géométrique comme outil de preuve — INFORMAT
   - R160 Direction 2 (S-unit + monotone) : MORT — gcd(d,6)=1, monotonie invisible mod p, ESS aveugle
   - R160 Direction 3 (cercle + phases exp.) : MORT — séries singulières = CRT exactement, arcs mineurs hors cadre
   - R160 "+1" dans 3x+1 : corrSum_c = c·corrSum_1 PROUVÉ, le +1 n'est pas spécial (TRANSPARENT)
+  - **R161 — INVESTIGATION DES 3 ANGLES MORTS** (document "Stratégie de Percée")
+  - Angle A (Arakelov combinatoire) : MORT — formule du produit pour Z = tautologie, invariant CIRCULAIRE
+  - Angle B (Slope Distortion) : MORT — observable de Z, ratio near/far = 1.01, AUCUNE corrélation
+  - Angle C (Sturmian/Cobham) : MORT — erreur de catégorie (séquences infinies ≠ finies), ratio = 1.015
+  - Test transversal : 4 observables (corrSum, ΣB_j, max gap, courbure) → TOUS ratios ≈ 1.0
+  - **PRINCIPE D'INCOMPATIBILITÉ CONFIRMÉ** : la projection Z → Z/dZ est UNIVERSELLEMENT DESTRUCTRICE
+  - Le diagnostic du document (§1) est CORRECT, mais les solutions (§3-4) restent du côté Z
+  - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141-R161, 11ème confirmation]
 ```
 
 ---
@@ -1194,7 +1207,7 @@ NE PAS FAIRE : Piste monodromie géométrique comme outil de preuve — INFORMAT
 - **Auto-tests** : 12166
 - **Théorèmes prouvés** : 174 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151 ; T175 R155 ; T176 R156 ; T177 R157)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 242+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158, +27 R159, +10 R160 : S_H≠Frobenius, Deligne inutile, monodromie FERMÉE, réarrangement NON EXPLOITABLE, +1 TRANSPARENT, S-unit MORT, cercle MORT, littérature = AUCUN OUTIL)
+- **Pistes fermées** : 248+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158, +27 R159, +10 R160, +6 R161 : Arakelov CIRCULAIRE, Slope Distortion MORT, Sturmian ERREUR DE CATÉGORIE, IRT/DMG MORT, observables Z UNIVERSELLEMENT DÉTRUITES, Principe d'Incompatibilité CONFIRMÉ)
 - **Concepts inventés** : 294+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154, +3 R155, +6 R156, +4 R157, +5 R158 : W₁ transport, Δ défaut homomorphisme, E_mixed^{(3)} 6-tuples N_cross>0, dominance mode s=0, inadéquation moments)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
