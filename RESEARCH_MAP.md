@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 15 mars 2026 | **Rounds:** R1–R158 (158 rounds, 235 scripts, 12166 auto-tests)
+**Date:** 15 mars 2026 | **Rounds:** R1–R159 (159 rounds, 240 scripts, 12166 auto-tests)
 
 ---
 
@@ -1076,8 +1076,17 @@ NE PAS FAIRE : Transport optimal W₁(H, H-1) — constant = r toujours, aucune 
 NE PAS FAIRE : Défaut d'homomorphisme Δ(a,b) = φ(a+b)/(φ(a)φ(b)) — quasi-uniforme, non exploitable (R158)
 NE PAS FAIRE : Borne par moment 2k pour k≥3 en régime p>>r — facteur p^{1/2k} explose exponentiellement (R158)
 NE PAS FAIRE : Décomposition bilinéaire B(s,t) pour isoler S_H comme petit résidu — mode s=0 DOMINE le spectre quand r≈p-1 (R158)
+NE PAS FAIRE : Analogue Furstenberg ×2×3 pour F_p* — 3 obstructions : taille BGK, rang 1, pas d'analogue fini (R159)
+NE PAS FAIRE : Burgess/Vinogradov/Stepanov pour |H|≈log p — seuil p^{1/4}, gap qualitatif insolvable (R159)
+NE PAS FAIRE : BGK somme-produit pour |H|≈log p — seuil p^δ (δ>0 fixé), log p = p^{o(1)} SOUS le seuil (R159)
+NE PAS FAIRE : Cadre adélique/formule du produit pour corrSum — reformulation tautologique, aucun outil (R159)
+NE PAS FAIRE : Brauer-Manin pour N₀(d)=0 — erreur de catégorie (ensemble fini ≠ variété projective) (R159)
+NE PAS FAIRE : Crible diophantien/descente pour corrSum≡0 mod d — congruence ≠ équation polynomiale (R159)
+NE PAS FAIRE : abc pour déduire N₀ — informe rad(d) mais pas N₀(p) (R159)
+NE PAS FAIRE : DP extension k=22..41 via facteurs premiers — 44 primes testés, 0 bloquants (gap STRUCTUREL) (R159)
+NE PAS FAIRE : Cibler |S_H| ≤ √r strictement — NUMÉRIQUEMENT RÉFUTÉ (max/√r = 3.6 et croissant) (R159)
 
-ÉTAT DU FRONT THÉORIQUE (R155) :
+ÉTAT DU FRONT THÉORIQUE (R159) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
   - SLS : N₀(p) = (C/r^k)·N_H(0) + R [PROUVÉ]
   - Spectre plat, orbites, L² = rp [PROUVÉ]
@@ -1151,16 +1160,16 @@ NE PAS FAIRE : Décomposition bilinéaire B(s,t) pour isoler S_H comme petit ré
 
 ## STATISTIQUES
 
-- **Rounds** : 158 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153-R154 = configurations ; R155 = multi-pistes [T175] ; R156 = investigation autonome [T176] ; R157 = objet couplé [T177] ; **R158 = 3 formalisations du "+" [N_cross>0 pour 6-tuples, mais moment 2k bloqué]**)
-- **Scripts** : 235
+- **Rounds** : 159 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153-R154 = configurations ; R155 = multi-pistes [T175] ; R156 = investigation autonome [T176] ; R157 = objet couplé [T177] ; R158 = 3 formalisations du "+" ; **R159 = investigation profonde 5 axes [Furstenberg MORT, 7 non-moment MORTES, monodromie → max/√r CROÎT, DP 0/13, incompatibilité 2/3 → 8/8 MORTES, paradoxe central identifié]**)
+- **Scripts** : 240
 - **Auto-tests** : 12166
 - **Théorèmes prouvés** : 174 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151 ; T175 R155 ; T176 R156 ; T177 R157)
 - **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 198+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158 : W₁ constant, Δ uniforme, moment 2k explose, mode s=0 domine)
+- **Pistes fermées** : 223+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158, +25 R159 : Furstenberg×3, non-moment×7, DP×1, incompatibilité2/3×8, |S_H|≤√r réfuté, Deligne/Katz×2, monodromie pointwise×1, grand crible×1, Brauer-Manin×1)
 - **Concepts inventés** : 294+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154, +3 R155, +6 R156, +4 R157, +5 R158 : W₁ transport, Δ défaut homomorphisme, E_mixed^{(3)} 6-tuples N_cross>0, dominance mode s=0, inadéquation moments)
 - **Lean** : 280 théorèmes, 0 sorry
 - **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
-- **Front théorique** : T159+T162+T163+T166+T174+T175+T176+T177 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141-R158 — 9 confirmations).** 78 rounds, 5+ familles + 34 innovations éliminées. 1 survivant conditionnel : monodromie KMS. 1 conditionnel R155 : C155. T175-T177 : 4-tuples dégénérés. R158 : E_mixed^{(3)} 6-tuples N_cross>0 [SEMI-RÉEL] mais moment 2k bloqué (p^{1/2k} explose). Leçon R158 : obstacle = inadéquation des moments, pas absence de collisions. **MODE : PUBLICATION + calcul préparatoire monodromie.**
+- **Front théorique** : T159+T162+T163+T166+T174+T175+T176+T177 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141-R159 — 10 confirmations).** 79 rounds, 5+ familles + 59 innovations éliminées. R159 : 5 axes (Furstenberg MORT, 7 non-moment MORTES, monodromie → Gaussien/max CROÎT, DP 0/13, incompatibilité 2/3 → 8/8 MORTES). **RÉSULTAT CRITIQUE R159** : |S_H|≤√r est NUMÉRIQUEMENT FAUX (max/√r=3.6 croissant). Distribution S_H/√r → Gaussienne complexe (kurtosis→2). Gap k=22..41 est STRUCTUREL (44 primes non-bloquants, pas computationnel). Paradoxe central identifié : incompatibilité 2/3 = archimédien, verrou = non-archimédien aux places de compatibilité. **MODE : PUBLICATION + veille TAN.**
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)
   - Discrepance de modèle ⟨g²⟩ vs ⟨2⟩ (R67-R68)
