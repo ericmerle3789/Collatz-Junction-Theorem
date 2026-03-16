@@ -274,7 +274,7 @@ STAGE II (LE VERROU — prouver que 0 est parmi les omis) :
 | **Burgess pour ord_d(2) > C** | **R195** : Burgess donne ord_d(2) > d^{o(1)}, besoin d^{0.95}. Gap de ~10^{0.95} ordres de grandeur. Presque aussi fort que GRH pour cette famille | R195 |
 | **Invariance Λ(3s) = Λ(s)** | **R191 FAUX** : T18 retiré honnêtement. Pas de symétrie multiplicative simple de Λ | R191 |
 | **Evertse S-unit (quantitatif)** | **R193 CONCEPTUEL SEULEMENT** : bornes ESS astronomiques. Le problème est intrinsèquement S-unitaire mais la borne est INUTILE quantitativement. Valeur = pont permanent, pas outil | R193 |
-| **Baker + arc hybride (Route B)** | **R194 RED TEAM BRITTLE (5/10)** : constantes Baker trop grandes, K_Baker probablement > 42 → redondant avec SdW. Route déclassée | R194 |
+| **Baker + arc hybride (Route B)** | **R194 RED TEAM BRITTLE (5/10→4/10 R201)** : constantes Baker trop grandes. C'~13.3 (Rhin) MAL ATTRIBUÉ → vraie C'~18.5-23.55 (Laurent/LMN). K₀~1500 sous-estimé. R200 = MÊME PISTE. Alternative : fractions continues (7/10) | R194/R201 |
 | **HSB (décomposition Horner Z)** | ÉLIMINÉ : couplage séquentiel total des H_j, la décomposition ne découple pas l'équation | R83 |
 | **BIF (Baker filtrage primes)** | MAL CIBLÉ : Baker borne les valuations v_p(d), pas la factorisation de d. Deux problèmes distincts | R83 |
 | **Innovation théorique front S-unit/Baker** | SUSPENDUE : tous les sous-angles épuisés (R82-R83). Gap quantitatif insurmontable | R83 |
@@ -1142,15 +1142,16 @@ R197    : **LDS EFFECTIF + BAKER F_Z** — c≥1/25 via FC de θ [PROUVÉ]. **ρ
 R198    : **MCE CORRIGÉE + ARCHITECTURE + RED TEAM FINAL** — Erreur signe COSMÉTIQUE, n≡341 mod 512 CONFIRMÉ. Extensions mod 2048/8192 → **gap 0.0088%**. Architecture formalisée : 8 gaps (2 critiques). **CONFUSION CENTRALE** identifiée : ρ<1 ≠ N₀(p)=0. Architecture 4/10. Stratégie réaliste : k≤41 vérif finie, k≥42 arc+Hercher, F_Z Baker 3-6 mois. 3 agents
 R199    : **VÉRIFICATION FINIE + CORRECTION ARC + RED TEAM DÉVASTATEUR** — k=18..41 TOUS résolus (6 arc + 18 g_max/d+Barina). **CRT STRUCTURELLEMENT BLOQUÉE** : aucun p|d(k) ne dépasse C(k) pour k≥18. **CORRECTION SEUIL ARC** : δ < log₂(4/3) ≈ 0.415 (couverture 41.5%, PAS 74%). Extension à k≤111. MCE 10/10 CONFIRMÉE (seul résultat solide). Architecture dégradée 3/10. Preuve inconditionnelle <2%. Seule piste : Baker sur F_Z. 3 agents
 R200    : **ANNULATION EXACTE = IMPASSE DÉFINITIVE** — 7 chaînes WHY : équidistribution (ρ<1) PROUVE N₀~C/p>0, CONTRADICTOIRE avec N₀=0. 8 outils inventés, meilleur 6/10 (Cône Monotone), AUCUN ne ferme le gap. **Barrière √p~18** (3 preuves indépendantes). CRT = PREUVE D'IMPOSSIBILITÉ (pas gap). Turán-Kubilius potentiellement prouve N₀>0 pour k≥20. **SEULE piste** : Baker+décroissance exp. (K₀~1500 via Rhin C'~13.3). Publier GRH-conditionnel + MCE. 3 agents
+R201    : **AUDIT BAKER+DÉCROISSANCE : MÊME PISTE QUE R194, C' FAUX** — R200=R194 confirmé (même objet Λ=S·log2-k·log3, même outil). C'~13.3 MAL ATTRIBUÉ (Rhin=mesure d'irrationalité ≠ formes linéaires). Vraie constante C'~18.5 (Laurent 2008) ou ~23.55 (LMN 1995). K₀~1500 SOUS-ESTIMÉ (réaliste 10⁶-10⁷). **Grade corrigé : 4/10** (vs 8/10 R200). Innovation : fractions continues directes (7/10), Corridor Étroit (6/10). Décroissance 3^{-0.415k} rigoureusement prouvée. Seule voie vers inconditionnel mais BRITTLE. 3 agents
 ```
 
 ---
 
-## PROCHAINES ÉTAPES (R201+)
+## PROCHAINES ÉTAPES (R202+)
 
 ```
 ═══════════════════════════════════════════════════
-  BILAN STRATÉGIQUE R200 — DIRECTIONS DÉFINITIVEMENT FERMÉES
+  BILAN STRATÉGIQUE R201 — DIRECTIONS DÉFINITIVEMENT FERMÉES
 ═══════════════════════════════════════════════════
 
 ⛔ CRT + pigeonhole (p > C) : MORTE k ≥ 18 [R199]
@@ -1161,6 +1162,11 @@ R200    : **ANNULATION EXACTE = IMPASSE DÉFINITIVE** — 7 chaînes WHY : équi
    → Turán-Kubilius potentiellement prouve N₀ > 0 pour k ≥ 20
 ⛔ LDS "bypass Artin" : tautologie [R199-A3]
 ⛔ FCQ, CGT, PRC, CSI, FE : reformulations, pas solutions
+⛔ Baker+décroissance avec C'~13.3 (Rhin) : C' MAL ATTRIBUÉ [R201]
+   → Rhin 1987 = mesure d'irrationalité, PAS forme linéaire en logarithmes
+   → Vraie constante : C'~18.5 (Laurent 2008) ou ~23.55 (LMN 1995)
+   → K₀~1500 SOUS-ESTIMÉ (réaliste 10⁶-10⁷)
+   → = MÊME PISTE que R194 (Baker+arc hybride, BRITTLE 5/10→4/10)
 
 ═══════════════════════════════════════════════════
   ÉTAT RÉSOLU (INCONDITIONNEL)
@@ -1175,20 +1181,30 @@ R200    : **ANNULATION EXACTE = IMPASSE DÉFINITIVE** — 7 chaînes WHY : équi
 
 ═══════════════════════════════════════════════════
   UNIQUE CHEMIN VIABLE VERS PREUVE INCONDITIONNELLE
+  (faisabilité corrigée : 4/10, PAS 8/10)
 ═══════════════════════════════════════════════════
 
-  BAKER + DÉCROISSANCE EXPONENTIELLE (faisabilité 8/10) :
-    M(k) ≤ 3^{-0.415k} · exp(C'·(log k)²) + 1
-    → M(k) < 1 pour k ≥ K₀ (effectif)
-    → Estimation K₀ ~ 1500 avec Rhin 1987 (C' ~ 13.3)
-    → Gap restant : [187, K₀] ≈ 460 valeurs "mauvaises" à vérifier
+  BAKER + DÉCROISSANCE (même piste R194, grade 4/10 R201) :
+    |S·log2 - k·log3| > exp(-C'·log S · log k)
+    → C' ~ 18.5 (Laurent 2008) ou ~23.55 (LMN 1995)
+    → K₀ probablement 10⁶-10⁷ (à recalculer avec vraies constantes)
+    → Gap restant : [187, K₀] TRÈS LARGE
+
+  ALTERNATIVE FRACTIONS CONTINUES (7/10, R201-A2) :
+    → Convergentes de log₂3 donnent bornes POINTWISE meilleures que Baker
+    → Hybride CF + Baker logiquement complet
+    → Pourrait réduire K₀ effectif drastiquement
+
+  CORRIDOR ÉTROIT (6/10, R201-A2) :
+    → M(k) = ⌊g_max/d⌋ - ⌊(g_min-1)/d⌋ = 0 → pas de cycle
+    → O(1) par k, en arithmétique entière ~0.48k chiffres
+    → Nécessite vérification computationnelle
 
   ÉTAPES :
-  1. Trouver la constante C' EXACTE pour |S·log2 - k·log3|
-     Références : Rhin 1987, Laurent-Mignotte-Nesterenko 1995, Matveev 2000
-  2. Calculer K₀ effectif
-  3. Vérifier N₀(d(k)) = 0 pour k ∈ [187, K₀], δ ≥ 0.415
-  4. Combiner : arc (41.5%) + Baker (k ≥ K₀) + Hercher (k ≤ 186) + vérif finie
+  1. Recalculer K₀ avec C' CORRECT (Laurent 2008, ~18.5)
+  2. Explorer fractions continues comme REMPLACEMENT de Baker pour gap fini
+  3. Évaluer Corridor Étroit pour vérification finie
+  4. Le gap [187, K₀] nécessite du COMPUTATIONNEL (hors scope théorique pur)
 
   F_Z (FRONT SÉPARÉ) :
     MCE : gap 0.0088% (n ≡ 5461 mod 8192)
@@ -1200,7 +1216,7 @@ R200    : **ANNULATION EXACTE = IMPASSE DÉFINITIVE** — 7 chaînes WHY : équi
 ═══════════════════════════════════════════════════
 
   MAINTENANT : GRH-conditionnel + MCE standalone
-  PLUS TARD : inconditionnel (si K₀ calculé et vérif finie réalisée)
+  PLUS TARD : inconditionnel (chemin long, 4/10, nécessite calcul)
 
 RECHERCHE PURE BLOC 3 VIA F_p : SUSPENDUE (R141 — recalage stratégique)
   Conditions de relance (toutes requises) :
