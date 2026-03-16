@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 16 mars 2026 | **Rounds:** R1–R186 (186 rounds, 305 scripts, 12166+ auto-tests, 219 théorèmes)
+**Date:** 16 mars 2026 | **Rounds:** R1–R189 (189 rounds, 305 scripts, 12166+ auto-tests, 234+ théorèmes)
 
 ---
 
@@ -99,6 +99,12 @@
 | **CRT anti-corrélation** | **DÉGRADÉE R185**. 6 tentatives échouent. Verrou = sommes expo sur partitions (ouvert TAN) | 4/10 | 10/10 | R35,R182-R185 |
 | **Noyau impair h(v)** | **R182-R184**. h(v)=g(v)/2^{B_0} impair. 2^{B_0} transparent mod d [PROUVÉ]. Polynôme creux P_v(X) non exploité | 5/10 | 9/10 | R182-R184 |
 | **Dénominateur commun entre familles de k** | **NOUVEAU R182**. Quantité universelle reliant tous les d(k) ? | 5/10 | 10/10 | R182 |
+| **Framework opératoriel (dissipation)** | **INVENTÉ R189**. Opérateur propagation P_b, matrice transfert M^{(j)}, spectre dissipation ρ_a, taux Λ_a. GAP QUANTITATIF 1.35x (budget dispo ~1.17k log 2 vs requis ~1.585k log 2). 12 PROUVÉS, 3 conditionnels. Changement de paradigme : verrou catégoriel → quantitatif | 7/10 | 10/10 | R189 |
+| **Opérateur Λ(s) et méthode du col** | **INVENTÉ R189 A3**. Λ(s) = Σ_B ω^{s·2^{-S}·g(v)}. N_cycle = (1/d)Σ_s Λ(s). Borner Λ(s) pour s≥1 SUFFIT. Deuxième moment retrouve k≥42 (cohérent Bloc 1). Col = piste 9/10 auto-évaluée | 7/10 | 10/10 | R189 |
+| **Fermer le gap 1.35x** | **R189**. 4 sous-pistes identifiées : (A) structure multiplicative orbites ⟨3⟩, (B) compression spectrale R185 dans cadre opératoriel, (C) double comptage orbites+partitions, (D) Berry-Esseen sur opérateurs | 7/10 | 10/10 | R189 |
+| **Battement impossible (résonance)** | **NOUVEAU R189 A2**. g-(3^k-1)/2 comme représentation restreinte dans numération mixte {3,2}. Sous-réseaux emboîtés 3^{k-1-j}·Z avec coefficients monotones ne peuvent résonner avec d. Triple verrou de la monotonie | 7/10 | 9/10 | R189 |
+| **Bornes de Weil premier par premier** | **R189 A3**. Dans le cadre opératoriel, Weil donne |ρ_a| ≤ 2√p pour chaque p\|d. Accumulation sur premiers = piste 8/10 | 6/10 | 9/10 | R189 |
+| **Énumération explicite k=3..8** | **R188 PROUVÉ**. Aucun cycle sauf fantômes k=2,4. Arc argument (=Steiner 1977) couvre grands k. Gap = k=6..K₀ | 8/10 | 5/10 | R188 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
@@ -230,6 +236,8 @@
 | **Syracuse-Noyau + Tao (I6)** | **VIDE R184 RED TEAM**. Extension Δ_k=0 viole monotonie B_k≥B_{k-1} sauf vecteur constant. Ne s'applique qu'au cycle trivial. De plus rebranding de la récurrence standard g_{k+1}=3g_k+2^{B_k} divisée par 2^{B_0} | R183-R184 |
 | **Brisure de parité duale DPBT (I7)** | **FAUX R184 RED TEAM**. Erreur arithmétique : d*=3^{S*}-2^k est IMPAIR (impair-pair=impair), pas PAIR. R183 affirme pair→faux. Le dual n'est PAS trivialement vide | R183-R184 |
 | **Intersection métrique ∩ modulaire (voie probabiliste)** | **FERMÉE R184 T2**. Espérance de collisions ~2^{0.507k}→∞. Aucun argument probabiliste/combinatoire de densité ne peut prouver la vacuité | R183-R184 |
+| **Rademacher twist (série lacunaire)** | **R187-R188**. Twist ω^{g(v)·s/d} sur la série génératrice des partitions. 6 théorèmes négatifs (R188) : la série est LACUNAIRE (puissances de 3 croissantes), théorie des séries lacunaires dit que Rademacher/circle method NE CONVERGENT PAS terme à terme. Formule de Cauchy donne intégrale mais pas coefficients individuels | R187-R188 |
+| **Fristedt indépendance** | **R188**. Modèle probabiliste de Fristedt pour partitions inapplicable : contrainte de somme exacte (pas aléatoire) + poids géométriques 3^{k-1-j} brisent l'indépendance | R188 |
 | **HSB (décomposition Horner Z)** | ÉLIMINÉ : couplage séquentiel total des H_j, la décomposition ne découple pas l'équation | R83 |
 | **BIF (Baker filtrage primes)** | MAL CIBLÉ : Baker borne les valuations v_p(d), pas la factorisation de d. Deux problèmes distincts | R83 |
 | **Innovation théorique front S-unit/Baker** | SUSPENDUE : tous les sous-angles épuisés (R82-R83). Gap quantitatif insurmontable | R83 |
@@ -1078,6 +1086,14 @@ R178    : **DESCENTE 2-ADIQUE** — Audit arc (C1,C3 VIOLÉES), 2-adic descent d
 R179    : **ÉQUIVALENCE FONDAMENTALE** — Récurrence S-indépendante (T195). C(1,x)=4^x (T196). **R=0 ⟺ cycle Collatz** (T197). B_m = Collatz compressé (T198). 11,500 cas vérifiés, 0 survivants. Lemme universel ÉQUIVALENT au problème des cycles (reformulation, pas preuve). Mod 3 ÉCHOUE. Seul k=1 a odd_part(C)=k. 6 scripts, 4 théorèmes (T195-T198)
 R180    : **EXPLORATION MULTI-AGENT** — 10 agents parallèles, 3 vagues. Apériodicité (Master Theorem gapped q≥3), théorie des nombres (bornes Baker/Steiner), innovation (densité ~1/√πx, Lyapunov -0.2878), audit R179 (T195-T198 vérifiés, nouveauté 4/10), 7 visualisations, 6 représentations alternatives, near-conjugacy rotation cercle. Peeling itéré = CUL-DE-SAC (borne=1 exactement à prof. max). 5 pistes classées : Alpha-Diophantienne (7/10), sommes exponentielles (6/10), erreur cumulative (5/10). 9 scripts, 4 théorèmes (T199-T202)
 R181    : **TROIS APPROCHES** — Alpha-Diophantienne (reformulation propre de Bohm-Sontacchi, cross-tension qualitative, MARGINAL selon cross-audit). Sommes exponentielles (annulation mesurée delta~0.15-0.35, Condition Q non prouvée, PROMISING conditionnel). Erreur cumulative (positivité PROUVÉE, contradiction 9/5 CONDITIONNELLE gap=4/9, coefficient 3/(5·ln6) vérifié). Cross-audit RED TEAM : 4 corrections, 3 faiblesses transversales. Extraction preprint : 6 connexions sous-exploitées. Safety net : toutes approches numériquement consistantes. 6 fichiers, 0 théorème inconditionnel nouveau
+R182    : **ANNULATION GÉNÉRIQUE** — Annulation des sommes exp. GÉNÉRIQUE (pas spécifique (2,3)). Voie analytique pure = cul-de-sac probable. Dénominateur commun entre familles de k proposé
+R183    : **I6+I7 PROCLAMÉS** — Syracuse-Kernel (I6) et Dual Parity Breaking (I7) proclamés prouvés. Score auto-évalué 6/10
+R184    : **AUDIT DÉVASTATEUR** — RED TEAM invalide I6 (VIDE : monotonie violée) et I7 (FAUX : impair-pair=impair). Score R183 réévalué 3/10. T1 comptage corrigé (|V_k(S)|/d→0). Mécanisme anti-corrélation CRT identifié (non prouvé). 5 agents, 2 invalidations majeures
+R185    : **CRT ÉCHOUE** — 6 tentatives preuve CRT, 0 succès. Verrou = sommes exp sur partitions (ouvert TAN). Compression spectrale PROUVÉE. Relation ORD PROUVÉE. Piste N(k,S)<d émerge. CRT dégradée 6/10→4/10. 5 agents
+R186    : **N(k,S)=p(S-k)** — Formule exacte PROUVÉE. R184-T2 INVALIDÉ (espérance→0 pas →∞). Géométrie des nombres ÉCHOUE (6 approches). Automate Horner 12 résultats PROUVÉS. Dualité poids×lettres découverte. 5 agents, 219 théorèmes
+R187    : **DEEP WHY** — Chaînes pourquoi sur toutes les pistes. Rademacher twist proposé (7/10). Fantôme k=4 découvert (g(0,0,0,3)=47=d). Méta-diagnostic : le problème est à l'interface partitions/arithmétique modulaire. ZÉRO fermeture. 5 agents
+R188    : **RADEMACHER LACUNAIRE** — Série twistée lacunaire (6 théorèmes négatifs). Arc argument (=Steiner 1977). Énumération k=3..8 PROUVÉE. Fristedt inapplicable. Gap = k=6..K₀. 5 agents
+R189    : **L'INNOVATEUR CRÉE** — Framework opératoriel INVENTÉ : propagation P_b, transfert M^{(j)}, dissipation ρ_a, opérateur Λ(s). **GAP QUANTITATIF 1.35x** (catégoriel→quantitatif). 15 énoncés (12 prouvés). Deuxième moment retrouve k≥42. Battement impossible (allégorie nouvelle). MEILLEUR round depuis R182. 3 agents innovateurs
 ```
 
 ---
