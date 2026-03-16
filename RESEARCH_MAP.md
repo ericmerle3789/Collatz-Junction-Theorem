@@ -1141,50 +1141,66 @@ R196    : **LDS + RED TEAM AUDIT** — 10 PROUVÉS, 6 CONDITIONNELS. CGT deep : 
 R197    : **LDS EFFECTIF + BAKER F_Z** — c≥1/25 via FC de θ [PROUVÉ]. **ρ₅=1/4** exactement [PROUVÉ] → gap p=5 FERMÉ. **ord_p(2)≥3** pour tout p|d [PROUVÉ]. DBA schéma Baker+MCE pour F_Z (8/10). RED TEAM : c universel non garanti, recommande 100% calcul. 3 agents
 R198    : **MCE CORRIGÉE + ARCHITECTURE + RED TEAM FINAL** — Erreur signe COSMÉTIQUE, n≡341 mod 512 CONFIRMÉ. Extensions mod 2048/8192 → **gap 0.0088%**. Architecture formalisée : 8 gaps (2 critiques). **CONFUSION CENTRALE** identifiée : ρ<1 ≠ N₀(p)=0. Architecture 4/10. Stratégie réaliste : k≤41 vérif finie, k≥42 arc+Hercher, F_Z Baker 3-6 mois. 3 agents
 R199    : **VÉRIFICATION FINIE + CORRECTION ARC + RED TEAM DÉVASTATEUR** — k=18..41 TOUS résolus (6 arc + 18 g_max/d+Barina). **CRT STRUCTURELLEMENT BLOQUÉE** : aucun p|d(k) ne dépasse C(k) pour k≥18. **CORRECTION SEUIL ARC** : δ < log₂(4/3) ≈ 0.415 (couverture 41.5%, PAS 74%). Extension à k≤111. MCE 10/10 CONFIRMÉE (seul résultat solide). Architecture dégradée 3/10. Preuve inconditionnelle <2%. Seule piste : Baker sur F_Z. 3 agents
+R200    : **ANNULATION EXACTE = IMPASSE DÉFINITIVE** — 7 chaînes WHY : équidistribution (ρ<1) PROUVE N₀~C/p>0, CONTRADICTOIRE avec N₀=0. 8 outils inventés, meilleur 6/10 (Cône Monotone), AUCUN ne ferme le gap. **Barrière √p~18** (3 preuves indépendantes). CRT = PREUVE D'IMPOSSIBILITÉ (pas gap). Turán-Kubilius potentiellement prouve N₀>0 pour k≥20. **SEULE piste** : Baker+décroissance exp. (K₀~1500 via Rhin C'~13.3). Publier GRH-conditionnel + MCE. 3 agents
 ```
 
 ---
 
-## PROCHAINES ÉTAPES (R200+)
+## PROCHAINES ÉTAPES (R201+)
 
 ```
-⚠️ IMPASSE STRUCTURELLE (R199 RED TEAM) :
-  CRT strategy MORTE pour k ≥ 18 : aucun p|d(k) ne dépasse C(k)
-  Le ratio p_max/C(k) DÉCROÎT avec k (tendance structurelle, pas accident)
-  ρ_p < 1 donne N₀(p) ~ C/p >> 0 quand p < C → CRT INAPPLICABLE
+═══════════════════════════════════════════════════
+  BILAN STRATÉGIQUE R200 — DIRECTIONS DÉFINITIVEMENT FERMÉES
+═══════════════════════════════════════════════════
 
-⚠️ CORRECTION ARC (R199-A2) :
-  Seuil correct : δ < log₂(4/3) ≈ 0.415 (PAS δ > log₂(5/3) ≈ 0.737)
-  Couverture réelle : ~41.5% des k (PAS ~74%)
+⛔ CRT + pigeonhole (p > C) : MORTE k ≥ 18 [R199]
+⛔ CRT + contraction (ρ < 1 → N₀ = 0) : CONFUSION résolue [R198]
+⛔ CRT + cancellation exacte (Σ T(t) = -C) : IMPASSE [R200]
+   → Cause racine : équidistribution PROUVE N₀ ~ C/p > 0
+   → Barrière √p ~ 18 (3 preuves indépendantes)
+   → Turán-Kubilius potentiellement prouve N₀ > 0 pour k ≥ 20
+⛔ LDS "bypass Artin" : tautologie [R199-A3]
+⛔ FCQ, CGT, PRC, CSI, FE : reformulations, pas solutions
 
-ÉTAT RÉSOLU :
-  k ≤ 17 : Preprint Section 8
+═══════════════════════════════════════════════════
+  ÉTAT RÉSOLU (INCONDITIONNEL)
+═══════════════════════════════════════════════════
+
+  k ≤ 17 : Preprint Section 8 (arc + énumération + crible)
   k = 18..41 : 6 arc + 18 g_max/d+Barina [R199-A1]
   k = 42..111 : arc + g_max/d+Barina (extension R199)
   k = 112..186 : Hercher (2023)
+  k ≥ K₀ (arc, δ < 0.415) : ~41.5% de tous k, g_max < d
   Résultat GRH-conditionnel : complet dans le preprint
 
-ÉTAT OUVERT :
-  k ≥ 187, δ ≥ 0.415 : ~58.5% des k, ni arc ni Hercher
-    → Nécessite Baker effectif (K₀ dépend de C') OU idée nouvelle
-  F_Z : MCE (gap 0.0088%) + Baker effectif non encore réalisé
+═══════════════════════════════════════════════════
+  UNIQUE CHEMIN VIABLE VERS PREUVE INCONDITIONNELLE
+═══════════════════════════════════════════════════
 
-SEULE PISTE VIABLE : BAKER EFFECTIF SUR F_Z
-  Baker-Wüstholz sur 4^m - 9^m - 17·6^{m-1} = 0
-  Calculer m₀ (probablement ~10^{10}, vérifiable)
-  Combiner avec MCE (n ≥ 5461 mod 8192)
-  Estimation : 3-6 mois de travail spécialisé
+  BAKER + DÉCROISSANCE EXPONENTIELLE (faisabilité 8/10) :
+    M(k) ≤ 3^{-0.415k} · exp(C'·(log k)²) + 1
+    → M(k) < 1 pour k ≥ K₀ (effectif)
+    → Estimation K₀ ~ 1500 avec Rhin 1987 (C' ~ 13.3)
+    → Gap restant : [187, K₀] ≈ 460 valeurs "mauvaises" à vérifier
 
-PIVOT NÉCESSAIRE POUR PREUVE INCONDITIONNELLE :
-  Option 1 : N₀(p) = 0 SANS p > C (cancellation exacte dans Σ_t T(t))
-  Option 2 : Travailler mod d directement (nécessite ord_d(2) > C → GRH)
-  Option 3 : Accepter GRH (théorème principal déjà prouvé)
-  Option 4 : Crible asymptotique (d a un facteur premier à grand ordre)
-  Probabilité succès inconditionnel : <2% (R199 RED TEAM)
+  ÉTAPES :
+  1. Trouver la constante C' EXACTE pour |S·log2 - k·log3|
+     Références : Rhin 1987, Laurent-Mignotte-Nesterenko 1995, Matveev 2000
+  2. Calculer K₀ effectif
+  3. Vérifier N₀(d(k)) = 0 pour k ∈ [187, K₀], δ ≥ 0.415
+  4. Combiner : arc (41.5%) + Baker (k ≥ K₀) + Hercher (k ≤ 186) + vérif finie
 
-PUBLIER : preprint déjà sur GitHub (mars 2026)
-  Stage I complet + Stage II conditionnel GRH
-  MCE publiable en standalone (résultat le plus solide)
+  F_Z (FRONT SÉPARÉ) :
+    MCE : gap 0.0088% (n ≡ 5461 mod 8192)
+    Baker-Wüstholz sur 4^m - 9^m - 17·6^{m-1} = 0
+    Estimation : 3-6 mois de travail spécialisé
+
+═══════════════════════════════════════════════════
+  PUBLIER
+═══════════════════════════════════════════════════
+
+  MAINTENANT : GRH-conditionnel + MCE standalone
+  PLUS TARD : inconditionnel (si K₀ calculé et vérif finie réalisée)
 
 RECHERCHE PURE BLOC 3 VIA F_p : SUSPENDUE (R141 — recalage stratégique)
   Conditions de relance (toutes requises) :
