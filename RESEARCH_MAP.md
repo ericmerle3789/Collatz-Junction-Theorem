@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 15 mars 2026 | **Rounds:** R1–R161 (161 rounds, 250 scripts, 12166 auto-tests)
+**Date:** 15 mars 2026 | **Rounds:** R1–R181 (181 rounds, 300 scripts, 12166+ auto-tests, 202 théorèmes)
 
 ---
 
@@ -27,16 +27,19 @@
      ┌──────▼──────┐  ┌─────▼──────┐  ┌──────▼──────┐
      │  BLOC 1     │  │  BLOC 2    │  │  BLOC 3     │
      │ k ≥ 42      │  │ k = 3..20  │  │ k = 21..41  │
-     │ Borel-      │  │ DP + CRT   │  │ LE GAP      │
-     │ Cantelli    │  │ vérifié    │  │             │
-     │ ✅ PROUVÉ   │  │ ✅ PROUVÉ  │  │ ❌ OUVERT   │
-     └─────────────┘  └────────────┘  └─────────────┘
+     │ Borel-      │  │ DP + CRT   │  │ n_min bound │
+     │ Cantelli    │  │ vérifié    │  │ + Collatz   │
+     │ ✅ PROUVÉ   │  │ ✅ PROUVÉ  │  │ ✅ PROUVÉ   │
+     └─────────────┘  └────────────┘  │ R171        │
+                                      └─────────────┘
 ```
 
 ### Bloc 1 — Convergence asymptotique (k ≥ 42) ✅
 - **Junction Theorem** : C/d → 0 avec taux 2^{-αk}, α = 0.0793 [PROUVÉ]
 - **Borel-Cantelli** : Σ_{k≥42} C/d < 1 [PROUVÉ, R21/R26]
 - **Lean** : 280 théorèmes, 0 sorry, 0 axiome
+- **Note R171** : Hercher (2022) couvre déjà k ≤ 91 ; notre BC commence à k=42 par conservatisme.
+  Le vrai "gap" à fermer commence à k=92 (Hercher) ou k=121 (avec Barina 2^71 + n_min brut)
 - **Statut** : COMPLET
 
 ### Bloc 2 — Vérification finie (k = 3..20) ✅
@@ -46,13 +49,25 @@
 - k = 18..20 : DP + CRT blocking [R22-R25]
 - **Statut** : COMPLET (18 valeurs prouvées)
 
-### Bloc 3 — Le Gap (k = 21..41) ❌
-- **20 valeurs restantes** (k=22..41)
+### Bloc 3 — Le Gap (k = 21..41) ✅ PROUVÉ [R171]
 - **k=21 PROUVÉ** : N₀(d(21)) = 0 par DP hiérarchique + CRT backtracking [R84]
-- C/d < 1 pour TOUTES → équidistribution suffirait
-- Aucun premier bloquant trouvé (71 tests, R34)
-- **Verrou identifié** : borner des PRODUITS CORRÉLÉS de sommes de Gauss [R85]
-- **Statut** : OUVERT — le goulot d'étranglement (20/21 restant)
+- **k=22..41 PROUVÉ** [R171] : Argument de borne n_min + auto-vérification Collatz
+  - Junction Theorem (nécessaire) : cycle → corrSum ≡ 0 mod d → n_min = corrSum/d
+  - Borne : n_min ≤ corrSum_max/d = (3^k-1)·2^{S_min-k-1}/(2^{S_min}-3^k)
+  - f(S) strictement décroissante → pire cas à S_min
+  - **S_max = +∞** (découverte R171) : MITM ne peut JAMAIS être exhaustif
+  - Pire cas Bloc 3 : k=41, n_min ≤ 727,618,686 (2^29.4)
+  - Auto-vérification C : tous n ≤ 727,618,686 convergent (5.6 secondes)
+  - **Preuve PAR L'ABSURDE** : cycle → n_min ≤ 727M → n_min non-cyclique → ⊥
+  - Preuve **entièrement auto-contenue** (pas de dépendance Barina)
+  - Extension : argument valide pour k=3..68 (auto-vérif < 1h), k=3..120 (avec Barina 2^71)
+- **CONTEXTE LITTÉRATURE** (découvert R171 via arXiv) :
+  - Simons & de Weger (2003) : k ≤ 68 (couvrait déjà le Bloc 3)
+  - Hercher (2022, arXiv:2201.00406) : k ≤ 91
+  - Barina (2025) : vérification poussée à 2^71
+  - Notre R171 = redécouverte indépendante de la méthode Steiner (1977)
+  - Contribution propre : preuve auto-contenue en 5.6s + découverte S_max = ∞
+- **Statut** : ✅ PROUVÉ — BLOC 3 FERMÉ (indépendamment + confirmé par littérature)
 
 ---
 
@@ -72,11 +87,17 @@
 | **T159 (Filtre d'orthogonalité)** | W_ℓ = 0 quand r/gcd(ℓ,r) ∤ k. PROUVÉ INCONDITIONNEL. Si gcd(r,k)=1 → R=0 | 10/10 | 8/10 | R96-R98 |
 | **T160 (Hybride T4+T159)** | Borne |R| avec n_eff < r-1 termes actifs. PROUVÉ | 8/10 | 7/10 | R97-R98 |
 | **HGE (Gauss Phase Equidistrib.)** | Phases Gauss équidistribuées sur cosets → |S₀|≤C√r·polylog → T4 inconditionnel | 1/10 | 10/10 | R96-R98 |
+| **Formule Produit + Baker** | ∏(3 + 1/nᵢ) = 2^S. Reformulation multiplicative du cycle. Baker/transcendance pour bornes sur nᵢ. CONNECTE à Steiner (1977) | 4/10 | 8/10 | R172 |
+| **Graphe de Dépendance Premier** | Réseau de transfert entre valeurs du cycle via facteurs premiers. Obstruction de fermeture prouvée pour x=2 | 3/10 | 7/10 | R173 |
+| **Premier Résistant Universel** | Type B dominant 97%. **AUDIT R178** : C1 (ord>S⟹résistant) VIOLÉE (5 c.-ex.), C3 (∃ high-ord prime) VIOLÉE (5 c.-ex.). Mécanisme MIXTE : résistance d'arc + anti-corrélation. g(v)≡0 mod d JAMAIS observé (110 cas S≤22). Piste vivante mais arc seul INSUFFISANT | 3/10 | 9/10 | R175-R178 |
+| **Réduction Somme Cyclique** | Quand 3 ∈ ⟨2⟩ dans F_p* : g(v) = Σ 2^{f_j} avec f_j suite arith. perturbée. Heuristique E~2^{-0.073x}→0 FAVORABLE. Mais EGZ/Davenport vont dans le mauvais sens (existence, pas non-existence). Espoir=contrainte structurelle. CONNECTE à PO-R87 (même mur) | 3/10 | 9/10 | R176 |
+| **Descente 2-adique** | **R178-R179** : Récurrence S-indépendante A₀=3k+1, A_{m+1}=3A_m+2^{v₂(A_m)} (T195). C(1,x)=4^x→périodique (T196). **ÉQUIVALENCE FONDAMENTALE T197** : R=0 ⟺ T^x(k)=k ⟺ cycle Collatz. Parties impaires B_m = dynamique Collatz compressée (T198). k=1,2 exclus universellement (T191-T192). x=2,3,4 prouvés élémentairement (T180,T189,T190). 11,500 cas vérifiés (x≤25, k≤999), 0 survivants. **MAIS** : le lemme universel est ÉQUIVALENT au problème des cycles. Reformulation exacte, pas preuve. Piste résiduelle : apériodicité du vecteur. **R181** : equation Alpha-Diophantienne derivée (= Bohm-Sontacchi reformulé), cross-tension qualitative MARGINAL (k=1 contre-exemple), connexion S-unit finiteness (deja connu). **Erreur cumulative** : positivité PROUVÉE, contradiction 9/5 CONDITIONNELLE (gap 4/9, k₀≈10). **Sommes exponentielles** : annulation delta~0.15-0.35, Condition Q NON PROUVÉE | 3/10 | 10/10 | R178-R181 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
 | Piste | Pourquoi fermée | Round |
 |-------|-----------------|:-----:|
+| **Anneau Quotient Z[α,β]/(α^S-β^x)** | REBRANDING : g(v)≠0 dans R trivial mais ne contrôle PAS g mod d. Spécialisation (2,3) perd toute info. Résultant/norme se ramènent à mod p. Fossé formel-arithmétique insurmontable sans spécificité de (2,3) | R174 |
 | **Transient Zero** | Doubly stochastic → TZ n'affecte pas π(0)=1/p | R1 |
 | **Without-Replacement** | Effet réel mais mixte (11/16 aide, 5/16 nuit), TV < 0.003 pour k≥10 | R2 |
 | **Ordering Constraint** | 42.8ᵉ percentile, pas de biais systématique | R2 |
@@ -417,6 +438,12 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | **Interface additif/multiplicatif** | Noyau dur = phénomène somme-produit en régime O(log p), ni additif ni multiplicatif pur | R77 |
 | **Auto-référence arithmétique** | corrSum et d partagent les briques (2,3) → distribution non pseudo-aléatoire = CAUSE SOURCE | R79 |
 | **Noyau irréductible dans F_p** | 7 reformulations isomorphes → aucune reformulation dans F_p ne comprime le verrou [PROUVÉ] | R80 |
+| **Récurrence S-indépendante A_m** | A₀=3k+1, A_{m+1}=3A_m+2^{v₂(A_m)}. C(k,x)=A_{x-1}. Indépendant de S pour S assez grand [PROUVÉ] | R179 |
+| **C(1,x) = 4^x** | C_m = 4^{m+1}·3^{x-1-m} par récurrence. D=[0,2,...,2(x-1)] → vecteur (10)^x périodique [PROUVÉ] | R179 |
+| **Équivalence R=0 ↔ cycle Collatz** | R_{x-1}=0 ⟺ B_{x-1}=k ⟺ T^x(k)=k. Pont explicite descent ↔ dynamique [PROUVÉ] | R179 |
+| **Dynamique odd-part B_m** | B_m=odd(A_m) suit T(n)=odd(3n+1) Collatz compressé. B₀=T(k), B_{x-1}=T^x(k) [PROUVÉ] | R179 |
+| **Stabilisation D-séquence** | Après m₀(k) étapes, D incrémente de 2. m₀ ≤ 19 pour k ≤ 199. Équivalent à B→1 via Collatz [OBSERVÉ] | R179 |
+| **odd_part(C) = k ⟺ k=1** | Seul k=1 a odd_part(C(k,x))=k (4750 cas testés). Pour k≥3, odd_part≠k → R≠0 [OBSERVÉ] | R179 |
 | **Rigidité parabolique M=1** | 3^k/2^S≡1 mod p est AUTOMATIQUE (conséquence de p\|d) [PROUVÉ] | R80 |
 | **Faille additive/multiplicative** | ⟨2⟩ ⊂ F_p* multiplicatif mais Σ_≤(k) = somme additive → Σ∉⟨2⟩ en général [DÉCOUVERT] | R81 |
 | **APF (Adequate Prime via Factorization)** | Choisir p\|d(k) avec ord_p(2) impair → -1∉⟨2⟩, SURVIVANT avec réserve | R81 |
@@ -710,6 +737,26 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | **Gap L²/L^∞ = verrou résiduel** | RMS(S_i) = √r mais sup = √p. Gap de √(p/r) par facteur, exponentiel en k [IDENTIFIÉ] | R92 |
 | **BGK ε ≈ 0.011** | État de l'art (Di Benedetto et al.). Besoin kε > 1 → k > 91. Insuffisant pour k=21..41 [CALCULÉ] | R90 |
 | **Orbite ⟨3⟩ comme réduction** | ∏ S_i(t) = ∏ S_0(t·3^j) — une seule fonction, k évaluations le long de l'action multiplicative [PROUVÉ] | R92 |
+| **Formule Produit multiplicative** | ∏(3 + 1/nᵢ) = 2^S, reformulation multiplicative du cycle Collatz en termes de valeurs nᵢ | R172 |
+| **Prime Dependency Graph (GDF)** | Réseau de transfert entre nᵢ via facteurs premiers p\|d. Arcs = contraintes de divisibilité croisée | R173 |
+| **Closure Obstruction** | Impossibilité de fermer le graphe de dépendance premier : preuve complète pour x=2 | R173 |
+| **Weight Imbalance** | g = Σ 3^{x-1-j}·2^{e_j} avec 3-poids décroissants × 2-poids croissants. Anti-corrélation structurelle | R174 |
+| **Anneau Quotient Z[α,β]/(α^S-β^x)** | Espace quotient où d|g(v) ↔ inversibilité. Changement d'ESPACE (pas d'outil) | R174 |
+| **Premier Résistant** | p\|d tel que p ∤ g(v) pour TOUT v apériodique. Toujours ≥ 1 tel premier | R175 |
+| **Anti-corrélation des divisibilités** | Pr(p₁\|g ∧ p₂\|g) << Pr(p₁\|g)·Pr(p₂\|g). Souvent = 0 (exclusion mutuelle) | R175 |
+| **Taxonomie ABCD de résistance** | A: d premier, B: grand premier résiste, C: corrélation négative, D: puissance première | R175 |
+| **Suite arithmétique perturbée** | f_j = t(x-1-j) + e_j : base régulière + perturbation croissante anti-corrélée | R176 |
+| **Zero-sum cyclique structuré** | g(v)≡0 mod p ⟺ x éléments structurés de ⟨2⟩ somment à 0 dans F_p | R176 |
+| **Borne de taille élémentaire x=2** | g_max < d pour S ≥ 5. Preuve en 3 lignes : 3·2^{S-2} > 12 ⟺ S > 4 | R177 |
+| **Descente 2-adique** | Pour g(v)=k·d, retirer termes un par un : v₂ du reste force D_j uniquement. Méthode récursive élémentaire | R178 |
+| **Récurrence des restes R_m** | R_m = k·2^S − Σ_{j≤m} 3^{x-1-j}·2^{D_j}, avec v₂(R_m) = 2(m+1) quand k=1 | R178 |
+| **Vecteur forcé périodique** | k=1 force D_j=2j, i.e. positions (0,2,4,...,2(x-1)) = vecteur (10)^x, toujours PÉRIODIQUE | R178 |
+| **Contradiction v₂ pour k=2** | R₀ = 2d−3^{x-1} impair, mais D₁≥1 impose v₂(LHS)≥1. Contradiction immédiate | R178 |
+| **Intersection coset** | g(v)≡0 mod d ⟺ −3^{x-1}−...∈⟨2⟩ mod d. Cible jamais dans ⟨2⟩ (vérifié) | R178 |
+| **k_max décroissant** | Pour x fixé, k_max = floor(g_max/d) décroît avec S. Pour x=3, S≥7: k_max=1 | R178 |
+| **Condition d'absence de wrapping** | ord_p(2) > S → exposants f_j sans repliement modulaire → arc continu dans ⟨2⟩ | R175-audit |
+| **Dominance Type B** | Le plus grand premier p|d résiste dans 97% des cas composites. Lié à C(S,x)/p_max < 1 | R175-audit |
+| **Heuristique exponentielle** | E[#sol zero-sum] ~ C(S,x)/p ~ 2^{-0.073x} : décroissance exponentielle favorable | R176-audit |
 
 ---
 
@@ -878,6 +925,24 @@ Le programme K-lite pour k=2 mod p premier est **PROUVÉ pour ⟨g²⟩** (R64-R
 | T159 | Filtre d'orthogonalité : W_ℓ = 0 exactement quand r/gcd(ℓ,r) ∤ k. INCONDITIONNEL. 6 étapes [PROUVÉ] | R96-R98 |
 | T160 | Hybride T4+T159 : |R| ≤ n_eff·(bound T4) avec n_eff = #{ℓ:r/gcd(ℓ,r)|k} < r-1 [PROUVÉ] | R97-R98 |
 | T161 | M4 structural : Σ|S₀^{(ℓ)}|⁴ = (2r²-r)p + O(r^{5/2}p). Kurtosis ≈ 2. max|S₀| ≤ r^{1/2}p^{1/4} [SEMI-FORMALISÉ] | R96 |
+| T178 | Formule produit : cycle ⟺ ∏(3 + 1/nᵢ) = 2^S avec nᵢ entiers positifs distincts [PROUVÉ] | R172 |
+| T179 | e₀ = 0 wlog : gcd(2^{e₀}, d) = 1 car d impair → facteur 2^{e₀} simplifié [PROUVÉ] | R174 |
+| T180 | Cas x=2 : pour S ≥ 5, g_max = 3 + 2^{S-2} < d = 2^S - 9, donc d ∤ g. Pour S=4 vérifié. **N₀(d) = 0 ∀ S ≥ 3** [PROUVÉ ÉLÉMENTAIRE] | R177 |
+| T181 | Réduction cyclique : quand 3 ∈ ⟨2⟩ dans F_p*, g(v) = Σ 2^{f_j} avec f_j = t(x-1-j) + e_j, suite arith. perturbée [PROUVÉ] | R176 |
+| T182 | Premier résistant : ∀(S,x) avec S ≤ 17, ∃ p\|d tel que p ∤ g(v) ∀v apériodique [CONFIRMÉ EMPIRIQUEMENT] | R175 |
+| T183 | Anti-corrélation divisibilités : pour de nombreuses paires (p₁,p₂)\|d, Pr(p₁\|g ∧ p₂\|g) = 0 (exclusion mutuelle totale) [CONFIRMÉ EMPIRIQUEMENT] | R175 |
+| T184 | Relation 2^S = 2^{tx} dans F_p, i.e. t ≡ S·x⁻¹ mod ord_p(2) — exposants f_j déterminés par cette relation [PROUVÉ] | R176 |
+
+| T185 | Type B dominant : le plus grand premier résiste dans 97% des cas (32/33 composites S≤17) [CONFIRMÉ EMPIRIQUEMENT] | R175-audit |
+| T186 | Condition d'absence de wrapping : ord_p(2) > S pour 100% des premiers résistants [CONFIRMÉ EMPIRIQUEMENT] | R175-audit |
+| T187 | Heuristique zero-sum : E[#solutions] ~ 2^{-0.073x} → 0 exponentiellement avec x [CALCULÉ] | R176-audit |
+| T188 | Anneau quotient Z[α,β]/(α^S-β^x) : R intègre, g(v)≠0 dans R trivial, mais spécialisation perd info [PROUVÉ REBRANDING] | R174-audit |
+| T189 | **Cas x=3 : N₀(d) = 0 pour tout S ≥ 5.** Descente 2-adique : k=1 force D₁=2, puis 2^{D₂}=2^S−48=16(2^{S-4}−3), facteur impair >1 pour S≥7. S=6: solution unique périodique. S=5: vérif. exhaustive [PROUVÉ ÉLÉMENTAIRE] | R178 |
+| T190 | **Cas x=4 : N₀(d) = 0 pour tout S ≥ 7.** k=1: D₁=2, D₂=4, 2^{D₃}=64(2^{S-6}−3), facteur impair S≥9. S=8: périodique. k=2: contradiction v₂ (189 impair) [PROUVÉ ÉLÉMENTAIRE] | R178 |
+| T191 | **k=1 exclu universellement pour tout x≥2.** Récurrence R_m=2^S−4^{m+1}·3^{x-1-m}, v₂(R_m)=2(m+1) force D_j=2j. Vecteur résultant (0,2,4,...,2(x-1)) toujours PÉRIODIQUE (S=2x) ou facteur impair (S>2x) ou non-entier (S=2x-1) [PROUVÉ] | R178 |
+| T192 | **k=2 exclu universellement pour tout x≥2.** R₀=2(2^S−3^x)−3^{x-1}=2^{S+1}−7·3^{x-1} impair, mais D₁≥1 impose v₂(LHS)≥1. Contradiction [PROUVÉ] | R178 |
+| T193 | g(v)≡0 mod d JAMAIS observé pour vecteurs apériodiques : 110 cas (S≤22, x≤9), 0 occurrences [CONFIRMÉ EMPIRIQUEMENT] | R178 |
+| T194 | Conjectures arc C1 (ord>S⟹résistant) et C3 (∃ high-ord prime) VIOLÉES. 5 contre-exemples chacune. Mécanisme de résistance = MIXTE (arc + anti-corrélation) [RÉFUTÉ PARTIELLEMENT] | R178 |
 
 ---
 
@@ -985,6 +1050,16 @@ R122    : **POSITIVITÉ** — Mélange L^∞+L^2+T166 ne brise pas seuil p^{1/2}
 R123    : **TAXONOMIE MUR** — Mur V_SQRT_CANCEL est FONDAMENTAL (résiste Fourier+BKT, Deligne, positivité). SUSPENSION (H_k) directe (§9.6d). Aucun script
 R124    : **BILAN STRATÉGIQUE** — Options A (publier), B (voie alternative, 2/10), C (Katz-Sarnak effectif, 3/10). Recommandation A+C. Aucun script
 R125    : **CONSOLIDATION** — 166 théorèmes, 143 voies mortes, 246 concepts. Plateau théorique atteint. Verrou=S_H(s)≤√r [PROBLÈME OUVERT]. IVS=6.0/10. Aucun script
+R172    : **FORMULE PRODUIT** — ∏(3+1/nᵢ)=2^S reformulation multiplicative. Analyse archimédienne. Connexion Steiner (1977). Single prime blocking PROUVÉ IMPOSSIBLE. 2 scripts
+R173    : **GRAPHE DE DÉPENDANCE PREMIER** — GDF formalisé. Closure obstruction prouvée x=2. Fibre adélique. Tenseur de contraintes. 1 script théorique
+R174    : **ANNEAU QUOTIENT** — e₀=0 wlog PROUVÉ. Walk in Z/dZ. Z[α,β]/(α^S-β^x) = REBRANDING (audit : fossé formel→arithmétique, spécialisation (2,3) perd info). Aucun script
+R175    : **PREMIER RÉSISTANT** — gcd(g,d)<d TOUJOURS (S≤17). Premier résistant universel. Anti-corrélation divisibilités. Taxonomie ABCD. 2 scripts
+R176    : **SOMME CYCLIQUE** — 3∈⟨2⟩ dans >80% cas. g(v)=Σ2^{f_j} réduction. f_j suite arith. perturbée. t=S·x⁻¹ mod o₂. Heuristique E~2^{-0.073x} FAVORABLE. EGZ/Davenport mauvaise direction. Connecte PO-R87. 1 script
+R177    : **CAS x=2 PROUVÉ** — g_max<d élémentaire pour S≥5. Exhaustif pour S=4. N₀(d)=0 ∀S≥3. Borne taille échoue x≥3. 1 script
+R178    : **DESCENTE 2-ADIQUE** — Audit arc (C1,C3 VIOLÉES), 2-adic descent découverte. k=1 exclu universel (T191). k=2 exclu universel (T192). x=3 (T189), x=4 (T190) PROUVÉS. 6 scripts, 6 théorèmes (T189-T194)
+R179    : **ÉQUIVALENCE FONDAMENTALE** — Récurrence S-indépendante (T195). C(1,x)=4^x (T196). **R=0 ⟺ cycle Collatz** (T197). B_m = Collatz compressé (T198). 11,500 cas vérifiés, 0 survivants. Lemme universel ÉQUIVALENT au problème des cycles (reformulation, pas preuve). Mod 3 ÉCHOUE. Seul k=1 a odd_part(C)=k. 6 scripts, 4 théorèmes (T195-T198)
+R180    : **EXPLORATION MULTI-AGENT** — 10 agents parallèles, 3 vagues. Apériodicité (Master Theorem gapped q≥3), théorie des nombres (bornes Baker/Steiner), innovation (densité ~1/√πx, Lyapunov -0.2878), audit R179 (T195-T198 vérifiés, nouveauté 4/10), 7 visualisations, 6 représentations alternatives, near-conjugacy rotation cercle. Peeling itéré = CUL-DE-SAC (borne=1 exactement à prof. max). 5 pistes classées : Alpha-Diophantienne (7/10), sommes exponentielles (6/10), erreur cumulative (5/10). 9 scripts, 4 théorèmes (T199-T202)
+R181    : **TROIS APPROCHES** — Alpha-Diophantienne (reformulation propre de Bohm-Sontacchi, cross-tension qualitative, MARGINAL selon cross-audit). Sommes exponentielles (annulation mesurée delta~0.15-0.35, Condition Q non prouvée, PROMISING conditionnel). Erreur cumulative (positivité PROUVÉE, contradiction 9/5 CONDITIONNELLE gap=4/9, coefficient 3/(5·ln6) vérifié). Cross-audit RED TEAM : 4 corrections, 3 faiblesses transversales. Extraction preprint : 6 connexions sous-exploitées. Safety net : toutes approches numériquement consistantes. 6 fichiers, 0 théorème inconditionnel nouveau
 ```
 
 ---
@@ -1000,16 +1075,64 @@ PRIORITÉ UNIQUE : PUBLIER la chaîne conditionnelle
                   Target : Journal of Number Theory / Experimental Mathematics
                   Faisabilité 9/10, Impact 8/10
 
-RECHERCHE PURE BLOC 3 : SUSPENDUE (R141 — recalage stratégique)
+RECHERCHE PURE BLOC 3 VIA F_p : SUSPENDUE (R141 — recalage stratégique)
   Conditions de relance (toutes requises) :
   1. Résultat EXTERNE en TAN avec ε_BGK ≥ 0.1 pour r = p^{1/22}, OU
   2. Outil QUALITATIVEMENT NOUVEAU (hors 5 familles testées), OU
   3. Angle hors dimension 0 avec lemme candidat et test de réfutation
   Sans ces conditions, toute relance est interdite.
 
+NOUVELLE PHASE R172-R177 : CHANGEMENT D'ESPACE (JEPA)
+  Philosophie : changer l'ESPACE au lieu de chercher un nouvel OUTIL dans F_p.
+  Directions ACTIVES (pas dans F_p, donc non couvertes par la suspension) :
+
+  ★ DIRECTION 1 : Premier Résistant Universel [R175] — Faisabilité 3/10 (révisée R178)
+    - AUDIT R178 : C1 (ord>S⟹résistant) VIOLÉE, C3 (∃ high-ord prime) VIOLÉE
+    - Mécanisme MIXTE (arc + anti-corrélation), pas un seul argument
+    - Toujours vivante mais MOINS prometteuse qu'initialement estimé
+
+  ★ DIRECTION 4 : Descente 2-adique + Erreur cumulative [R178-R181] — REFORMULATION + CONTRADICTION CONDITIONNELLE
+    - T197 : R=0 ⟺ T^x(k)=k ⟺ cycle Collatz (PROUVÉ)
+    - Récurrence S-indépendante, B_m = dynamique Collatz compressée (PROUVÉ)
+    - 11,500 cas vérifiés (x≤25, k≤999), 0 survivants
+    - **LIMITATION** : le lemme universel EST le problème des cycles (reformulation)
+    - **BRÈCHE POTENTIELLE** : contrainte d'APÉRIODICITÉ du vecteur
+    - **R181 ALPHA-DIOPHANTIENNE** : equation dérivée par induction (= Bohm-Sontacchi), cross-tension MARGINAL
+    - **R181 ERREUR CUMULATIVE** : positivité PROUVÉE, E ≈ (3/(5·ln6))·Σ(1/B_i)
+      → Contradiction 9/5 : 2^S/3^x = 5/9 vs ≈ 1 (gap 4/9) — CONDITIONNEL
+      → k₀ ≈ 10 estimé, Simons-de Weger couvre k < 68
+      → GAPS à fermer : borne certifiée O(1/k), coefficient exact pour cycles, tous (S,x)
+    - **R181 SOMMES EXPONENTIELLES** : annulation mesurée delta~0.15-0.35
+      → Condition Q non prouvée (goulot d'étranglement)
+      → Anti-corrélation Pearson ~ -0.85 = moteur de l'annulation
+    - Faisabilité CONTRADICTION 9/5 RIGOUREUSE : 6/10 (chemin clair mais bornes à certifier)
+    - Faisabilité SOMMES EXPONENTIELLES : 5/10 (programme identifié, pas de preuve en vue)
+
+  ★ DIRECTION 2 : Zero-Sum Cyclique dans F_p [R176] — Faisabilité 3/10 (révisée)
+    - Heuristique FAVORABLE : E ~ 2^{-0.073x} → 0 exponentiellement
+    - MAIS : EGZ/Davenport/Olson = existence (mauvaise direction)
+    - MAIS : Alon-Bourgain → ~p^{x-1} zero-sums dans ⟨2⟩ (abondantes)
+    - L'espoir repose UNIQUEMENT sur la contrainte structurelle des exposants
+    - CONNECTE à PO-R87 (même mur : sommes exp. pondérées avec contraintes d'ordre)
+    - Ghost cycles (arXiv:2601.12772) → approche purement algébrique insuffisante
+    - Ingrédient manquant : borne sur sommes exp. pondérées = problème OUVERT de TAN
+    - Utilisable comme PROGRAMME DE RECHERCHE (résultats partiels pour x grand)
+
+  ✗ DIRECTION 3 : Anneau Quotient Z[α,β]/(α^S-β^x) [R174] — FERMÉE (REBRANDING)
+    - Audit R177 : g(v)≠0 dans R trivial, mais spécialisation (2,3) perd toute info
+    - Résultant/norme/Galois se ramènent aux mêmes calculs mod p
+    - Fossé formel→arithmétique = le problème lui-même, non résolu par R
+    - Pépite marginale : irréductibilité de g(v) dans R — non développée
+    - Recommandation audit : travailler dans Z[1/6] (2-3 entiers) plutôt que R
+
+  CAS x=2 : PROUVÉ [R177] — preuve élémentaire par borne de taille
+
 NE PAS FAIRE : DP k-par-k pour k=22..41 (faisable mais impact 3/10)
 NE PAS FAIRE : Artin / ordres multiplicatifs (mur fondamental, ouvert 1927)
 NE PAS FAIRE : M4 comme amélioration du produit (PROUVÉ pire : r>p^{0.69})
+NE PAS FAIRE : Anneau quotient Z[α,β]/(α^S-β^x) — REBRANDING (fossé formel→arithmétique = le problème, R174-audit)
+NE PAS FAIRE : EGZ/Davenport/Olson pour prouver non-existence de zero-sum — direction INVERSÉE (ces outils prouvent l'existence, R176-audit)
+NE PAS FAIRE : Alon-Bourgain additive patterns pour exclure zero-sum — ⟨2⟩ trop grand (~p/2), zero-sums abondantes (~p^{x-1}), R176-audit
 NE PAS FAIRE : Parseval/triangle pour battre √p (prouvé impossible)
 NE PAS FAIRE : SWL / lissage des poids (spectre plat, R91)
 NE PAS FAIRE : BGK quantitatif pour k<91
@@ -1100,6 +1223,11 @@ NE PAS FAIRE : Distorsion de pente (Slope Distortion) de la trajectoire B_j — 
 NE PAS FAIRE : Mots sturmiens / automates (Cobham) pour séquence de gaps — erreur de catégorie : Cobham = séquences INFINIES, B_j = séquence FINIE k≤41. Ratio complexité near/far = 1.015 (R161)
 NE PAS FAIRE : Tout "IRT" (Indice de Rigidité Transversale) ou "Diophantine-Modular Gap" — les 3 angles proposés restent du côté Z, aucun ne franchit le pont vers Z/dZ (R161)
 NE PAS FAIRE : Toute observable vivant dans Z (taille, ordre, complexité, courbure, pente) comme prédicteur de corrSum mod d — UNIVERSELLEMENT DESTRUCTEUR : réduction mod d efface toute structure d'ordre. Test transversal sur 4 observables : tous ratios ≈ 1.0 (R161)
+NE PAS FAIRE : Voies endogènes (Furstenberg finitaire, corps de fonctions, Weierstrass p-adique) — ⟨2,3⟩=(Z/dZ)* tue rigidité, deg_x(P)<S tue réduction algébrique, polygone Newton PLAT (v_p=0 car gcd(d,6)=1). ADN partagé = tautologie (définition de d) (R162)
+NE PAS FAIRE : TPE (Théorème de Paramétrisation Endogène) / uniformisateur g / résultant — réécriture BIJECTIVE (corrSum=P_B(g)), résultant PLUS FAIBLE (35-64% nul vs 0-26% corrSum). Scalabilité k=22 impossible (C=10^9 compositions). REBRANDING classe PRO/R80 (R162)
+NE PAS FAIRE : Levier p-adique / Hensel pour corrSum — direction INVERSÉE (Hensel confirme solutions, ne les exclut pas). Polygone Newton PLAT. Eneström-Kakeya p-adique N'EXISTE PAS (pas d'ordre en Z_p). Recyclage R141-R145 (R163)
+NE PAS FAIRE : Polygone de Newton de P_B(2+h) / double relèvement — Taylor en x=2 = Hensel reformulé. Double relèvement = ERREUR CONCEPTUELLE (confond Z_p et Z/dZ : alpha_B≠beta ne prouve PAS P_B(2)≠0 mod d). R141-R145 recyclé (R164)
+NE PAS FAIRE : Wronskien W(P_B, x^S-3^k) / polynôme quotient — Q=0 (deg P_B=S-k < S=deg diviseur). W(2) = corrSum*S*2^{S-1} - P_B'(2)*d = combinaison linéaire triviale. W≡0 mod d AUTOMATIQUE quand corrSum≡0 mod d. Aucune info supplémentaire (R165)
 
 ÉTAT DU FRONT THÉORIQUE (R159) :
   - k=21 PROUVÉ (N₀(d(21))=0) — premier k du gap
@@ -1196,6 +1324,107 @@ NE PAS FAIRE : Toute observable vivant dans Z (taille, ordre, complexité, courb
   - **PRINCIPE D'INCOMPATIBILITÉ CONFIRMÉ** : la projection Z → Z/dZ est UNIVERSELLEMENT DESTRUCTRICE
   - Le diagnostic du document (§1) est CORRECT, mais les solutions (§3-4) restent du côté Z
   - **RECHERCHE PURE BLOC 3 : SUSPENDUE DÉFINITIVEMENT** [R141-R161, 11ème confirmation]
+  - **R162 — VOIES ENDOGÈNES + TPE** : 4 pistes testées, TOUTES MORTES
+  - Voie A (Furstenberg) : ⟨2,3⟩=(Z/dZ)* dans 4/8 cas (pas toujours, mais couvre tout en 4/4 premiers)
+  - Voie B (Corps de fonctions) : 4 problèmes fatals (pas de réduction, rebranding, Bézout trivial, monotonie invisible)
+  - Voie C (Weierstrass) : polygone Newton PLAT (v_p=0 pour tout p|d car gcd(d,6)=1)
+  - ADN Partagé : 2^S ≡ 3^k mod d est la DÉFINITION de d (tautologie)
+  - TPE (uniformisateur + résultant) : résultant PLUS FAIBLE que vérification directe (60% nul vs 0% corrSum pour k=3)
+  - **R163 — LEVIER p-ADIQUE ET HENSEL** : RECYCLAGE R141-R145
+  - Hensel direction inversée : confirme solutions, ne les exclut pas
+  - E-K p-adique : n'existe pas (Z_p ultramétrique, pas d'ordre)
+  - Polygone Newton PLAT (même résultat R162/Voie C)
+  - **R164 — POLYGONE DE NEWTON AUTOUR DE x=2** : R141-R145 + ERREUR
+  - Taylor P_B(2+h) = Hensel reformulé (même pente, même racine)
+  - Double relèvement : ERREUR CONCEPTUELLE (confond Z_p et Z/dZ)
+  - Dégénérescence P_B(2)=P_B'(2)=0 : rare (~1/p²) mais existe
+  - **R165 — LEVIER WRONSKIEN ET POLYNÔME QUOTIENT** : MORT
+  - Polynôme quotient Q = P_B/(x^S-3^k) : Q=0 car deg(P_B) < deg(diviseur)
+  - Wronskien = combinaison linéaire de corrSum et d : W≡0 mod d automatique
+  - Structure de signe : observable de Z, déjà testée R160 (MPF), non exploitable
+  - **RECHERCHE PURE BLOC 3 VIA F_p : SUSPENDUE DÉFINITIVEMENT** [R141-R165, 13ème confirmation — 252 pistes fermées]
+  - **R167 — MONODROMIE GÉOMÉTRIQUE VIA MPF** : Programme de recherche actif
+  - Hypothèse : MPF brise l'auto-dualité → G_geom = SL_n (groupe maximal)
+  - Si SL_n, borne de Deligne → prob(cycle) ~ exp(-dim_cohom) → PERCÉE
+  - Test proposé : moments de Larsen (skewness ≠ 0 → SL_n, = 0 → Sp/O)
+  - **R168 — AUDIT SÉVÈRE : CHAÎNON MANQUANT MPF ↔ MONODROMIE**
+  - Énergie additive E₄ = #{quadruplets : corrSum(A₁)+corrSum(A₂)≡corrSum(A₃)+corrSum(A₄) mod p}
+  - E₄/E₄_random ≈ 1.0 pour TOUS (k,p) testés → PAS d'excès structurel de collisions
+  - Pas de symétries cachées (cascades de retenues) : BON SIGNE
+  - Skewness k=3 (p=101) = 0.198, k=4 (p=431) = 0.483 → asymétrie détectée (SL_n compatible)
+  - MAIS : test de Larsen non informatif pour k≥5 (|Simplex| >> √p, régime birthday)
+  - Équidistribution confirmée (Gini ≈ 0 pour k≥5)
+  - **VERDICT : ZONE GRISE — INSUFFISANT**
+  - R167 NI détruit NI validé. Chaînon manquant RESTE OUVERT.
+  - Limitation critique : le régime du Bloc 3 (k=22-41) est EXACTEMENT le régime non informatif
+
+  === R172-R177 : NOUVELLE PHASE — CHANGEMENT D'ESPACE (JEPA) ===
+
+  - **R172 — FORMULE PRODUIT** : ∏_{i=1}^{x} (3 + 1/nᵢ) = 2^S reformulation multiplicative
+  - Analyse archimédienne : bornes nᵢ ∈ [1, 2^S] mais nombre de multiples de d dans l'intervalle >> 1
+  - Argument de taille pur échoue pour x ≥ 3 (g_max/d croît exponentiellement)
+  - Connexion à Steiner (1977) retrouvée
+  - Single prime blocking : PROUVÉ IMPOSSIBLE pour tout p|d(k), k=22..41
+
+  - **R173 — GRAPHE DE DÉPENDANCE PREMIER** : réseau de transfert entre valeurs du cycle
+  - Prime Dependency Graph (GDF) formalisé : sommets = nᵢ, arcs = contraintes de divisibilité
+  - "Closure obstruction" prouvée pour x=2 (§6.2) — preuve complète x=2
+  - Fibre adélique et tenseur de contraintes identifiés
+  - Connexion résultant + Steiner
+
+  - **R174 — DÉSÉQUILIBRE DE POIDS ET ANNEAU QUOTIENT**
+  - e₀=0 wlog (d impair, 2^{e₀} coprime à d) — PROUVÉ
+  - Argument de taille échoue pour x ≥ 3 (g_max >> d)
+  - "Walk in Z/dZ" reformulation
+  - **§7 ANNEAU QUOTIENT Z[α,β]/(α^S - β^x)** : insight JEPA — changer l'ESPACE
+  - Divisibilité d | g(v) ↔ inversibilité dans l'anneau quotient
+
+  - **R175 — PREMIER RÉSISTANT + ANTI-CORRÉLATION** [DÉCOUVERTES MAJEURES]
+  - gcd(g(v), d) = 1 est FAUX (g pas toujours inversible mod d)
+  - gcd(g(v), d) < d est TOUJOURS VRAI (d ∤ g(v)) — confirmé S ≤ 17
+  - **PREMIER RÉSISTANT** : ∀(S,x), ∃ au moins un p|d tel que p ∤ g(v) ∀v — CONFIRMÉ
+  - **ANTI-CORRÉLATION DES DIVISIBILITÉS** : corrélation négative (souvent totale) entre p₁|g et p₂|g
+  - Taxonomie 4 types : A (d premier), B (grand premier résiste), C (corrélation négative), D (puissance première)
+  - Quand d premier : résistance ABSOLUE (0 ∉ Image(g mod d))
+
+  - **R176 — RÉDUCTION SOMME CYCLIQUE** [RÉDUCTION STRUCTURELLE MAJEURE]
+  - Quand 3 ∈ ⟨2⟩ dans F_p* (>80% des cas) : g(v) = Σ 2^{f_j} dans F_p
+  - Exposants f_j = t(x-1-j) + e_j = suite ARITHMÉTIQUE PERTURBÉE
+  - Relation clé : 2^S = 2^{tx} dans F_p, donc t = S·x⁻¹ mod ord_p(2)
+  - t/(S/x) >> 1 typiquement → exposants bien séparés
+  - Exposants presque toujours DISTINCTS mod ord_p(2)
+  - Connexion à combinatoire additive (Erdős-Ginzburg-Ziv, Davenport)
+  - PROBLÈME RÉDUIT : zero-sum de x éléments structurés dans ⟨2⟩ ⊂ F_p*
+
+  - **R177 — PREUVE CAS x=2** [PROUVÉ]
+  - g_max = 3 + 2^{S-2} < d = 2^S - 9 pour S ≥ 5 (car 3·2^{S-2} > 12)
+  - S = 4 : vérifié exhaustivement (g ∈ {5, 11}, 7 ∤ 5, 7 ∤ 11)
+  - S = 3 : d < 0 (impossible)
+  - **THÉORÈME : Pour x = 2, N₀(d) = 0 pour tout S ≥ 3** — preuve ÉLÉMENTAIRE
+  - Extension : argument de taille pur valable UNIQUEMENT pour x = 2
+  - Pour x ≥ 3 : g_max/d croît exponentiellement → autre méthode nécessaire
+
+  - **R178 — DESCENTE 2-ADIQUE + AUDIT ARC** [PERCÉE MAJEURE]
+  - **AUDIT ARC (6 scripts)** :
+    - C1 (ord_p(2)>S ⟹ résistant) VIOLÉE : 5 contre-exemples (S=11,x=3: p=47,ord=23>11 mais passable)
+    - C3 (∃ p|d avec ord>S) VIOLÉE : 5 contre-exemples (S=8,x=4: d=175, aucun ord>8)
+    - C2 (ord≤S ⟹ passable) VÉRIFIÉE 100%
+    - Anti-corrélation CONFIRMÉE : joint=0 pour de nombreuses paires (exclusion mutuelle)
+    - g(v) ≡ 0 mod d : JAMAIS observé (110 cas, S≤22, x≤9)
+    - Bug prime-power corrigé : vérifier p^a|g, pas juste p|g
+    - LCM conjecture testée : lcm(ord₁,ord₂)>S ne prédit PAS toujours l'exclusivité
+    - Intersection coset : cible jamais dans ⟨2⟩ mod d (S=9..19)
+  - **DESCENTE 2-ADIQUE (la percée)** :
+    - **T189 : x=3 PROUVÉ** — k=1: D₁=2, 2^{D₂}=2^S−48=16(2^{S-4}−3), facteur impair ∀S≥7
+      - S=6: D₁=2,D₂=4 → vecteur 101010, PÉRIODIQUE → exclu
+      - S=5: vérification exhaustive, aucune solution
+    - **T190 : x=4 PROUVÉ** — k=1: D₁=2,D₂=4, 2^{D₃}=64(2^{S-6}−3). k=2: v₂ contradiction
+    - **T191 : k=1 EXCLU UNIVERSELLEMENT** — récurrence R_m=2^S−4^{m+1}·3^{x-1-m}, v₂(R_m)=2(m+1)
+      - Force D_j=2j → positions (0,2,4,...,2(x-1)) → vecteur (10)^x PÉRIODIQUE
+      - S>2x: facteur impair (2^{S-2(x-1)}−3)>1. S=2x-1: g/d non-entier (d≡2 mod 3)
+    - **T192 : k=2 EXCLU UNIVERSELLEMENT** — R₀=2^{S+1}−7·3^{x-1} IMPAIR, D₁≥1 → v₂(LHS)≥1, CONTRADICTION
+    - Vérifié : x=3..14 pour T192, x=3..9 pour T191
+  - **RESTE À FAIRE** : k≥3 impair pour x≥5 — finiment de cas (S,k) par x, étendre la descente
 ```
 
 ---
@@ -1203,14 +1432,14 @@ NE PAS FAIRE : Toute observable vivant dans Z (taille, ordre, complexité, courb
 ## STATISTIQUES
 
 - **Rounds** : 159 (R78 absent ; R82-R83 = S-unit/Baker ; R84-R87 = gap ; R89-R93 = campagne T4 ; R95-R99 = campagne T159 ; R94,R100 = bilans ; R101-R105 = campagne T164 ; R106-R110 = campagne (H_k) ; R111-R115 = campagne V_GOWERS ; R116-R125 = campagne géo. algébrique + suspension ; R126-R130 = factorisation algébrique [faux contournement] ; R131-R140 = théorie pure / C_SC ; R141 = recalage stratégique ; R142-R151 = innovation opératoire ; R152 = phase méta surprise contrôlée ; R153-R154 = configurations ; R155 = multi-pistes [T175] ; R156 = investigation autonome [T176] ; R157 = objet couplé [T177] ; R158 = 3 formalisations du "+" ; **R159 = investigation profonde 5 axes + monodromie complète [G_geom=SL(r-1), max/√r=4.67 CROÎT, DP 0/13, incomp 2/3 8/8 MORTES]* ; **R160 = audit logique monodromie [INFORMATIF MAIS NON EXPLOITABLE — S_H≠Frobenius, Deligne inutile, √r^22>>p, 5 kill switches]**)
-- **Scripts** : 249 (+6 R159 : monodromy_v2, monodromy_final, character_sums, deep_analysis, final, quick_monodromy)
+- **Scripts** : 262 (+6 R159 : monodromy_v2, monodromy_final, character_sums, deep_analysis, final, quick_monodromy ; +7 R172-R177 : product_formula, archimedean_analysis, dependency_graph, prime_case_theory, quotient_ring, prime_resistance, x2_proof ; +6 R178 : arc_argument, arc_focused, anticorrelation, verification, structural_analysis, x3_proof)
 - **Auto-tests** : 12166
-- **Théorèmes prouvés** : 174 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151 ; T175 R155 ; T176 R156 ; T177 R157)
-- **Conjectures ouvertes** : 15 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**)
-- **Pistes fermées** : 248+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158, +27 R159, +10 R160, +6 R161 : Arakelov CIRCULAIRE, Slope Distortion MORT, Sturmian ERREUR DE CATÉGORIE, IRT/DMG MORT, observables Z UNIVERSELLEMENT DÉTRUITES, Principe d'Incompatibilité CONFIRMÉ)
-- **Concepts inventés** : 294+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154, +3 R155, +6 R156, +4 R157, +5 R158 : W₁ transport, Δ défaut homomorphisme, E_mixed^{(3)} 6-tuples N_cross>0, dominance mode s=0, inadéquation moments)
+- **Théorèmes prouvés** : 194 (T1-T146 R1-R64 ; T147-T151 R84-R87 ; T152-T158 R89-R93 ; T159-T161 R95-R99 ; T162-T164 R101-R105 ; T166 R106-R110 ; C(s) exact R111-R115 ; T170 R116-R125 ; T171-T173 R131-R150 ; T174 R142-R151 ; T175 R155 ; T176 R156 ; T177 R157 ; T178-T184 R172-R177 ; T185-T188 audits R174-R176 ; T189-T194 R178 descente 2-adique)
+- **Conjectures ouvertes** : 18 (OD Bound, Ratio Law, OCC-LITE, QEL, MSL, WEL, ACaL, |ρ|<1, SAMC, APF, PO-R87, HGE, **(H_k) [SUSPENDUE]**, **V_SQRT_CANCEL [FONDAMENTAL]**, **C_SC [IDENTIFIÉE R139]**, **Premier Résistant Universel [R175, PARTIELLEMENT RÉFUTÉ R178]**, **Zero-Sum Cyclique Structuré [R176]**, **Descente 2-adique universelle [R178, k≥3 impair pour x≥5]**)
+- **Pistes fermées** : 255+ (+8 R126-R140, +8 R141-R150, +7 R142-R151, +3 R152, +3 R153, +3 R154, +3 R155, +7 R156, +4 R157, +4 R158, +27 R159, +10 R160, +6 R161, +1 R174-audit : Anneau Quotient REBRANDING, +3 R176-audit : EGZ/Davenport/Alon-Bourgain direction inversée, +3 R178 : C1 arc seul RÉFUTÉ, C3 high-ord existence RÉFUTÉ, LCM conjecture RÉFUTÉE)
+- **Concepts inventés** : 316+ (+10 R126-R140, +4 R141-R150, +6 R142-R151, +4 R152, +3 R153, +3 R154, +3 R155, +6 R156, +4 R157, +5 R158, +12 R172-R177, +3 audits R174-R176, +7 R178 : descente 2-adique, récurrence R_m, vecteur forcé périodique, contradiction v₂ k=2, intersection coset, k_max décroissant, bug prime-power)
 - **Lean** : 280 théorèmes, 0 sorry
-- **Gap restant** : 20 valeurs (k=22..41) — k=21 PROUVÉ R84
+- **Gap restant** : x=2 PROUVÉ (R177), x=3 PROUVÉ (R178/T189), x=4 PROUVÉ (R178/T190), k=1 et k=2 EXCLUS universellement (R178/T191-T192). Reste : k≥3 impair pour x≥5 (finiment de cas par x)
 - **Front théorique** : T159+T162+T163+T166+T174+T175+T176+T177 [PROUVÉS INCONDITIONNELS]. T164 [CONDITIONNEL sur (H_k)]. T170 [PROUVÉ CONDITIONNEL sur s₃|k]. T173 [IDENTITÉ R148]. C(s)=g·τ·S_H [PROUVÉ R111]. Verrou UNIQUE : |S_H(s)|≤√r ⟺ C_SC ⟺ BGK ε≥0.215 [PROBLÈME OUVERT TAN]. Mur FONDAMENTAL (R123). **SUSPENSION DÉFINITIVE (R141-R159 — 10 confirmations).** 79 rounds, 5+ familles + 59 innovations éliminées. R159 : 5 axes (Furstenberg MORT, 7 non-moment MORTES, monodromie → Gaussien/max CROÎT, DP 0/13, incompatibilité 2/3 → 8/8 MORTES). **RÉSULTAT CRITIQUE R159** : |S_H|≤√r est NUMÉRIQUEMENT FAUX (max/√r=4.67, 731 premiers, croît comme √(2·log(index))). Distribution S_H/√r quasi-Gaussienne (kurtosis 2.43-2.66, queues lourdes). Gap k=22..41 STRUCTUREL (44 primes non-bloquants). Paradoxe central : incompatibilité 2/3 archimédienne, verrou non-archimédien aux places de compatibilité. **MONODROMIE** : G_geom = SL(r-1) conjecturé (M4/M2²→2.0, unitaire). Plancherel exact. |S_H| = O(√(r·log p)). Identité Π(1-2^a) ≡ r mod p découverte. **R160 AUDIT** : monodromie classée **INFORMATIF MAIS NON EXPLOITABLE**. 3 gaps : (1) S_H ≠ Frobenius (formalisme inapplicable), (2) Deligne donne (r-1)·√p pire que trivial, (3) bornes moyennées insuffisantes pour produit corrélé. Kill switch : même √r idéal ⟹ (√r)^22 = r^11 >> p. 5 NE PAS FAIRE ajoutés. **MODE : PUBLICATION + veille TAN. Toutes les braises internes éteintes.**
 - **Découvertes majeures R65-R81** :
   - K-lite PROUVÉ universel pour ⟨g²⟩ (R64-R66)

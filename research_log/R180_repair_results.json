@@ -1,0 +1,180 @@
+{
+  "gap_description": "C_m depends on cyclic rotation of valuations starting at m",
+  "repair": "C_m has period q in m; B_m = C_m/(2^p - 3^q) as unique fixed point per subsequence",
+  "q1_proved": true,
+  "q2_proved": true,
+  "exhaustive_q_max": 10,
+  "exhaustive_p_max": 30,
+  "nontrivial_solutions": 0,
+  "conclusion": "Gap repaired. No nontrivial solutions for q=1..10, p\u226430. q=1,2 proved analytically.",
+  "all_integer_cases": [
+    {
+      "q": 3,
+      "p": 6,
+      "vs": [
+        2,
+        2,
+        2
+      ],
+      "B": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "q": 4,
+      "p": 8,
+      "vs": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "B": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "q": 5,
+      "p": 10,
+      "vs": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "B": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "q": 6,
+      "p": 12,
+      "vs": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "B": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "q": 7,
+      "p": 14,
+      "vs": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "B": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "q": 8,
+      "p": 16,
+      "vs": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "B": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "q": 9,
+      "p": 18,
+      "vs": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "B": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "q": 10,
+      "p": 20,
+      "vs": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "B": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

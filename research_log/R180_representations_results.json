@@ -1,0 +1,22 @@
+{
+  "R180_representations": {
+    "date": "2026-03-15",
+    "base6_mean_digit_ratio": 1.1378663178069781,
+    "base6_mean_length_change": -0.1350270054010802,
+    "lyapunov_exponent": -0.28775602836565706,
+    "empirical_E_v": 2.0001066958301936,
+    "padic_contraction": -0.052,
+    "symbolic_candidates": 4,
+    "graph_no_cycles": true,
+    "graph_descent_fraction": 0.4998999799959992,
+    "ranking": [
+      "1. Continued Fractions (HIGH)",
+      "2. Matrix/Lyapunov (MODERATE-HIGH)",
+      "3. Symbolic Dynamics (MODERATE-HIGH)",
+      "4. 2-adic (MODERATE)",
+      "5. Base-6 (LOW-MODERATE)",
+      "6. Graph Theory (LOW)"
+    ],
+    "recommendation": "Combine CF + Matrix + Symbolic for strongest approach"
+  }
+}

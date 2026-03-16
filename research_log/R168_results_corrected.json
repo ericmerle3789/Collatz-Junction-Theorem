@@ -1,0 +1,20 @@
+{
+  "status": "GREY",
+  "classification": "SUSPENSION \u2014 chainon manquant ouvert",
+  "equidistribution_confirmed": true,
+  "excess_collisions": false,
+  "skewness_informative_cases": {
+    "k=3 (p=101)": {
+      "skewness": 0.198,
+      "verdict": "SL_n compatible"
+    },
+    "k=4 (p=431)": {
+      "skewness": 0.483,
+      "verdict": "SL_n compatible"
+    }
+  },
+  "skewness_non_informative": "k>=5 (|S| >> sqrt(p), birthday regime)",
+  "key_limitation": "Test de Larsen non informatif dans le regime Bloc 3 (k=22-41)",
+  "R167_destroyed": false,
+  "R167_validated": false
+}

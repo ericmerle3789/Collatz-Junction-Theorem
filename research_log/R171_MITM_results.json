@@ -1,0 +1,186 @@
+{
+  "k=3_validation": {
+    "k": 3,
+    "S": 6,
+    "d": 37,
+    "d_factored": "{37: 1}",
+    "top": 3,
+    "C_total": 10,
+    "elapsed_s": 0.0,
+    "collision_found": false,
+    "collision_detail": null,
+    "N0_equals_zero": true
+  },
+  "k=4_validation": {
+    "k": 4,
+    "S": 8,
+    "d": 175,
+    "d_factored": "{5: 2, 7: 1}",
+    "top": 4,
+    "C_total": 35,
+    "elapsed_s": 0.0,
+    "collision_found": false,
+    "collision_detail": null,
+    "N0_equals_zero": true
+  },
+  "k=5_validation": {
+    "k": 5,
+    "S": 9,
+    "d": 269,
+    "d_factored": "{269: 1}",
+    "top": 4,
+    "C_total": 70,
+    "elapsed_s": 0.0,
+    "collision_found": false,
+    "collision_detail": null,
+    "N0_equals_zero": true
+  },
+  "k=6_validation": {
+    "k": 6,
+    "S": 11,
+    "d": 1319,
+    "d_factored": "{1319: 1}",
+    "top": 5,
+    "C_total": 252,
+    "elapsed_s": 0.0,
+    "collision_found": false,
+    "collision_detail": null,
+    "N0_equals_zero": true
+  },
+  "k=7_validation": {
+    "k": 7,
+    "S": 13,
+    "d": 6005,
+    "d_factored": "{5: 1, 1201: 1}",
+    "top": 6,
+    "C_total": 924,
+    "elapsed_s": 0.0,
+    "collision_found": false,
+    "collision_detail": null,
+    "N0_equals_zero": true
+  },
+  "k=8_validation": {
+    "k": 8,
+    "S": 14,
+    "d": 9823,
+    "d_factored": "{11: 1, 19: 1, 47: 1}",
+    "top": 6,
+    "C_total": 1716,
+    "elapsed_s": 0.0,
+    "collision_found": false,
+    "collision_detail": null,
+    "N0_equals_zero": true
+  },
+  "k=9_validation": {
+    "k": 9,
+    "S": 16,
+    "d": 45853,
+    "d_factored": "{45853: 1}",
+    "top": 7,
+    "C_total": 6435,
+    "elapsed_s": 0.0,
+    "collision_found": false,
+    "collision_detail": null,
+    "N0_equals_zero": true
+  },
+  "k=10_validation": {
+    "k": 10,
+    "S": 17,
+    "d": 72023,
+    "d_factored": "{7: 1, 10289: 1}",
+    "top": 7,
+    "C_total": 11440,
+    "elapsed_s": 0.001,
+    "collision_found": false,
+    "collision_detail": null,
+    "N0_equals_zero": true
+  },
+  "k=22": {
+    "k": 22,
+    "S": 36,
+    "d": 37338417127,
+    "d_factored": "{11: 1, 271: 1, 1621: 1, 7727: 1}",
+    "top": 14,
+    "C_total": 2319959400,
+    "elapsed_s": 2.013,
+    "collision_found": false,
+    "collision_detail": null,
+    "N0_equals_zero": true
+  },
+  "k=23": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=24": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=25": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=26": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=27": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=28": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=29": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=30": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=31": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=32": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=33": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=34": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=35": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=36": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=37": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=38": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=39": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=40": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  },
+  "k=41": {
+    "status": "SKIPPED",
+    "reason": "d too large for set"
+  }
+}

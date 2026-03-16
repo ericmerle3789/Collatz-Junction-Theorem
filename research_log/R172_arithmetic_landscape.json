@@ -1,0 +1,2932 @@
+[
+  {
+    "k": 3,
+    "S_min": 5,
+    "log2_d": 2.32,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 1,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 1,
+        "C": 6,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 4,
+    "S_min": 7,
+    "log2_d": 5.55,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 1,
+    "primes_summary": [
+      {
+        "p": 47,
+        "ord_2": 23,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 1,
+        "C": 20,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 5,
+    "S_min": 8,
+    "log2_d": 3.7,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 1,
+    "primes_summary": [
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 1,
+        "C": 35,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 6,
+    "S_min": 10,
+    "log2_d": 8.2,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": 25,
+        "C": 126,
+        "N0_zero": false
+      },
+      {
+        "p": 59,
+        "ord_2": 58,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": 1,
+        "C": 126,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 7,
+    "S_min": 12,
+    "log2_d": 10.9,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 23,
+        "ord_2": 11,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 21,
+        "C": 462,
+        "N0_zero": false
+      },
+      {
+        "p": 83,
+        "ord_2": 82,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 5,
+        "C": 462,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 8,
+    "S_min": 13,
+    "log2_d": 10.67,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 120,
+        "C": 792,
+        "N0_zero": false
+      },
+      {
+        "p": 233,
+        "ord_2": 29,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 4,
+        "C": 792,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 9,
+    "S_min": 15,
+    "log2_d": 13.68,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 583,
+        "C": 3003,
+        "N0_zero": false
+      },
+      {
+        "p": 2617,
+        "ord_2": 1308,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": 1,
+        "C": 3003,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 10,
+    "S_min": 16,
+    "log2_d": 12.66,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": 381,
+        "C": 5005,
+        "N0_zero": false
+      },
+      {
+        "p": 499,
+        "ord_2": 166,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": 8,
+        "C": 5005,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 11,
+    "S_min": 18,
+    "log2_d": 16.38,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 11,
+        "ord_2": 10,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 1769,
+        "C": 19448,
+        "N0_zero": false
+      },
+      {
+        "p": 7727,
+        "ord_2": 3863,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 1,
+        "C": 19448,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 12,
+    "S_min": 20,
+    "log2_d": 18.98,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": 15270,
+        "C": 75582,
+        "N0_zero": false
+      },
+      {
+        "p": 59,
+        "ord_2": 58,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": 1273,
+        "C": 75582,
+        "N0_zero": false
+      },
+      {
+        "p": 1753,
+        "ord_2": 146,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": 41,
+        "C": 75582,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 13,
+    "S_min": 21,
+    "log2_d": 18.94,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 1,
+    "primes_summary": [
+      {
+        "p": 502829,
+        "ord_2": 502828,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 1,
+        "C": 125970,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 14,
+    "S_min": 23,
+    "log2_d": 21.78,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 79,
+        "ord_2": 39,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": 6326,
+        "C": 497420,
+        "N0_zero": false
+      },
+      {
+        "p": 45641,
+        "ord_2": 3260,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": 7,
+        "C": 497420,
+        "N0_zero": false
+      }
+    ]
+  },
+  {
+    "k": 15,
+    "S_min": 24,
+    "log2_d": 21.21,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 186793,
+        "ord_2": 46698,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 16,
+    "S_min": 26,
+    "log2_d": 24.52,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 233,
+        "ord_2": 29,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 14753,
+        "ord_2": 1844,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 17,
+    "S_min": 27,
+    "log2_d": 22.28,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 71,
+        "ord_2": 35,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 14303,
+        "ord_2": 7151,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 18,
+    "S_min": 29,
+    "log2_d": 27.16,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 137,
+        "ord_2": 68,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 1090879,
+        "ord_2": 181813,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 19,
+    "S_min": 31,
+    "log2_d": 29.88,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 19,
+        "ord_2": 18,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 23,
+        "ord_2": 11,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 2254513,
+        "ord_2": 1127256,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 20,
+    "S_min": 32,
+    "log2_d": 29.59,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 499,
+        "ord_2": 166,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 24917,
+        "ord_2": 24916,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 21,
+    "S_min": 34,
+    "log2_d": 32.65,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 33587,
+        "ord_2": 4798,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 200063,
+        "ord_2": 100031,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 22,
+    "S_min": 35,
+    "log2_d": 31.47,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 425525537,
+        "ord_2": 212762768,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 23,
+    "S_min": 37,
+    "log2_d": 35.33,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 31727,
+        "ord_2": 15863,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 272927,
+        "ord_2": 136463,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 24,
+    "S_min": 39,
+    "log2_d": 37.96,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 233,
+        "ord_2": 29,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 2113,
+        "ord_2": 44,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 77569,
+        "ord_2": 4848,
+        "gcd_r_k": 24,
+        "n_eff": 23,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 25,
+    "S_min": 40,
+    "log2_d": 37.88,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 5,
+    "primes_summary": [
+      {
+        "p": 11,
+        "ord_2": 10,
+        "gcd_r_k": 5,
+        "n_eff": 4,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 191,
+        "ord_2": 95,
+        "gcd_r_k": 5,
+        "n_eff": 4,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 251,
+        "ord_2": 50,
+        "gcd_r_k": 25,
+        "n_eff": 24,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 36791,
+        "ord_2": 18395,
+        "gcd_r_k": 5,
+        "n_eff": 4,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 26,
+    "S_min": 42,
+    "log2_d": 40.76,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 149,
+        "ord_2": 148,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 991,
+        "ord_2": 495,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 502829,
+        "ord_2": 502828,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 27,
+    "S_min": 43,
+    "log2_d": 40.09,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 43,
+        "ord_2": 14,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 53,
+        "ord_2": 52,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 513600499,
+        "ord_2": 57066722,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 28,
+    "S_min": 45,
+    "log2_d": 43.48,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 727,
+        "ord_2": 121,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 16929270473,
+        "ord_2": 4232317618,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 29,
+    "S_min": 46,
+    "log2_d": 40.66,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 39409,
+        "ord_2": 9852,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 44110909,
+        "ord_2": 44110908,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 30,
+    "S_min": 48,
+    "log2_d": 46.1,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 6,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 6,
+        "n_eff": 5,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 19,
+        "ord_2": 18,
+        "gcd_r_k": 6,
+        "n_eff": 5,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 67,
+        "ord_2": 66,
+        "gcd_r_k": 6,
+        "n_eff": 5,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 499,
+        "ord_2": 166,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 186793,
+        "ord_2": 46698,
+        "gcd_r_k": 6,
+        "n_eff": 5,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 31,
+    "S_min": 50,
+    "log2_d": 48.85,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 23,
+        "ord_2": 11,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 37,
+        "ord_2": 36,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 107,
+        "ord_2": 106,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 5581410661,
+        "ord_2": 113906340,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 32,
+    "S_min": 51,
+    "log2_d": 48.5,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 73,
+        "ord_2": 9,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 5462734586759,
+        "ord_2": 2731367293379,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 33,
+    "S_min": 53,
+    "log2_d": 51.61,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 29,
+        "ord_2": 28,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 118901334075361,
+        "ord_2": 19816889012560,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 34,
+    "S_min": 54,
+    "log2_d": 50.25,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 5,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 71,
+        "ord_2": 35,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 3607,
+        "ord_2": 601,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 14303,
+        "ord_2": 7151,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 73013,
+        "ord_2": 73012,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 35,
+    "S_min": 56,
+    "log2_d": 54.29,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 778247,
+        "ord_2": 389123,
+        "gcd_r_k": 7,
+        "n_eff": 6,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 2177087039,
+        "ord_2": 1088543519,
+        "gcd_r_k": 7,
+        "n_eff": 6,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 36,
+    "S_min": 58,
+    "log2_d": 56.94,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 11,
+        "ord_2": 10,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 137,
+        "ord_2": 68,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 1090879,
+        "ord_2": 181813,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 84026491,
+        "ord_2": 28008830,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 37,
+    "S_min": 59,
+    "log2_d": 56.81,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 47,
+        "ord_2": 23,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 2475787,
+        "ord_2": 2475786,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 8674781,
+        "ord_2": 1734956,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 38,
+    "S_min": 61,
+    "log2_d": 59.73,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 5,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 17,
+        "ord_2": 8,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 1033,
+        "ord_2": 258,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 20743,
+        "ord_2": 3457,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 374524783,
+        "ord_2": 62420797,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 39,
+    "S_min": 62,
+    "log2_d": 58.96,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 11,
+        "ord_2": 10,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 7369,
+        "ord_2": 1228,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 6897825847943,
+        "ord_2": 3448912923971,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 40,
+    "S_min": 64,
+    "log2_d": 62.45,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 6,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 499,
+        "ord_2": 166,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 769,
+        "ord_2": 384,
+        "gcd_r_k": 8,
+        "n_eff": 7,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 24917,
+        "ord_2": 24916,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 10119313,
+        "ord_2": 1686552,
+        "gcd_r_k": 8,
+        "n_eff": 7,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 41,
+    "S_min": 65,
+    "log2_d": 58.54,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 19,
+        "ord_2": 18,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 29,
+        "ord_2": 28,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 17021,
+        "ord_2": 17020,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 44835377399,
+        "ord_2": 22417688699,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 42,
+    "S_min": 67,
+    "log2_d": 65.05,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 17,
+        "ord_2": 8,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 2244409615186120807,
+        "ord_2": 374068269197686801,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 43,
+    "S_min": 69,
+    "log2_d": 67.83,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 23,
+        "ord_2": 11,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 21787,
+        "ord_2": 7262,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 104585240486117,
+        "ord_2": 104585240486116,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 44,
+    "S_min": 70,
+    "log2_d": 67.41,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 5,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 41,
+        "ord_2": 20,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 163,
+        "ord_2": 162,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 9837019,
+        "ord_2": 9837018,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 425525537,
+        "ord_2": 212762768,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 45,
+    "S_min": 72,
+    "log2_d": 70.58,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 3673,
+        "ord_2": 918,
+        "gcd_r_k": 9,
+        "n_eff": 8,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 186793,
+        "ord_2": 46698,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 198230552929,
+        "ord_2": 8259606372,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 46,
+    "S_min": 73,
+    "log2_d": 68.98,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 17,
+        "ord_2": 8,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 192491569,
+        "ord_2": 48122892,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 177790780231,
+        "ord_2": 1814191635,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 47,
+    "S_min": 75,
+    "log2_d": 73.24,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": 63890213,
+        "ord_2": 63890212,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 175146035340337,
+        "ord_2": 87573017670168,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 48,
+    "S_min": 77,
+    "log2_d": 75.92,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 31,
+        "ord_2": 5,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 2657,
+        "ord_2": 166,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 866236288500930433,
+        "ord_2": 9023294671884692,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 49,
+    "S_min": 78,
+    "log2_d": 75.74,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 431,
+        "ord_2": 43,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 613,
+        "ord_2": 612,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 629569,
+        "ord_2": 104928,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 378347894423,
+        "ord_2": 189173947211,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 50,
+    "S_min": 80,
+    "log2_d": 78.7,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 8,
+    "primes_summary": [
+      {
+        "p": 11,
+        "ord_2": 10,
+        "gcd_r_k": 10,
+        "n_eff": 9,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 191,
+        "ord_2": 95,
+        "gcd_r_k": 5,
+        "n_eff": 4,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 251,
+        "ord_2": 50,
+        "gcd_r_k": 50,
+        "n_eff": 49,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 499,
+        "ord_2": 166,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 9931,
+        "ord_2": 3310,
+        "gcd_r_k": 10,
+        "n_eff": 9,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 36791,
+        "ord_2": 18395,
+        "gcd_r_k": 5,
+        "n_eff": 4,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 392851,
+        "ord_2": 8730,
+        "gcd_r_k": 10,
+        "n_eff": 9,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 51,
+    "S_min": 81,
+    "log2_d": 77.81,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 71,
+        "ord_2": 35,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 14303,
+        "ord_2": 7151,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 52024479480558217,
+        "ord_2": 26012239740279108,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 52,
+    "S_min": 83,
+    "log2_d": 81.41,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 8423,
+        "ord_2": 4211,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 54448273735017386047,
+        "ord_2": 9074712289169564341,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 53,
+    "S_min": 85,
+    "log2_d": 84.0,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 2,
+    "primes_summary": [
+      {
+        "p": "963226723",
+        "ord_2": 963226722,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 20039290957242383,
+        "ord_2": 10019645478621191,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 54,
+    "S_min": 86,
+    "log2_d": 83.99,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 7,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 31,
+        "ord_2": 5,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 43,
+        "ord_2": 14,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 53,
+        "ord_2": 52,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 3413,
+        "ord_2": 3412,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 31042013,
+        "ord_2": 31042012,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 513600499,
+        "ord_2": 57066722,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 55,
+    "S_min": 88,
+    "log2_d": 86.8,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 5,
+    "primes_summary": [
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 23,
+        "ord_2": 11,
+        "gcd_r_k": 11,
+        "n_eff": 10,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 14939,
+        "ord_2": 14938,
+        "gcd_r_k": 11,
+        "n_eff": 10,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 5065259,
+        "ord_2": 5065258,
+        "gcd_r_k": 11,
+        "n_eff": 10,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 5968353600551,
+        "ord_2": 596835360055,
+        "gcd_r_k": 55,
+        "n_eff": 54,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 56,
+    "S_min": 89,
+    "log2_d": 86.31,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 1,
+    "primes_summary": [
+      {
+        "p": 95622386615329600236050591,
+        "ord_2": 47811193307664800118025295,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 57,
+    "S_min": 91,
+    "log2_d": 89.55,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 5,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 1699,
+        "ord_2": 566,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 60259,
+        "ord_2": 20086,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 39060001,
+        "ord_2": 2170000,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 45303586897,
+        "ord_2": 7550597816,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 58,
+    "S_min": 92,
+    "log2_d": 87.64,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 6,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 541,
+        "ord_2": 540,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 643,
+        "ord_2": 214,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 39409,
+        "ord_2": 9852,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 44110909,
+        "ord_2": 44110908,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 57082867,
+        "ord_2": 19027622,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 59,
+    "S_min": 94,
+    "log2_d": 92.2,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 37,
+        "ord_2": 36,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 1367,
+        "ord_2": 683,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 5652257293,
+        "ord_2": 5652257292,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 19856390434211,
+        "ord_2": 19856390434210,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 60,
+    "S_min": 96,
+    "log2_d": 94.9,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 9,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 12,
+        "n_eff": 11,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 19,
+        "ord_2": 18,
+        "gcd_r_k": 6,
+        "n_eff": 5,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 67,
+        "ord_2": 66,
+        "gcd_r_k": 6,
+        "n_eff": 5,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 499,
+        "ord_2": 166,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 24917,
+        "ord_2": 24916,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 186793,
+        "ord_2": 46698,
+        "gcd_r_k": 6,
+        "n_eff": 5,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 3911916433,
+        "ord_2": 244494777,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 61,
+    "S_min": 97,
+    "log2_d": 94.66,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 1,
+    "primes_summary": [
+      {
+        "p": 31282850202880064644204601069,
+        "ord_2": 31282850202880064644204601068,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 62,
+    "S_min": 99,
+    "log2_d": 97.67,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 103,
+        "ord_2": 51,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": "3787790879",
+        "ord_2": 1893895439,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 646699350001256767,
+        "ord_2": 323349675000628383,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 63,
+    "S_min": 100,
+    "log2_d": 96.64,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 3,
+    "primes_summary": [
+      {
+        "p": 1511,
+        "ord_2": 755,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": "414105511297",
+        "ord_2": 69017585216,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 196718371979747,
+        "ord_2": 196718371979746,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 64,
+    "S_min": 102,
+    "log2_d": 100.37,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 5,
+    "primes_summary": [
+      {
+        "p": 11,
+        "ord_2": 10,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 73,
+        "ord_2": 9,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 1580041,
+        "ord_2": 18810,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 236174539,
+        "ord_2": 236174538,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 5462734586759,
+        "ord_2": 2731367293379,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 65,
+    "S_min": 104,
+    "log2_d": 102.98,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 13,
+        "ord_2": 12,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 911,
+        "ord_2": 91,
+        "gcd_r_k": 13,
+        "n_eff": 12,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 10903439,
+        "ord_2": 419363,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 5945947346375273173,
+        "ord_2": 5945947346375273172,
+        "gcd_r_k": 13,
+        "n_eff": 12,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 66,
+    "S_min": 105,
+    "log2_d": 102.93,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 5,
+    "primes_summary": [
+      {
+        "p": 7,
+        "ord_2": 3,
+        "gcd_r_k": 3,
+        "n_eff": 2,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 164743,
+        "ord_2": 27457,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 81735649,
+        "ord_2": 10216956,
+        "gcd_r_k": 6,
+        "n_eff": 5,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 240885031,
+        "ord_2": 40147505,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 425525537,
+        "ord_2": 212762768,
+        "gcd_r_k": 2,
+        "n_eff": 1,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 67,
+    "S_min": 107,
+    "log2_d": 105.78,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 4,
+    "primes_summary": [
+      {
+        "p": 23,
+        "ord_2": 11,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 379,
+        "ord_2": 378,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 4425697,
+        "ord_2": 1106424,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 1802798747784256229209,
+        "ord_2": 225349843473032028651,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  },
+  {
+    "k": 68,
+    "S_min": 108,
+    "log2_d": 105.19,
+    "has_blocking_prime": false,
+    "best_prime": null,
+    "n_primes": 8,
+    "primes_summary": [
+      {
+        "p": 5,
+        "ord_2": 4,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 61,
+        "ord_2": 60,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 71,
+        "ord_2": 35,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 3607,
+        "ord_2": 601,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 14303,
+        "ord_2": 7151,
+        "gcd_r_k": 1,
+        "n_eff": 0,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 73013,
+        "ord_2": 73012,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 22120513,
+        "ord_2": 460844,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      },
+      {
+        "p": 25709821,
+        "ord_2": 5141964,
+        "gcd_r_k": 4,
+        "n_eff": 3,
+        "3_in_H": false,
+        "N0": null,
+        "C": null,
+        "N0_zero": null
+      }
+    ]
+  }
+]

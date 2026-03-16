@@ -1,0 +1,30 @@
+{
+  "voie_A": [
+    "{'k': 3, 'S': 6, 'd': 37, 'ord_d_2': 36, 'ord_d_3': 18, 'phi_d': 36, 'group_2_3_size': 36, 'covers_all': True, 'dna_verified': True, 'lcm_ord': 36}",
+    "{'k': 4, 'S': 8, 'd': 175, 'ord_d_2': 60, 'ord_d_3': 60, 'phi_d': 120, 'group_2_3_size': 120, 'covers_all': True, 'dna_verified': True, 'lcm_ord': 60}",
+    "{'k': 5, 'S': 9, 'd': 269, 'ord_d_2': 268, 'ord_d_3': 268, 'phi_d': 268, 'group_2_3_size': 268, 'covers_all': True, 'dna_verified': True, 'lcm_ord': 268}",
+    "{'k': 6, 'S': 11, 'd': 1319, 'ord_d_2': 659, 'ord_d_3': 659, 'phi_d': 1318, 'group_2_3_size': 659, 'covers_all': False, 'dna_verified': True, 'lcm_ord': 659}",
+    "{'k': 7, 'S': 13, 'd': 6005, 'ord_d_2': 300, 'ord_d_3': 300, 'phi_d': 4800, 'group_2_3_size': 300, 'covers_all': False, 'dna_verified': True, 'lcm_ord': 300}",
+    "{'k': 8, 'S': 14, 'd': 9823, 'ord_d_2': 2070, 'ord_d_3': 2070, 'phi_d': 8280, 'group_2_3_size': 4140, 'covers_all': False, 'dna_verified': True, 'lcm_ord': 2070}",
+    "{'k': 9, 'S': 16, 'd': 45853, 'ord_d_2': 15284, 'ord_d_3': 11463, 'phi_d': 45852, 'group_2_3_size': 45852, 'covers_all': True, 'dna_verified': True, 'lcm_ord': 45852}",
+    "{'k': 10, 'S': 17, 'd': 72023, 'ord_d_2': 15432, 'ord_d_3': 30864, 'phi_d': 61728, 'group_2_3_size': 30864, 'covers_all': False, 'dna_verified': True, 'lcm_ord': 30864}"
+  ],
+  "voie_B": [
+    "{'k': 3, 'S': 6, 'd': 37, 'max_deg_x': 3, 'reduction_possible': False, 'bezout_bound': 30, 'C_comp': 10, 'N0': 0}",
+    "{'k': 4, 'S': 8, 'd': 175, 'max_deg_x': 4, 'reduction_possible': False, 'bezout_bound': 56, 'C_comp': 35, 'N0': 0}",
+    "{'k': 5, 'S': 9, 'd': 269, 'max_deg_x': 4, 'reduction_possible': False, 'bezout_bound': 72, 'C_comp': 70, 'N0': 0}",
+    "{'k': 6, 'S': 11, 'd': 1319, 'max_deg_x': 5, 'reduction_possible': False, 'bezout_bound': 110, 'C_comp': 252, 'N0': 0}",
+    "{'k': 7, 'S': 13, 'd': 6005, 'max_deg_x': 6, 'reduction_possible': False, 'bezout_bound': 156, 'C_comp': 924, 'N0': 0}",
+    "{'k': 8, 'S': 14, 'd': 9823, 'max_deg_x': 6, 'reduction_possible': False, 'bezout_bound': 182, 'C_comp': 1716, 'N0': 0}"
+  ],
+  "voie_C": [
+    "{'k': 3, 'S': 6, 'd': 37, 'd_factors': '{37: 1}', 'all_terms_val_0': True, 'newton_polygon': 'FLAT (horizontal at 0)', 'v_p_distribution': {}, 'p_tested': 37}",
+    "{'k': 4, 'S': 8, 'd': 175, 'd_factors': '{5: 2, 7: 1}', 'all_terms_val_0': True, 'newton_polygon': 'FLAT (horizontal at 0)', 'v_p_distribution': {}, 'p_tested': 5}",
+    "{'k': 5, 'S': 9, 'd': 269, 'd_factors': '{269: 1}', 'all_terms_val_0': True, 'newton_polygon': 'FLAT (horizontal at 0)', 'v_p_distribution': {}, 'p_tested': 269}",
+    "{'k': 6, 'S': 11, 'd': 1319, 'd_factors': '{1319: 1}', 'all_terms_val_0': True, 'newton_polygon': 'FLAT (horizontal at 0)', 'v_p_distribution': {}, 'p_tested': 1319}",
+    "{'k': 7, 'S': 13, 'd': 6005, 'd_factors': '{5: 1, 1201: 1}', 'all_terms_val_0': True, 'newton_polygon': 'FLAT (horizontal at 0)', 'v_p_distribution': {}, 'p_tested': 5}",
+    "{'k': 8, 'S': 14, 'd': 9823, 'd_factors': '{11: 1, 19: 1, 47: 1}', 'all_terms_val_0': True, 'newton_polygon': 'FLAT (horizontal at 0)', 'v_p_distribution': {}, 'p_tested': 11}",
+    "{'k': 9, 'S': 16, 'd': 45853, 'd_factors': '{45853: 1}', 'all_terms_val_0': True, 'newton_polygon': 'FLAT (horizontal at 0)', 'v_p_distribution': {}, 'p_tested': 45853}",
+    "{'k': 10, 'S': 17, 'd': 72023, 'd_factors': '{7: 1, 10289: 1}', 'all_terms_val_0': True, 'newton_polygon': 'FLAT (horizontal at 0)', 'v_p_distribution': {0: 8577, 1: 1235, 2: 164, 3: 23, 5: 1}, 'p_tested': 7}"
+  ]
+}

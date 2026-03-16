@@ -1,0 +1,9 @@
+{
+  "verdict": "MORT - R141-R145 recycle + erreur conceptuelle",
+  "classification": "Lifting p-adique + confusion Z_p vs Z/dZ",
+  "test_A": "Degenerescence rare mais existe",
+  "test_B": "Polygone = Hensel reformule",
+  "test_C": "Double relevement : ERREUR (Z_p != Z/dZ)",
+  "test_D": "R141-R145 + 1 idee erronee",
+  "test_E": "k=22 : rien d exploitable"
+}

@@ -1,0 +1,9 @@
+{
+  "verdict": "MORT - Wronskien = combinaison lineaire triviale",
+  "classification": "Cadre p-adique R141-R145 + MPF R160 + objet trivial",
+  "test_A": "Polynome quotient Q = 0 (deg P_B < deg diviseur)",
+  "test_B": "Wronskien = combinaison lineaire de corrSum et d",
+  "test_C": "W=0 mod d automatique quand corrSum=0 mod d",
+  "test_D": "Recyclage R141-R145 + R160",
+  "test_E": "k=22 : rien d exploitable"
+}

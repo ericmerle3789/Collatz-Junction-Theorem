@@ -1,0 +1,9 @@
+{
+  "verdict": "MORT — Rebranding sophistiqué",
+  "classification": "PRO/R80 (changement de coordonnées)",
+  "test_A": "Uniformisateur = réécriture bijective",
+  "test_B": "Résultant plus faible que vérification directe",
+  "test_C": "k=22 incalculable (C=927983760)",
+  "test_D": "Résultant nul plus souvent que corrSum",
+  "test_E": "Principe Incompatibilité non franchi"
+}

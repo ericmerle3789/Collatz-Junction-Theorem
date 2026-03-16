@@ -1,0 +1,9 @@
+{
+  "verdict": "MORT - Recyclage R141-R145",
+  "classification": "Lifting p-adique (deja elimine R141-R145)",
+  "test_A": "Hensel direction inversee",
+  "test_B": "Polygone de Newton PLAT",
+  "test_C": "Enestrom-Kakeya p-adique inexistant",
+  "test_D": "Identique R141-R145",
+  "test_E": "k=22 : aucune info exploitable"
+}
