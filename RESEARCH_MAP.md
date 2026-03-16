@@ -127,7 +127,7 @@ STAGE II (LE VERROU — prouver que 0 est parmi les omis) :
 | **k=3..20 par pur raisonnement** | **R194 PROUVÉ**. 18 valeurs toutes résolues : arc (g_max < d), énumération, crible mod 5/233. Classification 39 valeurs k∈[3,41] : 16 par arc, 3 par énumération/crible, 8 par n_max=1, 12 résiduelles (Hercher/Barina) | 10/10 | 6/10 | R194 |
 | **Conjecture M (borne lacunaire T(t))** | **VRAI VERROU (R195)**. \|T(t)\| ≤ C·k^{-δ}. Programme Merle 4 organes (3 ✅, Tête ❌). **CGT révisée 5-6.5/10 (R196)** : reformule gap 1.35x en permanents de matrices de phases, ne le résout pas. \|G(a)\| ≤ √r FAUSSE en régime r < √p [R196 PROUVÉ]. PRC (7/10) exploite lacunarité. Verrou Artin potentiellement contournable via LDS | 6/10 | 10/10 | R195-R196 |
 | **Filet 3 mailles** | Transport affine [T₂,T₁]=τ_{-1} (p≤97 ✅), contraction convolution (72 primes ✅), poissons fantômes (72 primes ✅). 168 primes, 0 échecs. Barrière densité heuristique E≤C·q³/2^q. À rendre rigoureuse | 6/10 | 9/10 | R195 |
-| **F_Z non-annulation analytique** | F_Z=4^m-9^m-17·6^{m-1}. Vérifié k≤10001. ⚠️ **ERREUR DE SIGNE MCE** (R196 RED TEAM) : n≡5 mod 16 (pas 11), récurrence à recalculer. Méthode MCE valide, constantes à corriger. 108 primes sûrs, F_Z ≢ 0 mod 5,7,13,29. Crible valuations croisées [R195-I4]. Baker à 4 termes = angle inexploré (suggestion RED TEAM) | 6/10 | 7/10 | R195-R196 |
+| **F_Z non-annulation analytique** | F_Z=4^m-9^m-17·6^{m-1}. Vérifié k≤10001. MCE CORRIGÉE (R198) : erreur signe COSMÉTIQUE, n≡341 mod 512 CONFIRMÉ. Récurrence corrigée n_r=(4^{r+2}-1)/3. Extensions : n≡1365 mod 2048, n≡5461 mod 8192. **Gap réduit à 0.0088%** des k. 7 k dangereux ÉLIMINÉS. Baker (DBA) = goulot 3-6 mois | 8/10 | 7/10 | R195-R198 |
 | **Bypass ×2-closure** | ×2-closure IRRÉPARABLE par shift (R195). Fraction coincée ~1/log₂3 ≈ 63%. Piste bidirectionnelle réduit à ~1/(M-1)². Besoin info structurelle Im(g) | 4/10 | 8/10 | R195 |
 | **|ρ_a| < 1 + framework opératoriel** | **R189-R191 INVENTÉ**. Dissipation stricte INCONDITIONNEL. Λ_free factorise. Gap 1.35x structurel. Opérateur Λ(s), transfert M^{(j)}. Problème = borner discrepancy g(B) mod d | 7/10 | 10/10 | R189-R191 |
 | **Dualité discrepancy/reachability** | **R192 META**. Monotonie AIDE reachability, NUIT discrepancy. Stratégie optimale : reachability (petits k) + spectral (moyens k) + comptage (grands k) | 9/10 | 8/10 | R192 |
@@ -1138,33 +1138,35 @@ R193    : **ARCHITECTURE 2-RANGES** — AMH prouve k=3,5,6,7,9. Evertse S-unit c
 R194    : **⚠️ CORRECTION FONDAMENTALE** — "Borel-Cantelli" n'existe PAS dans le preprint. C'est nonsurjectivité par pigeonhole (C < d). Recadrage sur Hypothèse (H) comme VRAI objectif. k=3..20 TOUS prouvés par pur raisonnement (arc + énumération + crible). 27/39 valeurs k∈[3,41] résolues théoriquement. RED TEAM valide la correction. 3 agents
 R195    : **CONJECTURE M + HYPOTHÈSE (H)** — 8 PROUVÉS, 5 CONDITIONNELS. ×2-closure IRRÉPARABLE par shift [PROUVÉ]. F_Z quotient n IMPAIR [PROUVÉ]. 5 outils inventés : CGT (7/10→5-6.5/10 R196), PCC (5/10), ODO (6/10), CCI (6/10), SBL (4/10). Filet 3 mailles : Aff(p) engendré [PROUVÉ], ρ_p=|ρ_a| [PROUVÉ], 17=k-1 [PROUVÉ]. MCE exclut 99.86% des k pour F_Z. Verrou central = Artin généralisé. 6 agents
 R196    : **LDS + RED TEAM AUDIT** — 10 PROUVÉS, 6 CONDITIONNELS. CGT deep : reformule gap 1.35x en permanents [PROUVÉ], |G(a)|≤√r FAUSSE [PROUVÉ]. **LDS (8/10)** : bypass Artin via d=2^S-3^k, k₀(p)≥c·q [PROUVÉ]. FCQ (7/10) : R(p,18)<1 [PROUVÉ]. RED TEAM : CGT=60% rebranding, erreur signe MCE détectée (n≡5 mod 16, pas 11). 3+3 agents
-R197    : **LDS EFFECTIF + BAKER F_Z** — c≥1/25 via FC de θ [PROUVÉ]. **ρ₅=1/4** exactement [PROUVÉ] → gap p=5 FERMÉ. **ord_p(2)≥3** pour tout p|d [PROUVÉ]. Architecture complète : transport(p≤97)+LDS(ord≥1025)+vérif finie(3≤ord<1025). DBA schéma Baker+MCE pour F_Z (8/10). RCA convergents finis. RED TEAM : c universel non garanti, recommande 100% calcul. 3 agents
+R197    : **LDS EFFECTIF + BAKER F_Z** — c≥1/25 via FC de θ [PROUVÉ]. **ρ₅=1/4** exactement [PROUVÉ] → gap p=5 FERMÉ. **ord_p(2)≥3** pour tout p|d [PROUVÉ]. DBA schéma Baker+MCE pour F_Z (8/10). RED TEAM : c universel non garanti, recommande 100% calcul. 3 agents
+R198    : **MCE CORRIGÉE + ARCHITECTURE + RED TEAM FINAL** — Erreur signe COSMÉTIQUE, n≡341 mod 512 CONFIRMÉ. Extensions mod 2048/8192 → **gap 0.0088%**. Architecture formalisée : 8 gaps (2 critiques). **CONFUSION CENTRALE** identifiée : ρ<1 ≠ N₀(p)=0. Architecture 4/10. Stratégie réaliste : k≤41 vérif finie, k≥42 arc+Hercher, F_Z Baker 3-6 mois. 3 agents
 ```
 
 ---
 
-## PROCHAINES ÉTAPES (R198+)
+## PROCHAINES ÉTAPES (R199+)
 
 ```
-PRIORITÉ 1 : CALCUL (RED TEAM R197 validée)
-  (a) Corriger MCE : n ≡ 5 mod 16 (pas 11), recalculer récurrence n_r
-  (b) Factoriser d(k) pour k = 18..41, vérifier chaque facteur premier
-  (c) Calculer R(p,18) pour les premiers facteurs de d(18)..d(100)
-  (d) Confirmer ρ₅ = 1/4 et R(5,18) ≈ 2.3×10⁻¹⁰
+⚠️ CONFUSION CENTRALE (R198 RED TEAM) : ρ_p < 1 ≠ N₀(p) = 0
+  Pour N₀(p) = 0 via CRT, il faut p > C(k) OU argument structurel spécifique
+  Pour k grand, C >> p pour tout p fixe → N₀(p) ≈ C/p >> 1
 
-PRIORITÉ 2 : FORMALISER ARCHITECTURE LDS
-  Transport (p ≤ 97) + LDS (ord ≥ 1025) + Vérif finie (3 ≤ ord < 1025)
-  c ≥ 1/25 prouvé pour q ≤ 15600. Explorer si FC de θ a QP bornés
-  Documenter la liste EXACTE des primes à vérifier
+STRATÉGIE RÉALISTE :
+  (A) k ≤ 17 : Preprint Section 8 (déjà fait)
+  (B) k = 18..41 : Vérif finie — factoriser d(k), chercher p | d avec p > C
+      OU montrer g_max < d (arc argument quand δ > 0.737)
+  (C) k ≥ 42 : Arc argument + Hercher/Barina (computational acceptance)
+  (D) F_Z : MCE (gap 0.0088%) + Baker effectif (DBA, 3-6 mois spécialisé)
 
-PRIORITÉ 3 : PROGRAMME DBA (BAKER SUR F_Z)
-  Baker-Wüstholz effectif sur F_Z = 4^m - 9^m - 17·6^{m-1}
-  Calculer m₀ explicite (type Bennett 2004)
-  Vérifier m ≤ m₀ computationnellement
+PRIORITÉ 1 : VÉRIFICATION k = 18..41
+  24 entiers d(k) à factoriser
+  Pour chaque k : arc argument SI δ > 0.737, sinon chercher p > C(k)
+  ~120 primes à vérifier
 
-PRIORITÉ 4 : CONVERGENTS log₂3 (RCA)
-  Les 0.14% résiduels MCE = convergents de θ
-  Vérification finie et explicite pour fermer gap F_Z
+PRIORITÉ 2 : BAKER EFFECTIF SUR F_Z
+  Baker-Wüstholz sur 4^m - 9^m - 17·6^{m-1} = 0
+  Calculer m₀ (probablement ~10^{10}, vérifiable)
+  Combiner avec MCE (n ≥ 5461 mod 8192)
 
 PUBLIER : preprint déjà sur GitHub (mars 2026)
   Stage I complet + Stage II conditionnel GRH
