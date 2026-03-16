@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 16 mars 2026 | **Rounds:** R1–R185 (185 rounds, 305 scripts, 12166+ auto-tests, 207 théorèmes)
+**Date:** 16 mars 2026 | **Rounds:** R1–R186 (186 rounds, 305 scripts, 12166+ auto-tests, 219 théorèmes)
 
 ---
 
@@ -92,13 +92,12 @@
 | **Premier Résistant Universel** | Type B dominant 97%. **AUDIT R178** : C1 (ord>S⟹résistant) VIOLÉE (5 c.-ex.), C3 (∃ high-ord prime) VIOLÉE (5 c.-ex.). Mécanisme MIXTE : résistance d'arc + anti-corrélation. g(v)≡0 mod d JAMAIS observé (110 cas S≤22). Piste vivante mais arc seul INSUFFISANT | 3/10 | 9/10 | R175-R178 |
 | **Réduction Somme Cyclique** | Quand 3 ∈ ⟨2⟩ dans F_p* : g(v) = Σ 2^{f_j} avec f_j suite arith. perturbée. Heuristique E~2^{-0.073x}→0 FAVORABLE. Mais EGZ/Davenport vont dans le mauvais sens (existence, pas non-existence). Espoir=contrainte structurelle. CONNECTE à PO-R87 (même mur) | 3/10 | 9/10 | R176 |
 | **Descente 2-adique** | **R178-R181** : T195-T198 (récurrence, équivalence, Collatz compressée). Contradiction 9/5 INVALIDÉE (R181). Sommes expo : delta~0.15-0.35, Condition Q NON PROUVÉE. **R182** : annulation GENERIQUE (pas spécifique (2,3)), voie analytique pure = cul-de-sac probable | 2/10 | 10/10 | R178-R182 |
-| **N(k,S) < d (formule exacte)** | **PRIORITAIRE R185 RED TEAM**. N(k,S) = nombre de partitions de S-k en k parts bornées par S-1 et ordonnées. Si N(k,S) < d prouvable pour tout k≥3, argument de comptage suffit. Nécessite formule analytique, pas calcul | 7/10 | 10/10 | R185 |
-| **Fibres modulaires (E6')** | **NOUVEAU R185 A4**. Pour chaque p\|d, décomposer j selon B_j mod ord_p(2). Couplage entre prismes (pgcd d'ordres non-triviaux). Concrétisation testable de l'anti-corrélation CRT | 6/10 | 9/10 | R185 |
-| **Compression spectrale** | **PROUVÉ R185 A2**. Périodicité de w réduit dim k → r=ord_p(3). Spectre Dirac. Relation ORD : s/gcd(S,s)=r/gcd(k,r). Cône monotone exponentiellement étroit dans l'espace comprimé | 5/10 | 9/10 | R185 |
-| **CRT anti-corrélation** | **DÉGRADÉE R185**. 6 tentatives de preuve échouent. Verrou = sommes expo sur partitions (problème ouvert TAN). Mécanisme plausible mais passage qualitatif→quantitatif est le gouffre | 4/10 | 10/10 | R35,R182-R185 |
-| **Noyau impair h(v)** | **R182-R184**. h(v)=g(v)/2^{B_0} impair. 2^{B_0} transparent mod d [PROUVÉ]. Récurrences D+/D- [PROUVÉ]. Polynôme creux P_v(X) non exploité | 5/10 | 9/10 | R182-R184 |
-| **Itération Horner dans Z/dZ** | **R185 A1**. g(v) = itération affine z→3z+2^{B_j}. Rigidité : mêmes B_j dans tous les F_p. Cadre unifié mais = reformulation | 5/10 | 8/10 | R185 |
-| **Reports rares** | **NOUVEAU R185 A4**. Quand écarts B_j-B_{j-1}≥2, pseudo-indépendance des chiffres de g(v). Ne couvre pas les vecteurs compacts | 5/10 | 7/10 | R185 |
+| **Dualité poids × lettres (Horner)** | **NOUVEAU R186 A3**. Automate Horner 12 résultats PROUVÉS. Dualité : compression par ord_p(3) (poids, R185) × ord_p(2) (lettres, R186). Cosets imposés z_1∈⟨2⟩, z_{k-1}∈-3^{-1}⟨2⟩. Non testée combinée | 6/10 | 9/10 | R186 |
+| **Cône monotone dans F_p^r** | **R185-R186 A2**. Image Σ évite l'hyperplan ker(F) ? Compression = aliasing standard (RED TEAM), mais structure géométrique du cône reste exploitable | 5/10 | 9/10 | R185-R186 |
+| **Fibres modulaires (E6')** | **R185 A4**. Replie par B_j mod s (≠ compression A2 par j mod r). Non exploitée | 5/10 | 9/10 | R185 |
+| **N(k,S) = p(S-k), espérance → 0** | **R186 T1-T2**. N(k,S)=p(S-k) [PROUVÉ]. Espérance collisions → 0 (PAS → ∞ comme R184-T2 affirmait). MAIS N<d ne suffit pas (fantôme k=2) | 4/10 | 7/10 | R185-R186 |
+| **CRT anti-corrélation** | **DÉGRADÉE R185**. 6 tentatives échouent. Verrou = sommes expo sur partitions (ouvert TAN) | 4/10 | 10/10 | R35,R182-R185 |
+| **Noyau impair h(v)** | **R182-R184**. h(v)=g(v)/2^{B_0} impair. 2^{B_0} transparent mod d [PROUVÉ]. Polynôme creux P_v(X) non exploité | 5/10 | 9/10 | R182-R184 |
 | **Dénominateur commun entre familles de k** | **NOUVEAU R182**. Quantité universelle reliant tous les d(k) ? | 5/10 | 10/10 | R182 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
@@ -107,7 +106,11 @@
 |-------|-----------------|:-----:|
 | **Produit scalaire périodique-monotone** | REBRANDING R185 RED TEAM : ⟨w,u⟩=0 est g(v)≡0 mod p réécrit en notation vectorielle après factorisation élémentaire. Zéro contenu nouveau | R184-R185 |
 | **Équation en représentations (T6)** | TRIVIALE R185 RED TEAM : n·3^k+g(v)=n·2^S est juste g(v)=n·(2^S-3^k)=n·d réécrit. Zéro contenu | R184-R185 |
-| **Argument combinatoire simplexe (voie probabiliste)** | FERMÉE R184-R185 : espérance collisions ~2^{0.507k}→∞ (T2). Aucun argument de densité/probabiliste ne suffit | R182-R185 |
+| **Argument combinatoire simplexe (voie probabiliste)** | FERMÉE R184-R186 : R184-T2 (espérance→∞) FAUX mais N(k,S)<d ne suffit pas non plus (fantôme k=2). Espérance→0 favorable mais pas une preuve | R182-R186 |
+| **Géométrie des nombres / réseaux** | FERMÉE R186 A4 : 6 approches testées, toutes échouent. Mismatch additif/multiplicatif irréductible : aucun système de coordonnées ne satisfait linéarité+intégrité+convexité simultanément | R186 |
+| **Compression spectrale pure** | FERMÉE R186 RED TEAM : aliasing standard, ne change pas la probabilité heuristique 1/p. Spectre Dirac = tautologie. Reformulation sans gain quantitatif | R185-R186 |
+| **Itération Horner seule** | ABSORBÉE par Dualité poids×lettres (R186 A3). La reformulation z→3z+2^{B_j} est standard (Böhm-Sontacchi) | R185-R186 |
+| **Reports rares seuls** | PARTIELLE : ne couvre pas les vecteurs compacts (régime dangereux) | R185 |
 | **Anneau Quotient Z[α,β]/(α^S-β^x)** | REBRANDING : g(v)≠0 dans R trivial mais ne contrôle PAS g mod d. Spécialisation (2,3) perd toute info. Résultant/norme se ramènent à mod p. Fossé formel-arithmétique insurmontable sans spécificité de (2,3) | R174 |
 | **Transient Zero** | Doubly stochastic → TZ n'affecte pas π(0)=1/p | R1 |
 | **Without-Replacement** | Effet réel mais mixte (11/16 aide, 5/16 nuit), TV < 0.003 pour k≥10 | R2 |
