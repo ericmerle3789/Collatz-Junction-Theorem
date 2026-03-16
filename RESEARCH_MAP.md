@@ -1140,36 +1140,51 @@ R195    : **CONJECTURE M + HYPOTHÈSE (H)** — 8 PROUVÉS, 5 CONDITIONNELS. ×2
 R196    : **LDS + RED TEAM AUDIT** — 10 PROUVÉS, 6 CONDITIONNELS. CGT deep : reformule gap 1.35x en permanents [PROUVÉ], |G(a)|≤√r FAUSSE [PROUVÉ]. **LDS (8/10)** : bypass Artin via d=2^S-3^k, k₀(p)≥c·q [PROUVÉ]. FCQ (7/10) : R(p,18)<1 [PROUVÉ]. RED TEAM : CGT=60% rebranding, erreur signe MCE détectée (n≡5 mod 16, pas 11). 3+3 agents
 R197    : **LDS EFFECTIF + BAKER F_Z** — c≥1/25 via FC de θ [PROUVÉ]. **ρ₅=1/4** exactement [PROUVÉ] → gap p=5 FERMÉ. **ord_p(2)≥3** pour tout p|d [PROUVÉ]. DBA schéma Baker+MCE pour F_Z (8/10). RED TEAM : c universel non garanti, recommande 100% calcul. 3 agents
 R198    : **MCE CORRIGÉE + ARCHITECTURE + RED TEAM FINAL** — Erreur signe COSMÉTIQUE, n≡341 mod 512 CONFIRMÉ. Extensions mod 2048/8192 → **gap 0.0088%**. Architecture formalisée : 8 gaps (2 critiques). **CONFUSION CENTRALE** identifiée : ρ<1 ≠ N₀(p)=0. Architecture 4/10. Stratégie réaliste : k≤41 vérif finie, k≥42 arc+Hercher, F_Z Baker 3-6 mois. 3 agents
+R199    : **VÉRIFICATION FINIE + CORRECTION ARC + RED TEAM DÉVASTATEUR** — k=18..41 TOUS résolus (6 arc + 18 g_max/d+Barina). **CRT STRUCTURELLEMENT BLOQUÉE** : aucun p|d(k) ne dépasse C(k) pour k≥18. **CORRECTION SEUIL ARC** : δ < log₂(4/3) ≈ 0.415 (couverture 41.5%, PAS 74%). Extension à k≤111. MCE 10/10 CONFIRMÉE (seul résultat solide). Architecture dégradée 3/10. Preuve inconditionnelle <2%. Seule piste : Baker sur F_Z. 3 agents
 ```
 
 ---
 
-## PROCHAINES ÉTAPES (R199+)
+## PROCHAINES ÉTAPES (R200+)
 
 ```
-⚠️ CONFUSION CENTRALE (R198 RED TEAM) : ρ_p < 1 ≠ N₀(p) = 0
-  Pour N₀(p) = 0 via CRT, il faut p > C(k) OU argument structurel spécifique
-  Pour k grand, C >> p pour tout p fixe → N₀(p) ≈ C/p >> 1
+⚠️ IMPASSE STRUCTURELLE (R199 RED TEAM) :
+  CRT strategy MORTE pour k ≥ 18 : aucun p|d(k) ne dépasse C(k)
+  Le ratio p_max/C(k) DÉCROÎT avec k (tendance structurelle, pas accident)
+  ρ_p < 1 donne N₀(p) ~ C/p >> 0 quand p < C → CRT INAPPLICABLE
 
-STRATÉGIE RÉALISTE :
-  (A) k ≤ 17 : Preprint Section 8 (déjà fait)
-  (B) k = 18..41 : Vérif finie — factoriser d(k), chercher p | d avec p > C
-      OU montrer g_max < d (arc argument quand δ > 0.737)
-  (C) k ≥ 42 : Arc argument + Hercher/Barina (computational acceptance)
-  (D) F_Z : MCE (gap 0.0088%) + Baker effectif (DBA, 3-6 mois spécialisé)
+⚠️ CORRECTION ARC (R199-A2) :
+  Seuil correct : δ < log₂(4/3) ≈ 0.415 (PAS δ > log₂(5/3) ≈ 0.737)
+  Couverture réelle : ~41.5% des k (PAS ~74%)
 
-PRIORITÉ 1 : VÉRIFICATION k = 18..41
-  24 entiers d(k) à factoriser
-  Pour chaque k : arc argument SI δ > 0.737, sinon chercher p > C(k)
-  ~120 primes à vérifier
+ÉTAT RÉSOLU :
+  k ≤ 17 : Preprint Section 8
+  k = 18..41 : 6 arc + 18 g_max/d+Barina [R199-A1]
+  k = 42..111 : arc + g_max/d+Barina (extension R199)
+  k = 112..186 : Hercher (2023)
+  Résultat GRH-conditionnel : complet dans le preprint
 
-PRIORITÉ 2 : BAKER EFFECTIF SUR F_Z
+ÉTAT OUVERT :
+  k ≥ 187, δ ≥ 0.415 : ~58.5% des k, ni arc ni Hercher
+    → Nécessite Baker effectif (K₀ dépend de C') OU idée nouvelle
+  F_Z : MCE (gap 0.0088%) + Baker effectif non encore réalisé
+
+SEULE PISTE VIABLE : BAKER EFFECTIF SUR F_Z
   Baker-Wüstholz sur 4^m - 9^m - 17·6^{m-1} = 0
   Calculer m₀ (probablement ~10^{10}, vérifiable)
   Combiner avec MCE (n ≥ 5461 mod 8192)
+  Estimation : 3-6 mois de travail spécialisé
+
+PIVOT NÉCESSAIRE POUR PREUVE INCONDITIONNELLE :
+  Option 1 : N₀(p) = 0 SANS p > C (cancellation exacte dans Σ_t T(t))
+  Option 2 : Travailler mod d directement (nécessite ord_d(2) > C → GRH)
+  Option 3 : Accepter GRH (théorème principal déjà prouvé)
+  Option 4 : Crible asymptotique (d a un facteur premier à grand ordre)
+  Probabilité succès inconditionnel : <2% (R199 RED TEAM)
 
 PUBLIER : preprint déjà sur GitHub (mars 2026)
   Stage I complet + Stage II conditionnel GRH
+  MCE publiable en standalone (résultat le plus solide)
 
 RECHERCHE PURE BLOC 3 VIA F_p : SUSPENDUE (R141 — recalage stratégique)
   Conditions de relance (toutes requises) :
