@@ -1,378 +1,426 @@
-# R196 -- RED TEAM AUDIT CROISE de R195
+# R196 -- RED TEAM AUDIT (Agent A3 -- SPARRING PARTNER)
 **Date :** 16 mars 2026
-**Role :** Red Team / Sparring Partner
-**Mode :** Audit de solidite, contre-exemples, evaluation de nouveaute, recommandations
+**Role :** Agent A3, RED TEAM -- Maximum Skepticism
+**Mode :** Attaque systematique de CHAQUE claim R195
 **Fichiers audites :** R195_innovator_conjecture_M.md, R195_innovator_hypothesis_H.md, R195_deep_why_hypothesis_H.md, R195_deep_why_conjecture_M.md, R195_filet_3_mailles.md, R195_FZ_investigation.md, BILAN_R195.md
 
 ---
 
 ## RESUME EXECUTIF
 
-R195 a produit un volume impressionnant (6 fichiers, 5 outils inventes, 8+ resultats prouves). L'audit croise revele que **la moitie des resultats prouves sont ATTENDUS ou TRIVIAUX**, que la CGT est un **rebranding partiel de Lambda_free**, et que la convergence vers le verrou Artin est a la fois une **force** (coherence diagnostique) et un **danger** (risque de cul-de-sac). Neanmoins, la MCE (Methode des Congruences Empilees) d'A2-Hypothese H est un **resultat authentiquement nouveau** qui merite d'etre consolide, et la caracterisation p | d(k) <=> 3^k in <2> d'A3 est un outil **propre et utile**.
+R195 pretend 8 PROUVES, 5 CONDITIONNELS, et 5 outils inventes (CGT, PCC, ODO, CCI, SBL). Apres audit a maximum skepticisme, le bilan reel est :
+
+- **2 resultats SUBSTANTIELLEMENT nouveaux** : la MCE (Methode des Congruences Empilees) et le crible modulaire F_Z
+- **3 resultats de COHERENCE** (vrais mais attendus ou reformulations)
+- **3 resultats TRIVIAUX ou VACUEUX**
+- **3 outils REBRANDINGS** partiels de R191
+- **2 outils SPECULATIFS** sans contenu prouve
+
+Le "verrou central" identifie (Artin-type equidistribution) est un DANGER STRATEGIQUE : sa formulation est correcte mais risque de paralyser le projet. Le front F_Z est le seul ou le projet avance concretement. Le front Conjecture M stagne depuis R191.
+
+**Verdict global R195 : 5.5/10 -- Round de clarification avec UNE percee reelle (MCE), dilue dans du rebranding et de l'inflation.**
 
 ---
 
-## TEST 1 : La CGT est-elle du rebranding de Lambda_free ?
+## AUDIT 1 : La CGT (Cascade Geometrique Tordue) est-elle du REBRANDING ?
 
-### Analyse
+### Claim R195
+La CGT "factorise T(t) via Horner dans un produit de sommes geometriques partielles" avec un "decalage multiplicatif en cascade par v = 3^{-1}".
 
-Comparons les deux objets :
+### Attaque
 
-**R191 (Lambda_free) :**
-- Lambda_free(s) = [q^n] PROD_{j=0}^{k-1} phi_j(s, q)
-- phi_j(s, q) = SUM_{b >= 0} omega^{beta_j * 2^b} * q^b
-- Phi_j(s, q) = SUM_{m=0}^{s-1} omega^{beta_j * 2^m} * q^m (polynome periodise)
-- beta_j = s * alpha * 3^{k-1-j} mod d
-- omega = e^{2*pi*i/d}
+L'Innovateur SE DEMENT LUI-MEME. Citations textuelles :
 
-**R195 (CGT) :**
-- T(t) = [q^S] PROD_{j=0}^{k-1} psi_j(t, q)
-- psi_j(t, q) = SUM_{b >= 0} e(t * 3^{k-1-j} * 2^b / p) * q^b
-- Psi_j(t, q) = SUM_{m=0}^{s_p-1} e(t * 3^{k-1-j} * 2^m / p) * q^m
-- travaille modulo p premier (p | d) au lieu de d
+- R195_innovator_conjecture_M.md, ligne 87 : *"C'est EXACTEMENT la factorisation R191-T1, appliquee avec p au lieu de d."*
+- Ligne 172 : *"La preuve est identique a R191-T1, remplacant d par p et alpha par t/p."*
 
-### Verdict : REBRANDING PARTIEL (60%)
+Que reste-t-il apres avoir retire le contenu R191 ? Trois elements :
 
-Les deux constructions sont **STRUCTURELLEMENT IDENTIQUES** : factorisation de Cauchy d'un produit de sommes geometriques tordues. L'Innovateur le reconnait lui-meme (R195_innovator_conjecture_M.md, ligne 87 : "C'est EXACTEMENT la factorisation R191-T1, appliquee avec p au lieu de d", ligne 172 : "La preuve est identique a R191-T1, remplacant d par p").
+1. **Le changement d -> p** : passer d'un module compose (d) a un module premier (p | d). C'est un raffinement technique STANDARD (factoriser par CRT). Score nouveaute : 1/10.
 
-Ce qui est NOUVEAU dans la CGT :
-1. **Changement de module :** d -> p premier. Cela ouvre l'acces aux outils de corps finis (Weil, BKT). C'est une contribution reelle mais INCREMENTALE.
-2. **Decalage par v = 3^{-1} :** L'observation que les Psi_j sont decales multiplicativement par 3^{-1} est explicite dans la CGT (etape 3). Dans R191, c'est IMPLICITE (beta_j/beta_{j+1} = 3, WHY 4 de R191).
-3. **Borne de decoherence par produit :** La CGT propose PROD eta_j <= (1-c/s_p)^k <= exp(-ck/s_p). C'est une PREDICTION mais elle est CONDITIONNELLE et non prouvee.
+2. **L'observation du decalage par v = 3^{-1}** : que Psi_j et Psi_{j+1} sont lies par multiplication par 3^{-1} dans l'argument du caractere additif. MAIS cela est IMPLICITE dans R191 : les beta_j = s * alpha * 3^{k-1-j} satisfont beta_j / beta_{j+1} = 3. L'Innovateur R195 rend explicite ce qui etait deja present. Score nouveaute : 2/10.
 
-**Impact sur le score :** Le score de 7/10 pour la CGT est SUREVALUE. Le contenu prouve (R195-T1, R195-T2) est du R191 traduit. Le contenu nouveau (borne conditionnnelle R195-C1) est une CONJECTURE. Score ajuste : **5/10** (3/10 pour nouveaute, 7/10 pour utilite potentielle si H1+H2 sont prouvees).
+3. **La borne de decoherence PROD eta_j <= (1-c/s_p)^k** : c'est le SEUL contenu potentiellement nouveau. MAIS il est CONDITIONNEL sur deux hypotheses non prouvees (H1 : ord_p(3) >= k, H2 : eta_j <= 1 - c/s_p). La justification invoquee est "par analogie Gauss" avec "c ~ 1/10 estimee". C'est une CONJECTURE HABILEE en "Theoreme Conditionnel". Score nouveaute : 3/10 pour l'idee, 0/10 pour le resultat prouve.
 
----
+### Test definitif
+Supprimer la CGT de R195 et garder seulement "R191 applique a p au lieu de d". Le contenu prouve restant est IDENTIQUE (R195-T1 = R191-T1 traduit, R195-T2 = R191-T2 traduit). La seule perte est la borne conditionnelle non prouvee.
 
-## TEST 2 : Le "quotient n IMPAIR" (R195-L1 de A1) est-il utile ?
+### VERDICT : REBRANDING MAJEUR (70%)
 
-### Analyse
+**Score CGT ajuste : 3/10** pour la nouveaute (l'idee d'exploiter le decalage 3^{-1} pour une borne produit est interessante mais non realisee). Le score de 7/10 attribue par R195 est INJUSTIFIE.
 
-Le resultat : si d | F_Z, alors n = |F_Z|/d est impair.
-
-**Preuve :** |F_Z| = 9^m + 17*6^{m-1} - 4^m. RHS est impair (9^m impair + termes pairs). d = 2^S - 3^k est impair (pair - impair). Donc n = impair/impair doit etre impair. CQFD.
-
-L'utilite pretendue : "reduit l'espace des n possibles d'un facteur 2".
-
-### Verdict : TRIVIAL avec impact NEGLIGEABLE
-
-1. **Reduire d'un facteur 2** l'espace des n est quasiment sans effet. L'espace des n potentiels va de 1 a |F_Z|/d ~ 1/(3*(2^alpha - 1)), qui peut etre > 10^7 pour les pires k. Eliminer les n pairs ne change rien qualitativement.
-
-2. **L'argument mod 8 du preprint fait DEJA mieux.** Le preprint exclut n in {1,2,3,4} par analyse mod 8. La parite (n impair) est CONTENUE dans ce resultat (car parmi {1,2,3,4}, les pairs {2,4} sont deja exclus).
-
-3. **La VRAIE avancee sur n est la MCE** (Methode des Congruences Empilees, R195-T4/T10 d'A2-Hypothese H). La MCE prouve n = 11 mod 16 puis n = (32*4^r+1)/3 mod 2^{2r+4}, ce qui donne n >= 11 puis n >= 43, 171, 683, ... C'est INCOMPARABLEMENT plus fort que "n impair".
-
-**Impact sur le score :** R195-L1 (n impair) est un resultat de VERIFICATION DE COHERENCE, pas une avancee. Score : 2/10 pour impact.
-
-Cependant, la MCE d'A2 qui ETEND ce raisonnement est un resultat de HAUTE QUALITE (score 9/10 maintenu).
+### Test qui trancherait
+Prouver (ou refuter) H2 : eta_j <= 1 - c/s_p pour une constante c > 0 explicite. Si H2 est prouvee, la CGT deviendrait un outil reel (score 7/10). Si H2 est refutee, la CGT est morte.
 
 ---
 
-## TEST 3 : L'unification rho_p = |rho_a| est-elle triviale ?
+## AUDIT 2 : Le "quotient n necessairement IMPAIR" (R195-L1) est-il UTILE ?
 
-### Analyse
+### Claim R195
+Si d | F_Z, alors n = |F_Z|/d est impair. Presente comme un des "4 resultats prouves" de A1.
 
-A3 (filet 3 mailles, Investigation 2) affirme : rho_p (rayon spectral de la contraction dans le filet) = |rho_a| (dissipation de R191).
+### Attaque
 
-Examinons les definitions :
-- **rho_a de R191 :** rho_a(d) = (1/s) * SUM_{m=0}^{s-1} omega_d^{a*2^m} ou s = ord_d(2), omega_d = e^{2*pi*i/d}
-- **rho_p du filet :** rho_p = max_{a != 0} |rho_a(p)| ou rho_a(p) = (1/s_p) * SUM_{c in <2> mod p} omega_p^{a*c}
+**La preuve tient en UNE LIGNE :**
+- F_Z = 4^m - 9^m - 17*6^{m-1}. Pour m >= 2, le terme 9^m est impair, les termes 4^m et 17*6^{m-1} sont pairs. Donc |F_Z| est impair. d = 2^S - 3^k est impair. Donc n = |F_Z|/d est impair/impair = necessairement impair (un impair ne peut etre divise que par un impair). CQFD.
 
-### Verdict : ATTENDU (coherence, pas decouverte)
+**L'utilite est NEGLIGEABLE :**
 
-C'est le **MEME objet mathematique** evalue sur des modules differents (d vs p | d). La formule est identique :
-- R191 : rho_a(d) = (1/s) SUM omega_d^{a*2^m}
-- Filet : rho_a(p) = (1/s_p) SUM omega_p^{a*2^m}
+1. L'espace des n potentiels va de 1 a |F_Z|/d, qui peut atteindre ~10^7 pour les pires convergents. Eliminer les n pairs reduit l'espace d'un facteur 2. Passer de ~5*10^6 candidats a ~2.5*10^6 candidats ne change rien qualitativement.
 
-L'unification est une **consequence directe** du fait que le filet 3 mailles UTILISE le framework operatoriel de R191 applique a p | d au lieu de d. Ce n'est pas une coincidence numerique -- c'est la meme definition dans deux contextes.
+2. Le preprint FAIT DEJA MIEUX : l'analyse mod 8 (Remark 9.17) exclut n in {1,2,3,4}. La parite (n impair) est CONTENUE dans ce resultat (les n pairs 2 et 4 sont deja exclus par mod 8).
 
-**Ce qui serait non-trivial :** montrer que max_{a} |rho_a(p)| < max_{a} |rho_a(d)| (la factorisation par premiers AMELIORE la dissipation). Cela reviendrait a prouver que la contraction est plus forte quand on regarde modulo les facteurs premiers de d. A3 ne prouve PAS cela.
+3. La MCE de R195-A2 ECRASE ce resultat : n = 11 mod 16, puis n >= 341 (mod 512). L'impairete de n est un SOUS-CAS trivial de n = 11 mod 16.
 
-**Impact sur le score :** Resultat de COHERENCE INTERNE (attendu). Score : 3/10 pour impact (utile comme verification, pas comme decouverte).
+### VERDICT : TRIVIAL ET SUBSUME
 
----
+**Score : 1/10 pour l'utilite.** Ne devrait pas figurer dans la liste des "resultats prouves" de R195. C'est un exercice de verification, pas un resultat de recherche.
 
-## TEST 4 : Le verrou "Artin generalise" est-il un CUL-DE-SAC ?
-
-### Analyse
-
-Les 3 agents convergent vers le meme diagnostic : le verrou est l'equidistribution des puissances dans les sous-groupes multiplicatifs, un probleme de type Artin generalise.
-
-**Arguments POUR le cul-de-sac :**
-
-1. **Artin est ouvert depuis 1927 (99 ans).** Si le verrou EST veritablement Artin, personne au monde ne peut le resoudre inconditionnellement.
-
-2. **GRH est l'outil standard.** Hooley (1967) resout Artin sous GRH. Le preprint utilise deja GRH. Dire "le verrou est Artin" revient a dire "on a besoin de GRH", ce qui est l'etat du preprint AVANT R195.
-
-3. **Risque de circularite diagnostique :** 3 agents arrivent au meme verrou parce qu'ils utilisent les MEMES idees (factorisation par premiers, orbites de <2>, equidistribution). La convergence peut refleter un BIAIS METHODOLOGIQUE, pas une verite profonde.
-
-**Arguments CONTRE le cul-de-sac :**
-
-1. **Le probleme n'est PAS exactement Artin.** La conjecture d'Artin demande que 2 soit racine primitive pour une infinite de premiers (ord_p(2) = p-1 pour une proportion positive de p). Le verrou du filet est PLUS FAIBLE : on a besoin que ord_p(2) soit "assez grand" (pas necessairement p-1) OU que l'orbite soit "assez disjoint" du range de 3^k. La complementarite maille 2/maille 3 montre que les deux conditions se completent.
-
-2. **Le crible de complementarite** (A3, angle nouveau) CONTOURNE potentiellement Artin. Si R(p) = rho^{17} * densite < 0.041 peut etre prouve par une borne sur le PRODUIT plutot que sur chaque facteur, on n'a pas besoin d'Artin.
-
-3. **La MCE** (A2-Hyp H) contourne Artin pour le cas F_Z : elle prouve la non-divisibilite sans hypothese sur ord_d(2).
-
-### Verdict : DANGER REEL mais PAS un cul-de-sac CERTAIN
-
-Les agents n'ont PAS prouve que le verrou est exactement Artin. Ils ont montre que le verrou RESSEMBLE a Artin. La nuance est cruciale :
-- Si c'est Artin exact : cul-de-sac.
-- Si c'est un probleme PLUS FAIBLE qui ressemble a Artin : il y a de l'espoir.
-
-Le crible de complementarite et la MCE montrent que des CONTOURNEMENTS existent pour certaines composantes du probleme. Le danger est que les agents s'ARRETENT au diagnostic "c'est Artin" sans chercher ces contournements.
-
-**Recommandation :** NE PAS accepter "c'est Artin" comme conclusion finale. Chercher systematiquement les DIFFERENCES entre le verrou reel et la conjecture d'Artin. Chaque difference est une prise potentielle.
+### Test qui trancherait
+Montrer un contexte ou "n impair" donne une information non contenue dans la MCE. Impossible : la MCE donne n mod 2^{2r+4} pour r arbitraire, ce qui contient n mod 2 comme cas r = -1.
 
 ---
 
-## TEST 5 : La complementarite maille 2 / maille 3 est-elle prouvable ?
+## AUDIT 3 : L'unification rho_p = |rho_a| est-elle TRIVIALE ?
 
-### Analyse
+### Claim R195
+A3 (Filet 3 Mailles, Investigation 2) affirme rho_p (rayon spectral de la contraction) = |rho_a| de R191-T2. Presente comme un "resultat prouve".
 
-A3 enonce : ord_p(2) grand -> contraction (maille 2) ; ord_p(2) petit -> p grand -> fantome (maille 3).
+### Attaque
 
-**Ce qui est PROUVE :**
+Comparons les deux definitions :
+- **R191 (Lambda_free) :** rho_a(d) = (1/s) * SUM_{m=0}^{s-1} omega_d^{a * 2^m}, ou s = ord_d(2), omega_d = e^{2*pi*i/d}
+- **Filet :** rho_a(p) = (1/s_p) * SUM_{m=0}^{s_p-1} omega_p^{a * 2^m}, ou s_p = ord_p(2), omega_p = e^{2*pi*i/p}
 
-1. Si ord_p(2) = s est grand et p est borne, la contraction donne (p-1)*rho_p^{17} < 0.041. C'est RIGOUREUX (R191-T2 + calcul).
+C'est LA MEME FORMULE avec d remplace par p. L'"unification" revient a dire : "si on applique la meme formule a des modules differents, on obtient la meme formule". C'est une TAUTOLOGIE NOTATIONNELLE.
 
-2. Pour les nombres de Mersenne M_q = 2^q - 1 : ord_{M_q}(2) = q, et la densite de hits est O(q^3/2^q) qui tend vers 0 super-exponentiellement. C'est RIGOUREUX.
+**Ce qui serait non-trivial (et n'est PAS prouve) :**
+- Montrer que max_a |rho_a(p)| < max_a |rho_a(d)| pour tout p | d (la factorisation ameliore la dissipation)
+- Montrer une relation QUANTITATIVE entre rho_a(d) et les rho_a(p_i) pour les facteurs premiers de d
+- Prouver que le produit des contractions individuelles par facteur premier donne une contraction globale plus forte
 
-**Ce qui N'EST PAS prouve :**
+Aucun de ces resultats n'est dans R195.
 
-3. Le GAP INTERMEDIAIRE : si p est un premier "ordinaire" avec ord_p(2) ni tres grand ni tres petit, par exemple ord_p(2) ~ p^{1/2}. Alors :
-   - Contraction : (p-1) * rho_p^{17}. Avec rho_p ~ 1/sqrt(s) ~ p^{-1/4} (heuristique), on obtient p * p^{-17/4} = p^{-13/4}. Pour p >= 3, c'est << 0.041. OK.
-   - Mais la borne rho_p ~ 1/sqrt(s) est HEURISTIQUE. La borne rigoureuse (Weil/BKT) donne rho_p <= 2*sqrt(p)/s + 1/s. Pour s ~ sqrt(p), cela donne rho_p <= 2*sqrt(p)/sqrt(p) + 1/sqrt(p) = 2 + o(1). C'est INUTILE (rho > 1 !).
+### VERDICT : TRIVIAL (changement de notation)
 
-**Le vrai probleme :** La borne rigoureuse sur rho_p est trop faible dans le regime intermediaire. L'heuristique rho_p ~ 1/sqrt(s) est plausible mais non prouvee. Sans cette borne, la complementarite a un GAP dans le regime s ~ p^{1/3} a p^{2/3}.
+**Score : 2/10.** Utile comme verification de coherence interne, pas comme resultat mathematique. Le fait que le BILAN R195 le presente au meme niveau que la MCE est un probleme de CALIBRATION.
 
-### Verdict : PROUVEE HEURISTIQUEMENT, pas rigoureusement
-
-La complementarite est observee (168/168 primes testes). Elle est prouvee aux deux extremes (s grand, s petit). Mais le regime intermediaire repose sur des bornes heuristiques pour rho_p.
-
-**Contre-exemple potentiel :** Un premier p avec ord_p(2) = s ~ p^{0.4} et rho_p inhabituellement grand (concentre sur un coset). Pas observe, mais pas exclu theoriquement.
-
-**Impact :** Le filet 3 mailles reste a 6/10 comme score. La complementarite est le COEUR de l'argument, et son statut heuristique est le goulot d'etranglement.
-
----
-
-## TEST 6 : Classification des "resultats prouves" de R195
-
-### Inventaire et classification
-
-| # | Resultat | Classification | Justification |
-|---|----------|---------------|---------------|
-| 1 | x2-closure IRREPARABLE par shift | **SUBSTANTIEL** | Non-trivial, ferme definitivement une piste combinatoire. La fraction 1/log_2(3) est un invariant structurel identifie |
-| 2 | Si d \| F_Z, quotient n IMPAIR | **TRIVIAL** | Consequence immediate de la parite des termes de F_Z et de d. Calcul d'une ligne |
-| 3 | 17 = k-1 dans la contraction | **ATTENDU** | Le seuil k=18 du Junction Theorem definit k-1=17 par construction. L'explication est la definition elle-meme |
-| 4 | rho_p = \|rho_a\| de R191 | **ATTENDU** | Meme formule appliquee a p au lieu de d. Coherence interne, pas decouverte |
-| 5 | Contraction monotone en k | **ATTENDU** | rho_p < 1 (R191-T2 prouve). Donc rho_p^{k'} < rho_p^{k} pour k' > k. C'est la definition de "< 1" |
-| 6 | Aff(p) engendre par T_2, T_1 | **SUBSTANTIEL** | Resultat algebrique non-trivial. La transitivite de Aff(p) est une consequence du fait que sigma = (p+1)/2 engendre Z/pZ (car gcd((p+1)/2, p) = 1). Proprement argumente |
-| 7 | p \| d(k) <=> 3^k in <2> | **SUBSTANTIEL** | Reformulation propre qui clarifie la structure et ouvre le lien avec Artin. Simple a verifier mais pas evident a priori |
-| 8 | CGT factorisation (R195-T1) | **ATTENDU** | = R191-T1 avec p au lieu de d. L'Innovateur le dit explicitement |
-| 9 | PCC identites (T3-T6) | **ATTENDU** | Identites de Parseval standard et Cauchy-Schwarz. Bien presentees mais sans surprise |
-| 10 | MCE n = 11 mod 16 (R195-T4, A2-H) | **SUBSTANTIEL** | Extension NON-TRIVIALE de l'argument mod 8 du preprint. Calcul propre et verifie |
-| 11 | MCE recurrence n_r = (32*4^r+1)/3 (R195-T10, A2-H) | **SUBSTANTIEL** | Resultat le plus fort de R195. Recurrence prouvee, verifiee, avec consequences quantitatives reelles |
-| 12 | F_Z crible modulaire : 108 premiers surs (A3-FZ) | **SUBSTANTIEL** | Travail de classification solide. Utile operationnellement |
-| 13 | F_Z analyse 2-adique : n = 341 mod 512 (A3-FZ) | **SUBSTANTIEL** | Extension systematique donnant couverture 99.86% des k. Fort |
-| 14 | F_Z couplage-incompatible : 25 premiers (A3-FZ) | **SUBSTANTIEL** | Concept nouveau (couplage), utile pour la couverture |
-| 15 | CCI sous-groupe de translations (R195-T8) | **ATTENDU** | Calcul de commutateurs dans le groupe affine. Standard en theorie des groupes |
-| 16 | Spectral D_2 (R195-T7) | **ATTENDU** | Structure spectrale d'un operateur de permutation. Classique |
-
-### Bilan
-
-- **SUBSTANTIELS :** 8 (items 1, 6, 7, 10, 11, 12, 13, 14)
-- **ATTENDUS :** 6 (items 3, 4, 5, 8, 9, 15, 16)
-- **TRIVIAUX :** 1 (item 2)
-
-Le ratio substantiel/total est **8/15 = 53%**. C'est honnete pour un round de recherche, mais le BILAN R195 presente les resultats sans cette gradation, ce qui donne une impression de productivite plus elevee que la realite.
+### Test qui trancherait
+Exhiber une consequence NON TRIVIALE de l'identification rho_p = |rho_a(p)|. Par exemple : montrer que la connaissance simultanee de rho_a(p) pour tous les p | d permet de reconstruire |rho_a(d)| avec une borne plus fine. Si oui, l'unification a du contenu. Si non, c'est une tautologie.
 
 ---
 
-## TEST 7 (BONUS) : Coherence entre les deux agents A2
+## AUDIT 4 : Le verrou "Artin-type equidistribution" est-il un CUL-DE-SAC ?
 
-### Observation
+### Claim R195
+Les 3 agents convergent : le verrou central est l'equidistribution de 3^k mod p dans des intervalles courts, un probleme "de type Artin generalise", ouvert sans GRH.
 
-Il y a DEUX fichiers d'innovation en R195, par le meme role "Innovateur" :
-- R195_innovator_conjecture_M.md : attaque la Conjecture M, invente CGT/PCC/ODO/CCI/SBL
-- R195_innovator_hypothesis_H.md : attaque l'Hypothese H, invente la MCE
+### Attaque a 5 niveaux
 
-Ces deux fichiers produisent des resultats de qualite TRES DIFFERENTE :
-- La MCE (Hyp H) est un resultat FORT, verifie, avec impact quantitatif reel
-- La CGT (Conj M) est un rebranding de R191 avec une borne conditionnelle non prouvee
+**Niveau 1 : La convergence est-elle un signal ou un bruit ?**
 
-**Pourquoi cette asymetrie ?** Parce que F_Z = 4^m - 9^m - 17*6^{m-1} est un objet CONCRET (expression close), tandis que T(t) est un objet ABSTRAIT (somme combinatoire). Les outils elementaires (congruences, analyse 2-adique) mordent sur F_Z mais pas sur T(t).
+Les 3 agents utilisent les MEMES ingredients (factorisation par premiers, orbites de <2> et <3>, sommes exponentielles). La convergence peut refleter un BIAIS METHODOLOGIQUE : les 3 agents explorent le meme espace de solutions avec les memes outils. Si l'espace des idees n'est pas uniformement echantillonne, la convergence ne signifie rien.
 
-**Consequence strategique :** Le front F_Z est celui ou le projet avance REELLEMENT. Le front Conjecture M stagne malgre l'inventivite.
+Contre-argument : les agents attaquent des problemes DIFFERENTS (Conjecture M, Hypothese H, Filet). Le fait qu'ils arrivent au meme verrou depuis des angles differents EST un signal.
 
----
+Verdict intermediaire : Signal PARTIEL. La convergence est significative mais pas conclusive.
 
-## RECOMMANDATIONS
+**Niveau 2 : Le verrou est-il EXACTEMENT Artin ?**
 
-### 1. Pistes a RENFORCER
+NON. Le verrou reel est : "pour tout premier p avec ord_p(2) petit, l'orbite {3^k mod p : k in zone_danger} ne rencontre pas <2> mod p." Artin classique demande ord_p(2) = p-1 pour une infinite de premiers. Le verrou du filet est PLUS FAIBLE :
+- On ne demande pas que 2 soit racine primitive
+- On demande seulement que certaines orbites courtes de 3^k evitent certains sous-groupes
+- La complementarite maille 2/maille 3 signifie qu'on n'a meme pas besoin que CHAQUE p satisfasse la condition
 
-**(A) MCE -- Methode des Congruences Empilees (Priorite 1)**
+**Niveau 3 : Est-ce que "type Artin" est une description utile ou paralysante ?**
 
-C'est le MEILLEUR resultat de R195. Actions :
-- Prouver FORMELLEMENT la recurrence n_{r+1} = 4*n_r - 1. Le pattern est verifie computationnellement pour r = 0..13, mais la preuve formelle (analyse de ord_{2^N}(9) = 2^{N-2}) est faisable et manquante.
-- Traiter les cas speciaux m = 1,2,3,4 proprement.
-- Prouver analytiquement que d(k) est composite pour les convergents de log_2(3) avec delta < 3e-7. C'est le SEUL gap residuel.
-- **Score recommande : 9/10 -> 9/10 (maintenu).**
+PARALYSANTE. L'etiquette "Artin" evoque 99 ans d'echecs. Elle decourage la recherche de contournements specifiques au probleme Collatz. Le vrai verrou est plus fin : c'est un probleme de NON-INCIDENCE entre deux ensembles structuraux dans F_p* (l'orbite courte de 3^k et le sous-groupe <2>). Ce probleme peut avoir des solutions qui n'ont RIEN A VOIR avec la conjecture d'Artin.
 
-**(B) Crible F_Z (Priorite 2)**
+**Niveau 4 : Y a-t-il un chemin realiste pour contourner ?**
 
-Les 108 premiers surs + 25 couplage-incompatibles de l'investigation A3-FZ sont un travail solide. Actions :
-- Etendre la classification au-dela de p < 1000.
-- Prouver que la densite des "premiers surs" est > 0 asymptotiquement (resultat de theorie des nombres).
-- Combiner avec la MCE pour une couverture a > 99.99%.
-- **Score recommande : 7/10.**
+OUI, plusieurs :
+- (a) La MCE contourne Artin pour le cas F_Z COMPLETEMENT
+- (b) Le crible de complementarite (A3) borne le PRODUIT rho * densite sans borner chaque facteur
+- (c) L'exploitation systematique de d composite (CRT) reduit le probleme a des facteurs premiers PLUS PETITS ou les verifications sont plus faciles
+- (d) La borne de Baker appliquee aux cas residuels pourrait fermer F_Z sans hypothese
 
-**(C) Crible de complementarite (Priorite 3)**
+**Niveau 5 : La convergence est-elle une BONNE ou une MAUVAISE nouvelle ?**
 
-L'angle nouveau d'A3 (borner le PRODUIT rho^{17} * densite plutot que chaque facteur) est l'idee la plus originale de R195. Actions :
-- Trouver une borne rigoureuse sur rho_p dans le regime intermediaire.
-- Explorer si la borne de Polya-Vinogradov (|SUM e(alpha*2^b)| <= sqrt(p)*log(p)) suffit.
-- **Score recommande : 6/10 -> 7/10 si borne intermediaire trouvee.**
+C'est une MAUVAISE NOUVELLE DEGUISEE EN BONNE NOUVELLE. Les agents presentent la convergence comme "coherence diagnostique". En realite, elle signifie :
+- Le probleme Conjecture M est AUSSI DUR que sa reputation le suggere
+- Aucune des 6+ nouvelles approches n'a mordu sur ce front
+- Le projet est CONDAMNE a faire du progres PERIPHERIQUE (F_Z, cas speciaux) sans pouvoir attaquer le coeur
 
-### 2. Pistes a DECLASSER
+### VERDICT : DANGER STRATEGIQUE MAJEUR
 
-**(D) CGT -- Cascade Geometrique Tordue**
+**Score du diagnostic : 7/10 pour la precision, 3/10 pour l'impact strategique.**
 
-60% rebranding de Lambda_free. La partie nouvelle (borne conditionnnelle) est une CONJECTURE non prouvee.
-- **Score recommande : 7/10 -> 5/10.**
-- Ne PAS investir plus de temps dans la CGT sauf si H1 ou H2 deviennent prouvables.
+Le diagnostic est CORRECT mais sa consequence est que le projet devrait PIVOTER :
+- Abandonner la Conjecture M comme objectif R196-R200
+- Concentrer TOUS les efforts sur F_Z (MCE + Baker + CRT)
+- Accepter que l'Hypothese H reste conditionnelle a GRH pour le cas interieur
+- Publier le resultat partiel : "Sous GRH, pas de cycle. Inconditionnellement, F_Z est resolu."
 
-**(E) PCC -- Parseval Carre-Croise**
-
-Identites standard. L'Innovateur a lui-meme identifie (R195-O1) que la Conjecture M implique N_0 > 0 (equidistribution), PAS N_0 = 0. Le PCC est donc DECONNECTE de l'objectif.
-- **Score recommande : 5/10 -> 3/10.**
-
-**(F) SBL -- Spectre de Benford Lacunaire**
-
-Speculatif, justification "TRES incomplete" (aveu de l'Innovateur). Le lien avec le CLT arithmetique est interessant conceptuellement mais hors de portee operationnelle.
-- **Score recommande : 4/10 -> 3/10.**
-
-**(G) "n impair" (R195-L1 de A1)**
-
-Trivial et subsume par la MCE. Ne plus le citer comme resultat.
-- **Score recommande : 2/10 -> supprimer.**
-
-### 3. ANGLE MANQUANT
-
-**(H) La voie Baker pour F_Z**
-
-Personne n'a serieusement tente d'appliquer les formes lineaires en logarithmes (Baker) a F_Z = 4^m - 9^m - 17*6^{m-1}. L'equation F_Z = -n*d peut se reecrire :
-
-> n*(2^S - 3^k) = 9^m + 17*6^{m-1} - 4^m
-
-Soit :
-
-> n*2^S = 9^m + 17*6^{m-1} - 4^m + n*3^k
-
-Le terme dominant du RHS est n*3^k = n*3^{2m+1}. Donc :
-
-> n*2^S - n*3^{2m+1} = 9^m + 17*6^{m-1} - 4^m
-
-Soit :
-
-> n*(2^S - 3^{2m+1}) = F_Z
-
-Mais c'est tautologique. La vraie forme lineaire utile serait :
-
-> |S*log 2 - k*log 3 - log(1 + F_Z/(n*3^k))| est petite
-
-Baker donne une borne inferieure pour |S*log 2 - k*log 3|, qui est DEJA utilisee dans le preprint pour borner d. L'idee serait d'utiliser Baker sur la forme A QUATRE TERMES :
-
-> Lambda = m*log 9 + log(1 + 17*6^{m-1}/9^m - (4/9)^m) - log(n) - log(2^S - 3^k)
-
-C'est une forme lineaire en logarithmes a 4 variables (log 2, log 3, log 17, et termes mixtes). Les bornes de Baker-Wustholz (1993) pourraient donner Lambda > exp(-C * log(max(m,n)) * (log m)^3) pour une constante C effective.
-
-Si |Lambda| = 0 (division exacte), cela contraint m et n a etre exponentiellement lies, ce qui combine avec n = 341 mod 512 pourrait donner une contradiction.
-
-**Cette piste est absente de R195 et merite investigation.**
-
-**(I) Exploitation des d COMPOSITES**
-
-Pour les k tels que d(k) est composite (ce qui est le cas general), on peut attaquer chaque facteur premier SEPAREMENT et combiner par CRT. Les agents mentionnent le CRT mais ne l'EXPLOITENT pas systematiquement.
-
-Pour d = p1 * p2 * ... * pr : N_0(d) = 0 ssi N_0(pi) = 0 pour AU MOINS UN pi. Le filet 3 mailles s'applique a chaque pi individuellement. Quand d est composite avec plusieurs petits facteurs, la probabilite que TOUS les facteurs echappent au filet est exponentiellement petite.
-
-**Cette exploitation systematique manque.**
-
-### 4. Le projet est-il sur la BONNE VOIE ou tourne-t-il en rond ?
-
-**Diagnostic : AVANCE REELLE sur F_Z, STAGNATION sur Conjecture M.**
-
-**Arguments "bonne voie" :**
-- La MCE est un resultat NOUVEAU et FORT qui avance concretement vers la cloture de F_Z.
-- Le crible F_Z (108 premiers surs + couplage) est un travail de fond solide.
-- L'identification du verrou (type Artin) est un diagnostic CORRECT.
-- Le volume de pistes explorees et fermees (x2-closure, Burgess) est un progres par elimination.
-
-**Arguments "tourne en rond" :**
-- La Conjecture M n'a PAS avance depuis R191. Les 5 outils inventes sont soit du rebranding (CGT), soit des cadres sans contenu (PCC, ODO), soit speculatifs (SBL, CCI).
-- Le diagnostic "c'est Artin" est le MEME qu'avant R195 (le BILAN R194 mentionnait deja GRH). La convergence des 3 agents vers ce diagnostic n'est pas une decouverte -- c'est une confirmation.
-- Il y a INFLATION des resultats : 15 items "prouves" dont 7 sont attendus/triviaux gonfle le bilan.
-
-**Verdict global : 6/10 -- Avance partielle.**
-
-Le projet avance sur le front F_Z (MCE = percee reelle, crible = avance solide). Il stagne sur le front Conjecture M (pas de technique nouvelle qui mord). Le risque principal est de passer trop de temps a REFORMULER le verrou Artin plutot qu'a le CONTOURNER.
+### Test qui trancherait
+Trouver UNE technique qui borne |T(t)| de maniere non-triviale pour un p SPECIFIQUE et un t SPECIFIQUE, au-dela de ce que R191-T2 donnait. Si aucune technique ne mord en 3 rounds supplementaires, declarer la Conjecture M hors de portee et pivoter.
 
 ---
 
-## TABLEAU RECAPITULATIF DES SCORES AJUSTES
+## AUDIT 5 : Le Filet 3 Mailles est-il PROUVABLEMENT INCOMPLET ?
 
-| Resultat / Outil | Score R195 | Score ajuste R196 | Raison |
-|---|---|---|---|
-| MCE (Congruences Empilees) | 9-10/10 | **9/10** | Resultat fort, maintenu |
-| Crible F_Z (premiers surs + couplage) | 7/10 | **7/10** | Travail solide, maintenu |
-| x2-closure IRREPARABLE | 8/10 | **8/10** | Substantiel, maintenu |
-| p \| d <=> 3^k in <2> | 7/10 | **7/10** | Propre et utile, maintenu |
-| Aff(p) engendre | 8/10 | **7/10** | Leger ajustement, le seuil p=97 reste numerique |
-| Analyse 2-adique F_Z (99.86%) | 8/10 | **8/10** | Fort, maintenu |
-| CGT (Cascade Geometrique Tordue) | 7/10 | **5/10** | 60% rebranding de R191 |
-| Filet 3 mailles rigoureux | 6/10 | **6/10** | Maintenu, complementarite heuristique |
-| Crible de complementarite | 6/10 | **7/10** | Angle original, rehausse |
-| PCC (Parseval Carre-Croise) | 5/10 | **3/10** | Deconnecte de l'objectif (O1) |
-| CCI (Commutateurs Iteres) | 6/10 | **4/10** | Standard, impact limite |
-| ODO (Dilatation Orbitale) | 6/10 | **4/10** | Clarifie sans prouver |
-| SBL (Benford Lacunaire) | 4/10 | **3/10** | Speculatif, justification incomplete |
-| "n impair" (R195-L1) | 4/10 | **2/10** | Trivial, subsume par MCE |
-| rho_p = \|rho_a\| | 7/10 | **3/10** | Attendu (meme formule, modules differents) |
-| 17 = k-1 | 7/10 | **3/10** | Attendu (definition du seuil) |
-| Contraction monotone en k | 7/10 | **3/10** | Attendu (rho < 1 => rho^k decroit) |
+### Claim R195
+168 primes, 0 failures. La complementarite maille 2 / maille 3 est "structurelle".
 
----
+### Attaque
 
-## RECOMMANDATION STRATEGIQUE POUR R196+
+**(a) La densite-barriere decroit-elle reellement, ou cache-t-elle des echecs futurs ?**
 
-### Priorite absolue : FERMER LE GAP F_Z
+La barriere de densite pour les fantomes est E ~ q^3 / 2^q (A3, Filet). Pour q = 2 (ord_p(2) = 2), E ~ 8/4 = 2 -- ce n'est PAS petit. Pour q = 3 (comme p = 7), E ~ 27/8 ~ 3.4 -- c'est > 1, donc on ATTEND des hits.
 
-Le front F_Z est a portee de main. La MCE couvre 99.86% des k analytiquement. Le crible couvre ~64% par premiers surs + ~80% par couplage. La combinaison est potentiellement complete. Actions :
+L'argument fonctionne pour les Mersenne (q grand, E super-exponentiellement petite). Mais pour les premiers "ordinaires" avec q modere (q ~ 10-20), la densite n'est pas negligeable.
 
-1. **Prouver la recurrence MCE formellement** (faisable, priorite 1).
-2. **Prouver que d(k) est composite pour les convergents extr. de log_2(3)** (difficile mais ciblable).
-3. **Explorer Baker a 4 termes** pour les k residuels (angle manquant, priorite 2).
+Les 168 primes testees sont les PLUS PETITS. A mesure que p croit, de nouveaux premiers avec q modere apparaissent. La question est : parmi les p > 1000 avec ord_p(2) ~ 10-20, y a-t-il des non-fantomes ?
 
-### Priorite secondaire : CONTOURNER Artin, pas le resoudre
+**(b) Quel est le maillon faible ?**
 
-Pour la Conjecture M / Hypothese H (cas interieur) :
+Le regime intermediaire : premiers p avec ord_p(2) = s satisfaisant p^{1/4} < s < p^{1/2}. Dans ce regime :
+- La contraction donne (p-1) * rho_p^{17}. La borne rigoureuse sur rho_p est INSUFFISANTE (Weil donne rho <= 2*sqrt(p)/s + 1/s, qui depasse 1 quand s < 2*sqrt(p)).
+- La densite de fantomes est ~ s * L / (p-1) ou L est la longueur de la zone danger. Pour s ~ p^{1/3} et L ~ k ~ log p, la densite est ~ p^{1/3} * log p / p = p^{-2/3} * log p, qui est PETITE mais non nulle.
 
-4. **Developper le crible de complementarite** avec borne rigoureuse sur rho_p.
-5. **NE PAS reformuler le verrou** sous de nouveaux noms. Chaque round passe a "redire que c'est Artin" est un round perdu.
-6. **Explorer la voie CRT systematique** pour d composite.
+Le filet repose sur l'HEURISTIQUE que rho_p ~ 1/sqrt(s) dans ce regime. Si cette heuristique est fausse pour un seul premier, le filet a un trou.
 
-### Anti-priorite
+**(c) Peut-on CONSTRUIRE un scenario d'echec ?**
 
-7. NE PAS investir dans la CGT (rebranding), le PCC (deconnecte), ou le SBL (speculatif).
-8. NE PAS gonfler le comptage des "resultats prouves" avec des resultats attendus.
+Scenario : un premier p = 2^q * r + 1 avec q ~ 20 et r petit tel que :
+- ord_p(2) = q ~ 20 (petit)
+- <2> est un sous-groupe de taille 20 dans F_p*
+- 3^k in <2> pour un k dans la zone danger [18, k_min(p))
+- p est assez petit pour que la contraction echoue : (p-1) * rho_p^{17} > 0.041
+
+Pour rho_p, avec s = 20 : si les 20 elements de <2> sont bien distribues dans F_p, rho_p ~ 1/sqrt(20) ~ 0.22, et (p-1) * 0.22^{17} ~ (p-1) * 4e-12. Pour p < 10^{13}, c'est < 0.041. Donc un tel premier p devrait avoir p > 10^{13} pour que la contraction echoue.
+
+Mais avec p > 10^{13} et s = 20, la densite de fantomes est ~ 20 * 100 / 10^{13} ~ 10^{-10}. La probabilite d'un hit est negligeable.
+
+Le scenario d'echec semble TRES IMPROBABLE mais pas rigoureusement exclu. La preuve rigoureuse necessite la borne sur rho_p dans le regime intermediaire, qui reste ouverte.
+
+### VERDICT : INCOMPLETUDE NON PROUVEE MAIS NON EXCLUE
+
+**Score : 6/10** pour le filet. La complementarite est HEURISTIQUEMENT solide mais le regime intermediaire est un trou theorique. 168/168 succes ne prouvent rien (c'est un echantillon microscopique compare a l'infinite de premiers).
+
+### Test qui trancherait
+Verifier le filet pour tous les p | d(k) avec k <= 100000 (pas seulement 168 primes). Si 0 echecs sur 10000+ primes, la confiance augmente significativement. Si un seul echec, le filet est mort.
 
 ---
 
-## NOTE FINALE D'HONNETETE
+## AUDIT 6 : La MCE (99.86% des k exclus) est-elle SIGNIFICATIVE ?
 
-R195 est un bon round de CLARIFICATION. Il a correctement identifie le verrou, ferme des pistes mortes, et produit un resultat veritablement nouveau (la MCE). Le danger est maintenant de confondre la clarte du diagnostic avec un progres vers la resolution. Le diagnostic est fait. R196+ doit AGIR, pas ANALYSER davantage.
+### Claim R195
+La MCE montre n = 341 mod 512 et n >= 44.7M (au niveau r=11). Cela exclut d | F_Z pour 99.86% des k.
+
+### Attaque
+
+**Argument POUR la significance :**
+- 99.86% est impressionnant comme pourcentage
+- La MCE croit GEOMETRIQUEMENT : chaque niveau r multiplie n_min par ~4
+- La combinaison MCE + crible (108 premiers surs) + couplage (25 premiers) pourrait atteindre 100%
+
+**Argument CONTRE la significance :**
+
+1. **Les 0.14% restants sont une INFINITE de k.** Exclure 99.86% au sens de la densite de Weyl laisse une suite de k avec {k * log_2(3)} > 0.99859. Par equidistribution, il y a une INFINITE de tels k. Donc "99.86% exclus" ne prouve RIEN au sens logique strict. Un contre-exemple pourrait se cacher dans les 0.14%.
+
+2. **La croissance geometrique de n_min est une ILLUSION de progres.** On peut toujours augmenter r pour couvrir des delta plus petits. Mais les convergents de log_2(3) produisent des delta ~ 1/q_{n+1} qui decroissent arbitrairement. Pour CHAQUE r, il existe un convergent q_n assez grand pour que delta < delta_r. La MCE ne ferme JAMAIS le gap completement -- elle le repousse.
+
+3. **Le dernier 0.14% est le CAS DUR.** Les k qui y tombent sont precisement les convergents de log_2(3) -- les cas ou d(k) est le plus petit, ou |F_Z|/d est le plus grand, et ou les methodes standards echouent. Exclure les cas faciles n'avance pas vers les cas difficiles.
+
+4. **La "preuve" de la recurrence n_{r+1} = 4*n_r - 1 est COMPUTATIONNELLE.** L'Innovateur dit "verifie computationnellement pour r = 0..13, 200 valeurs de m par niveau". C'est du calcul, pas une preuve. La recurrence est un PATTERN observe, pas un theoreme. La justification ("ord_{2^N}(9) = 2^{N-2}") est esquissee mais pas formalisee.
+
+### Subtilite cruciale
+
+La MCE d'A2-Hyp H (R195_innovator_hypothesis_H.md) et l'analyse 2-adique d'A3-FZ (R195_FZ_investigation.md) donnent des resultats INCONSISTANTS :
+- A2 : n = 11 mod 16 (R195-T4)
+- A3 : n = 5 mod 16 (R195-T1)
+
+A2 dit n = 11 mod 16. A3 dit n = 5 mod 16. Les deux ne peuvent pas etre vrais simultanement pour le meme m. Cela signifie qu'il y a une ERREUR dans l'un des deux calculs, ou que les conventions different (signe de F_Z, definition de n).
+
+**POINT CRITIQUE :** Avant de celebrer la MCE, il faut RECONCILIER les deux calculs mod 16. Si la reconciliation echoue, l'un des deux "resultats prouves" est FAUX.
+
+Examinons : A2 definit F_Z = -n*d, soit n = -F_Z/d = |F_Z|/d (puisque F_Z < 0). A3 definit F_Z = -n*d pareillement, avec |F_Z| = n*d. Mais les calculs mod 16 different. A2 obtient pour m impair : n*11 = 9 mod 16, n = 27 = 11 mod 16. A3 obtient pour m impair : n*11 + 9 = 0 mod 16, n*11 = 7 mod 16, n = 7*3 = 21 = 5 mod 16.
+
+Les deux arrivent a des equations differentes parce que A2 calcule n*3^k = -F_Z mod 16 (donc n*11 = -(-9) = 9 mod 16), tandis que A3 semble calculer n*2^S = n*3^k + |F_Z| mod 16 et obtient une equation differente. La difference est probablement dans le signe. Mais 11 et 5 sont incompatibles : si n = 11 mod 16, alors n ne peut pas etre 5 mod 16 (11 != 5 mod 16).
+
+**IL Y A UNE ERREUR DANS L'UN DES DEUX DOCUMENTS.** C'est un probleme GRAVE.
+
+En verifiant : A3 dit pour m >= 5, |F_Z| mod 16 = 9 (m impair), 3^k mod 16 = 11 (m impair), et l'equation n*3^k = -F_Z mod 16 MAIS ATTENTION : F_Z < 0, donc -F_Z = |F_Z|, et n*d = |F_Z|. L'equation est n*(2^S - 3^k) = |F_Z|. Mod 16 : n*(-3^k) = |F_Z| mod 16 puisque 2^S = 0 mod 16 pour S >= 4. Donc -n*3^k = |F_Z| mod 16. Pour m impair : -n*11 = 9 mod 16, soit n*11 = -9 = 7 mod 16, n = 7*3 = 21 = 5 mod 16 (car 11^{-1} = 3 mod 16).
+
+A2 calcule : n*2^S = F_Z + n*3^k. Pour m impair : n*0 = F_Z + n*11 mod 16. Donc F_Z + n*11 = 0 mod 16. F_Z mod 16 = 7 (A1-deep_why dit F_Z = -1 = 7 mod 8 pour m >= 3, mais mod 16 ?). A2 dit F_Z = 0 - 9 - 0 = -9 = 7 mod 16 (m impair >= 5). Donc 7 + n*11 = 0 mod 16, n*11 = -7 = 9 mod 16, n = 9*3 = 27 = 11 mod 16.
+
+A3 calcule : -n*3^k = |F_Z| mod 16. |F_Z| = -F_Z = 9 mod 16 (car F_Z = -9 mod 16, donc |F_Z| = 9 mod 16). -n*11 = 9 mod 16, n*11 = -9 = 7 mod 16, n = 7*3 = 21 = 5 mod 16.
+
+**Le probleme est l'equation.** A2 utilise n*2^S = F_Z + n*3^k, tandis que A3 utilise n*d = |F_Z|, soit n*(2^S - 3^k) = |F_Z| = -F_Z.
+
+A2 : 0 = F_Z + n*3^k mod 16 => n*11 = -F_Z = 9 mod 16 => n = 9*3 = 27 = 11 mod 16.
+A3 : -n*11 = |F_Z| = 9 mod 16 => n*11 = -9 = 7 mod 16 => n = 21 = 5 mod 16.
+
+Attendons. A2 dit : F_Z = -n*d. Donc F_Z = -n*(2^S - 3^k). Mod 16 : F_Z = -n*(-3^k) = n*3^k mod 16 (car 2^S = 0). Donc n*3^k = F_Z mod 16. Pour m impair : n*11 = -9 = 7 mod 16. Donc n = 7*3 = 21 = 5 mod 16.
+
+Mais A2 ecrit a la ligne 201-203 : "m impair : n * 11 = 9 mod 16, donc n = 9 * 3 = 27 = 11 mod 16". D'ou vient le 9 ?
+
+A2 dit F_Z = -n*d, donc -F_Z = n*d = n*(2^S - 3^k). Mod 16 : |F_Z| = n*(-3^k) mod 16 puisque 2^S = 0. Donc |F_Z| = -n*3^k mod 16. Pour m impair, |F_Z| = 9 mod 16, 3^k = 11 mod 16. Donc 9 = -n*11 mod 16, n*11 = -9 = 7 mod 16, n = 21 = 5 mod 16.
+
+**A2 A FAIT UNE ERREUR DE SIGNE.** Le bon resultat est n = 5 mod 16, comme A3. A2 ecrit n = 11 mod 16, ce qui est FAUX.
+
+Cela signifie que TOUTE la recurrence n_{r+1} = 4*n_r - 1 de A2 part d'une base ERRONEE. Si n_0 = 5 au lieu de 11, la recurrence donne 4*5 - 1 = 19, puis 4*19 - 1 = 75, etc. La forme close (32*4^r + 1)/3 serait differente.
+
+### VERDICT : RESULTAT SIGNIFICATIF MAIS CONTAMINE PAR UNE ERREUR DE SIGNE
+
+**Score MCE : 7/10** (baisse de 9/10). Le principe de la MCE (empiler les congruences 2-adiques) est SOLIDE et NOUVEAU. Mais l'execution contient une erreur de signe dans A2, et la recurrence exacte doit etre REVERIFIEE. Le resultat d'A3 (n = 341 mod 512, couverture 99.86%) est CORRECT dans son calcul propre et constitue l'avancee reelle.
+
+Le probleme de fond reste : 0.14% = infinite de k non couverts. La MCE est un outil PUISSANT mais INSUFFISANT pour une preuve complete.
+
+### Test qui trancherait
+1. Calculer n mod 16 par un TROISIEME calcul independant, en verifiant pour m = 5, 6 avec les valeurs numeriques exactes de F_Z et d.
+2. Prouver formellement la recurrence (quel qu'en soit le point de depart correct).
+3. Pour la preuve complete : montrer que les convergents de log_2(3) avec delta < delta_r ont TOUJOURS un d composite avec un facteur premier "sur".
 
 ---
 
-*Round R196 Red Team : 7 tests, 17 scores ajustes, 3 pistes renforcees (MCE, crible F_Z, complementarite), 5 pistes declassees (CGT, PCC, SBL, CCI, ODO), 2 angles manquants identifies (Baker 4 termes, CRT systematique pour d composite), verdict global 6/10 sur R195.*
+## AUDIT 7 : Les scores de faisabilite R195 sont-ils JUSTIFIES ?
+
+### CGT : 7/10 (R195) -> 3/10 (ajuste)
+
+**Gap prouve/necessaire :** Prouve : factorisation identique a R191. Necessaire : borne eta_j <= 1 - c/s_p (H2). Le gap est la TOTALITE du contenu nouveau. La borne requise est un probleme de sommes exponentielles ouvert, comparable en difficulte a Weil. Score 3/10.
+
+### PCC : 5/10 (R195) -> 2/10 (ajuste)
+
+**Gap prouve/necessaire :** Prouve : identites de Parseval (standard). Necessaire : convertir une borne d'energie en N_0 = 0. L'Innovateur a LUI-MEME identifie (R195-O1) que la Conjecture M implique N_0 > 0, PAS N_0 = 0. Le PCC est DECONNECTE de l'objectif. Score 2/10.
+
+### ODO : 6/10 (R195) -> 3/10 (ajuste)
+
+**Gap prouve/necessaire :** Prouve : structure spectrale de D_2 (classique). Necessaire : prouver la quasi-uniformite de N_r, pas seulement la decomposer. L'ODO REFORMULE le probleme sans le resoudre. Score 3/10.
+
+### CCI : 6/10 (R195) -> 4/10 (ajuste)
+
+**Gap prouve/necessaire :** Prouve : le sous-groupe de translations {(3^a-1)(1-2^b)} est calculable. Necessaire : que ce sous-groupe COUVRE assez de Z/pZ pour propager les obstructions. La borne conditionnelle (R195-C2) repose sur sum-product de BKT, qui est DEJA utilise dans R191. Score 4/10.
+
+### SBL : 4/10 (R195) -> 2/10 (ajuste)
+
+**Gap prouve/necessaire :** Prouve : RIEN de rigoureux (la borne R195-T9 est "CONDITIONNEL" avec justification "TRES incomplete" -- aveu textuel). Necessaire : un CLT arithmetique dans F_p pour des sommes lacunaires, ce qui est un probleme OUVERT de premier rang. Score 2/10.
+
+### MCE : 9-10/10 (R195) -> 7/10 (ajuste)
+
+**Gap prouve/necessaire :** Prouve : n mod 2^{2r+4} est contraint (CORRECT pour A3, ERREUR pour A2). Necessaire : couverture de TOUS les k, y compris les 0.14% restants. Le gap est la completude, qui requiert des arguments supplementaires (Baker, d composite). Score 7/10.
+
+### Filet 3 mailles : 6/10 (R195) -> 5/10 (ajuste)
+
+**Gap prouve/necessaire :** Prouve : complementarite aux extremes. Necessaire : borne sur rho_p dans le regime intermediaire (s ~ p^{1/3} a p^{2/3}). La borne rigoureuse (Weil) est TROP FAIBLE (rho > 1). Score 5/10.
+
+---
+
+## AUDIT 8 : META-AUDIT -- Le projet fait-il du VRAI progres ?
+
+### Inventaire des avancees R189 a R195 (7 rounds)
+
+| Round | Avancee REELLE | "Feels like progress" |
+|-------|---------------|----------------------|
+| R189 | Framework operatoriel (Lambda, rho_a). NOUVEAU | Les allegories/metaphores |
+| R190 | Tentative de fermer gap 1.35x. ECHOUE | Les reformulations du gap |
+| R191 | rho_a < 1 prouve (NMS Criterion). MAJEUR | Lambda_free = produit (standard une fois le framework pose) |
+| R192 | Automate de Horner (clarification). UTILE | Discrepancy framework (reformulation) |
+| R193 | Connexion Evertse/S-unitaire. ECLAIRANT | Le pont unificateur (trop vague pour etre utile) |
+| R194 | Recadrage fondamental (correction). CRITIQUE | Classification k=3..20 par AMH (utile mais local) |
+| R195 | MCE pour F_Z. SUBSTANTIEL | CGT, PCC, ODO, CCI, SBL (rebranding + reformulations) |
+
+### Vrais acquis solides (7 rounds) :
+
+1. **rho_a < 1 pour tout a != 0, tout d impair >= 5** (R191-T2). Resultat INCONDITIONNEL et NON-TRIVIAL. C'est LE resultat du projet.
+
+2. **MCE : n = 341 mod 512 pour F_Z** (R195-A3/FZ). Couverture analytique de 99.86% des k pour le cas double-bord. Resultat INCONDITIONNEL.
+
+3. **Crible modulaire F_Z : 108 premiers surs** (R195-A3/FZ). Travail de classification solide.
+
+4. **x2-closure est IRREPARABLE par shift** (R195-A1). Ferme definitivement une piste, avec la constante structurelle 1/log_2(3).
+
+5. **Recadrage R194** : identification que le preprint avait 3 gaps dans le Blocking Mechanism, pas un seul. Correction cruciale.
+
+### "Feels like progress" (illusions) :
+
+1. **CGT, PCC, ODO, CCI, SBL** : 5 "outils" dont 3 sont des reformulations de R191, 1 est deconnecte de l'objectif, et 1 est speculatif. Le fait de NOMMER un outil ne le fait pas exister.
+
+2. **Les WHY-chains** : utiles pour la comprehension mais ne produisent PAS de resultats mathematiques. 15 niveaux de WHY sur 3 gaps ne ferment aucun gap.
+
+3. **La convergence vers Artin** : diagnostic CORRECT mais pas une avancee. Dire "le probleme est dur" n'aide pas a le resoudre.
+
+4. **Les identites de Parseval** (PCC, T3-T6) : STANDARD. Leur presentation comme "resultats prouves" est de l'inflation.
+
+5. **Le comptage des resultats** : R195 annonce "8 PROUVES, 5 CONDITIONNELS". Le decompte reel apres audit : 3 substantiels, 3 attendus, 2 triviaux, 5 conditionnels dont 2 avec erreurs.
+
+### Bilan brutal en 7 rounds :
+
+Le projet a produit UN resultat majeur (rho_a < 1, R191) et UN resultat fort (MCE, R195). Les 5 autres rounds sont de l'exploration, de la clarification, et du rebranding.
+
+Le rythme est : **1 resultat significatif tous les 3-4 rounds**. C'est NORMAL pour un probleme de cette difficulte, mais il faut en etre conscient. Le volume de production (des centaines de pages) masque la rarete des avancees reelles.
+
+### VERDICT META : PROGRES REEL MAIS LENT, DILUE DANS L'INFLATION
+
+**Score global du projet R189-R195 : 5/10**
+
+- 2 vrais resultats (rho_a < 1, MCE) = bon
+- 5 rounds de clarification/exploration = attendu
+- Inflation systematique des comptages = problematique
+- Stagnation complete sur la Conjecture M = inquietant
+
+---
+
+## TABLEAU RECAPITULATIF FINAL
+
+| Audit | Claim R195 | Verdict | Score nouveaute 0-10 | Score impact 0-10 |
+|-------|-----------|---------|---------------------|-------------------|
+| 1. CGT | Outil nouveau (7/10) | REBRANDING 70% de R191 | 3 | 2 |
+| 2. n impair | Resultat prouve utile | TRIVIAL et subsume | 1 | 1 |
+| 3. rho_p = \|rho_a\| | Unification | TAUTOLOGIE notationnelle | 1 | 2 |
+| 4. Artin lock | Diagnostic convergent | CORRECT mais PARALYSANT | 7 | 3 |
+| 5. Filet 168/168 | Completude structurelle | HEURISTIQUE (regime intermediaire non couvert) | 5 | 5 |
+| 6. MCE 99.86% | Percee F_Z | SIGNIFICATIF mais erreur de signe A2, et 0.14% = infini | 8 | 7 |
+| 7. Scores R195 | CGT 7, PCC 5, ODO 6, CCI 6, SBL 4 | SURGONFLES (ajustes : 3, 2, 3, 4, 2) | -- | -- |
+| 8. Meta-progres | 8 prouves, 5 cond., 5 outils | 2 vrais resultats en 7 rounds | -- | 5 |
+
+---
+
+## RECOMMANDATIONS IMPERATIVES
+
+### 1. RECONCILIER L'ERREUR DE SIGNE MCE (URGENCE)
+
+A2 dit n = 11 mod 16, A3 dit n = 5 mod 16. Les deux ne peuvent pas etre vrais. Verification numerique directe OBLIGATOIRE avant de continuer. Si A3 a raison (n = 5 mod 16), la recurrence d'A2 est FAUSSE et doit etre recalculee.
+
+### 2. FERMER F_Z (Priorite 1)
+
+Le front F_Z est a portee. Actions concretes :
+- Prouver formellement la recurrence MCE (apres correction de l'erreur de signe)
+- Explorer Baker a 4 termes pour les 0.14% residuels
+- Prouver que d(k) est composite pour les convergents extremes de log_2(3)
+
+### 3. ARRETER DE RENOMMER (Priorite 2)
+
+NE PLUS inventer d'outils qui sont des reformulations de R191. La CGT, l'ODO, et le CCI sont des deguisements de resultats existants. Chaque "outil" qui n'a pas de THEOREME PROUVE associe est une perte de temps.
+
+### 4. ACCEPTER LA CONDITIONNALITE GRH POUR L'INTERIEUR (Strategique)
+
+Le cas interieur (Gap 1 + Gap 3) depasse les outils disponibles. Publier avec GRH pour ce cas et concentrer l'effort inconditionnel sur F_Z.
+
+### 5. CALIBRER HONNETEMENT LES BILANS
+
+Ne plus compter les resultats "attendus" ou "triviaux" dans les bilans. Un bilan disant "2 avancees et 5 clarifications" est plus utile et plus honnete que "8 PROUVES".
+
+---
+
+## VERDICT FINAL SUR R195
+
+**R195 est un round HONNETE dans son exploration mais MALHONNETE dans sa presentation.** L'exploration est approfondie, les WHY-chains sont utiles, et la MCE est une vraie percee. Mais le comptage gonfle (8 "prouves" dont 3 substantiels), les outils rebaptises (CGT = R191), et l'inflation des scores (CGT a 7/10, rho_p = |rho_a| a 7/10) creent une impression trompeuse de productivite.
+
+Le projet doit maintenant AGIR sur les 2 resultats reels (rho_a < 1 et MCE) et cesser de REFORMULER le verrou Artin sous de nouveaux noms.
+
+**Score R195 ajuste : 5.5/10 -- Un round avec une percee reelle (MCE), noye dans le rebranding et l'inflation.**
+
+---
+
+*Round R196, Agent A3 (Red Team) : 8 audits, 8 verdicts, 5 recommandations imperatives. PERCEE REELLE = MCE. ERREUR DETECTEE = signe dans A2 (n = 11 vs 5 mod 16). REBRANDING = CGT, ODO, CCI. INFLATION = 8 "prouves" -> 3 substantiels. PIVOT RECOMMANDE : fermer F_Z, accepter GRH pour interieur, arreter les reformulations.*

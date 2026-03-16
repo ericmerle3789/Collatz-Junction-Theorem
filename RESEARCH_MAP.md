@@ -127,13 +127,14 @@ STAGE II (LE VERROU — prouver que 0 est parmi les omis) :
 | **k=3..20 par pur raisonnement** | **R194 PROUVÉ**. 18 valeurs toutes résolues : arc (g_max < d), énumération, crible mod 5/233. Classification 39 valeurs k∈[3,41] : 16 par arc, 3 par énumération/crible, 8 par n_max=1, 12 résiduelles (Hercher/Barina) | 10/10 | 6/10 | R194 |
 | **Conjecture M (borne lacunaire T(t))** | **VRAI VERROU (R195)**. \|T(t)\| ≤ C·k^{-δ}. Programme Merle 4 organes (3 ✅, Tête ❌). **CGT révisée 5-6.5/10 (R196)** : reformule gap 1.35x en permanents de matrices de phases, ne le résout pas. \|G(a)\| ≤ √r FAUSSE en régime r < √p [R196 PROUVÉ]. PRC (7/10) exploite lacunarité. Verrou Artin potentiellement contournable via LDS | 6/10 | 10/10 | R195-R196 |
 | **Filet 3 mailles** | Transport affine [T₂,T₁]=τ_{-1} (p≤97 ✅), contraction convolution (72 primes ✅), poissons fantômes (72 primes ✅). 168 primes, 0 échecs. Barrière densité heuristique E≤C·q³/2^q. À rendre rigoureuse | 6/10 | 9/10 | R195 |
-| **F_Z non-annulation analytique** | F_Z=4^m-9^m-17·6^{m-1}. Vérifié k≤10001. Quotient n IMPAIR [R195-L1 PROUVÉ]. Prob heuristique O(k/2^{0.585k}). Crible valuations croisées [R195-I4]. **MCE (R195)** : n≡341 mod 512, n≥44.7M (mod 2^26), exclut 99.86% des k analytiquement. 108 primes sûrs, F_Z ≢ 0 mod 5,7,13,29. Gap résiduel 0.14% (convergents log₂3) | 7/10 | 7/10 | R195 |
+| **F_Z non-annulation analytique** | F_Z=4^m-9^m-17·6^{m-1}. Vérifié k≤10001. ⚠️ **ERREUR DE SIGNE MCE** (R196 RED TEAM) : n≡5 mod 16 (pas 11), récurrence à recalculer. Méthode MCE valide, constantes à corriger. 108 primes sûrs, F_Z ≢ 0 mod 5,7,13,29. Crible valuations croisées [R195-I4]. Baker à 4 termes = angle inexploré (suggestion RED TEAM) | 6/10 | 7/10 | R195-R196 |
 | **Bypass ×2-closure** | ×2-closure IRRÉPARABLE par shift (R195). Fraction coincée ~1/log₂3 ≈ 63%. Piste bidirectionnelle réduit à ~1/(M-1)². Besoin info structurelle Im(g) | 4/10 | 8/10 | R195 |
 | **|ρ_a| < 1 + framework opératoriel** | **R189-R191 INVENTÉ**. Dissipation stricte INCONDITIONNEL. Λ_free factorise. Gap 1.35x structurel. Opérateur Λ(s), transfert M^{(j)}. Problème = borner discrepancy g(B) mod d | 7/10 | 10/10 | R189-R191 |
 | **Dualité discrepancy/reachability** | **R192 META**. Monotonie AIDE reachability, NUIT discrepancy. Stratégie optimale : reachability (petits k) + spectral (moyens k) + comptage (grands k) | 9/10 | 8/10 | R192 |
-| **LDS (Levier Diophantien Structurel)** | **R196 INVENTÉ**. Exploite 2^S≡3^k mod d : k₀(p) ≥ c·ord_p(2) SANS GRH [PROUVÉ]. Pour p > P₀ (P₀~10^{10-15}), si maille 2 échoue → maille 3 réussit par nécessité diophantienne. Réduit à vérif computationnelle finie | 8/10 | 10/10 | R196 |
-| **FCQ (Fronde Complémentarité Quantitative)** | **R196 INVENTÉ**. Unifie mailles 2+3 : R(p,k) = q·ρ_p^{k-1}. R(p,18) < 1 pour tout p≥5 [PROUVÉ]. Gap vers R < 0.041 : cas p=5 borderline, besoin c₀ ≥ 0.09 | 7/10 | 9/10 | R196 |
-| **PRC (Produit de Riesz Collatzien)** | **R196 INVENTÉ**. Exploite lacunarité ratio géométrique 3 du produit CGT. Décroissance exponentielle sous hypothèse Weil | 7/10 | 8/10 | R196 |
+| **LDS (Levier Diophantien Structurel)** | **R196-R197**. k₀(p) ≥ c·q SANS GRH [PROUVÉ]. **c ≥ 1/25** pour q ≤ 15600 via FC de θ=log₂3 [R197 PROUVÉ]. **ord_p(2) ≥ 3** pour tout p\|d [R197 PROUVÉ]. Architecture : transport (p≤97) + LDS (ord≥1025) + vérif finie (3≤ord<1025). P₀ contourné par factorisation d(k), k=18..41 | 8/10 | 10/10 | R196-R197 |
+| **FCQ (Fronde Complémentarité Quantitative)** | **R196-R197**. R(p,k) = q·ρ_p^{k-1}. R(p,18) < 1 pour tout p≥5 [PROUVÉ]. **ρ₅ = 1/4 EXACTEMENT** [R197 PROUVÉ] → R(5,18) ≈ 2.3×10⁻¹⁰. Gap p=5 FERMÉ | 8/10 | 9/10 | R196-R197 |
+| **DBA (Baker sur F_Z)** | **R197 INVENTÉ**. Schéma MCE + Baker-Wüstholz (type Bennett 2004 Pillai). \|F_Z\| > d^{1-ε} pour m > m₀ effectif. Si \|F_Z\|/d < n_min → contradiction. Vérif finie m ≤ m₀ | 8/10 | 9/10 | R197 |
+| **PRC (Produit de Riesz Collatzien)** | **R196 INVENTÉ**. Exploite lacunarité ratio géométrique 3 du produit CGT. Décroissance exponentielle sous hypothèse Weil. RED TEAM : analogie standard, pas formalisée | 4/10 | 8/10 | R196 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
@@ -1136,32 +1137,34 @@ R192    : **DUALITÉ DISCREPANCY/REACHABILITY** — META-OBSERVATION : monotonie
 R193    : **ARCHITECTURE 2-RANGES** — AMH prouve k=3,5,6,7,9. Evertse S-unit conceptuel. Baker+arc hybride formalisé. SI Hercher accepté = preuve complète (k≤91 + k≥42). 13+ résultats prouvés. 3 agents
 R194    : **⚠️ CORRECTION FONDAMENTALE** — "Borel-Cantelli" n'existe PAS dans le preprint. C'est nonsurjectivité par pigeonhole (C < d). Recadrage sur Hypothèse (H) comme VRAI objectif. k=3..20 TOUS prouvés par pur raisonnement (arc + énumération + crible). 27/39 valeurs k∈[3,41] résolues théoriquement. RED TEAM valide la correction. 3 agents
 R195    : **CONJECTURE M + HYPOTHÈSE (H)** — 8 PROUVÉS, 5 CONDITIONNELS. ×2-closure IRRÉPARABLE par shift [PROUVÉ]. F_Z quotient n IMPAIR [PROUVÉ]. 5 outils inventés : CGT (7/10→5-6.5/10 R196), PCC (5/10), ODO (6/10), CCI (6/10), SBL (4/10). Filet 3 mailles : Aff(p) engendré [PROUVÉ], ρ_p=|ρ_a| [PROUVÉ], 17=k-1 [PROUVÉ]. MCE exclut 99.86% des k pour F_Z. Verrou central = Artin généralisé. 6 agents
-R196    : **LDS + RED TEAM AUDIT** — 10 PROUVÉS, 6 CONDITIONNELS. CGT deep : reformule gap 1.35x en permanents [PROUVÉ], |G(a)|≤√r FAUSSE [PROUVÉ]. **LDS (8/10)** : bypass Artin via d=2^S-3^k, k₀(p)≥c·q [PROUVÉ], réduit filet à vérif finie P₀. FCQ (7/10) : R(p,18)<1 [PROUVÉ]. PRC (7/10) lacunarité. RED TEAM : CGT=60% rebranding, R195=6/10, vrais acquis=MCE+F_Z crible. 3 agents
+R196    : **LDS + RED TEAM AUDIT** — 10 PROUVÉS, 6 CONDITIONNELS. CGT deep : reformule gap 1.35x en permanents [PROUVÉ], |G(a)|≤√r FAUSSE [PROUVÉ]. **LDS (8/10)** : bypass Artin via d=2^S-3^k, k₀(p)≥c·q [PROUVÉ]. FCQ (7/10) : R(p,18)<1 [PROUVÉ]. RED TEAM : CGT=60% rebranding, erreur signe MCE détectée (n≡5 mod 16, pas 11). 3+3 agents
+R197    : **LDS EFFECTIF + BAKER F_Z** — c≥1/25 via FC de θ [PROUVÉ]. **ρ₅=1/4** exactement [PROUVÉ] → gap p=5 FERMÉ. **ord_p(2)≥3** pour tout p|d [PROUVÉ]. Architecture complète : transport(p≤97)+LDS(ord≥1025)+vérif finie(3≤ord<1025). DBA schéma Baker+MCE pour F_Z (8/10). RCA convergents finis. RED TEAM : c universel non garanti, recommande 100% calcul. 3 agents
 ```
 
 ---
 
-## PROCHAINES ÉTAPES (R197+)
+## PROCHAINES ÉTAPES (R198+)
 
 ```
-PRIORITÉ 1 : RENDRE LE LDS EFFECTIF (BYPASS ARTIN INCONDITIONNEL)
-  Calculer constante c dans k₀(p) ≥ c·q et borne P₀
-  Si P₀ < 10^{15} → vérification computationnelle faisable
-  → filet 3 mailles RIGOUREUX et INCONDITIONNEL
+PRIORITÉ 1 : CALCUL (RED TEAM R197 validée)
+  (a) Corriger MCE : n ≡ 5 mod 16 (pas 11), recalculer récurrence n_r
+  (b) Factoriser d(k) pour k = 18..41, vérifier chaque facteur premier
+  (c) Calculer R(p,18) pour les premiers facteurs de d(18)..d(100)
+  (d) Confirmer ρ₅ = 1/4 et R(5,18) ≈ 2.3×10⁻¹⁰
 
-PRIORITÉ 2 : FERMER LA FCQ (R < 0.041)
-  Prouver c₀ ≥ 0.09 pour que R(p,18) < 0.041 (cas p=5 borderline)
-  Combiné avec LDS → complémentarité mailles 2+3 rigoureuse
+PRIORITÉ 2 : FORMALISER ARCHITECTURE LDS
+  Transport (p ≤ 97) + LDS (ord ≥ 1025) + Vérif finie (3 ≤ ord < 1025)
+  c ≥ 1/25 prouvé pour q ≤ 15600. Explorer si FC de θ a QP bornés
+  Documenter la liste EXACTE des primes à vérifier
 
-PRIORITÉ 3 : BAKER À 4 TERMES SUR F_Z
-  Angle inexploré suggéré par RED TEAM R196
-  F_Z = 4^m - 9^m - 17·6^{m-1} = somme de 3 termes exponentiels
-  Baker-type bounds sur combinaisons linéaires d'exponentielles ?
+PRIORITÉ 3 : PROGRAMME DBA (BAKER SUR F_Z)
+  Baker-Wüstholz effectif sur F_Z = 4^m - 9^m - 17·6^{m-1}
+  Calculer m₀ explicite (type Bennett 2004)
+  Vérifier m ≤ m₀ computationnellement
 
-PRIORITÉ 4 : PROUVER LA CONJECTURE M (si LDS ne suffit pas)
-  CGT reformule le gap 1.35x en permanents (ne le résout pas)
-  PRC (lacunarité) conditionnel Weil — explorer
-  Alternative : preuve directe via PCC cadre énergie
+PRIORITÉ 4 : CONVERGENTS log₂3 (RCA)
+  Les 0.14% résiduels MCE = convergents de θ
+  Vérification finie et explicite pour fermer gap F_Z
 
 PUBLIER : preprint déjà sur GitHub (mars 2026)
   Stage I complet + Stage II conditionnel GRH
