@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 15 mars 2026 | **Rounds:** R1–R181 (181 rounds, 300 scripts, 12166+ auto-tests, 202 théorèmes)
+**Date:** 16 mars 2026 | **Rounds:** R1–R182 (182 rounds, 305 scripts, 12166+ auto-tests, 203 théorèmes)
 
 ---
 
@@ -91,7 +91,11 @@
 | **Graphe de Dépendance Premier** | Réseau de transfert entre valeurs du cycle via facteurs premiers. Obstruction de fermeture prouvée pour x=2 | 3/10 | 7/10 | R173 |
 | **Premier Résistant Universel** | Type B dominant 97%. **AUDIT R178** : C1 (ord>S⟹résistant) VIOLÉE (5 c.-ex.), C3 (∃ high-ord prime) VIOLÉE (5 c.-ex.). Mécanisme MIXTE : résistance d'arc + anti-corrélation. g(v)≡0 mod d JAMAIS observé (110 cas S≤22). Piste vivante mais arc seul INSUFFISANT | 3/10 | 9/10 | R175-R178 |
 | **Réduction Somme Cyclique** | Quand 3 ∈ ⟨2⟩ dans F_p* : g(v) = Σ 2^{f_j} avec f_j suite arith. perturbée. Heuristique E~2^{-0.073x}→0 FAVORABLE. Mais EGZ/Davenport vont dans le mauvais sens (existence, pas non-existence). Espoir=contrainte structurelle. CONNECTE à PO-R87 (même mur) | 3/10 | 9/10 | R176 |
-| **Descente 2-adique** | **R178-R179** : Récurrence S-indépendante A₀=3k+1, A_{m+1}=3A_m+2^{v₂(A_m)} (T195). C(1,x)=4^x→périodique (T196). **ÉQUIVALENCE FONDAMENTALE T197** : R=0 ⟺ T^x(k)=k ⟺ cycle Collatz. Parties impaires B_m = dynamique Collatz compressée (T198). k=1,2 exclus universellement (T191-T192). x=2,3,4 prouvés élémentairement (T180,T189,T190). 11,500 cas vérifiés (x≤25, k≤999), 0 survivants. **MAIS** : le lemme universel est ÉQUIVALENT au problème des cycles. Reformulation exacte, pas preuve. Piste résiduelle : apériodicité du vecteur. **R181** : equation Alpha-Diophantienne derivée (= Bohm-Sontacchi reformulé), cross-tension qualitative MARGINAL (k=1 contre-exemple), connexion S-unit finiteness (deja connu). **Erreur cumulative** : positivité PROUVÉE, contradiction 9/5 CONDITIONNELLE (gap 4/9, k₀≈10). **Sommes exponentielles** : annulation delta~0.15-0.35, Condition Q NON PROUVÉE | 3/10 | 10/10 | R178-R181 |
+| **Descente 2-adique** | **R178-R181** : T195-T198 (récurrence, équivalence, Collatz compressée). Contradiction 9/5 INVALIDÉE (R181). Sommes expo : delta~0.15-0.35, Condition Q NON PROUVÉE. **R182** : annulation GENERIQUE (pas spécifique (2,3)), voie analytique pure = cul-de-sac probable | 2/10 | 10/10 | R178-R182 |
+| **CRT anti-corrélation** | **PROMUE R182**. N_0(p)>0 pour p=5,7,11 (quasi-uniforme ~1/p). Aucun "bon premier" isolé. L'obstruction vient de l'action COLLECTIVE des p\|d. Question : les {g(v)≡0 mod p_i} sont-ils anti-corrélés ? Si oui → N_0(d)=0 | 6/10 | 10/10 | R35,R182 |
+| **Noyau impair h(v)** | **NOUVEAU R182**. v_2(g(v))=e_0 [PROUVÉ]. h(v)=g(v)/2^{e_0} toujours impair. Réduit le problème au noyau impair. Chercher un invariant de h(v) excluant 0 mod d | 5/10 | 9/10 | R182 |
+| **Argument combinatoire simplexe** | **NOUVEAU R182**. Le problème est combinatoire (support creux C(S,k) << p), pas analytique. Exploiter la structure du simplexe discret directement | 5/10 | 8/10 | R182 |
+| **Dénominateur commun entre familles de k** | **NOUVEAU R182**. Pourquoi regrouper les k en familles facilite-t-il ? Existe-t-il une quantité universelle reliant tous les d(k) ? | 5/10 | 10/10 | R182 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
