@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 16 mars 2026 | **Rounds:** R1–R183 (183 rounds, 305 scripts, 12166+ auto-tests, 205 théorèmes)
+**Date:** 16 mars 2026 | **Rounds:** R1–R184 (184 rounds, 305 scripts, 12166+ auto-tests, 205 théorèmes)
 
 ---
 
@@ -92,14 +92,13 @@
 | **Premier Résistant Universel** | Type B dominant 97%. **AUDIT R178** : C1 (ord>S⟹résistant) VIOLÉE (5 c.-ex.), C3 (∃ high-ord prime) VIOLÉE (5 c.-ex.). Mécanisme MIXTE : résistance d'arc + anti-corrélation. g(v)≡0 mod d JAMAIS observé (110 cas S≤22). Piste vivante mais arc seul INSUFFISANT | 3/10 | 9/10 | R175-R178 |
 | **Réduction Somme Cyclique** | Quand 3 ∈ ⟨2⟩ dans F_p* : g(v) = Σ 2^{f_j} avec f_j suite arith. perturbée. Heuristique E~2^{-0.073x}→0 FAVORABLE. Mais EGZ/Davenport vont dans le mauvais sens (existence, pas non-existence). Espoir=contrainte structurelle. CONNECTE à PO-R87 (même mur) | 3/10 | 9/10 | R176 |
 | **Descente 2-adique** | **R178-R181** : T195-T198 (récurrence, équivalence, Collatz compressée). Contradiction 9/5 INVALIDÉE (R181). Sommes expo : delta~0.15-0.35, Condition Q NON PROUVÉE. **R182** : annulation GENERIQUE (pas spécifique (2,3)), voie analytique pure = cul-de-sac probable | 2/10 | 10/10 | R178-R182 |
-| **Syracuse-Noyau + Tao** | **PROUVÉ R183 (I6)**. h(v)=g(v)/2^{B_0} satisfait h_{k+1}=T(h_k) (Syracuse comprimée) quand Δ_k=0. Pour Δ≥1 : h'=3h+2^Δ. Cycle k-périodique ↔ h point fixe de T^k. Connecte g(v)=n·d (statique) à dynamique de Syracuse. Interface avec Tao (2019) | 7/10 | 10/10 | R183 |
-| **Sélection non-générique p\|d** | **R183 A1**. Les p\|d sont exactement ceux où 2^S≡3^k mod p. Boucle fermée dans F_p*. Couplage entre p irréductible (même relation dans Z). Conjecture : E_i={g(v)≡0 mod p_i} négativement corrélés | 7/10 | 10/10 | R183 |
-| **Intersection métrique ∩ modulaire** | **R183 A4**. La bonne question : g(v)=n·d exactement (MÉTRIQUE), pas g(v)≡0 mod d (MODULAIRE par densité). Im(g) éparse dans [g_min,g_max]. Conjecture forte : Im(g) mod d = Z/dZ pour k≥3 → problème PUREMENT métrique | 6/10 | 9/10 | R183 |
-| **CRT anti-corrélation** | **PROMUE R182**. N_0(p)>0 pour p=5,7,11 (quasi-uniforme ~1/p). Aucun "bon premier" isolé. L'obstruction vient de l'action COLLECTIVE des p\|d. Question : les {g(v)≡0 mod p_i} sont-ils anti-corrélés ? Si oui → N_0(d)=0 | 6/10 | 10/10 | R35,R182 |
-| **Noyau impair h(v)** | **R182+R183**. h(v)=g(v)/2^{B_0} toujours impair. **R183 corrige** : O1 (v_2=e_0) trop fort — nécessite multiplicité impaire de B_0. h mod 9 : dépend de Δ_{k-1}, Δ_{k-2} [PROUVÉ]. Récurrences d'extension D+/D- [PROUVÉ] | 5/10 | 9/10 | R182-R183 |
-| **Argument combinatoire simplexe** | **R182+R183**. Problème combinatoire (support creux). 7 approches testées R183 : 5 échouent, 2 produisent résultats (marche contrainte, représentation mixte) | 5/10 | 8/10 | R182-R183 |
-| **Dénominateur commun entre familles de k** | **NOUVEAU R182**. Pourquoi regrouper les k en familles facilite-t-il ? Existe-t-il une quantité universelle reliant tous les d(k) ? | 5/10 | 10/10 | R182 |
-| **Brisure de parité duale (DPBT)** | **PROUVÉ R183 (I7)**. Problème dual (échange 2↔3) : d*=3^{S*}-2^k toujours PAIR, g* toujours IMPAIR → aucun cycle dual, trivialement. Le problème original est non-trivial CAR d=2^S-3^k est IMPAIR. Asymétrie pair/impair = facteur structurel fondamental | 8/10 | 7/10 | R183 |
+| **CRT anti-corrélation** | **PROMUE R182, renforcée R184**. Mécanisme identifié : monotonie partagée entre conditions mod p_i contraint B_j globalement. Conjecture ρ(p_1,p_2)<1 non prouvée. 3 arguments convergents (surdétermination, caractères croisés, inclusion-exclusion) | 6/10 | 10/10 | R35,R182,R184 |
+| **Sélection non-générique p\|d** | **R183 A1**. Les p\|d sont ceux où 2^S≡3^k mod p → aS≡bk mod (p-1) en dlogs. Boucle fermée dans F_p*. Couplage irréductible entre p | 6/10 | 10/10 | R183 |
+| **Produit scalaire périodique-monotone** | **NOUVEAU R184 A2**. g(v) mod p = ⟨w, u⟩ avec w périodique (puissances de 3⁻¹) et u monotone (puissances de 2 à écarts croissants). Structure géométrique exploitable | 5/10 | 9/10 | R184 |
+| **Équation en représentations** | **NOUVEAU R184 A3 (T6)**. n·3^k + g(v) = n·2^S. Reformulation additive du cycle | 5/10 | 8/10 | R184 |
+| **Noyau impair h(v)** | **R182-R184**. h(v)=g(v)/2^{B_0} impair. 2^{B_0} transparent mod d (d impair) [PROUVÉ R184]. Récurrences D+/D- [PROUVÉ]. Polynôme creux P_v(X) non exploité | 5/10 | 9/10 | R182-R184 |
+| **Argument combinatoire simplexe** | **R182-R184**. |V_k(S)|/d → 0 AVEC contrainte somme [PROUVÉ R184 T1]. MAIS espérance ~ 2^{0.507k} → ∞ [PROUVÉ R184 T2]. Argument probabiliste INSUFFISANT | 4/10 | 8/10 | R182-R184 |
+| **Dénominateur commun entre familles de k** | **NOUVEAU R182**. Pourquoi regrouper les k en familles facilite-t-il ? Quantité universelle reliant tous les d(k) ? | 5/10 | 10/10 | R182 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
@@ -221,6 +220,9 @@
 | **BTL pour le gap k=21-41** | ENTERRÉ quantitativement : borne ESS exp(10^{148}) >> \|Comp_mono\| ≈ 5.7×10^8. Gap de ~10^{148} ordres de grandeur | R82-R83 |
 | **SCR (coefficients géométriques)** | CUL-DE-SAC : ESS uniforme sur les coefficients, progression géométrique invisible dans la borne | R83 |
 | **HLP (Hardy-Littlewood-Pólya)** | **LEURRE R183**. HLP agit dans R (archimédien, minimise \|g(v)\|) mais le problème vit dans Z/dZ (modulaire, g(v)≡0 mod d). Espaces ORTHOGONAUX. delta_min(k)/d oscille quasi-aléatoirement (Weyl). Obstruction = incommensurabilité de 2 et 3 dans Z/dZ, pas monotonie | R183 |
+| **Syracuse-Noyau + Tao (I6)** | **VIDE R184 RED TEAM**. Extension Δ_k=0 viole monotonie B_k≥B_{k-1} sauf vecteur constant. Ne s'applique qu'au cycle trivial. De plus rebranding de la récurrence standard g_{k+1}=3g_k+2^{B_k} divisée par 2^{B_0} | R183-R184 |
+| **Brisure de parité duale DPBT (I7)** | **FAUX R184 RED TEAM**. Erreur arithmétique : d*=3^{S*}-2^k est IMPAIR (impair-pair=impair), pas PAIR. R183 affirme pair→faux. Le dual n'est PAS trivialement vide | R183-R184 |
+| **Intersection métrique ∩ modulaire (voie probabiliste)** | **FERMÉE R184 T2**. Espérance de collisions ~2^{0.507k}→∞. Aucun argument probabiliste/combinatoire de densité ne peut prouver la vacuité | R183-R184 |
 | **HSB (décomposition Horner Z)** | ÉLIMINÉ : couplage séquentiel total des H_j, la décomposition ne découple pas l'équation | R83 |
 | **BIF (Baker filtrage primes)** | MAL CIBLÉ : Baker borne les valuations v_p(d), pas la factorisation de d. Deux problèmes distincts | R83 |
 | **Innovation théorique front S-unit/Baker** | SUSPENDUE : tous les sous-angles épuisés (R82-R83). Gap quantitatif insurmontable | R83 |
