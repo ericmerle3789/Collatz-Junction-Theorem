@@ -1,5 +1,5 @@
 # CARTE DES RECHERCHES — Collatz Junction Theorem
-**Date:** 16 mars 2026 | **Rounds:** R1–R184 (184 rounds, 305 scripts, 12166+ auto-tests, 205 théorèmes)
+**Date:** 16 mars 2026 | **Rounds:** R1–R185 (185 rounds, 305 scripts, 12166+ auto-tests, 207 théorèmes)
 
 ---
 
@@ -92,18 +92,22 @@
 | **Premier Résistant Universel** | Type B dominant 97%. **AUDIT R178** : C1 (ord>S⟹résistant) VIOLÉE (5 c.-ex.), C3 (∃ high-ord prime) VIOLÉE (5 c.-ex.). Mécanisme MIXTE : résistance d'arc + anti-corrélation. g(v)≡0 mod d JAMAIS observé (110 cas S≤22). Piste vivante mais arc seul INSUFFISANT | 3/10 | 9/10 | R175-R178 |
 | **Réduction Somme Cyclique** | Quand 3 ∈ ⟨2⟩ dans F_p* : g(v) = Σ 2^{f_j} avec f_j suite arith. perturbée. Heuristique E~2^{-0.073x}→0 FAVORABLE. Mais EGZ/Davenport vont dans le mauvais sens (existence, pas non-existence). Espoir=contrainte structurelle. CONNECTE à PO-R87 (même mur) | 3/10 | 9/10 | R176 |
 | **Descente 2-adique** | **R178-R181** : T195-T198 (récurrence, équivalence, Collatz compressée). Contradiction 9/5 INVALIDÉE (R181). Sommes expo : delta~0.15-0.35, Condition Q NON PROUVÉE. **R182** : annulation GENERIQUE (pas spécifique (2,3)), voie analytique pure = cul-de-sac probable | 2/10 | 10/10 | R178-R182 |
-| **CRT anti-corrélation** | **PROMUE R182, renforcée R184**. Mécanisme identifié : monotonie partagée entre conditions mod p_i contraint B_j globalement. Conjecture ρ(p_1,p_2)<1 non prouvée. 3 arguments convergents (surdétermination, caractères croisés, inclusion-exclusion) | 6/10 | 10/10 | R35,R182,R184 |
-| **Sélection non-générique p\|d** | **R183 A1**. Les p\|d sont ceux où 2^S≡3^k mod p → aS≡bk mod (p-1) en dlogs. Boucle fermée dans F_p*. Couplage irréductible entre p | 6/10 | 10/10 | R183 |
-| **Produit scalaire périodique-monotone** | **NOUVEAU R184 A2**. g(v) mod p = ⟨w, u⟩ avec w périodique (puissances de 3⁻¹) et u monotone (puissances de 2 à écarts croissants). Structure géométrique exploitable | 5/10 | 9/10 | R184 |
-| **Équation en représentations** | **NOUVEAU R184 A3 (T6)**. n·3^k + g(v) = n·2^S. Reformulation additive du cycle | 5/10 | 8/10 | R184 |
-| **Noyau impair h(v)** | **R182-R184**. h(v)=g(v)/2^{B_0} impair. 2^{B_0} transparent mod d (d impair) [PROUVÉ R184]. Récurrences D+/D- [PROUVÉ]. Polynôme creux P_v(X) non exploité | 5/10 | 9/10 | R182-R184 |
-| **Argument combinatoire simplexe** | **R182-R184**. |V_k(S)|/d → 0 AVEC contrainte somme [PROUVÉ R184 T1]. MAIS espérance ~ 2^{0.507k} → ∞ [PROUVÉ R184 T2]. Argument probabiliste INSUFFISANT | 4/10 | 8/10 | R182-R184 |
-| **Dénominateur commun entre familles de k** | **NOUVEAU R182**. Pourquoi regrouper les k en familles facilite-t-il ? Quantité universelle reliant tous les d(k) ? | 5/10 | 10/10 | R182 |
+| **N(k,S) < d (formule exacte)** | **PRIORITAIRE R185 RED TEAM**. N(k,S) = nombre de partitions de S-k en k parts bornées par S-1 et ordonnées. Si N(k,S) < d prouvable pour tout k≥3, argument de comptage suffit. Nécessite formule analytique, pas calcul | 7/10 | 10/10 | R185 |
+| **Fibres modulaires (E6')** | **NOUVEAU R185 A4**. Pour chaque p\|d, décomposer j selon B_j mod ord_p(2). Couplage entre prismes (pgcd d'ordres non-triviaux). Concrétisation testable de l'anti-corrélation CRT | 6/10 | 9/10 | R185 |
+| **Compression spectrale** | **PROUVÉ R185 A2**. Périodicité de w réduit dim k → r=ord_p(3). Spectre Dirac. Relation ORD : s/gcd(S,s)=r/gcd(k,r). Cône monotone exponentiellement étroit dans l'espace comprimé | 5/10 | 9/10 | R185 |
+| **CRT anti-corrélation** | **DÉGRADÉE R185**. 6 tentatives de preuve échouent. Verrou = sommes expo sur partitions (problème ouvert TAN). Mécanisme plausible mais passage qualitatif→quantitatif est le gouffre | 4/10 | 10/10 | R35,R182-R185 |
+| **Noyau impair h(v)** | **R182-R184**. h(v)=g(v)/2^{B_0} impair. 2^{B_0} transparent mod d [PROUVÉ]. Récurrences D+/D- [PROUVÉ]. Polynôme creux P_v(X) non exploité | 5/10 | 9/10 | R182-R184 |
+| **Itération Horner dans Z/dZ** | **R185 A1**. g(v) = itération affine z→3z+2^{B_j}. Rigidité : mêmes B_j dans tous les F_p. Cadre unifié mais = reformulation | 5/10 | 8/10 | R185 |
+| **Reports rares** | **NOUVEAU R185 A4**. Quand écarts B_j-B_{j-1}≥2, pseudo-indépendance des chiffres de g(v). Ne couvre pas les vecteurs compacts | 5/10 | 7/10 | R185 |
+| **Dénominateur commun entre familles de k** | **NOUVEAU R182**. Quantité universelle reliant tous les d(k) ? | 5/10 | 10/10 | R182 |
 
 ### 🔴 PISTES FERMÉES (raison documentée)
 
 | Piste | Pourquoi fermée | Round |
 |-------|-----------------|:-----:|
+| **Produit scalaire périodique-monotone** | REBRANDING R185 RED TEAM : ⟨w,u⟩=0 est g(v)≡0 mod p réécrit en notation vectorielle après factorisation élémentaire. Zéro contenu nouveau | R184-R185 |
+| **Équation en représentations (T6)** | TRIVIALE R185 RED TEAM : n·3^k+g(v)=n·2^S est juste g(v)=n·(2^S-3^k)=n·d réécrit. Zéro contenu | R184-R185 |
+| **Argument combinatoire simplexe (voie probabiliste)** | FERMÉE R184-R185 : espérance collisions ~2^{0.507k}→∞ (T2). Aucun argument de densité/probabiliste ne suffit | R182-R185 |
 | **Anneau Quotient Z[α,β]/(α^S-β^x)** | REBRANDING : g(v)≠0 dans R trivial mais ne contrôle PAS g mod d. Spécialisation (2,3) perd toute info. Résultant/norme se ramènent à mod p. Fossé formel-arithmétique insurmontable sans spécificité de (2,3) | R174 |
 | **Transient Zero** | Doubly stochastic → TZ n'affecte pas π(0)=1/p | R1 |
 | **Without-Replacement** | Effet réel mais mixte (11/16 aide, 5/16 nuit), TV < 0.003 pour k≥10 | R2 |
