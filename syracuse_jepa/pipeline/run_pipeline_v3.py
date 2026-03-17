@@ -1,18 +1,27 @@
 #!/usr/bin/env python3
 """
-Syracuse-JEPA v3.2 Pipeline — Full Discovery & Proof Machine + Creative Engine
+Syracuse-JEPA v3.3 Pipeline — Full Discovery & Proof Machine + Creative Engine
 
     Explorer → Analyst → Pattern Miner → Strategist
                                             ↓
-    Spectral → FCQ → MapXref → Creative → Hybrid Prover
-                                            ↓
+    ┌──────── PARALLEL ENGINES ─────────────┐
+    │ Spectral │ FCQ │ MapXref │ Creative │ Hybrid │
+    └──────────────────────────────────────┘
+                        ↓
     Prover → Discovery → Genius → Red Team → Formalizer → Verifier
 
-v3.2 upgrades over v3.1:
+v3.3 upgrades over v3.2:
+- PARALLEL EXECUTION: Stages 5a-5e run concurrently via ProcessPoolExecutor.
+  Hybrid prover also supports internal parallelism via multiprocessing.Pool.
+- Universal ρ < 1 module (rho_universal.py): Verified for 301 primes.
+- Proof structure module (proof_structure.py): Three-ingredient architecture.
+- Fixed S(k) formula: S = ⌈k·log₂3⌉ (not k(k-1)/2). Zsygmondy marked invalid.
+- Deep factorization: k=165, 171, 178 solved → 189/198 proved.
+
+v3.2:
 - Creative Engine (CCE): Le Cerveau Créatif — seed bank, resonance detector,
   innovator, judge. Discovers new quantities from structural tensions.
 - Hybrid Prover: Combines FCQ Prim + FCQ General + Spectral DP + Steiner.
-  Proves 168/198 k values (k=3..200).
 - Teleological Study: q/k threshold analysis, primitive root correlation.
 - Artin Study: primitive root density in factors of d(k).
 - ESB Analysis: effective spectral budget (confirms gap 1.35x is per-step).
@@ -28,6 +37,8 @@ import sys
 import json
 import argparse
 import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
+from multiprocessing import cpu_count
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
@@ -74,9 +85,10 @@ def run_pipeline_v3(k_min: int = 3, k_max: int = 40,
     t_start = time.time()
 
     print("╔" + "═" * 68 + "╗")
-    print("║  SYRACUSE-JEPA v3.2 — Discovery + Creative Engine + Hybrid Prover║")
-    print("║  14 stages: Explore→Analyze→Mine→Strategy→Spectral→FCQ→MapXref→║")
-    print("║  Creative→HybridProve→Prove→Discover→Genius→RedTeam→Verify     ║")
+    print("║  SYRACUSE-JEPA v3.3 — Parallel Engines + Proof Structure          ║")
+    print("║  14 stages: Explore→Analyze→Mine→Strategy→                      ║")
+    print("║  [Spectral|FCQ|MapXref|Creative|Hybrid]→Prove→Discover→Genius→ ║")
+    print("║  RedTeam→Verify   (Stages 5a-5e run in PARALLEL)               ║")
     print("╚" + "═" * 68 + "╝")
     print()
 
@@ -118,40 +130,96 @@ def run_pipeline_v3(k_min: int = 3, k_max: int = 40,
     print(format_report(report))
     print(f"└─ {len(report.strategies)} strategies ranked ──────────────────────┘\n")
 
-    # ─── STAGE 5: SPECTRAL ENGINE ─────────────────────────────
+    # ─── STAGES 5a-5e: PARALLEL ANALYSIS ENGINES ──────────────
+    # These stages are INDEPENDENT and can run in parallel.
+    # Each produces its own result set.
+    parallel_mode = not analysis_only  # parallel when doing full run
+    n_workers = min(cpu_count(), 4)
+
     spectral_k_max = 200 if full_scan else min(k_max + 10, 60)
-    print(f"┌─ STAGE 5/10: SPECTRAL ENGINE (k≤{spectral_k_max}) ──────────────┐")
-    spectral_results = extended_avoidance_scan(k_min, spectral_k_max, max_prime=500)
-    n_spectral_proved = sum(1 for r in spectral_results if r.get('proved'))
-    print(f"└─ {n_spectral_proved}/{len(spectral_results)} proved via CRT ──────────┘\n")
-
-    # ─── STAGE 5b: FCQ TRANSFER OPERATOR ────────────────────
     fcq_k_max = 80 if full_scan else min(k_max, 40)
-    print(f"┌─ STAGE 5b/12: FCQ ENGINE (k<={fcq_k_max}) ─────────────────┐")
-    fcq_results = run_fcq_study(k_max=fcq_k_max, max_prime=200)
-    n_fcq_proved = sum(1 for r in fcq_results if r.proves_avoidance)
-    print(f"└─ {n_fcq_proved}/{len(fcq_results)} proved via FCQ ──────────────────┘\n")
+    cce_k_max = min(k_max, 25)
+    hybrid_k_max = 200
 
-    # ─── STAGE 5c: MAP CROSS-REFERENCE ───────────────────────
-    if not analysis_only:
-        print("┌─ STAGE 5c/12: MAP CROSS-REFERENCE ───────────────────────┐")
-        map_xref = run_map_reeval(min(k_max, 50))
-        print(f"└─ {map_xref['summary']['invariants_holding']} invariants hold ─────────┘\n")
+    def _run_spectral():
+        return extended_avoidance_scan(k_min, spectral_k_max, max_prime=500)
 
-    # ─── STAGE 5d: CREATIVE ENGINE ────────────────────────────
-    if not analysis_only:
-        cce_k_max = min(k_max, 25)
-        print(f"┌─ STAGE 5d/12: CREATIVE ENGINE (k<={cce_k_max}) ──────────────┐")
-        cce_result = run_creative_engine(cce_k_max)
-        print(f"└─ {cce_result.innovations_born} innovations born ────────────────┘\n")
+    def _run_fcq():
+        return run_fcq_study(k_max=fcq_k_max, max_prime=200)
 
-    # ─── STAGE 5e: HYBRID PROVER ───────────────────────────────
-    if full_scan:
-        hybrid_k_max = 200
-        print(f"┌─ STAGE 5e/12: HYBRID PROVER (k<={hybrid_k_max}) ───────────┐")
-        hybrid_result = run_hybrid_prover(k_min, hybrid_k_max)
-        n_hybrid = hybrid_result['n_proved']
-        print(f"└─ {n_hybrid}/{hybrid_result['n_total']} proved by hybrid ──────────┘\n")
+    def _run_mapxref():
+        return run_map_reeval(min(k_max, 50)) if not analysis_only else None
+
+    def _run_creative():
+        return run_creative_engine(cce_k_max) if not analysis_only else None
+
+    def _run_hybrid():
+        return run_hybrid_prover(k_min, hybrid_k_max) if full_scan else None
+
+    if parallel_mode and full_scan:
+        print(f"┌─ STAGES 5a-5e: PARALLEL ENGINES ({n_workers} workers) ────────┐")
+        print(f"  5a: Spectral (k≤{spectral_k_max})  "
+              f"5b: FCQ (k≤{fcq_k_max})  "
+              f"5c: MapXref")
+        print(f"  5d: Creative (k≤{cce_k_max})  "
+              f"5e: Hybrid (k≤{hybrid_k_max})")
+
+        with ProcessPoolExecutor(max_workers=n_workers) as executor:
+            fut_spectral = executor.submit(_run_spectral)
+            fut_fcq = executor.submit(_run_fcq)
+            fut_mapxref = executor.submit(_run_mapxref)
+            fut_creative = executor.submit(_run_creative)
+            fut_hybrid = executor.submit(_run_hybrid)
+
+            spectral_results = fut_spectral.result()
+            fcq_results = fut_fcq.result()
+            map_xref = fut_mapxref.result()
+            cce_result = fut_creative.result()
+            hybrid_result = fut_hybrid.result()
+
+        n_spectral_proved = sum(1 for r in spectral_results if r.get('proved'))
+        n_fcq_proved = sum(1 for r in fcq_results if r.proves_avoidance)
+        n_hybrid = hybrid_result['n_proved'] if hybrid_result else 0
+
+        print(f"  5a: {n_spectral_proved}/{len(spectral_results)} proved via CRT")
+        print(f"  5b: {n_fcq_proved}/{len(fcq_results)} proved via FCQ")
+        if map_xref:
+            print(f"  5c: {map_xref['summary']['invariants_holding']} invariants hold")
+        if cce_result:
+            print(f"  5d: {cce_result.innovations_born} innovations born")
+        if hybrid_result:
+            print(f"  5e: {n_hybrid}/{hybrid_result['n_total']} proved by hybrid")
+        print(f"└─ Parallel stages complete ────────────────────────────────┘\n")
+
+    else:
+        # Sequential fallback
+        print(f"┌─ STAGE 5a: SPECTRAL ENGINE (k≤{spectral_k_max}) ────────────┐")
+        spectral_results = _run_spectral()
+        n_spectral_proved = sum(1 for r in spectral_results if r.get('proved'))
+        print(f"└─ {n_spectral_proved}/{len(spectral_results)} proved via CRT ──────────┘\n")
+
+        print(f"┌─ STAGE 5b: FCQ ENGINE (k≤{fcq_k_max}) ──────────────────────┐")
+        fcq_results = _run_fcq()
+        n_fcq_proved = sum(1 for r in fcq_results if r.proves_avoidance)
+        print(f"└─ {n_fcq_proved}/{len(fcq_results)} proved via FCQ ──────────────────┘\n")
+
+        if not analysis_only:
+            print("┌─ STAGE 5c: MAP CROSS-REFERENCE ──────────────────────────┐")
+            map_xref = _run_mapxref()
+            print(f"└─ {map_xref['summary']['invariants_holding']} invariants hold ─────────┘\n")
+
+            print(f"┌─ STAGE 5d: CREATIVE ENGINE (k≤{cce_k_max}) ─────────────────┐")
+            cce_result = _run_creative()
+            print(f"└─ {cce_result.innovations_born} innovations born ────────────────┘\n")
+
+        if full_scan:
+            print(f"┌─ STAGE 5e: HYBRID PROVER (k≤{hybrid_k_max}) ────────────────┐")
+            hybrid_result = _run_hybrid()
+            n_hybrid = hybrid_result['n_proved']
+            print(f"└─ {n_hybrid}/{hybrid_result['n_total']} proved by hybrid ──────────┘\n")
+        else:
+            hybrid_result = None
+            n_hybrid = 0
 
     # ─── STAGE 6: PROVER (Steiner extension) ──────────────────
     prover_k_max = 200 if full_scan else 120

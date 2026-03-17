@@ -199,52 +199,70 @@ def try_steiner(k: int) -> Optional[ProofCertificate]:
     return None
 
 
-def prove_all(k_min: int = 3, k_max: int = 200) -> List[ProofCertificate]:
+def _prove_single_k(k: int) -> ProofCertificate:
+    """Prove N₀(d(k)) = 0 for a single k. Used by both serial and parallel provers."""
+    cert = None
+
+    # Method A: FCQ Primitive Root (instant)
+    if cert is None:
+        cert = try_fcq_primitive(k, max_prime=50000)
+
+    # Method B: Spectral DP (fast for small primes)
+    if cert is None:
+        cert = try_spectral_dp(k, max_prime=200)
+
+    # Method C: FCQ General (medium cost)
+    if cert is None:
+        cert = try_fcq_general(k, max_prime=10000)
+
+    # Method D: Steiner n_min (always works for k ≤ ~120)
+    if cert is None:
+        cert = try_steiner(k)
+
+    if cert is None:
+        cert = ProofCertificate(
+            k=k, proved=False, method="NONE",
+            witness_prime=0, witness_ord=0,
+            is_primitive_root=False,
+            rho=0, R_bound=0,
+            n0_exact=-1, n_total=-1,
+            computation_time=0,
+            details="ALL METHODS FAILED"
+        )
+
+    return cert
+
+
+def prove_all(k_min: int = 3, k_max: int = 200,
+              parallel: bool = False, n_workers: int = 4) -> List[ProofCertificate]:
     """
     Try to prove N₀(d(k)) = 0 for all k in range.
     Uses methods in order of cost.
-    """
-    certificates = []
-    methods_used = {}
 
-    print(f"  Proving k={k_min}..{k_max} using hybrid approach...")
+    Args:
+        parallel: If True, use multiprocessing for independent k values.
+        n_workers: Number of parallel workers (default 4).
+    """
+    print(f"  Proving k={k_min}..{k_max} using hybrid approach"
+          f"{f' ({n_workers} workers)' if parallel else ''}...")
     print()
 
-    for k in range(k_min, k_max + 1):
-        # Try methods in order of cost
-        cert = None
+    k_values = list(range(k_min, k_max + 1))
 
-        # Method A: FCQ Primitive Root (instant)
-        if cert is None:
-            cert = try_fcq_primitive(k, max_prime=50000)
+    if parallel and len(k_values) > 10:
+        from multiprocessing import Pool
+        with Pool(n_workers) as pool:
+            certificates = pool.map(_prove_single_k, k_values)
+    else:
+        certificates = [_prove_single_k(k) for k in k_values]
 
-        # Method B: Spectral DP (fast for small primes)
-        if cert is None:
-            cert = try_spectral_dp(k, max_prime=200)
-
-        # Method C: FCQ General (medium cost)
-        if cert is None:
-            cert = try_fcq_general(k, max_prime=10000)
-
-        # Method D: Steiner n_min (always works for k ≤ ~120)
-        if cert is None:
-            cert = try_steiner(k)
-
-        if cert is None:
-            cert = ProofCertificate(
-                k=k, proved=False, method="NONE",
-                witness_prime=0, witness_ord=0,
-                is_primitive_root=False,
-                rho=0, R_bound=0,
-                n0_exact=-1, n_total=-1,
-                computation_time=0,
-                details="ALL METHODS FAILED"
-            )
-
-        certificates.append(cert)
+    # Print summary
+    methods_used = {}
+    for cert in certificates:
         method = cert.method if cert.proved else "OPEN"
         methods_used[method] = methods_used.get(method, 0) + 1
 
+        k = cert.k
         if k <= 50 or k % 20 == 0 or not cert.proved:
             status = f"✓ {cert.method}" if cert.proved else "✗ OPEN"
             print(f"    k={k:3d}  {status:20s}  {cert.details[:50]}")

@@ -16,12 +16,19 @@ WHAT WE KNOW (from CCE Cycles 1-2 + Hybrid Prover):
   7. Compression ratio → 0 (monotonicity overwhelmingly constrains)
   8. Gap 1.35x is per-step (not dimensional)
 
-THREE PATHS TO UNIVERSALITY:
+CORRECTION (v3.3): S(k) = ⌈k·log₂(3)⌉ ≈ 1.585·k, NOT k(k-1)/2.
+  Therefore d(k) = 2^⌈k·log₂3⌉ - 3^k, which is NOT of the form a^n - b^n.
+  Zsygmondy's theorem does NOT directly apply.
+  The cyclotomic decomposition in this module is INVALID.
 
-  PATH A: Algebraic Number Theory
-    Prove that d(k) = 2^{k(k-1)/2} - 3^k always has a "good" prime factor.
-    "Good" = ρ_p < 1 and large enough ord_p(2).
-    This is essentially a Zsygmondy/Bang/Birkhoff-Vandiver type argument.
+THREE PATHS TO UNIVERSALITY (revised):
+
+  PATH A: Character Sum Bounds
+    For any prime p | d(k), ρ_p < 1 (proved unconditionally).
+    Using |S(a)| ≤ √p (character orthogonality over subgroup <2>):
+      k_min(p) = O(log p) when ord_p(2) > √p.
+    Need: prove d(k) always has a factor p with ord_p(2) > √p,
+    or find a Kloosterman-type bound for the geometric sum.
 
   PATH B: Analytic Number Theory
     Prove that the Fourier coefficients T(t) of corrSum mod d decay
@@ -33,7 +40,8 @@ THREE PATHS TO UNIVERSALITY:
     Baker-Wüstholz bounds on linear forms in logarithms give
     lower bounds on |2^S - 3^k - something|.
 
-This module explores PATH A computationally.
+This module explores PATH A computationally (Zsygmondy analysis is now
+marked as INVALID but kept for reference).
 """
 
 import math
@@ -67,30 +75,15 @@ def analyze_zsygmondy(k_max: int = 200) -> List[dict]:
     """
     Study whether d(k) = 2^S - 3^k has "Zsygmondy-type" structure.
 
-    Zsygmondy's theorem (1892): a^n - b^n has a primitive prime divisor
-    for all n > 6 when gcd(a,b)=1.
+    *** INVALIDATED in v3.3 ***
+    The original analysis assumed S = k(k-1)/2, but S = ⌈k·log₂3⌉.
+    Therefore d(k) ≠ a^k - b^k for any integer a, b.
+    Zsygmondy's theorem does NOT apply.
 
-    BUT: d(k) = 2^S - 3^k is NOT of the form a^n - b^n (S depends on k).
-    So Zsygmondy doesn't directly apply.
+    This function is kept for historical reference but its conclusions
+    about primitive prime divisors are INCORRECT.
 
-    HOWEVER: d(k) = 2^{k(k-1)/2} - 3^k. If we write α = 2^{(k-1)/2}, β = 3,
-    then d(k) = α^k - β^k (approximately). This is closer to Zsygmondy form.
-
-    More precisely: 2^S = (2^{(k-1)/2})^k = (√(2^{k-1}))^k.
-    For k even: 2^S = (2^{(k-1)/2})^k, but (k-1)/2 is not an integer.
-    For k odd: (k-1)/2 is an integer, so 2^S = (2^{(k-1)/2})^k exactly.
-
-    When k is odd: d(k) = (2^{(k-1)/2})^k - 3^k = a^k - b^k
-    with a = 2^{(k-1)/2}, b = 3, gcd(a,b) = 1.
-    By Zsygmondy, this has a primitive prime divisor for k > 6.
-
-    When k is even: 2^S = 2^{k(k-1)/2}, and we can write
-    d(k) = (2^{k/2})^{k-1} - 3^k. This is NOT a^n - b^n form.
-    Alternative: d(k) = (2^{(k-1)/2})^k - 3^k, but (k-1)/2 is half-integer.
-    So d(k) = (√2)^{k(k-1)} - 3^k. Not directly Zsygmondy.
-
-    KEY INSIGHT: For k ODD, Zsygmondy GUARANTEES a primitive prime divisor.
-    The question is: is this primitive divisor "useful" for avoidance?
+    The correct analysis is in rho_universal.py and proof_structure.py.
     """
     results = []
 
