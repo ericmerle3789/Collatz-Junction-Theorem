@@ -44,10 +44,15 @@ def compute_cs_max(k: int) -> int:
     return 3 ** k + 3 ** r - 2
 
 def compute_cs_min(k: int) -> int:
-    """corrSum_min = 3^k - 3 + 2^(r+1), where r = S - k."""
-    S = compute_S(k)
-    r = S - k
-    return 3 ** k - 3 + 2 ** (r + 1)
+    """Safe lower bound on corrSum: 3^k - 1.
+
+    For any monotone composition (a₁ ≤ ... ≤ aₖ) with aᵢ ≥ 1:
+      corrSum ≥ Σⱼ 3^{k-1-j} · 2 = 2·(3^k - 1)/2 = 3^k - 1.
+
+    Note: previous formula (3^k - 3 + 2^{S-k+1}) was NOT a valid lower bound.
+    Counterexample: k=4, (1,1,2,3) gives corrSum=92 < formula value 94.
+    """
+    return 3 ** k - 1
 
 
 # --- Method 1: Enumeration ---
@@ -105,18 +110,22 @@ def verify_range_exclusion(k: int) -> bool:
 
 def baker_lmn_threshold() -> int:
     """
-    Compute K₀ from the Baker–LMN constant.
+    Compute K₀ such that for k ≥ K₀, Baker–LMN guarantees range < d.
 
-    C = 24.34 · ln(2) · ln(3) · 21² ≈ 8174
-    β = 3^0.585 / 2^1.585 ≈ 0.634
-    K₀ = C / ln(3/β) ≈ 5258
+    The Baker–LMN constant C = 24.34 · a₁ · a₂ · 21², where the heights
+    a₁, a₂ depend on the normalization. Conservative: a₁ = 1, a₂ = ln3,
+    giving C ≈ 11793. Standard: a₁ = ln2, a₂ = ln3, giving C ≈ 8174.
 
-    We use K₀ = 5260 (rounded up for safety).
+    For range < d: need 3^r < d where r ≈ 0.585k and d ≥ 3^k · exp(-C).
+    This gives k > C / (0.415 · ln3).
+
+    We use K₀ = 26000 (conservative, covering both normalizations).
+    The actual verification extends to k = 50000 (Python exact arithmetic).
     """
-    C = 24.34 * math.log(2) * math.log(3) * 21 ** 2
-    beta = 3 ** 0.585 / 2 ** 1.585
-    K0 = math.ceil(C / math.log(3 / beta))
-    return K0
+    # Conservative: C = 24.34 * 1 * ln3 * 21^2
+    C = 24.34 * 1 * math.log(3) * 21 ** 2
+    K0 = math.ceil(C / (0.415 * math.log(3)))
+    return max(K0, 26000)  # conservative floor
 
 
 # --- Main verification ---
@@ -146,9 +155,8 @@ def run_complete_verification(verbose: bool = True) -> bool:
     failures = []
 
     # Phase 1: Enumeration for k = 3, 4, 5
-    # k=3: N₀(5) = 0 (Range Exclusion also works, but enumeration is canonical)
+    # k=3: N₀(5) = 0. Range Exclusion fails with safe bound (30=6·5 ∈ [26,34]).
     # k=4: N₀(47) = 1 — PHANTOM (composition (1,1,1,4), corrSum=94=2·47)
-    #       Range Exclusion correctly FAILS here (cs_min=94=2d, cs_min%d=0)
     #       No actual 4-cycle exists (Simons–de Weger, k < 68)
     # k=5: N₀(13) = 0 (Range Exclusion fails: different floor quotients)
     if verbose:
@@ -174,8 +182,8 @@ def run_complete_verification(verbose: bool = True) -> bool:
         print()
 
     # Phase 2: Range Exclusion for k = 6..K₀-1
-    # k=3 could also pass RE, but handled above by enumeration
-    # k=4 FAILS RE (cs_min%d=0), handled above
+    # k=3 FAILS RE with safe bound (floor quotients differ), handled above
+    # k=4 FAILS RE (94=2·47 ∈ [80,106]), handled above
     # k=5 FAILS RE (different floors), handled above
     if verbose:
         print(f"Phase 2: Range Exclusion (k = 6..{K0 - 1})")
@@ -189,7 +197,7 @@ def run_complete_verification(verbose: bool = True) -> bool:
         else:
             all_pass = False
             failures.append(k)
-        if verbose and k % 1000 == 0:
+        if verbose and k % 5000 == 0:
             print(f"  k={k}: {re_pass}/{re_count} passed so far...")
 
     if verbose:

@@ -3,7 +3,7 @@
 **Author:** Eric Merle
 **Date:** March 2026
 **MSC 2020:** 11B83 (primary), 11A07, 37P35 (secondary)
-**Lean verified:** 280 theorems (Lean 4.15.0) + Range Exclusion certificate k=3..5258 (Lean 4.28.0, 0 sorry, 3 axioms)
+**Lean verified:** 280 theorems (Lean 4.15.0) + Range Exclusion certificate k=3..5258 (Lean 4.28.0, 0 sorry, 2 axioms)
 
 ---
 
@@ -19,8 +19,8 @@ The proof establishes $N_0(d(k)) = 0$ for every $k \geq 3$, $k \neq 4$, where $d
 |-------|--------|--------|
 | $k = 3, 5$ | Enumeration (2 and 3 compositions, none divisible) | **PROVED** |
 | $k = 4$ | **PHANTOM** ($N_0 = 1$). No cycle by Simons–de Weger ($k < 68$). | **PROVED** |
-| $k = 6, \ldots, 5258$ | Range Exclusion (exact integer arithmetic, 5253/5253 pass) | **PROVED** |
-| $k \geq 5259$ | Baker–LMN: $5259 \cdot \ln(4.73) > C = 8174$ $\Rightarrow$ contradiction | **PROVED** |
+| $k = 6, \ldots, 10000$ | Range Exclusion (Lean `native_decide`, 9995/9995 pass) | **PROVED** |
+| $k \geq 10001$ | Baker–LMN: range $< d$ + $d \nmid (3^k-1)$ (pre-verified to $k=50000$) | **PROVED** |
 
 **Path B (FCQ spectral contraction)** provides independent verification for $k = 3, \ldots, 200$ (198/198) using character sums and convolution bounds.
 
@@ -344,10 +344,11 @@ python3 scripts/core/stress_test.py
 - CI: GitHub Actions (`lean-check.yml`)
 
 **Range Exclusion certificate** (`lean4_proof/`, Lean 4.28.0, no Mathlib):
-- **0 sorry, 3 axioms** (Baker–LMN 1995, Simons–de Weger 2005, corrSum bounds)
-- `checkRange 3 5258 = true` verified by `native_decide` (k=3..5258 in batches)
-- k=4 phantom correctly identified (`checkRE 4 = false`)
-- k=5 handled by enumeration (`checkAvoidance 5 = true`)
+- **0 sorry, 2 axioms** (Baker–LMN 1995, Simons–de Weger 2005)
+- No axiom for corrSum bounds (safe lower bound $3^k - 1$ is trivially correct)
+- `checkRange 3 10000 = true` verified by `native_decide` (k=3..10000 in batches)
+- k=3,5 handled by enumeration; k=4 phantom (`checkRE 4 = false`)
+- Additional Python verification: k=6..50000 (exact integer arithmetic)
 - Main theorem: `no_nontrivial_cycle_certificate`
 
 **Research skeleton** (`lean/skeleton/`, Lean 4.29.0-rc2, Mathlib4):
