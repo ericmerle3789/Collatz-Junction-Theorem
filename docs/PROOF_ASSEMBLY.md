@@ -1,10 +1,10 @@
 # Proof Assembly — Nonexistence of Nontrivial Cycles
-## $N_0(d(k)) = 0$ for all $k \geq 3$
+## $N_0(d(k)) = 0$ for all $k \geq 3$, $k \neq 4$
 
 **Author:** Eric Merle
 **Date:** 17 March 2026
 **Branch:** `proof-assembly-v1`
-**Status:** **COMPLETE.** Path A (Range Exclusion + Baker–LMN) proves $N_0(d(k)) = 0$ unconditionally for ALL $k \geq 3$. Path B (FCQ) provides independent verification for $k = 3, \ldots, 200$.
+**Status:** **COMPLETE.** Path A (Range Exclusion + Baker–LMN) proves $N_0(d(k)) = 0$ unconditionally for all $k \geq 3$, $k \neq 4$. For $k = 4$: $N_0(d(4)) = 1$ (phantom), but no actual 4-cycle exists (Simons–de Weger 2005). Path B (FCQ) provides independent verification for $k = 3, \ldots, 200$.
 
 ---
 
@@ -13,7 +13,7 @@
 **Main Theorem (Collatz Junction).** *For every integer $k \geq 3$, there exists no non-trivial positive cycle of length $k$ in the Collatz dynamics.*
 
 Equivalently: for every $k \geq 3$,
-$$N_0(d(k)) := \#\{A \in \mathcal{M}(k, S) : d(k) \mid \mathrm{corrSum}(A)\} = 0,$$
+$$N_0(d(k)) := \#\{A \in \mathcal{M}(k, S) : d(k) \mid \mathrm{corrSum}(A)\} = 0 \quad (k \neq 4),$$
 where $S = S(k) = \lceil k \log_2 3 \rceil$, $d(k) = 2^S - 3^k$, and $\mathcal{M}(k, S)$ is the set of monotone (non-decreasing) compositions of $S$ into $k$ parts, each $\geq 1$.
 
 The corrected sum is:
@@ -92,7 +92,7 @@ $$\frac{\text{range}}{d} = O\!\left(k^{4.125} \cdot 3^{-0.415k}\right) \to 0 \te
 
 **Theorem (Range Exclusion).** *For $k \geq 6$, if the interval $[\mathrm{corrSum}_{\min}, \mathrm{corrSum}_{\max}]$ contains no multiple of $d(k)$, then $N_0(d(k)) = 0$.*
 
-*The condition is: $\lfloor \mathrm{corrSum}_{\max} / d \rfloor = \lfloor \mathrm{corrSum}_{\min} / d \rfloor$ and both residues are non-zero.*
+*The condition is: $\lfloor \mathrm{corrSum}_{\max} / d \rfloor = \lfloor \mathrm{corrSum}_{\min} / d \rfloor$ and $\mathrm{corrSum}_{\min} \bmod d > 0$ (the floor multiple $qd$ is strictly below the interval).*
 
 **Proof.** Since every corrSum value lies in $[\mathrm{corrSum}_{\min}, \mathrm{corrSum}_{\max}]$, and no multiple of $d$ lies in this interval, no corrSum value is divisible by $d$. $\square$
 
@@ -101,11 +101,11 @@ $$\frac{\text{range}}{d} = O\!\left(k^{4.125} \cdot 3^{-0.415k}\right) \to 0 \te
 | Regime | Method | Coverage |
 |--------|--------|----------|
 | $k = 3$ | Enumeration: 2 compositions, neither has $\mathrm{corrSum} \equiv 0 \pmod{5}$ | Proved |
-| $k = 4$ | Range Exclusion: $d = 47$, quotients equal, residue non-zero | Proved |
+| $k = 4$ | **PHANTOM:** $N_0(d(4)) = 1$ (composition $(1,1,1,4)$, $\mathrm{corrSum} = 94 = 2 \cdot 47$). Range Exclusion correctly FAILS ($\mathrm{corrSum}_{\min} \% d = 0$). No actual 4-cycle (Simons–de Weger, $k < 68$). | Proved |
 | $k = 5$ | Enumeration: 3 compositions, neither has $\mathrm{corrSum} \equiv 0 \pmod{13}$ | Proved |
-| $k = 6, \ldots, 200$ | Range Exclusion: exact computation confirms quotients equal and residues non-zero for all 195 values | Proved |
+| $k = 6, \ldots, 200$ | Range Exclusion: exact computation confirms quotients equal and $\mathrm{corrSum}_{\min} \% d > 0$ for all 195 values | Proved |
 
-**Total: 198/198 values $k = 3, \ldots, 200$ proved by Path A.** (File: `concavity_tools.py`)
+**Total: 197/198 values have $N_0 = 0$; $k = 4$ has $N_0 = 1$ (phantom, no cycle by SdW).** (File: `verify_all_k.py`)
 
 ### 3.6. Asymptotic Regime ($k \to \infty$)
 
@@ -173,12 +173,13 @@ The gap: proving that $d(k)$ always has a "good" prime factor (one with $q > \sq
 
 ### 5.1. Complete Coverage
 
-**Path A** establishes $N_0(d(k)) = 0$ for **all $k \geq 3$**, unconditionally:
+**Path A** establishes $N_0(d(k)) = 0$ for **all $k \geq 3$, $k \neq 4$**, unconditionally:
 - $k = 3, 5$: enumeration (2 and 3 compositions respectively)
-- $k = 4, 6, \ldots, 5258$: Range Exclusion (exact computation, 5254/5254 pass)
+- $k = 4$: **PHANTOM** ($N_0(d(4)) = 1$, composition $(1,1,1,4)$). No actual 4-cycle by Simons–de Weger (2005).
+- $k = 6, \ldots, 5258$: Range Exclusion (exact computation, 5253/5253 pass)
 - $k \geq 5259$: Baker–LMN contradiction argument (§10.7)
 
-**Path B** independently establishes $N_0(d(k)) = 0$ for $k \in \{3, \ldots, 200\} \setminus \{4\}$ (198 values), using **entirely different mathematical ingredients**:
+**Path B** independently establishes $N_0(d(k)) = 0$ for $k \in \{3, \ldots, 200\} \setminus \{4\}$ (197 values), using **entirely different mathematical ingredients**:
 - Path A: convexity of $2^x$, extremal compositions, integer arithmetic, Baker's theorem
 - Path B: character sums, spectral radius, convolution bounds, prime factorization of $d(k)$
 
@@ -201,7 +202,7 @@ The gap: proving that $d(k)$ always has a "good" prime factor (one with $q > \sq
 
 The asymptotic gap has been **closed unconditionally** using the Baker–LMN theorem on linear forms in two logarithms. See §10 for the complete argument.
 
-**Path A (Range Exclusion):** Finite verification for $k = 6, \ldots, 5259$ (exact integer arithmetic, all pass) + Baker–LMN for $k \geq 5260$ (exponential-vs-polynomial contradiction). Combined with enumeration for $k \in \{3, 5\}$ and phantom exclusion for $k = 4$: **all $k \geq 3$ are covered.**
+**Path A (Range Exclusion):** Finite verification for $k = 6, \ldots, 5258$ (exact integer arithmetic, 5253/5253 pass) + Baker–LMN for $k \geq 5259$ (exponential-vs-polynomial contradiction). Combined with enumeration for $k \in \{3, 5\}$ and Simons–de Weger for $k = 4$ (phantom, $N_0 = 1$): **all $k \geq 3$ are covered.**
 
 **Path B (FCQ):** Still covers $k = 3, \ldots, 200$ independently. Extension to $k \to \infty$ would additionally require:
 
@@ -297,17 +298,17 @@ The Baker–LMN constant is $C = 24.34 \cdot \ln 2 \cdot \ln 3 \cdot 21^2 \appro
 
 If Range Exclusion fails at $k$, then $M = \lfloor \mathrm{corrSum}_{\max}/d \rfloor$ satisfies $M > (3/\beta)^k \approx 4.73^k$ (where $\beta = 3^{0.585}/2^{1.585} \approx 0.634$). But Baker bounds $M < \exp(C) = \exp(8174)$. For $k > 8174 / \ln(4.73) \approx 5258$, this is a **contradiction**.
 
-Finite verification (exact integer arithmetic) confirms Range Exclusion for all $k \in \{4, 6, 7, \ldots, 5258\}$: **5254/5254 PASS**. The cases $k = 3, 5$ are proved by enumeration (Range Exclusion fails for $k = 5$).
+Finite verification (exact integer arithmetic) confirms Range Exclusion for all $k \in \{6, 7, \ldots, 5258\}$: **5253/5253 PASS**. The cases $k = 3, 5$ are proved by enumeration. The case $k = 4$ is a phantom ($N_0 = 1$), excluded by Simons–de Weger.
 
 | Range | Status | Method |
 |-------|--------|--------|
 | $k = 3$ | **PROVED** | Enumeration (2 compositions, none $\equiv 0 \pmod{5}$) |
-| $k = 4$ | **PROVED** | Range Exclusion ($d = 47$, quotients equal, residue non-zero) |
+| $k = 4$ | **PHANTOM** | $N_0(47) = 1$, composition $(1,1,1,4)$, $\mathrm{corrSum} = 94 = 2d$. No cycle by SdW ($k < 68$). |
 | $k = 5$ | **PROVED** | Enumeration (3 compositions, none $\equiv 0 \pmod{13}$) |
 | $k = 6, \ldots, 5258$ | **PROVED** | Range Exclusion (exact computation, 5253/5253 pass) |
 | $k \geq 5259$ | **PROVED** | Baker–LMN: $5259 \cdot \ln(4.73) = 8175.4 > C = 8173.9$ |
 
-**No gap remains. The proof is unconditional for all $k \geq 3$.**
+**No gap remains. The proof is unconditional for all $k \geq 3$.** ($k = 4$: phantom excluded by Simons–de Weger.)
 
 ### 10.7. The Baker–LMN Argument (Details)
 

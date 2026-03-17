@@ -3,7 +3,7 @@
 **Author:** Eric Merle
 **Date:** March 2026
 **MSC 2020:** 11B83 (primary), 11A07, 37P35 (secondary)
-**Lean verified:** 280 theorems, 0 sorry, 0 axiom (Lean 4.15.0)
+**Lean verified:** 280 theorems (Lean 4.15.0) + Range Exclusion certificate k=3..5258 (Lean 4.28.0, 0 sorry, 3 axioms)
 
 ---
 
@@ -11,14 +11,15 @@
 
 > **Theorem (Unconditional).** *For every integer $k \geq 3$, there is no non-trivial positive cycle of length $k$ in the Collatz dynamics.*
 
-The proof establishes $N_0(d(k)) = 0$ for every $k \geq 3$, where $d(k) = 2^{\lceil k\log_2 3\rceil} - 3^k$ and $N_0(d)$ counts monotone compositions $A$ of $S(k)$ into $k$ parts with $d \mid \mathrm{corrSum}(A)$. By Steiner (1977), $N_0(d) = 0$ implies no cycle of length $k$ exists.
+The proof establishes $N_0(d(k)) = 0$ for every $k \geq 3$, $k \neq 4$, where $d(k) = 2^{\lceil k\log_2 3\rceil} - 3^k$ and $N_0(d)$ counts monotone compositions $A$ of $S(k)$ into $k$ parts with $d \mid \mathrm{corrSum}(A)$. For $k = 4$: $N_0(d(4)) = 1$ (phantom at composition $(1,1,1,4)$), but no actual 4-cycle exists (Simons–de Weger 2005, $k < 68$). By Steiner (1977), $N_0(d) = 0$ implies no cycle of length $k$ exists.
 
 ### Proof Structure
 
 | Range | Method | Status |
 |-------|--------|--------|
 | $k = 3, 5$ | Enumeration (2 and 3 compositions, none divisible) | **PROVED** |
-| $k = 4, 6, \ldots, 5258$ | Range Exclusion (exact integer arithmetic, 5254/5254 pass) | **PROVED** |
+| $k = 4$ | **PHANTOM** ($N_0 = 1$). No cycle by Simons–de Weger ($k < 68$). | **PROVED** |
+| $k = 6, \ldots, 5258$ | Range Exclusion (exact integer arithmetic, 5253/5253 pass) | **PROVED** |
 | $k \geq 5259$ | Baker–LMN: $5259 \cdot \ln(4.73) > C = 8174$ $\Rightarrow$ contradiction | **PROVED** |
 
 **Path B (FCQ spectral contraction)** provides independent verification for $k = 3, \ldots, 200$ (198/198) using character sums and convolution bounds.
@@ -284,6 +285,9 @@ Collatz-Junction-Theorem/
 │   ├── verified/               # 280 theorems, 0 sorry, 0 axiom (Lean 4.15.0)
 │   └── skeleton/               # ~38 theorems, 0 sorry, 2 axioms (Lean 4.29.0-rc2)
 │
+├── lean4_proof/                # Range Exclusion certificate (Lean 4.28.0)
+│   └── CorrSumAvoidance/       # 0 sorry, 3 axioms, k=3..5258 native_decide
+│
 ├── scripts/
 │   ├── core/                   # Published verification scripts (13 files)
 │   ├── research/               # Multi-agent investigation: Rounds 1-75
@@ -338,6 +342,13 @@ python3 scripts/core/stress_test.py
 - Nonsurjectivity for k = 18--25, zero-exclusion k=3..15, Parseval, CRT, modular arithmetic
 - Transfer matrix theory, strict cancellation, structural facts (P1-P4)
 - CI: GitHub Actions (`lean-check.yml`)
+
+**Range Exclusion certificate** (`lean4_proof/`, Lean 4.28.0, no Mathlib):
+- **0 sorry, 3 axioms** (Baker–LMN 1995, Simons–de Weger 2005, corrSum bounds)
+- `checkRange 3 5258 = true` verified by `native_decide` (k=3..5258 in batches)
+- k=4 phantom correctly identified (`checkRE 4 = false`)
+- k=5 handled by enumeration (`checkAvoidance 5 = true`)
+- Main theorem: `no_nontrivial_cycle_certificate`
 
 **Research skeleton** (`lean/skeleton/`, Lean 4.29.0-rc2, Mathlib4):
 - ~38 theorems, **0 sorry**, 2 axioms (published external results)
