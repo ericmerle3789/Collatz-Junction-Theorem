@@ -1,0 +1,10 @@
+name = "CorrSumAvoidance"
+version = "1.0.0"
+defaultTargets = ["CorrSumAvoidance"]
+
+[[lean_lib]]
+name = "CorrSumAvoidance"
+
+[[lean_exe]]
+name = "main"
+root = "Main"
