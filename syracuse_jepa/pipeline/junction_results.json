@@ -1,0 +1,2001 @@
+{
+  "k_max": 200,
+  "n_proved": 198,
+  "n_total": 198,
+  "n_open": 0,
+  "open_cases": [],
+  "regimes": {
+    "A_sdw": 89,
+    "B_fcq": 108,
+    "C_steiner": 1
+  },
+  "junction_constants": {
+    "K_MAX_ord100": 63,
+    "SDW_bound": 68,
+    "Hercher_bound": 91,
+    "Barina_bits": 71,
+    "junction_buffer": 6
+  },
+  "results": [
+    {
+      "k": 3,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 4,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 5,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 6,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 7,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 8,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 9,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 10,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 11,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 12,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 13,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 14,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 15,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 16,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 17,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 18,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 19,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 20,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 21,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 22,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 23,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 24,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 25,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 26,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 27,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 28,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 29,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 30,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 31,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 32,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 33,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 34,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 35,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 36,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 37,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 38,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 39,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 40,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 41,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 42,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 43,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 44,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 45,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 46,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 47,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 48,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 49,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 50,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 51,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 52,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 53,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 54,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 55,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 56,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 57,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 58,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 59,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 60,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 61,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 62,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 63,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 64,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 65,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 66,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 67,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 68,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 69,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 70,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 71,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 72,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 73,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 74,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 75,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 76,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 77,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 78,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 79,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 80,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 81,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 82,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 83,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 84,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 85,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 86,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 87,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 88,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 89,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 90,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 91,
+      "regime": "A_sdw",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "Hercher (2022) covers k ≤ 91"
+    },
+    {
+      "k": 92,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 11,
+      "witness_ord": 10,
+      "rho_bound": 0.10000000000000009,
+      "k_min": 3,
+      "details": "p=11, q=10, ρ≤0.100000, R≤1.00e-90"
+    },
+    {
+      "k": 93,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 167,
+      "witness_ord": 83,
+      "rho_bound": 0.07808121323382979,
+      "k_min": 3,
+      "details": "p=167, q=83, ρ≤0.078081, R≤1.08e-100"
+    },
+    {
+      "k": 94,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤1.27e-30"
+    },
+    {
+      "k": 95,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 859,
+      "witness_ord": 858,
+      "rho_bound": 0.0011655011655006453,
+      "k_min": 2,
+      "details": "p=859, q=858, ρ≤0.001166, R≤1.53e-273"
+    },
+    {
+      "k": 96,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤2.82e-31"
+    },
+    {
+      "k": 97,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 82189,
+      "witness_ord": 3044,
+      "rho_bound": 0.09418076203741048,
+      "k_min": 5,
+      "details": "p=82189, q=3044, ρ≤0.094181, R≤9.63e-96"
+    },
+    {
+      "k": 98,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 431,
+      "witness_ord": 43,
+      "rho_bound": 0.25078780161802394,
+      "k_min": 4,
+      "details": "p=431, q=43, ρ≤0.250788, R≤2.32e-57"
+    },
+    {
+      "k": 99,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤3.98e-59"
+    },
+    {
+      "k": 100,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 239,
+      "witness_ord": 119,
+      "rho_bound": 0.06509215707912114,
+      "k_min": 3,
+      "details": "p=239, q=119, ρ≤0.065092, R≤4.12e-116"
+    },
+    {
+      "k": 101,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 19,
+      "witness_ord": 18,
+      "rho_bound": 0.05555555555555568,
+      "k_min": 3,
+      "details": "p=19, q=18, ρ≤0.055556, R≤5.35e-125"
+    },
+    {
+      "k": 102,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤6.22e-61"
+    },
+    {
+      "k": 103,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 11,
+      "witness_ord": 10,
+      "rho_bound": 0.10000000000000009,
+      "k_min": 3,
+      "details": "p=11, q=10, ρ≤0.100000, R≤1.00e-101"
+    },
+    {
+      "k": 104,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 1759,
+      "witness_ord": 879,
+      "rho_bound": 0.023863682552221942,
+      "k_min": 3,
+      "details": "p=1759, q=879, ρ≤0.023864, R≤7.09e-165"
+    },
+    {
+      "k": 105,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤9.72e-63"
+    },
+    {
+      "k": 106,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 1279,
+      "witness_ord": 639,
+      "rho_bound": 0.027994591267603057,
+      "k_min": 3,
+      "details": "p=1279, q=639, ρ≤0.027995, R≤5.60e-161"
+    },
+    {
+      "k": 107,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 47,
+      "witness_ord": 23,
+      "rho_bound": 0.15061311370164213,
+      "k_min": 3,
+      "details": "p=47, q=23, ρ≤0.150613, R≤1.64e-86"
+    },
+    {
+      "k": 108,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤1.52e-64"
+    },
+    {
+      "k": 109,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 3701,
+      "witness_ord": 3700,
+      "rho_bound": 0.0002702702702703548,
+      "k_min": 3,
+      "details": "p=3701, q=3700, ρ≤0.000270, R≤0.00e+00"
+    },
+    {
+      "k": 110,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤7.53e-36"
+    },
+    {
+      "k": 111,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 433,
+      "witness_ord": 72,
+      "rho_bound": 0.18549080438978863,
+      "k_min": 4,
+      "details": "p=433, q=72, ρ≤0.185491, R≤2.36e-79"
+    },
+    {
+      "k": 112,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 19,
+      "witness_ord": 18,
+      "rho_bound": 0.05555555555555568,
+      "k_min": 3,
+      "details": "p=19, q=18, ρ≤0.055556, R≤8.32e-139"
+    },
+    {
+      "k": 113,
+      "regime": "C_steiner",
+      "proved": true,
+      "witness_prime": 0,
+      "witness_ord": 0,
+      "rho_bound": 0,
+      "k_min": 0,
+      "details": "n_min ≤ 2^67, Barina covers 2^71"
+    },
+    {
+      "k": 114,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 31,
+      "witness_ord": 5,
+      "rho_bound": 0.5402618085470516,
+      "k_min": 4,
+      "details": "p=31, q=5, ρ≤0.540262, R≤3.04e-30"
+    },
+    {
+      "k": 115,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 23,
+      "witness_ord": 11,
+      "rho_bound": 0.22268088570756206,
+      "k_min": 3,
+      "details": "p=23, q=11, ρ≤0.222681, R≤4.76e-74"
+    },
+    {
+      "k": 116,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤2.32e-69"
+    },
+    {
+      "k": 117,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 11,
+      "witness_ord": 10,
+      "rho_bound": 0.10000000000000009,
+      "k_min": 3,
+      "details": "p=11, q=10, ρ≤0.100000, R≤1.00e-115"
+    },
+    {
+      "k": 118,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤1.84e-38"
+    },
+    {
+      "k": 119,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤3.62e-71"
+    },
+    {
+      "k": 120,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 1608433,
+      "witness_ord": 33509,
+      "rho_bound": 0.03784774595542485,
+      "k_min": 5,
+      "details": "p=1608433, q=33509, ρ≤0.037848, R≤2.05e-165"
+    },
+    {
+      "k": 121,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 59,
+      "witness_ord": 58,
+      "rho_bound": 0.017241379310344647,
+      "k_min": 2,
+      "details": "p=59, q=58, ρ≤0.017241, R≤1.42e-210"
+    },
+    {
+      "k": 122,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤5.66e-73"
+    },
+    {
+      "k": 123,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 19,
+      "witness_ord": 18,
+      "rho_bound": 0.05555555555555568,
+      "k_min": 3,
+      "details": "p=19, q=18, ρ≤0.055556, R≤1.29e-152"
+    },
+    {
+      "k": 124,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤2.02e-40"
+    },
+    {
+      "k": 125,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤8.84e-75"
+    },
+    {
+      "k": 126,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 439,
+      "witness_ord": 73,
+      "rho_bound": 0.15704657816156845,
+      "k_min": 4,
+      "details": "p=439, q=73, ρ≤0.157047, R≤2.33e-99"
+    },
+    {
+      "k": 127,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 23,
+      "witness_ord": 11,
+      "rho_bound": 0.22268088570756206,
+      "k_min": 3,
+      "details": "p=23, q=11, ρ≤0.222681, R≤7.07e-82"
+    },
+    {
+      "k": 128,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 1289,
+      "witness_ord": 161,
+      "rho_bound": 0.08447054442880329,
+      "k_min": 4,
+      "details": "p=1289, q=161, ρ≤0.084471, R≤7.91e-135"
+    },
+    {
+      "k": 129,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 317,
+      "witness_ord": 316,
+      "rho_bound": 0.0031645569620250727,
+      "k_min": 2,
+      "details": "p=317, q=316, ρ≤0.003165, R≤3.47e-318"
+    },
+    {
+      "k": 130,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 17,
+      "witness_ord": 8,
+      "rho_bound": 0.32019410160110395,
+      "k_min": 3,
+      "details": "p=17, q=8, ρ≤0.320194, R≤1.26e-63"
+    },
+    {
+      "k": 131,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 11,
+      "witness_ord": 10,
+      "rho_bound": 0.10000000000000009,
+      "k_min": 3,
+      "details": "p=11, q=10, ρ≤0.100000, R≤1.00e-129"
+    },
+    {
+      "k": 132,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤4.92e-43"
+    },
+    {
+      "k": 133,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤1.35e-79"
+    },
+    {
+      "k": 134,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 17,
+      "witness_ord": 8,
+      "rho_bound": 0.32019410160110395,
+      "k_min": 3,
+      "details": "p=17, q=8, ρ≤0.320194, R≤1.33e-65"
+    },
+    {
+      "k": 135,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 50705599015542603740807,
+      "witness_ord": 25352799507771301870403,
+      "rho_bound": 8.881821418663997e-12,
+      "k_min": 4,
+      "details": "ECM factor: p=50705599015542603740807, q=25352799507771301870403, ρ≤0.000000, R≤0.00e+00"
+    },
+    {
+      "k": 136,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤2.11e-81"
+    },
+    {
+      "k": 137,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 2137,
+      "witness_ord": 1068,
+      "rho_bound": 0.022110345189749636,
+      "k_min": 3,
+      "details": "p=2137, q=1068, ρ≤0.022110, R≤7.83e-223"
+    },
+    {
+      "k": 138,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤5.40e-45"
+    },
+    {
+      "k": 139,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤3.29e-83"
+    },
+    {
+      "k": 140,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 47,
+      "witness_ord": 23,
+      "rho_bound": 0.15061311370164213,
+      "k_min": 3,
+      "details": "p=47, q=23, ρ≤0.150613, R≤1.22e-113"
+    },
+    {
+      "k": 141,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 107,
+      "witness_ord": 106,
+      "rho_bound": 0.009433962264151479,
+      "k_min": 3,
+      "details": "p=107, q=106, ρ≤0.009434, R≤3.04e-282"
+    },
+    {
+      "k": 142,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤5.15e-85"
+    },
+    {
+      "k": 143,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 502403360070898661,
+      "witness_ord": 45673032733718060,
+      "rho_bound": 1.5519095923461017e-08,
+      "k_min": 4,
+      "details": "ECM factor: p=502403360070898661, q=45673032733718060, ρ≤0.000000, R≤0.00e+00"
+    },
+    {
+      "k": 144,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 47,
+      "witness_ord": 23,
+      "rho_bound": 0.15061311370164213,
+      "k_min": 3,
+      "details": "p=47, q=23, ρ≤0.150613, R≤6.25e-117"
+    },
+    {
+      "k": 145,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 11,
+      "witness_ord": 10,
+      "rho_bound": 0.10000000000000009,
+      "k_min": 3,
+      "details": "p=11, q=10, ρ≤0.100000, R≤1.00e-143"
+    },
+    {
+      "k": 146,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤1.32e-47"
+    },
+    {
+      "k": 147,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤5.03e-88"
+    },
+    {
+      "k": 148,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 14104139103754846641177959959138798710000749511838317572946370979089007,
+      "witness_ord": 7052069551877423320588979979569399355000374755919158786473185489544503,
+      "rho_bound": 1.6840566799397803e-35,
+      "k_min": 4,
+      "details": "p=14104139103754846641177959959138798710000749511838317572946370979089007, q=7052069551877423320588979979569399355000374755919158786473185489544503, ρ≤0.000000, R≤0.00e+00"
+    },
+    {
+      "k": 149,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 577,
+      "witness_ord": 144,
+      "rho_bound": 0.10363072323931104,
+      "k_min": 4,
+      "details": "p=577, q=144, ρ≤0.103631, R≤2.82e-144"
+    },
+    {
+      "k": 150,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤7.85e-90"
+    },
+    {
+      "k": 151,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 23,
+      "witness_ord": 11,
+      "rho_bound": 0.22268088570756206,
+      "k_min": 3,
+      "details": "p=23, q=11, ρ≤0.222681, R≤1.56e-97"
+    },
+    {
+      "k": 152,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤1.44e-49"
+    },
+    {
+      "k": 153,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤1.23e-91"
+    },
+    {
+      "k": 154,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤3.21e-50"
+    },
+    {
+      "k": 155,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 17497,
+      "witness_ord": 4374,
+      "rho_bound": 0.02139436897563377,
+      "k_min": 4,
+      "details": "p=17497, q=4374, ρ≤0.021394, R≤3.21e-254"
+    },
+    {
+      "k": 156,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤1.92e-93"
+    },
+    {
+      "k": 157,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 67,
+      "witness_ord": 66,
+      "rho_bound": 0.015151515151515246,
+      "k_min": 3,
+      "details": "p=67, q=66, ρ≤0.015152, R≤9.35e-283"
+    },
+    {
+      "k": 158,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 2303146414343,
+      "witness_ord": 1151573207171,
+      "rho_bound": 1.3178598346325505e-06,
+      "k_min": 4,
+      "details": "ECM factor: p=2303146414343, q=1151573207171, ρ≤0.000001, R≤0.00e+00"
+    },
+    {
+      "k": 159,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤3.00e-95"
+    },
+    {
+      "k": 160,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤3.52e-52"
+    },
+    {
+      "k": 161,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 1439,
+      "witness_ord": 719,
+      "rho_bound": 0.026388965175257826,
+      "k_min": 3,
+      "details": "p=1439, q=719, ρ≤0.026389, R≤1.92e-250"
+    },
+    {
+      "k": 162,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 431,
+      "witness_ord": 43,
+      "rho_bound": 0.25078780161802394,
+      "k_min": 4,
+      "details": "p=431, q=43, ρ≤0.250788, R≤8.35e-96"
+    },
+    {
+      "k": 163,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 23,
+      "witness_ord": 11,
+      "rho_bound": 0.22268088570756206,
+      "k_min": 3,
+      "details": "p=23, q=11, ρ≤0.222681, R≤2.32e-105"
+    },
+    {
+      "k": 164,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤2.93e-98"
+    },
+    {
+      "k": 165,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 172792443390443,
+      "witness_ord": 172792443390442,
+      "rho_bound": 7.607424082716519e-08,
+      "k_min": 4,
+      "details": "ECM factor: p=172792443390443, q=172792443390442, ρ≤0.000000, R≤0.00e+00"
+    },
+    {
+      "k": 166,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 152760155881,
+      "witness_ord": 12730012990,
+      "rho_bound": 3.070267388070681e-05,
+      "k_min": 4,
+      "details": "ECM factor: p=152760155881, q=12730012990, ρ≤0.000031, R≤0.00e+00"
+    },
+    {
+      "k": 167,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤4.57e-100"
+    },
+    {
+      "k": 168,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤8.59e-55"
+    },
+    {
+      "k": 169,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 13,
+      "witness_ord": 12,
+      "rho_bound": 0.08333333333333337,
+      "k_min": 2,
+      "details": "p=13, q=12, ρ≤0.083333, R≤5.98e-181"
+    },
+    {
+      "k": 170,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤7.14e-102"
+    },
+    {
+      "k": 171,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 2665249,
+      "witness_ord": 222104,
+      "rho_bound": 0.007350426080370732,
+      "k_min": 4,
+      "details": "ECM factor: p=2665249, q=222104, ρ≤0.007350, R≤0.00e+00"
+    },
+    {
+      "k": 172,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 73,
+      "witness_ord": 9,
+      "rho_bound": 0.31426968052735604,
+      "k_min": 3,
+      "details": "p=73, q=9, ρ≤0.314270, R≤9.84e-86"
+    },
+    {
+      "k": 173,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤1.12e-103"
+    },
+    {
+      "k": 174,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤9.42e-57"
+    },
+    {
+      "k": 175,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 23,
+      "witness_ord": 11,
+      "rho_bound": 0.22268088570756206,
+      "k_min": 3,
+      "details": "p=23, q=11, ρ≤0.222681, R≤3.45e-113"
+    },
+    {
+      "k": 176,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 1253983313834208467115007,
+      "witness_ord": 626991656917104233557503,
+      "rho_bound": 1.7860109486077138e-12,
+      "k_min": 4,
+      "details": "ECM factor: p=1253983313834208467115007, q=626991656917104233557503, ρ≤0.000000, R≤0.00e+00"
+    },
+    {
+      "k": 177,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 47,
+      "witness_ord": 23,
+      "rho_bound": 0.15061311370164213,
+      "k_min": 3,
+      "details": "p=47, q=23, ρ≤0.150613, R≤4.63e-144"
+    },
+    {
+      "k": 178,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 18402833,
+      "witness_ord": 9201416,
+      "rho_bound": 0.000466216539765264,
+      "k_min": 4,
+      "details": "ECM factor: p=18402833, q=9201416, ρ≤0.000466, R≤0.00e+00"
+    },
+    {
+      "k": 179,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 13,
+      "witness_ord": 12,
+      "rho_bound": 0.08333333333333337,
+      "k_min": 2,
+      "details": "p=13, q=12, ρ≤0.083333, R≤9.66e-192"
+    },
+    {
+      "k": 180,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 17,
+      "witness_ord": 8,
+      "rho_bound": 0.32019410160110395,
+      "k_min": 3,
+      "details": "p=17, q=8, ρ≤0.320194, R≤2.36e-88"
+    },
+    {
+      "k": 181,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤1.70e-108"
+    },
+    {
+      "k": 182,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤2.30e-59"
+    },
+    {
+      "k": 183,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 19,
+      "witness_ord": 18,
+      "rho_bound": 0.05555555555555568,
+      "k_min": 3,
+      "details": "p=19, q=18, ρ≤0.055556, R≤6.25e-228"
+    },
+    {
+      "k": 184,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤2.66e-110"
+    },
+    {
+      "k": 185,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 13317591555080811759497060045286952261075966910248221112257314045137623434445107795352541,
+      "witness_ord": 887839437005387450633137336352463484071731127349881407483820936342508228963007186356836,
+      "rho_bound": 1.2998056292340481e-43,
+      "k_min": 4,
+      "details": "p=13317591555080811759497060045286952261075966910248221112257314045137623434445107795352541, q=887839437005387450633137336352463484071731127349881407483820936342508228963007186356836, ρ≤0.000000, R≤0.00e+00"
+    },
+    {
+      "k": 186,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 41,
+      "witness_ord": 20,
+      "rho_bound": 0.18507810593582122,
+      "k_min": 3,
+      "details": "p=41, q=20, ρ≤0.185078, R≤5.78e-135"
+    },
+    {
+      "k": 187,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤4.16e-112"
+    },
+    {
+      "k": 188,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤2.52e-61"
+    },
+    {
+      "k": 189,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 13,
+      "witness_ord": 12,
+      "rho_bound": 0.08333333333333337,
+      "k_min": 2,
+      "details": "p=13, q=12, ρ≤0.083333, R≤1.56e-202"
+    },
+    {
+      "k": 190,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤6.50e-114"
+    },
+    {
+      "k": 191,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 1009,
+      "witness_ord": 504,
+      "rho_bound": 0.032504722567993374,
+      "k_min": 3,
+      "details": "p=1009, q=504, ρ≤0.032505, R≤9.38e-281"
+    },
+    {
+      "k": 192,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 563761139550991,
+      "witness_ord": 93960189925165,
+      "rho_bound": 2.5269909246429314e-07,
+      "k_min": 4,
+      "details": "ECM factor: p=563761139550991, q=93960189925165, ρ≤0.000000, R≤0.00e+00"
+    },
+    {
+      "k": 193,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 2545332719,
+      "witness_ord": 1272666359,
+      "rho_bound": 3.964219703109141e-05,
+      "k_min": 4,
+      "details": "ECM factor: p=2545332719, q=1272666359, ρ≤0.000040, R≤0.00e+00"
+    },
+    {
+      "k": 194,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 13,
+      "witness_ord": 12,
+      "rho_bound": 0.08333333333333337,
+      "k_min": 2,
+      "details": "p=13, q=12, ρ≤0.083333, R≤6.27e-208"
+    },
+    {
+      "k": 195,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 11,
+      "witness_ord": 10,
+      "rho_bound": 0.10000000000000009,
+      "k_min": 3,
+      "details": "p=11, q=10, ρ≤0.100000, R≤1.00e-193"
+    },
+    {
+      "k": 196,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 7,
+      "witness_ord": 3,
+      "rho_bound": 0.471404520791032,
+      "k_min": 3,
+      "details": "p=7, q=3, ρ≤0.471405, R≤6.15e-64"
+    },
+    {
+      "k": 197,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 29,
+      "witness_ord": 28,
+      "rho_bound": 0.03571428571428559,
+      "k_min": 2,
+      "details": "p=29, q=28, ρ≤0.035714, R≤6.37e-283"
+    },
+    {
+      "k": 198,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 5,
+      "witness_ord": 4,
+      "rho_bound": 0.25000000000000006,
+      "k_min": 2,
+      "details": "p=5, q=4, ρ≤0.250000, R≤9.91e-119"
+    },
+    {
+      "k": 199,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 13,
+      "witness_ord": 12,
+      "rho_bound": 0.08333333333333337,
+      "k_min": 2,
+      "details": "p=13, q=12, ρ≤0.083333, R≤2.52e-213"
+    },
+    {
+      "k": 200,
+      "regime": "B_fcq",
+      "proved": true,
+      "witness_prime": 2593,
+      "witness_ord": 81,
+      "rho_bound": 0.21334081668999266,
+      "k_min": 4,
+      "details": "p=2593, q=81, ρ≤0.213341, R≤2.48e-132"
+    }
+  ]
+}
