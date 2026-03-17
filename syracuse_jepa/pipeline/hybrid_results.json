@@ -1,0 +1,1430 @@
+{
+  "n_proved": 168,
+  "n_total": 198,
+  "n_open": 30,
+  "methods": {
+    "fcq_prim": 111,
+    "fcq_general": 53,
+    "steiner": 4
+  },
+  "open_k": [
+    53,
+    56,
+    61,
+    63,
+    69,
+    73,
+    75,
+    76,
+    83,
+    86,
+    97,
+    104,
+    106,
+    113,
+    120,
+    135,
+    143,
+    148,
+    155,
+    158,
+    161,
+    165,
+    166,
+    171,
+    176,
+    178,
+    185,
+    191,
+    192,
+    193
+  ],
+  "certificates": [
+    {
+      "k": 3,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=2.50e-01"
+    },
+    {
+      "k": 4,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 47,
+      "details": "FCQ via p=47, q=23, ρ=0.150613, R=7.86e-02"
+    },
+    {
+      "k": 5,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=5.79e-04"
+    },
+    {
+      "k": 6,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=3.91e-03"
+    },
+    {
+      "k": 7,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 83,
+      "details": "2 is primitive root mod 83, ρ=0.012195, R=2.70e-10"
+    },
+    {
+      "k": 8,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=1.55e-02"
+    },
+    {
+      "k": 9,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=6.10e-05"
+    },
+    {
+      "k": 10,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=2.33e-09"
+    },
+    {
+      "k": 11,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-09"
+    },
+    {
+      "k": 12,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=9.54e-07"
+    },
+    {
+      "k": 13,
+      "proved": true,
+      "method": "steiner",
+      "witness_prime": 0,
+      "details": "Steiner: n_min ≤ 406 (2^9), verified by Barina (2025)"
+    },
+    {
+      "k": 14,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 79,
+      "details": "FCQ via p=79, q=39, ρ=0.114670, R=2.31e-11"
+    },
+    {
+      "k": 15,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=9.35e-15"
+    },
+    {
+      "k": 16,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=3.78e-05"
+    },
+    {
+      "k": 17,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=9.31e-10"
+    },
+    {
+      "k": 18,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 137,
+      "details": "FCQ via p=137, q=68, ρ=0.093417, R=2.14e-16"
+    },
+    {
+      "k": 19,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 19,
+      "details": "2 is primitive root mod 19, ρ=0.055556, R=4.57e-22"
+    },
+    {
+      "k": 20,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.46e-11"
+    },
+    {
+      "k": 21,
+      "proved": true,
+      "method": "steiner",
+      "witness_prime": 0,
+      "details": "Steiner: n_min ≤ 6377 (2^13), verified by Barina (2025)"
+    },
+    {
+      "k": 22,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=4.15e-07"
+    },
+    {
+      "k": 23,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=2.27e-13"
+    },
+    {
+      "k": 24,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=9.23e-08"
+    },
+    {
+      "k": 25,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-23"
+    },
+    {
+      "k": 26,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=3.55e-15"
+    },
+    {
+      "k": 27,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 53,
+      "details": "2 is primitive root mod 53, ρ=0.019231, R=1.26e-43"
+    },
+    {
+      "k": 28,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 727,
+      "details": "FCQ via p=727, q=121, ρ=0.128700, R=1.10e-22"
+    },
+    {
+      "k": 29,
+      "proved": true,
+      "method": "steiner",
+      "witness_prime": 0,
+      "details": "Steiner: n_min ≤ 2587349 (2^22), verified by Barina (2025)"
+    },
+    {
+      "k": 30,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=6.07e-31"
+    },
+    {
+      "k": 31,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 37,
+      "details": "2 is primitive root mod 37, ρ=0.027778, R=7.37e-46"
+    },
+    {
+      "k": 32,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 73,
+      "details": "FCQ via p=73, q=9, ρ=0.314270, R=2.35e-15"
+    },
+    {
+      "k": 33,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 29,
+      "details": "2 is primitive root mod 29, ρ=0.035714, R=1.37e-45"
+    },
+    {
+      "k": 34,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=5.42e-20"
+    },
+    {
+      "k": 35,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=2.44e-36"
+    },
+    {
+      "k": 36,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-34"
+    },
+    {
+      "k": 37,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=8.47e-22"
+    },
+    {
+      "k": 38,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=2.47e-12"
+    },
+    {
+      "k": 39,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-37"
+    },
+    {
+      "k": 40,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.32e-23"
+    },
+    {
+      "k": 41,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 19,
+      "details": "2 is primitive root mod 19, ρ=0.055556, R=1.11e-49"
+    },
+    {
+      "k": 42,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 17,
+      "details": "FCQ via p=17, q=8, ρ=0.320194, R=4.22e-20"
+    },
+    {
+      "k": 43,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=2.07e-25"
+    },
+    {
+      "k": 44,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 163,
+      "details": "2 is primitive root mod 163, ρ=0.006173, R=1.59e-93"
+    },
+    {
+      "k": 45,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=3.94e-47"
+    },
+    {
+      "k": 46,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 17,
+      "details": "FCQ via p=17, q=8, ρ=0.320194, R=4.43e-22"
+    },
+    {
+      "k": 47,
+      "proved": true,
+      "method": "steiner",
+      "witness_prime": 0,
+      "details": "Steiner: n_min ≤ 318914458 (2^29), verified by Barina (2025)"
+    },
+    {
+      "k": 48,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 31,
+      "details": "FCQ via p=31, q=5, ρ=0.540262, R=1.35e-12"
+    },
+    {
+      "k": 49,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 613,
+      "details": "2 is primitive root mod 613, ρ=0.001634, R=1.05e-131"
+    },
+    {
+      "k": 50,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-48"
+    },
+    {
+      "k": 51,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=3.16e-30"
+    },
+    {
+      "k": 52,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=6.61e-17"
+    },
+    {
+      "k": 53,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 54,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=4.93e-32"
+    },
+    {
+      "k": 55,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=6.36e-58"
+    },
+    {
+      "k": 56,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 57,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=7.70e-34"
+    },
+    {
+      "k": 58,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 541,
+      "details": "2 is primitive root mod 541, ρ=0.001852, R=9.68e-154"
+    },
+    {
+      "k": 59,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 37,
+      "details": "2 is primitive root mod 37, ρ=0.027778, R=1.95e-89"
+    },
+    {
+      "k": 60,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.20e-35"
+    },
+    {
+      "k": 61,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 62,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 103,
+      "details": "FCQ via p=103, q=51, ρ=0.099981, R=5.04e-60"
+    },
+    {
+      "k": 63,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 64,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-62"
+    },
+    {
+      "k": 65,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=1.03e-68"
+    },
+    {
+      "k": 66,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=1.77e-21"
+    },
+    {
+      "k": 67,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 379,
+      "details": "2 is primitive root mod 379, ρ=0.002646, R=2.90e-168"
+    },
+    {
+      "k": 68,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.84e-40"
+    },
+    {
+      "k": 69,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 70,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 47,
+      "details": "FCQ via p=47, q=23, ρ=0.150613, R=4.31e-56"
+    },
+    {
+      "k": 71,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=2.87e-42"
+    },
+    {
+      "k": 72,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 5209,
+      "details": "FCQ via p=5209, q=217, ρ=0.149026, R=4.35e-57"
+    },
+    {
+      "k": 73,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 74,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=4.48e-44"
+    },
+    {
+      "k": 75,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 76,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 77,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=7.01e-46"
+    },
+    {
+      "k": 78,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-76"
+    },
+    {
+      "k": 79,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 23,
+      "details": "FCQ via p=23, q=11, ρ=0.222681, R=1.45e-50"
+    },
+    {
+      "k": 80,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=4.73e-26"
+    },
+    {
+      "k": 81,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 53,
+      "details": "2 is primitive root mod 53, ρ=0.019231, R=2.73e-136"
+    },
+    {
+      "k": 82,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=6.84e-49"
+    },
+    {
+      "k": 83,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 84,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 17,
+      "details": "FCQ via p=17, q=8, ρ=0.320194, R=7.12e-41"
+    },
+    {
+      "k": 85,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.07e-50"
+    },
+    {
+      "k": 86,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 87,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 37,
+      "details": "2 is primitive root mod 37, ρ=0.027778, R=5.18e-133"
+    },
+    {
+      "k": 88,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.67e-52"
+    },
+    {
+      "k": 89,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-87"
+    },
+    {
+      "k": 90,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 127,
+      "details": "FCQ via p=127, q=7, ρ=0.617992, R=1.75e-18"
+    },
+    {
+      "k": 91,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=2.61e-54"
+    },
+    {
+      "k": 92,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-90"
+    },
+    {
+      "k": 93,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 167,
+      "details": "FCQ via p=167, q=83, ρ=0.078081, R=1.08e-100"
+    },
+    {
+      "k": 94,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=1.27e-30"
+    },
+    {
+      "k": 95,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 859,
+      "details": "2 is primitive root mod 859, ρ=0.001166, R=1.53e-273"
+    },
+    {
+      "k": 96,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=2.82e-31"
+    },
+    {
+      "k": 97,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 98,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 613,
+      "details": "2 is primitive root mod 613, ρ=0.001634, R=2.96e-268"
+    },
+    {
+      "k": 99,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=3.98e-59"
+    },
+    {
+      "k": 100,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 239,
+      "details": "FCQ via p=239, q=119, ρ=0.065092, R=4.12e-116"
+    },
+    {
+      "k": 101,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 19,
+      "details": "2 is primitive root mod 19, ρ=0.055556, R=5.35e-125"
+    },
+    {
+      "k": 102,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=6.22e-61"
+    },
+    {
+      "k": 103,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-101"
+    },
+    {
+      "k": 104,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 105,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=9.72e-63"
+    },
+    {
+      "k": 106,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 107,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 373,
+      "details": "2 is primitive root mod 373, ρ=0.002688, R=1.24e-270"
+    },
+    {
+      "k": 108,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.52e-64"
+    },
+    {
+      "k": 109,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 3701,
+      "details": "2 is primitive root mod 3701, ρ=0.000270, R=0.00e+00"
+    },
+    {
+      "k": 110,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=7.53e-36"
+    },
+    {
+      "k": 111,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 433,
+      "details": "FCQ via p=433, q=72, ρ=0.185491, R=2.36e-79"
+    },
+    {
+      "k": 112,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 19,
+      "details": "2 is primitive root mod 19, ρ=0.055556, R=8.32e-139"
+    },
+    {
+      "k": 113,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 114,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 31,
+      "details": "FCQ via p=31, q=5, ρ=0.540262, R=3.04e-30"
+    },
+    {
+      "k": 115,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 29,
+      "details": "2 is primitive root mod 29, ρ=0.035714, R=2.96e-164"
+    },
+    {
+      "k": 116,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=2.32e-69"
+    },
+    {
+      "k": 117,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-115"
+    },
+    {
+      "k": 118,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 37,
+      "details": "2 is primitive root mod 37, ρ=0.027778, R=2.94e-181"
+    },
+    {
+      "k": 119,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=3.62e-71"
+    },
+    {
+      "k": 120,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 121,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 59,
+      "details": "2 is primitive root mod 59, ρ=0.017241, R=1.42e-210"
+    },
+    {
+      "k": 122,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=5.66e-73"
+    },
+    {
+      "k": 123,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 19,
+      "details": "2 is primitive root mod 19, ρ=0.055556, R=1.29e-152"
+    },
+    {
+      "k": 124,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=2.02e-40"
+    },
+    {
+      "k": 125,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=8.84e-75"
+    },
+    {
+      "k": 126,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 439,
+      "details": "FCQ via p=439, q=73, ρ=0.157047, R=2.33e-99"
+    },
+    {
+      "k": 127,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 59,
+      "details": "2 is primitive root mod 59, ρ=0.017241, R=3.73e-221"
+    },
+    {
+      "k": 128,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 1289,
+      "details": "FCQ via p=1289, q=161, ρ=0.084471, R=7.91e-135"
+    },
+    {
+      "k": 129,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 317,
+      "details": "2 is primitive root mod 317, ρ=0.003165, R=3.47e-318"
+    },
+    {
+      "k": 130,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 17,
+      "details": "FCQ via p=17, q=8, ρ=0.320194, R=1.26e-63"
+    },
+    {
+      "k": 131,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-129"
+    },
+    {
+      "k": 132,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 163,
+      "details": "2 is primitive root mod 163, ρ=0.006173, R=5.79e-288"
+    },
+    {
+      "k": 133,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.35e-79"
+    },
+    {
+      "k": 134,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 17,
+      "details": "FCQ via p=17, q=8, ρ=0.320194, R=1.33e-65"
+    },
+    {
+      "k": 135,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 136,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=2.11e-81"
+    },
+    {
+      "k": 137,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 4789,
+      "details": "2 is primitive root mod 4789, ρ=0.000209, R=0.00e+00"
+    },
+    {
+      "k": 138,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=5.40e-45"
+    },
+    {
+      "k": 139,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=3.29e-83"
+    },
+    {
+      "k": 140,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 47,
+      "details": "FCQ via p=47, q=23, ρ=0.150613, R=1.22e-113"
+    },
+    {
+      "k": 141,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 107,
+      "details": "2 is primitive root mod 107, ρ=0.009434, R=3.04e-282"
+    },
+    {
+      "k": 142,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=5.15e-85"
+    },
+    {
+      "k": 143,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 144,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 47,
+      "details": "FCQ via p=47, q=23, ρ=0.150613, R=6.25e-117"
+    },
+    {
+      "k": 145,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-143"
+    },
+    {
+      "k": 146,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 37,
+      "details": "2 is primitive root mod 37, ρ=0.027778, R=7.81e-225"
+    },
+    {
+      "k": 147,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=5.03e-88"
+    },
+    {
+      "k": 148,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 149,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 577,
+      "details": "FCQ via p=577, q=144, ρ=0.103631, R=2.82e-144"
+    },
+    {
+      "k": 150,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=7.85e-90"
+    },
+    {
+      "k": 151,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 23,
+      "details": "FCQ via p=23, q=11, ρ=0.222681, R=1.56e-97"
+    },
+    {
+      "k": 152,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=1.44e-49"
+    },
+    {
+      "k": 153,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.23e-91"
+    },
+    {
+      "k": 154,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=3.21e-50"
+    },
+    {
+      "k": 155,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 156,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.92e-93"
+    },
+    {
+      "k": 157,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 67,
+      "details": "2 is primitive root mod 67, ρ=0.015152, R=9.35e-283"
+    },
+    {
+      "k": 158,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 159,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=3.00e-95"
+    },
+    {
+      "k": 160,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=3.52e-52"
+    },
+    {
+      "k": 161,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 162,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 431,
+      "details": "FCQ via p=431, q=43, ρ=0.250788, R=8.35e-96"
+    },
+    {
+      "k": 163,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 23,
+      "details": "FCQ via p=23, q=11, ρ=0.222681, R=2.32e-105"
+    },
+    {
+      "k": 164,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=2.93e-98"
+    },
+    {
+      "k": 165,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 166,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 167,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=4.57e-100"
+    },
+    {
+      "k": 168,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=8.59e-55"
+    },
+    {
+      "k": 169,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=5.98e-181"
+    },
+    {
+      "k": 170,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=7.14e-102"
+    },
+    {
+      "k": 171,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 172,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 73,
+      "details": "FCQ via p=73, q=9, ρ=0.314270, R=9.84e-86"
+    },
+    {
+      "k": 173,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.12e-103"
+    },
+    {
+      "k": 174,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=2.40e-186"
+    },
+    {
+      "k": 175,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 23,
+      "details": "FCQ via p=23, q=11, ρ=0.222681, R=3.45e-113"
+    },
+    {
+      "k": 176,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 177,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 47,
+      "details": "FCQ via p=47, q=23, ρ=0.150613, R=4.63e-144"
+    },
+    {
+      "k": 178,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 179,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=9.66e-192"
+    },
+    {
+      "k": 180,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 17,
+      "details": "FCQ via p=17, q=8, ρ=0.320194, R=2.36e-88"
+    },
+    {
+      "k": 181,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=1.70e-108"
+    },
+    {
+      "k": 182,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=2.30e-59"
+    },
+    {
+      "k": 183,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 19,
+      "details": "2 is primitive root mod 19, ρ=0.055556, R=6.25e-228"
+    },
+    {
+      "k": 184,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=2.66e-110"
+    },
+    {
+      "k": 185,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 186,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 41,
+      "details": "FCQ via p=41, q=20, ρ=0.185078, R=5.78e-135"
+    },
+    {
+      "k": 187,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=4.16e-112"
+    },
+    {
+      "k": 188,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 36299,
+      "details": "2 is primitive root mod 36299, ρ=0.000028, R=0.00e+00"
+    },
+    {
+      "k": 189,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=1.56e-202"
+    },
+    {
+      "k": 190,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=6.50e-114"
+    },
+    {
+      "k": 191,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 192,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 193,
+      "proved": false,
+      "method": "NONE",
+      "witness_prime": 0,
+      "details": "ALL METHODS FAILED"
+    },
+    {
+      "k": 194,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=6.27e-208"
+    },
+    {
+      "k": 195,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 11,
+      "details": "2 is primitive root mod 11, ρ=0.100000, R=1.00e-193"
+    },
+    {
+      "k": 196,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 7,
+      "details": "FCQ via p=7, q=3, ρ=0.471405, R=6.15e-64"
+    },
+    {
+      "k": 197,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 29,
+      "details": "2 is primitive root mod 29, ρ=0.035714, R=6.37e-283"
+    },
+    {
+      "k": 198,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 5,
+      "details": "2 is primitive root mod 5, ρ=0.250000, R=9.91e-119"
+    },
+    {
+      "k": 199,
+      "proved": true,
+      "method": "fcq_prim",
+      "witness_prime": 13,
+      "details": "2 is primitive root mod 13, ρ=0.083333, R=2.52e-213"
+    },
+    {
+      "k": 200,
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 2593,
+      "details": "FCQ via p=2593, q=81, ρ=0.213341, R=2.48e-132"
+    }
+  ]
+}

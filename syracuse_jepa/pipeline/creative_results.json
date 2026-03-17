@@ -1,0 +1,51 @@
+{
+  "seeds": 12,
+  "resonances": 6,
+  "innovations": 5,
+  "best": [
+    {
+      "name": "teleological_threshold",
+      "definition": "For (k,p) with N₀(p)=0: q/k ratio (q=ord_p(2))",
+      "pattern": "Avoiding: q/k ≈ 5.15, Non-avoiding: q/k ≈ 1.33",
+      "conjecture": "Avoidance correlates with q/k > threshold. Separation: 5.15 vs 1.33",
+      "novelty": 0.9,
+      "impact": 0.8
+    },
+    {
+      "name": "monotonicity_compression_ratio",
+      "definition": "log2(C_monotone) / log2(C_free) — effective dimension under monotonicity",
+      "pattern": "Converging toward 0.2983",
+      "conjecture": "Compression ratio → 0.2983 as k → ∞",
+      "novelty": 0.8,
+      "impact": 0.8999999999999999
+    },
+    {
+      "name": "spectral_defect_per_orbit",
+      "definition": "Σ_{orbits O} Σ_{r∈O} |N_r - C/p| / (C · #orbits)",
+      "pattern": "range [0.043676, 0.794971]",
+      "conjecture": "Spectral defect per orbit decreases as k grows, but N₀ defect concentrates on orbit containing 0",
+      "novelty": 0.7,
+      "impact": 0.5
+    },
+    {
+      "name": "orthogonality_weighted_contraction",
+      "definition": "Σ_p [min_dist(3, <2> mod p) / p * log(p)] / #{primes}",
+      "pattern": "decreasing, range [0.0553, 0.2780]",
+      "conjecture": "This quantity is bounded below by a positive constant for all k",
+      "novelty": 0.6,
+      "impact": 0.6000000000000001
+    },
+    {
+      "name": "residue_deficit_rate",
+      "definition": "1 - (#{residues hit mod p} / p) for smallest prime p",
+      "pattern": "Range [0.0000, 0.8298]",
+      "conjecture": "Deficit rate is positive for all k (residue 0 is always missed)",
+      "novelty": 0.5,
+      "impact": 0.3
+    }
+  ],
+  "gap_progress": {
+    "monotonicity_compression_ratio": "Converging toward 0.2983",
+    "orthogonality_weighted_contraction": "decreasing, range [0.0553, 0.2780]"
+  }
+}

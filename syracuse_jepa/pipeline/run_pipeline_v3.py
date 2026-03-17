@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 """
-Syracuse-JEPA v3 Pipeline — Full Discovery & Proof Machine
+Syracuse-JEPA v3.2 Pipeline — Full Discovery & Proof Machine + Creative Engine
 
     Explorer → Analyst → Pattern Miner → Strategist
                                             ↓
-    Spectral → Prover → Discovery → Genius → Red Team → Formalizer → Verifier
-                            ↑                                           |
-                            └──────────── feedback loop ───────────────┘
+    Spectral → FCQ → MapXref → Creative → Hybrid Prover
+                                            ↓
+    Prover → Discovery → Genius → Red Team → Formalizer → Verifier
 
-v3 upgrades over v2:
-- Spectral Engine: DP-based N₀(p) for k up to 200+ via CRT
-- Prover: Steiner n_min argument extends to k ≤ ~120
-- Discovery: Jardinier (root-cause) + Innovateur (new quantities)
-- Genius: Proof gaps, hard cases, asymptotic oracle, contradictions
-- Red Team: 6 audit suites, cross-validation, falsification
+v3.2 upgrades over v3.1:
+- Creative Engine (CCE): Le Cerveau Créatif — seed bank, resonance detector,
+  innovator, judge. Discovers new quantities from structural tensions.
+- Hybrid Prover: Combines FCQ Prim + FCQ General + Spectral DP + Steiner.
+  Proves 168/198 k values (k=3..200).
+- Teleological Study: q/k threshold analysis, primitive root correlation.
+- Artin Study: primitive root density in factors of d(k).
+- ESB Analysis: effective spectral budget (confirms gap 1.35x is per-step).
 
 Usage:
     python -m syracuse_jepa.pipeline.run_pipeline_v3 [--k-min 3] [--k-max 40]
@@ -46,6 +48,8 @@ from syracuse_jepa.pipeline.genius import run_genius
 from syracuse_jepa.pipeline.redteam import run_full_audit
 from syracuse_jepa.pipeline.fcq_transfer import run_fcq_study
 from syracuse_jepa.pipeline.map_reeval import run_map_reeval
+from syracuse_jepa.pipeline.creative_engine import run_creative_engine
+from syracuse_jepa.pipeline.hybrid_prover import run_hybrid_prover
 
 
 def run_pipeline_v3(k_min: int = 3, k_max: int = 40,
@@ -70,9 +74,9 @@ def run_pipeline_v3(k_min: int = 3, k_max: int = 40,
     t_start = time.time()
 
     print("╔" + "═" * 68 + "╗")
-    print("║  SYRACUSE-JEPA v3.1 — Full Discovery & Proof Machine             ║")
-    print("║  12 stages: Explore→Analyze→Mine→Strategy→Spectral→FCQ→MapXref→║")
-    print("║             Prove→Discover→Genius→RedTeam→Verify                ║")
+    print("║  SYRACUSE-JEPA v3.2 — Discovery + Creative Engine + Hybrid Prover║")
+    print("║  14 stages: Explore→Analyze→Mine→Strategy→Spectral→FCQ→MapXref→║")
+    print("║  Creative→HybridProve→Prove→Discover→Genius→RedTeam→Verify     ║")
     print("╚" + "═" * 68 + "╝")
     print()
 
@@ -133,6 +137,21 @@ def run_pipeline_v3(k_min: int = 3, k_max: int = 40,
         print("┌─ STAGE 5c/12: MAP CROSS-REFERENCE ───────────────────────┐")
         map_xref = run_map_reeval(min(k_max, 50))
         print(f"└─ {map_xref['summary']['invariants_holding']} invariants hold ─────────┘\n")
+
+    # ─── STAGE 5d: CREATIVE ENGINE ────────────────────────────
+    if not analysis_only:
+        cce_k_max = min(k_max, 25)
+        print(f"┌─ STAGE 5d/12: CREATIVE ENGINE (k<={cce_k_max}) ──────────────┐")
+        cce_result = run_creative_engine(cce_k_max)
+        print(f"└─ {cce_result.innovations_born} innovations born ────────────────┘\n")
+
+    # ─── STAGE 5e: HYBRID PROVER ───────────────────────────────
+    if full_scan:
+        hybrid_k_max = 200
+        print(f"┌─ STAGE 5e/12: HYBRID PROVER (k<={hybrid_k_max}) ───────────┐")
+        hybrid_result = run_hybrid_prover(k_min, hybrid_k_max)
+        n_hybrid = hybrid_result['n_proved']
+        print(f"└─ {n_hybrid}/{hybrid_result['n_total']} proved by hybrid ──────────┘\n")
 
     # ─── STAGE 6: PROVER (Steiner extension) ──────────────────
     prover_k_max = 200 if full_scan else 120

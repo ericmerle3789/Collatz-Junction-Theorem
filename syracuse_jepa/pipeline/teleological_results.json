@@ -1,0 +1,63 @@
+{
+  "n_pairs": 34,
+  "threshold": 9.666666666666666,
+  "clean_separation": false,
+  "separation_gap": -8.333333333333332,
+  "min_avoiding_qk": 1.3333333333333333,
+  "max_non_avoiding_qk": 9.666666666666666,
+  "confidence": "weak_overlap",
+  "prim_root_advantage": Infinity,
+  "n_near_misses": 20,
+  "near_misses": [
+    {
+      "k": 14,
+      "p": 79,
+      "q": 39,
+      "q_over_k": 2.7857142857142856,
+      "avoids": false,
+      "n0": 13,
+      "proximity": 0.010942760942760943,
+      "rho": 0.11467015269229701
+    },
+    {
+      "k": 30,
+      "p": 67,
+      "q": 66,
+      "q_over_k": 2.2,
+      "avoids": false,
+      "n0": 2183,
+      "proximity": 0.014945810312129864,
+      "rho": 0.015151515151515246
+    },
+    {
+      "k": 17,
+      "p": 71,
+      "q": 35,
+      "q_over_k": 2.0588235294117645,
+      "avoids": false,
+      "n0": 47,
+      "proximity": 0.01613456917267422,
+      "rho": 0.12121830534626546
+    },
+    {
+      "k": 27,
+      "p": 53,
+      "q": 52,
+      "q_over_k": 1.9259259259259258,
+      "avoids": false,
+      "n0": 1144,
+      "proximity": 0.01828147722006488,
+      "rho": 0.019230769230769204
+    },
+    {
+      "k": 12,
+      "p": 59,
+      "q": 58,
+      "q_over_k": 4.833333333333333,
+      "avoids": false,
+      "n0": 11,
+      "proximity": 0.018900343642611683,
+      "rho": 0.017241379310344647
+    }
+  ]
+}
