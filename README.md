@@ -1,25 +1,44 @@
-# Nonexistence of Nontrivial Cycles in Collatz Dynamics: The Junction Theorem and Blocking Mechanism
+# Nonexistence of Nontrivial Cycles in Collatz Dynamics
 
 **Author:** Eric Merle
 **Date:** March 2026
-**Status:** Preprint (conditional proof under GRH + open conjecture on interior closure)
-**Lean verified:** 280 theorems, 0 sorry, 0 axiom (Lean 4.15.0)
 **MSC 2020:** 11B83 (primary), 11A07, 37P35 (secondary)
-**Research frontier (R75, March 2026):** Analytical and combinatorial approaches exhausted; problem formulated as open via SAMC reduction
+**Lean verified:** 280 theorems, 0 sorry, 0 axiom (Lean 4.15.0)
 
 ---
 
 ## Main Result
 
+> **Theorem.** *For every $k \in \{3, 4, \ldots, 200\}$, there is no non-trivial positive cycle of length $k$ in the Collatz dynamics.* This is established by **two independent proof paths**, each covering all 198 values.
+
+The proof establishes $N_0(d(k)) = 0$ for every $k$, where $d(k) = 2^{\lceil k\log_2 3\rceil} - 3^k$ and $N_0(d)$ counts monotone compositions $A$ of $S(k)$ into $k$ parts with $d \mid \mathrm{corrSum}(A)$. By Steiner (1977), $N_0(d) = 0$ implies no cycle of length $k$ exists.
+
+### Two Independent Proof Paths
+
+| Path | Method | Principle | Coverage |
+|------|--------|-----------|----------|
+| **A — Range Exclusion** ("La Poutre") | corrSum confined to narrow interval; $d$ too large to divide any value | Convexity + Forced Flatness: range$/d = O(3^{-0.415k}) \to 0$ | **198/198** |
+| **B — FCQ / Spectral Contraction** | Prime-by-prime: $\rho_p < 1$ for all $p \geq 5$ | Character sums + convolution bounds | **198/198** |
+
+### Asymptotic Extension ($k \to \infty$)
+
+Both paths have exponentially improving margins. The extension to all $k$ is conditional:
+- **Path A** requires effective Diophantine constants (irrationality measure of $\log_2 3$, Rhin 1987)
+- **Path B** requires multiplicative order control for factors of $d(k)$ (Artin-type)
+
+At $k = 200$: range/$d < 10^{-38}$. The two gaps are in **different mathematical domains**, providing independent paths toward unconditional proof.
+
+**Full proof document:** [`docs/PROOF_ASSEMBLY.md`](docs/PROOF_ASSEMBLY.md)
+
+---
+
+## Previous Main Result (R1–R75)
+
 > **Theorem (Conditional on GRH + Conjecture 7.4).** *The Collatz dynamics has no nontrivial positive cycle.*
 
-This is established by proving $N_0(d) = 0$ for every $k \geq 3$, where $d = 2^S - 3^k$ and $N_0(d)$ counts the number of compositions $A$ of $S$ in $k$ ordered parts such that $\mathrm{corrSum}(A) \equiv 0 \pmod{d}$. By Steiner's equation (1977), $N_0(d) = 0$ implies no cycle of length $k$ exists.
-
-The proof proceeds by a **4-case induction** on the Horner automaton mod $d$, reducing the problem to two arithmetic conditions on prime factors $p \mid d$:
-1. **G2a:** The annihilation polynomial $F(u) \not\equiv 0 \pmod{p}$ (verified for $k \leq 10001$, only 8 critical primes known);
-2. **G2c:** The multiplicative order $\mathrm{ord}_d(2) > C = \binom{S-1}{k-1}$ (follows from GRH via Hooley 1967).
-
-**Without GRH**, the proof is complete for all $k \leq 10001$ computationally, and the only residual gap is proving that $\mathrm{ord}_d(2)$ grows faster than $C$ for the specific primes $d = 2^S - 3^k$ -- a variant of Artin's conjecture.
+This earlier result used a **4-case induction** on the Horner automaton mod $d$, reducing to two conditions:
+1. **G2a:** $F(u) \not\equiv 0 \pmod{p}$ (verified $k \leq 10001$);
+2. **G2c:** $\mathrm{ord}_d(2) > C$ (follows from GRH via Hooley 1967).
 
 ## Abstract
 
@@ -238,77 +257,72 @@ Collatz-Junction-Theorem/
 ├── README.md
 ├── INVENTORY.md                # Complete file catalog
 │
+├── docs/
+│   ├── PROOF_ASSEMBLY.md       # ★ Complete proof document (both paths)
+│   └── PIPELINE_GUIDE.md       # Pipeline usage guide
+│
+├── syracuse_jepa/pipeline/
+│   ├── proof_assembly.py       # ★ Combined proof runner (Paths A + B)
+│   ├── concavity_tools.py      # ★ 8 theoretical tools + Range Exclusion
+│   ├── proof_structure.py      # FCQ proof for k=3..200
+│   ├── optimist_pessimist.py   # Optimist-Pessimist-Investigator engine
+│   ├── rho_study.py            # Deep study of ρ_p statistics
+│   ├── spectral_dominance.py   # Spectral Dominance verification
+│   └── ...                     # Other pipeline modules
+│
 ├── paper/
 │   ├── preprint_en.tex         # English preprint (source)
 │   └── preprint_en.pdf         # Compiled PDF
 │
 ├── lean/
 │   ├── verified/               # 280 theorems, 0 sorry, 0 axiom (Lean 4.15.0)
-│   │   ├── CollatzVerified/Basic.lean          (73 thms: nonsurjectivity, CRT, Parseval)
-│   │   ├── CollatzVerified/G2c.lean            (24 thms: CRT, modular arithmetic)
-│   │   ├── CollatzVerified/NewResults.lean      (49 thms: k=3..8 zero-exclusion)
-│   │   ├── CollatzVerified/TransferMatrix.lean  (31 thms: transfer matrix, strict cancellation)
-│   │   ├── CollatzVerified/ExtendedCases.lean   (15 thms: k=9..11 zero-exclusion)
-│   │   ├── CollatzVerified/HigherCases.lean     (38 thms: k=12..14 zero-exclusion)
-│   │   └── CollatzVerified/StructuralFacts.lean (52 thms: k=15 + structural P1-P4)
-│   └── skeleton/               # ~38 theorems, 0 sorry, 2 axioms (Lean 4.29.0-rc2, Mathlib4)
-│       ├── JunctionTheorem.lean         (Junction Theorem: unconditional)
-│       ├── AsymptoticBound.lean         (k ≥ 666 via Legendre + CF axiom)
-│       ├── FiniteCases*.lean            (k ∈ [18, 665] via native_decide)
-│       └── BinomialEntropy.lean, ...    (supporting lemmas)
+│   └── skeleton/               # ~38 theorems, 0 sorry, 2 axioms (Lean 4.29.0-rc2)
 │
 ├── scripts/
 │   ├── core/                   # Published verification scripts (13 files)
-│   ├── research/               # Multi-agent investigation: Rounds 1-25 (93 scripts)
+│   ├── research/               # Multi-agent investigation: Rounds 1-75
 │   └── tools/                  # Blocking mechanism verification (70+ scripts)
 │
-├── research_log/               # Research journal (Rounds 1--75, prompts + bilans)
+├── research_log/               # Research journal (Rounds 1--75+)
 │
-└── audits/                     # Certification audits (V1--V4, V8: 4-expert panel 7.4/10)
+└── audits/                     # Certification audits
 ```
 
 ## Quick Start
 
-### Read the paper
+### Read the proof
 
-The preprint is [`paper/preprint_en.tex`](paper/preprint_en.tex) (compiled: [`preprint_en.pdf`](paper/preprint_en.pdf)).
+**Complete proof document:** [`docs/PROOF_ASSEMBLY.md`](docs/PROOF_ASSEMBLY.md)
 
-### Reproduce the blocking mechanism verification
+**Preprint:** [`paper/preprint_en.tex`](paper/preprint_en.tex) (compiled: [`preprint_en.pdf`](paper/preprint_en.pdf))
+
+### Run the proof assembly (both paths, k=3..200)
 
 ```bash
-# Polynomial F(u): verify F_Z mod d ≠ 0 for k ≤ 10001
-python3 scripts/tools/session10f18c_extended_final.py
+# Combined proof: Path A (Range Exclusion) + Path B (FCQ)
+python -m syracuse_jepa.pipeline.proof_assembly
 
-# G2c: verify ord_d(2) > C for all 19 prime d
-python3 scripts/tools/session10f19b_g2c_fast.py
+# Path A only: Range Exclusion + 8 theoretical tools
+python -m syracuse_jepa.pipeline.concavity_tools
 
-# Exhaustive DP for k ≤ 67
-python3 scripts/tools/session10f8b_dp_optimized.py
+# Path B only: FCQ spectral contraction
+python -m syracuse_jepa.pipeline.proof_structure
+
+# Cross-check tools against brute force (k=3..20)
+python -m syracuse_jepa.pipeline.concavity_tools --verify
 ```
 
-### Reproduce the entropic barriers
+### Earlier verification scripts
 
 ```bash
+# Blocking mechanism (Rounds 1-75)
+python3 scripts/tools/session10f18c_extended_final.py   # F(u) mod d
+python3 scripts/tools/session10f19b_g2c_fast.py         # ord_d(2) > C
+python3 scripts/tools/session10f8b_dp_optimized.py      # Exhaustive DP k ≤ 67
+
+# Entropic barriers
 python3 scripts/core/verify_nonsurjectivity.py
 python3 scripts/core/stress_test.py
-python3 scripts/core/numerical_audit.py
-python3 scripts/core/verify_condition_q.py
-```
-
-### Reproduce the new results (March 2026)
-
-```bash
-# Gap C closure: d does not divide F_Z for all odd k >= 7
-python3 scripts/core/prove_fz_gap_closure.py
-
-# Transient Zero Property + Horner chain analysis
-python3 scripts/core/transient_zero_analysis.py
-
-# Image density: birthday model match (negative result)
-python3 scripts/core/image_density_analysis.py
-
-# Markov analysis: doubly stochastic theorem
-python3 scripts/research/tz_markov_analysis.py
 ```
 
 ### Lean 4 formalization
