@@ -1,0 +1,405 @@
+{
+  "gap_delta": [
+    {
+      "k": 3,
+      "S": 5,
+      "d": 5,
+      "delta": 0.16989903679539742,
+      "gap_abs": 1,
+      "gap_rel": 0.2,
+      "n_zero": 0,
+      "n_comp": 5
+    },
+    {
+      "k": 4,
+      "S": 7,
+      "d": 47,
+      "delta": 0.45758110924717776,
+      "gap_abs": 0,
+      "gap_rel": 0.0,
+      "n_zero": 1,
+      "n_comp": 11
+    },
+    {
+      "k": 5,
+      "S": 8,
+      "d": 13,
+      "delta": 0.05211600113901316,
+      "gap_abs": 1,
+      "gap_rel": 0.07692307692307693,
+      "n_zero": 0,
+      "n_comp": 18
+    },
+    {
+      "k": 6,
+      "S": 10,
+      "d": 295,
+      "delta": 0.33979807359079484,
+      "gap_abs": 7,
+      "gap_rel": 0.023728813559322035,
+      "n_zero": 0,
+      "n_comp": 35
+    },
+    {
+      "k": 7,
+      "S": 12,
+      "d": 1909,
+      "delta": 0.6274801460425747,
+      "gap_abs": 206,
+      "gap_rel": 0.10790990047145102,
+      "n_zero": 0,
+      "n_comp": 65
+    },
+    {
+      "k": 8,
+      "S": 13,
+      "d": 1631,
+      "delta": 0.22201503793441013,
+      "gap_abs": 54,
+      "gap_rel": 0.03310852237890864,
+      "n_zero": 0,
+      "n_comp": 89
+    },
+    {
+      "k": 9,
+      "S": 15,
+      "d": 13085,
+      "delta": 0.5096971103861918,
+      "gap_abs": 39,
+      "gap_rel": 0.002980512036683225,
+      "n_zero": 0,
+      "n_comp": 157
+    },
+    {
+      "k": 10,
+      "S": 16,
+      "d": 6487,
+      "delta": 0.10423200227802631,
+      "gap_abs": 380,
+      "gap_rel": 0.058578695853244954,
+      "n_zero": 0,
+      "n_comp": 212
+    },
+    {
+      "k": 11,
+      "S": 18,
+      "d": 84997,
+      "delta": 0.391914074729808,
+      "gap_abs": 4012,
+      "gap_rel": 0.04720166594115086,
+      "n_zero": 0,
+      "n_comp": 355
+    },
+    {
+      "k": 12,
+      "S": 20,
+      "d": 517135,
+      "delta": 0.6795961471815897,
+      "gap_abs": 10737,
+      "gap_rel": 0.02076247014802711,
+      "n_zero": 0,
+      "n_comp": 582
+    },
+    {
+      "k": 13,
+      "S": 21,
+      "d": 502829,
+      "delta": 0.2741310390734242,
+      "gap_abs": 53664,
+      "gap_rel": 0.10672415473252338,
+      "n_zero": 0,
+      "n_comp": 747
+    },
+    {
+      "k": 14,
+      "S": 23,
+      "d": 3605639,
+      "delta": 0.5618131115252059,
+      "gap_abs": 36826,
+      "gap_rel": 0.01021344621577479,
+      "n_zero": 0,
+      "n_comp": 1188
+    },
+    {
+      "k": 15,
+      "S": 24,
+      "d": 2428309,
+      "delta": 0.15634800341704036,
+      "gap_abs": 2059,
+      "gap_rel": 0.0008479151541257723,
+      "n_zero": 0,
+      "n_comp": 1508
+    },
+    {
+      "k": 16,
+      "S": 26,
+      "d": 24062143,
+      "delta": 0.44403007586882026,
+      "gap_abs": 29851,
+      "gap_rel": 0.0012405794446487997,
+      "n_zero": 0,
+      "n_comp": 2339
+    },
+    {
+      "k": 17,
+      "S": 27,
+      "d": 5077565,
+      "delta": 0.03856496776065654,
+      "gap_abs": 48018,
+      "gap_rel": 0.00945689518499517,
+      "n_zero": 0,
+      "n_comp": 2913
+    },
+    {
+      "k": 18,
+      "S": 29,
+      "d": 149450423,
+      "delta": 0.32624704021244,
+      "gap_abs": 13794433,
+      "gap_rel": 0.09230106361090727,
+      "n_zero": 0,
+      "n_comp": 4426
+    },
+    {
+      "k": 19,
+      "S": 31,
+      "d": 985222181,
+      "delta": 0.6139291126642199,
+      "gap_abs": 132779472,
+      "gap_rel": 0.134771094846067,
+      "n_zero": 0,
+      "n_comp": 6647
+    },
+    {
+      "k": 20,
+      "S": 32,
+      "d": 808182895,
+      "delta": 0.20846400455605263,
+      "gap_abs": 98431430,
+      "gap_rel": 0.12179350813902093,
+      "n_zero": 0,
+      "n_comp": 8154
+    },
+    {
+      "k": 21,
+      "S": 34,
+      "d": 6719515981,
+      "delta": 0.4961460770078361,
+      "gap_abs": 254053216,
+      "gap_rel": 0.037808261297146546,
+      "n_zero": 0,
+      "n_comp": 12038
+    },
+    {
+      "k": 22,
+      "S": 35,
+      "d": 2978678759,
+      "delta": 0.09068096889966881,
+      "gap_abs": 34058983,
+      "gap_rel": 0.01143425852723852,
+      "n_zero": 0,
+      "n_comp": 14611
+    },
+    {
+      "k": 23,
+      "S": 37,
+      "d": 43295774645,
+      "delta": 0.3783630413514487,
+      "gap_abs": 3775821209,
+      "gap_rel": 0.08720992383112493,
+      "n_zero": 0,
+      "n_comp": 21264
+    }
+  ],
+  "absolute_gaps": [
+    {
+      "k": 3,
+      "d": 5,
+      "min_positive_residue": 1,
+      "max_residue": 4,
+      "gap_from_zero": 1,
+      "gap_fraction": 0.2,
+      "n_zero": 0
+    },
+    {
+      "k": 4,
+      "d": 47,
+      "min_positive_residue": 12,
+      "max_residue": 45,
+      "gap_from_zero": 0,
+      "gap_fraction": 0.0,
+      "n_zero": 1
+    },
+    {
+      "k": 5,
+      "d": 13,
+      "min_positive_residue": 1,
+      "max_residue": 12,
+      "gap_from_zero": 1,
+      "gap_fraction": 0.07692307692307693,
+      "n_zero": 0
+    },
+    {
+      "k": 6,
+      "d": 295,
+      "min_positive_residue": 38,
+      "max_residue": 288,
+      "gap_from_zero": 7,
+      "gap_fraction": 0.023728813559322035,
+      "n_zero": 0
+    },
+    {
+      "k": 7,
+      "d": 1909,
+      "min_positive_residue": 216,
+      "max_residue": 1703,
+      "gap_from_zero": 206,
+      "gap_fraction": 0.10790990047145102,
+      "n_zero": 0
+    },
+    {
+      "k": 8,
+      "d": 1631,
+      "min_positive_residue": 54,
+      "max_residue": 1357,
+      "gap_from_zero": 54,
+      "gap_fraction": 0.03310852237890864,
+      "n_zero": 0
+    },
+    {
+      "k": 9,
+      "d": 13085,
+      "min_positive_residue": 39,
+      "max_residue": 12008,
+      "gap_from_zero": 39,
+      "gap_fraction": 0.002980512036683225,
+      "n_zero": 0
+    },
+    {
+      "k": 10,
+      "d": 6487,
+      "min_positive_residue": 380,
+      "max_residue": 5986,
+      "gap_from_zero": 380,
+      "gap_fraction": 0.058578695853244954,
+      "n_zero": 0
+    },
+    {
+      "k": 11,
+      "d": 84997,
+      "min_positive_residue": 4012,
+      "max_residue": 69123,
+      "gap_from_zero": 4012,
+      "gap_fraction": 0.04720166594115086,
+      "n_zero": 0
+    },
+    {
+      "k": 12,
+      "d": 517135,
+      "min_positive_residue": 10737,
+      "max_residue": 396830,
+      "gap_from_zero": 10737,
+      "gap_fraction": 0.02076247014802711,
+      "n_zero": 0
+    },
+    {
+      "k": 13,
+      "d": 502829,
+      "min_positive_residue": 53664,
+      "max_residue": 441953,
+      "gap_from_zero": 53664,
+      "gap_fraction": 0.10672415473252338,
+      "n_zero": 0
+    },
+    {
+      "k": 14,
+      "d": 3605639,
+      "min_positive_residue": 883005,
+      "max_residue": 3568813,
+      "gap_from_zero": 36826,
+      "gap_fraction": 0.01021344621577479,
+      "n_zero": 0
+    },
+    {
+      "k": 15,
+      "d": 2428309,
+      "min_positive_residue": 20696,
+      "max_residue": 2426250,
+      "gap_from_zero": 2059,
+      "gap_fraction": 0.0008479151541257723,
+      "n_zero": 0
+    },
+    {
+      "k": 16,
+      "d": 24062143,
+      "min_positive_residue": 29851,
+      "max_residue": 23973908,
+      "gap_from_zero": 29851,
+      "gap_fraction": 0.0012405794446487997,
+      "n_zero": 0
+    },
+    {
+      "k": 17,
+      "d": 5077565,
+      "min_positive_residue": 106274,
+      "max_residue": 5029547,
+      "gap_from_zero": 48018,
+      "gap_fraction": 0.00945689518499517,
+      "n_zero": 0
+    },
+    {
+      "k": 18,
+      "d": 149450423,
+      "min_positive_residue": 13794433,
+      "max_residue": 132779463,
+      "gap_from_zero": 13794433,
+      "gap_fraction": 0.09230106361090727,
+      "n_zero": 0
+    },
+    {
+      "k": 19,
+      "d": 985222181,
+      "min_positive_residue": 132779472,
+      "max_residue": 849566227,
+      "gap_from_zero": 132779472,
+      "gap_fraction": 0.134771094846067,
+      "n_zero": 0
+    },
+    {
+      "k": 20,
+      "d": 808182895,
+      "min_positive_residue": 127029900,
+      "max_residue": 709751465,
+      "gap_from_zero": 98431430,
+      "gap_fraction": 0.12179350813902093,
+      "n_zero": 0
+    },
+    {
+      "k": 21,
+      "d": 6719515981,
+      "min_positive_residue": 254053216,
+      "max_residue": 6303918544,
+      "gap_from_zero": 254053216,
+      "gap_fraction": 0.037808261297146546,
+      "n_zero": 0
+    },
+    {
+      "k": 22,
+      "d": 2978678759,
+      "min_positive_residue": 69955488,
+      "max_residue": 2944619776,
+      "gap_from_zero": 34058983,
+      "gap_fraction": 0.01143425852723852,
+      "n_zero": 0
+    },
+    {
+      "k": 23,
+      "d": 43295774645,
+      "min_positive_residue": 3775821209,
+      "max_residue": 38135553147,
+      "gap_from_zero": 3775821209,
+      "gap_fraction": 0.08720992383112493,
+      "n_zero": 0
+    }
+  ]
+}

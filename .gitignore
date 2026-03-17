@@ -72,3 +72,6 @@ paper/Merle_2026_Barrieres_Entropiques_Collatz.pdf
 
 # Archive (large, not for GitHub)
 archive/
+*.pt
+__pycache__/
+syracuse_jepa/logs/*.pt
