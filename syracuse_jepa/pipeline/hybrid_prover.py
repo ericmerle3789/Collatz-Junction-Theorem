@@ -143,7 +143,7 @@ def try_fcq_general(k: int, max_prime: int = 50000) -> Optional[ProofCertificate
         q = multiplicative_order(2, p)
 
         if p not in rho_cache:
-            if q <= 500:  # feasible to compute rho
+            if q <= 5000:  # feasible to compute rho
                 rho_cache[p] = compute_rho_free(p)
             else:
                 continue
@@ -164,11 +164,11 @@ def try_fcq_general(k: int, max_prime: int = 50000) -> Optional[ProofCertificate
     return None
 
 
-def try_steiner(k: int, max_n: int = 10**9) -> Optional[ProofCertificate]:
+def try_steiner(k: int) -> Optional[ProofCertificate]:
     """
     Steiner n_min argument: if cycle exists, n_min ≤ bound.
     If all n ≤ bound converge, no cycle.
-    Works for k ≤ ~120 (bound < 2^30 ≈ 10^9).
+    Barina (2025) verified convergence for all n up to 2^71.
     """
     t0 = time.time()
     S = compute_S(k)
@@ -183,24 +183,9 @@ def try_steiner(k: int, max_n: int = 10**9) -> Optional[ProofCertificate]:
     except (OverflowError, ValueError):
         return None
 
-    if n_min_bound > max_n:
-        return None
+    bits = n_min_bound.bit_length()
 
-    # For Steiner proof, we need all n ≤ n_min_bound to converge
-    # This is verified by Barina (2025) up to 2^71
-    # For our purposes, n_min_bound < 2^30 is well within reach
-    if n_min_bound.bit_length() <= 30:
-        return ProofCertificate(
-            k=k, proved=True, method="steiner",
-            witness_prime=0, witness_ord=0,
-            is_primitive_root=False,
-            rho=0, R_bound=0,
-            n0_exact=-1, n_total=-1,
-            computation_time=time.time() - t0,
-            details=f"Steiner: n_min ≤ {n_min_bound} (2^{n_min_bound.bit_length()}), "
-                    f"verified by Barina (2025)"
-        )
-    elif n_min_bound.bit_length() <= 71:
+    if bits <= 71:
         return ProofCertificate(
             k=k, proved=True, method="steiner_barina",
             witness_prime=0, witness_ord=0,
@@ -208,7 +193,7 @@ def try_steiner(k: int, max_n: int = 10**9) -> Optional[ProofCertificate]:
             rho=0, R_bound=0,
             n0_exact=-1, n_total=-1,
             computation_time=time.time() - t0,
-            details=f"Steiner + Barina: n_min ≤ 2^{n_min_bound.bit_length()}, "
+            details=f"Steiner+Barina: n_min ≤ 2^{bits}, "
                     f"within Barina's verified range 2^71"
         )
     return None

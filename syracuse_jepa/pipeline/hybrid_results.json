@@ -1,41 +1,24 @@
 {
-  "n_proved": 168,
+  "n_proved": 185,
   "n_total": 198,
-  "n_open": 30,
+  "n_open": 13,
   "methods": {
     "fcq_prim": 111,
-    "fcq_general": 53,
-    "steiner": 4
+    "fcq_general": 58,
+    "steiner_barina": 16
   },
   "open_k": [
-    53,
-    56,
-    61,
-    63,
-    69,
-    73,
-    75,
-    76,
-    83,
-    86,
-    97,
-    104,
-    106,
-    113,
-    120,
     135,
     143,
     148,
     155,
     158,
-    161,
     165,
     166,
     171,
     176,
     178,
     185,
-    191,
     192,
     193
   ],
@@ -113,9 +96,9 @@
     {
       "k": 13,
       "proved": true,
-      "method": "steiner",
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "Steiner: n_min ≤ 406 (2^9), verified by Barina (2025)"
+      "details": "Steiner+Barina: n_min ≤ 2^9, within Barina's verified range 2^71"
     },
     {
       "k": 14,
@@ -169,9 +152,9 @@
     {
       "k": 21,
       "proved": true,
-      "method": "steiner",
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "Steiner: n_min ≤ 6377 (2^13), verified by Barina (2025)"
+      "details": "Steiner+Barina: n_min ≤ 2^13, within Barina's verified range 2^71"
     },
     {
       "k": 22,
@@ -225,9 +208,9 @@
     {
       "k": 29,
       "proved": true,
-      "method": "steiner",
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "Steiner: n_min ≤ 2587349 (2^22), verified by Barina (2025)"
+      "details": "Steiner+Barina: n_min ≤ 2^22, within Barina's verified range 2^71"
     },
     {
       "k": 30,
@@ -351,9 +334,9 @@
     {
       "k": 47,
       "proved": true,
-      "method": "steiner",
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "Steiner: n_min ≤ 318914458 (2^29), verified by Barina (2025)"
+      "details": "Steiner+Barina: n_min ≤ 2^29, within Barina's verified range 2^71"
     },
     {
       "k": 48,
@@ -392,10 +375,10 @@
     },
     {
       "k": 53,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^32, within Barina's verified range 2^71"
     },
     {
       "k": 54,
@@ -413,10 +396,10 @@
     },
     {
       "k": 56,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^35, within Barina's verified range 2^71"
     },
     {
       "k": 57,
@@ -448,10 +431,10 @@
     },
     {
       "k": 61,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^38, within Barina's verified range 2^71"
     },
     {
       "k": 62,
@@ -462,10 +445,10 @@
     },
     {
       "k": 63,
-      "proved": false,
-      "method": "NONE",
-      "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 1511,
+      "details": "FCQ via p=1511, q=755, ρ=0.025751, R=2.23e-96"
     },
     {
       "k": 64,
@@ -504,10 +487,10 @@
     },
     {
       "k": 69,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^41, within Barina's verified range 2^71"
     },
     {
       "k": 70,
@@ -532,10 +515,10 @@
     },
     {
       "k": 73,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^45, within Barina's verified range 2^71"
     },
     {
       "k": 74,
@@ -546,17 +529,17 @@
     },
     {
       "k": 75,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^47, within Barina's verified range 2^71"
     },
     {
       "k": 76,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^46, within Barina's verified range 2^71"
     },
     {
       "k": 77,
@@ -602,10 +585,10 @@
     },
     {
       "k": 83,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^50, within Barina's verified range 2^71"
     },
     {
       "k": 84,
@@ -623,10 +606,10 @@
     },
     {
       "k": 86,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^51, within Barina's verified range 2^71"
     },
     {
       "k": 87,
@@ -700,10 +683,10 @@
     },
     {
       "k": 97,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^59, within Barina's verified range 2^71"
     },
     {
       "k": 98,
@@ -749,10 +732,10 @@
     },
     {
       "k": 104,
-      "proved": false,
-      "method": "NONE",
-      "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 1759,
+      "details": "FCQ via p=1759, q=879, ρ=0.023864, R=7.09e-165"
     },
     {
       "k": 105,
@@ -763,10 +746,10 @@
     },
     {
       "k": 106,
-      "proved": false,
-      "method": "NONE",
-      "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 1279,
+      "details": "FCQ via p=1279, q=639, ρ=0.027995, R=5.60e-161"
     },
     {
       "k": 107,
@@ -812,10 +795,10 @@
     },
     {
       "k": 113,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^67, within Barina's verified range 2^71"
     },
     {
       "k": 114,
@@ -861,10 +844,10 @@
     },
     {
       "k": 120,
-      "proved": false,
-      "method": "NONE",
+      "proved": true,
+      "method": "steiner_barina",
       "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "details": "Steiner+Barina: n_min ≤ 2^71, within Barina's verified range 2^71"
     },
     {
       "k": 121,
@@ -1148,10 +1131,10 @@
     },
     {
       "k": 161,
-      "proved": false,
-      "method": "NONE",
-      "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 1439,
+      "details": "FCQ via p=1439, q=719, ρ=0.026389, R=1.92e-250"
     },
     {
       "k": 162,
@@ -1358,10 +1341,10 @@
     },
     {
       "k": 191,
-      "proved": false,
-      "method": "NONE",
-      "witness_prime": 0,
-      "details": "ALL METHODS FAILED"
+      "proved": true,
+      "method": "fcq_general",
+      "witness_prime": 1009,
+      "details": "FCQ via p=1009, q=504, ρ=0.032505, R=9.38e-281"
     },
     {
       "k": 192,
