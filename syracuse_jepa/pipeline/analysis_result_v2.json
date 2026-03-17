@@ -1,0 +1,155 @@
+{
+  "version": "v2",
+  "k_range": [
+    3,
+    40
+  ],
+  "n_insights": 4,
+  "n_trends": 6,
+  "n_invariants": 6,
+  "n_conjectures": 2,
+  "insights": [
+    {
+      "category": "lds",
+      "description": "max(ord_p(2)) > 2k for majority of k values — LDS favorable",
+      "confidence": 0.75,
+      "connects_to": "R196-R197 LDS: k₀(p) ≥ c·q without GRH",
+      "actionable": true
+    },
+    {
+      "category": "operator",
+      "description": "FCQ R(p,k) < 1 for ALL primes in 30 k values",
+      "confidence": 0.8,
+      "connects_to": "R196-R197 FCQ: R(p,k) = q·ρ_p^{k-1} < 1 implies avoidance",
+      "actionable": true
+    },
+    {
+      "category": "operator",
+      "description": "Average budget ratio = 0.19 < 1 — GAP 1.35x CONFIRMED",
+      "confidence": 0.9,
+      "connects_to": "R189: the 1.35x gap is real, need structural boost",
+      "actionable": false
+    },
+    {
+      "category": "algebraic",
+      "description": "k=4 PHANTOM: d=47, factors=[(47, 1)]",
+      "confidence": 1.0,
+      "connects_to": "Known: phantom explains why general proof needs care at k=4",
+      "actionable": false
+    }
+  ],
+  "trends": [
+    {
+      "quantity": "log(d(k))",
+      "model": "linear",
+      "slope": 1.1011373768088046,
+      "r_squared": 0.9941898721746316,
+      "extrapolation": "d(k) ~ exp(1.1011k) = 3.0076^k. Compare 3^k growth rate log(3)=1.0986. Deficit γ = 0.0025"
+    },
+    {
+      "quantity": "n_prime_factors(d(k))",
+      "model": "linear",
+      "slope": 0.08151876572929206,
+      "r_squared": 0.4577144501777583,
+      "extrapolation": "Prime factor count grows ~ 0.082k + 1.1. More factors = more spectral components = stronger avoidance"
+    },
+    {
+      "quantity": "log(Πρ)",
+      "model": "linear",
+      "slope": -0.26342561087916455,
+      "r_squared": 0.6815843733581797,
+      "extrapolation": "Πρ ~ exp(-0.2634k). Decay rate = 0.2634/k. Need -slope > log(3)≈1.099 for N₀=0 (currently 0.2634)"
+    },
+    {
+      "quantity": "max_ord_p(2)",
+      "model": "linear",
+      "slope": 69367566744.24641,
+      "r_squared": 0.055768235591074716,
+      "extrapolation": "Max ord grows ~ 69367566744.25k. For LDS (R197): need ord > c·k for transport argument"
+    },
+    {
+      "quantity": "budget_ratio",
+      "model": "linear",
+      "slope": 0.0030482998534040124,
+      "r_squared": 0.16137726257898308,
+      "extrapolation": "Budget ratio trend: +0.0030/k. IMPROVING with k. At k=100: est. ratio = 0.43"
+    },
+    {
+      "quantity": "log(min_gap/d)",
+      "model": "linear",
+      "slope": -0.00793386721733951,
+      "r_squared": 0.0031626395538462567,
+      "extrapolation": "Relative gap ~ exp(-0.0079k). DANGER: gap shrinks with k"
+    }
+  ],
+  "conjectures": [
+    {
+      "statement": "R(p,k) < 0.1 for all p|d(k), k ≥ 9",
+      "evidence": 0.7,
+      "n_verified": 32,
+      "proof_approach": "FCQ (R196-R197): R = ord_p(2) · ρ_p^{k-1}. Since ρ_p < 1 (proved R191), R→0 exponentially. Need: uniform ρ_p < 1-ε for ε > 0 independent of p. This is exactly the 1.35x gap question"
+    },
+    {
+      "statement": "d(k) has ≥ 2 distinct prime factors for k ≥ 6",
+      "evidence": 0.6,
+      "n_verified": 34,
+      "proof_approach": "d(k) = 2^S - 3^k. If d(k) = p^a, then 2^S ≡ 3^k mod p^a. This is a very special Diophantine condition. Zsygmondy's theorem might apply (primitive divisors of a^n - b^n)"
+    }
+  ],
+  "strategies": [
+    {
+      "name": "LDS + FCQ Combined Attack",
+      "score": 86.44585471747905,
+      "feasibility": 8.0,
+      "impact": 9.5,
+      "data_support": 8.5,
+      "next_step": "1. PARTITION primes of d(k) into S_small = {p : ord_p(2) ≤ T} and S_large = {p : ord_p(2) > T}",
+      "blocker": "CRITICAL: uniform ρ_p bound. Currently ρ_p < 1 proved but no uniformity"
+    },
+    {
+      "name": "Operator Framework + Gap 1.35x Closure",
+      "score": 78.83735163105241,
+      "feasibility": 7.0,
+      "impact": 10.0,
+      "data_support": 7.0,
+      "next_step": "1. COMPUTE: budget ratio for k=3..100 — identify if it improves with k",
+      "blocker": "The 1.35x gap is REAL — not an artifact. Closing it requires new math"
+    },
+    {
+      "name": "DBA (Baker) + F_Z Complete Resolution",
+      "score": 73.18611420045941,
+      "feasibility": 8.0,
+      "impact": 7.0,
+      "data_support": 7.0,
+      "next_step": "1. IMPLEMENT Baker-Wüstholz bound computation for F_Z",
+      "blocker": "Baker bounds are technically intensive (3-6 month estimate)"
+    },
+    {
+      "name": "Battement Impossible (Resonance Obstruction)",
+      "score": 72.3042679252569,
+      "feasibility": 7.0,
+      "impact": 9.0,
+      "data_support": 6.0,
+      "next_step": "1. FORMALIZE: the triple obstruction from monotonicity",
+      "blocker": "The 'triple obstruction' is heuristic, not proved"
+    },
+    {
+      "name": "Hybrid Multi-scale (Pipeline-Driven Discovery)",
+      "score": 62.14465011907717,
+      "feasibility": 6.0,
+      "impact": 10.0,
+      "data_support": 4.0,
+      "next_step": "1. EXTEND: run Analyst for k=41..100 (compute d(k) factorizations, spectral data)",
+      "blocker": "Scalability: native_decide slows exponentially with k"
+    }
+  ],
+  "critical_question": "Can we prove uniform ρ_p < 1-ε for ALL p|d(k)? This is the single question that, if answered, closes everything via FCQ.",
+  "recommended_action": "PRIORITY: LDS + FCQ Combined Attack (score 86.4/100). NEXT STEP: 1. PARTITION primes of d(k) into S_small = {p : ord_p(2) ≤ T} and S_large = {p : ord_p(2) > T}. CRITICAL BLOCKER: CRITICAL: uniform ρ_p bound. Currently ρ_p < 1 proved but no uniformity.",
+  "lean_roadmap": [
+    "PHASE 1 (IMMEDIATE): Extend native_decide avoidance to k=41..68 (SdW range)",
+    "PHASE 2 (SHORT-TERM): Formalize LDS transport lemma in Lean 4",
+    "PHASE 3 (MEDIUM-TERM): Formalize FCQ contraction for specific primes",
+    "PHASE 4 (LONG-TERM): Connect LDS+FCQ to prove uniform ρ bound",
+    "PHASE 5 (GOAL): Prove N₀(d(k))=0 for all k ≥ 3 except phantom k=4"
+  ]
+}
