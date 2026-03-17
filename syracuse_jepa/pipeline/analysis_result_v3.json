@@ -1,0 +1,90 @@
+{
+  "version": "v3",
+  "k_range": [
+    3,
+    20
+  ],
+  "stages_completed": 9,
+  "exploration": {
+    "n_k_values": 18
+  },
+  "analysis": {
+    "n_insights": 5,
+    "insights": [
+      {
+        "category": "gap",
+        "description": "min_gap_rel DECAYS exponentially: slope=-0.0594/k",
+        "confidence": 0.7,
+        "connects_to": "Conjecture M (R195): gap decay supports |T(t)| → 0"
+      },
+      {
+        "category": "lds",
+        "description": "max(ord_p(2)) > 2k for majority of k values — LDS favorable",
+        "confidence": 0.75,
+        "connects_to": "R196-R197 LDS: k₀(p) ≥ c·q without GRH"
+      },
+      {
+        "category": "operator",
+        "description": "FCQ R(p,k) < 1 for ALL primes in 11 k values",
+        "confidence": 0.8,
+        "connects_to": "R196-R197 FCQ: R(p,k) = q·ρ_p^{k-1} < 1 implies avoidance"
+      },
+      {
+        "category": "operator",
+        "description": "Average budget ratio = 0.16 < 1 — GAP 1.35x CONFIRMED",
+        "confidence": 0.9,
+        "connects_to": "R189: the 1.35x gap is real, need structural boost"
+      },
+      {
+        "category": "algebraic",
+        "description": "k=4 PHANTOM: d=47, factors=[(47, 1)]",
+        "confidence": 1.0,
+        "connects_to": "Known: phantom explains why general proof needs care at k=4"
+      }
+    ]
+  },
+  "patterns": {
+    "n_trends": 6,
+    "n_invariants": 6,
+    "n_conjectures": 3
+  },
+  "strategies": {
+    "n_strategies": 5,
+    "top_strategy": "LDS + FCQ Combined Attack",
+    "top_score": 86.44585471747905,
+    "critical_question": "Can we prove uniform ρ_p < 1-ε for ALL p|d(k)? This is the single question that, if answered, closes everything via FCQ.",
+    "recommended_action": "PRIORITY: LDS + FCQ Combined Attack (score 86.4/100). NEXT STEP: 1. PARTITION primes of d(k) into S_small = {p : ord_p(2) ≤ T} and S_large = {p : ord_p(2) > T}. CRITICAL BLOCKER: CRITICAL: uniform ρ_p bound. Currently ρ_p < 1 proved but no uniformity."
+  },
+  "spectral": {
+    "k_max_scanned": 30,
+    "n_proved": 4,
+    "n_total": 28
+  },
+  "prover": {
+    "k_max_scanned": 120,
+    "n_steiner_proved": 80
+  },
+  "discovery": {
+    "n_root_causes": 8,
+    "n_innovations": 3,
+    "innovations": [
+      "Gap Spectrum G(k)",
+      "Prime Avoidance Fingerprint",
+      "Monotonicity Cost M(k)"
+    ]
+  },
+  "genius": {
+    "n_proof_gaps": 9,
+    "n_hard_cases": 17,
+    "hardest_k": 15,
+    "hardest_score": 9.73,
+    "n_predictions": 4,
+    "n_contradictions": 16,
+    "n_proved_contradictions": 10
+  },
+  "redteam": {
+    "n_pass": 33,
+    "n_fail": 0,
+    "n_warning": 0
+  }
+}
