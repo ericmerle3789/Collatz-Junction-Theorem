@@ -44,6 +44,8 @@ from syracuse_jepa.pipeline.prover import extended_proof_scan, generate_proof_ce
 from syracuse_jepa.pipeline.discovery import run_discovery
 from syracuse_jepa.pipeline.genius import run_genius
 from syracuse_jepa.pipeline.redteam import run_full_audit
+from syracuse_jepa.pipeline.fcq_transfer import run_fcq_study
+from syracuse_jepa.pipeline.map_reeval import run_map_reeval
 
 
 def run_pipeline_v3(k_min: int = 3, k_max: int = 40,
@@ -68,8 +70,8 @@ def run_pipeline_v3(k_min: int = 3, k_max: int = 40,
     t_start = time.time()
 
     print("╔" + "═" * 68 + "╗")
-    print("║  SYRACUSE-JEPA v3 — Full Discovery & Proof Machine              ║")
-    print("║  10 stages: Explore→Analyze→Mine→Strategy→Spectral→             ║")
+    print("║  SYRACUSE-JEPA v3.1 — Full Discovery & Proof Machine             ║")
+    print("║  12 stages: Explore→Analyze→Mine→Strategy→Spectral→FCQ→MapXref→║")
     print("║             Prove→Discover→Genius→RedTeam→Verify                ║")
     print("╚" + "═" * 68 + "╝")
     print()
@@ -119,9 +121,22 @@ def run_pipeline_v3(k_min: int = 3, k_max: int = 40,
     n_spectral_proved = sum(1 for r in spectral_results if r.get('proved'))
     print(f"└─ {n_spectral_proved}/{len(spectral_results)} proved via CRT ──────────┘\n")
 
+    # ─── STAGE 5b: FCQ TRANSFER OPERATOR ────────────────────
+    fcq_k_max = 80 if full_scan else min(k_max, 40)
+    print(f"┌─ STAGE 5b/12: FCQ ENGINE (k<={fcq_k_max}) ─────────────────┐")
+    fcq_results = run_fcq_study(k_max=fcq_k_max, max_prime=200)
+    n_fcq_proved = sum(1 for r in fcq_results if r.proves_avoidance)
+    print(f"└─ {n_fcq_proved}/{len(fcq_results)} proved via FCQ ──────────────────┘\n")
+
+    # ─── STAGE 5c: MAP CROSS-REFERENCE ───────────────────────
+    if not analysis_only:
+        print("┌─ STAGE 5c/12: MAP CROSS-REFERENCE ───────────────────────┐")
+        map_xref = run_map_reeval(min(k_max, 50))
+        print(f"└─ {map_xref['summary']['invariants_holding']} invariants hold ─────────┘\n")
+
     # ─── STAGE 6: PROVER (Steiner extension) ──────────────────
     prover_k_max = 200 if full_scan else 120
-    print(f"┌─ STAGE 6/10: PROVER — Steiner n_min (k≤{prover_k_max}) ─────────┐")
+    print(f"┌─ STAGE 6/12: PROVER — Steiner n_min (k<={prover_k_max}) ────────┐")
     prover_results = extended_proof_scan(k_min, prover_k_max)
     n_steiner = sum(1 for r in prover_results
                     if r.get('proved_N0_zero') and r.get('method', '').startswith('steiner'))
