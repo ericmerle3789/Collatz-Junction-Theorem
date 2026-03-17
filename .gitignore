@@ -70,6 +70,28 @@ paper/preprint_fr.tex
 paper/preprint.md
 paper/Merle_2026_Barrieres_Entropiques_Collatz.pdf
 
+# Pipeline intermediate results (regenerable)
+syracuse_jepa/pipeline/*_results.json
+syracuse_jepa/pipeline/blackboard*.json
+syracuse_jepa/pipeline/proof_assembly_result.json
+
+# Experimental agents (not part of proof)
+syracuse_jepa/pipeline/allegorist_agent.py
+syracuse_jepa/pipeline/architect_agent.py
+syracuse_jepa/pipeline/innovator_agent.py
+syracuse_jepa/pipeline/investigator_agent.py
+syracuse_jepa/pipeline/synthesizer_agent.py
+syracuse_jepa/pipeline/research_agent.py
+syracuse_jepa/pipeline/alphaproof_mcts.py
+syracuse_jepa/pipeline/funsearch_engine.py
+syracuse_jepa/pipeline/blackboard.py
+syracuse_jepa/pipeline/jepa_world_model.py
+syracuse_jepa/pipeline/run_cce_v5.py
+syracuse_jepa/pipeline/run_research_v4.py
+
+# Large PDFs at root
+Collatz_Invariants_VICReg_2026.pdf
+
 # Archive (large, not for GitHub)
 archive/
 *.pt
