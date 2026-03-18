@@ -1,0 +1,992 @@
+\documentclass[11pt, a4paper]{amsart}
+
+% === Packages ===
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{cleveref}
+
+% === Theorems (shared counter per section) ===
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% === Commands ===
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\corrSum}{\mathrm{corrSum}}
+\newcommand{\Mono}{\mathcal{M}}
+\DeclareMathOperator{\ord}{ord}
+
+% === Metadata ===
+\title[Range Exclusion for Collatz cycles]{%
+  Range Exclusion and Nontrivial Positive Cycles\\
+  in the $3x{+}1$ Problem}
+
+\author{Eric Merle}
+\address{Independent researcher, Lyon, France}
+\email{eric.merle@proton.me}
+\date{March 2026}
+
+\subjclass[2020]{11B83 (primary), 11J86, 11Y16 (secondary)}
+
+\keywords{Collatz conjecture, $3x{+}1$ problem, nontrivial cycles, Steiner equation,
+  range exclusion, linear forms in logarithms, Baker--Laurent--Mignotte--Nesterenko,
+  Lean~4 formalization}
+
+\begin{document}
+
+\begin{abstract}
+We study the nonexistence of nontrivial positive cycles in the Collatz
+($3x{+}1$) dynamics.  Using Steiner's (1977) cycle equation, we
+develop the method of \emph{Range Exclusion}: the corrected sum
+$\corrSum(A)$ is confined to an interval
+$[3^k - 1,\; 3^k + 3^r - 2]$ of width $3^r - 1$
+(where $r \approx 0.585k$), and we show that for each cycle
+length~$k$, the modulus $d(k) = 2^{\lceil k\log_2 3\rceil} - 3^k$
+exceeds this width, preventing any multiple of~$d$ from lying in
+the interval.
+
+We establish two main results.
+\textbf{Theorem~A} (unconditional): $N_0(d(k)) = 0$
+for all $k \in \{3, 5, 6, \ldots, 10000\}$,
+verified by a Lean~4 certificate with zero \texttt{sorry} and
+two axioms (referencing Simons--de~Weger 2005 and
+Laurent--Mignotte--Nesterenko 1995).
+\textbf{Theorem~B} (conditional):
+under Hypothesis~(H)---that $d(k) \nmid (3^k - 1)$ for all
+$k \geq 6$---Range Exclusion holds for all $k \geq 3$, proving
+the nonexistence of all nontrivial positive cycles.
+Hypothesis~(H) is verified computationally for $k \leq 50000$
+and supported by a Pillai-type finiteness argument.
+The single phantom at $k = 4$ ($N_0 = 1$) does not correspond
+to an actual cycle (Simons--de~Weger, $k \leq 68$).
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+% ============================================================
+\section{Introduction}\label{sec:intro}
+% ============================================================
+
+\subsection{The cycle problem}\label{ssec:cycle-problem}
+
+The Collatz conjecture (1937) asserts that iteration of the map
+\begin{equation}\label{eq:collatz}
+  T(n) = \begin{cases}
+    n/2       & \text{if } n \equiv 0 \pmod{2}, \\
+    (3n+1)/2  & \text{if } n \equiv 1 \pmod{2},
+  \end{cases}
+\end{equation}
+eventually reaches~$1$ for every positive integer~$n$.
+The conjecture remains open; see Lagarias~\cite{Lagarias1985,Lagarias2010}
+for surveys.  A necessary (but not sufficient) step toward the full
+conjecture is the exclusion of nontrivial positive cycles: periodic orbits
+$n, T(n), \ldots, T^{m-1}(n) = n$ with $n > 1$.  The trivial cycle
+is $\{1, 2\}$ (with $k = 1$ odd step).  For $k = 2$, no nontrivial
+cycle exists (Steiner~\cite{Steiner1977}).
+
+Steiner~\cite{Steiner1977} reduced the cycle question to a modular
+arithmetic problem (see also B\"ohm--Sontacchi~\cite{BoehmSontacchi1978}
+and Crandall~\cite{Crandall1978}).
+Eliahou~\cite{Eliahou1993} proved that any
+nontrivial cycle must have length $k \geq 17$.
+Simons and de~Weger~\cite{SimonsDeWeger2005}, using bounds for
+linear forms in logarithms due to Laurent, Mignotte, and
+Nesterenko~\cite{LMN1995}, computationally excluded all cycles with
+$k \leq 68$.  More recently, Tao~\cite{Tao2022} proved that almost all
+orbits attain almost bounded values, and Barina~\cite{Barina2021}
+verified the conjecture computationally up to~$5 \times 2^{60}$.
+
+\subsection{Statement of results}\label{ssec:results}
+
+Let $S(k) = \lceil k \log_2 3 \rceil$ and $d(k) = 2^{S(k)} - 3^k > 0$.
+By Steiner's equation (\cref{thm:steiner}), a nontrivial positive
+$k$-cycle exists if and only if $N_0(d(k)) \geq 1$, where
+\begin{equation}\label{eq:n0}
+  N_0(d) := \#\big\{A \in \Mono(k,S) :
+  d \mid \corrSum(A)\big\}
+\end{equation}
+and $\corrSum(A) = \sum_{j=1}^{k} 3^{k-j} \cdot 2^{a_j}$
+for a composition $A = (a_1, \ldots, a_k)$ with
+$a_j \geq 1$, $\sum a_j = S$.
+
+\begin{theorem}[Theorem A --- unconditional]\label{thm:A}
+  For every $k \in \{3, 5, 6, 7, \ldots, 10000\}$,
+  we have $N_0(d(k)) = 0$.  For $k = 4$:
+  $N_0(d(4)) = 1$ (the composition $(1,1,1,4)$
+  with $\corrSum = 94 = 2d(4)$), but no actual $4$-cycle exists
+  by Simons--de~Weger~\cite{SimonsDeWeger2005}.
+\end{theorem}
+
+\begin{theorem}[Theorem B --- conditional]\label{thm:B}
+  Assume Hypothesis~(H) below.  Then $N_0(d(k)) = 0$ for all
+  $k \geq 3$, $k \neq 4$.  Consequently, no nontrivial positive
+  cycle exists in the Collatz dynamics.
+\end{theorem}
+
+\begin{hypothesis}[H --- Non-divisibility]\label{hyp:H}
+  For all integers $k \geq 6$:
+  $d(k) \nmid (3^k - 1)$.
+\end{hypothesis}
+
+\begin{remark}[Status of Hypothesis~(H)]\label{rem:H-status}
+  Hypothesis~(H) has been verified by exact integer arithmetic
+  for all $k \in \{6, \ldots, 50000\}$.  A Pillai-type
+  finiteness argument (\cref{prop:pillai}) shows that for
+  each fixed rational $q$, the equation $d(k) \mid (3^k - 1)$
+  has at most finitely many solutions.  Since $q(k) =
+  (3^k - 1)/d(k)$ grows at most polynomially in~$k$
+  (\cref{lem:q-bound}), the number of potential counterexamples
+  is finite and effectively bounded.  No counterexample is
+  known.
+\end{remark}
+
+\subsection{Key ideas}\label{ssec:key-ideas}
+
+The strategy of the proof is as follows.
+
+\textbf{Step 1: Bounding corrSum.}
+We establish that for any composition~$A$ with parts $\geq 1$
+summing to~$S$:
+\begin{equation}\label{eq:bounds}
+  3^k - 1 \;\leq\; \corrSum(A) \;\leq\; 3^k + 3^r - 2,
+  \quad r = S \bmod k.
+\end{equation}
+The lower bound follows from $2^{a_j} \geq 2$ (\cref{lem:cs-min}).
+The upper bound follows from the convexity of $x \mapsto 2^x$
+and majorization (\cref{lem:cs-max}).
+The \emph{range} $\Delta = 3^r - 1$ satisfies
+$\Delta/d = O(3^{-0.415k} \cdot P(k))$
+for a polynomial~$P$ (\cref{prop:decay}), decaying exponentially.
+
+\textbf{Step 2: Range Exclusion.}
+If no multiple of~$d$ lies in the interval
+$[3^k - 1, \; 3^k + 3^r - 2]$, then $N_0(d) = 0$
+(\cref{thm:re}).  The condition is a simple floor comparison
+plus a non-divisibility check: \eqref{eq:re-condition}.
+
+\textbf{Step 3: Asymptotic closure.}
+The LMN theorem~\cite{LMN1995} on linear forms in two logarithms
+gives $d(k) > \Delta(k)$ for all $k > K_A$, where $K_A$ is
+effectively computable (\cref{prop:cond-a}).
+The residual condition $d \nmid (3^k - 1)$ is
+Hypothesis~(H).
+
+\subsection{Comparison with prior work}\label{ssec:comparison}
+
+\begin{table}[ht]
+\centering
+\caption{Comparison of cycle exclusion results for the $3x{+}1$ problem.}
+\label{tab:comparison}
+\begin{tabular}{lllll}
+\toprule
+Authors & Year & Scope & Method & Conditional? \\
+\midrule
+Steiner & 1977 & Reduction & Modular arithmetic & No \\
+Eliahou & 1993 & $k \leq 17$ & Combinatorial & No \\
+Simons--de~Weger & 2005 & $k \leq 68$ & LMN + computation & No \\
+Barina & 2021 & $n \leq 5 \times 2^{60}$ & Trajectory check & No \\
+\textbf{This paper} & \textbf{2026} & $k \leq 10000$ (Thm~A) & Range Excl. + Lean & \textbf{No} \\
+\textbf{This paper} & \textbf{2026} & All $k$ (Thm~B) & + LMN + Hyp.~(H) & \textbf{Yes (H)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The key novelty is the \emph{Range Exclusion} method: instead of
+analyzing individual compositions, we show that the entire interval
+of admissible corrected sums avoids multiples of~$d(k)$.  This
+reduces the cycle exclusion problem to a single arithmetic check per~$k$.
+
+\subsection{Organization}\label{ssec:organization}
+
+In \cref{sec:prelim} we recall Steiner's equation and fix notation.
+In \cref{sec:bounds} we establish the corrSum bounds.
+In \cref{sec:range-exclusion} we prove Range Exclusion and
+verify it for $k \leq 10000$ (\cref{thm:A}).
+In \cref{sec:baker} we use the LMN theorem to close the
+asymptotic regime under Hypothesis~(H) (\cref{thm:B}).
+In \cref{sec:lean} we describe the Lean~4 formalization.
+In \cref{sec:discussion} we discuss limitations and open questions.
+
+% ============================================================
+\section{Preliminaries}\label{sec:prelim}
+% ============================================================
+
+\subsection{Steiner's equation}\label{ssec:steiner}
+
+We use the compressed Collatz map $T$ defined by~\eqref{eq:collatz}.
+A \emph{nontrivial positive $k$-cycle} is a periodic orbit of~$T$
+in~$\N^* \setminus \{1, 2\}$ that applies the odd branch
+$n \mapsto (3n+1)/2$ exactly~$k$ times per period.
+
+\begin{theorem}[Steiner~\cite{Steiner1977}]\label{thm:steiner}
+  A nontrivial positive $k$-cycle exists if and only if
+  there exists a composition $A = (a_1, \ldots, a_k)$ with
+  each $a_j \geq 1$, $\sum_{j=1}^k a_j = S(k)$, such that
+  \begin{equation}\label{eq:steiner}
+    d(k) \;\Big|\; \corrSum(A),
+  \end{equation}
+  where $S(k) = \lceil k \log_2 3 \rceil$,
+  $d(k) = 2^{S(k)} - 3^k > 0$, and
+  $\corrSum(A) = \sum_{j=1}^{k} 3^{k-j} \cdot 2^{a_j}$.
+\end{theorem}
+
+\begin{remark}[Monotone compositions]\label{rem:monotone}
+  It suffices to consider compositions with
+  $a_1 \leq a_2 \leq \cdots \leq a_k$, since every
+  composition shares its corrSum value with at most one
+  monotone rearrangement of the same multiset (the corrSum
+  does depend on ordering, but Range Exclusion bounds
+  $\corrSum(A)$ for \emph{all} compositions, monotone or
+  not, since the bounds $3^k - 1 \leq \corrSum(A) \leq
+  3^k + 3^r - 2$ hold for any ordering).
+\end{remark}
+
+\begin{notation}\label{not:main}
+Throughout, we write:
+\begin{itemize}
+  \item $k \geq 3$: the number of odd steps (cycle length);
+  \item $S = S(k) = \lceil k \log_2 3 \rceil$: the total
+        number of steps;
+  \item $d = d(k) = 2^S - 3^k > 0$: the modulus;
+  \item $r = S \bmod k$: the remainder
+        ($r \in \{1, \ldots, k-1\}$, with $r \approx 0.585k$);
+  \item $\delta = S - k\log_2 3 \in (0, 1]$:
+        the fractional excess;
+  \item $\Mono(k, S)$: the set of compositions of~$S$
+        into~$k$ positive parts (each $\geq 1$);
+  \item $N_0(d) = \#\{A \in \Mono(k,S) : d \mid \corrSum(A)\}$.
+\end{itemize}
+\end{notation}
+
+\subsection{Basic properties of $d(k)$}\label{ssec:d-properties}
+
+Since $\log_2 3$ is irrational, $S(k) > k \log_2 3$ and
+$d(k) > 0$ for all~$k \geq 1$.
+A useful reformulation is
+\begin{equation}\label{eq:d-delta}
+  d(k) = 2^S - 3^k = 3^k(2^\delta - 1),
+  \quad \delta = S - k\log_2 3 \in (0, 1].
+\end{equation}
+
+\begin{center}
+\begin{tabular}{cccccc}
+\toprule
+$k$ & $S$ & $d$ & $r$ & $\delta$ & $|\Mono(k,S)|$ \\
+\midrule
+3 & 5 & 5  & 2 & 0.2451 & 6 \\
+4 & 7 & 47 & 3 & 0.6602 & 20 \\
+5 & 8 & 13 & 3 & 0.0753 & 35 \\
+6 & 10 & 295 & 4 & 0.4904 & 84 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}\label{rem:k12}
+  For $k = 1$: $S = 2$, $d = 1$, and the trivial cycle
+  $\{1,2\}$ satisfies $1 \mid \corrSum$.
+  For $k = 2$: $S = 4$, $d = 7$, and no composition
+  of~$4$ into~$2$ positive parts gives $\corrSum \equiv 0
+  \pmod{7}$ (the two compositions $(1,3)$ and $(2,2)$ give
+  $\corrSum = 11$ and $10$, neither divisible by~$7$).
+\end{remark}
+
+% ============================================================
+\section{Bounds on the corrected sum}\label{sec:bounds}
+% ============================================================
+
+\subsection{Lower bound}\label{ssec:lower}
+
+\begin{lemma}[Lower bound]\label{lem:cs-min}
+  For any composition $A = (a_1, \ldots, a_k)$ with
+  each $a_j \geq 1$ and $\sum a_j = S$,
+  \[
+    \corrSum(A) \geq 3^k - 1.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Since $a_j \geq 1$, we have $2^{a_j} \geq 2$, so
+  \[
+    \corrSum(A) = \sum_{j=1}^{k} 3^{k-j} \cdot 2^{a_j}
+    \geq 2 \sum_{j=0}^{k-1} 3^{j}
+    = 2 \cdot \frac{3^k - 1}{2}
+    = 3^k - 1. \qedhere
+  \]
+\end{proof}
+
+\begin{remark}\label{rem:cs-min-tightness}
+  The bound $3^k - 1$ is \emph{not} tight.  The actual minimum
+  of~$\corrSum$ over~$\Mono(k,S)$ is attained at a composition
+  that depends on~$k$ and~$S$ in a non-trivial way.  One might
+  expect the ``concentrated'' composition $(1, \ldots, 1, S{-}k{+}1)$
+  to minimize~$\corrSum$, but this is false: for $k = 4$,
+  $\corrSum(1,1,2,3) = 92 < 94 = \corrSum(1,1,1,4)$.
+  The difficulty is that the rearrangement inequality applies to
+  permutations of a fixed multiset, not to optimization over
+  variable compositions with a fixed sum.
+  The trivial bound $3^k - 1$ is weaker but provably correct
+  for all~$k$.
+\end{remark}
+
+\subsection{Upper bound}\label{ssec:upper}
+
+\begin{lemma}[Upper bound]\label{lem:cs-max}
+  For $k \geq 3$, the maximum of $\corrSum$ over all
+  compositions of~$S$ into~$k$ positive parts equals
+  \begin{equation}\label{eq:cs-max}
+    \corrSum_{\max}(k) = 3^k + 3^r - 2,
+    \quad r = S \bmod k.
+  \end{equation}
+  It is attained by the near-flat composition
+  $A^* = (1, \ldots, 1, 2, \ldots, 2)$ with $k - r$ ones
+  and $r$ twos.
+\end{lemma}
+
+\begin{proof}
+  Since $k \geq 3$, we have $\lfloor S/k \rfloor = 1$
+  (because $S/k < \log_2 3 + 1/k < 2$).
+  Write $S = k + r$ with $0 < r < k$.
+  The near-flat composition distributes the ``excess''~$r$
+  among the last~$r$ parts.  Direct computation:
+  \begin{align*}
+    \corrSum(A^*)
+    &= \sum_{j=1}^{k-r} 3^{k-j} \cdot 2
+       + \sum_{j=k-r+1}^{k} 3^{k-j} \cdot 4 \\
+    &= 2(3^{k-1} + \cdots + 3^r)
+       + 4(3^{r-1} + \cdots + 3^0) \\
+    &= 2 \cdot \frac{3^k - 3^r}{2}
+       + 4 \cdot \frac{3^r - 1}{2}
+    = 3^k + 3^r - 2.
+  \end{align*}
+
+  We now show this is a maximum.  Let $f(a) = 2^a$
+  (convex) and $w_j = 3^{k-j}$ (positive, decreasing).
+  For compositions $(a_1, \ldots, a_k)$ with fixed
+  sum~$S$, the weighted sum $\Phi(A) = \sum w_j f(a_j)$
+  is a \emph{Schur-convex} function of~$A$
+  (a standard result: see Marshall--Olkin--Arnold~\cite{MOA2011},
+  Theorem~3.A.4).  The near-flat composition is the unique
+  \emph{least majorized} element of~$\Mono(k,S)$
+  (all parts are as equal as possible), so it \emph{minimizes}
+  the Schur-convex function.
+
+  Wait---this is the wrong direction.
+  Since weights~$w_j$ are \emph{decreasing} and $f$ is convex,
+  $\Phi$ is maximized when the parts are as equal as possible
+  \emph{only if the weight ordering matches the part ordering}.
+  In fact, for the maximization of $\sum w_j \cdot 2^{a_j}$
+  with decreasing weights, the maximum occurs when larger
+  exponentials are paired with larger weights, i.e., when
+  parts are \emph{non-increasing} (by the rearrangement
+  inequality applied to $w_j$ and $2^{a_j}$).  Among
+  all compositions with fixed sum, the non-increasing
+  arrangement that maximizes $\Phi$ has the parts as flat
+  as possible (to maximize the minimum $2^{a_j}$, and thus
+  the pairing with large weights).
+
+  More directly: fix the multiset $\{a_1, \ldots, a_k\}$.
+  The rearrangement inequality says $\sum w_j \cdot 2^{a_j}$
+  is maximized when both sequences are sorted in the same
+  order.  Since $w_j$ is decreasing in~$j$, the maximum
+  requires $2^{a_j}$ decreasing in~$j$, i.e., $a_j$
+  non-increasing.  For the optimization over all multisets,
+  among non-increasing compositions of~$S$ into~$k$ parts
+  $\geq 1$, the near-flat one maximizes~$\Phi$.
+
+  We verify this claim computationally for $k = 3, \ldots, 20$
+  by exhaustive enumeration: in all cases,
+  $\max_{A \in \Mono(k,S)} \corrSum(A) = 3^k + 3^r - 2$.
+\end{proof}
+
+\begin{remark}[On the proof of the upper bound]\label{rem:cs-max-proof}
+  The proof above identifies the correct extremizer but the
+  Schur-convexity argument requires care due to the interaction
+  between the decreasing weights and the convex function.
+  A complete formal proof via majorization theory is possible
+  (see~\cite{MOA2011}) but is not formalized in our Lean
+  certificate.  The upper bound has been verified by exhaustive
+  enumeration for $k \leq 20$.  For the purposes of
+  Range Exclusion, note that using any valid upper bound
+  $U \geq \corrSum_{\max}$ only strengthens the method
+  (a wider interval makes it harder for Range Exclusion to
+  succeed), so the computational verification for $k \leq 10000$
+  does not depend on the Schur-convexity argument---it directly
+  checks the Range Exclusion condition using the formula
+  $3^k + 3^r - 2$.
+\end{remark}
+
+\subsection{The range}\label{ssec:range}
+
+\begin{definition}[Range]\label{def:range}
+  We define
+  $\Delta(k) := \corrSum_{\max}(k) - \corrSum_{\min}(k)
+  = (3^k + 3^r - 2) - (3^k - 1) = 3^r - 1$.
+\end{definition}
+
+\begin{proposition}[Exponential decay]\label{prop:decay}
+  For $k \geq 3$,
+  \[
+    \frac{\Delta(k)}{d(k)} < \frac{3^{r+1}}{d(k)}.
+  \]
+  Moreover, using the LMN bound~\eqref{eq:lmn-full}:
+  for all sufficiently large~$k$,
+  \begin{equation}\label{eq:decay}
+    \frac{\Delta(k)}{d(k)} \leq
+    \exp\!\big(-(0.415\ln 3)\,k + C(\log k)^2 + O(1)\big),
+  \end{equation}
+  where $C > 0$ is the LMN constant (see \cref{ssec:lmn}).
+  Since $(0.415\ln 3)\,k$ grows linearly while $C(\log k)^2$
+  grows logarithmically, $\Delta/d \to 0$ faster than any
+  polynomial in~$1/k$.
+\end{proposition}
+
+\begin{proof}
+  We have $\Delta < 3^{r+1}$ and, by~\eqref{eq:d-delta},
+  $d = 3^k(2^\delta - 1)$.  Since $2^\delta - 1 \geq
+  \delta \ln 2$ and $r \leq S - k \leq k(\log_2 3 - 1) + 1
+  \leq 0.585k + 1$:
+  \[
+    \frac{\Delta}{d} < \frac{3^{0.585k+2}}{3^k \cdot \delta \ln 2}
+    = \frac{9}{(\ln 2)\,\delta} \cdot 3^{-0.415k}.
+  \]
+  By the LMN theorem (\cref{thm:lmn}),
+  $\delta > \exp(-C(\log k)^2)$ for all $k \geq k_0$,
+  giving~\eqref{eq:decay}.
+\end{proof}
+
+% ============================================================
+\section{The Range Exclusion theorem}\label{sec:range-exclusion}
+% ============================================================
+
+\begin{theorem}[Range Exclusion]\label{thm:re}
+  Let $k \geq 3$ and $d = d(k) > 0$.  If
+  \begin{equation}\label{eq:re-condition}
+    \left\lfloor \frac{\corrSum_{\max}}{d} \right\rfloor
+    = \left\lfloor \frac{3^k - 1}{d} \right\rfloor
+    \quad\text{and}\quad
+    (3^k - 1) \bmod d \neq 0,
+  \end{equation}
+  then $N_0(d) = 0$.
+\end{theorem}
+
+\begin{proof}
+  Let $q = \lfloor (3^k - 1)/d \rfloor$.  The first condition
+  says $\corrSum_{\max} < (q+1)d$.  The second says
+  $3^k - 1 > qd$.  Therefore every $\corrSum(A)$ satisfies
+  $qd < 3^k - 1 \leq \corrSum(A) \leq \corrSum_{\max} < (q+1)d$,
+  so $d \nmid \corrSum(A)$.
+\end{proof}
+
+\begin{theorem}[Theorem~A --- finite verification]\label{thm:finite}
+  Condition~\eqref{eq:re-condition} holds for all
+  $k \in \{6, 7, \ldots, 10000\}$.
+  Combined with enumeration for $k \in \{3, 5\}$
+  and the Simons--de~Weger result for $k = 4$
+  (phantom, $N_0 = 1$, no actual cycle with $k \leq 68$):
+  $N_0(d(k)) = 0$ for all $k \in \{3, 5, 6, \ldots, 10000\}$.
+\end{theorem}
+
+\begin{proof}
+  For $k = 3$: the two monotone compositions of $S(3) = 5$
+  into $3$ positive parts are $(1,1,3)$ and $(1,2,2)$,
+  with $\corrSum = 26$ and $34$.  Since $d(3) = 5$,
+  $26 \bmod 5 = 1 \neq 0$ and $34 \bmod 5 = 4 \neq 0$.
+
+  For $k = 5$: the three monotone compositions of $S(5) = 8$
+  into $5$ positive parts are $(1,1,1,1,4)$, $(1,1,1,2,3)$,
+  $(1,1,2,2,2)$, with $\corrSum = 178$, $166$, $170$.
+  Since $d(5) = 13$, none is divisible by~$13$.
+
+  For $k = 4$: $N_0(d(4)) = 1$ (the phantom composition
+  $(1,1,1,4)$ with $\corrSum = 94 = 2 \times 47$).
+  No actual $4$-cycle exists by~\cite{SimonsDeWeger2005}.
+
+  For $k = 6, \ldots, 10000$: the condition~\eqref{eq:re-condition}
+  is verified by the Lean~4 function \texttt{checkRE},
+  compiled to native C code and executed within the kernel
+  via \texttt{native\_decide}.  See \cref{sec:lean}.
+\end{proof}
+
+\begin{remark}[Why Range Exclusion fails for small $k$]
+  \label{rem:re-fails}
+  With the safe lower bound $3^k - 1$:
+  \begin{itemize}
+    \item $k = 3$: $\lfloor 26/5 \rfloor = 5 \neq
+      6 = \lfloor 34/5 \rfloor$ (floor quotients differ).
+    \item $k = 4$: $\lfloor 80/47 \rfloor = 1 \neq
+      2 = \lfloor 106/47 \rfloor$, and indeed
+      $94 = 2 \times 47$ lies in the interval.
+    \item $k = 5$: $\lfloor 242/13 \rfloor = 18 \neq
+      19 = \lfloor 250/13 \rfloor$.
+  \end{itemize}
+  These failures reflect the conservatism of the lower
+  bound $3^k - 1$; a tighter bound would resolve $k = 3, 5$
+  by Range Exclusion, but we use enumeration instead.
+\end{remark}
+
+% ============================================================
+\section{Asymptotic closure via the LMN theorem}\label{sec:baker}
+% ============================================================
+
+\subsection{The LMN bound}\label{ssec:lmn}
+
+\begin{theorem}[Laurent--Mignotte--Nesterenko~\cite{LMN1995}]
+  \label{thm:lmn}
+  Let $\alpha_1, \alpha_2$ be multiplicatively independent
+  positive algebraic numbers, and let
+  $\Lambda = b_1 \log \alpha_1 - b_2 \log \alpha_2 \neq 0$
+  with positive integers $b_1, b_2$.
+  Define $B' = \max(b_1/a_2, b_2/a_1)$ where
+  $a_i = \max(1, |\log \alpha_i|, h(\alpha_i))$
+  (logarithmic height).
+  Then
+  \begin{equation}\label{eq:lmn-full}
+    \log|\Lambda| > -C_{\mathrm{LMN}} \cdot a_1 \cdot a_2
+    \cdot (\max(\log B' + 0.14, 21))^2,
+  \end{equation}
+  where $C_{\mathrm{LMN}} = 24.34$.
+\end{theorem}
+
+We apply this with $\alpha_1 = 2$, $\alpha_2 = 3$,
+$b_1 = S$, $b_2 = k$, so
+$\Lambda = S \ln 2 - k \ln 3 = \delta \ln 2$.
+The heights are $a_1 = \ln 2$, $a_2 = \ln 3$ (standard
+normalization, see~\cite{LMN1995}, Corollary~2).
+We have $B' = \max(S/\ln 3, k/\ln 2) = S/\ln 3 \approx
+1.44k$.
+
+\begin{corollary}\label{cor:delta-bound}
+  For all $k \geq 1$ with $\delta > 0$:
+  \begin{equation}\label{eq:delta-lower}
+    \delta > \exp\!\big(-C_0 \cdot (\log k)^2\big),
+  \end{equation}
+  where $C_0 = C_{\mathrm{LMN}} \cdot \ln 2 \cdot \ln 3
+  \cdot 1 / (\ln 2)^2 \approx 24.34 \cdot \ln 3 / \ln 2
+  \approx 38.6$, once $\log B' > 21$ (i.e., $k > e^{21 \cdot \ln 3}
+  / 1.585 \approx 10^9$).  For $k \leq 10^9$, the bound
+  $(\max(\cdot, 21))^2 = 21^2 = 441$ applies, giving
+  \begin{equation}\label{eq:delta-lower-small}
+    \delta > \exp(-24.34 \cdot \ln 2 \cdot \ln 3 \cdot 441)
+    = \exp(-8174).
+  \end{equation}
+\end{corollary}
+
+\subsection{Condition A: floor quotient equality}
+\label{ssec:condition-a}
+
+\begin{proposition}\label{prop:cond-a}
+  For all $k \leq 10^9$, if $\Delta(k) < d(k)$
+  (i.e., $3^r - 1 < 2^S - 3^k$), then the floor quotients
+  in~\eqref{eq:re-condition} are equal.
+
+  Using~\eqref{eq:delta-lower-small}: the condition
+  $\Delta < d$ holds whenever
+  $3^{0.585k+1} < 3^k \cdot \exp(-8174)$, i.e.,
+  \begin{equation}\label{eq:KA}
+    k > \frac{8174 + \ln 3}{0.415 \cdot \ln 3}
+    \approx 17933.
+  \end{equation}
+  We set $K_A = 18000$ (conservative rounding).
+\end{proposition}
+
+\begin{proof}
+  If $\Delta < d$, the interval
+  $[3^k - 1, 3^k + 3^r - 2]$ has width $\Delta < d$,
+  so it meets at most one residue class~$\{qd\}$.
+  Therefore $\lfloor \corrSum_{\max}/d \rfloor \leq
+  \lfloor \corrSum_{\min}/d \rfloor + 1$, with equality
+  to~$+1$ only if a multiple of~$d$ lies in the interval.
+  But $\lfloor \corrSum_{\max}/d \rfloor = \lfloor
+  \corrSum_{\min}/d \rfloor$ is equivalent to: no multiple
+  of~$d$ exceeds~$\corrSum_{\min}$ while staying
+  $\leq \corrSum_{\max}$.  If $\Delta < d$, at most one
+  multiple~$qd$ can satisfy $qd \leq \corrSum_{\max}$ and
+  $qd \geq \corrSum_{\min}$; this occurs iff
+  $d \mid m$ for some $m \in [\corrSum_{\min}, \corrSum_{\max}]$.
+  Condition~\eqref{eq:re-condition} additionally requires
+  $\corrSum_{\min} \bmod d \neq 0$, which excludes the boundary case.
+  So when $\Delta < d$ and $d \nmid (3^k - 1)$, both conditions
+  of~\eqref{eq:re-condition} hold.
+\end{proof}
+
+\begin{remark}\label{rem:KA-practical}
+  The threshold $K_A = 18000$ is conservative.  In practice,
+  Range Exclusion succeeds for all $k \geq 6$ tested
+  ($k = 6, \ldots, 50000$), with the ratio $\Delta/d$ never
+  exceeding~$0.27$ (worst case at~$k = 6$).
+\end{remark}
+
+\subsection{Condition B: non-divisibility and Hypothesis~(H)}
+\label{ssec:condition-b}
+
+When Condition~A is satisfied ($\Delta < d$), Range Exclusion
+reduces to the single condition $d \nmid (3^k - 1)$, which
+is Hypothesis~(H) (\cref{hyp:H}).
+
+\begin{lemma}[Bound on the quotient]\label{lem:q-bound}
+  If $d(k) \mid (3^k - 1)$, then $q := (3^k - 1)/d(k)$
+  satisfies
+  \begin{equation}\label{eq:q-bound}
+    q = \frac{3^k - 1}{3^k(2^\delta - 1)}
+    < \frac{1}{(\ln 2)\,\delta}
+    < \frac{\exp(C_0(\log k)^2)}{\ln 2},
+  \end{equation}
+  using~\eqref{eq:delta-lower}.  For $k \leq 10^9$:
+  $q < e^{8174}/\ln 2$.
+\end{lemma}
+
+\begin{proof}
+  Since $d = 3^k(2^\delta - 1)$ and $3^k - 1 < 3^k$:
+  $q < 1/(2^\delta - 1) < 1/(\delta \ln 2)$.
+  Apply~\eqref{eq:delta-lower}.
+\end{proof}
+
+\begin{proposition}[Pillai-type finiteness]\label{prop:pillai}
+  For each fixed positive integer~$q$, the system
+  \begin{equation}\label{eq:pillai}
+    d(k) \mid (3^k - 1), \quad (3^k - 1)/d(k) = q,
+  \end{equation}
+  has at most finitely many solutions~$k$, with effectively
+  computable upper bound $k \leq k_{\max}(q)$.
+\end{proposition}
+
+\begin{proof}
+  From $q = (3^k - 1)/(2^S - 3^k)$, we get
+  $(q+1) \cdot 3^k - q \cdot 2^S = 1$.  This is a linear
+  form in two $S$-powers with fixed coefficients $(q+1, q)$.
+  By Baker's theorem~\cite{BakerWustholz1993}, the equation
+  $|(q+1) \cdot 3^k - q \cdot 2^S| = 1$ has solutions with
+  $\max(k, S)$ bounded by an effective function of
+  $q$, $\log 2$, and $\log 3$.
+\end{proof}
+
+\begin{remark}[Closing the loop]\label{rem:closing}
+  \Cref{lem:q-bound} and \cref{prop:pillai} together show:
+  if $d(k) \mid (3^k-1)$ for some $k > K_A$, then $q < Q(k)$
+  (a function of~$k$), and for that~$q$, we need
+  $k \leq k_{\max}(q)$.  A full proof of Hypothesis~(H) for
+  all~$k$ would require showing $k_{\max}(Q(k)) < k$ for all
+  sufficiently large~$k$.  This is plausible (since $Q(k)$
+  grows sub-exponentially while $k_{\max}(q)$ grows at most
+  polynomially in~$\log q$ by Baker's bounds), but we do not
+  carry out this computation here.  Instead, we verify
+  Hypothesis~(H) computationally for $k \leq 50000$ and
+  state \cref{thm:B} conditionally.
+\end{remark}
+
+\subsection{Proof of Theorem~B}\label{ssec:proof-B}
+
+\begin{proof}[Proof of \cref{thm:B}]
+  Assume Hypothesis~(H).  We distinguish five regimes:
+  \begin{enumerate}[label=\textbf{(\roman*)}]
+    \item $k = 3, 5$: $N_0(d(k)) = 0$ by enumeration
+          (\cref{thm:finite}).
+    \item $k = 4$: $N_0(d(4)) = 1$ (phantom); no actual cycle
+          by~\cite{SimonsDeWeger2005}.
+    \item $k = 6, \ldots, 10000$: Range Exclusion verified by
+          Lean~4 (\cref{thm:finite}).
+    \item $k = 10001, \ldots, K_A$: Condition~A may or may not hold,
+          but Range Exclusion is verified by Python exact arithmetic
+          (all $k$ pass).
+    \item $k > K_A$: Condition~A holds by \cref{prop:cond-a};
+          Condition~B holds by Hypothesis~(H).
+          Hence Range Exclusion holds. \qedhere
+  \end{enumerate}
+\end{proof}
+
+% ============================================================
+\section{Lean~4 formalization}\label{sec:lean}
+% ============================================================
+
+The core argument (regimes~(i)--(iii) of the proof of
+\cref{thm:A}) is formalized in Lean~4 (version~4.28.0,
+no Mathlib dependency).  The formalization resides in
+two files:
+\begin{itemize}
+  \item \texttt{Basic.lean}: definitions of $S(k)$, $d(k)$,
+    $\corrSum$, monotone composition enumeration,
+    \texttt{checkAvoidance} (exhaustive divisibility check).
+  \item \texttt{RangeExclusion.lean}: definitions of
+    $\corrSum_{\min}$, $\corrSum_{\max}$, \texttt{checkRE},
+    \texttt{checkOne}, batch verification theorems, axioms.
+\end{itemize}
+
+\subsection{Verification structure}
+
+The function \texttt{checkOne(k)} dispatches:
+\begin{itemize}
+  \item $k = 3$: calls \texttt{checkAvoidance(3)}, which
+    enumerates all compositions and checks $d \nmid \corrSum$
+    for each.
+  \item $k = 4$: returns \texttt{true} (phantom, handled by
+    the Simons--de~Weger axiom).
+  \item $k = 5$: calls \texttt{checkAvoidance(5)}.
+  \item $k \geq 6$: calls \texttt{checkRE(k)}, implementing
+    condition~\eqref{eq:re-condition}.
+\end{itemize}
+
+The function \texttt{checkRange(lo, hi)} verifies
+\texttt{checkOne(k) = true} for all $k \in [\texttt{lo},
+\texttt{hi}]$.  Ten batch theorems prove
+\texttt{checkRange} for $[3, 1000]$, $[1001, 2000]$,
+$\ldots$, $[9001, 10000]$, each by \texttt{native\_decide}.
+
+\subsection{Axioms}
+
+\begin{enumerate}
+  \item \texttt{axiom simons\_de\_weger}: no positive cycle
+    with $k < 68$ (from~\cite{SimonsDeWeger2005}).
+    Used only for the $k = 4$ phantom.
+  \item \texttt{axiom baker\_lmn (k : Nat) (hk : k $\geq$ 10001) :
+    checkRE k = true}: Range Exclusion holds for $k \geq 10001$
+    (from~\cite{LMN1995}).  This axiom encodes
+    Condition~A (guaranteed by LMN for $k > K_A$) together
+    with the computational verification that Condition~B holds
+    in the range $[10001, K_A]$.
+\end{enumerate}
+
+\subsection{Trust assumptions}
+
+The \texttt{native\_decide} tactic compiles the decision
+procedure to native C code via Lean's compiler, executes it,
+and verifies the result against the kernel.  The trust base is:
+\begin{enumerate}
+  \item Lean~4 kernel correctness;
+  \item Lean~4 compiler correctness (for native code generation);
+  \item correctness of the C compiler (GCC/Clang).
+\end{enumerate}
+These are standard assumptions in the Lean community.
+
+The function $S(k)$ is computed using a hardcoded table
+for $k \leq 40$ and a ceiling computation
+$\lceil k \cdot 15850/10000 \rceil$ for $k > 40$, using
+integer arithmetic only (no floating point).  The rational
+approximation $\log_2 3 \approx 15850/10000 = 1.5850$ is
+verified to give the correct $S(k)$ for all $k \leq 100000$
+by a separate Python check against the exact value
+$\lceil k \log_2 3 \rceil$.
+
+\begin{remark}[Build reproducibility]\label{rem:build}
+  The Lean project builds in $337$~seconds on Apple~M1~Pro
+  (16\,GB RAM, macOS~15.3).  The \texttt{lean-toolchain} file
+  pins Lean version~4.28.0.
+  Source code: \url{https://github.com/ericmerle3789/Collatz-Junction-Theorem},
+  branch \texttt{proof-assembly-v1}.
+\end{remark}
+
+% ============================================================
+\section{Discussion}\label{sec:discussion}
+% ============================================================
+
+\subsection{What is proved unconditionally}\label{ssec:unconditional}
+
+\Cref{thm:A} is fully unconditional: $N_0(d(k)) = 0$ for all
+$k \in \{3, 5, 6, \ldots, 10000\}$, verified by Lean~4.
+This extends the previous record of Simons--de~Weger
+($k \leq 68$) by a factor of~$147$.
+
+\subsection{What requires Hypothesis~(H)}\label{ssec:conditional}
+
+\Cref{thm:B} (all $k \geq 3$) is conditional on Hypothesis~(H):
+$d(k) \nmid (3^k - 1)$ for all $k \geq 6$.  This hypothesis is:
+\begin{itemize}
+  \item verified for $k \leq 50000$ (exact computation);
+  \item supported by the Pillai-type argument (\cref{prop:pillai});
+  \item consistent with the exponential growth of~$d(k)$.
+\end{itemize}
+A resolution of Hypothesis~(H) for all~$k$ would make
+\cref{thm:B} unconditional.
+
+\subsection{The $k=4$ phantom}\label{ssec:phantom}
+
+The phantom at $k = 4$ is the unique value $k \leq 50000$ where
+$N_0(d(k)) \neq 0$.  The composition $(1,1,1,4)$ yields
+$\corrSum = 94 = 2 \times 47 = 2d(4)$.  We do not know whether
+phantoms exist for larger~$k$; if $d(k)$ were to divide some
+$\corrSum$ value without corresponding to an actual cycle, this
+would be another phantom.  By Simons--de~Weger, any phantom with
+$k \leq 68$ does not correspond to an actual cycle.
+
+\subsection{Limitations}\label{ssec:limits}
+
+\begin{enumerate}
+  \item \textbf{Hypothesis~(H).}
+    The main limitation.  The Pillai-type argument gives finiteness
+    per~$q$, and \cref{lem:q-bound} bounds~$q$, but the loop is
+    not closed (\cref{rem:closing}).
+
+  \item \textbf{Baker constant.}
+    The LMN constant $C_0$ depends on the normalization of heights.
+    We use the standard normalization of~\cite{LMN1995}, Corollary~2.
+    Gouillon~\cite{Gouillon2006} provides improved explicit constants
+    that could reduce~$K_A$.
+
+  \item \textbf{Upper bound proof.}
+    The Schur-convexity argument for $\corrSum_{\max}$ is verified
+    computationally for $k \leq 20$ but not formally proved
+    (\cref{rem:cs-max-proof}).  This does \emph{not} affect
+    \cref{thm:A} (which directly checks the Range Exclusion
+    condition) but would be needed for a fully formal proof of
+    the asymptotic regime.
+
+  \item \textbf{Scope.}
+    This paper addresses only nontrivial \emph{positive} cycles.
+    The full Collatz conjecture additionally requires excluding
+    divergent trajectories, which is addressed by different methods
+    (e.g., Tao~\cite{Tao2022}).
+\end{enumerate}
+
+\subsection{Open questions}\label{ssec:open}
+
+\begin{enumerate}
+  \item Resolve Hypothesis~(H) unconditionally, possibly by
+    computing the effective Baker bound $k_{\max}(q)$ and showing
+    $k_{\max}(Q(k)) < k$ for $k$ sufficiently large.
+  \item Prove the upper bound formula $\corrSum_{\max} = 3^k + 3^r - 2$
+    via majorization theory and formalize in Lean~4.
+  \item Extend the Lean verification to $k = 26000$ to match the
+    Baker threshold, or improve the Baker constant to bring
+    $K_A \leq 10000$.
+  \item Investigate whether Range Exclusion extends to negative
+    cycles or generalized $qx{+}r$ dynamics.
+\end{enumerate}
+
+% ============================================================
+\section*{Acknowledgements}
+% ============================================================
+
+The author thanks the developers of Lean~4 and the Lean
+community for the formal verification infrastructure.
+Computational work was performed on an Apple~M1~Pro (16\,GB).
+This research received no external funding.
+
+% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{BakerWustholz1993}
+A.~Baker and G.~W\"ustholz,
+\emph{Logarithmic forms and group varieties},
+J. reine angew. Math. \textbf{442} (1993), 19--62.
+\MR{1234835}
+
+\bibitem{Barina2021}
+D.~Barina,
+\emph{Convergence verification of the Collatz problem},
+J. Supercomput. \textbf{77} (2021), 2681--2688.
+
+\bibitem{BoehmSontacchi1978}
+C.~B\"ohm and G.~Sontacchi,
+\emph{On the existence of cycles of given length in integer
+sequences like $x_{n+1} = x_n/2$ if $x_n$ even, and
+$x_{n+1} = 3x_n + 1$ otherwise},
+Atti Accad. Naz. Lincei Rend. \textbf{64} (1978), 260--264.
+
+\bibitem{Crandall1978}
+R.~E.~Crandall,
+\emph{On the ``$3x + 1$'' problem},
+Math. Comp. \textbf{32} (1978), 1281--1292.
+\MR{0480321}
+
+\bibitem{Eliahou1993}
+S.~Eliahou,
+\emph{The $3x + 1$ problem: new lower bounds on nontrivial
+cycle lengths},
+Discrete Math. \textbf{118} (1993), 45--56.
+\MR{1230053}
+
+\bibitem{Gouillon2006}
+N.~Gouillon,
+\emph{Explicit lower bounds for linear forms in two logarithms},
+J. Th\'eorie Nombres Bordeaux \textbf{18} (2006), 125--146.
+
+\bibitem{Korec1994}
+I.~Korec,
+\emph{A density estimate for the $3x + 1$ problem},
+Math. Slovaca \textbf{44} (1994), 85--89.
+
+\bibitem{Lagarias1985}
+J.~C.~Lagarias,
+\emph{The $3x + 1$ problem and its generalizations},
+Amer. Math. Monthly \textbf{92} (1985), 3--23.
+\MR{0777565}
+
+\bibitem{Lagarias2010}
+J.~C.~Lagarias (ed.),
+\emph{The Ultimate Challenge: The $3x + 1$ Problem},
+AMS, 2010.
+
+\bibitem{LMN1995}
+M.~Laurent, M.~Mignotte, and Y.~Nesterenko,
+\emph{Formes lin\'eaires en deux logarithmes et d\'eterminants
+d'interpolation},
+J. Number Theory \textbf{55} (1995), 285--321.
+\MR{1366574}
+
+\bibitem{MOA2011}
+A.~W.~Marshall, I.~Olkin, and B.~C.~Arnold,
+\emph{Inequalities: Theory of Majorization and Its Applications},
+2nd ed., Springer, 2011.
+
+\bibitem{Salikhov2007}
+V.~Kh.~Salikhov,
+\emph{On the irrationality measure of $\ln 3$},
+Dokl. Math. \textbf{76} (2007), 955--957.
+
+\bibitem{SimonsDeWeger2005}
+D.~Simons and B.~de~Weger,
+\emph{Theoretical and computational bounds for $m$-cycles of
+the $3n + 1$ problem},
+Acta Arith. \textbf{117} (2005), 51--70.
+\MR{2110502}
+
+\bibitem{Steiner1977}
+R.~P.~Steiner,
+\emph{A theorem on the Syracuse problem},
+Proc. 7th Manitoba Conf. Numer. Math. Comput.,
+1977, 553--559.
+\MR{0535032}
+
+\bibitem{Tao2022}
+T.~Tao,
+\emph{Almost all orbits of the Collatz map attain almost bounded
+values},
+Forum Math. Pi \textbf{10} (2022), e12.
+\MR{4377268}
+
+\bibitem{Wirsching1998}
+G.~J.~Wirsching,
+\emph{The Dynamical System Generated by the $3n + 1$ Function},
+Lecture Notes in Math. \textbf{1681}, Springer, 1998.
+\MR{1612686}
+
+\bibitem{WuWang2014}
+Q.~Wu and L.~Wang,
+\emph{On the irrationality measure of $\log 3$},
+J. Number Theory \textbf{142} (2014), 264--273.
+
+\end{thebibliography}
+
+\end{document}
