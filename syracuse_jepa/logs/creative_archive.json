@@ -1,0 +1,7 @@
+{
+  "n_tactics": 115,
+  "n_niches": 115,
+  "best_fitness": 0.0,
+  "best_expr": "SUB(CONST_RHO, CONST_ONE)",
+  "elapsed": 129.545068025589
+}
