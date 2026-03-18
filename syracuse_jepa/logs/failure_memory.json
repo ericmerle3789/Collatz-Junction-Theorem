@@ -1,0 +1,148 @@
+{
+  "dead_ends": [
+    {
+      "approach": "Range Exclusion with individual exponents",
+      "reason": "Uses wrong corrSum formula (individual vs cumulative)",
+      "constraint": "Steiner's equation requires cumulative exponents",
+      "tried_variants": [
+        "original Range Exclusion",
+        "Baker-LMN closing"
+      ],
+      "timestamp": "2026-03-18T18:23:49.660050"
+    },
+    {
+      "approach": "FCQ prime-by-prime for cumulative",
+      "reason": "N0(p) > 0 for most primes p|d with cumulative formula",
+      "constraint": "CRT interference needed, not single-prime blocking",
+      "tried_variants": [
+        "spectral radius",
+        "primitive roots",
+        "Artin study"
+      ],
+      "timestamp": "2026-03-18T18:23:49.660798"
+    },
+    {
+      "approach": "Exponential sums L-infinity",
+      "reason": "max|G(a)| >> 1, need max|G| < (d-C)/(d-1) \u2248 1",
+      "constraint": "Image is too sparse for exp sum equidistribution",
+      "tried_variants": [
+        "L-infinity",
+        "Cauchy-Schwarz"
+      ],
+      "timestamp": "2026-03-18T18:23:49.661049"
+    },
+    {
+      "approach": "Exponential sums L2 (Parseval)",
+      "reason": "Collision count too high due to sparse image",
+      "constraint": "(d-C)^2 << (d-1)*Delta for sparse distributions",
+      "tried_variants": [
+        "Parseval bound",
+        "collision count"
+      ],
+      "timestamp": "2026-03-18T18:23:49.661216"
+    },
+    {
+      "approach": "Inertia of d in number field",
+      "reason": "d always splits (2 is always a root of X^S-3^k mod d)",
+      "constraint": "By construction: 2^S \u2261 3^k mod d, so 2 is a root",
+      "tried_variants": [
+        "prime ideal",
+        "splitting behavior"
+      ],
+      "timestamp": "2026-03-18T18:23:49.661365"
+    },
+    {
+      "approach": "Number field norm for all k",
+      "reason": "N(P_\u03c3(\u03b1)) can be divisible by d for k \u2265 5",
+      "constraint": "Other conjugates absorb the d factor, not the real one",
+      "tried_variants": [
+        "norm approach",
+        "coprimality"
+      ],
+      "timestamp": "2026-03-18T18:23:49.661512"
+    },
+    {
+      "approach": "Subgroup <2,3> containment for all k",
+      "reason": "corrSum mod d not always in <2,3> for k \u2265 4",
+      "constraint": "Works for k=3,5 but not universal",
+      "tried_variants": [
+        "subgroup",
+        "units group"
+      ],
+      "timestamp": "2026-03-18T18:23:49.661659"
+    },
+    {
+      "approach": "corrSum coprime to d",
+      "reason": "gcd(corrSum, d) > 1 for some sequences (k \u2265 6)",
+      "constraint": "Proper divisors of d are achieved as gcd values",
+      "tried_variants": [
+        "coprimality",
+        "gcd"
+      ],
+      "timestamp": "2026-03-18T18:23:49.661882"
+    }
+  ],
+  "partial_successes": [
+    {
+      "approach": "Number field norm",
+      "what_works": "Proves k=3,4 completely (N coprime to d for prime d)",
+      "what_fails": "N not coprime for k \u2265 5",
+      "k_range": "k=3,4",
+      "timestamp": "2026-03-18T18:23:49.662288"
+    },
+    {
+      "approach": "Valuation blocking",
+      "what_works": "Some primes p|d have v_p(corrSum)=0 for all \u03c3",
+      "what_fails": "Not all k have a blocking prime",
+      "k_range": "k=3,4,5,7,8,11",
+      "timestamp": "2026-03-18T18:23:49.662598"
+    },
+    {
+      "approach": "<2,3> subgroup containment",
+      "what_works": "corrSum in <2,3> \u2282 (Z/dZ)* for k=3,5",
+      "what_fails": "Not universal",
+      "k_range": "k=3,5",
+      "timestamp": "2026-03-18T18:23:49.662844"
+    },
+    {
+      "approach": "Ordering obstruction",
+      "what_works": "ALL free solutions have crossings; sorting correction \u2260 0",
+      "what_fails": "Verified computationally, not yet proved for all k",
+      "k_range": "k=3..8",
+      "timestamp": "2026-03-18T18:23:49.663082"
+    },
+    {
+      "approach": "ord_d(2) > S-k",
+      "what_works": "Every individual swap correction is nonzero",
+      "what_fails": "Total correction nonvanishing unproved",
+      "k_range": "k=3..20",
+      "timestamp": "2026-03-18T18:23:49.663347"
+    }
+  ],
+  "open_questions": [
+    {
+      "question": "Why is \u03c1=2/3 never a root of the correction polynomial Q_\u03b4?",
+      "context": "Vandermonde analysis shows \u03c1 avoids all root sets",
+      "priority": "CRITICAL",
+      "timestamp": "2026-03-18T18:23:49.663564"
+    },
+    {
+      "question": "Can Baker's theorem prove ord_d(2) > S-k for all k?",
+      "context": "Baker gives ord \u2265 exp(c\u00b7\u221a(log d)), need > S-k \u2248 0.585k",
+      "priority": "HIGH",
+      "timestamp": "2026-03-18T18:23:49.663777"
+    },
+    {
+      "question": "Is d always the UNIQUE unachieved divisor of gcd(corrSum,d)?",
+      "context": "Verified for k=3..12, fails for k=7,8,11 (extra unachieved)",
+      "priority": "MEDIUM",
+      "timestamp": "2026-03-18T18:23:49.664020"
+    },
+    {
+      "question": "Can the Catalan-Mihailescu connection be exploited?",
+      "context": "d = 2^S - 3^k is Catalan-type; near-miss residuals \u00b11",
+      "priority": "HIGH",
+      "timestamp": "2026-03-18T18:23:49.664390"
+    }
+  ]
+}

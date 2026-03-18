@@ -1,0 +1,24 @@
+{
+  "gaps": [
+    "analysis.character_sums",
+    "creativity.mutation_loop",
+    "creativity.novelty_search",
+    "creativity.analogy_engine",
+    "creativity.self_reflection",
+    "proof_search.automated_proof_attempt",
+    "proof_search.proof_by_contradiction",
+    "learning.pattern_memory",
+    "learning.failure_analysis",
+    "learning.success_amplification",
+    "learning.hypothesis_evolution"
+  ],
+  "upgrades": [
+    "HYPOTHESIS_EVOLUTION",
+    "SELF_REFLECTION_LOOP",
+    "NOVELTY_SEARCH",
+    "ANALOGY_ENGINE",
+    "AUTOMATED_LEAN_GENERATION",
+    "FAILURE_MEMORY",
+    "CONSTRAINT_PROPAGATION"
+  ]
+}
