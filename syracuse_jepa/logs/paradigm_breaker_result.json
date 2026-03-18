@@ -1,0 +1,38 @@
+{
+  "n_seeds": 84,
+  "n_resonances": 37,
+  "n_paradigms": 6,
+  "ranking": [
+    {
+      "name": "FUNCTIONAL_EQUATION",
+      "potential": "HIGH \u2014 transforms the number theory problem into algebra",
+      "verified": true
+    },
+    {
+      "name": "GALOIS_GEOMETRIC_SET",
+      "potential": "MEDIUM-HIGH \u2014 Galois theory of cyclotomic fields might apply",
+      "verified": "not_tested"
+    },
+    {
+      "name": "INFORMATION_THEORETIC",
+      "potential": "MEDIUM \u2014 proves impossibility in average case, need worst case",
+      "verified": false
+    },
+    {
+      "name": "HEIGHT_IMPOSSIBILITY",
+      "potential": "HIGH \u2014 directly uses the counting bound in a new way",
+      "verified": "not_tested"
+    },
+    {
+      "name": "SELF_REFERENTIAL_SYSTEM",
+      "potential": "VERY HIGH \u2014 exploits the FULL cycle structure, not just one equation",
+      "verified": true
+    },
+    {
+      "name": "CARRY_PROPAGATION",
+      "potential": "MEDIUM \u2014 carries are hard to analyze but structurally rich",
+      "verified": "not_tested"
+    }
+  ],
+  "time": 2.06
+}
