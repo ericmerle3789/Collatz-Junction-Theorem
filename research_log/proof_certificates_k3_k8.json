@@ -1,0 +1,5970 @@
+[
+  {
+    "k": 3,
+    "S": 5,
+    "d": 5,
+    "rho": 4,
+    "max_delta": 2,
+    "total_free_sequences": 9,
+    "free_solutions": [
+      {
+        "delta_unsorted": [
+          1,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 2,
+        "correction": 2,
+        "is_nonzero": true
+      }
+    ],
+    "all_corrections_nonzero": true,
+    "proof_status": "PROVED",
+    "n_free_solutions": 1
+  },
+  {
+    "k": 4,
+    "S": 7,
+    "d": 47,
+    "rho": 32,
+    "max_delta": 3,
+    "total_free_sequences": 64,
+    "free_solutions": [
+      {
+        "delta_unsorted": [
+          3,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 3,
+        "correction": 3,
+        "is_nonzero": true
+      }
+    ],
+    "all_corrections_nonzero": true,
+    "proof_status": "PROVED",
+    "n_free_solutions": 1
+  },
+  {
+    "k": 5,
+    "S": 8,
+    "d": 13,
+    "rho": 5,
+    "max_delta": 3,
+    "total_free_sequences": 256,
+    "free_solutions": [
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 12,
+        "correction": 12,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 2,
+        "correction": 2,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 5,
+        "correction": 5,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          0,
+          0,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 3,
+        "correction": 3,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 5,
+        "correction": 5,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 9,
+        "correction": 9,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          0,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 2,
+        "correction": 2,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 8,
+        "correction": 8,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 6,
+        "correction": 6,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          1,
+          2,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1,
+        "correction": 1,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          1,
+          3,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1,
+        "correction": 1,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          0,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          2
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 2,
+        "correction": 2,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          3,
+          3,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 9,
+        "correction": 9,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          0,
+          0,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 6,
+        "correction": 6,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          1,
+          3,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 11,
+        "correction": 11,
+        "is_nonzero": true
+      }
+    ],
+    "all_corrections_nonzero": true,
+    "proof_status": "PROVED",
+    "n_free_solutions": 15
+  },
+  {
+    "k": 6,
+    "S": 10,
+    "d": 295,
+    "rho": 99,
+    "max_delta": 4,
+    "total_free_sequences": 3125,
+    "free_solutions": [
+      {
+        "delta_unsorted": [
+          1,
+          0,
+          2,
+          3,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 59,
+        "correction": 59,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          0,
+          3,
+          1,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 266,
+        "correction": 266,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          0,
+          3,
+          2,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 200,
+        "correction": 200,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          1,
+          1,
+          1,
+          2
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          1,
+          2,
+          2
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 254,
+        "correction": 254,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          1,
+          1,
+          2,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 155,
+        "correction": 155,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          1,
+          2,
+          0,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          2
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 89,
+        "correction": 89,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 45,
+        "correction": 45,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          4,
+          3,
+          3,
+          3
+        ],
+        "delta_sorted": [
+          2,
+          3,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 284,
+        "correction": 284,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          1,
+          3,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 280,
+        "correction": 280,
+        "is_nonzero": true
+      }
+    ],
+    "all_corrections_nonzero": true,
+    "proof_status": "PROVED",
+    "n_free_solutions": 9
+  },
+  {
+    "k": 7,
+    "S": 12,
+    "d": 1909,
+    "rho": 637,
+    "max_delta": 5,
+    "total_free_sequences": 46656,
+    "free_solutions": [
+      {
+        "delta_unsorted": [
+          1,
+          0,
+          2,
+          5,
+          4,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 5,
+        "correction": 5,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          0,
+          5,
+          1,
+          1,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 622,
+        "correction": 622,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          4,
+          0,
+          2,
+          2,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          2,
+          2,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 783,
+        "correction": 783,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          4,
+          0,
+          2,
+          3,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 570,
+        "correction": 570,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          4,
+          0,
+          3,
+          1,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 428,
+        "correction": 428,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          5,
+          5,
+          4,
+          4,
+          4
+        ],
+        "delta_sorted": [
+          2,
+          4,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 264,
+        "correction": 264,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          5,
+          5,
+          5,
+          1,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1858,
+        "correction": 1858,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          2,
+          1,
+          3,
+          4,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1257,
+        "correction": 1257,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          2,
+          1,
+          4,
+          2,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 973,
+        "correction": 973,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          2,
+          1,
+          4,
+          3,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 760,
+        "correction": 760,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          3,
+          2,
+          2,
+          2,
+          3
+        ],
+        "delta_sorted": [
+          2,
+          2,
+          2,
+          3,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 99,
+        "correction": 99,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          3,
+          2,
+          2,
+          3,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 734,
+        "correction": 734,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          3,
+          2,
+          3,
+          1,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          3,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 521,
+        "correction": 521,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          3,
+          3,
+          1,
+          1,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          1,
+          3,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 379,
+        "correction": 379,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          0,
+          5,
+          0,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1528,
+        "correction": 1528,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          1,
+          5,
+          0,
+          3,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1428,
+        "correction": 1428,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          0,
+          5,
+          0,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 960,
+        "correction": 960,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          4,
+          0,
+          2,
+          4,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          4,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 176,
+        "correction": 176,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          4,
+          0,
+          4,
+          3,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 243,
+        "correction": 243,
+        "is_nonzero": true
+      }
+    ],
+    "all_corrections_nonzero": true,
+    "proof_status": "PROVED",
+    "n_free_solutions": 19
+  },
+  {
+    "k": 8,
+    "S": 13,
+    "d": 1631,
+    "rho": 1088,
+    "max_delta": 5,
+    "total_free_sequences": 279936,
+    "free_solutions": [
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          1,
+          2,
+          1,
+          4,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 243,
+        "correction": 243,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          1,
+          3,
+          2,
+          1,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1229,
+        "correction": 1229,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          1,
+          3,
+          2,
+          2,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          1,
+          2,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 383,
+        "correction": 383,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          2,
+          0,
+          1,
+          4,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1310,
+        "correction": 1310,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          3,
+          0,
+          0,
+          1,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 698,
+        "correction": 698,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          3,
+          0,
+          0,
+          2,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 322,
+        "correction": 322,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          4,
+          4,
+          5,
+          5,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 745,
+        "correction": 745,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          4,
+          5,
+          3,
+          5,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1126,
+        "correction": 1126,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          4,
+          5,
+          4,
+          4,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          3,
+          4,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 723,
+        "correction": 723,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          5,
+          2,
+          5,
+          0,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          2,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1540,
+        "correction": 1540,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          5,
+          3,
+          3,
+          5,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          3,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1380,
+        "correction": 1380,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          5,
+          3,
+          4,
+          4,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          3,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1104,
+        "correction": 1104,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          5,
+          4,
+          2,
+          4,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 982,
+        "correction": 982,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          0,
+          5,
+          4,
+          4,
+          1,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 799,
+        "correction": 799,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          1,
+          1,
+          0,
+          5,
+          1,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1141,
+        "correction": 1141,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          1,
+          2,
+          1,
+          4,
+          0,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1180,
+        "correction": 1180,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          1,
+          2,
+          4,
+          0,
+          3,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 39,
+        "correction": 39,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          1,
+          3,
+          2,
+          1,
+          2,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1028,
+        "correction": 1028,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          1,
+          3,
+          2,
+          2,
+          0,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          2,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1390,
+        "correction": 1390,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          1,
+          3,
+          3,
+          2,
+          3,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1382,
+        "correction": 1382,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          1,
+          3,
+          3,
+          3,
+          1,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          3,
+          3,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1321,
+        "correction": 1321,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          2,
+          0,
+          1,
+          4,
+          0,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 334,
+        "correction": 334,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          2,
+          0,
+          4,
+          0,
+          3,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          2,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 824,
+        "correction": 824,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          2,
+          2,
+          3,
+          5,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          2,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 101,
+        "correction": 101,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          2,
+          2,
+          5,
+          4,
+          1,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1626,
+        "correction": 1626,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          2,
+          3,
+          1,
+          5,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 825,
+        "correction": 825,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          2,
+          5,
+          1,
+          1,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 569,
+        "correction": 569,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          2,
+          5,
+          1,
+          2,
+          0,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          2,
+          2,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 931,
+        "correction": 931,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          2,
+          5,
+          2,
+          0,
+          0,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          2,
+          2,
+          2,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 85,
+        "correction": 85,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          3,
+          0,
+          0,
+          1,
+          2,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          1,
+          2,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1047,
+        "correction": 1047,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          3,
+          0,
+          0,
+          2,
+          0,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 483,
+        "correction": 483,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          3,
+          1,
+          1,
+          5,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 764,
+        "correction": 764,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          3,
+          4,
+          0,
+          1,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 921,
+        "correction": 921,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          1,
+          2,
+          1,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1565,
+        "correction": 1565,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          1,
+          3,
+          4,
+          1,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          3,
+          4,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 966,
+        "correction": 966,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          1,
+          4,
+          2,
+          1,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          4,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 341,
+        "correction": 341,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          1,
+          4,
+          3,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          3,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 656,
+        "correction": 656,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          2,
+          0,
+          1,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 296,
+        "correction": 296,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          4,
+          0,
+          0,
+          0,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 177,
+        "correction": 177,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          4,
+          5,
+          5,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          4,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 302,
+        "correction": 302,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          5,
+          3,
+          5,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 58,
+        "correction": 58,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          5,
+          4,
+          4,
+          3,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          3,
+          4,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 269,
+        "correction": 269,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          5,
+          4,
+          5,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 444,
+        "correction": 444,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          4,
+          5,
+          5,
+          3,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 825,
+        "correction": 825,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          2,
+          5,
+          0,
+          3,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          3,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 679,
+        "correction": 679,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          3,
+          3,
+          5,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          3,
+          3,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 439,
+        "correction": 439,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          3,
+          4,
+          4,
+          3,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 25,
+        "correction": 25,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          3,
+          4,
+          5,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 825,
+        "correction": 825,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          3,
+          5,
+          3,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1079,
+        "correction": 1079,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          4,
+          2,
+          4,
+          3,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1473,
+        "correction": 1473,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          4,
+          2,
+          5,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 200,
+        "correction": 200,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          4,
+          4,
+          1,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 383,
+        "correction": 383,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          4,
+          4,
+          4,
+          0,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          4,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 540,
+        "correction": 540,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          0,
+          5,
+          5,
+          1,
+          0,
+          0,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1418,
+        "correction": 1418,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          1,
+          0,
+          5,
+          1,
+          3,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 896,
+        "correction": 896,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          1,
+          4,
+          5,
+          5,
+          0,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1004,
+        "correction": 1004,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          1,
+          5,
+          2,
+          4,
+          5,
+          2
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          2,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1288,
+        "correction": 1288,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          1,
+          5,
+          2,
+          5,
+          3,
+          2
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1542,
+        "correction": 1542,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          1,
+          5,
+          3,
+          5,
+          0,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1258,
+        "correction": 1258,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          2,
+          1,
+          4,
+          0,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 139,
+        "correction": 139,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          2,
+          1,
+          5,
+          0,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 818,
+        "correction": 818,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          2,
+          4,
+          0,
+          3,
+          3,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 874,
+        "correction": 874,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          2,
+          4,
+          0,
+          4,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          4,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 341,
+        "correction": 341,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          2,
+          1,
+          2,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1542,
+        "correction": 1542,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          2,
+          2,
+          0,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 454,
+        "correction": 454,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          3,
+          2,
+          3,
+          3,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 442,
+        "correction": 442,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          3,
+          2,
+          4,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          3,
+          3,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 738,
+        "correction": 738,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          3,
+          3,
+          1,
+          3,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          3,
+          3,
+          3,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1166,
+        "correction": 1166,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          3,
+          4,
+          3,
+          0,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          3,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 302,
+        "correction": 302,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          4,
+          1,
+          0,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          3,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1098,
+        "correction": 1098,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          4,
+          2,
+          3,
+          0,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1308,
+        "correction": 1308,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          3,
+          4,
+          3,
+          1,
+          0,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 180,
+        "correction": 180,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          4,
+          2,
+          1,
+          0,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1225,
+        "correction": 1225,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          4,
+          2,
+          2,
+          3,
+          0,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1435,
+        "correction": 1435,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          4,
+          2,
+          3,
+          1,
+          0,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 307,
+        "correction": 307,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          4,
+          3,
+          1,
+          1,
+          0,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1186,
+        "correction": 1186,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          1,
+          5,
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 649,
+        "correction": 649,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          0,
+          1,
+          4,
+          0,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 501,
+        "correction": 501,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          0,
+          1,
+          5,
+          0,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1180,
+        "correction": 1180,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          0,
+          4,
+          0,
+          3,
+          3,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          3,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1236,
+        "correction": 1236,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          0,
+          4,
+          0,
+          4,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          4,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 703,
+        "correction": 703,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          1,
+          0,
+          1,
+          4,
+          4,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          4,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 341,
+        "correction": 341,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          1,
+          0,
+          1,
+          5,
+          1,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 682,
+        "correction": 682,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          1,
+          2,
+          2,
+          4,
+          4
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1147,
+        "correction": 1147,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          1,
+          2,
+          4,
+          3,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          2,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1496,
+        "correction": 1496,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          1,
+          3,
+          3,
+          0,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1369,
+        "correction": 1369,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          1,
+          4,
+          1,
+          1,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1479,
+        "correction": 1479,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          2,
+          0,
+          2,
+          4,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          2,
+          2,
+          2,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 59,
+        "correction": 59,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          2,
+          0,
+          4,
+          3,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          2,
+          2,
+          3,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 227,
+        "correction": 227,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          3,
+          5,
+          5,
+          4,
+          5
+        ],
+        "delta_sorted": [
+          2,
+          2,
+          3,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 967,
+        "correction": 967,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          3,
+          5,
+          5,
+          5,
+          3
+        ],
+        "delta_sorted": [
+          2,
+          2,
+          3,
+          3,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1348,
+        "correction": 1348,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          5,
+          4,
+          1,
+          4,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 808,
+        "correction": 808,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          2,
+          5,
+          4,
+          1,
+          5,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1189,
+        "correction": 1189,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          3,
+          1,
+          5,
+          5,
+          4,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 422,
+        "correction": 422,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          3,
+          1,
+          5,
+          5,
+          5,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          3,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 803,
+        "correction": 803,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          3,
+          2,
+          1,
+          0,
+          3,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1185,
+        "correction": 1185,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          3,
+          2,
+          2,
+          1,
+          1,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 364,
+        "correction": 364,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          4,
+          5,
+          0,
+          2,
+          1,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 249,
+        "correction": 249,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          5,
+          1,
+          1,
+          2,
+          2,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 38,
+        "correction": 38,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          5,
+          1,
+          1,
+          4,
+          1,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1276,
+        "correction": 1276,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          5,
+          1,
+          2,
+          0,
+          2,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          2,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 581,
+        "correction": 581,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          5,
+          2,
+          0,
+          0,
+          2,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          2,
+          2,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 943,
+        "correction": 943,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          2,
+          5,
+          3,
+          0,
+          2,
+          1,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          3,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 962,
+        "correction": 962,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          0,
+          0,
+          1,
+          2,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 755,
+        "correction": 755,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          0,
+          0,
+          2,
+          0,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          2,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1540,
+        "correction": 1540,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          0,
+          2,
+          5,
+          5,
+          0,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          2,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1540,
+        "correction": 1540,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          0,
+          3,
+          5,
+          0,
+          5,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          3,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1441,
+        "correction": 1441,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          0,
+          5,
+          1,
+          2,
+          4,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 550,
+        "correction": 550,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          0,
+          5,
+          1,
+          3,
+          3,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1587,
+        "correction": 1587,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          0,
+          5,
+          2,
+          0,
+          4,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          2,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1335,
+        "correction": 1335,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          1,
+          1,
+          5,
+          5,
+          4,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          3,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1146,
+        "correction": 1146,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          1,
+          1,
+          5,
+          5,
+          5,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          3,
+          3,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1527,
+        "correction": 1527,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          1,
+          2,
+          1,
+          0,
+          3,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 57,
+        "correction": 57,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          1,
+          2,
+          2,
+          1,
+          1,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 867,
+        "correction": 867,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          2,
+          0,
+          1,
+          0,
+          3,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          1,
+          2,
+          3,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 842,
+        "correction": 842,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          2,
+          0,
+          2,
+          1,
+          1,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1229,
+        "correction": 1229,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          3,
+          5,
+          5,
+          1,
+          3,
+          4
+        ],
+        "delta_sorted": [
+          1,
+          3,
+          3,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1494,
+        "correction": 1494,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          3,
+          5,
+          5,
+          1,
+          4,
+          2
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1311,
+        "correction": 1311,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          4,
+          0,
+          1,
+          5,
+          4,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 566,
+        "correction": 566,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          4,
+          0,
+          1,
+          5,
+          5,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          3,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 947,
+        "correction": 947,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          4,
+          5,
+          1,
+          2,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 930,
+        "correction": 930,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          4,
+          5,
+          2,
+          0,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1473,
+        "correction": 1473,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          5,
+          2,
+          3,
+          2,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          2,
+          2,
+          3,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 225,
+        "correction": 225,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          5,
+          2,
+          4,
+          3,
+          3,
+          4
+        ],
+        "delta_sorted": [
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 203,
+        "correction": 203,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          5,
+          2,
+          4,
+          3,
+          4,
+          2
+        ],
+        "delta_sorted": [
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 20,
+        "correction": 20,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          5,
+          2,
+          4,
+          4,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          2,
+          2,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1529,
+        "correction": 1529,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          5,
+          3,
+          1,
+          2,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1311,
+        "correction": 1311,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          5,
+          3,
+          2,
+          0,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          3,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 223,
+        "correction": 223,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          5,
+          4,
+          1,
+          1,
+          3,
+          4
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          3,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 199,
+        "correction": 199,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          5,
+          4,
+          1,
+          1,
+          4,
+          2
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 77,
+        "correction": 77,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          3,
+          5,
+          4,
+          3,
+          0,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          2,
+          3,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 150,
+        "correction": 150,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          0,
+          1,
+          2,
+          4,
+          5,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1626,
+        "correction": 1626,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          0,
+          1,
+          2,
+          5,
+          3,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 249,
+        "correction": 249,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          0,
+          1,
+          3,
+          5,
+          0,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          1,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 207,
+        "correction": 207,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          0,
+          2,
+          0,
+          4,
+          5,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          2,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 357,
+        "correction": 357,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          0,
+          2,
+          0,
+          5,
+          3,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          2,
+          2,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 611,
+        "correction": 611,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          0,
+          4,
+          0,
+          0,
+          4,
+          0
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1427,
+        "correction": 1427,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          0,
+          5,
+          5,
+          4,
+          0,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 928,
+        "correction": 928,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          2,
+          1,
+          5,
+          4,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1532,
+        "correction": 1532,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          2,
+          1,
+          5,
+          5,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 282,
+        "correction": 282,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          3,
+          4,
+          1,
+          4,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          3,
+          4,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1449,
+        "correction": 1449,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          3,
+          4,
+          1,
+          5,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          3,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 199,
+        "correction": 199,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          4,
+          2,
+          1,
+          4,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          4,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1327,
+        "correction": 1327,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          4,
+          2,
+          1,
+          5,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 77,
+        "correction": 77,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          4,
+          3,
+          2,
+          2,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 984,
+        "correction": 984,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          4,
+          3,
+          4,
+          1,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          3,
+          3,
+          4,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 606,
+        "correction": 606,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          1,
+          4,
+          4,
+          2,
+          1,
+          3
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4,
+          4
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 484,
+        "correction": 484,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          2,
+          0,
+          1,
+          5,
+          4,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 444,
+        "correction": 444,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          2,
+          0,
+          1,
+          5,
+          5,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 825,
+        "correction": 825,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          2,
+          5,
+          1,
+          2,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 808,
+        "correction": 808,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          2,
+          5,
+          2,
+          0,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          2,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1351,
+        "correction": 1351,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          3,
+          5,
+          0,
+          3,
+          3,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          3,
+          3,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 201,
+        "correction": 201,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          3,
+          5,
+          0,
+          3,
+          4,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 18,
+        "correction": 18,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          3,
+          5,
+          0,
+          4,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1527,
+        "correction": 1527,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          4,
+          0,
+          0,
+          0,
+          2,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          2,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1081,
+        "correction": 1081,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          4,
+          1,
+          5,
+          1,
+          3,
+          4
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          3,
+          4,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1449,
+        "correction": 1449,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          4,
+          1,
+          5,
+          1,
+          4,
+          2
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          4,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1327,
+        "correction": 1327,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          4,
+          4,
+          0,
+          0,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          4,
+          4,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 967,
+        "correction": 967,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          4,
+          5,
+          5,
+          1,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          4,
+          4,
+          5,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 453,
+        "correction": 453,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          1,
+          1,
+          0,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 315,
+        "correction": 315,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          3,
+          5,
+          1,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          3,
+          4,
+          5,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 87,
+        "correction": 87,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          4,
+          4,
+          3,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          3,
+          4,
+          4,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1219,
+        "correction": 1219,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          4,
+          4,
+          5,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          4,
+          4,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 92,
+        "correction": 92,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          4,
+          5,
+          2,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          4,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 666,
+        "correction": 666,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          4,
+          5,
+          3,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          3,
+          4,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1357,
+        "correction": 1357,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          4,
+          5,
+          4,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          4,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1174,
+        "correction": 1174,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          5,
+          3,
+          2,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 422,
+        "correction": 422,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          5,
+          3,
+          3,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1113,
+        "correction": 1113,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 930,
+        "correction": 930,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          4,
+          5,
+          5,
+          4,
+          2,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 808,
+        "correction": 808,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          0,
+          2,
+          3,
+          4,
+          5,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 825,
+        "correction": 825,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          0,
+          2,
+          3,
+          5,
+          2,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          2,
+          3,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 355,
+        "correction": 355,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          0,
+          2,
+          3,
+          5,
+          3,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1079,
+        "correction": 1079,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          0,
+          2,
+          4,
+          2,
+          5,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 200,
+        "correction": 200,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          0,
+          3,
+          1,
+          4,
+          5,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 764,
+        "correction": 764,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          0,
+          3,
+          1,
+          5,
+          2,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1079,
+        "correction": 1079,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          0,
+          3,
+          1,
+          5,
+          3,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          3,
+          3,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1018,
+        "correction": 1018,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          0,
+          4,
+          1,
+          4,
+          0,
+          3
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          3,
+          4,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 921,
+        "correction": 921,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          1,
+          0,
+          0,
+          0,
+          5,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          0,
+          1,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 158,
+        "correction": 158,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          2,
+          1,
+          0,
+          3,
+          3,
+          4
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 874,
+        "correction": 874,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          2,
+          1,
+          0,
+          3,
+          4,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 249,
+        "correction": 249,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          2,
+          1,
+          0,
+          4,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          2,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 376,
+        "correction": 376,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          2,
+          2,
+          1,
+          1,
+          3,
+          4
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1337,
+        "correction": 1337,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          2,
+          2,
+          1,
+          1,
+          4,
+          2
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          4,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1464,
+        "correction": 1464,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          2,
+          2,
+          3,
+          0,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          2,
+          2,
+          2,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 365,
+        "correction": 365,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          2,
+          3,
+          1,
+          0,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          2,
+          2,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1089,
+        "correction": 1089,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          2,
+          5,
+          0,
+          3,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          2,
+          3,
+          5,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 203,
+        "correction": 203,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          2,
+          5,
+          0,
+          5,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1567,
+        "correction": 1567,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          1,
+          1,
+          0,
+          2,
+          2
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1028,
+        "correction": 1028,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          3,
+          5,
+          1,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          3,
+          3,
+          5,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1474,
+        "correction": 1474,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          4,
+          4,
+          3,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          3,
+          3,
+          4,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 853,
+        "correction": 853,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          4,
+          4,
+          5,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          3,
+          4,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1357,
+        "correction": 1357,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          4,
+          5,
+          2,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 422,
+        "correction": 422,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          4,
+          5,
+          3,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1113,
+        "correction": 1113,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          4,
+          5,
+          4,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 930,
+        "correction": 930,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          5,
+          3,
+          2,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          3,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 803,
+        "correction": 803,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          5,
+          3,
+          3,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          3,
+          3,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1494,
+        "correction": 1494,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1311,
+        "correction": 1311,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          3,
+          5,
+          4,
+          2,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1189,
+        "correction": 1189,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          4,
+          2,
+          4,
+          3,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          2,
+          3,
+          4,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1394,
+        "correction": 1394,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          4,
+          2,
+          4,
+          5,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          4,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1174,
+        "correction": 1174,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          4,
+          2,
+          5,
+          2,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 300,
+        "correction": 300,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          4,
+          2,
+          5,
+          3,
+          4,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 930,
+        "correction": 930,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          4,
+          2,
+          5,
+          4,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 808,
+        "correction": 808,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          4,
+          4,
+          1,
+          1,
+          5,
+          5
+        ],
+        "delta_sorted": [
+          1,
+          1,
+          4,
+          4,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 1390,
+        "correction": 1390,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          4,
+          4,
+          4,
+          0,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          1,
+          4,
+          4,
+          4,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 810,
+        "correction": 810,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          5,
+          1,
+          0,
+          0,
+          1,
+          5
+        ],
+        "delta_sorted": [
+          0,
+          0,
+          1,
+          1,
+          5,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 496,
+        "correction": 496,
+        "is_nonzero": true
+      },
+      {
+        "delta_unsorted": [
+          5,
+          5,
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "delta_sorted": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          5,
+          5
+        ],
+        "F_unsorted": 0,
+        "F_sorted": 945,
+        "correction": 945,
+        "is_nonzero": true
+      }
+    ],
+    "all_corrections_nonzero": true,
+    "proof_status": "PROVED",
+    "n_free_solutions": 208
+  }
+]
