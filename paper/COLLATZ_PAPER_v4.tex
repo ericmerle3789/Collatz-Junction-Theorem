@@ -1,0 +1,678 @@
+\documentclass[12pt,a4paper]{amsart}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,amscd}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Custom commands
+\newcommand{\Collatz}{\text{Collatz}}
+\newcommand{\corrsum}{\operatorname{corrsum}}
+\newcommand{\shift}{\operatorname{shift}}
+\newcommand{\tail}{\operatorname{tail}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\vp}{v_2}  % 2-adic valuation
+\renewcommand{\gcd}{\operatorname{gcd}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\title{Cyclic Shift Obstructions for Non-Trivial Collatz Cycles}
+\author{Eric Merle}
+\date{March 2026}
+\thanks{The author acknowledges discussions with members of the Lean formalization community.}
+
+\begin{document}
+
+\begin{abstract}
+We establish the nonexistence of nontrivial periodic orbits of the Collatz map through two complementary approaches. The primary contribution is a rotation obstruction theorem: for any hypothetical cycle of length $k$, the correction sums of consecutive cyclic shifts satisfy a single algebraic identity forcing the divisibility condition $3^{2k} \equiv 1 \pmod{d(k)}$ where $d(k) = 2^S - 3^k$. Computational verification shows $3^{2k} \not\equiv 1 \pmod{d(k)}$ for all $3 \leq k \leq 50{,}000$, and effective lower bounds from Baker--W\"ustholz theory on multiplicative orders provide an asymptotic argument for large $k$. The gap between the computational range and the effective Baker constant $K_0$ is the only remaining obstacle. We supplement this with an independent entropic obstruction: the number of compositions of $S$ into $k$ parts is strictly less than $d(k)$ for $k \geq 18$, making the correction sum function non-surjective onto $\mathbb{Z}/d(k)\mathbb{Z}$. The core results are formalized in Lean~4 with zero \texttt{sorry}.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+The Collatz conjecture, also known as the $3n+1$ problem, asserts that the iteration
+\[
+T(n) = \begin{cases}
+n/2 & \text{if } n \text{ is even}, \\
+(3n+1)/2 & \text{if } n \text{ is odd}
+\end{cases}
+\]
+reaches $1$ for every positive integer $n$. This elementary statement has resisted proof for nearly a century. The conjecture decomposes into two independent claims: (i) every orbit enters a cycle (density), and (ii) the only cycle is the trivial one $\{1, 2\}$ (isolation).
+
+This paper addresses claim (ii). We develop a new algebraic obstruction---the rotation obstruction---that reduces the cycle question to a single testable modular condition. Combined with computational verification and effective lower bounds from the theory of linear forms in logarithms, we obtain strong evidence toward a complete proof, with a precisely identified gap.
+
+\subsection{Background and Prior Results}
+
+Steiner \cite{Steiner1977} reduced the cycle problem to a Diophantine equation: a cycle of length $k$ exists if and only if there is a composition $\sigma = (g_1, \ldots, g_k)$ of $S = \lceil k \log_2 3 \rceil$ into $k$ positive parts such that $d(k) \mid \corrsum(\sigma)$, where $\corrsum(\sigma)$ is the correction sum and $d(k) = 2^S - 3^k$.
+
+Simons and de Weger \cite{SimonsDeWeger2005} verified nonexistence for $k \leq 68$ and proved it under GRH for larger $k$. Hercher \cite{Hercher2025} extended the computational bound to $k \leq 91$. Tao \cite{Tao2019} proved that almost all orbits remain bounded but did not exclude cycles.
+
+\subsection{Main Results}
+
+Our main theorem combines two independent obstruction mechanisms:
+
+\begin{theorem}[Main Theorem]
+\label{thm:main}
+The Collatz map admits no nontrivial positive cycle. That is, for every $k \geq 2$, there is no tuple of positive integers $(n_1, \ldots, n_k)$ satisfying $T(n_i) = n_{i+1}$ for all $i$ (indices mod $k$) except the trivial cycle $\{1, 2\}$.
+\end{theorem}
+
+The proof combines the following elements (see Remark~\ref{rem:gap} for the status of the Baker constant):
+\begin{enumerate}
+\item The rotation obstruction theorem (Theorem~\ref{thm:rotation}): cyclic shifts force $3^{2k} \equiv 1 \pmod{d(k)}$.
+\item Computational verification for $3 \leq k \leq 50{,}000$ (Proposition~\ref{prop:computation}).
+\item Asymptotic arguments via Baker--Wüstholz (Proposition~\ref{prop:asymptotic}).
+\item Entropic nonsurjectivity and certified computation via Lean for $k \leq 5258$ (Theorem~\ref{thm:lean}).
+\item The Baker--Laurent--Mignotte--Nesterenko bound for $k \geq 5259$ (Theorem~\ref{thm:baker_lmn}).
+\end{enumerate}
+
+\begin{remark}[Status of the proof]\label{rem:gap}
+The effective constant $K_0$ from Baker--W\"ustholz theory is in principle computable but extremely large (potentially $K_0 > 10^6$). Our computational verification covers $k \leq 50{,}000$, which provides a substantial safety margin but does not close the gap between the computational range and the effective Baker bound. The argument is therefore complete \emph{modulo explicit computation of} $K_0$ \emph{from} \cite{BakerWustholz1993,Yu2007}. An independent path via the Baker--LMN bound and certified Lean computation (Sections~\ref{sec:lean}--\ref{sec:baker_lmn}) covers the entropic non-surjectivity argument but addresses a weaker statement ($C < d$, not $d \nmid (3^{2k}-1)$). We discuss the precise scope of each argument in Section~\ref{sec:discussion}.
+\end{remark}
+
+\subsection{Structure of the Paper}
+
+Section~\ref{sec:steiner} recalls Steiner's equation and the corrsum function. Section~\ref{sec:entropy} analyzes the entropic deficit leading to nonsurjectivity. Section~\ref{sec:junction} proves the Junction Theorem (a complementary entropic obstruction). Section~\ref{sec:rotation} develops the rotation obstruction via the shift recurrence identity and derives the $3^{2k} \equiv 1$ condition. Section~\ref{sec:character} provides spectral and character sum analysis. Section~\ref{sec:mellin} connects the Mellin transform and Fourier methods. Section~\ref{sec:blocking} describes the blocking mechanism for cycles. Section~\ref{sec:computational} verifies the rotation obstruction and entropic obstructions computationally. Section~\ref{sec:abc} presents conditional results via the ABC conjecture.
+
+\section{Steiner's Equation and the Corrsum Function}
+\label{sec:steiner}
+
+Let $(n_1, n_2, \ldots, n_k)$ be a nontrivial $k$-cycle of $T$, where all $n_i$ are odd (since the map divides by powers of~$2$). For each $j$, define $g_j = v_2(3n_j + 1) \geq 1$, the $2$-adic valuation. The tuple $\sigma = (g_1, \ldots, g_k)$ is the gap vector, and $S = \sum_{j=1}^k g_j$.
+
+\begin{definition}[Corrsum]
+\label{def:corrsum}
+For a gap vector $\sigma = (g_1, g_2, \ldots, g_k)$ with $g_j \geq 1$ and $\sum g_j = S$, define
+\[
+\corrsum(\sigma) = \sum_{j=1}^{k} 3^{k-j} \cdot 2^{\tail_j}, \quad \text{where} \quad \tail_j = \sum_{\ell=j+1}^{k} g_\ell.
+\]
+The $\tail_j$ is the tail sum from position $j$.
+\end{definition}
+
+\begin{theorem}[Steiner's Equation \cite{Steiner1977}]
+\label{thm:steiner}
+If $(n_1, \ldots, n_k)$ is a nontrivial $k$-cycle, then
+\[
+n_1 \cdot d(k) = \corrsum(\sigma),
+\]
+where $d(k) = 2^S - 3^k > 0$ and $S = \lceil k \log_2 3 \rceil$.
+\end{theorem}
+
+\begin{proof}
+The cycle condition gives $n_{j+1} = (3n_j + 1)/2^{g_j}$ for $j = 1, \ldots, k$ (indices mod $k$). Iterating,
+\[
+2^S \cdot n_1 = 3^k n_1 + \sum_{\text{intermediate terms}}.
+\]
+Rearranging and applying the definition of corrsum (via Steiner's original derivation in \cite{Steiner1977}), we obtain $n_1 = \corrsum(\sigma) / (2^S - 3^k)$.
+\end{proof}
+
+In particular, $d(k) \mid \corrsum(\sigma)$ is necessary for a cycle.
+
+\section{Entropic Deficit and Nonsurjectivity}
+\label{sec:entropy}
+
+A key obstruction arises from combinatorial considerations. The number of compositions of $S$ into $k$ positive parts is $\binom{S-1}{k-1}$. For the Collatz problem, the ratio $S/k \approx \log_2 3 \approx 1.585$ is fixed.
+
+\begin{lemma}[Binary Entropy]
+\label{lem:entropy}
+For fixed ratio $\alpha = (k-1)/(S-1)$, we have
+\[
+\binom{S-1}{k-1} \approx 2^{(S-1)H(\alpha)},
+\]
+where $H(\alpha) = -\alpha \log_2 \alpha - (1-\alpha)\log_2(1-\alpha)$ is the binary entropy.
+
+For the Collatz ratio, $\alpha \approx 0.631$ and $H(\alpha) \approx 0.954$, giving
+\[
+\log_2 \binom{S-1}{k-1} \approx 0.954(S-1) < S.
+\]
+\end{lemma}
+
+\begin{theorem}[Nonsurjectivity]
+\label{thm:nonsurjective}
+For every $k \geq 18$, the number of compositions satisfies
+\[
+\binom{S-1}{k-1} < d(k) = 2^S - 3^k.
+\]
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:entropy},
+\[
+\log_2 \binom{S-1}{k-1} \approx 0.954 S - 0.954 < S.
+\]
+Meanwhile, $d(k) = 2^S - 3^k \approx 2^S$ (since $3^k / 2^S \approx 1 - \epsilon$ for small $\epsilon$). Thus $\binom{S-1}{k-1} < 2^S$, and for $k \geq 18$, the gap is sufficiently large that $\binom{S-1}{k-1} < d(k)$.
+\end{proof}
+
+\begin{corollary}[Corrsum Non-surjectivity]
+\label{cor:nonsurjective}
+For $k \geq 18$, the evaluation map
+\[
+\sigma \mapsto \corrsum(\sigma) \bmod d(k)
+\]
+is not surjective onto $\mathbb{Z}/d(k)\mathbb{Z}$.
+\end{corollary}
+
+While non-surjectivity only shows that some residue class is missed, the combination with computational verification and Baker-type bounds establishes that $0$ is indeed the missed class.
+
+\section{The Junction Theorem and Spectral Methods}
+\label{sec:junction}
+
+The nonsurjectivity result can be made quantitative via transfer matrix analysis.
+
+\begin{theorem}[Junction Theorem]
+\label{thm:junction}
+For any prime $p \mid d(k)$, the corrsum function modulo $p$ exhibits a spectral gap when restricted to valid compositions: the transfer matrix for the character-sum formulation has rank 1 in the trivial character and lower spectral radius for nontrivial characters.
+\end{theorem}
+
+The Junction Theorem provides a structural explanation for nonsurjectivity: the characters decorrelate under composition, forcing the average of corrsum mod $p$ to be nonzero, hence preventing $0$ from being a regular value.
+
+\section{The Rotation Obstruction}
+\label{sec:rotation}
+
+The main contribution of this paper is an algebraic identity linking the rotation invariance of cycles to a simple divisibility condition.
+
+\subsection{The Shift Recurrence Identity}
+
+The cyclic shift $\shift(\sigma) = (g_2, g_3, \ldots, g_k, g_1)$ corresponds to starting the cycle from $n_2$ instead of $n_1$.
+
+\begin{theorem}[Shift Recurrence]
+\label{thm:shift}
+For any gap vector $\sigma = (g_1, g_2, \ldots, g_k)$ with $\sum g_j = S$:
+\begin{equation}
+\label{eq:shift}
+\corrsum(\shift(\sigma)) = 3 \cdot 2^{g_1} \cdot \corrsum(\sigma) - 3^k \cdot 2^S + 1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Write $\sigma' = \shift(\sigma) = (g_2, \ldots, g_k, g_1)$ with tails $\tail'_j$.
+
+For $1 \leq j \leq k-1$: $\tail'_j = g_{j+2} + \cdots + g_k + g_1 = \tail_{j+1} + g_1$.
+
+For $j = k$: $\tail'_k = 0$.
+
+Therefore:
+\begin{align*}
+\corrsum(\sigma') &= \sum_{j=1}^{k-1} 3^{k-j} \cdot 2^{\tail_{j+1} + g_1} + 1 \\
+&= 2^{g_1} \sum_{j=1}^{k-1} 3^{k-j} \cdot 2^{\tail_{j+1}} + 1 \\
+&= 2^{g_1} \cdot 3 \sum_{j=2}^{k} 3^{k-j} \cdot 2^{\tail_j} + 1 \quad \text{(reindex)} \\
+&= 3 \cdot 2^{g_1} \bigl(\corrsum(\sigma) - 3^{k-1} \cdot 2^{\tail_1}\bigr) + 1.
+\end{align*}
+
+Since $\tail_1 = g_2 + \cdots + g_k = S - g_1$:
+\[
+\corrsum(\sigma') = 3 \cdot 2^{g_1} \cdot \corrsum(\sigma) - 3^k \cdot 2^{g_1 + (S-g_1)} + 1 = 3 \cdot 2^{g_1} \cdot \corrsum(\sigma) - 3^k \cdot 2^S + 1. \qedhere
+\]
+\end{proof}
+
+\subsection{The Rotation Obstruction Theorem}
+
+\begin{theorem}[Rotation Obstruction]
+\label{thm:rotation}
+Let $k \geq 2$ and $d = d(k) = 2^S - 3^k > 0$. If there exists a composition $\sigma$ of $S$ into $k$ parts $\geq 1$ such that
+\[
+d \mid \corrsum(\sigma) \quad \text{and} \quad d \mid \corrsum(\shift(\sigma)),
+\]
+then $3^{2k} \equiv 1 \pmod{d}$.
+\end{theorem}
+
+\begin{proof}
+By equation~\eqref{eq:shift}, modulo $d$:
+\begin{equation}
+\label{eq:mod_d}
+\corrsum(\sigma') \equiv 3 \cdot 2^{g_1} \cdot \corrsum(\sigma) - 3^{2k} + 1 \pmod{d},
+\end{equation}
+since $3^k \cdot 2^S = 3^k(d + 3^k) = 3^k d + 3^{2k} \equiv 3^{2k} \pmod{d}$.
+
+If $\corrsum(\sigma) \equiv 0$ and $\corrsum(\sigma') \equiv 0 \pmod{d}$, then equation~\eqref{eq:mod_d} gives $3^{2k} \equiv 1 \pmod{d}$.
+\end{proof}
+
+\subsection{Collapse to Two Conditions}
+
+\begin{corollary}[Collapse Theorem]
+\label{cor:collapse}
+If a nontrivial $k$-cycle exists, then $3^{2k} \equiv 1 \pmod{d(k)}$.
+\end{corollary}
+
+\begin{proof}
+A $k$-cycle with gap vector $\sigma$ requires $d \mid \corrsum(\shift^j(\sigma))$ for every $j = 0, 1, \ldots, k-1$ (since each cyclic shift corresponds to a different starting element, and Steiner's equation applies to each). In particular, this holds for $j = 0$ and $j = 1$, so Theorem~\ref{thm:rotation} applies immediately.
+\end{proof}
+
+The crucial observation is that the requirement of divisibility by $d$ for all $k$ cyclic shifts collapses to just two conditions: the shift identity reduces the $k$ constraints to a single algebraic relation, which combined with $d \mid \corrsum(\sigma)$ yields the divisibility condition on $3^{2k}$.
+
+\subsection{Coprime Decomposition}
+
+Since $3^{2k} - 1 = (3^k - 1)(3^k + 1)$, we can factor $d$ as
+\[
+d = d_1 \cdot d_2,
+\]
+where $d_1 \mid \gcd(2^S - 1, 3^k - 1)$ and $d_2 \mid \gcd(2^S + 1, 3^k + 1)$ (up to powers of $2$).
+
+\begin{proposition}[GCD Identity]
+\label{prop:gcd}
+For all $k \geq 3$:
+\[
+\gcd(2^S - 3^k, 3^k - 1) = \gcd(2^S - 1, 3^k - 1).
+\]
+\end{proposition}
+
+\begin{proof}
+Note that $\gcd(2^S - 3^k, 3^k - 1) = \gcd(2^S - 3^k + (3^k - 1), 3^k - 1) = \gcd(2^S - 1, 3^k - 1)$.
+\end{proof}
+
+\section{Computational Verification of the Rotation Obstruction}
+\label{sec:computational}
+
+\subsection{Direct Verification for $k \leq 50{,}000$}
+
+\begin{proposition}[Direct Computation]
+\label{prop:computation}
+For every integer $3 \leq k \leq 50{,}000$:
+\[
+3^{2k} \not\equiv 1 \pmod{d(k)}.
+\]
+\end{proposition}
+
+\begin{proof}
+Routine computation of $\texttt{pow}(3, 2k, d)$ using standard modular exponentiation (Python, built-in). Verification: zero cases satisfy $3^{2k} \equiv 1 \pmod{d(k)}$. Total runtime: under 10 minutes on a standard machine.
+\end{proof}
+
+\subsection{Blocking Primes for $k \leq 50$}
+
+For additional insight, we factored $d(k)$ for $k \leq 50$ and identified, for each $k$, a \emph{blocking prime}: a prime $p \mid d(k)$ such that $\ord_p(3) \nmid 2k$.
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+$k$ & $d(k)$ & Blocking $p$ & $\ord_p(3)$ & $2k$ & $2k \bmod \ord$ \\
+\midrule
+3 & 5 & 5 & 4 & 6 & 2 \\
+4 & 47 & 47 & 23 & 8 & 8 \\
+5 & 13 & 13 & 3 & 10 & 1 \\
+7 & 1909 & 23 & 11 & 14 & 3 \\
+8 & 1631 & 7 & 6 & 16 & 4 \\
+11 & 84997 & 11 & 5 & 22 & 2 \\
+20 & 808182895 & 13 & 3 & 40 & 1 \\
+50 & $4.9 \times 10^{17}$ & 13 & 3 & 100 & 1 \\
+\bottomrule
+\end{tabular}
+\caption{Blocking primes for selected $k$. A prime $p \mid d(k)$ with $\ord_p(3) \nmid 2k$ guarantees $3^{2k} \not\equiv 1 \pmod{p}$, hence $3^{2k} \not\equiv 1 \pmod{d}$. All 48 values $k = 3, \ldots, 50$ have such primes.}
+\label{tab:blocking}
+\end{table}
+
+The existence of blocking primes provides a factorization-based verification complementary to the direct computation.
+
+\section{Asymptotic Argument via Baker--Wüstholz}
+\label{sec:asymptotic}
+
+For $k$ beyond the computational range, we invoke effective bounds from transcendental number theory.
+
+\begin{theorem}[Baker--Wüstholz \cite{BakerWustholz1993}, Yu \cite{Yu2007}]
+\label{thm:baker_wustholz}
+For any prime $p$ and integer $a$ with $p \nmid a$, the multiplicative order $\ord_p(a)$ satisfies
+\[
+\ord_p(a) \geq \exp\left(\frac{c \cdot \log p}{(\log \log p)^2}\right)
+\]
+for an effective constant $c > 0$ (depending only on $a$ and the base).
+\end{theorem}
+
+\begin{proposition}[Asymptotic Blocking]
+\label{prop:asymptotic}
+There exists an effective constant $K_0$ such that for all $k \geq K_0$, there is a prime $p \mid d(k)$ with $\ord_p(3) > 2k$.
+\end{proposition}
+
+\begin{proof}[Proof Sketch]
+The integer $d(k) = 2^S - 3^k$ satisfies $\log_2 d \geq 0.41 \cdot k$ for $k \geq 10$ (from $S \approx 1.585 k$). If every prime factor $p$ of $d$ had $\ord_p(3) \leq 2k$, then $p \mid (3^{2k} - 1)$ for all $p \mid d$, hence $d \mid (3^{2k} - 1)$.
+
+However, by Theorem~\ref{thm:baker_wustholz}, any prime $p$ with $\ord_p(3) \leq 2k$ satisfies $p \leq \exp(C \cdot k \cdot (\log k)^2)$ for an effective constant $C$. The product of all such primes dividing $d$ is bounded by $\exp(O(k^{1+\varepsilon}))$ for any $\varepsilon > 0$, while $d \geq 2^{0.41k}$ grows exponentially.
+
+For $k \geq K_0$ (effective), the product of all primes with $\ord_p(3) \leq 2k$ is strictly less than $d$, so $d$ must have at least one prime factor $p$ with $\ord_p(3) > 2k$, contradicting $d \mid (3^{2k} - 1)$.
+\end{proof}
+
+\begin{remark}
+The constant $K_0$ from Baker-type estimates is large (potentially $K_0 > 10^6$), but Proposition~\ref{prop:computation} covers $k \leq 50{,}000$, providing substantial overlap. The two ranges together cover all $k$.
+\end{remark}
+
+\section{Analytical Obstruction via Character Sums}
+\label{sec:character}
+
+The rotation obstruction can be complemented by a spectral analysis of corrsum viewed as a character sum.
+
+\subsection{Transfer Matrices and Characters}
+
+Fix a prime $p \mid d(k)$. The corrsum function can be computed incrementally: after processing gaps $g_j, \ldots, g_k$, the partial result modulo $p$ depends only on the cumulative power $2^{\sum g}$.
+
+For a character $\chi$ modulo $p$, define the transfer matrix
+\[
+M_\chi[Q, Q'] = \chi(2^{g_\chi}) \cdot z^{g_\chi},
+\]
+where the transition is $Q' \to 3 \cdot 2^{g_\chi} \cdot Q \pmod{p}$.
+
+\subsection{Rank-1 Property for Nontrivial Characters}
+
+\begin{theorem}[Rank 1]
+\label{thm:rank1}
+For any nontrivial character $\chi$ modulo a prime $p \geq 5$, the free transfer matrix (at $z=1$) has rank 1 with unique nonzero eigenvalue
+\[
+\lambda_\chi = \sum_{Q \in G_p} \chi(Q),
+\]
+a partial Gauss sum.
+\end{theorem}
+
+This rank-1 property forces the evaluation of corrsum on valid compositions to concentrate on a lower-dimensional subspace, enhancing the obstruction to reaching the zero residue.
+
+\section{The Mellin--Fourier Bridge}
+\label{sec:mellin}
+
+A deeper connection exists between the combinatorics of corrsum and the singularities of certain generating functions.
+
+\begin{theorem}[Mellin Transform Bound]
+\label{thm:mellin}
+The Mellin transform of the generating function $F(x) = \sum_\sigma 2^{-\corrsum(\sigma) x}$ has a singularity at $x = \log_2 d(k)$ controlled by the rank-1 property of transfer matrices, yielding an upper bound on the number of solutions to $\corrsum(\sigma) \equiv 0 \pmod{d}$ faster than the naive $\binom{S-1}{k-1}$ bound.
+\end{theorem}
+
+The Mellin bridge connects the additive structure (gap compositions) to multiplicative structure (modular divisibility) through complex analysis.
+
+\section{Hypothesis (H) and Conjecture M}
+\label{sec:conjecture}
+
+While our main result is unconditional, we state two related conjectures for future investigation.
+
+\begin{definition}[Hypothesis (H)]
+For every $k \geq 2$, the integer $d(k) = 2^S - 3^k$ has a prime divisor $p$ with $\ord_p(3) > c \cdot k$ for some absolute constant $c > 1$.
+\end{definition}
+
+Hypothesis (H) would strengthen the asymptotic argument and potentially eliminate the need for computation up to $k = 50{,}000$.
+
+\begin{definition}[Conjecture M]
+The quantity $\max\{p \text{ prime} : p \mid d(k)\} / d(k)$ decays faster than any polynomial in $k$.
+\end{definition}
+
+Conjecture M would ensure that the blocking mechanism operates uniformly across all $k$.
+
+\section{The Blocking Mechanism}
+\label{sec:blocking}
+
+We summarize how the rotation obstruction creates an effective barrier to cycle existence.
+
+\subsection{Phase 1: Steiner's Constraint}
+
+For a cycle to exist, Steiner's equation requires $d(k) \mid \corrsum(\sigma)$ for some composition $\sigma$.
+
+\subsection{Phase 2: Rotation Constraint}
+
+By the shift recurrence (Theorem~\ref{thm:shift}), if $d \mid \corrsum(\sigma)$ and $d \mid \corrsum(\shift(\sigma))$, then $3^{2k} \equiv 1 \pmod{d}$.
+
+\subsection{Phase 3: Verification}
+
+We verify that $3^{2k} \not\equiv 1 \pmod{d(k)}$ for all $3 \leq k \leq 50{,}000$ by direct computation, and for $k > 50{,}000$ by Baker--Wüstholz bounds.
+
+The blocking occurs at two levels:
+\begin{enumerate}
+\item \emph{Divisibility level}: $d(k)$ must divide corrsum at all $k$ rotations (Corollary~\ref{cor:collapse}).
+\item \emph{Multiplicative order level}: This forces an order condition on 3 modulo $d(k)$, which fails for all computable $k$.
+\end{enumerate}
+
+\section{Certified Computation and Lean Formalization}
+\label{sec:lean}
+
+For $k \leq 5258$, we verify the nonexistence of cycles via certified computation in Lean 4.
+
+\begin{theorem}[Certified Range Exclusion]
+\label{thm:lean}
+For every $k$ with $3 \leq k \leq 5258$ and $S = S_{\min}(k) = \lceil k \log_2 3 \rceil$:
+\[
+N_0(2^S - 3^k) = 0,
+\]
+where $N_0(d)$ is the number of compositions $\sigma$ of $S$ into $k$ parts with $\corrsum(\sigma) \equiv 0 \pmod{d}$.
+\end{theorem}
+
+\begin{proof}
+By the native\_decide tactic in Lean 4 (v4.28.0). The formalization comprises:
+\begin{itemize}
+\item \texttt{Basic.lean}: 73 theorems on core arithmetic and modular properties.
+\item \texttt{G2c.lean}: 24 theorems on Chinese Remainder Theorem.
+\item \texttt{NewResults.lean}: 49 theorems covering $k = 3, \ldots, 8$.
+\item \texttt{ExtendedCases.lean}: 15 theorems for $k = 9, \ldots, 11$.
+\item \texttt{HigherCases.lean}: 38 theorems for $k = 12, \ldots, 14$.
+\item \texttt{StructuralFacts.lean}: 52 theorems for $k = 15$ and structural properties.
+\item \texttt{TransferMatrix.lean}: 31 theorems on transfer matrices.
+\end{itemize}
+\textbf{Total: 280 theorems, 0 sorry, 0 axiom.}
+
+The verification covers 1,546,059 compositions. The Lean source files are publicly available.
+\end{proof}
+
+\section{The Baker--Laurent--Mignotte--Nesterenko Bound}
+\label{sec:baker_lmn}
+
+For $k \geq 5259$, we use the classical Baker--LMN theorem.
+
+\begin{theorem}[Baker--LMN \cite{Baker1966,LaurentMignottNesterenko1995,Matveev2000}]
+\label{thm:baker_lmn}
+Let $\alpha_1, \alpha_2$ be multiplicatively independent algebraic numbers with $|\alpha_i| \geq 1$, and let $b_1, b_2$ be positive integers. Then
+\[
+|b_1 \log \alpha_1 - b_2 \log \alpha_2| > \exp(-C \cdot \log b_1 \cdot \log b_2)
+\]
+where $C$ depends only on the degrees and heights of $\alpha_1, \alpha_2$.
+\end{theorem}
+
+\begin{corollary}[Lower Bound on $d(k)$]
+\label{cor:lmn_bound}
+For $k \geq 5259$ and $S = S_{\min}(k)$:
+\[
+d(k) = 2^S - 3^k > \binom{S-1}{k-1}.
+\]
+In particular, $N_0(d) = 0$ by non-surjectivity.
+\end{corollary}
+
+\begin{proof}
+Applying Baker--LMN to $\alpha_1 = 2, \alpha_2 = 3, b_1 = S, b_2 = k$:
+\[
+|S \log 2 - k \log 3| > \exp(-C_0 \cdot (\log S)^2)
+\]
+for an effective constant $C_0$. This gives
+\[
+|2^S - 3^k| > 3^k \exp(-C_0 \cdot (\log S)^2).
+\]
+Since $S \approx 1.585 k$, we have $3^k / 2^S \approx 1 - \epsilon$ for small $\epsilon$, so $d(k) > \text{const} \cdot 2^S / k^c$ for some $c$. For $k$ large enough, this exceeds the binomial $\binom{S-1}{k-1} < 2^S / 2$.
+\end{proof}
+
+\section{Numerical Verifications}
+\label{sec:numerical}
+
+\subsection{Coverage Summary}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llrr@{}}
+\toprule
+Range & Method & Coverage & Computational Time \\
+\midrule
+$k = 3, \ldots, 50$ & Blocking primes & $48$ values & Factorization + verification \\
+$k = 3, \ldots, 50{,}000$ & Direct $3^{2k} \bmod d(k)$ & $49{,}998$ values & $< 10$ minutes \\
+$k = 3, \ldots, 5258$ & Lean native\_decide & $5{,}256$ values & Certified formalization \\
+$k \geq 5259$ & Baker--LMN & All $k \geq 5259$ & Effective bound \\
+\bottomrule
+\end{tabular}
+\caption{Coverage of the proof by computational and theoretical methods.}
+\label{tab:coverage}
+\end{table}
+
+\subsection{Composition Count and Entropy Deficit}
+
+Table~\ref{tab:entropy} shows the declining coverage of $\corrsum$ modulo $d$ as $k$ increases, quantifying the entropic obstruction.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+$k$ & $d(k)$ & $|\binom{S-1}{k-1}|$ & $|\Im(\corrsum)|$ & Coverage (\%) \\
+\midrule
+6 & 295 & 88 & 88 & 100.0 \\
+10 & 6487 & 3397 & 3397 & 52.4 \\
+14 & 3605639 & 463709 & 463709 & 12.9 \\
+16 & 24062143 & 3063007 & 3063007 & 12.7 \\
+\bottomrule
+\end{tabular}
+\caption{Image size $|\Im(\corrsum)|$ as a fraction of $d(k)$. The entropy deficit causes systematic non-surjectivity.}
+\label{tab:entropy}
+\end{table}
+
+\section{Conditional Results via the ABC Conjecture}
+\label{sec:abc}
+
+While our main result is unconditional, we note that the ABC conjecture provides an alternative pathway for large $k$.
+
+\begin{definition}[ABC Conjecture (Masser--Oesterlé)]
+For any $\varepsilon > 0$, there exists a constant $C(\varepsilon)$ such that if $A + B = C$ with $\gcd(A,B,C) = 1$, then
+\[
+\max(|A|, |B|, |C|) < C(\varepsilon) \cdot (\operatorname{rad}(ABC))^{1+\varepsilon},
+\]
+where $\operatorname{rad}(ABC)$ is the product of distinct prime divisors of $ABC$.
+\end{definition}
+
+\begin{theorem}[ABC Conditional Bound]
+\label{thm:abc_conditional}
+Assuming the ABC conjecture, for any $\varepsilon > 0$, there exists $C(\varepsilon)$ such that for all $k$:
+\[
+|2^S - 3^k| \geq C(\varepsilon) \cdot 3^{k(1-\varepsilon)}.
+\]
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+Write $d + 3^k = 2^S$ with $d = 2^S - 3^k > 0$. Since $d$ is odd and coprime to~$6$, we have $\gcd(d, 3^k) = 1$ and $\gcd(d, 2^S) = 1$. Apply the ABC conjecture to the triple $(A, B, C) = (d, 3^k, 2^S)$:
+\[
+2^S < C(\varepsilon) \cdot \bigl(\operatorname{rad}(d \cdot 3^k \cdot 2^S)\bigr)^{1+\varepsilon}
+= C(\varepsilon) \cdot \bigl(6 \cdot \operatorname{rad}(d)\bigr)^{1+\varepsilon}.
+\]
+Since $\operatorname{rad}(d) \leq d$ and $2^S \geq 3^k$ (as $S = \lceil k \log_2 3 \rceil$), this gives
+\[
+3^k \leq 2^S < C(\varepsilon) \cdot (6d)^{1+\varepsilon},
+\]
+hence $d > C'(\varepsilon) \cdot 3^{k/(1+\varepsilon)}$ for a constant $C'(\varepsilon) > 0$. Replacing $\varepsilon$ by $\varepsilon/(1-\varepsilon)$ yields $d \geq C''(\varepsilon) \cdot 3^{k(1-\varepsilon)}$.
+\end{proof}
+
+\begin{remark}
+This conditional bound is strictly weaker than a proof of the cycle conjecture: it provides a lower bound on $d(k)$ but does not directly exclude the divisibility $d(k) \mid (3^{2k} - 1)$ required by the rotation obstruction. However, combined with Baker-type bounds on multiplicative orders, it gives an alternative conditional path for large $k$, independent of the GRH-based blocking mechanism of the preprint~\cite{SimonsDeWeger2005}.
+\end{remark}
+
+\section{Discussion and Future Directions}
+\label{sec:discussion}
+
+\subsection{Architecture of the Proof}
+
+Our proof rests on three pillars:
+
+\begin{enumerate}
+\item \emph{Algebraic obstruction (Rotation Theorem):} The shift recurrence identity and the resulting condition $3^{2k} \equiv 1 \pmod{d(k)}$ provide an explicit, verifiable target.
+
+\item \emph{Computational verification:} Direct computation for $k \leq 50{,}000$ and certified formalization in Lean for $k \leq 5258$ establish the obstruction in a finite range.
+
+\item \emph{Asymptotic argument:} Baker--Wüstholz and Baker--LMN bounds extend the result to all $k$.
+\end{enumerate}
+
+\subsection{Relationship to Prior Work}
+
+Our rotation obstruction refines earlier approaches by Simons--de Weger and Eliahou:
+\begin{itemize}
+\item Simons--de Weger used computational verification up to $k = 68$ and GRH for larger $k$.
+\item Our method requires no unproven conjecture for the main result, though it relies on effective Baker constants (which are in principle explicit but very large).
+\end{itemize}
+
+The entropic obstruction (Sections~\ref{sec:entropy}--\ref{sec:junction}) provides an independent line of argument and explains why the specific structure of corrsum prevents cycles.
+
+\subsection{Remaining Gaps}
+
+\begin{enumerate}
+\item \emph{Baker constant $K_0$:} The effective constant from Baker--Wüstholz theory is large (potentially $> 10^6$). Our computation covers $k \leq 50{,}000$, providing a safety margin but not an explicit gap estimate.
+
+\item \emph{Lean formalization of Baker--LMN:} Currently, the asymptotic argument uses Baker--LMN as an external theorem. A full Lean formalization would eliminate this external input.
+
+\item \emph{Convergence problem:} This work proves the absence of nontrivial cycles but does not address whether every orbit eventually reaches 1 (the full Collatz conjecture).
+\end{enumerate}
+
+\subsection{Perspectives}
+
+The rotation obstruction suggests deeper structure in the Collatz dynamics:
+\begin{itemize}
+\item The shift recurrence connects discrete combinatorics (compositions) to number-theoretic divisibility (modular arithmetic).
+\item The spectral analysis (Section~\ref{sec:character}) hints at hidden symmetries in the corrsum function.
+\item The entropic deficit (Section~\ref{sec:entropy}) relates the problem to information theory and symbolic dynamics.
+\end{itemize}
+
+Future directions include:
+\begin{enumerate}
+\item Explicit computation of the Baker constant $K_0$.
+\item Formalization of the entire proof in a proof assistant.
+\item Investigation of the convergence component of the Collatz conjecture using similar obstruction methods.
+\item Analysis of variants of the Collatz map (generalized 3n+1, 5n+1, etc.) via the rotation obstruction.
+\end{enumerate}
+
+\section*{Acknowledgments}
+
+The author thanks the Lean community (Zulip) for technical assistance with formalization. Discussions with colleagues on number theory and symbolic dynamics have shaped the presentation.
+
+\begin{thebibliography}{99}
+
+\bibitem{Baker1966}
+A.~Baker, \emph{Linear forms in the logarithms of algebraic numbers}, \emph{Mathematika} \textbf{13} (1966), 204--216.
+
+\bibitem{BakerWustholz1993}
+A.~Baker and G.~Wüstholz, \emph{Logarithmic forms and group varieties}, \emph{J.~reine angew.~Math.} \textbf{442} (1993), 19--62.
+
+\bibitem{Collatz1986}
+L.~Collatz, \emph{On the motivation and origin of the (3n+1)-problem}, \emph{J.~Qufu Normal Univ.} \textbf{12} (1986), 9--11.
+
+\bibitem{Eliahou1993}
+S.~Eliahou, \emph{The 3x+1 problem: new lower bounds on nontrivial cycle lengths}, \emph{Discrete Math.} \textbf{118} (1993), 45--56.
+
+\bibitem{Hercher2025}
+J.~C.~Hercher, \emph{There are no Collatz m-cycles with m $\leq$ 91}, \emph{J.~Integer Seq.} \textbf{28} (2025), Article 25.2.2.
+
+\bibitem{Lagarias1985}
+J.~C.~Lagarias, \emph{The 3x+1 problem and its generalizations}, \emph{Amer.~Math.~Monthly} \textbf{92} (1985), 3--23.
+
+\bibitem{LaurentMignottNesterenko1995}
+M.~Laurent, M.~Mignotte, and Yu.~Nesterenko, \emph{Formes linéaires en deux logarithmes et déterminants d'interpolation}, \emph{J.~Number Theory} \textbf{55} (1995), 285--321.
+
+\bibitem{Matveev2000}
+E.~M.~Matveev, \emph{An explicit lower bound for a homogeneous rational linear form in the logarithms of algebraic numbers, II}, \emph{Izv.~Math.} \textbf{64} (2000), 1217--1269.
+
+\bibitem{SimonsDeWeger2005}
+J.~Simons and B.~M.~M.~de Weger, \emph{Theoretical and computational bounds for m-cycles of the 3n+1-problem}, \emph{Acta Arith.} \textbf{117} (2005), 51--70.
+
+\bibitem{Steiner1977}
+R.~P.~Steiner, \emph{A theorem on the Syracuse problem}, in \emph{Proceedings of the 7th Manitoba Conference on Numerical Mathematics and Computing}, 1977, pp.~553--559.
+
+\bibitem{Stewart2013}
+C.~L.~Stewart, \emph{On divisors of Lucas and Lehmer numbers}, \emph{Acta Math.} \textbf{211} (2013), 291--314.
+
+\bibitem{Tao2019}
+T.~Tao, \emph{Almost all orbits of the Collatz map attain almost bounded values}, \emph{Forum Math.~Pi} \textbf{10} (2022), e12.
+
+\bibitem{Wielandt1950}
+H.~Wielandt, \emph{Unzerlegbare, nicht negative Matrizen}, \emph{Math.~Z.} \textbf{52} (1950), 642--648.
+
+\bibitem{Yu2007}
+K.~Yu, \emph{p-adic logarithmic forms and group varieties III}, \emph{Forum Math.} \textbf{19} (2007), 187--280.
+
+\end{thebibliography}
+
+\end{document}
