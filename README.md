@@ -1,3 +1,39 @@
+> **⚠️ Repository archived 2026-04-22 — historical reference only.**
+>
+> **Active repo** : [collatz-nocycle-lean4](https://github.com/ericmerle3789/collatz-nocycle-lean4)
+>
+> ## Logical status of the two formalizations (read before citing)
+>
+> Both repos formalize conditional results on the non-existence of nontrivial Collatz cycles, but they are **mathematically distinct and not equivalent** :
+>
+> | Aspect | This repo (Junction, archived) | collatz-nocycle-lean4 (active) |
+> |--------|---------------------------------|--------------------------------|
+> | Approach | Entropic barriers + blocking mechanism (Steiner equation on corrSum mod d) | Continued fractions of log₂3 + Baker 1966 + Barina 2025 |
+> | Conditional on | GRH + Conjecture 7.4 (Artin-like, unconditional for k ≤ 10001) | `BakerSeparation` (published), `BarinaVerification` (published, DOI 10.1007/s11227-025-07337-0), `DerivedLargeKBound` (structure hypothesis, to be proven via Legendre 1798 in Phase Legendre) |
+> | Lean axioms (central theorem) | (historical — see Lean 4.15 `#print axioms` inside this repo) | `propext, Classical.choice, Quot.sound` — the 3 fundamental Mathlib axioms, verified by `#print axioms ProjetCollatz.no_nontrivial_cycle_phase59` on 2026-04-22 |
+> | `sorry` | 0 | 0 |
+> | User-declared `axiom` | 0 | 0 |
+> | `native_decide` in central chain | (see repo) | 0 at baseline ; `Lean.ofReduceBool + Lean.trustCompiler` will be added in Phase Legendre and declared in `expected_axioms.md` at that point |
+>
+> **Note on `DerivedLargeKBound`** : it is a Lean `structure` (a typed hypothesis container), **not a Lean `axiom`**. It encapsulates the mathematically derived bound `∀ n k, IsOddCycle n k → k > 1322 → n < 2^71`, justified in the paper by continued fractions of log₂3. The Phase Legendre plan in the active repo aims to promote this structure to a fully proven theorem.
+>
+> ## Why the pivot
+>
+> The Junction Theorem approach remains mathematically interesting and the preprint is preserved here unchanged. The pivot to continued fractions in `collatz-nocycle-lean4` was motivated by :
+> 1. **Publishability** : dependency on GRH + Conjecture 7.4 was identified as a harder reviewer target than dependency on Baker + Barina, both fully published.
+> 2. **Integrity margin** : the Junction approach's `ZeroExclusionHypothesis` was flagged in internal audit (2026-04-21) as a pétition-de-principe risk. The continued-fractions approach isolates the analogous role in a named structure (`DerivedLargeKBound`) that will be proven in Phase Legendre.
+> 3. **Simpler logical conditional** : the conditional-on-2-published-hypotheses form is clearer for a formal mathematics publication.
+>
+> Neither repo is a superset of the other ; both are complete under their respective hypotheses.
+>
+> ## Maintenance
+>
+> No further commits to this repo are planned. Issues → [active repo issue tracker](https://github.com/ericmerle3789/collatz-nocycle-lean4/issues).
+>
+> — Eric Merle, 2026-04-22
+
+---
+
 # Nonexistence of Nontrivial Cycles in Collatz Dynamics: The Junction Theorem and Blocking Mechanism
 
 **Author:** Eric Merle
