@@ -1,4 +1,17 @@
-# Nonexistence of Nontrivial Cycles in Collatz Dynamics
+# Entropic Barriers and Non-surjectivity in the 3x+1 Problem
+
+> **Scope statement (2026-07-25 audit).** This repository studies obstructions to
+> non-trivial positive Collatz cycles. It **proves** their non-existence for
+> $3 \le k \le 200$, and develops two independent asymptotic programs beyond that
+> range, **each with an unclosed gap named in `docs/PROOF_ASSEMBLY.md` §2**.
+> The Junction Theorem itself establishes that *an obstruction applies for every $k$* —
+> which is **not** the same statement as *no cycle exists*: the preprint says so
+> explicitly (complete exclusion further requires Hypothesis (H) for $k \ge 69$;
+> see Remark `junction-scope`). Earlier headline wording in this README claimed an
+> unconditional proof for all $k \ge 3$; that claim went beyond what the repository's
+> own technical documents support and has been withdrawn. Formal-verification caveats:
+> `native_decide` (compiler-trusted, not kernel-trusted) is used for the large finite
+> ranges; `AsymptoticBound.lean` carries 2 `sorry`; Simons–de Weger is taken as an axiom.
 
 **Author:** Eric Merle
 **Date:** March 2026
@@ -9,7 +22,9 @@
 
 ## Main Result
 
-> **Theorem (Unconditional).** *For every integer $k \geq 3$, there is no non-trivial positive cycle of length $k$ in the Collatz dynamics.*
+> **Theorem (verified range).** *For every integer $k$ with $3 \le k \le 200$, there is no non-trivial positive cycle of length $k$ in the Collatz dynamics.*
+>
+> **Beyond $k = 200$: NOT PROVED.** Two independent asymptotic arguments are developed (Range Exclusion, FCQ contraction); each carries a named, unclosed gap — see `docs/PROOF_ASSEMBLY.md` §2, which states them explicitly (Path A: *effective Diophantine constants*; Path B: *multiplicative order control for the factors of $d(k)$*). **This repository does not prove the Collatz cycle conjecture.**
 
 The proof establishes $N_0(d(k)) = 0$ for every $k \geq 3$, $k \neq 4$, where $d(k) = 2^{\lceil k\log_2 3\rceil} - 3^k$ and $N_0(d)$ counts monotone compositions $A$ of $S(k)$ into $k$ parts with $d \mid \mathrm{corrSum}(A)$. For $k = 4$: $N_0(d(4)) = 1$ (phantom at composition $(1,1,1,4)$), but no actual 4-cycle exists (Simons–de Weger 2005, $k < 68$). By Steiner (1977), $N_0(d) = 0$ implies no cycle of length $k$ exists.
 
@@ -19,8 +34,10 @@ The proof establishes $N_0(d(k)) = 0$ for every $k \geq 3$, $k \neq 4$, where $d
 |-------|--------|--------|
 | $k = 3, 5$ | Enumeration (2 and 3 compositions, none divisible) | **PROVED** |
 | $k = 4$ | **PHANTOM** ($N_0 = 1$). No cycle by Simons–de Weger ($k < 68$). | **PROVED** |
-| $k = 6, \ldots, 10000$ | Range Exclusion (Lean `native_decide`, 9995/9995 pass) | **PROVED** |
-| $k \geq 10001$ | Baker–LMN: range $< d$ + $d \nmid (3^k-1)$ (pre-verified to $k=50000$) | **PROVED** |
+| $k = 6, \ldots, 200$ | Range Exclusion + FCQ, two independent paths | **PROVED** (per `PROOF_ASSEMBLY.md` §2) |
+| $k = 201, \ldots, 10000$ | Range Exclusion, Lean `native_decide` (9995/9995 pass) | **MACHINE-CHECKED, not kernel-proved** — `native_decide` trusts the compiler, not the Lean kernel |
+| $k = 10001, \ldots, 50000$ | range $< d$ and $d \nmid (3^k-1)$, exact integer arithmetic | **VERIFIED by computation** (finite range only) |
+| $k > 50000$ | Baker–LMN asymptotics | **OPEN — gap: effective Diophantine constants** (`PROOF_ASSEMBLY.md` §2) |
 
 **Path B (FCQ spectral contraction)** provides independent verification for $k = 3, \ldots, 200$ (198/198) using character sums and convolution bounds.
 
