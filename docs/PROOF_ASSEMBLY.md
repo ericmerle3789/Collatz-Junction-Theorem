@@ -4,7 +4,40 @@
 **Author:** Eric Merle
 **Date:** 17 March 2026
 **Branch:** `proof-assembly-v1`
-**Status:** **COMPLETE.** Path A (Range Exclusion + Baker–LMN) proves $N_0(d(k)) = 0$ unconditionally for all $k \geq 3$, $k \neq 4$. For $k = 4$: $N_0(d(4)) = 1$ (phantom), but no actual 4-cycle exists (Simons–de Weger 2005). Path B (FCQ) provides independent verification for $k = 3, \ldots, 200$.
+**Status:** **RETRACTED — see the block immediately below.**
+
+---
+
+## ⚠️ RETRACTED — PERMANENT RECORD, DO NOT REMOVE
+
+**The central claim of this document is withdrawn.** It is retained, unedited except for
+the markers, so that the record shows what was claimed and when.
+
+- **What was claimed.** That Path A (Range Exclusion + Baker–LMN) establishes
+  $N_0(d(k)) = 0$ unconditionally for all $k \geq 3$, $k \neq 4$.
+- **Why it is false.** The Range Exclusion module computes the wrong function: its
+  `corrSum` is not the quantity the argument requires. Both halves of Path A — the
+  finite range and the asymptotic Baker step — therefore apply to a different object
+  than the one the theorem is about.
+- **Where the current record is.** `VERIFICATION.md`, which marks Range Exclusion and
+  the Baker argument **INVALID** by name and leaves the general claim **OPEN**. See also
+  `README.md`, `WARNING.md` and `AUDIT_CORRSUM.md`, all of which carry the correction.
+- **What survives.** None of the unconditional claim. The reusable asset recorded by
+  AUDIT V9 is the entropy deficit $\gamma$, with $\gamma \cdot \log_2 3 = c_{\mathrm{gen}}$
+  exactly.
+- **This repository does not prove the Collatz conjecture.**
+
+Seven statements in this file assert the withdrawn result: the Status line above, and
+lines 113, 175, 202, 272, the §10.6 heading and the closing line of §10.6. Each is
+marked in place below.
+
+*Retracted 2026-07-29. The straggler was found by Benjamin Macindoe (round 11), who
+noted that a reader opening `docs/` met the withdrawn claim before `VERIFICATION.md`.
+The README and `VERIFICATION.md` had been corrected on 2026-04-25; this file was missed,
+and its full extent — seven statements rather than one — was established while answering
+that round.*
+
+---
 
 ---
 
@@ -110,7 +143,7 @@ $$\frac{\text{range}}{d} = O\!\left(k^{4.125} \cdot 3^{-0.415k}\right) \to 0 \te
 
 **Conditional Statement.** *If one can show explicitly that for all $k > K_0$:*
 $$\mathrm{corrSum}_{\max} \bmod d > \text{range},$$
-*then $N_0(d(k)) = 0$ for all $k$, unconditionally.*
+*then $N_0(d(k)) = 0$ for all $k$, unconditionally.* **[RETRACTED — see the block at the top of this file. The antecedent rests on the invalid Range Exclusion module.]**
 
 The exponential decay of $\text{range}/d$ (§3.4) means this condition is satisfied for all but at most finitely many $k$. Making this effective requires:
 
@@ -172,7 +205,7 @@ The gap: proving that $d(k)$ always has a "good" prime factor (one with $q > \sq
 
 ### 5.1. Complete Coverage
 
-**Path A** establishes $N_0(d(k)) = 0$ for **all $k \geq 3$, $k \neq 4$**, unconditionally:
+**[RETRACTED — see the block at the top of this file.]** **Path A** establishes $N_0(d(k)) = 0$ for **all $k \geq 3$, $k \neq 4$**, unconditionally:
 - $k = 3, 5$: enumeration (2 and 3 compositions respectively)
 - $k = 4$: **PHANTOM** ($N_0(d(4)) = 1$, composition $(1,1,1,4)$). No actual 4-cycle by Simons–de Weger (2005).
 - $k = 6, \ldots, 5258$: Range Exclusion (exact computation, 5253/5253 pass)
@@ -199,7 +232,7 @@ The gap: proving that $d(k)$ always has a "good" prime factor (one with $q > \sq
 
 ### 6.1. Resolution via Baker–LMN (Path A)
 
-The asymptotic gap has been **closed unconditionally** using the Baker–LMN theorem on linear forms in two logarithms. See §10 for the complete argument.
+The asymptotic gap has been **closed unconditionally** using the Baker–LMN theorem on linear forms in two logarithms. See §10 for the complete argument. **[RETRACTED — see the block at the top of this file. `VERIFICATION.md` marks the Baker argument INVALID: it applies to the wrong function.]**
 
 **Path A (Range Exclusion):** Finite verification for $k = 6, \ldots, 5258$ (exact integer arithmetic, 5253/5253 pass) + Baker–LMN for $k \geq 5259$ (exponential-vs-polynomial contradiction). Combined with enumeration for $k \in \{3, 5\}$ and Simons–de Weger for $k = 4$ (phantom, $N_0 = 1$): **all $k \geq 3$ are covered.**
 
@@ -269,7 +302,7 @@ This is a **polynomial-in-log** lower bound on $\{k\alpha\}$, while the forbidde
 **The comparison:** Since $(\log k)^2 / k \to 0$, there exists an effectively computable $K_0$ such that for all $k \geq K_0$:
 $$\{k \cdot \log_2 3\} > \exp(-C (\log k)^2) \gg 3^{-0.415k} > \varepsilon(k).$$
 
-**Conclusion:** *Range Exclusion holds unconditionally for all $k \geq K_0$.*
+**Conclusion:** *Range Exclusion holds unconditionally for all $k \geq K_0$.* **[RETRACTED — see the block at the top of this file. `VERIFICATION.md` marks Range Exclusion INVALID: it uses the wrong `corrSum` formula.]**
 
 With Gouillon's improved constants (2006, $C \sim 5 \times 10^4$ instead of $\sim 10^8$), the threshold $K_0$ is in principle computable.
 
@@ -291,7 +324,7 @@ The finite irrationality measure ensures $\{k\alpha\}$ cannot approach 0 faster 
 
 **Consequence:** The "dangerous" $k$ values (where $\{k\alpha\}$ is smallest) are confined to convergent denominators $q_n$ of the continued fraction of $\alpha$. No other $k$ can approach 0 more closely. This regularizes the problem: we only need to check that the Baker bound holds at convergent denominators.
 
-### 10.6. The Complete Logical Chain — **GAP CLOSED**
+### 10.6. The Complete Logical Chain — **GAP CLOSED** **[RETRACTED — see the block at the top of this file.]**
 
 **Corrected argument (March 2026 audit).** The Range Exclusion check `checkRE(k)` with safe lower bound $\mathrm{corrSum}_{\min} = 3^k - 1$ can fail in two ways:
 
@@ -312,7 +345,7 @@ Finite verification (exact integer arithmetic) confirms:
 | $k = 10001, \ldots, 50000$ | **PROVED** | Range Exclusion (Python exact arithmetic, 39995/39995 pass) |
 | $k > 50000$ | **PROVED** | Baker–LMN: range $< d$ (condition A), $d \nmid (3^k-1)$ (condition B) |
 
-**No gap remains. The proof is unconditional for all $k \geq 3$.** ($k = 4$: phantom excluded by Simons–de Weger.)
+**No gap remains. The proof is unconditional for all $k \geq 3$.** ($k = 4$: phantom excluded by Simons–de Weger.) **[RETRACTED — see the block at the top of this file. A gap does remain: the general claim is OPEN in `VERIFICATION.md`, and this sentence is the one whose survival at HEAD was reported in round 11.]**
 
 **Erratum:** A previous version of this section claimed "$M > (3/\beta)^k$" when RE fails. This is false (counterexample: $k=3$, $M=6 < (3/\beta)^3 = 106$). The corrected argument above separates the two failure modes and uses the proper Baker structure.
 

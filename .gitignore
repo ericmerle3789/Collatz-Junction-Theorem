@@ -49,7 +49,10 @@ INVENTAIRE.md
 brouillon_*.md
 
 # Internal project management (not for publication)
-STATUS.md
+# STATUS.md removed from this list 2026-07-29: it is not internal project management.
+# It is the repository's scope statement — it marks what the Junction Theorem is not,
+# and states plainly that this repository does not prove the Collatz conjecture.
+# It was cited to a correspondent as public evidence while being excluded here.
 SISTER_PROJECT.md
 research_protocol/
 research_log/CONJECTURE_*.md
