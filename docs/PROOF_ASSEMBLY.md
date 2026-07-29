@@ -1,5 +1,5 @@
 # Proof Assembly — Nonexistence of Nontrivial Cycles
-## $N_0(d(k)) = 0$ for all $k \geq 3$, $k \neq 4$
+## $N_0(d(k)) = 0$ for all $k \geq 3$, $k \neq 4$ — **RETRACTED, see below**
 
 **Author:** Eric Merle
 **Date:** 17 March 2026
@@ -19,23 +19,32 @@ the markers, so that the record shows what was claimed and when.
   `corrSum` is not the quantity the argument requires. Both halves of Path A — the
   finite range and the asymptotic Baker step — therefore apply to a different object
   than the one the theorem is about.
-- **Where the current record is.** `VERIFICATION.md`, which marks Range Exclusion and
-  the Baker argument **INVALID** by name and leaves the general claim **OPEN**. See also
-  `README.md`, `WARNING.md` and `AUDIT_CORRSUM.md`, all of which carry the correction.
-- **What survives.** None of the unconditional claim. The reusable asset recorded by
-  AUDIT V9 is the entropy deficit $\gamma$, with $\gamma \cdot \log_2 3 = c_{\mathrm{gen}}$
-  exactly.
+- **Where the current record is.** In the **`collatz-cycles-lean`** repository:
+  `VERIFICATION.md` at its root, which marks Range Exclusion and the Baker argument
+  **INVALID** by name and leaves the general claim **OPEN**; `README.md`;
+  `lean/range-exclusion/WARNING.md`; and `AUDIT_CORRSUM.md`. This file is byte-identical
+  in `Collatz-Junction-Theorem`, where those four do not exist — so if you are reading it
+  there, the current record is in the other repository, and `README.md` there carries the
+  correction too.
+- **What survives.** None of the unconditional claim. Path B (FCQ) is untouched by this
+  retraction and independently establishes the result for $k \in \{3,\dots,200\}$; the
+  table rows resting on enumeration are left as PROVED for that reason. The reusable
+  asset recorded by AUDIT V9 is the entropy deficit $\gamma$, with
+  $\gamma \cdot \log_2 3 = c_{\mathrm{gen}}$ exactly.
 - **This repository does not prove the Collatz conjecture.**
 
-Seven statements in this file assert the withdrawn result: the Status line above, and
-lines 113, 175, 202, 272, the §10.6 heading and the closing line of §10.6. Each is
-marked in place below.
+**On the count, which is itself part of the record.** Round 11 reported one surviving
+statement — the closing line of §10.6 — and also named the `k > 50000` **PROVED** row.
+A first pass at this retraction marked seven. That was still a proper part: the
+document's own subtitle asserts the result, as do §2's opening line, §10.3's heading,
+the closing line of §10.5, and three rows of the §10.7 table. **No count is given here
+on purpose.** Every assertion of the withdrawn result carries a marker in place, and
+none has been deleted; a reader who finds an unmarked one has found a real omission and
+should treat it as withdrawn.
 
-*Retracted 2026-07-29. The straggler was found by Benjamin Macindoe (round 11), who
-noted that a reader opening `docs/` met the withdrawn claim before `VERIFICATION.md`.
-The README and `VERIFICATION.md` had been corrected on 2026-04-25; this file was missed,
-and its full extent — seven statements rather than one — was established while answering
-that round.*
+*Retracted 2026-07-29. Found by Benjamin Macindoe (round 11), who noted that a reader
+opening `docs/` met the withdrawn claim before `VERIFICATION.md`. The README and
+`VERIFICATION.md` were corrected on 2026-04-25; this file was missed.*
 
 ---
 
@@ -58,7 +67,7 @@ By Steiner (1977), a non-trivial cycle of length $k$ exists iff there exists $A 
 
 ## 2. Proof Architecture
 
-Two independent proof paths establish $N_0(d(k)) = 0$ for all $k \geq 3$.
+Two independent proof paths establish $N_0(d(k)) = 0$ for all $k \geq 3$. **[RETRACTED — see the block at the top of this file.]**
 
 | Path | Method | Finite range | Asymptotic regime | Gap |
 |------|--------|--------------|--------------------|----|
@@ -258,7 +267,7 @@ The asymptotic gap has been **closed unconditionally** using the Baker–LMN the
 | GRH (Hooley 1967) | B | Conditional | Immediate under GRH |
 | Extend verification to $k = 10000$ | Both | Computational (ECM for large factors) | Feasible with weeks of compute |
 
-**Implemented strategy:** Baker/LMN + Shrinking Target (§10) closes the asymptotic gap. $K_0 = 5260$ computed from Gouillon's constants. Finite verification for $k = 6, \ldots, 5259$ completed (exact arithmetic). **The gap is now closed.**
+**Implemented strategy:** Baker/LMN + Shrinking Target (§10) closes the asymptotic gap. $K_0 = 5260$ computed from Gouillon's constants. Finite verification for $k = 6, \ldots, 5259$ completed (exact arithmetic). **The gap is now closed.** **[RETRACTED — see the block at the top of this file.]**
 
 ---
 
@@ -289,7 +298,7 @@ The continued fraction expansion $\alpha = [1; 1, 1, 2, 2, 3, 1, 5, 2, 23, 2, 2,
 - $k = 106$, $159$: subsequent harmonics
 - All still satisfy $\theta(k) \gg \varepsilon(k)$ (exponential margin).
 
-### 10.3. The Baker–LMN Bound (Unconditional Closing)
+### 10.3. The Baker–LMN Bound (Unconditional Closing) **[RETRACTED]**
 
 **Theorem (Laurent–Mignotte–Nesterenko 1995).** *For integers $p, q$ with $q \geq 2$:*
 $$|q \log_2 3 - p| > \exp(-C \cdot (\log q)^2)$$
@@ -314,7 +323,7 @@ With Gouillon's improved constants (2006, $C \sim 5 \times 10^4$ instead of $\si
 | Salikhov | $\leq 5.125$ | 2007 |
 | **Wu–Wang** | $\leq 5.1163$ | **2014** |
 
-The finite irrationality measure ensures $\{k\alpha\}$ cannot approach 0 faster than polynomially. Combined with the exponential decay of $\varepsilon(k)$, the gap closes.
+The finite irrationality measure ensures $\{k\alpha\}$ cannot approach 0 faster than polynomially. Combined with the exponential decay of $\varepsilon(k)$, the gap closes. **[RETRACTED — see the block at the top of this file.]**
 
 ### 10.5. Three Distance Theorem (Steinhaus)
 
@@ -341,9 +350,9 @@ Finite verification (exact integer arithmetic) confirms:
 | $k = 3$ | **PROVED** | Enumeration (2 compositions, none $\equiv 0 \pmod{5}$) |
 | $k = 4$ | **PHANTOM** | $N_0(47) = 1$, composition $(1,1,1,4)$, $\mathrm{corrSum} = 94 = 2d$. No cycle by SdW ($k < 68$). |
 | $k = 5$ | **PROVED** | Enumeration (3 compositions, none $\equiv 0 \pmod{13}$) |
-| $k = 6, \ldots, 10000$ | **PROVED** | Range Exclusion (Lean `native_decide`, 9995/9995 pass) |
-| $k = 10001, \ldots, 50000$ | **PROVED** | Range Exclusion (Python exact arithmetic, 39995/39995 pass) |
-| $k > 50000$ | **PROVED** | Baker–LMN: range $< d$ (condition A), $d \nmid (3^k-1)$ (condition B) |
+| $k = 6, \ldots, 10000$ | **RETRACTED** (was PROVED) | Range Exclusion (Lean `native_decide`, 9995/9995 pass) |
+| $k = 10001, \ldots, 50000$ | **RETRACTED** (was PROVED) | Range Exclusion (Python exact arithmetic, 39995/39995 pass) |
+| $k > 50000$ | **RETRACTED** (was PROVED) | Baker–LMN: range $< d$ (condition A), $d \nmid (3^k-1)$ (condition B) |
 
 **No gap remains. The proof is unconditional for all $k \geq 3$.** ($k = 4$: phantom excluded by Simons–de Weger.) **[RETRACTED — see the block at the top of this file. A gap does remain: the general claim is OPEN in `VERIFICATION.md`, and this sentence is the one whose survival at HEAD was reported in round 11.]**
 
