@@ -21,11 +21,11 @@ the markers, so that the record shows what was claimed and when.
   than the one the theorem is about.
 - **Where the current record is.** In the **`collatz-cycles-lean`** repository:
   `VERIFICATION.md` at its root, which marks Range Exclusion and the Baker argument
-  **INVALID** by name and leaves the general claim **OPEN**; `README.md`;
-  `lean/range-exclusion/WARNING.md`; and `AUDIT_CORRSUM.md`. This file is byte-identical
-  in `Collatz-Junction-Theorem`, where those four do not exist — so if you are reading it
-  there, the current record is in the other repository, and `README.md` there carries the
-  correction too.
+  **INVALID** by name and leaves the general claim **OPEN**; `README.md` at its root;
+  `lean/range-exclusion/WARNING.md`; and `docs/AUDIT_CORRSUM.md`. This file is
+  byte-identical in `Collatz-Junction-Theorem`, which has its own corrected `README.md`
+  but none of the other three — so if you are reading this there, the full current record
+  is in `collatz-cycles-lean`.
 - **What survives.** None of the unconditional claim. Path B (FCQ) is untouched by this
   retraction and independently establishes the result for $k \in \{3,\dots,200\}$; the
   table rows resting on enumeration are left as PROVED for that reason. The reusable
@@ -35,12 +35,15 @@ the markers, so that the record shows what was claimed and when.
 
 **On the count, which is itself part of the record.** Round 11 reported one surviving
 statement — the closing line of §10.6 — and also named the `k > 50000` **PROVED** row.
-A first pass at this retraction marked seven. That was still a proper part: the
-document's own subtitle asserts the result, as do §2's opening line, §10.3's heading,
-the closing line of §10.5, and three rows of the §10.7 table. **No count is given here
-on purpose.** Every assertion of the withdrawn result carries a marker in place, and
-none has been deleted; a reader who finds an unmarked one has found a real omission and
-should treat it as withdrawn.
+A first pass at this retraction marked seven; a second reached fourteen and still missed
+three, including §6's own heading, which reads **RESOLVED**. Each pass verified a proper
+part of what it claimed to cover, which is the failure this document is being retracted
+for, repeated three times inside its own retraction.
+
+**No count is given here on purpose, and none should be trusted.** Every assertion of
+the withdrawn result carries a marker in place, and none has been deleted. A reader who
+finds an unmarked one has found a real omission and should treat that statement as
+withdrawn regardless.
 
 *Retracted 2026-07-29. Found by Benjamin Macindoe (round 11), who noted that a reader
 opening `docs/` met the withdrawn claim before `VERIFICATION.md`. The README and
@@ -237,13 +240,13 @@ The gap: proving that $d(k)$ always has a "good" prime factor (one with $q > \sq
 
 ---
 
-## 6. The Asymptotic Gap — **RESOLVED**
+## 6. The Asymptotic Gap — **RESOLVED** **[RETRACTED — the gap is not resolved; see the block at the top of this file.]**
 
 ### 6.1. Resolution via Baker–LMN (Path A)
 
 The asymptotic gap has been **closed unconditionally** using the Baker–LMN theorem on linear forms in two logarithms. See §10 for the complete argument. **[RETRACTED — see the block at the top of this file. `VERIFICATION.md` marks the Baker argument INVALID: it applies to the wrong function.]**
 
-**Path A (Range Exclusion):** Finite verification for $k = 6, \ldots, 5258$ (exact integer arithmetic, 5253/5253 pass) + Baker–LMN for $k \geq 5259$ (exponential-vs-polynomial contradiction). Combined with enumeration for $k \in \{3, 5\}$ and Simons–de Weger for $k = 4$ (phantom, $N_0 = 1$): **all $k \geq 3$ are covered.**
+**Path A (Range Exclusion):** Finite verification for $k = 6, \ldots, 5258$ (exact integer arithmetic, 5253/5253 pass) + Baker–LMN for $k \geq 5259$ (exponential-vs-polynomial contradiction). Combined with enumeration for $k \in \{3, 5\}$ and Simons–de Weger for $k = 4$ (phantom, $N_0 = 1$): **all $k \geq 3$ are covered.** **[RETRACTED — see the block at the top of this file.]**
 
 **Path B (FCQ):** Still covers $k = 3, \ldots, 200$ independently. Extension to $k \to \infty$ would additionally require:
 
@@ -369,7 +372,7 @@ Thus $3^r - 1 < d$ whenever $3^{0.585k} < 3^k \cdot \exp(-C)$, i.e., $k > C/(0.4
 
 **Step B (non-divisibility).** If $d \mid (3^k - 1)$, write $q = (3^k - 1)/d$. Then $(q+1) \cdot 3^k = q \cdot 2^S + 1$ (Pillai-type equation). By Baker's theorem applied to $\Lambda' = \ln((q+1) \cdot 3^k / (q \cdot 2^S))$, for each fixed $q$, the equation has at most finitely many solutions with effectively bounded $k$.
 
-**Finite bridge.** Steps A and B together show Range Exclusion holds for all sufficiently large $k$. The finite verification (Lean `native_decide` for $k = 6, \ldots, 10000$; Python exact arithmetic for $k = 6, \ldots, 50000$) covers the gap. $\square$
+**Finite bridge.** Steps A and B together show Range Exclusion holds for all sufficiently large $k$. **[RETRACTED — see the block at the top of this file.]** The finite verification (Lean `native_decide` for $k = 6, \ldots, 10000$; Python exact arithmetic for $k = 6, \ldots, 50000$) covers the gap. $\square$
 
 ### 10.8. Symbolic Engine
 
