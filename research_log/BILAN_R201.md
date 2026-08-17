@@ -157,7 +157,7 @@ R201 = round d'AUDIT de la piste Baker + décroissance exponentielle proposée e
 - Fractions continues (R201-A2) : alternative à Baker pour vérification finie
 
 **CE QUI RESTE À FAIRE :**
-1. Recalculer K₀ avec les VRAIES constantes (Laurent 2008 : C' ~ 18.5)
+1. ~~Recalculer K₀ avec les VRAIES constantes (Laurent 2008 : C' ~ 18.5)~~ **[RÉTRACTÉ — 13.3 (Rhin) est la bonne constante ; ne pas recalculer avec 18.5]**
 2. Évaluer si fractions continues de log₂3 ferment le gap [187, K₀] sans Baker
 3. Le gap de vérification finie nécessite du COMPUTATIONNEL (en dehors du scope théorique pur)
 
@@ -179,4 +179,4 @@ R201 = round d'AUDIT de la piste Baker + décroissance exponentielle proposée e
 
 ---
 
-*Round R201 : 3 agents, théorie pure. Baker+décroissance = MÊME PISTE que R194 (4/10, pas 8/10). C'~13.3 MAL ATTRIBUÉ (Rhin ≠ formes linéaires). K₀~1500 SOUS-ESTIMÉ. Innovation : fractions continues (7/10) + Corridor Étroit (6/10). Seule voie vers inconditionnel mais BRITTLE. Publier GRH-conditionnel + MCE MAINTENANT.*
+*Round R201 : 3 agents, théorie pure. Baker+décroissance = MÊME PISTE que R194 (4/10, pas 8/10). C'~13.3 ~~MAL ATTRIBUÉ (Rhin ≠ formes linéaires)~~ **[RÉTRACTÉ 2026-08-17 — Rhin p.160 EST une forme linéaire ; 13.3 correct]**. K₀~1500 SOUS-ESTIMÉ. Innovation : fractions continues (7/10) + Corridor Étroit (6/10). Seule voie vers inconditionnel mais BRITTLE. Publier GRH-conditionnel + MCE MAINTENANT.*
