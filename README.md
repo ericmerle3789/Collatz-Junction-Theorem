@@ -2,6 +2,16 @@
 >
 > **Active repo** : [collatz-nocycle-lean4](https://github.com/ericmerle3789/collatz-nocycle-lean4)
 >
+> ## ⚠️ Retraction (2026-08-17) — it is NOT on this branch, read this before citing `BILAN_R201.md`
+>
+> The verdict **R201-I3** in `research_log/BILAN_R201.md` — *"C′ ~ 13.3 misattributed to Rhin 1987"*, marked **PROUVÉ** — is **false, and its premise is false. It has been retracted.**
+>
+> This archived `main` **predates the retraction and does not contain it.** The retraction is committed on branch `proof-assembly-v1` at [`77e3f07`](https://github.com/ericmerle3789/Collatz-Junction-Theorem/blob/proof-assembly-v1/research_log/BILAN_R201.md) — nothing was deleted there, every retracted assertion is struck through and stamped in place.
+>
+> **What is actually true.** Rhin 1987 (*Progress in Mathematics* 71, Proposition p. 160) proves **both** irrationality measures **and** an effective linear-independence measure of `1, log 2, log 3`, giving `|u₀ + u₁·log 2 + u₂·log 3| > H^(−13.3)`. The 13.3 stands for what the L-A7 chain consumes; the replacement constants the retracted verdict proposed (Laurent 2008 ≈ 18.5, LMN 1995 ≈ 23.55) are coefficients of a differently-shaped bound. What was real in the trigger: R200's own transcription had written Rhin's constant into that other shape — the defect was the transcription, not the attribution.
+>
+> Cross-adjudicated in the shared repository [`macindoe/one-obstruction-three-faces`](https://github.com/macindoe/one-obstruction-three-faces), `LEDGER.md` entry **L-A7**, verified on both sides. Branch locatability flagged by B. Macindoe, round-13 review, 2026-09-03.
+>
 > ## Logical status of the two formalizations (read before citing)
 >
 > Both repos formalize conditional results on the non-existence of nontrivial Collatz cycles, but they are **mathematically distinct and not equivalent** :
