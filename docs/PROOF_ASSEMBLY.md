@@ -49,6 +49,15 @@ withdrawn regardless.
 opening `docs/` met the withdrawn claim before `VERIFICATION.md`. The README and
 `VERIFICATION.md` were corrected on 2026-04-25; this file was missed.*
 
+**Correction, 2026-10-02.** The sentence above that Path B (FCQ) "independently establishes the result for
+k ∈ {3,…,200}" is itself withdrawn. Path B is computed on the monotone compositions of §1, the object that
+`docs/AUDIT_CORRSUM.md` (repository `collatz-cycles-lean`) shows to be wrong; and its FCQ lemma (§4.2) is
+false for Steiner's corrSum: for k = 6 and p = 5 (5 | d(6) = 295, q = 4, ρ₅ = 1/4) it gives N₀(5) < 1, while
+36 of the 126 compositions have corrSum ≡ 0 (mod 5). The rows of §2 and §3 that rest on Range Exclusion or on
+Path B are withdrawn as well. In §3.4, "μ(log₂3) ≤ 5.125 (Rhin 1987)" is wrong: 5.125 is Salikhov's (2007)
+irrationality measure of ln 3. That no cycle has k ≤ 200 is true, but it follows from published results
+(Simons–de Weger 2005; Hercher 2023 with Barina's verification), not from this document.
+
 ---
 
 ---
@@ -74,8 +83,8 @@ Two independent proof paths establish $N_0(d(k)) = 0$ for all $k \geq 3$. **[RET
 
 | Path | Method | Finite range | Asymptotic regime | Gap |
 |------|--------|--------------|--------------------|----|
-| **A — Range Exclusion** | corrSum confined to narrow interval; $d$ too large to divide any value | $k = 3, \ldots, 200$ (PROVED) | $k > 200$: exponential convergence $\text{range}/d = O(3^{-0.415k})$ | Effective Diophantine constants |
-| **B — FCQ/Junction** | Prime-by-prime spectral contraction: $\rho_p < 1$ for all $p \geq 5$ | $k = 3, \ldots, 200$ (PROVED) | $k > 200$: $k_{\min}(p) = O(\log p)$ | Multiplicative order control for factors of $d(k)$ |
+| **A — Range Exclusion** | corrSum confined to narrow interval; $d$ too large to divide any value | $k = 3, \ldots, 200$ (PROVED) | $k > 200$: exponential convergence $\text{range}/d = O(3^{-0.415k})$ | Effective Diophantine constants **[RETRACTED — see the correction of 2026-10-02 above.]** |
+| **B — FCQ/Junction** | Prime-by-prime spectral contraction: $\rho_p < 1$ for all $p \geq 5$ | $k = 3, \ldots, 200$ (PROVED) | $k > 200$: $k_{\min}(p) = O(\log p)$ | Multiplicative order control for factors of $d(k)$ **[RETRACTED — see the correction of 2026-10-02 above.]** |
 
 ---
 
@@ -129,7 +138,7 @@ $$\frac{\text{range}}{d} < \frac{3^r}{3^k(2^\delta - 1)},$$
 *where $\delta = S - k\log_2 3 \in (0, 1]$. Since $r \approx 0.585k$:*
 $$\frac{\text{range}}{d} = O\!\left(\frac{3^{0.585k}}{3^k \cdot (2^\delta - 1)}\right) = O\!\left(\frac{3^{-0.415k}}{2^\delta - 1}\right).$$
 
-*By the irrationality measure $\mu(\log_2 3) \leq 5.125$ (Rhin 1987), $\delta > c_0 / k^{4.125}$ for an effective constant $c_0 > 0$. Therefore:*
+*By the irrationality measure $\mu(\log_2 3) \leq 5.125$ (Rhin 1987), $\delta > c_0 / k^{4.125}$ for an effective constant $c_0 > 0$. Therefore:* **[RETRACTED — see the correction of 2026-10-02 above.]**
 $$\frac{\text{range}}{d} = O\!\left(k^{4.125} \cdot 3^{-0.415k}\right) \to 0 \text{ exponentially.}$$
 
 ### 3.5. Range Exclusion — The Main Theorem
@@ -145,9 +154,9 @@ $$\frac{\text{range}}{d} = O\!\left(k^{4.125} \cdot 3^{-0.415k}\right) \to 0 \te
 | Regime | Method | Coverage |
 |--------|--------|----------|
 | $k = 3$ | Enumeration: 2 compositions, neither has $\mathrm{corrSum} \equiv 0 \pmod{5}$ | Proved |
-| $k = 4$ | **PHANTOM:** $N_0(d(4)) = 1$ (composition $(1,1,1,4)$, $\mathrm{corrSum} = 94 = 2 \cdot 47$). Range Exclusion correctly FAILS ($\mathrm{corrSum}_{\min} \% d = 0$). No actual 4-cycle (Simons–de Weger, $k < 68$). | Proved |
+| $k = 4$ | **PHANTOM:** $N_0(d(4)) = 1$ (composition $(1,1,1,4)$, $\mathrm{corrSum} = 94 = 2 \cdot 47$). Range Exclusion correctly FAILS ($\mathrm{corrSum}_{\min} \% d = 0$). No actual 4-cycle (Simons–de Weger, $k < 68$). | Proved **[RETRACTED — see the correction of 2026-10-02 above.]** |
 | $k = 5$ | Enumeration: 3 compositions, neither has $\mathrm{corrSum} \equiv 0 \pmod{13}$ | Proved |
-| $k = 6, \ldots, 200$ | Range Exclusion: exact computation confirms quotients equal and $\mathrm{corrSum}_{\min} \% d > 0$ for all 195 values | Proved |
+| $k = 6, \ldots, 200$ | Range Exclusion: exact computation confirms quotients equal and $\mathrm{corrSum}_{\min} \% d > 0$ for all 195 values | Proved **[RETRACTED — see the correction of 2026-10-02 above.]** |
 
 **Total: 197/198 values have $N_0 = 0$; $k = 4$ has $N_0 = 1$ (phantom, no cycle by SdW).** (File: `verify_all_k.py`)
 
@@ -187,7 +196,7 @@ By Weil's bound: $|S_p(a)| \leq \sqrt{p}$, so $\rho_p \leq \sqrt{p}/q$. When $q 
 $$R(p, k) = q \cdot \rho_p^{k-1}, \quad k_{\min}(p) = \lceil 1 + \log(q) / \log(1/\rho_p) \rceil.$$
 *If $k \geq k_{\min}(p)$ and $p \mid d(k)$, then $N_0(p) \leq R(p, k) < 1$, hence $N_0(p) = 0$, hence $N_0(d) = 0$.*
 
-### 4.3. Verification ($k = 3, \ldots, 200$)
+### 4.3. Verification ($k = 3, \ldots, 200$) **[RETRACTED — see the correction of 2026-10-02 above.]**
 
 For each $k \in \{3, \ldots, 200\} \setminus \{4\}$, a witness prime $p \mid d(k)$ is found such that $k \geq k_{\min}(p)$, hence $R(p, k) < 1$ and $N_0(d(k)) = 0$.
 
@@ -197,7 +206,7 @@ For each $k \in \{3, \ldots, 200\} \setminus \{4\}$, a witness prime $p \mid d(k
 | `fcq_general` | 58 | Witness is a general prime with $\rho_p < 1$ |
 | `steiner_barina` | 16 | Steiner bound + Barina's $2^{71}$ verification |
 | Deep factorization (ECM, Pollard) | 13 | Large witness primes found by ECM/Pollard |
-| **Total** | **198** | **All $k = 3, \ldots, 200$ proved** |
+| **Total** | **198** | **All $k = 3, \ldots, 200$ proved** **[RETRACTED — see the correction of 2026-10-02 above.]** |
 
 (File: `proof_structure.py`, with known factors in `KNOWN_FACTORS` dict.)
 
@@ -223,7 +232,7 @@ The gap: proving that $d(k)$ always has a "good" prime factor (one with $q > \sq
 - $k = 6, \ldots, 5258$: Range Exclusion (exact computation, 5253/5253 pass)
 - $k \geq 5259$: Baker–LMN contradiction argument (§10.7)
 
-**Path B** independently establishes $N_0(d(k)) = 0$ for $k \in \{3, \ldots, 200\} \setminus \{4\}$ (197 values), using **entirely different mathematical ingredients**:
+**Path B** independently establishes $N_0(d(k)) = 0$ for $k \in \{3, \ldots, 200\} \setminus \{4\}$ (197 values), using **entirely different mathematical ingredients**: **[RETRACTED — see the correction of 2026-10-02 above.]**
 - Path A: convexity of $2^x$, extremal compositions, integer arithmetic, Baker's theorem
 - Path B: character sums, spectral radius, convolution bounds, prime factorization of $d(k)$
 
@@ -248,7 +257,7 @@ The asymptotic gap has been **closed unconditionally** using the Baker–LMN the
 
 **Path A (Range Exclusion):** Finite verification for $k = 6, \ldots, 5258$ (exact integer arithmetic, 5253/5253 pass) + Baker–LMN for $k \geq 5259$ (exponential-vs-polynomial contradiction). Combined with enumeration for $k \in \{3, 5\}$ and Simons–de Weger for $k = 4$ (phantom, $N_0 = 1$): **all $k \geq 3$ are covered.** **[RETRACTED — see the block at the top of this file.]**
 
-**Path B (FCQ):** Still covers $k = 3, \ldots, 200$ independently. Extension to $k \to \infty$ would additionally require:
+**Path B (FCQ):** Still covers $k = 3, \ldots, 200$ independently. Extension to $k \to \infty$ would additionally require: **[RETRACTED — see the correction of 2026-10-02 above.]**
 
 ### 6.2. Why the Gap Is Narrow
 

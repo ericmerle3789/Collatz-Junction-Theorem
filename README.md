@@ -1,24 +1,15 @@
 # Entropic Barriers and Non-surjectivity in the 3x+1 Problem
 
-> **Scope statement (2026-07-25 audit).** This repository studies obstructions to
-> non-trivial positive Collatz cycles. It **proves** their non-existence for
-> $3 \le k \le 200$, and develops two independent asymptotic programs beyond that
-> range, **each with an unclosed gap named in `docs/PROOF_ASSEMBLY.md` §2**.
-> The Junction Theorem itself establishes that *an obstruction applies for every $k$* —
-> which is **not** the same statement as *no cycle exists*: the preprint says so
-> explicitly (complete exclusion further requires Hypothesis (H) for $k \ge 69$;
-> see Remark `junction-scope`). Earlier headline wording in this README claimed an
-> unconditional proof for all $k \ge 3$; that claim went beyond what the repository's
-> own technical documents support and has been withdrawn. Formal-verification caveats:
-> `native_decide` (compiler-trusted, not kernel-trusted) is used for the large finite
-> ranges; `AsymptoticBound.lean` carries 2 `sorry`; Simons–de Weger is taken as an axiom.
+> **Scope statement (corrected 2026-10-02; replaces the 2026-07-25 one).** This branch studies obstructions to non-trivial positive Collatz cycles. **It does not prove their non-existence for any range of k.** That no cycle has k ≤ 200 is true, but it follows from published work (Simons–de Weger 2005 for k ≤ 68; Hercher 2023 with Barina's verification beyond), not from this branch. Path A (Range Exclusion) computes a function that is not Steiner's corrSum and is retracted (`docs/PROOF_ASSEMBLY.md`). Path B (FCQ) uses the bound N₀(p) ≤ q·ρ_p^(k−1), which is false for Steiner's corrSum: for k = 6 and p = 5 it gives N₀(5) < 1, while 36 of the 126 compositions have corrSum ≡ 0 (mod 5); on monotone compositions it counts a different object. The Junction Theorem establishes non-surjectivity (C < d for k ≥ 18), not the absence of cycles. "μ(log₂3) ≤ 5.125" (`docs/PROOF_ASSEMBLY.md` §3.4, `paper/article_v1.tex` l. 408) is wrong: 5.125 is Salikhov's (2007) irrationality measure of ln 3. The "Previous Main Result" below is void (Conjecture 7.4 is false; the GRH step fails, since d^{1/2} < C). Lean caveats: `native_decide` trusts the compiler; the axiom `simons_de_weger` (`lean/skeleton/JunctionTheorem.lean`) is false as written (the trivial cycle satisfies the statement it negates), so results that use it establish nothing; all Lean versions used predate the lean4#14576 fix. See the erratum at the top of the `main` README. **This repository does not prove the Collatz cycle conjecture.**
 
 **Author:** Eric Merle
 **Date:** March 2026
 **MSC 2020:** 11B83 (primary), 11A07, 37P35 (secondary)
-**Lean verified:** 280 theorems (Lean 4.15.0) + Range Exclusion certificate k=3..5258 (Lean 4.28.0, 0 sorry, 2 axioms)
+**Lean:** 280 theorems in `lean/verified/` (Lean 4.15.0; zero-exclusion for k = 3..15, via `native_decide`). The former "Range Exclusion certificate k=3..5258" checks the wrong function and certifies nothing about cycles.
 
 ---
+
+> **[WITHDRAWN 2026-10-02 — see the scope statement above; kept for the record.]**
 
 ## Main Result
 
