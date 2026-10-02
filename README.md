@@ -1,4 +1,20 @@
-> **⚠️ Repository archived 2026-04-22 — historical reference only.**
+> ## ⚠️ Erratum (2026-10-02) — read before citing anything here
+>
+> **This repository does not prove that the Collatz map has no nontrivial cycle.**
+>
+> 1. **The headline theorem is void.** "No nontrivial positive cycle, conditional on GRH + Conjecture 7.4": Conjecture 7.4 (×2-closure of Im_int) is **false as stated** — see *Known Gaps* §1 below. The title "Nonexistence of Nontrivial Cycles…" and the status "open conjecture" are withdrawn.
+> 2. **The GRH step fails.** "ord_d(2) ≫ d^{1/2} ≫ C" is wrong: d^{1/2} < C for every k from 2 to 2000 (exact computation, S = ⌈k·log₂3⌉; e.g. k = 18: d^{1/2} ≈ 12 224, C = 21 474 180), and asymptotically C ≈ 2^{0.95 S} > 2^{S/2} > d^{1/2}.
+> 3. **"Without GRH, complete for k ≤ 10001" is false**: only F(u) ≢ 0 was checked up to k = 10001; ord_d(2) > C was checked for 19 prime d only; the interior case needs Conjecture 7.4.
+> 4. **"Exhaustive verification covers k ≤ 67" is contradicted by this README** (verification frontier k = 20; single-prime blocking fails for all 71 tested pairs with k = 21..41). No cycle has k ≤ 68, but this follows from Simons & de Weger (Acta Arith. 117, 2005: no m-cycle with m ≤ 68, and m ≤ k), not from this repository.
+> 5. **The Junction Theorem is not a cycle exclusion.** For k ≥ 18 it is C(S−1, k−1) < 2^S − 3^k: some residue is missed, not necessarily 0. "Exponential decay — Proved" and "Borel–Cantelli K₀ = 42" concern C/d, a heuristic expected count, not N₀(d).
+> 6. **Lean.** `lean/verified/` (Lean 4.15.0) has no `sorry` and no declared `axiom`, but 272 uses of `native_decide`, which trusts the compiler (axiom `Lean.ofReduceBool`): "0 axiom" and "certified by the kernel" are inaccurate, and CI checks `Basic.lean` only. `lean/skeleton/` declares 2 axioms, and **`simons_de_weger` (JunctionTheorem.lean, l. 551) is false as written**: the trivial cycle (k = 1, S = 2, n₀ = 1, A = 0, so that 1·(2² − 3) = 1 = corrSum) satisfies the statement it negates. `junction_unconditional` and `no_positive_cycle` use it and therefore establish nothing; `no_positive_cycle` also assumes `QuasiUniformity`, which states its conclusion. All Lean versions used here predate the fix of the kernel soundness bug lean4#14576 (v4.32.2, 2026-07-28) and were not re-checked.
+> 7. **The comparison table below is wrong in five places**: Conjecture 7.4 is not "Artin-like", and "k ≤ 10001" refers to F(u), not to 7.4; Junction has 2 user-declared axioms, not 0; `BakerSeparation` (collatz-nocycle-lean4) is a working hypothesis, not a published theorem; `DerivedLargeKBound` is *assumed*, not derived — together with Barina's verification it already amounts to "no cycle with k > 1322", and the "Phase Legendre" proof was never delivered; its `#print axioms` ran on Lean v4.27, before the lean4#14576 fix. Neither formalization is "complete": each rests on a hypothesis that contains its conclusion.
+> 8. **The R201-I3 retraction below also covers** `RESEARCH_MAP.md` (l. 277, 1145, 1165–1167), `research_log/R201_investigateur_baker_decay.md` and `research_log/R201_red_team_baker_audit.md`, on every branch.
+> 9. `paper/COLLATZ_PAPER_v4.tex` says it "establishes the nonexistence" of cycles, although its own Remark (l. 85) leaves K₀ uncomputed; its tail-sum corrsum is not Steiner's (trivial cycle run twice, k = 2, σ = (2, 2): 13, not a multiple of d = 7); its Hercher reference should read Christian Hercher, *There are no Collatz m-Cycles with m ≤ 91*, J. Integer Seq. 26 (2023), Article 23.3.5. `CHANGELOG.md` v4 "covering k ≤ 5,258" is wrong (the Lean here covers k = 3..15). The audits in `audits/` were produced with AI models (V1–V3 and V8 say so; V4 names no auditor), not by a panel of human experts.
+>
+> **What stands:** C(S−1, k−1) < 2^S − 3^k for k ≥ 18 (exact check for k = 18..5000; for larger k the paper's argument gives no explicit constant, and in Lean k ≥ 666 rests on the axiom `small_gap_crystal_bound`); N₀(d) = 0 for k = 3..15 in Lean (caveats of point 6); the documented dead ends. Everything below is kept unchanged as a historical record. — Eric Merle, 2026-10-02
+
+> **⚠️ Repository frozen 2026-04-22 (no new research; errata only; not archived on GitHub) — historical reference only.**
 >
 > **Active repo** : [collatz-nocycle-lean4](https://github.com/ericmerle3789/collatz-nocycle-lean4)
 >
