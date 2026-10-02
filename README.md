@@ -1,3 +1,5 @@
+> **⚠️ Erratum (2026-10-02).** This branch is a March 2026 snapshot whose README predates the corrections at the top of the `main` README. Its headline is **not true**: the repository does not prove the nonexistence of cycles; the theorem "conditional on GRH + Conjecture 7.4" is void (Conjecture 7.4 is false); the GRH step, "complete for k ≤ 10001" and "verification covers k ≤ 67" are wrong; "0 axiom" ignores `native_decide`. The R201-I3 verdict ("C′ ~ 13.3 misattributed to Rhin 1987") in `research_log/` and `RESEARCH_MAP.md` is retracted. The R202 Lean files (`lean4_proof/`) enumerate monotone compositions, which is not Steiner's corrSum: their "N₀(d(k)) = 0 for k = 3..40" says nothing about cycles.
+
 # Nonexistence of Nontrivial Cycles in Collatz Dynamics: The Junction Theorem and Blocking Mechanism
 
 **Author:** Eric Merle
